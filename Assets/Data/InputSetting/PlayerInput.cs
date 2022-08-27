@@ -149,6 +149,34 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""GlobalInput"",
+            ""id"": ""79e5acaa-6504-494b-8c4f-c5f9d0760b93"",
+            ""actions"": [
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""347405c3-862f-4275-bd94-7ef24008c569"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d9915b61-47da-4caf-9cfb-9ff905ae2b0f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -156,6 +184,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // LocalPlayer
         m_LocalPlayer = asset.FindActionMap("LocalPlayer", throwIfNotFound: true);
         m_LocalPlayer_Move = m_LocalPlayer.FindAction("Move", throwIfNotFound: true);
+        // GlobalInput
+        m_GlobalInput = asset.FindActionMap("GlobalInput", throwIfNotFound: true);
+        m_GlobalInput_Click = m_GlobalInput.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -244,8 +275,45 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     }
     public LocalPlayerActions @LocalPlayer => new LocalPlayerActions(this);
+
+    // GlobalInput
+    private readonly InputActionMap m_GlobalInput;
+    private IGlobalInputActions m_GlobalInputActionsCallbackInterface;
+    private readonly InputAction m_GlobalInput_Click;
+    public struct GlobalInputActions
+    {
+        private @PlayerInput m_Wrapper;
+        public GlobalInputActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Click => m_Wrapper.m_GlobalInput_Click;
+        public InputActionMap Get() { return m_Wrapper.m_GlobalInput; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GlobalInputActions set) { return set.Get(); }
+        public void SetCallbacks(IGlobalInputActions instance)
+        {
+            if (m_Wrapper.m_GlobalInputActionsCallbackInterface != null)
+            {
+                @Click.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnClick;
+            }
+            m_Wrapper.m_GlobalInputActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
+            }
+        }
+    }
+    public GlobalInputActions @GlobalInput => new GlobalInputActions(this);
     public interface ILocalPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+    }
+    public interface IGlobalInputActions
+    {
+        void OnClick(InputAction.CallbackContext context);
     }
 }
