@@ -162,6 +162,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Hold"",
+                    ""type"": ""Button"",
+                    ""id"": ""546f0509-b692-49ca-b5ea-9687c510fe94"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -173,6 +182,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e51be93-836b-484b-bed5-2bb7e6c5e3fb"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold(duration=0.4,pressPoint=0.5)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -187,6 +207,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // GlobalInput
         m_GlobalInput = asset.FindActionMap("GlobalInput", throwIfNotFound: true);
         m_GlobalInput_Click = m_GlobalInput.FindAction("Click", throwIfNotFound: true);
+        m_GlobalInput_Hold = m_GlobalInput.FindAction("Hold", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -280,11 +301,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_GlobalInput;
     private IGlobalInputActions m_GlobalInputActionsCallbackInterface;
     private readonly InputAction m_GlobalInput_Click;
+    private readonly InputAction m_GlobalInput_Hold;
     public struct GlobalInputActions
     {
         private @PlayerInput m_Wrapper;
         public GlobalInputActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Click => m_Wrapper.m_GlobalInput_Click;
+        public InputAction @Hold => m_Wrapper.m_GlobalInput_Hold;
         public InputActionMap Get() { return m_Wrapper.m_GlobalInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -297,6 +320,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Click.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnClick;
                 @Click.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnClick;
                 @Click.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnClick;
+                @Hold.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
+                @Hold.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
+                @Hold.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
             }
             m_Wrapper.m_GlobalInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -304,6 +330,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Click.started += instance.OnClick;
                 @Click.performed += instance.OnClick;
                 @Click.canceled += instance.OnClick;
+                @Hold.started += instance.OnHold;
+                @Hold.performed += instance.OnHold;
+                @Hold.canceled += instance.OnHold;
             }
         }
     }
@@ -315,5 +344,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface IGlobalInputActions
     {
         void OnClick(InputAction.CallbackContext context);
+        void OnHold(InputAction.CallbackContext context);
     }
 }
