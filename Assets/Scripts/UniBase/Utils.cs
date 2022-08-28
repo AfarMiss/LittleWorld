@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace UniBase.Utils
+namespace UniBase
 {
     public class Utils
     {
@@ -14,7 +14,9 @@ namespace UniBase.Utils
 #else
             Vector2 mousePosition=Input.mousePosition;
 #endif
-            return Camera.main.ScreenToWorldPoint(mousePosition);
+            var result = Camera.main.ScreenToWorldPoint(mousePosition);
+            Debug.Log($"GetMouseWorldPosition:{result}");
+            return result;
 
 
         }
