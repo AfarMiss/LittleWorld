@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,11 @@ public class GameRTSController : MonoBehaviour
 
     private void Awake()
     {
+        var sa= Resources.Load<GameObject>("Prefabs/UI/SelectionArea");
+        var saObject = Instantiate(sa);
+        saObject.name = saObject.name.Substring(0, saObject.name.LastIndexOf("(Clone)"));
+
+        selectedArea = saObject.GetComponent<Transform>();
         selectedArea.gameObject.SetActive(false);
     }
 
@@ -64,10 +70,13 @@ public class GameRTSController : MonoBehaviour
 
     private void Update()
     {
-        endPosition = UniBase.Utils.GetMouseWorldPosition();
-        var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
-        var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
-        selectedArea.position = lowerLeft;
-        selectedArea.localScale = upperRight - lowerLeft;
+        if (InputManager.Instance.myController.GlobalInput.Click.IsPressed())
+        {
+            endPosition = UniBase.Utils.GetMouseWorldPosition();
+            var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
+            var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
+            selectedArea.position = lowerLeft;
+            selectedArea.localScale = upperRight - lowerLeft;
+        }
     }
 }
