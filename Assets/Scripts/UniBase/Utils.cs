@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace UniBase
 {
-    public class Utils
+    public static class Utils
     {
         public static Vector3 GetMouseWorldPosition()
         {
@@ -30,5 +30,18 @@ namespace UniBase
 #endif
             return mousePosition;
         }
+
+        public static Vector3 GetScreenPosition(this Vector3 worldPos)
+        {
+            if (Camera.main == null)
+            {
+                Debug.LogError("Main Camera is null!");
+                return Vector3.zero;
+            }
+            Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPos);
+            return screenPoint;
+        }
     }
+
+
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniBase;
 using UnityEngine;
 
 public class GameRTSController : MonoBehaviour
@@ -40,7 +41,7 @@ public class GameRTSController : MonoBehaviour
         {
             endPosition = UniBase.Utils.GetMousePosition();
             selectedArea.gameObject.SetActive(false);
-            //all units
+            //all units clear
             var allRtsUnitsObjects = GameObject.FindObjectsOfType<RTSUnit>();
             foreach (var item in allRtsUnitsObjects)
             {
@@ -50,15 +51,18 @@ public class GameRTSController : MonoBehaviour
             {
                 item.OnUnselected();
             }
-            Debug.Log("Click.canceled -------");
-            rtsUnits.Clear();
+
 
 
             foreach (var item in allRtsUnits)
             {
                 if (item.TryGetComponent<RTSUnit>(out var comp))
                 {
-                    rtsUnits.Add(comp);
+                    var screenPos = item.transform.position.GetScreenPosition();
+                    if (selectedArea.rect.Contains(screenPos))
+                    {
+                        rtsUnits.Add(comp);
+                    }
                 }
             }
 
@@ -66,6 +70,10 @@ public class GameRTSController : MonoBehaviour
             {
                 item.OnSelected();
             }
+
+            Debug.Log("Click.canceled -------");
+            rtsUnits.Clear();
+            allRtsUnits.Clear();
         };
     }
 
@@ -78,7 +86,7 @@ public class GameRTSController : MonoBehaviour
             var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
             selectedArea.position = lowerLeft;
             selectedArea.sizeDelta = upperRight - lowerLeft;
-            
+
         }
     }
 
