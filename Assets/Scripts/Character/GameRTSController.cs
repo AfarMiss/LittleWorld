@@ -11,6 +11,8 @@ public class GameRTSController : MonoBehaviour
     private List<RTSUnit> rtsUnits;
     private List<RTSUnit> allRtsUnits;
 
+    Rect realSelection;
+
     public RectTransform selectedArea;
 
     private void Awake()
@@ -22,6 +24,8 @@ public class GameRTSController : MonoBehaviour
         selectedArea = saObject.GetComponent<RectTransform>();
         selectedArea.transform.SetParent(GameObject.Find("Canvas").transform);
         selectedArea.gameObject.SetActive(false);
+
+        realSelection = new Rect();
     }
 
     private void Start()
@@ -59,7 +63,7 @@ public class GameRTSController : MonoBehaviour
                 if (item.TryGetComponent<RTSUnit>(out var comp))
                 {
                     var screenPos = item.transform.position.GetScreenPosition();
-                    if (selectedArea.rect.Contains(screenPos))
+                    if (realSelection.Contains(screenPos))
                     {
                         rtsUnits.Add(comp);
                     }
@@ -86,6 +90,9 @@ public class GameRTSController : MonoBehaviour
             var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
             selectedArea.position = lowerLeft;
             selectedArea.sizeDelta = upperRight - lowerLeft;
+
+            realSelection.position = lowerLeft;
+            realSelection.size = selectedArea.sizeDelta;
 
         }
     }
