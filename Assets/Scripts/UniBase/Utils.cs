@@ -20,5 +20,15 @@ namespace UniBase
 
 
         }
+
+        public static Vector3 GetMousePosition()
+        {
+#if ENABLE_INPUT_SYSTEM
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+#else
+            Vector2 mousePosition=Input.mousePosition;
+#endif
+            return mousePosition;
+        }
     }
 }
