@@ -8,8 +8,8 @@ public class GameRTSController : MonoBehaviour
 {
     private Vector3 startPosition;
     private Vector3 endPosition;
-    private List<RTSUnit> rtsUnits;
-    private List<RTSUnit> allRtsUnits;
+    private HashSet<RTSUnit> selectedUnits;
+    private HashSet<RTSUnit> allRtsUnits;
 
     Rect realSelection;
 
@@ -30,30 +30,37 @@ public class GameRTSController : MonoBehaviour
 
     private void Start()
     {
-        rtsUnits = new List<RTSUnit>();
-        allRtsUnits = new List<RTSUnit>();
+        selectedUnits = new HashSet<RTSUnit>();
+        allRtsUnits = new HashSet<RTSUnit>();
 
 
         InputManager.Instance.myController.GlobalInput.Click.started += (callbackContext) =>
         {
-            startPosition = UniBase.Utils.GetMousePosition();
+            startPosition = Utils.GetMousePosition();
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
         };
 
         InputManager.Instance.myController.GlobalInput.Click.canceled += (callbackContext) =>
         {
-            endPosition = UniBase.Utils.GetMousePosition();
+            endPosition = Utils.GetMousePosition();
             selectedArea.gameObject.SetActive(false);
-            //all units clear
+
             var allRtsUnitsObjects = GameObject.FindObjectsOfType<RTSUnit>();
             foreach (var item in allRtsUnitsObjects)
             {
                 allRtsUnits.Add(item.GetComponent<RTSUnit>());
             }
-            foreach (var item in allRtsUnits)
+
+            if (!InputManager.Instance.myController.GlobalInput.Additional.IsPressed())
             {
-                item.OnUnselected();
+                selectedUnits.Clear();
+                //all units clear
+                foreach (var item in allRtsUnits)
+                {
+                    item.isSelected = false;
+                    item.OnUnselected();
+                }
             }
 
             foreach (var item in allRtsUnits)
@@ -64,18 +71,23 @@ public class GameRTSController : MonoBehaviour
                     var rtsCollider = item.GetComponent<Collider2D>();
                     if (realSelection.OverlapBound(rtsCollider.bounds))
                     {
-                        rtsUnits.Add(comp);
+                        if (selectedUnits.Contains(comp))
+                        {
+                            item.isSelected = false;
+                            selectedUnits.Remove(comp);
+                            item.OnUnselected();
+                        }
+                        else
+                        {
+                            item.isSelected = true;
+                            selectedUnits.Add(comp);
+                            item.OnSelected();
+                        }
                     }
                 }
             }
 
-            foreach (var item in rtsUnits)
-            {
-                item.OnSelected();
-            }
-
             Debug.Log("Click.canceled -------");
-            rtsUnits.Clear();
             allRtsUnits.Clear();
         };
     }

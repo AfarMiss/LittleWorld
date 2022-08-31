@@ -171,6 +171,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Additional"",
+                    ""type"": ""Button"",
+                    ""id"": ""68bdbb79-3b53-4cf0-b4bf-7a139ef7ec6a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -195,6 +204,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Hold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8cd5a1b3-cbf6-461a-bbb2-8ddc5e49ae47"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Additional"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +228,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_GlobalInput = asset.FindActionMap("GlobalInput", throwIfNotFound: true);
         m_GlobalInput_Click = m_GlobalInput.FindAction("Click", throwIfNotFound: true);
         m_GlobalInput_Hold = m_GlobalInput.FindAction("Hold", throwIfNotFound: true);
+        m_GlobalInput_Additional = m_GlobalInput.FindAction("Additional", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -302,12 +323,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IGlobalInputActions m_GlobalInputActionsCallbackInterface;
     private readonly InputAction m_GlobalInput_Click;
     private readonly InputAction m_GlobalInput_Hold;
+    private readonly InputAction m_GlobalInput_Additional;
     public struct GlobalInputActions
     {
         private @PlayerInput m_Wrapper;
         public GlobalInputActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Click => m_Wrapper.m_GlobalInput_Click;
         public InputAction @Hold => m_Wrapper.m_GlobalInput_Hold;
+        public InputAction @Additional => m_Wrapper.m_GlobalInput_Additional;
         public InputActionMap Get() { return m_Wrapper.m_GlobalInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -323,6 +346,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Hold.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
                 @Hold.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
                 @Hold.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
+                @Additional.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnAdditional;
+                @Additional.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnAdditional;
+                @Additional.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnAdditional;
             }
             m_Wrapper.m_GlobalInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -333,6 +359,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Hold.started += instance.OnHold;
                 @Hold.performed += instance.OnHold;
                 @Hold.canceled += instance.OnHold;
+                @Additional.started += instance.OnAdditional;
+                @Additional.performed += instance.OnAdditional;
+                @Additional.canceled += instance.OnAdditional;
             }
         }
     }
@@ -345,5 +374,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnClick(InputAction.CallbackContext context);
         void OnHold(InputAction.CallbackContext context);
+        void OnAdditional(InputAction.CallbackContext context);
     }
 }

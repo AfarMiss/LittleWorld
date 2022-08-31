@@ -5,6 +5,7 @@ using UnityEngine;
 public class RTSUnit : MonoBehaviour
 {
     public GameObject outline;
+    public bool isSelected = false;
 
     private void Awake()
     {
