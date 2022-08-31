@@ -41,6 +41,15 @@ namespace UniBase
             Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPos);
             return screenPoint;
         }
+
+        public static bool OverlapBound(this Rect a,Bounds b)
+        {
+            var minPoint = Camera.main.WorldToScreenPoint(b.min);
+            var maxPoint = Camera.main.WorldToScreenPoint(b.max);
+            var Rectb = new Rect(minPoint, maxPoint- minPoint);
+
+            return a.Overlaps(Rectb);
+        }
     }
 
 

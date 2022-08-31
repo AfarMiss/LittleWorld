@@ -56,14 +56,13 @@ public class GameRTSController : MonoBehaviour
                 item.OnUnselected();
             }
 
-
-
             foreach (var item in allRtsUnits)
             {
                 if (item.TryGetComponent<RTSUnit>(out var comp))
                 {
                     var screenPos = item.transform.position.GetScreenPosition();
-                    if (realSelection.Contains(screenPos))
+                    var rtsCollider = item.GetComponent<Collider2D>();
+                    if (realSelection.OverlapBound(rtsCollider.bounds))
                     {
                         rtsUnits.Add(comp);
                     }
@@ -95,10 +94,5 @@ public class GameRTSController : MonoBehaviour
             realSelection.size = selectedArea.sizeDelta;
 
         }
-    }
-
-    private void DrawRect()
-    {
-
     }
 }
