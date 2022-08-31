@@ -46,50 +46,94 @@ public class GameRTSController : MonoBehaviour
             endPosition = Utils.GetMousePosition();
             selectedArea.gameObject.SetActive(false);
 
-            var allRtsUnitsObjects = GameObject.FindObjectsOfType<RTSUnit>();
-            foreach (var item in allRtsUnitsObjects)
-            {
-                allRtsUnits.Add(item.GetComponent<RTSUnit>());
-            }
+            Prepare();
 
-            if (!InputManager.Instance.myController.GlobalInput.Additional.IsPressed())
-            {
-                selectedUnits.Clear();
-                //all units clear
-                foreach (var item in allRtsUnits)
-                {
-                    item.isSelected = false;
-                    item.OnUnselected();
-                }
-            }
-
-            foreach (var item in allRtsUnits)
-            {
-                if (item.TryGetComponent<RTSUnit>(out var comp))
-                {
-                    var screenPos = item.transform.position.GetScreenPosition();
-                    var rtsCollider = item.GetComponent<Collider2D>();
-                    if (realSelection.OverlapBound(rtsCollider.bounds))
-                    {
-                        if (selectedUnits.Contains(comp))
-                        {
-                            item.isSelected = false;
-                            selectedUnits.Remove(comp);
-                            item.OnUnselected();
-                        }
-                        else
-                        {
-                            item.isSelected = true;
-                            selectedUnits.Add(comp);
-                            item.OnSelected();
-                        }
-                    }
-                }
-            }
+            FindBoundOverlap();
 
             Debug.Log("Click.canceled -------");
             allRtsUnits.Clear();
         };
+
+        InputManager.Instance.myController.GlobalInput.DoubleClick.performed += (callbackContext) =>
+        {
+            if (selectedUnits != null && selectedUnits.Count > 0)
+            {
+                Prepare();
+                Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
+                FindRectOverlap(screenRect);
+            }
+        };
+    }
+
+    private void Prepare()
+    {
+        var allRtsUnitsObjects = GameObject.FindObjectsOfType<RTSUnit>();
+        foreach (var item in allRtsUnitsObjects)
+        {
+            allRtsUnits.Add(item.GetComponent<RTSUnit>());
+        }
+
+        if (!InputManager.Instance.myController.GlobalInput.Additional.IsPressed())
+        {
+            selectedUnits.Clear();
+            //all units clear
+            foreach (var item in allRtsUnits)
+            {
+                item.isSelected = false;
+                item.OnUnselected();
+            }
+        }
+    }
+
+    private void FindBoundOverlap()
+    {
+        foreach (var item in allRtsUnits)
+        {
+            if (item.TryGetComponent<RTSUnit>(out var comp))
+            {
+                var rtsCollider = item.GetComponent<Collider2D>();
+                if (realSelection.OverlapBound(rtsCollider.bounds))
+                {
+                    if (selectedUnits.Contains(comp))
+                    {
+                        item.isSelected = false;
+                        selectedUnits.Remove(comp);
+                        item.OnUnselected();
+                    }
+                    else
+                    {
+                        item.isSelected = true;
+                        selectedUnits.Add(comp);
+                        item.OnSelected();
+                    }
+                }
+            }
+        }
+    }
+
+    private void FindRectOverlap(Rect other)
+    {
+        foreach (var item in allRtsUnits)
+        {
+            if (item.TryGetComponent<RTSUnit>(out var comp))
+            {
+                if (realSelection.Overlaps(other))
+                {
+                    if (selectedUnits.Contains(comp))
+                    {
+                        item.isSelected = false;
+                        selectedUnits.Remove(comp);
+                        item.OnUnselected();
+                    }
+                    else
+                    {
+                        item.isSelected = true;
+                        selectedUnits.Add(comp);
+                        item.OnSelected();
+                    }
+                }
+            }
+        }
     }
 
     private void Update()
@@ -104,7 +148,7 @@ public class GameRTSController : MonoBehaviour
 
             realSelection.position = lowerLeft;
             realSelection.size = selectedArea.sizeDelta;
-
         }
+
     }
 }

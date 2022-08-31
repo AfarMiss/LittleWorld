@@ -134,9 +134,9 @@
             "actions": [
                 {
                     "name": "Click",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "347405c3-862f-4275-bd94-7ef24008c569",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -154,6 +154,15 @@
                     "name": "Additional",
                     "type": "Button",
                     "id": "68bdbb79-3b53-4cf0-b4bf-7a139ef7ec6a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DoubleClick",
+                    "type": "Button",
+                    "id": "7e5ec070-d07b-4889-9ec0-929b75d8fb75",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -191,6 +200,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Additional",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f56c7f4-f64e-482f-ba23-98d839081ebc",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DoubleClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
