@@ -155,7 +155,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ""id"": ""79e5acaa-6504-494b-8c4f-c5f9d0760b93"",
             ""actions"": [
                 {
-                    ""name"": ""Click"",
+                    ""name"": ""LeftClick"",
                     ""type"": ""Button"",
                     ""id"": ""347405c3-862f-4275-bd94-7ef24008c569"",
                     ""expectedControlType"": ""Button"",
@@ -189,6 +189,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""795a5018-862d-44d7-ba9f-338bee134638"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -199,7 +208,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Click"",
+                    ""action"": ""LeftClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -235,6 +244,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""DoubleClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""163a8f8f-540e-43ef-9fbd-0476109df63e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -246,10 +266,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_LocalPlayer_Move = m_LocalPlayer.FindAction("Move", throwIfNotFound: true);
         // GlobalInput
         m_GlobalInput = asset.FindActionMap("GlobalInput", throwIfNotFound: true);
-        m_GlobalInput_Click = m_GlobalInput.FindAction("Click", throwIfNotFound: true);
+        m_GlobalInput_LeftClick = m_GlobalInput.FindAction("LeftClick", throwIfNotFound: true);
         m_GlobalInput_Hold = m_GlobalInput.FindAction("Hold", throwIfNotFound: true);
         m_GlobalInput_Additional = m_GlobalInput.FindAction("Additional", throwIfNotFound: true);
         m_GlobalInput_DoubleClick = m_GlobalInput.FindAction("DoubleClick", throwIfNotFound: true);
+        m_GlobalInput_RightClick = m_GlobalInput.FindAction("RightClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -342,18 +363,20 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     // GlobalInput
     private readonly InputActionMap m_GlobalInput;
     private IGlobalInputActions m_GlobalInputActionsCallbackInterface;
-    private readonly InputAction m_GlobalInput_Click;
+    private readonly InputAction m_GlobalInput_LeftClick;
     private readonly InputAction m_GlobalInput_Hold;
     private readonly InputAction m_GlobalInput_Additional;
     private readonly InputAction m_GlobalInput_DoubleClick;
+    private readonly InputAction m_GlobalInput_RightClick;
     public struct GlobalInputActions
     {
         private @PlayerInput m_Wrapper;
         public GlobalInputActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Click => m_Wrapper.m_GlobalInput_Click;
+        public InputAction @LeftClick => m_Wrapper.m_GlobalInput_LeftClick;
         public InputAction @Hold => m_Wrapper.m_GlobalInput_Hold;
         public InputAction @Additional => m_Wrapper.m_GlobalInput_Additional;
         public InputAction @DoubleClick => m_Wrapper.m_GlobalInput_DoubleClick;
+        public InputAction @RightClick => m_Wrapper.m_GlobalInput_RightClick;
         public InputActionMap Get() { return m_Wrapper.m_GlobalInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -363,9 +386,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_GlobalInputActionsCallbackInterface != null)
             {
-                @Click.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnClick;
-                @Click.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnClick;
-                @Click.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnClick;
+                @LeftClick.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnLeftClick;
+                @LeftClick.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnLeftClick;
+                @LeftClick.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnLeftClick;
                 @Hold.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
                 @Hold.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
                 @Hold.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
@@ -375,13 +398,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @DoubleClick.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnDoubleClick;
                 @DoubleClick.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnDoubleClick;
                 @DoubleClick.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnDoubleClick;
+                @RightClick.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
+                @RightClick.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
+                @RightClick.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
             }
             m_Wrapper.m_GlobalInputActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Click.started += instance.OnClick;
-                @Click.performed += instance.OnClick;
-                @Click.canceled += instance.OnClick;
+                @LeftClick.started += instance.OnLeftClick;
+                @LeftClick.performed += instance.OnLeftClick;
+                @LeftClick.canceled += instance.OnLeftClick;
                 @Hold.started += instance.OnHold;
                 @Hold.performed += instance.OnHold;
                 @Hold.canceled += instance.OnHold;
@@ -391,6 +417,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @DoubleClick.started += instance.OnDoubleClick;
                 @DoubleClick.performed += instance.OnDoubleClick;
                 @DoubleClick.canceled += instance.OnDoubleClick;
+                @RightClick.started += instance.OnRightClick;
+                @RightClick.performed += instance.OnRightClick;
+                @RightClick.canceled += instance.OnRightClick;
             }
         }
     }
@@ -401,9 +430,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     }
     public interface IGlobalInputActions
     {
-        void OnClick(InputAction.CallbackContext context);
+        void OnLeftClick(InputAction.CallbackContext context);
         void OnHold(InputAction.CallbackContext context);
         void OnAdditional(InputAction.CallbackContext context);
         void OnDoubleClick(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
     }
 }

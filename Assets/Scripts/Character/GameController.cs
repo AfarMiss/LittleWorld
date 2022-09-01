@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
 
-public class GameRTSController : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     private Vector3 startPosition;
     private Vector3 endPosition;
@@ -34,14 +34,14 @@ public class GameRTSController : MonoBehaviour
         allRtsUnits = new HashSet<RTSUnit>();
 
 
-        InputManager.Instance.myController.GlobalInput.Click.started += (callbackContext) =>
+        InputManager.Instance.myController.GlobalInput.LeftClick.started += (callbackContext) =>
         {
             startPosition = Utils.GetMousePosition();
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
         };
 
-        InputManager.Instance.myController.GlobalInput.Click.canceled += (callbackContext) =>
+        InputManager.Instance.myController.GlobalInput.LeftClick.canceled += (callbackContext) =>
         {
             endPosition = Utils.GetMousePosition();
             selectedArea.gameObject.SetActive(false);
@@ -62,6 +62,15 @@ public class GameRTSController : MonoBehaviour
                 Prepare();
                 Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
                 FindRectOverlap(screenRect);
+            }
+        };
+
+        InputManager.Instance.myController.GlobalInput.RightClick.performed += (callbackContext) =>
+        {
+            foreach (var item in selectedUnits)
+            {
+                var rig = item.GetComponent<Rigidbody2D>();
+                rig.MovePosition(Camera.main.ScreenToWorldPoint(Utils.GetMousePosition()));
             }
         };
 
@@ -145,7 +154,7 @@ public class GameRTSController : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.Instance.myController.GlobalInput.Click.IsPressed())
+        if (InputManager.Instance.myController.GlobalInput.LeftClick.IsPressed())
         {
             //更新选择区域
             endPosition = Utils.GetMousePosition();
@@ -156,6 +165,13 @@ public class GameRTSController : MonoBehaviour
 
             realSelection.position = lowerLeft;
             realSelection.size = selectedArea.sizeDelta;
+        }
+
+        foreach (var item in selectedUnits)
+        {
+            var rig = item.GetComponent<Rigidbody2D>();
+            var normalizedVector = (Camera.main.ScreenToWorldPoint(Utils.GetMousePosition()) - rig.transform.position).normalized;
+            rig.MovePosition(normalizedVector * Time.deltaTime * 5);
         }
 
     }
