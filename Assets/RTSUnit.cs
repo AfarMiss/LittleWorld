@@ -5,19 +5,38 @@ using UnityEngine;
 public class RTSUnit : MonoBehaviour
 {
     public GameObject outline;
-    public bool isSelected = false;
+    private bool _isSelected = false;
+    public bool isSelected
+    {
+        set
+        {
+            _isSelected = value;
+            if (_isSelected)
+            {
+                OnSelected();
+            }
+            else
+            {
+                OnUnselected();
+            }
+        }
+        get
+        {
+            return _isSelected;
+        }
+    }
 
     private void Awake()
     {
         outline.SetActive(false);
     }
 
-    public void OnSelected()
+    private void OnSelected()
     {
         outline.SetActive(true);
     }
 
-    public void OnUnselected()
+    private void OnUnselected()
     {
         outline.SetActive(false);
     }

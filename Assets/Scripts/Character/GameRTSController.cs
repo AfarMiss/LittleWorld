@@ -56,12 +56,23 @@ public class GameRTSController : MonoBehaviour
 
         InputManager.Instance.myController.GlobalInput.DoubleClick.performed += (callbackContext) =>
         {
+            Debug.Log("DoubleClick.performed -------");
             if (selectedUnits != null && selectedUnits.Count > 0)
             {
                 Prepare();
                 Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
                 FindRectOverlap(screenRect);
             }
+        };
+
+        InputManager.Instance.myController.GlobalInput.Additional.started += (callbackContext) =>
+        {
+            Debug.Log("Additional.started -------");
+        };
+
+        InputManager.Instance.myController.GlobalInput.Additional.canceled += (callbackContext) =>
+        {
+            Debug.Log("Additional.canceled -------");
         };
     }
 
@@ -80,7 +91,6 @@ public class GameRTSController : MonoBehaviour
             foreach (var item in allRtsUnits)
             {
                 item.isSelected = false;
-                item.OnUnselected();
             }
         }
     }
@@ -98,13 +108,11 @@ public class GameRTSController : MonoBehaviour
                     {
                         item.isSelected = false;
                         selectedUnits.Remove(comp);
-                        item.OnUnselected();
                     }
                     else
                     {
                         item.isSelected = true;
                         selectedUnits.Add(comp);
-                        item.OnSelected();
                     }
                 }
             }
@@ -117,19 +125,18 @@ public class GameRTSController : MonoBehaviour
         {
             if (item.TryGetComponent<RTSUnit>(out var comp))
             {
-                if (realSelection.Overlaps(other))
+                var rtsCollider = item.GetComponent<Collider2D>();
+                if (other.OverlapBound(rtsCollider.bounds))
                 {
                     if (selectedUnits.Contains(comp))
                     {
                         item.isSelected = false;
                         selectedUnits.Remove(comp);
-                        item.OnUnselected();
                     }
                     else
                     {
                         item.isSelected = true;
                         selectedUnits.Add(comp);
-                        item.OnSelected();
                     }
                 }
             }
@@ -140,7 +147,8 @@ public class GameRTSController : MonoBehaviour
     {
         if (InputManager.Instance.myController.GlobalInput.Click.IsPressed())
         {
-            endPosition = UniBase.Utils.GetMousePosition();
+            //更新选择区域
+            endPosition = Utils.GetMousePosition();
             var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
             var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
             selectedArea.position = lowerLeft;
