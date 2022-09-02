@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
@@ -167,12 +165,21 @@ public class GameController : MonoBehaviour
             realSelection.size = selectedArea.sizeDelta;
         }
 
+        //foreach (var item in selectedUnits)
+        //{
+        //    var rig = item.GetComponent<Rigidbody2D>();
+        //    var normalizedVector = (Camera.main.ScreenToWorldPoint(Utils.GetMousePosition()) - rig.transform.position).normalized;
+        //    rig.MovePosition(transform.position + transform.forward * Time.deltaTime);
+        //}
+
+    }
+
+    void FixedUpdate()
+    {
         foreach (var item in selectedUnits)
         {
             var rig = item.GetComponent<Rigidbody2D>();
-            var normalizedVector = (Camera.main.ScreenToWorldPoint(Utils.GetMousePosition()) - rig.transform.position).normalized;
-            rig.MovePosition(normalizedVector * Time.deltaTime * 5);
+            rig.MovePosition(rig.position + new Vector2(1.75f, 1.1f) * Time.deltaTime);
         }
-
     }
 }
