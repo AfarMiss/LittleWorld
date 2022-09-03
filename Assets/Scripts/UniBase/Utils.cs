@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace UniBase
 {
-    public static class Utils
+    public static class InputUtils
     {
         public static Vector3 GetMouseWorldPosition()
         {
@@ -71,6 +71,28 @@ namespace UniBase
             var result = Camera.main.ScreenToWorldPoint(mousePosition);
             Debug.Log($"GetMouseWorldPosition:{result}");
             return new Vector3(result.x, result.y, a.z);
+        }
+
+        public static Vector3 GetMousePositionWithSpecificZ(float z)
+        {
+#if ENABLE_INPUT_SYSTEM
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+#else
+            Vector2 mousePosition=Input.mousePosition;
+#endif
+            var result = Camera.main.ScreenToWorldPoint(mousePosition);
+            Debug.Log($"GetMouseWorldPosition:{result}");
+            return new Vector3(result.x, result.y, z);
+        }
+
+        public static List<Vector3> GetLinearDestinations(Vector3 originalDestination, int count, float interval)
+        {
+            var result = new List<Vector3>();
+            for (int i = 0; i < count; i++)
+            {
+                result.Add(new Vector3(originalDestination.x + interval * i, originalDestination.y, originalDestination.z));
+            }
+            return result;
         }
     }
 

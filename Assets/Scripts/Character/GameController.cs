@@ -6,8 +6,8 @@ public class GameController : MonoBehaviour
 {
     private Vector3 startPosition;
     private Vector3 endPosition;
-    private HashSet<RTSUnit> selectedUnits;
-    private HashSet<RTSUnit> allRtsUnits;
+    private List<RTSUnit> selectedUnits;
+    private List<RTSUnit> allRtsUnits;
 
     Rect realSelection;
 
@@ -28,20 +28,20 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        selectedUnits = new HashSet<RTSUnit>();
-        allRtsUnits = new HashSet<RTSUnit>();
+        selectedUnits = new List<RTSUnit>();
+        allRtsUnits = new List<RTSUnit>();
 
 
         InputManager.Instance.myController.GlobalInput.LeftClick.started += (callbackContext) =>
         {
-            startPosition = Utils.GetMousePosition();
+            startPosition = InputUtils.GetMousePosition();
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
         };
 
         InputManager.Instance.myController.GlobalInput.LeftClick.canceled += (callbackContext) =>
         {
-            endPosition = Utils.GetMousePosition();
+            endPosition = InputUtils.GetMousePosition();
             selectedArea.gameObject.SetActive(false);
 
             Prepare();
@@ -65,10 +65,15 @@ public class GameController : MonoBehaviour
 
         InputManager.Instance.myController.GlobalInput.RightClick.performed += (callbackContext) =>
         {
-            foreach (var item in selectedUnits)
+            if (selectedUnits == null || selectedUnits.Count == 0) return;
+            var bound = selectedUnits[0].GetComponent<BoxCollider2D>().bounds;
+            var offset = (bound.max - bound.min).y + 0.8f;
+            var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
+            for (int i = 0; i < selectedUnits.Count; i++)
             {
+                RTSUnit item = selectedUnits[i];
                 var controller = item.GetComponent<PlayerMoveController>();
-                controller.Move(item.transform.position.GetMousePositionWithSameZ());
+                controller.Move(destinations[i]);
             }
         };
 
@@ -155,7 +160,7 @@ public class GameController : MonoBehaviour
         if (InputManager.Instance.myController.GlobalInput.LeftClick.IsPressed())
         {
             //更新选择区域
-            endPosition = Utils.GetMousePosition();
+            endPosition = InputUtils.GetMousePosition();
             var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
             var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
             selectedArea.position = lowerLeft;
