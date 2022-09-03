@@ -86,6 +86,19 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("Additional.canceled -------");
         };
+
+        InputManager.Instance.myController.GlobalInput.CameraControl.performed += callbackContext =>
+        {
+            var camMove = callbackContext.ReadValue<Vector2>();
+            CameraController camController = Camera.main.GetComponent<CameraController>();
+            camController.Move(camMove);
+        };
+
+        InputManager.Instance.myController.GlobalInput.CameraControl.canceled += callbackContext =>
+        {
+            CameraController camController = Camera.main.GetComponent<CameraController>();
+            camController.Move(Vector2.zero);
+        };
     }
 
     private void Prepare()

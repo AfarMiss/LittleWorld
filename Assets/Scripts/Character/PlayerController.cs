@@ -28,12 +28,6 @@ public class PlayerController : MonoBehaviour
         myController.Disable();
     }
 
-    private void Start()
-    {
-        myController.LocalPlayer.Move.performed += value => inputValue = value.ReadValue<Vector2>();
-        myController.LocalPlayer.Move.canceled += _ => inputValue = Vector2.zero;
-    }
-
     private void FixedUpdate()
     {
         Move();

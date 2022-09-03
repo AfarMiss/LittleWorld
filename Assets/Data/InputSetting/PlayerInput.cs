@@ -26,129 +26,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         {
             ""name"": ""LocalPlayer"",
             ""id"": ""eade0b78-2ece-444a-9186-c739fc7dc68c"",
-            ""actions"": [
-                {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""b2a7dd76-a579-499e-b3c1-9a2099112f17"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""WASD"",
-                    ""id"": ""fd686667-7175-456c-991c-80188733c96a"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""be159af1-b8bd-4b80-b272-f3ea51d4e858"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""57d18b5e-f94d-4c04-a157-089786e0f5dd"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""224f2f18-edcb-4ac1-a01c-5f7cdffc8612"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""36f0a2f2-1cb2-466c-b733-2b0338626aee"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Arrow"",
-                    ""id"": ""8c31e206-73b7-4205-afb2-cc278c5617bc"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""8f741a33-19d1-4360-a660-ffd131e811a5"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""fd8a2fe0-cd2c-4563-aa63-2fa3b66fed25"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""98360055-7390-43cf-9d71-2999c1b8074f"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""a1041d41-cfa1-4cc9-b302-466819b96c24"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                }
-            ]
+            ""actions"": [],
+            ""bindings"": []
         },
         {
             ""name"": ""GlobalInput"",
@@ -198,6 +77,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraControl"",
+                    ""type"": ""Value"",
+                    ""id"": ""1a5e7b2a-0b48-49b2-aaf8-8c8862a114d3"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -255,6 +143,61 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""RightClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""4743c7ec-b3cd-48e1-9157-889024d4bd8d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b9363f70-2969-4966-b479-133237df98d3"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""b0747f77-ef32-4129-8160-6d9dbb4d73bf"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""308128a2-8706-4aae-9800-69ad873b0253"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""20473e9f-082c-4f24-a91e-0ffaf5717c07"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -263,7 +206,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
 }");
         // LocalPlayer
         m_LocalPlayer = asset.FindActionMap("LocalPlayer", throwIfNotFound: true);
-        m_LocalPlayer_Move = m_LocalPlayer.FindAction("Move", throwIfNotFound: true);
         // GlobalInput
         m_GlobalInput = asset.FindActionMap("GlobalInput", throwIfNotFound: true);
         m_GlobalInput_LeftClick = m_GlobalInput.FindAction("LeftClick", throwIfNotFound: true);
@@ -271,6 +213,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_GlobalInput_Additional = m_GlobalInput.FindAction("Additional", throwIfNotFound: true);
         m_GlobalInput_DoubleClick = m_GlobalInput.FindAction("DoubleClick", throwIfNotFound: true);
         m_GlobalInput_RightClick = m_GlobalInput.FindAction("RightClick", throwIfNotFound: true);
+        m_GlobalInput_CameraControl = m_GlobalInput.FindAction("CameraControl", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -330,12 +273,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     // LocalPlayer
     private readonly InputActionMap m_LocalPlayer;
     private ILocalPlayerActions m_LocalPlayerActionsCallbackInterface;
-    private readonly InputAction m_LocalPlayer_Move;
     public struct LocalPlayerActions
     {
         private @PlayerInput m_Wrapper;
         public LocalPlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_LocalPlayer_Move;
         public InputActionMap Get() { return m_Wrapper.m_LocalPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -345,16 +286,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_LocalPlayerActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_LocalPlayerActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_LocalPlayerActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_LocalPlayerActionsCallbackInterface.OnMove;
             }
             m_Wrapper.m_LocalPlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
             }
         }
     }
@@ -368,6 +303,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_GlobalInput_Additional;
     private readonly InputAction m_GlobalInput_DoubleClick;
     private readonly InputAction m_GlobalInput_RightClick;
+    private readonly InputAction m_GlobalInput_CameraControl;
     public struct GlobalInputActions
     {
         private @PlayerInput m_Wrapper;
@@ -377,6 +313,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Additional => m_Wrapper.m_GlobalInput_Additional;
         public InputAction @DoubleClick => m_Wrapper.m_GlobalInput_DoubleClick;
         public InputAction @RightClick => m_Wrapper.m_GlobalInput_RightClick;
+        public InputAction @CameraControl => m_Wrapper.m_GlobalInput_CameraControl;
         public InputActionMap Get() { return m_Wrapper.m_GlobalInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -401,6 +338,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @RightClick.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
                 @RightClick.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
                 @RightClick.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
+                @CameraControl.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnCameraControl;
+                @CameraControl.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnCameraControl;
+                @CameraControl.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnCameraControl;
             }
             m_Wrapper.m_GlobalInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -420,13 +360,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @RightClick.started += instance.OnRightClick;
                 @RightClick.performed += instance.OnRightClick;
                 @RightClick.canceled += instance.OnRightClick;
+                @CameraControl.started += instance.OnCameraControl;
+                @CameraControl.performed += instance.OnCameraControl;
+                @CameraControl.canceled += instance.OnCameraControl;
             }
         }
     }
     public GlobalInputActions @GlobalInput => new GlobalInputActions(this);
     public interface ILocalPlayerActions
     {
-        void OnMove(InputAction.CallbackContext context);
     }
     public interface IGlobalInputActions
     {
@@ -435,5 +377,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnAdditional(InputAction.CallbackContext context);
         void OnDoubleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
+        void OnCameraControl(InputAction.CallbackContext context);
     }
 }
