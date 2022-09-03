@@ -17,8 +17,18 @@ namespace UniBase
             var result = Camera.main.ScreenToWorldPoint(mousePosition);
             Debug.Log($"GetMouseWorldPosition:{result}");
             return result;
+        }
 
-
+        public static Vector3 GetMouseWorldPositionFixedZ(float z = 0)
+        {
+#if ENABLE_INPUT_SYSTEM
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+#else
+            Vector2 mousePosition=Input.mousePosition;
+#endif
+            var result = Camera.main.ScreenToWorldPoint(mousePosition);
+            Debug.Log($"GetMouseWorldPosition:{result}");
+            return new Vector3(result.x, result.y, z);
         }
 
         public static Vector3 GetMousePosition()
@@ -42,13 +52,25 @@ namespace UniBase
             return screenPoint;
         }
 
-        public static bool OverlapBound(this Rect a,Bounds b)
+        public static bool OverlapBound(this Rect a, Bounds b)
         {
             var minPoint = Camera.main.WorldToScreenPoint(b.min);
             var maxPoint = Camera.main.WorldToScreenPoint(b.max);
-            var Rectb = new Rect(minPoint, maxPoint- minPoint);
+            var Rectb = new Rect(minPoint, maxPoint - minPoint);
 
             return a.Overlaps(Rectb);
+        }
+
+        public static Vector3 GetMousePositionWithSameZ(this Vector3 a)
+        {
+#if ENABLE_INPUT_SYSTEM
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+#else
+            Vector2 mousePosition=Input.mousePosition;
+#endif
+            var result = Camera.main.ScreenToWorldPoint(mousePosition);
+            Debug.Log($"GetMouseWorldPosition:{result}");
+            return new Vector3(result.x, result.y, a.z);
         }
     }
 

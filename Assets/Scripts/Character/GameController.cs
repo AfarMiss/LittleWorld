@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour
             foreach (var item in selectedUnits)
             {
                 var controller = item.GetComponent<PlayerMoveController>();
-                controller.Move(Camera.main.ScreenToWorldPoint(Utils.GetMousePosition()));
+                controller.Move(item.transform.position.GetMousePositionWithSameZ());
             }
         };
 
