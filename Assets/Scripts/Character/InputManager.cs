@@ -15,8 +15,8 @@ public class InputManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        myController = null;
         myController.Disable();
+        myController = null;
     }
 
 

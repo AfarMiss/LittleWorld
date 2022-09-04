@@ -9,19 +9,22 @@ public class GameController : MonoBehaviour
     private List<RTSUnit> selectedUnits;
     private List<RTSUnit> allRtsUnits;
 
-    Rect realSelection;
+    [SerializeField] private GameObject InteractionMenu;
+    [SerializeField] private RectTransform selectedArea;
 
-    public RectTransform selectedArea;
+    private Rect realSelection;
+
 
     private void Awake()
     {
-        var sa = Resources.Load<GameObject>("Prefabs/UI/SelectionArea2");
-        var saObject = Instantiate(sa);
-        saObject.name = saObject.name.Substring(0, saObject.name.LastIndexOf("(Clone)"));
+        RectTransform rectObject = null;
 
-        selectedArea = saObject.GetComponent<RectTransform>();
-        selectedArea.transform.SetParent(GameObject.Find("Canvas").transform);
-        selectedArea.gameObject.SetActive(false);
+        rectObject = Instantiate(selectedArea);
+        rectObject.name = rectObject.name.Substring(0, rectObject.name.LastIndexOf("(Clone)"));
+        selectedArea = rectObject.GetComponent<RectTransform>();
+
+        rectObject.transform.SetParent(GameObject.Find("Canvas").transform);
+        rectObject.gameObject.SetActive(false);
 
         realSelection = new Rect();
     }
@@ -65,16 +68,29 @@ public class GameController : MonoBehaviour
 
         InputManager.Instance.myController.GlobalInput.RightClick.performed += (callbackContext) =>
         {
-            if (selectedUnits == null || selectedUnits.Count == 0) return;
-            var bound = selectedUnits[0].GetComponent<BoxCollider2D>().bounds;
-            var offset = (bound.max - bound.min).y + 0.8f;
-            var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
-            for (int i = 0; i < selectedUnits.Count; i++)
+            var ray = Camera.main.ScreenPointToRay(InputUtils.GetMousePosition());
+            var rayHits = Physics.RaycastAll(ray.origin, ray.direction);
+
+            if (rayHits == null || rayHits.Length == 0)
             {
-                RTSUnit item = selectedUnits[i];
-                var controller = item.GetComponent<PlayerMoveController>();
-                controller.Move(destinations[i]);
+                if (selectedUnits == null || selectedUnits.Count == 0) return;
+                var bound = selectedUnits[0].GetComponent<BoxCollider2D>().bounds;
+                var offset = (bound.max - bound.min).y + 0.8f;
+                var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
+                for (int i = 0; i < selectedUnits.Count; i++)
+                {
+                    RTSUnit item = selectedUnits[i];
+                    var controller = item.GetComponent<PlayerMoveController>();
+                    controller.Move(destinations[i]);
+                }
             }
+            else
+            {
+                var options= rayHits[0].collider.GetComponent<IOption>();
+                options.OnInteraction();
+            }
+
+
         };
 
         InputManager.Instance.myController.GlobalInput.Additional.started += (callbackContext) =>
