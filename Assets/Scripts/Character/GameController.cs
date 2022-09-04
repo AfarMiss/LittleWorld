@@ -44,6 +44,8 @@ public class GameController : MonoBehaviour
 
         InputManager.Instance.myController.GlobalInput.LeftClick.canceled += (callbackContext) =>
         {
+            CleanInteraction();
+
             endPosition = InputUtils.GetMousePosition();
             selectedArea.gameObject.SetActive(false);
 
@@ -57,6 +59,8 @@ public class GameController : MonoBehaviour
 
         InputManager.Instance.myController.GlobalInput.DoubleClick.performed += (callbackContext) =>
         {
+            CleanInteraction();
+
             Debug.Log("DoubleClick.performed -------");
             if (selectedUnits != null && selectedUnits.Count > 0)
             {
@@ -68,6 +72,8 @@ public class GameController : MonoBehaviour
 
         InputManager.Instance.myController.GlobalInput.RightClick.performed += (callbackContext) =>
         {
+            CleanInteraction();
+
             var ray = Camera.main.ScreenPointToRay(InputUtils.GetMousePosition());
             var rayHits = Physics.RaycastAll(ray.origin, ray.direction);
 
@@ -93,16 +99,6 @@ public class GameController : MonoBehaviour
 
         };
 
-        InputManager.Instance.myController.GlobalInput.Additional.started += (callbackContext) =>
-        {
-            Debug.Log("Additional.started -------");
-        };
-
-        InputManager.Instance.myController.GlobalInput.Additional.canceled += (callbackContext) =>
-        {
-            Debug.Log("Additional.canceled -------");
-        };
-
         InputManager.Instance.myController.GlobalInput.CameraControl.performed += callbackContext =>
         {
             var camMove = callbackContext.ReadValue<Vector2>();
@@ -115,6 +111,15 @@ public class GameController : MonoBehaviour
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(Vector2.zero);
         };
+    }
+
+    private void CleanInteraction()
+    {
+        var interactions = GameObject.FindObjectsOfType<InteractionMenu>();
+        foreach (var item in interactions)
+        {
+            Destroy(item.gameObject);
+        }
     }
 
     private void Prepare()

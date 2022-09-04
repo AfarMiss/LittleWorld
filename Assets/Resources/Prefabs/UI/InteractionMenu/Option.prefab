@@ -40,7 +40,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &3089473240460760850
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -112,6 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 4936595174416781481}
+  bg: {fileID: 3089473240460760853}
+  focus: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
+  unfocus: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &4936595174416781487
 GameObject:
   m_ObjectHideFlags: 0
