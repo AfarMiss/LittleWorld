@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameController : MonoSingleton<GameController>
 {
     private Vector3 startPosition;
     private Vector3 endPosition;
@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private RectTransform selectedArea;
 
     private Rect realSelection;
+    public Vector2 mousePosition { get; private set; }
 
 
     private void Awake()
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour
 
         InputManager.Instance.myController.GlobalInput.LeftClick.started += (callbackContext) =>
         {
-            startPosition = InputUtils.GetMousePosition();
+            startPosition = mousePosition;
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
         };
@@ -46,7 +47,7 @@ public class GameController : MonoBehaviour
         {
             CleanInteraction();
 
-            endPosition = InputUtils.GetMousePosition();
+            endPosition = mousePosition;
             selectedArea.gameObject.SetActive(false);
 
             Prepare();
@@ -74,7 +75,7 @@ public class GameController : MonoBehaviour
         {
             CleanInteraction();
 
-            var ray = Camera.main.ScreenPointToRay(InputUtils.GetMousePosition());
+            var ray = Camera.main.ScreenPointToRay(mousePosition);
             var rayHits = Physics.RaycastAll(ray.origin, ray.direction);
 
             if (rayHits == null || rayHits.Length == 0)
@@ -92,7 +93,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                var options= rayHits[0].collider.GetComponent<IOption>();
+                var options = rayHits[0].collider.GetComponent<IOption>();
                 options.OnInteraction();
             }
 
@@ -191,10 +192,11 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        mousePosition= InputUtils.GetMousePosition();
         if (InputManager.Instance.myController.GlobalInput.LeftClick.IsPressed())
         {
             //更新选择区域
-            endPosition = InputUtils.GetMousePosition();
+            endPosition = mousePosition;
             var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
             var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
             selectedArea.position = lowerLeft;

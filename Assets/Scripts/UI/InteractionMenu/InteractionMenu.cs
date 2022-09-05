@@ -21,7 +21,7 @@ public class InteractionMenu : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log($"InputUtils.GetMousePosition():{InputUtils.GetMousePosition()}");
+        //Debug.Log($"InputUtils.GetMousePosition():{InputUtils.GetMousePosition()}");
         if (options == null) return;
         foreach (var item in options)
         {
@@ -29,7 +29,7 @@ public class InteractionMenu : MonoBehaviour
 
             var screenRect = new Rect(rect.position.x, rect.position.y, rect.rect.width, rect.rect.height);
             Debug.Log($"{rect.name}:{screenRect}");
-            if (screenRect.Contains(InputUtils.GetMousePosition()))
+            if (screenRect.Contains(GameController.Instance.mousePosition))
             {
                 Debug.Log($"{item.name} is raycasting");
                 item.SetFocus(true);
