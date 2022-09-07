@@ -12,11 +12,11 @@ public class InteractionOption : MonoBehaviour
     public Color focus;
     public Color unfocus;
     private Action OnClickOption;
-    public void BindData(string content,Action OnClickOption)
+    public void BindData(optionStruct option)
     {
-        this.content.text = content;
-        this.name = content;
-        this.OnClickOption = OnClickOption;
+        this.content.text = option.content;
+        this.name = option.content;
+        this.OnClickOption = option.OnClickOption;
     }
 
     public void SetFocus(bool isFocus)
@@ -28,4 +28,10 @@ public class InteractionOption : MonoBehaviour
     {
         OnClickOption?.Invoke();
     }
+}
+
+public struct optionStruct
+{
+    public string content;
+    public Action OnClickOption;
 }

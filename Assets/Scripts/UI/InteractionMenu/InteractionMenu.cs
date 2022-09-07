@@ -7,7 +7,7 @@ public class InteractionMenu : MonoBehaviour
 {
     private List<InteractionOption> options;
     [SerializeField] private GameObject optionPrefab;
-    public void BindData(List<string> options)
+    public void BindData(List<optionStruct> options)
     {
         this.options = new List<InteractionOption>();
         foreach (var optionContent in options)

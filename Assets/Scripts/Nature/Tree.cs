@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
 
-public class Tree : MonoBehaviour,IOption
+public class Tree : MonoBehaviour, IOption
 {
     private int fruitCount;
     private int woodCount;
@@ -17,9 +17,28 @@ public class Tree : MonoBehaviour,IOption
         go.transform.SetParent(GameObject.Find("Canvas").transform);
         go.transform.position = GameController.Instance.mousePosition;
 
-        var contentList = new List<string>();
-        contentList.Add("砍树");
-        //contentList.Add("摘取果实");
+        var contentList = new List<optionStruct>();
+        contentList.Add(new optionStruct()
+        {
+            content = "砍树",
+            OnClickOption = () =>
+            {
+                Debug.Log("正在砍树！");
+            }
+        });
+        contentList.Add(new optionStruct()
+        {
+            content = "摘取果实",
+            OnClickOption = () =>
+            {
+                Debug.Log("正在摘取果实！");
+            }
+        });
+
+        //    "摘取果实", () =>
+        //{
+        //    Debug.Log("正在摘取果实！");
+        //});
 
         menu.BindData(contentList);
     }
