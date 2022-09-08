@@ -2,10 +2,96 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "LocalPlayer",
+            "name": "Game",
             "id": "eade0b78-2ece-444a-9186-c739fc7dc68c",
-            "actions": [],
-            "bindings": []
+            "actions": [
+                {
+                    "name": "CameraControl",
+                    "type": "Value",
+                    "id": "139fe534-6254-4a4e-bf2a-dba79fbc801b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Additional",
+                    "type": "Button",
+                    "id": "c278be22-b91a-40fc-a8be-12c485a891ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "WASD",
+                    "id": "2e09fd81-74ce-45eb-876c-0fb165b5eb76",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraControl",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "d80eb87d-aee7-4579-b7a1-ca0f17360ee5",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraControl",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "197bc454-3b77-4643-ae29-92589e917401",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraControl",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "4143148a-9d04-48e5-8a96-a27c01cbb81d",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraControl",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "5c986802-b88a-4f80-be64-2a7f46641508",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraControl",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1953f7f3-4bdf-4711-8a61-ffc461908c13",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Additional",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         },
         {
             "name": "GlobalInput",
@@ -19,24 +105,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Hold",
-                    "type": "Button",
-                    "id": "546f0509-b692-49ca-b5ea-9687c510fe94",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Additional",
-                    "type": "Button",
-                    "id": "68bdbb79-3b53-4cf0-b4bf-7a139ef7ec6a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
                 {
                     "name": "DoubleClick",
@@ -55,15 +123,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "CameraControl",
-                    "type": "Value",
-                    "id": "1a5e7b2a-0b48-49b2-aaf8-8c8862a114d3",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -75,28 +134,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "LeftClick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3e51be93-836b-484b-bed5-2bb7e6c5e3fb",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Hold(duration=0.4,pressPoint=0.5)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8cd5a1b3-cbf6-461a-bbb2-8ddc5e49ae47",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Additional",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -121,61 +158,34 @@
                     "action": "RightClick",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "d03d7784-a606-47dd-aa3d-c750f62a207e",
+            "actions": [
                 {
-                    "name": "WASD",
-                    "id": "4743c7ec-b3cd-48e1-9157-889024d4bd8d",
-                    "path": "2DVector",
+                    "name": "InputSetting",
+                    "type": "Button",
+                    "id": "1789f358-685d-414e-b710-e9cb08ea566e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "189354b8-1f67-4e8f-8d0a-fdc24a4af30e",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraControl",
-                    "isComposite": true,
+                    "action": "InputSetting",
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "b9363f70-2969-4966-b479-133237df98d3",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CameraControl",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "b0747f77-ef32-4129-8160-6d9dbb4d73bf",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CameraControl",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "308128a2-8706-4aae-9800-69ad873b0253",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CameraControl",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "20473e9f-082c-4f24-a91e-0ffaf5717c07",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CameraControl",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

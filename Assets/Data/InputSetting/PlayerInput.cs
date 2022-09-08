@@ -24,10 +24,96 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""LocalPlayer"",
+            ""name"": ""Game"",
             ""id"": ""eade0b78-2ece-444a-9186-c739fc7dc68c"",
-            ""actions"": [],
-            ""bindings"": []
+            ""actions"": [
+                {
+                    ""name"": ""CameraControl"",
+                    ""type"": ""Value"",
+                    ""id"": ""139fe534-6254-4a4e-bf2a-dba79fbc801b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Additional"",
+                    ""type"": ""Button"",
+                    ""id"": ""c278be22-b91a-40fc-a8be-12c485a891ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""2e09fd81-74ce-45eb-876c-0fb165b5eb76"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d80eb87d-aee7-4579-b7a1-ca0f17360ee5"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""197bc454-3b77-4643-ae29-92589e917401"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4143148a-9d04-48e5-8a96-a27c01cbb81d"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""5c986802-b88a-4f80-be64-2a7f46641508"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1953f7f3-4bdf-4711-8a61-ffc461908c13"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Additional"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         },
         {
             ""name"": ""GlobalInput"",
@@ -41,24 +127,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Hold"",
-                    ""type"": ""Button"",
-                    ""id"": ""546f0509-b692-49ca-b5ea-9687c510fe94"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Additional"",
-                    ""type"": ""Button"",
-                    ""id"": ""68bdbb79-3b53-4cf0-b4bf-7a139ef7ec6a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""DoubleClick"",
@@ -77,15 +145,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CameraControl"",
-                    ""type"": ""Value"",
-                    ""id"": ""1a5e7b2a-0b48-49b2-aaf8-8c8862a114d3"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -97,28 +156,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LeftClick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3e51be93-836b-484b-bed5-2bb7e6c5e3fb"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Hold(duration=0.4,pressPoint=0.5)"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Hold"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8cd5a1b3-cbf6-461a-bbb2-8ddc5e49ae47"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Additional"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -143,77 +180,52 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""RightClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""d03d7784-a606-47dd-aa3d-c750f62a207e"",
+            ""actions"": [
                 {
-                    ""name"": ""WASD"",
-                    ""id"": ""4743c7ec-b3cd-48e1-9157-889024d4bd8d"",
-                    ""path"": ""2DVector"",
+                    ""name"": ""InputSetting"",
+                    ""type"": ""Button"",
+                    ""id"": ""1789f358-685d-414e-b710-e9cb08ea566e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""189354b8-1f67-4e8f-8d0a-fdc24a4af30e"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraControl"",
-                    ""isComposite"": true,
+                    ""action"": ""InputSetting"",
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""b9363f70-2969-4966-b479-133237df98d3"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraControl"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""b0747f77-ef32-4129-8160-6d9dbb4d73bf"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraControl"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""308128a2-8706-4aae-9800-69ad873b0253"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraControl"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""20473e9f-082c-4f24-a91e-0ffaf5717c07"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraControl"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // LocalPlayer
-        m_LocalPlayer = asset.FindActionMap("LocalPlayer", throwIfNotFound: true);
+        // Game
+        m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
+        m_Game_CameraControl = m_Game.FindAction("CameraControl", throwIfNotFound: true);
+        m_Game_Additional = m_Game.FindAction("Additional", throwIfNotFound: true);
         // GlobalInput
         m_GlobalInput = asset.FindActionMap("GlobalInput", throwIfNotFound: true);
         m_GlobalInput_LeftClick = m_GlobalInput.FindAction("LeftClick", throwIfNotFound: true);
-        m_GlobalInput_Hold = m_GlobalInput.FindAction("Hold", throwIfNotFound: true);
-        m_GlobalInput_Additional = m_GlobalInput.FindAction("Additional", throwIfNotFound: true);
         m_GlobalInput_DoubleClick = m_GlobalInput.FindAction("DoubleClick", throwIfNotFound: true);
         m_GlobalInput_RightClick = m_GlobalInput.FindAction("RightClick", throwIfNotFound: true);
-        m_GlobalInput_CameraControl = m_GlobalInput.FindAction("CameraControl", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_InputSetting = m_UI.FindAction("InputSetting", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -270,50 +282,60 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // LocalPlayer
-    private readonly InputActionMap m_LocalPlayer;
-    private ILocalPlayerActions m_LocalPlayerActionsCallbackInterface;
-    public struct LocalPlayerActions
+    // Game
+    private readonly InputActionMap m_Game;
+    private IGameActions m_GameActionsCallbackInterface;
+    private readonly InputAction m_Game_CameraControl;
+    private readonly InputAction m_Game_Additional;
+    public struct GameActions
     {
         private @PlayerInput m_Wrapper;
-        public LocalPlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputActionMap Get() { return m_Wrapper.m_LocalPlayer; }
+        public GameActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CameraControl => m_Wrapper.m_Game_CameraControl;
+        public InputAction @Additional => m_Wrapper.m_Game_Additional;
+        public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(LocalPlayerActions set) { return set.Get(); }
-        public void SetCallbacks(ILocalPlayerActions instance)
+        public static implicit operator InputActionMap(GameActions set) { return set.Get(); }
+        public void SetCallbacks(IGameActions instance)
         {
-            if (m_Wrapper.m_LocalPlayerActionsCallbackInterface != null)
+            if (m_Wrapper.m_GameActionsCallbackInterface != null)
             {
+                @CameraControl.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraControl;
+                @CameraControl.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraControl;
+                @CameraControl.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraControl;
+                @Additional.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAdditional;
+                @Additional.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAdditional;
+                @Additional.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAdditional;
             }
-            m_Wrapper.m_LocalPlayerActionsCallbackInterface = instance;
+            m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
             {
+                @CameraControl.started += instance.OnCameraControl;
+                @CameraControl.performed += instance.OnCameraControl;
+                @CameraControl.canceled += instance.OnCameraControl;
+                @Additional.started += instance.OnAdditional;
+                @Additional.performed += instance.OnAdditional;
+                @Additional.canceled += instance.OnAdditional;
             }
         }
     }
-    public LocalPlayerActions @LocalPlayer => new LocalPlayerActions(this);
+    public GameActions @Game => new GameActions(this);
 
     // GlobalInput
     private readonly InputActionMap m_GlobalInput;
     private IGlobalInputActions m_GlobalInputActionsCallbackInterface;
     private readonly InputAction m_GlobalInput_LeftClick;
-    private readonly InputAction m_GlobalInput_Hold;
-    private readonly InputAction m_GlobalInput_Additional;
     private readonly InputAction m_GlobalInput_DoubleClick;
     private readonly InputAction m_GlobalInput_RightClick;
-    private readonly InputAction m_GlobalInput_CameraControl;
     public struct GlobalInputActions
     {
         private @PlayerInput m_Wrapper;
         public GlobalInputActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftClick => m_Wrapper.m_GlobalInput_LeftClick;
-        public InputAction @Hold => m_Wrapper.m_GlobalInput_Hold;
-        public InputAction @Additional => m_Wrapper.m_GlobalInput_Additional;
         public InputAction @DoubleClick => m_Wrapper.m_GlobalInput_DoubleClick;
         public InputAction @RightClick => m_Wrapper.m_GlobalInput_RightClick;
-        public InputAction @CameraControl => m_Wrapper.m_GlobalInput_CameraControl;
         public InputActionMap Get() { return m_Wrapper.m_GlobalInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -326,21 +348,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @LeftClick.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnLeftClick;
                 @LeftClick.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnLeftClick;
                 @LeftClick.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnLeftClick;
-                @Hold.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
-                @Hold.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
-                @Hold.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnHold;
-                @Additional.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnAdditional;
-                @Additional.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnAdditional;
-                @Additional.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnAdditional;
                 @DoubleClick.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnDoubleClick;
                 @DoubleClick.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnDoubleClick;
                 @DoubleClick.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnDoubleClick;
                 @RightClick.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
                 @RightClick.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
                 @RightClick.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
-                @CameraControl.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnCameraControl;
-                @CameraControl.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnCameraControl;
-                @CameraControl.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnCameraControl;
             }
             m_Wrapper.m_GlobalInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -348,35 +361,62 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @LeftClick.started += instance.OnLeftClick;
                 @LeftClick.performed += instance.OnLeftClick;
                 @LeftClick.canceled += instance.OnLeftClick;
-                @Hold.started += instance.OnHold;
-                @Hold.performed += instance.OnHold;
-                @Hold.canceled += instance.OnHold;
-                @Additional.started += instance.OnAdditional;
-                @Additional.performed += instance.OnAdditional;
-                @Additional.canceled += instance.OnAdditional;
                 @DoubleClick.started += instance.OnDoubleClick;
                 @DoubleClick.performed += instance.OnDoubleClick;
                 @DoubleClick.canceled += instance.OnDoubleClick;
                 @RightClick.started += instance.OnRightClick;
                 @RightClick.performed += instance.OnRightClick;
                 @RightClick.canceled += instance.OnRightClick;
-                @CameraControl.started += instance.OnCameraControl;
-                @CameraControl.performed += instance.OnCameraControl;
-                @CameraControl.canceled += instance.OnCameraControl;
             }
         }
     }
     public GlobalInputActions @GlobalInput => new GlobalInputActions(this);
-    public interface ILocalPlayerActions
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_InputSetting;
+    public struct UIActions
     {
+        private @PlayerInput m_Wrapper;
+        public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @InputSetting => m_Wrapper.m_UI_InputSetting;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @InputSetting.started -= m_Wrapper.m_UIActionsCallbackInterface.OnInputSetting;
+                @InputSetting.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnInputSetting;
+                @InputSetting.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnInputSetting;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @InputSetting.started += instance.OnInputSetting;
+                @InputSetting.performed += instance.OnInputSetting;
+                @InputSetting.canceled += instance.OnInputSetting;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
+    public interface IGameActions
+    {
+        void OnCameraControl(InputAction.CallbackContext context);
+        void OnAdditional(InputAction.CallbackContext context);
     }
     public interface IGlobalInputActions
     {
         void OnLeftClick(InputAction.CallbackContext context);
-        void OnHold(InputAction.CallbackContext context);
-        void OnAdditional(InputAction.CallbackContext context);
         void OnDoubleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
-        void OnCameraControl(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnInputSetting(InputAction.CallbackContext context);
     }
 }

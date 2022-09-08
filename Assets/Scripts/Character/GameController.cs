@@ -100,14 +100,14 @@ public class GameController : MonoSingleton<GameController>
 
         };
 
-        InputManager.Instance.myController.GlobalInput.CameraControl.performed += callbackContext =>
+        InputManager.Instance.myController.Game.CameraControl.performed += callbackContext =>
         {
             var camMove = callbackContext.ReadValue<Vector2>();
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(camMove);
         };
 
-        InputManager.Instance.myController.GlobalInput.CameraControl.canceled += callbackContext =>
+        InputManager.Instance.myController.Game.CameraControl.canceled += callbackContext =>
         {
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(Vector2.zero);
@@ -131,7 +131,7 @@ public class GameController : MonoSingleton<GameController>
             allRtsUnits.Add(item.GetComponent<RTSUnit>());
         }
 
-        if (!InputManager.Instance.myController.GlobalInput.Additional.IsPressed())
+        if (!InputManager.Instance.myController.Game.Additional.IsPressed())
         {
             selectedUnits.Clear();
             //all units clear
