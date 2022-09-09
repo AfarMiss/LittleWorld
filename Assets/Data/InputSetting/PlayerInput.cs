@@ -24,11 +24,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""Game"",
+            ""name"": ""游戏"",
             ""id"": ""eade0b78-2ece-444a-9186-c739fc7dc68c"",
             ""actions"": [
                 {
-                    ""name"": ""CameraControl"",
+                    ""name"": ""镜头控制"",
                     ""type"": ""Value"",
                     ""id"": ""139fe534-6254-4a4e-bf2a-dba79fbc801b"",
                     ""expectedControlType"": ""Vector2"",
@@ -37,7 +37,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Additional"",
+                    ""name"": ""额外"",
                     ""type"": ""Button"",
                     ""id"": ""c278be22-b91a-40fc-a8be-12c485a891ff"",
                     ""expectedControlType"": ""Button"",
@@ -54,7 +54,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraControl"",
+                    ""action"": ""镜头控制"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -65,7 +65,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraControl"",
+                    ""action"": ""镜头控制"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -76,7 +76,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraControl"",
+                    ""action"": ""镜头控制"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -87,7 +87,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraControl"",
+                    ""action"": ""镜头控制"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -98,7 +98,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraControl"",
+                    ""action"": ""镜头控制"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -109,18 +109,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Additional"",
+                    ""action"": ""额外"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         },
         {
-            ""name"": ""GlobalInput"",
+            ""name"": ""全局控制"",
             ""id"": ""79e5acaa-6504-494b-8c4f-c5f9d0760b93"",
             ""actions"": [
                 {
-                    ""name"": ""LeftClick"",
+                    ""name"": ""左击"",
                     ""type"": ""Button"",
                     ""id"": ""347405c3-862f-4275-bd94-7ef24008c569"",
                     ""expectedControlType"": ""Button"",
@@ -129,7 +129,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""DoubleClick"",
+                    ""name"": ""双击"",
                     ""type"": ""Button"",
                     ""id"": ""7e5ec070-d07b-4889-9ec0-929b75d8fb75"",
                     ""expectedControlType"": ""Button"",
@@ -138,7 +138,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RightClick"",
+                    ""name"": ""右击"",
                     ""type"": ""Button"",
                     ""id"": ""795a5018-862d-44d7-ba9f-338bee134638"",
                     ""expectedControlType"": ""Button"",
@@ -155,7 +155,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftClick"",
+                    ""action"": ""左击"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -166,7 +166,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": ""MultiTap(tapTime=0.2,tapDelay=0.3,pressPoint=0.5)"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DoubleClick"",
+                    ""action"": ""双击"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -177,7 +177,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightClick"",
+                    ""action"": ""右击"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -188,7 +188,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ""id"": ""d03d7784-a606-47dd-aa3d-c750f62a207e"",
             ""actions"": [
                 {
-                    ""name"": ""InputSetting"",
+                    ""name"": ""设置"",
                     ""type"": ""Button"",
                     ""id"": ""1789f358-685d-414e-b710-e9cb08ea566e"",
                     ""expectedControlType"": ""Button"",
@@ -205,7 +205,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""InputSetting"",
+                    ""action"": ""设置"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -214,18 +214,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Game
-        m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
-        m_Game_CameraControl = m_Game.FindAction("CameraControl", throwIfNotFound: true);
-        m_Game_Additional = m_Game.FindAction("Additional", throwIfNotFound: true);
-        // GlobalInput
-        m_GlobalInput = asset.FindActionMap("GlobalInput", throwIfNotFound: true);
-        m_GlobalInput_LeftClick = m_GlobalInput.FindAction("LeftClick", throwIfNotFound: true);
-        m_GlobalInput_DoubleClick = m_GlobalInput.FindAction("DoubleClick", throwIfNotFound: true);
-        m_GlobalInput_RightClick = m_GlobalInput.FindAction("RightClick", throwIfNotFound: true);
+        // 游戏
+        m_游戏 = asset.FindActionMap("游戏", throwIfNotFound: true);
+        m_游戏_镜头控制 = m_游戏.FindAction("镜头控制", throwIfNotFound: true);
+        m_游戏_额外 = m_游戏.FindAction("额外", throwIfNotFound: true);
+        // 全局控制
+        m_全局控制 = asset.FindActionMap("全局控制", throwIfNotFound: true);
+        m_全局控制_左击 = m_全局控制.FindAction("左击", throwIfNotFound: true);
+        m_全局控制_双击 = m_全局控制.FindAction("双击", throwIfNotFound: true);
+        m_全局控制_右击 = m_全局控制.FindAction("右击", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_InputSetting = m_UI.FindAction("InputSetting", throwIfNotFound: true);
+        m_UI_设置 = m_UI.FindAction("设置", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -282,105 +282,105 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Game
-    private readonly InputActionMap m_Game;
-    private IGameActions m_GameActionsCallbackInterface;
-    private readonly InputAction m_Game_CameraControl;
-    private readonly InputAction m_Game_Additional;
-    public struct GameActions
+    // 游戏
+    private readonly InputActionMap m_游戏;
+    private I游戏Actions m_游戏ActionsCallbackInterface;
+    private readonly InputAction m_游戏_镜头控制;
+    private readonly InputAction m_游戏_额外;
+    public struct 游戏Actions
     {
         private @PlayerInput m_Wrapper;
-        public GameActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @CameraControl => m_Wrapper.m_Game_CameraControl;
-        public InputAction @Additional => m_Wrapper.m_Game_Additional;
-        public InputActionMap Get() { return m_Wrapper.m_Game; }
+        public 游戏Actions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @镜头控制 => m_Wrapper.m_游戏_镜头控制;
+        public InputAction @额外 => m_Wrapper.m_游戏_额外;
+        public InputActionMap Get() { return m_Wrapper.m_游戏; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GameActions set) { return set.Get(); }
-        public void SetCallbacks(IGameActions instance)
+        public static implicit operator InputActionMap(游戏Actions set) { return set.Get(); }
+        public void SetCallbacks(I游戏Actions instance)
         {
-            if (m_Wrapper.m_GameActionsCallbackInterface != null)
+            if (m_Wrapper.m_游戏ActionsCallbackInterface != null)
             {
-                @CameraControl.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraControl;
-                @CameraControl.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraControl;
-                @CameraControl.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraControl;
-                @Additional.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAdditional;
-                @Additional.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAdditional;
-                @Additional.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAdditional;
+                @镜头控制.started -= m_Wrapper.m_游戏ActionsCallbackInterface.On镜头控制;
+                @镜头控制.performed -= m_Wrapper.m_游戏ActionsCallbackInterface.On镜头控制;
+                @镜头控制.canceled -= m_Wrapper.m_游戏ActionsCallbackInterface.On镜头控制;
+                @额外.started -= m_Wrapper.m_游戏ActionsCallbackInterface.On额外;
+                @额外.performed -= m_Wrapper.m_游戏ActionsCallbackInterface.On额外;
+                @额外.canceled -= m_Wrapper.m_游戏ActionsCallbackInterface.On额外;
             }
-            m_Wrapper.m_GameActionsCallbackInterface = instance;
+            m_Wrapper.m_游戏ActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @CameraControl.started += instance.OnCameraControl;
-                @CameraControl.performed += instance.OnCameraControl;
-                @CameraControl.canceled += instance.OnCameraControl;
-                @Additional.started += instance.OnAdditional;
-                @Additional.performed += instance.OnAdditional;
-                @Additional.canceled += instance.OnAdditional;
+                @镜头控制.started += instance.On镜头控制;
+                @镜头控制.performed += instance.On镜头控制;
+                @镜头控制.canceled += instance.On镜头控制;
+                @额外.started += instance.On额外;
+                @额外.performed += instance.On额外;
+                @额外.canceled += instance.On额外;
             }
         }
     }
-    public GameActions @Game => new GameActions(this);
+    public 游戏Actions @游戏 => new 游戏Actions(this);
 
-    // GlobalInput
-    private readonly InputActionMap m_GlobalInput;
-    private IGlobalInputActions m_GlobalInputActionsCallbackInterface;
-    private readonly InputAction m_GlobalInput_LeftClick;
-    private readonly InputAction m_GlobalInput_DoubleClick;
-    private readonly InputAction m_GlobalInput_RightClick;
-    public struct GlobalInputActions
+    // 全局控制
+    private readonly InputActionMap m_全局控制;
+    private I全局控制Actions m_全局控制ActionsCallbackInterface;
+    private readonly InputAction m_全局控制_左击;
+    private readonly InputAction m_全局控制_双击;
+    private readonly InputAction m_全局控制_右击;
+    public struct 全局控制Actions
     {
         private @PlayerInput m_Wrapper;
-        public GlobalInputActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @LeftClick => m_Wrapper.m_GlobalInput_LeftClick;
-        public InputAction @DoubleClick => m_Wrapper.m_GlobalInput_DoubleClick;
-        public InputAction @RightClick => m_Wrapper.m_GlobalInput_RightClick;
-        public InputActionMap Get() { return m_Wrapper.m_GlobalInput; }
+        public 全局控制Actions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @左击 => m_Wrapper.m_全局控制_左击;
+        public InputAction @双击 => m_Wrapper.m_全局控制_双击;
+        public InputAction @右击 => m_Wrapper.m_全局控制_右击;
+        public InputActionMap Get() { return m_Wrapper.m_全局控制; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GlobalInputActions set) { return set.Get(); }
-        public void SetCallbacks(IGlobalInputActions instance)
+        public static implicit operator InputActionMap(全局控制Actions set) { return set.Get(); }
+        public void SetCallbacks(I全局控制Actions instance)
         {
-            if (m_Wrapper.m_GlobalInputActionsCallbackInterface != null)
+            if (m_Wrapper.m_全局控制ActionsCallbackInterface != null)
             {
-                @LeftClick.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnLeftClick;
-                @LeftClick.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnLeftClick;
-                @LeftClick.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnLeftClick;
-                @DoubleClick.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnDoubleClick;
-                @DoubleClick.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnDoubleClick;
-                @DoubleClick.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnDoubleClick;
-                @RightClick.started -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
-                @RightClick.performed -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
-                @RightClick.canceled -= m_Wrapper.m_GlobalInputActionsCallbackInterface.OnRightClick;
+                @左击.started -= m_Wrapper.m_全局控制ActionsCallbackInterface.On左击;
+                @左击.performed -= m_Wrapper.m_全局控制ActionsCallbackInterface.On左击;
+                @左击.canceled -= m_Wrapper.m_全局控制ActionsCallbackInterface.On左击;
+                @双击.started -= m_Wrapper.m_全局控制ActionsCallbackInterface.On双击;
+                @双击.performed -= m_Wrapper.m_全局控制ActionsCallbackInterface.On双击;
+                @双击.canceled -= m_Wrapper.m_全局控制ActionsCallbackInterface.On双击;
+                @右击.started -= m_Wrapper.m_全局控制ActionsCallbackInterface.On右击;
+                @右击.performed -= m_Wrapper.m_全局控制ActionsCallbackInterface.On右击;
+                @右击.canceled -= m_Wrapper.m_全局控制ActionsCallbackInterface.On右击;
             }
-            m_Wrapper.m_GlobalInputActionsCallbackInterface = instance;
+            m_Wrapper.m_全局控制ActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @LeftClick.started += instance.OnLeftClick;
-                @LeftClick.performed += instance.OnLeftClick;
-                @LeftClick.canceled += instance.OnLeftClick;
-                @DoubleClick.started += instance.OnDoubleClick;
-                @DoubleClick.performed += instance.OnDoubleClick;
-                @DoubleClick.canceled += instance.OnDoubleClick;
-                @RightClick.started += instance.OnRightClick;
-                @RightClick.performed += instance.OnRightClick;
-                @RightClick.canceled += instance.OnRightClick;
+                @左击.started += instance.On左击;
+                @左击.performed += instance.On左击;
+                @左击.canceled += instance.On左击;
+                @双击.started += instance.On双击;
+                @双击.performed += instance.On双击;
+                @双击.canceled += instance.On双击;
+                @右击.started += instance.On右击;
+                @右击.performed += instance.On右击;
+                @右击.canceled += instance.On右击;
             }
         }
     }
-    public GlobalInputActions @GlobalInput => new GlobalInputActions(this);
+    public 全局控制Actions @全局控制 => new 全局控制Actions(this);
 
     // UI
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_InputSetting;
+    private readonly InputAction m_UI_设置;
     public struct UIActions
     {
         private @PlayerInput m_Wrapper;
         public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @InputSetting => m_Wrapper.m_UI_InputSetting;
+        public InputAction @设置 => m_Wrapper.m_UI_设置;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -390,33 +390,33 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @InputSetting.started -= m_Wrapper.m_UIActionsCallbackInterface.OnInputSetting;
-                @InputSetting.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnInputSetting;
-                @InputSetting.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnInputSetting;
+                @设置.started -= m_Wrapper.m_UIActionsCallbackInterface.On设置;
+                @设置.performed -= m_Wrapper.m_UIActionsCallbackInterface.On设置;
+                @设置.canceled -= m_Wrapper.m_UIActionsCallbackInterface.On设置;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @InputSetting.started += instance.OnInputSetting;
-                @InputSetting.performed += instance.OnInputSetting;
-                @InputSetting.canceled += instance.OnInputSetting;
+                @设置.started += instance.On设置;
+                @设置.performed += instance.On设置;
+                @设置.canceled += instance.On设置;
             }
         }
     }
     public UIActions @UI => new UIActions(this);
-    public interface IGameActions
+    public interface I游戏Actions
     {
-        void OnCameraControl(InputAction.CallbackContext context);
-        void OnAdditional(InputAction.CallbackContext context);
+        void On镜头控制(InputAction.CallbackContext context);
+        void On额外(InputAction.CallbackContext context);
     }
-    public interface IGlobalInputActions
+    public interface I全局控制Actions
     {
-        void OnLeftClick(InputAction.CallbackContext context);
-        void OnDoubleClick(InputAction.CallbackContext context);
-        void OnRightClick(InputAction.CallbackContext context);
+        void On左击(InputAction.CallbackContext context);
+        void On双击(InputAction.CallbackContext context);
+        void On右击(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
-        void OnInputSetting(InputAction.CallbackContext context);
+        void On设置(InputAction.CallbackContext context);
     }
 }

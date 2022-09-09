@@ -36,14 +36,14 @@ public class GameController : MonoSingleton<GameController>
         allRtsUnits = new List<RTSUnit>();
 
 
-        InputManager.Instance.myController.GlobalInput.LeftClick.started += (callbackContext) =>
+        InputManager.Instance.myController.全局控制.左击.started += (callbackContext) =>
         {
             startPosition = mousePosition;
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
         };
 
-        InputManager.Instance.myController.GlobalInput.LeftClick.canceled += (callbackContext) =>
+        InputManager.Instance.myController.全局控制.左击.canceled += (callbackContext) =>
         {
             CleanInteraction();
 
@@ -58,11 +58,11 @@ public class GameController : MonoSingleton<GameController>
             allRtsUnits.Clear();
         };
 
-        InputManager.Instance.myController.GlobalInput.DoubleClick.performed += (callbackContext) =>
+        InputManager.Instance.myController.全局控制.双击.performed += (callbackContext) =>
         {
             CleanInteraction();
 
-            Debug.Log("DoubleClick.performed -------");
+            Debug.Log("双击.performed -------");
             if (selectedUnits != null && selectedUnits.Count > 0)
             {
                 Prepare();
@@ -71,7 +71,7 @@ public class GameController : MonoSingleton<GameController>
             }
         };
 
-        InputManager.Instance.myController.GlobalInput.RightClick.performed += (callbackContext) =>
+        InputManager.Instance.myController.全局控制.右击.performed += (callbackContext) =>
         {
             CleanInteraction();
 
@@ -100,14 +100,14 @@ public class GameController : MonoSingleton<GameController>
 
         };
 
-        InputManager.Instance.myController.Game.CameraControl.performed += callbackContext =>
+        InputManager.Instance.myController.游戏.镜头控制.performed += callbackContext =>
         {
             var camMove = callbackContext.ReadValue<Vector2>();
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(camMove);
         };
 
-        InputManager.Instance.myController.Game.CameraControl.canceled += callbackContext =>
+        InputManager.Instance.myController.游戏.镜头控制.canceled += callbackContext =>
         {
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(Vector2.zero);
@@ -131,7 +131,7 @@ public class GameController : MonoSingleton<GameController>
             allRtsUnits.Add(item.GetComponent<RTSUnit>());
         }
 
-        if (!InputManager.Instance.myController.Game.Additional.IsPressed())
+        if (!InputManager.Instance.myController.游戏.额外.IsPressed())
         {
             selectedUnits.Clear();
             //all units clear
@@ -193,7 +193,7 @@ public class GameController : MonoSingleton<GameController>
     private void Update()
     {
         mousePosition= InputUtils.GetMousePosition();
-        if (InputManager.Instance.myController.GlobalInput.LeftClick.IsPressed())
+        if (InputManager.Instance.myController.全局控制.左击.IsPressed())
         {
             //更新选择区域
             endPosition = mousePosition;

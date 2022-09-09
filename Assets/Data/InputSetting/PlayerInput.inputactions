@@ -2,11 +2,11 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "Game",
+            "name": "游戏",
             "id": "eade0b78-2ece-444a-9186-c739fc7dc68c",
             "actions": [
                 {
-                    "name": "CameraControl",
+                    "name": "镜头控制",
                     "type": "Value",
                     "id": "139fe534-6254-4a4e-bf2a-dba79fbc801b",
                     "expectedControlType": "Vector2",
@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Additional",
+                    "name": "额外",
                     "type": "Button",
                     "id": "c278be22-b91a-40fc-a8be-12c485a891ff",
                     "expectedControlType": "Button",
@@ -32,7 +32,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraControl",
+                    "action": "镜头控制",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -43,7 +43,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraControl",
+                    "action": "镜头控制",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -54,7 +54,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraControl",
+                    "action": "镜头控制",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -65,7 +65,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraControl",
+                    "action": "镜头控制",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -76,7 +76,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraControl",
+                    "action": "镜头控制",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -87,18 +87,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Additional",
+                    "action": "额外",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         },
         {
-            "name": "GlobalInput",
+            "name": "全局控制",
             "id": "79e5acaa-6504-494b-8c4f-c5f9d0760b93",
             "actions": [
                 {
-                    "name": "LeftClick",
+                    "name": "左击",
                     "type": "Button",
                     "id": "347405c3-862f-4275-bd94-7ef24008c569",
                     "expectedControlType": "Button",
@@ -107,7 +107,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "DoubleClick",
+                    "name": "双击",
                     "type": "Button",
                     "id": "7e5ec070-d07b-4889-9ec0-929b75d8fb75",
                     "expectedControlType": "Button",
@@ -116,7 +116,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightClick",
+                    "name": "右击",
                     "type": "Button",
                     "id": "795a5018-862d-44d7-ba9f-338bee134638",
                     "expectedControlType": "Button",
@@ -133,7 +133,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftClick",
+                    "action": "左击",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -144,7 +144,7 @@
                     "interactions": "MultiTap(tapTime=0.2,tapDelay=0.3,pressPoint=0.5)",
                     "processors": "",
                     "groups": "",
-                    "action": "DoubleClick",
+                    "action": "双击",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -155,7 +155,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RightClick",
+                    "action": "右击",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -166,7 +166,7 @@
             "id": "d03d7784-a606-47dd-aa3d-c750f62a207e",
             "actions": [
                 {
-                    "name": "InputSetting",
+                    "name": "设置",
                     "type": "Button",
                     "id": "1789f358-685d-414e-b710-e9cb08ea566e",
                     "expectedControlType": "Button",
@@ -183,7 +183,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InputSetting",
+                    "action": "设置",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
