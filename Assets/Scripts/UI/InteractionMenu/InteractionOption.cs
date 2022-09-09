@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InteractionOption : MonoBehaviour
 {
-    [SerializeField] private TMP_Text content;
+    [SerializeField] private Text content;
     [SerializeField] private Image bg;
     public Color focus;
     public Color unfocus;
