@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: W
+  m_Text: Shift
 --- !u!1 &3201063312372588080
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,8 +237,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 228.75, y: -36.325012}
-  m_SizeDelta: {x: 160, y: 72.65}
+  m_AnchoredPosition: {x: 275.64087, y: -36.325012}
+  m_SizeDelta: {x: 253.7818, y: 72.65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1738442211178120481
 CanvasRenderer:
@@ -275,13 +275,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 55
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4E0A"
+  m_Text: "\u989D\u5916\u64CD\u4F5C"
 --- !u!1 &9006387337742158910
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 3364441693120235096}
   - component: {fileID: 500537507328133530}
   m_Layer: 5
-  m_Name: ActionButton
+  m_Name: Heading3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,7 +307,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9006387337742158910}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -131,7 +131,7 @@ public class GameController : MonoSingleton<GameController>
             allRtsUnits.Add(item.GetComponent<RTSUnit>());
         }
 
-        if (!InputManager.Instance.myController.游戏.额外.IsPressed())
+        if (!InputManager.Instance.myController.游戏.附加操作.IsPressed())
         {
             selectedUnits.Clear();
             //all units clear

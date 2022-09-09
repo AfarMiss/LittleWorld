@@ -37,7 +37,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""额外"",
+                    ""name"": ""附加操作"",
                     ""type"": ""Button"",
                     ""id"": ""c278be22-b91a-40fc-a8be-12c485a891ff"",
                     ""expectedControlType"": ""Button"",
@@ -109,7 +109,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""额外"",
+                    ""action"": ""附加操作"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -201,7 +201,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""189354b8-1f67-4e8f-8d0a-fdc24a4af30e"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -217,7 +217,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // 游戏
         m_游戏 = asset.FindActionMap("游戏", throwIfNotFound: true);
         m_游戏_镜头控制 = m_游戏.FindAction("镜头控制", throwIfNotFound: true);
-        m_游戏_额外 = m_游戏.FindAction("额外", throwIfNotFound: true);
+        m_游戏_附加操作 = m_游戏.FindAction("附加操作", throwIfNotFound: true);
         // 全局控制
         m_全局控制 = asset.FindActionMap("全局控制", throwIfNotFound: true);
         m_全局控制_左击 = m_全局控制.FindAction("左击", throwIfNotFound: true);
@@ -286,13 +286,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_游戏;
     private I游戏Actions m_游戏ActionsCallbackInterface;
     private readonly InputAction m_游戏_镜头控制;
-    private readonly InputAction m_游戏_额外;
+    private readonly InputAction m_游戏_附加操作;
     public struct 游戏Actions
     {
         private @PlayerInput m_Wrapper;
         public 游戏Actions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @镜头控制 => m_Wrapper.m_游戏_镜头控制;
-        public InputAction @额外 => m_Wrapper.m_游戏_额外;
+        public InputAction @附加操作 => m_Wrapper.m_游戏_附加操作;
         public InputActionMap Get() { return m_Wrapper.m_游戏; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -305,9 +305,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @镜头控制.started -= m_Wrapper.m_游戏ActionsCallbackInterface.On镜头控制;
                 @镜头控制.performed -= m_Wrapper.m_游戏ActionsCallbackInterface.On镜头控制;
                 @镜头控制.canceled -= m_Wrapper.m_游戏ActionsCallbackInterface.On镜头控制;
-                @额外.started -= m_Wrapper.m_游戏ActionsCallbackInterface.On额外;
-                @额外.performed -= m_Wrapper.m_游戏ActionsCallbackInterface.On额外;
-                @额外.canceled -= m_Wrapper.m_游戏ActionsCallbackInterface.On额外;
+                @附加操作.started -= m_Wrapper.m_游戏ActionsCallbackInterface.On附加操作;
+                @附加操作.performed -= m_Wrapper.m_游戏ActionsCallbackInterface.On附加操作;
+                @附加操作.canceled -= m_Wrapper.m_游戏ActionsCallbackInterface.On附加操作;
             }
             m_Wrapper.m_游戏ActionsCallbackInterface = instance;
             if (instance != null)
@@ -315,9 +315,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @镜头控制.started += instance.On镜头控制;
                 @镜头控制.performed += instance.On镜头控制;
                 @镜头控制.canceled += instance.On镜头控制;
-                @额外.started += instance.On额外;
-                @额外.performed += instance.On额外;
-                @额外.canceled += instance.On额外;
+                @附加操作.started += instance.On附加操作;
+                @附加操作.performed += instance.On附加操作;
+                @附加操作.canceled += instance.On附加操作;
             }
         }
     }
@@ -407,7 +407,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface I游戏Actions
     {
         void On镜头控制(InputAction.CallbackContext context);
-        void On额外(InputAction.CallbackContext context);
+        void On附加操作(InputAction.CallbackContext context);
     }
     public interface I全局控制Actions
     {

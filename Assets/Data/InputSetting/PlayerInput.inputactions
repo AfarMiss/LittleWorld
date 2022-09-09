@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "额外",
+                    "name": "附加操作",
                     "type": "Button",
                     "id": "c278be22-b91a-40fc-a8be-12c485a891ff",
                     "expectedControlType": "Button",
@@ -87,7 +87,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "额外",
+                    "action": "附加操作",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -179,7 +179,7 @@
                 {
                     "name": "",
                     "id": "189354b8-1f67-4e8f-8d0a-fdc24a4af30e",
-                    "path": "",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
