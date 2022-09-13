@@ -403,6 +403,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         [SerializeField]
         private InteractiveRebindEvent m_RebindStartEvent;
 
+        [SerializeField]
+        private InteractiveRebindEvent m_TestEvent;
+
         [Tooltip("Event that is triggered when an interactive rebind is complete or has been aborted.")]
         [SerializeField]
         private InteractiveRebindEvent m_RebindStopEvent;
