@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameController : MonoSingleton<GameController>
 {
@@ -16,15 +17,16 @@ public class GameController : MonoSingleton<GameController>
     public Vector2 mousePosition { get; private set; }
 
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         RectTransform rectObject = null;
 
         rectObject = Instantiate(selectedArea);
         rectObject.name = rectObject.name.Substring(0, rectObject.name.LastIndexOf("(Clone)"));
         selectedArea = rectObject.GetComponent<RectTransform>();
 
-        rectObject.transform.SetParent(GameObject.Find("Canvas").transform);
+        rectObject.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
         rectObject.gameObject.SetActive(false);
 
         realSelection = new Rect();
@@ -38,6 +40,7 @@ public class GameController : MonoSingleton<GameController>
 
         InputManager.Instance.myController.全局控制.左击.started += (callbackContext) =>
         {
+            if (UIManager.Instance.UIIsShowing) return;
             startPosition = mousePosition;
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
@@ -45,6 +48,7 @@ public class GameController : MonoSingleton<GameController>
 
         InputManager.Instance.myController.全局控制.左击.canceled += (callbackContext) =>
         {
+            if (UIManager.Instance.UIIsShowing) return;
             CleanInteraction();
 
             endPosition = mousePosition;
@@ -60,6 +64,7 @@ public class GameController : MonoSingleton<GameController>
 
         InputManager.Instance.myController.全局控制.双击.performed += (callbackContext) =>
         {
+            if (UIManager.Instance.UIIsShowing) return;
             CleanInteraction();
 
             Debug.Log("双击.performed -------");
@@ -73,6 +78,7 @@ public class GameController : MonoSingleton<GameController>
 
         InputManager.Instance.myController.全局控制.右击.performed += (callbackContext) =>
         {
+            if (UIManager.Instance.UIIsShowing) return;
             CleanInteraction();
 
             var ray = Camera.main.ScreenPointToRay(mousePosition);
@@ -100,11 +106,12 @@ public class GameController : MonoSingleton<GameController>
 
         InputManager.Instance.myController.UI.设置.performed += (callbackContext) =>
         {
-            UIManager.Instance.Show<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
+            UIManager.Instance.Switch<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
         };
 
         InputManager.Instance.myController.游戏.镜头控制.performed += callbackContext =>
         {
+            if (UIManager.Instance.UIIsShowing) return;
             var camMove = callbackContext.ReadValue<Vector2>();
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(camMove);
@@ -112,6 +119,7 @@ public class GameController : MonoSingleton<GameController>
 
         InputManager.Instance.myController.游戏.镜头控制.canceled += callbackContext =>
         {
+            if (UIManager.Instance.UIIsShowing) return;
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(Vector2.zero);
         };
@@ -195,6 +203,7 @@ public class GameController : MonoSingleton<GameController>
 
     private void Update()
     {
+        if (UIManager.Instance.UIIsShowing) return;
         mousePosition = InputUtils.GetMousePosition();
         if (InputManager.Instance.myController.全局控制.左击.IsPressed())
         {

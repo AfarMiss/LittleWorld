@@ -1,26 +1,37 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UIManager:MonoSingleton<UIManager>
+public class UIManager : MonoSingleton<UIManager>
 {
     private Dictionary<UIType, List<BaseUI>> uiDic;
-    protected GameObject Canvas { get; private set; }
+    protected GameObject UICanvas { get; private set; }
+
+    public bool UIIsShowing=> EventSystem.current.IsPointerOverGameObject();
 
     public UIManager()
     {
         uiDic = new Dictionary<UIType, List<BaseUI>>();
 
+        uiDic.Add(UIType.CANVAS, new List<BaseUI>());
         uiDic.Add(UIType.PANEL, new List<BaseUI>());
         uiDic.Add(UIType.DIALOG, new List<BaseUI>());
         uiDic.Add(UIType.TIP, new List<BaseUI>());
         uiDic.Add(UIType.SCENE_CHANGE, new List<BaseUI>());
-
-        Canvas = GameObject.Instantiate(Resources.Load<GameObject>(UIPath.Canvas), transform);
     }
 
-    public T Show<T>(UIType uiType, string path)where T:BaseUI
+    protected override void Awake()
     {
-        GameObject parent = GameObject.Find("Canvas");
+        base.Awake();
+        //初始化画布
+        UICanvas = GameObject.Instantiate(Resources.Load<GameObject>(UIPath.UICanvas));
+        UICanvas.transform.SetParent(null);
+        DontDestroyOnLoad(UICanvas);
+    }
+
+    public T Show<T>(UIType uiType, string path) where T : BaseUI
+    {
+        GameObject parent = GameObject.FindGameObjectWithTag("UICanvas");
         if (!parent)
         {
             Debug.LogError("Canvas is null!");
@@ -28,8 +39,9 @@ public class UIManager:MonoSingleton<UIManager>
         }
         foreach (var item in uiDic[uiType])
         {
-            if( item.path == path)
+            if (item.path == path)
             {
+                item.OnEnter();
                 return item as T;
             }
         }
@@ -38,10 +50,11 @@ public class UIManager:MonoSingleton<UIManager>
         var curUI = uiObject.GetComponent<BaseUI>();
         uiObject.name = curUI.uiName;
         uiDic[uiType].Add(curUI);
+        curUI.OnEnter();
         return curUI as T;
     }
 
-    public void Hide<T>(UIType uiType)
+    public void Hide<T>(UIType uiType) where T : BaseUI
     {
         for (int i = 0; i < uiDic[uiType].Count; i++)
         {
@@ -55,10 +68,36 @@ public class UIManager:MonoSingleton<UIManager>
             }
         }
     }
+
+    public void Switch<T>(UIType uiType, string path) where T : BaseUI
+    {
+        if (FindPanelIsShowing<T>(uiType, path))
+        {
+            Hide<T>(uiType);
+        }
+        else
+        {
+            Show<T>(uiType, path);
+        }
+    }
+
+    private bool FindPanelIsShowing<T>(UIType uiType, string path) where T : BaseUI
+    {
+        foreach (var item in uiDic[uiType])
+        {
+            if (item.path == path)
+            {
+                return item.isShowing;
+            }
+        }
+        return false;
+    }
 }
 
 public enum UIType
 {
+    //画布
+    CANVAS,
     //面板，一种面板只允许出现一个
     PANEL,
     //对话框，允许出现多个
