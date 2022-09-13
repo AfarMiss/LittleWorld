@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartPanel : BasePanel
+public class StartPanel : BaseUI
 {
-    private static readonly string path = "Prefabs/UI/Panel/StartPanel";
-    public StartPanel() : base(new UIType(path))
-    {
-    }
+    public override string path => "Prefabs/UI/Panel/StartPanel";
 
-    public override void OnEnter()
+    public override void OnClickClose()
     {
-        UITool.GetOrAddCompnentInChildren<Button>("Start").onClick.AddListener(() =>
-        {
-            Debug.Log("click!!!");
-        });
+        throw new System.NotImplementedException();
     }
 }

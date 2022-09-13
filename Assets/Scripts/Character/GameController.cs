@@ -96,8 +96,11 @@ public class GameController : MonoSingleton<GameController>
                 var options = rayHits[0].collider.GetComponent<IOption>();
                 options.OnInteraction();
             }
+        };
 
-
+        InputManager.Instance.myController.UI.设置.performed += (callbackContext) =>
+        {
+            UIManager.Instance.Show<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
         };
 
         InputManager.Instance.myController.游戏.镜头控制.performed += callbackContext =>
@@ -192,7 +195,7 @@ public class GameController : MonoSingleton<GameController>
 
     private void Update()
     {
-        mousePosition= InputUtils.GetMousePosition();
+        mousePosition = InputUtils.GetMousePosition();
         if (InputManager.Instance.myController.全局控制.左击.IsPressed())
         {
             //更新选择区域

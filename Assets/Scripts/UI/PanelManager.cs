@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class PanelManager 
 {
-    private Stack<BasePanel> stackPanel;
-    private UIManager uiManager;
-    private BasePanel panel;
+    private Stack<BaseUI> stackPanel;
+    private BaseUI panel;
 
     public PanelManager()
     {
-        stackPanel = new Stack<BasePanel>();
-        uiManager= new UIManager();
+        stackPanel = new Stack<BaseUI>();
     }
 
-    public void Push(BasePanel panel)
+    public void Push(BaseUI panel)
     {
         if (stackPanel.Count > 0)
         {
@@ -22,8 +20,6 @@ public class PanelManager
             panel.OnPause();
         }
         stackPanel.Push(panel);
-        GameObject panelObject = uiManager.GetSingleUI(panel.UIType);
-        panel.Initialize(new UITool(panelObject));
         panel.OnEnter();
     }
 

@@ -2,26 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UITool 
+public static class UITool
 {
-    GameObject activePanel;
-
-    public UITool(GameObject panel)
+    private static GameObject FIndChildGameObject(this GameObject panel, string name)
     {
-        activePanel = panel;
-    }
-
-    public T GetOrAddCompnent<T> () where T : Component
-    {
-        if (activePanel.GetComponent<T>() == null)
-            activePanel.AddComponent<T>();
-
-        return activePanel.GetComponent<T>();
-    }
-
-    public GameObject FIndChildGameObject(string name)
-    {
-        Transform[] trans = activePanel.GetComponentsInChildren<Transform>();
+        Transform[] trans = panel.GetComponentsInChildren<Transform>();
         foreach (var item in trans)
         {
             if (item.name == name)
@@ -30,13 +15,13 @@ public class UITool
             }
         }
 
-        Debug.LogWarning($"{activePanel.name}找不到名为{name}的子对象");
+        Debug.LogWarning($"{panel.name}找不到名为{name}的子对象");
         return null;
     }
 
-    public T GetOrAddCompnentInChildren<T>(string name) where T : Component
+    public static T GetOrAddCompnentInChildren<T>(this GameObject panel, string name) where T : Component
     {
-        GameObject child = FIndChildGameObject(name);
+        GameObject child = FIndChildGameObject(panel, name);
         if (child)
         {
             if (child.GetComponent<T>() == null)
@@ -44,7 +29,7 @@ public class UITool
 
             return child.GetComponent<T>();
         }
-        Debug.LogError($"{activePanel.name}找不到名为{name}的子组件");
+        Debug.LogError($"{panel.name}找不到名为{name}的子组件");
         return null;
     }
 }

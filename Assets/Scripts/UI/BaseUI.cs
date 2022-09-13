@@ -1,7 +1,11 @@
-public abstract class BasePanel
+using UnityEngine;
+
+public abstract class BaseUI : MonoBehaviour
 {
+    public string uiName => path.Substring(path.LastIndexOf('/') + 1);
+    public abstract string path { get; }
+
     public UIType UIType { get; private set; }
-    public UITool UITool { get; private set; }
 
     /// <summary>
     /// Ω¯»Î ±
@@ -23,13 +27,9 @@ public abstract class BasePanel
     /// </summary>
     public virtual void OnExit() { }
 
-    public BasePanel(UIType type)
+    public void Initialize()
     {
-        UIType = type;
     }
 
-    public void Initialize(UITool tool)
-    {
-        this.UITool = tool;
-    }
+    public abstract void OnClickClose();
 }

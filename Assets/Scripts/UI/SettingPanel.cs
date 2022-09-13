@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingPanel : MonoBehaviour
+public class SettingPanel : BaseUI
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public override string path => UIPath.Panel_SettingPanel;
 
-    // Update is called once per frame
-    void Update()
+    public override void OnClickClose()
     {
-        
+        UIManager.Instance.Hide<SettingPanel>(UIType.PANEL);
     }
 }
