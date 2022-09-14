@@ -481,7 +481,7 @@ MonoBehaviour:
     m_ActionName: "UI/\u8BBE\u7F6E[/Keyboard/escape]"
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: UI
+  m_DefaultActionMap: 79e5acaa-6504-494b-8c4f-c5f9d0760b93
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &821569999

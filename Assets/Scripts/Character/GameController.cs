@@ -146,7 +146,7 @@ public class GameController : MonoSingleton<GameController>
             {
                 foreach (var action in actionMap.actions)
                 {
-                    if(action.name== "附加操作"&&action.IsPressed())
+                    if (action.name == "附加操作" && action.IsPressed())
                     {
                         selectedUnits.Clear();
                         //all units clear
@@ -212,27 +212,18 @@ public class GameController : MonoSingleton<GameController>
     {
         if (UIManager.Instance.UIIsShowing) return;
         mousePosition = InputUtils.GetMousePosition();
-
-        foreach (var actionMap in InputManager.Instance.myController.actions.actionMaps)
+        Debug.Log($"InputManager.Instance.myController.actions[左击].IsPressed():{InputManager.Instance.myController.actions["左击"].IsPressed()}");
+        if (InputManager.Instance.myController.actions["左击"].IsPressed())
         {
-            if (actionMap.name == "全局控制")
-            {
-                foreach (var action in actionMap.actions)
-                {
-                    if (action.name == "左击" && action.IsPressed())
-                    {
-                        //更新选择区域
-                        endPosition = mousePosition;
-                        var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
-                        var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
-                        selectedArea.position = lowerLeft;
-                        selectedArea.sizeDelta = upperRight - lowerLeft;
+            //更新选择区域
+            endPosition = mousePosition;
+            var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
+            var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
+            selectedArea.position = lowerLeft;
+            selectedArea.sizeDelta = upperRight - lowerLeft;
 
-                        realSelection.position = lowerLeft;
-                        realSelection.size = selectedArea.sizeDelta;
-                    }
-                }
-            }
+            realSelection.position = lowerLeft;
+            realSelection.size = selectedArea.sizeDelta;
         }
     }
 }
