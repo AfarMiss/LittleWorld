@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -9,13 +8,10 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        myController = new PlayerInput();
-        myController.Enable();
     }
 
     private void OnDestroy()
     {
-        myController.Disable();
         myController = null;
     }
 

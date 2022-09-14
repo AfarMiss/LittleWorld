@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc8d75b492cf394684f2cb8004709c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myController: {fileID: 821569998}
 --- !u!4 &125812999
 Transform:
   m_ObjectHideFlags: 0
@@ -388,6 +389,116 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2431074402063594364, guid: 8f364e37243e2594581f51f5e854bd9b, type: 3}
   m_PrefabInstance: {fileID: 776772300}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &821569997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 821569999}
+  - component: {fileID: 821569998}
+  m_Layer: 0
+  m_Name: PlayerInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &821569998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821569997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d8b489f6c55b2c6479c223bf1f6198e6, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 691186456}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: OnClickSettingPerformed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 691186454}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 139fe534-6254-4a4e-bf2a-dba79fbc801b
+    m_ActionName: "\u6E38\u620F/\u955C\u5934\u63A7\u5236[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c278be22-b91a-40fc-a8be-12c485a891ff
+    m_ActionName: "\u6E38\u620F/\u9644\u52A0\u64CD\u4F5C[/Keyboard/shift]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 347405c3-862f-4275-bd94-7ef24008c569
+    m_ActionName: "\u5168\u5C40\u63A7\u5236/\u5DE6\u51FB[/Mouse/leftButton]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7e5ec070-d07b-4889-9ec0-929b75d8fb75
+    m_ActionName: "\u5168\u5C40\u63A7\u5236/\u53CC\u51FB[/Mouse/leftButton]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 795a5018-862d-44d7-ba9f-338bee134638
+    m_ActionName: "\u5168\u5C40\u63A7\u5236/\u53F3\u51FB[/Mouse/rightButton]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1789f358-685d-414e-b710-e9cb08ea566e
+    m_ActionName: "UI/\u8BBE\u7F6E[/Keyboard/escape]"
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!4 &821569999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821569997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 296.61584, y: 293.67053, z: -2.962769}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1413222951
 GameObject:
   m_ObjectHideFlags: 0

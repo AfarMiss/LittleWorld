@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using static UnityEngine.InputSystem.InputAction;
 
 public class GameController : MonoSingleton<GameController>
 {
@@ -36,93 +36,92 @@ public class GameController : MonoSingleton<GameController>
     {
         selectedUnits = new List<RTSUnit>();
         allRtsUnits = new List<RTSUnit>();
+    }
 
+    public void OnClickDoublePerformed()
+    {
+        if (UIManager.Instance.UIIsShowing) return;
+        CleanInteraction();
 
-        InputManager.Instance.myController.全局控制.左击.started += (callbackContext) =>
+        Debug.Log("双击.performed -------");
+        if (selectedUnits != null && selectedUnits.Count > 0)
         {
-            if (UIManager.Instance.UIIsShowing) return;
-            startPosition = mousePosition;
-            selectedArea.gameObject.SetActive(true);
-            Debug.Log("Click.started -------");
-        };
-
-        InputManager.Instance.myController.全局控制.左击.canceled += (callbackContext) =>
-        {
-            if (UIManager.Instance.UIIsShowing) return;
-            CleanInteraction();
-
-            endPosition = mousePosition;
-            selectedArea.gameObject.SetActive(false);
-
             Prepare();
+            Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
+            FindRectOverlap(screenRect);
+        }
+    }
 
-            FindBoundOverlap();
+    public void OnClickRightPerformed()
+    {
+        if (UIManager.Instance.UIIsShowing) return;
+        CleanInteraction();
 
-            Debug.Log("Click.canceled -------");
-            allRtsUnits.Clear();
-        };
+        var ray = Camera.main.ScreenPointToRay(mousePosition);
+        var rayHits = Physics.RaycastAll(ray.origin, ray.direction);
 
-        InputManager.Instance.myController.全局控制.双击.performed += (callbackContext) =>
+        if (rayHits == null || rayHits.Length == 0)
         {
-            if (UIManager.Instance.UIIsShowing) return;
-            CleanInteraction();
-
-            Debug.Log("双击.performed -------");
-            if (selectedUnits != null && selectedUnits.Count > 0)
+            if (selectedUnits == null || selectedUnits.Count == 0) return;
+            var bound = selectedUnits[0].GetComponent<BoxCollider2D>().bounds;
+            var offset = (bound.max - bound.min).y + 0.8f;
+            var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
+            for (int i = 0; i < selectedUnits.Count; i++)
             {
-                Prepare();
-                Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
-                FindRectOverlap(screenRect);
+                RTSUnit item = selectedUnits[i];
+                var controller = item.GetComponent<PlayerMoveController>();
+                controller.Move(destinations[i]);
             }
-        };
-
-        InputManager.Instance.myController.全局控制.右击.performed += (callbackContext) =>
+        }
+        else
         {
-            if (UIManager.Instance.UIIsShowing) return;
-            CleanInteraction();
+            var options = rayHits[0].collider.GetComponent<IOption>();
+            options.OnInteraction();
+        }
+    }
 
-            var ray = Camera.main.ScreenPointToRay(mousePosition);
-            var rayHits = Physics.RaycastAll(ray.origin, ray.direction);
+    public void OnClickSettingPerformed()
+    {
+        UIManager.Instance.Switch<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
+    }
 
-            if (rayHits == null || rayHits.Length == 0)
-            {
-                if (selectedUnits == null || selectedUnits.Count == 0) return;
-                var bound = selectedUnits[0].GetComponent<BoxCollider2D>().bounds;
-                var offset = (bound.max - bound.min).y + 0.8f;
-                var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
-                for (int i = 0; i < selectedUnits.Count; i++)
-                {
-                    RTSUnit item = selectedUnits[i];
-                    var controller = item.GetComponent<PlayerMoveController>();
-                    controller.Move(destinations[i]);
-                }
-            }
-            else
-            {
-                var options = rayHits[0].collider.GetComponent<IOption>();
-                options.OnInteraction();
-            }
-        };
+    public void OnClickCameraControlPerformed(CallbackContext callbackContext)
+    {
+        if (UIManager.Instance.UIIsShowing) return;
+        var camMove = callbackContext.ReadValue<Vector2>();
+        CameraController camController = Camera.main.GetComponent<CameraController>();
+        camController.Move(camMove);
+    }
 
-        InputManager.Instance.myController.UI.设置.performed += (callbackContext) =>
-        {
-            UIManager.Instance.Switch<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
-        };
+    public void OnClickCameraControlCanceled(CallbackContext callbackContext)
+    {
+        if (UIManager.Instance.UIIsShowing) return;
+        CameraController camController = Camera.main.GetComponent<CameraController>();
+        camController.Move(Vector2.zero);
+    }
 
-        InputManager.Instance.myController.游戏.镜头控制.performed += callbackContext =>
-        {
-            if (UIManager.Instance.UIIsShowing) return;
-            var camMove = callbackContext.ReadValue<Vector2>();
-            CameraController camController = Camera.main.GetComponent<CameraController>();
-            camController.Move(camMove);
-        };
+    public void OnClickLeftStart()
+    {
+        if (UIManager.Instance.UIIsShowing) return;
+        startPosition = mousePosition;
+        selectedArea.gameObject.SetActive(true);
+        Debug.Log("Click.started -------");
+    }
 
-        InputManager.Instance.myController.游戏.镜头控制.canceled += callbackContext =>
-        {
-            if (UIManager.Instance.UIIsShowing) return;
-            CameraController camController = Camera.main.GetComponent<CameraController>();
-            camController.Move(Vector2.zero);
-        };
+    public void OnClickLeftCanceled()
+    {
+        if (UIManager.Instance.UIIsShowing) return;
+        CleanInteraction();
+
+        endPosition = mousePosition;
+        selectedArea.gameObject.SetActive(false);
+
+        Prepare();
+
+        FindBoundOverlap();
+
+        Debug.Log("Click.canceled -------");
+        allRtsUnits.Clear();
     }
 
     private void CleanInteraction()
@@ -141,14 +140,22 @@ public class GameController : MonoSingleton<GameController>
         {
             allRtsUnits.Add(item.GetComponent<RTSUnit>());
         }
-
-        if (!InputManager.Instance.myController.游戏.附加操作.IsPressed())
+        foreach (var actionMap in InputManager.Instance.myController.actions.actionMaps)
         {
-            selectedUnits.Clear();
-            //all units clear
-            foreach (var item in allRtsUnits)
+            if (actionMap.name == "游戏")
             {
-                item.isSelected = false;
+                foreach (var action in actionMap.actions)
+                {
+                    if(action.name== "附加操作"&&action.IsPressed())
+                    {
+                        selectedUnits.Clear();
+                        //all units clear
+                        foreach (var unit in allRtsUnits)
+                        {
+                            unit.isSelected = false;
+                        }
+                    }
+                }
             }
         }
     }
@@ -205,17 +212,27 @@ public class GameController : MonoSingleton<GameController>
     {
         if (UIManager.Instance.UIIsShowing) return;
         mousePosition = InputUtils.GetMousePosition();
-        if (InputManager.Instance.myController.全局控制.左击.IsPressed())
-        {
-            //更新选择区域
-            endPosition = mousePosition;
-            var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
-            var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
-            selectedArea.position = lowerLeft;
-            selectedArea.sizeDelta = upperRight - lowerLeft;
 
-            realSelection.position = lowerLeft;
-            realSelection.size = selectedArea.sizeDelta;
+        foreach (var actionMap in InputManager.Instance.myController.actions.actionMaps)
+        {
+            if (actionMap.name == "全局控制")
+            {
+                foreach (var action in actionMap.actions)
+                {
+                    if (action.name == "左击" && action.IsPressed())
+                    {
+                        //更新选择区域
+                        endPosition = mousePosition;
+                        var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
+                        var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
+                        selectedArea.position = lowerLeft;
+                        selectedArea.sizeDelta = upperRight - lowerLeft;
+
+                        realSelection.position = lowerLeft;
+                        realSelection.size = selectedArea.sizeDelta;
+                    }
+                }
+            }
         }
     }
 }

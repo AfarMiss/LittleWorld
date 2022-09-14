@@ -18,16 +18,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnEnable()
-    {
-        myController.Enable();
-    }
-
-    private void OnDisable()
-    {
-        myController.Disable();
-    }
-
     private void FixedUpdate()
     {
         Move();
