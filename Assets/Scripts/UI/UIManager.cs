@@ -7,7 +7,7 @@ public class UIManager : MonoSingleton<UIManager>
     private Dictionary<UIType, List<BaseUI>> uiDic;
     protected GameObject UICanvas { get; private set; }
 
-    public bool UIIsShowing=> EventSystem.current.IsPointerOverGameObject();
+    public bool UIIsShowing => EventSystem.current.IsPointerOverGameObject();
 
     public UIManager()
     {
@@ -31,6 +31,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public T Show<T>(UIType uiType, string path) where T : BaseUI
     {
+
         GameObject parent = GameObject.FindGameObjectWithTag("UICanvas");
         if (!parent)
         {
@@ -41,12 +42,14 @@ public class UIManager : MonoSingleton<UIManager>
         {
             if (item.path == path)
             {
+                item.gameObject.SetActive(true);
                 item.OnEnter();
                 return item as T;
             }
         }
 
         GameObject uiObject = GameObject.Instantiate(Resources.Load<GameObject>(path), parent.transform);
+
         var curUI = uiObject.GetComponent<BaseUI>();
         uiObject.name = curUI.uiName;
         uiDic[uiType].Add(curUI);
@@ -54,16 +57,23 @@ public class UIManager : MonoSingleton<UIManager>
         return curUI as T;
     }
 
-    public void Hide<T>(UIType uiType) where T : BaseUI
+    public void Hide<T>(UIType uiType, bool destroyIt = false) where T : BaseUI
     {
         for (int i = 0; i < uiDic[uiType].Count; i++)
         {
             BaseUI item = uiDic[uiType][i];
             if (item.GetType() == typeof(T))
             {
-                uiDic[uiType].Remove(item);
                 item.OnExit();
-                Destroy(item.gameObject);
+                if (destroyIt)
+                {
+                    uiDic[uiType].Remove(item);
+                    Destroy(item.gameObject);
+                }
+                else
+                {
+                    item.gameObject.SetActive(false);
+                }
                 return;
             }
         }
