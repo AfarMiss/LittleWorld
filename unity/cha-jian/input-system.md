@@ -73,6 +73,8 @@ started在第一次鼠标点击就被调用，如果长按鼠标这个事件会�
 
 使用SwitchCurrentActionMap切换ActionMap，与之相对的是如果不用这个组件，那么切换输入需要使用对应ActionMap/Action的Enable()/Disable()。
 
+Actions的DefaultMap会影响输入是否有效。如果DefaultMap中不包含action，同时也没有动态切换actionMap，那么非当前actionMap的action将无效。注意，在运行时动态切换PlayerInput的Actions的DefaultMap并不会使切换后的actionMap生效。
+
 ### Behaviour
 
 #### Invoke Unity Events
