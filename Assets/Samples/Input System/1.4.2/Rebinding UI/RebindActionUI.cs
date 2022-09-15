@@ -378,6 +378,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 InputSystem.onActionChange += OnActionChange;
         }
 
+        private void Start()
+        {
+            UpdateActionLabel();
+            UpdateBindingDisplay();
+        }
+
         protected void OnDisable()
         {
             m_RebindOperation?.Dispose();
