@@ -27,14 +27,6 @@ public class UIManager : MonoSingleton<UIManager>
     private void SwitchMapState()
     {
         if (!InputManager.Instance) return;
-        if (IsShowingPanel)
-        {
-            InputManager.Instance.myController.SwitchCurrentActionMap("UI");
-        }
-        else
-        {
-            InputManager.Instance.myController.SwitchCurrentActionMap("сно╥");
-        }
     }
 
     public UIManager()
@@ -99,7 +91,15 @@ public class UIManager : MonoSingleton<UIManager>
             case UIType.CANVAS:
                 break;
             case UIType.PANEL:
-                IsShowingPanel = uiDic[uiType].Count > 0;
+                var showingPanelCount = 0;
+                foreach (var item in uiDic[uiType])
+                {
+                    if (item.isShowing)
+                    {
+                        showingPanelCount++;
+                    }
+                }
+                IsShowingPanel = showingPanelCount > 0;
                 break;
             case UIType.DIALOG:
                 break;

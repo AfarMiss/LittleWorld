@@ -502,8 +502,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 691186456}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: OnClickSettingPerformed
-        m_Mode: 1
+        m_MethodName: OnClickSetting
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -512,11 +512,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 5f7c311c-427a-4f64-b3f1-be06d865ccaf
-    m_ActionName: "UI/\u8BBE\u7F6E[/Keyboard/escape]"
+    m_ActionId: 8751fcd9-b05a-47cd-b45c-03936c447e4c
+    m_ActionName: "\u6E38\u620F/\u8BBE\u7F6E[/Keyboard/escape]"
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: UI
+  m_DefaultActionMap: "\u6E38\u620F"
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &821569999

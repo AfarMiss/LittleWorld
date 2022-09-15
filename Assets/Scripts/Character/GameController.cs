@@ -79,9 +79,10 @@ public class GameController : MonoSingleton<GameController>
         }
     }
 
-    public void OnClickSettingPerformed()
+    public void OnClickSetting(CallbackContext context)
     {
-        UIManager.Instance.Switch<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
+        if (context.performed)
+            UIManager.Instance.Switch<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
     }
 
     public void OnCameraControl(CallbackContext callbackContext)
@@ -92,7 +93,8 @@ public class GameController : MonoSingleton<GameController>
             var camMove = callbackContext.ReadValue<Vector2>();
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(camMove);
-        }else if (callbackContext.canceled)
+        }
+        else if (callbackContext.canceled)
         {
             if (UIManager.Instance.IsShowingPanel) return;
             CameraController camController = Camera.main.GetComponent<CameraController>();
@@ -109,7 +111,8 @@ public class GameController : MonoSingleton<GameController>
             startPosition = mousePosition;
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
-        }else if (callbackContext.canceled)
+        }
+        else if (callbackContext.canceled)
         {
             if (UIManager.Instance.IsShowingPanel) return;
             CleanInteraction();
@@ -206,6 +209,9 @@ public class GameController : MonoSingleton<GameController>
     {
         if (UIManager.Instance.IsShowingPanel || !isInit) return;
         mousePosition = InputUtils.GetMousePosition();
+#if UNITY_EDITOR
+        Debug.Log($"InputManager.Instance.myController.actions[×ó»÷].IsPressed():{InputManager.Instance.myController.actions["×ó»÷"].IsPressed()}");
+#endif
         if (InputManager.Instance.myController.actions["×ó»÷"].IsPressed())
         {
             Debug.Log($"¸üÐÂÑ¡ÔñÇøÓò");

@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "设置",
+                    "type": "Button",
+                    "id": "8751fcd9-b05a-47cd-b45c-03936c447e4c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -150,27 +159,10 @@
                     "action": "右击",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "UI",
-            "id": "2f3685dc-c804-466e-91a9-d4d49f77398b",
-            "actions": [
-                {
-                    "name": "设置",
-                    "type": "Button",
-                    "id": "5f7c311c-427a-4f64-b3f1-be06d865ccaf",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "a6501743-77c1-47f2-9548-1cbf1b988c9f",
+                    "id": "caaf256b-78c5-41d8-a13d-b3a0931b769f",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
