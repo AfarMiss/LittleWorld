@@ -144,6 +144,7 @@ public class GameController : MonoSingleton<GameController>
         }
         if (InputManager.Instance.myController.actions["附加操作"].IsPressed())
         {
+            Debug.Log("附加操作正在被按下！");
             selectedUnits.Clear();
             //all units clear
             foreach (var unit in allRtsUnits)
@@ -205,9 +206,6 @@ public class GameController : MonoSingleton<GameController>
     {
         if (UIManager.Instance.IsShowingPanel || !isInit) return;
         mousePosition = InputUtils.GetMousePosition();
-#if UNITY_EDITOR
-        Debug.Log($"InputManager.Instance.myController.actions[左击].IsPressed():{InputManager.Instance.myController.actions["左击"].IsPressed()}");
-#endif
         if (InputManager.Instance.myController.actions["左击"].IsPressed())
         {
             Debug.Log($"更新选择区域");
