@@ -40,7 +40,7 @@ public class GameController : MonoSingleton<GameController>
 
     public void OnClickDoublePerformed()
     {
-        if (UIManager.Instance.UIIsShowing) return;
+        if (UIManager.Instance.IsShowingPanel) return;
         CleanInteraction();
 
         Debug.Log("Ë«»÷.performed -------");
@@ -54,7 +54,7 @@ public class GameController : MonoSingleton<GameController>
 
     public void OnClickRightPerformed()
     {
-        if (UIManager.Instance.UIIsShowing) return;
+        if (UIManager.Instance.IsShowingPanel) return;
         CleanInteraction();
 
         var ray = Camera.main.ScreenPointToRay(mousePosition);
@@ -87,7 +87,7 @@ public class GameController : MonoSingleton<GameController>
 
     public void OnClickCameraControlPerformed(CallbackContext callbackContext)
     {
-        if (UIManager.Instance.UIIsShowing) return;
+        if (UIManager.Instance.IsShowingPanel) return;
         var camMove = callbackContext.ReadValue<Vector2>();
         CameraController camController = Camera.main.GetComponent<CameraController>();
         camController.Move(camMove);
@@ -95,14 +95,14 @@ public class GameController : MonoSingleton<GameController>
 
     public void OnClickCameraControlCanceled(CallbackContext callbackContext)
     {
-        if (UIManager.Instance.UIIsShowing) return;
+        if (UIManager.Instance.IsShowingPanel) return;
         CameraController camController = Camera.main.GetComponent<CameraController>();
         camController.Move(Vector2.zero);
     }
 
     public void OnClickLeftStart()
     {
-        if (UIManager.Instance.UIIsShowing) return;
+        if (UIManager.Instance.IsShowingPanel) return;
         startPosition = mousePosition;
         selectedArea.gameObject.SetActive(true);
         Debug.Log("Click.started -------");
@@ -110,7 +110,7 @@ public class GameController : MonoSingleton<GameController>
 
     public void OnClickLeftCanceled()
     {
-        if (UIManager.Instance.UIIsShowing) return;
+        if (UIManager.Instance.IsShowingPanel) return;
         CleanInteraction();
 
         endPosition = mousePosition;
@@ -140,22 +140,13 @@ public class GameController : MonoSingleton<GameController>
         {
             allRtsUnits.Add(item.GetComponent<RTSUnit>());
         }
-        foreach (var actionMap in InputManager.Instance.myController.actions.actionMaps)
+        if (InputManager.Instance.myController.actions["¸½¼Ó²Ù×÷"].IsPressed())
         {
-            if (actionMap.name == "ÓÎÏ·")
+            selectedUnits.Clear();
+            //all units clear
+            foreach (var unit in allRtsUnits)
             {
-                foreach (var action in actionMap.actions)
-                {
-                    if (action.name == "¸½¼Ó²Ù×÷" && action.IsPressed())
-                    {
-                        selectedUnits.Clear();
-                        //all units clear
-                        foreach (var unit in allRtsUnits)
-                        {
-                            unit.isSelected = false;
-                        }
-                    }
-                }
+                unit.isSelected = false;
             }
         }
     }
@@ -210,9 +201,11 @@ public class GameController : MonoSingleton<GameController>
 
     private void Update()
     {
-        if (UIManager.Instance.UIIsShowing) return;
+        if (UIManager.Instance.IsShowingPanel) return;
         mousePosition = InputUtils.GetMousePosition();
+#if UNITY_EDITOR
         Debug.Log($"InputManager.Instance.myController.actions[×ó»÷].IsPressed():{InputManager.Instance.myController.actions["×ó»÷"].IsPressed()}");
+#endif
         if (InputManager.Instance.myController.actions["×ó»÷"].IsPressed())
         {
             //¸üÐÂÑ¡ÔñÇøÓò

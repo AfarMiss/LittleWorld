@@ -8,12 +8,11 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        Instance.myController.SwitchCurrentActionMap("сно╥");
     }
 
     private void OnDestroy()
     {
         myController = null;
     }
-
-
 }

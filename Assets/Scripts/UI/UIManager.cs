@@ -7,7 +7,35 @@ public class UIManager : MonoSingleton<UIManager>
     private Dictionary<UIType, List<BaseUI>> uiDic;
     protected GameObject UICanvas { get; private set; }
 
-    public bool UIIsShowing => EventSystem.current.IsPointerOverGameObject();
+    private bool isShowingPanel;
+    /// <summary>
+    /// 正在显示panel，不响应游戏中的事件。
+    /// </summary>
+    public bool IsShowingPanel
+    {
+        get
+        {
+            return isShowingPanel;
+        }
+        private set
+        {
+            isShowingPanel = value;
+            SwitchMapState();
+        }
+    }
+
+    private void SwitchMapState()
+    {
+        if (!InputManager.Instance) return;
+        if (IsShowingPanel)
+        {
+            InputManager.Instance.myController.SwitchCurrentActionMap("UI");
+        }
+        else
+        {
+            InputManager.Instance.myController.SwitchCurrentActionMap("游戏");
+        }
+    }
 
     public UIManager()
     {
@@ -18,6 +46,8 @@ public class UIManager : MonoSingleton<UIManager>
         uiDic.Add(UIType.DIALOG, new List<BaseUI>());
         uiDic.Add(UIType.TIP, new List<BaseUI>());
         uiDic.Add(UIType.SCENE_CHANGE, new List<BaseUI>());
+
+        SwitchMapState();
     }
 
     protected override void Awake()
@@ -54,7 +84,30 @@ public class UIManager : MonoSingleton<UIManager>
         uiObject.name = curUI.uiName;
         uiDic[uiType].Add(curUI);
         curUI.OnEnter();
+
+        SetProperty(uiType);
+
         return curUI as T;
+    }
+
+    private void SetProperty(UIType uiType)
+    {
+        switch (uiType)
+        {
+            case UIType.CANVAS:
+                break;
+            case UIType.PANEL:
+                IsShowingPanel = uiDic[uiType].Count > 0;
+                break;
+            case UIType.DIALOG:
+                break;
+            case UIType.TIP:
+                break;
+            case UIType.SCENE_CHANGE:
+                break;
+            default:
+                break;
+        }
     }
 
     public void Hide<T>(UIType uiType, bool destroyIt = false) where T : BaseUI
@@ -74,6 +127,7 @@ public class UIManager : MonoSingleton<UIManager>
                 {
                     item.gameObject.SetActive(false);
                 }
+                SetProperty(uiType);
                 return;
             }
         }
