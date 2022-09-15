@@ -43,7 +43,7 @@ playerInputActions.Player.Jump.PerformInteractiveRebinding()
 
 此时，鼠标无法被指定为重新绑定的按键。
 
-如何保存重新绑定后的按键。
+## 持久化保存按键修改
 
 在Input System1.1之后，可以通过
 
@@ -59,6 +59,48 @@ void LoadUserRebinds(PlayerInput player)
     var rebinds = PlayerPrefs.GetString("rebinds");
     player.actions.LoadBindingOverridesFromJson(rebinds);
 }
+```
+
+RebindSaveLoad组件已经应用此代码持久化保存按键修改。
+
+需要注意在删除改键时删除对应PlayerPref。
+
+## 改键功能
+
+改键功能使用了官方示例中的RebindActionUI脚本。改键中需要注意去除重复按键。
+
+InputBinding newBinding = action.bindings\[bindingIndex];
+
+```
+    private bool CheckDuplicateBindings(InputAction action, int bindingIndex, bool allCompositeParts = false)
+    {
+        //单个按键判断是否与同一ActionMap中的其他按键重复。
+        foreach (InputBinding binding in action.actionMap.bindings)
+        {
+            if (binding.action == newBinding.action)
+            {
+                continue;
+            }
+            if (binding.effectivePath == newBinding.effectivePath)
+            {
+                Debug.LogWarning($"Duplicate binding found:{newBinding.effectivePath}");
+                return true;
+            }
+        }
+        //复合按键额外判断复合按键中是否与其他在此之前设置的按键重复
+        if (allCompositeParts)
+        {
+            for (int i = 1; i < bindingIndex; i++)
+            {
+                if (action.bindings[i].effectivePath == newBinding.effectivePath)
+                {
+                    Debug.Log($"Duplicate binding found:{newBinding.effectivePath}");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 ```
 
 ## 参考资料
