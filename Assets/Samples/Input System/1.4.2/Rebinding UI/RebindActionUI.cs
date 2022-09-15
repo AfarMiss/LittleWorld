@@ -287,6 +287,15 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         action.Enable();
                         m_RebindOverlay?.SetActive(false);
                         m_RebindStopEvent?.Invoke(this, operation);
+
+                        if (CheckDuplicateBindings(action, bindingIndex, allCompositeParts))
+                        {
+                            action.RemoveBindingOverride(bindingIndex);
+                            CleanUp();
+                            PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
+                            return;
+                        }
+
                         UpdateBindingDisplay();
                         CleanUp();
 
@@ -325,6 +334,40 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
             m_RebindOperation.Start();
         }
+
+        private bool CheckDuplicateBindings(InputAction action, int bindingIndex, bool allCompositeParts=false)
+        {
+            //如果是单个按键，在actionmap中查找是否有重复按键
+            InputBinding newBinding = action.bindings[bindingIndex];
+            foreach (InputBinding binding in action.actionMap.bindings)
+            {
+                if (binding.action == newBinding.action)
+                {
+                    continue;
+                }
+                if (binding.effectivePath == newBinding.effectivePath)
+                {
+                    Debug.LogWarning($"Duplicate binding found:{newBinding.effectivePath}");
+                    return true;
+                }
+            }
+
+            //如果是复合按键（如方向键），需要继续在方向键这个action中查找是否有重复按键
+            if (allCompositeParts)
+            {
+                for (int i = 1; i < bindingIndex; i++)
+                {
+                    if (action.bindings[i].effectivePath == newBinding.effectivePath)
+                    {
+                        Debug.Log($"Duplicate binding found:{newBinding.effectivePath}");
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
 
         protected void OnEnable()
         {
