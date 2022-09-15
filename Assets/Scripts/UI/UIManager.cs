@@ -67,7 +67,9 @@ public class UIManager : MonoSingleton<UIManager>
             if (item.path == path)
             {
                 item.gameObject.SetActive(true);
+
                 item.OnEnter();
+                SetManagerProperty(uiType);
                 return item as T;
             }
         }
@@ -77,14 +79,13 @@ public class UIManager : MonoSingleton<UIManager>
         var curUI = uiObject.GetComponent<BaseUI>();
         uiObject.name = curUI.uiName;
         uiDic[uiType].Add(curUI);
+
         curUI.OnEnter();
-
-        SetProperty(uiType);
-
+        SetManagerProperty(uiType);
         return curUI as T;
     }
 
-    private void SetProperty(UIType uiType)
+    private void SetManagerProperty(UIType uiType)
     {
         switch (uiType)
         {
@@ -129,7 +130,7 @@ public class UIManager : MonoSingleton<UIManager>
                 {
                     item.gameObject.SetActive(false);
                 }
-                SetProperty(uiType);
+                SetManagerProperty(uiType);
                 return;
             }
         }

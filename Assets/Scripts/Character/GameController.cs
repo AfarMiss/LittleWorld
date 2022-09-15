@@ -151,9 +151,8 @@ public class GameController : MonoSingleton<GameController>
         {
             allRtsUnits.Add(item.GetComponent<RTSUnit>());
         }
-        if (InputManager.Instance.myController.actions["附加操作"].IsPressed())
+        if (!InputManager.Instance.myController.actions["附加操作"].IsPressed())
         {
-            Debug.Log("附加操作正在被按下！");
             selectedUnits.Clear();
             //all units clear
             foreach (var unit in allRtsUnits)
