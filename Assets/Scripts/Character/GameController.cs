@@ -9,27 +9,26 @@ public class GameController : MonoSingleton<GameController>
     private Vector3 endPosition;
     private List<RTSUnit> selectedUnits;
     private List<RTSUnit> allRtsUnits;
+    private RectTransform selectedArea;
+    private bool isInit = false;
 
     [SerializeField] private GameObject InteractionMenu;
-    [SerializeField] private RectTransform selectedArea;
+    [SerializeField] private RectTransform selectedAreaPrefab;
 
     private Rect realSelection;
     public Vector2 mousePosition { get; private set; }
 
-
-    protected override void Awake()
+    public void Init()
     {
-        base.Awake();
-        RectTransform rectObject = null;
-
-        rectObject = Instantiate(selectedArea);
+        RectTransform rectObject = Instantiate(selectedAreaPrefab);
         rectObject.name = rectObject.name.Substring(0, rectObject.name.LastIndexOf("(Clone)"));
-        selectedArea = rectObject.GetComponent<RectTransform>();
-
         rectObject.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
         rectObject.gameObject.SetActive(false);
 
+        selectedArea = rectObject.GetComponent<RectTransform>();
         realSelection = new Rect();
+
+        isInit = true;
     }
 
     private void Start()
@@ -85,43 +84,46 @@ public class GameController : MonoSingleton<GameController>
         UIManager.Instance.Switch<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
     }
 
-    public void OnClickCameraControlPerformed(CallbackContext callbackContext)
+    public void OnCameraControl(CallbackContext callbackContext)
     {
-        if (UIManager.Instance.IsShowingPanel) return;
-        var camMove = callbackContext.ReadValue<Vector2>();
-        CameraController camController = Camera.main.GetComponent<CameraController>();
-        camController.Move(camMove);
+        if (callbackContext.performed)
+        {
+            if (UIManager.Instance.IsShowingPanel) return;
+            var camMove = callbackContext.ReadValue<Vector2>();
+            CameraController camController = Camera.main.GetComponent<CameraController>();
+            camController.Move(camMove);
+        }else if (callbackContext.canceled)
+        {
+            if (UIManager.Instance.IsShowingPanel) return;
+            CameraController camController = Camera.main.GetComponent<CameraController>();
+            camController.Move(Vector2.zero);
+        }
+
     }
 
-    public void OnClickCameraControlCanceled(CallbackContext callbackContext)
+    public void OnLeft(CallbackContext callbackContext)
     {
-        if (UIManager.Instance.IsShowingPanel) return;
-        CameraController camController = Camera.main.GetComponent<CameraController>();
-        camController.Move(Vector2.zero);
-    }
+        if (callbackContext.started)
+        {
+            if (UIManager.Instance.IsShowingPanel) return;
+            startPosition = mousePosition;
+            selectedArea.gameObject.SetActive(true);
+            Debug.Log("Click.started -------");
+        }else if (callbackContext.canceled)
+        {
+            if (UIManager.Instance.IsShowingPanel) return;
+            CleanInteraction();
 
-    public void OnClickLeftStart()
-    {
-        if (UIManager.Instance.IsShowingPanel) return;
-        startPosition = mousePosition;
-        selectedArea.gameObject.SetActive(true);
-        Debug.Log("Click.started -------");
-    }
+            endPosition = mousePosition;
+            selectedArea.gameObject.SetActive(false);
 
-    public void OnClickLeftCanceled()
-    {
-        if (UIManager.Instance.IsShowingPanel) return;
-        CleanInteraction();
+            Prepare();
 
-        endPosition = mousePosition;
-        selectedArea.gameObject.SetActive(false);
+            FindBoundOverlap();
 
-        Prepare();
-
-        FindBoundOverlap();
-
-        Debug.Log("Click.canceled -------");
-        allRtsUnits.Clear();
+            Debug.Log("Click.canceled -------");
+            allRtsUnits.Clear();
+        }
     }
 
     private void CleanInteraction()
@@ -201,13 +203,14 @@ public class GameController : MonoSingleton<GameController>
 
     private void Update()
     {
-        if (UIManager.Instance.IsShowingPanel) return;
+        if (UIManager.Instance.IsShowingPanel || !isInit) return;
         mousePosition = InputUtils.GetMousePosition();
 #if UNITY_EDITOR
         Debug.Log($"InputManager.Instance.myController.actions[左击].IsPressed():{InputManager.Instance.myController.actions["左击"].IsPressed()}");
 #endif
         if (InputManager.Instance.myController.actions["左击"].IsPressed())
         {
+            Debug.Log($"更新选择区域");
             //更新选择区域
             endPosition = mousePosition;
             var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
