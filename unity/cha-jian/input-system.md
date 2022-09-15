@@ -81,6 +81,8 @@ Actions的DefaultMap会影响输入是否有效。如果DefaultMap中不包含ac
 
 使用Unity事件，只会在指定的Action处触发。
 
+值得注意的是，在这种模式下，指定的回调会触发三次，分别在当前action started,performed,canceled时被触发。可以通过对指定回调的参数CallbackContext context的状态（如context.started）进行判断来区分。
+
 #### Invoke C Sharp Events
 
 使用C#事件，示例代码见参考2 12:23处，会因任意ActionMap的任意Action触发而触发。
