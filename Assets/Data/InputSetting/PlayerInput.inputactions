@@ -17,7 +17,43 @@
                 {
                     "name": "附加操作",
                     "type": "Button",
-                    "id": "c278be22-b91a-40fc-a8be-12c485a891ff",
+                    "id": "5315412f-e646-4c49-b0ab-0ec36774e878",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "双击",
+                    "type": "Button",
+                    "id": "6e0d1694-12f9-418b-bbb6-01aa59b989f3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "左击",
+                    "type": "Button",
+                    "id": "25b70e9b-58f2-4bff-b063-1121e7a9a2bd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "右击",
+                    "type": "Button",
+                    "id": "334614ad-8641-443d-ae6f-1a38f1bcf712",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "设置",
+                    "type": "Button",
+                    "id": "8751fcd9-b05a-47cd-b45c-03936c447e4c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -82,7 +118,7 @@
                 },
                 {
                     "name": "",
-                    "id": "1953f7f3-4bdf-4711-8a61-ffc461908c13",
+                    "id": "f25373ef-cac2-4a1e-81c2-bb0acad929bd",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
@@ -90,56 +126,10 @@
                     "action": "附加操作",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "全局控制",
-            "id": "79e5acaa-6504-494b-8c4f-c5f9d0760b93",
-            "actions": [
-                {
-                    "name": "左击",
-                    "type": "Button",
-                    "id": "347405c3-862f-4275-bd94-7ef24008c569",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "双击",
-                    "type": "Button",
-                    "id": "7e5ec070-d07b-4889-9ec0-929b75d8fb75",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "右击",
-                    "type": "Button",
-                    "id": "795a5018-862d-44d7-ba9f-338bee134638",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "d9915b61-47da-4caf-9cfb-9ff905ae2b0f",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "左击",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "7f56c7f4-f64e-482f-ba23-98d839081ebc",
+                    "id": "5ffc33d9-9f28-4e23-92fb-8043e5e92dcf",
                     "path": "<Mouse>/leftButton",
                     "interactions": "MultiTap(tapTime=0.2,tapDelay=0.3,pressPoint=0.5)",
                     "processors": "",
@@ -150,7 +140,18 @@
                 },
                 {
                     "name": "",
-                    "id": "163a8f8f-540e-43ef-9fbd-0476109df63e",
+                    "id": "a56ab115-3319-4b31-9365-4ae7ac4ba27a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "左击",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b7f6ca6-de82-4e6c-94b1-f9c6936368d6",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
@@ -158,27 +159,10 @@
                     "action": "右击",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "UI",
-            "id": "d03d7784-a606-47dd-aa3d-c750f62a207e",
-            "actions": [
-                {
-                    "name": "设置",
-                    "type": "Button",
-                    "id": "1789f358-685d-414e-b710-e9cb08ea566e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "189354b8-1f67-4e8f-8d0a-fdc24a4af30e",
+                    "id": "caaf256b-78c5-41d8-a13d-b3a0931b769f",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",

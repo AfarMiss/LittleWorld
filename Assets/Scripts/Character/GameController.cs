@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using static UnityEngine.InputSystem.InputAction;
 
 public class GameController : MonoSingleton<GameController>
 {
@@ -9,62 +9,39 @@ public class GameController : MonoSingleton<GameController>
     private Vector3 endPosition;
     private List<RTSUnit> selectedUnits;
     private List<RTSUnit> allRtsUnits;
+    private RectTransform selectedArea;
+    private bool isInit = false;
 
     [SerializeField] private GameObject InteractionMenu;
-    [SerializeField] private RectTransform selectedArea;
+    [SerializeField] private RectTransform selectedAreaPrefab;
 
     private Rect realSelection;
     public Vector2 mousePosition { get; private set; }
 
-
-    protected override void Awake()
+    public void Init()
     {
-        base.Awake();
-        RectTransform rectObject = null;
-
-        rectObject = Instantiate(selectedArea);
+        RectTransform rectObject = Instantiate(selectedAreaPrefab);
         rectObject.name = rectObject.name.Substring(0, rectObject.name.LastIndexOf("(Clone)"));
-        selectedArea = rectObject.GetComponent<RectTransform>();
-
         rectObject.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
         rectObject.gameObject.SetActive(false);
 
+        selectedArea = rectObject.GetComponent<RectTransform>();
         realSelection = new Rect();
+
+        isInit = true;
     }
 
     private void Start()
     {
         selectedUnits = new List<RTSUnit>();
         allRtsUnits = new List<RTSUnit>();
+    }
 
-
-        InputManager.Instance.myController.全局控制.左击.started += (callbackContext) =>
+    public void OnClickDouble(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
         {
-            if (UIManager.Instance.UIIsShowing) return;
-            startPosition = mousePosition;
-            selectedArea.gameObject.SetActive(true);
-            Debug.Log("Click.started -------");
-        };
-
-        InputManager.Instance.myController.全局控制.左击.canceled += (callbackContext) =>
-        {
-            if (UIManager.Instance.UIIsShowing) return;
-            CleanInteraction();
-
-            endPosition = mousePosition;
-            selectedArea.gameObject.SetActive(false);
-
-            Prepare();
-
-            FindBoundOverlap();
-
-            Debug.Log("Click.canceled -------");
-            allRtsUnits.Clear();
-        };
-
-        InputManager.Instance.myController.全局控制.双击.performed += (callbackContext) =>
-        {
-            if (UIManager.Instance.UIIsShowing) return;
+            if (UIManager.Instance.IsShowingPanel) return;
             CleanInteraction();
 
             Debug.Log("双击.performed -------");
@@ -74,11 +51,14 @@ public class GameController : MonoSingleton<GameController>
                 Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
                 FindRectOverlap(screenRect);
             }
-        };
+        }
+    }
 
-        InputManager.Instance.myController.全局控制.右击.performed += (callbackContext) =>
+    public void OnClickRight(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
         {
-            if (UIManager.Instance.UIIsShowing) return;
+            if (UIManager.Instance.IsShowingPanel) return;
             CleanInteraction();
 
             var ray = Camera.main.ScreenPointToRay(mousePosition);
@@ -102,27 +82,57 @@ public class GameController : MonoSingleton<GameController>
                 var options = rayHits[0].collider.GetComponent<IOption>();
                 options.OnInteraction();
             }
-        };
+        }
+    }
 
-        InputManager.Instance.myController.UI.设置.performed += (callbackContext) =>
-        {
+    public void OnClickSetting(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
             UIManager.Instance.Switch<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
-        };
+    }
 
-        InputManager.Instance.myController.游戏.镜头控制.performed += callbackContext =>
+    public void OnCameraControl(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
         {
-            if (UIManager.Instance.UIIsShowing) return;
+            if (UIManager.Instance.IsShowingPanel) return;
             var camMove = callbackContext.ReadValue<Vector2>();
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(camMove);
-        };
-
-        InputManager.Instance.myController.游戏.镜头控制.canceled += callbackContext =>
+        }
+        else if (callbackContext.canceled)
         {
-            if (UIManager.Instance.UIIsShowing) return;
+            if (UIManager.Instance.IsShowingPanel) return;
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(Vector2.zero);
-        };
+        }
+
+    }
+
+    public void OnLeft(CallbackContext callbackContext)
+    {
+        if (callbackContext.started)
+        {
+            if (UIManager.Instance.IsShowingPanel) return;
+            startPosition = mousePosition;
+            selectedArea.gameObject.SetActive(true);
+            Debug.Log("Click.started -------");
+        }
+        else if (callbackContext.canceled)
+        {
+            if (UIManager.Instance.IsShowingPanel) return;
+            CleanInteraction();
+
+            endPosition = mousePosition;
+            selectedArea.gameObject.SetActive(false);
+
+            Prepare();
+
+            FindBoundOverlap();
+
+            Debug.Log("Click.canceled -------");
+            allRtsUnits.Clear();
+        }
     }
 
     private void CleanInteraction()
@@ -141,14 +151,13 @@ public class GameController : MonoSingleton<GameController>
         {
             allRtsUnits.Add(item.GetComponent<RTSUnit>());
         }
-
-        if (!InputManager.Instance.myController.游戏.附加操作.IsPressed())
+        if (!InputManager.Instance.myController.actions["附加操作"].IsPressed())
         {
             selectedUnits.Clear();
             //all units clear
-            foreach (var item in allRtsUnits)
+            foreach (var unit in allRtsUnits)
             {
-                item.isSelected = false;
+                unit.isSelected = false;
             }
         }
     }
@@ -203,10 +212,14 @@ public class GameController : MonoSingleton<GameController>
 
     private void Update()
     {
-        if (UIManager.Instance.UIIsShowing) return;
+        if (UIManager.Instance.IsShowingPanel || !isInit) return;
         mousePosition = InputUtils.GetMousePosition();
-        if (InputManager.Instance.myController.全局控制.左击.IsPressed())
+#if UNITY_EDITOR
+        Debug.Log($"InputManager.Instance.myController.actions[左击].IsPressed():{InputManager.Instance.myController.actions["左击"].IsPressed()}");
+#endif
+        if (InputManager.Instance.myController.actions["左击"].IsPressed())
         {
+            Debug.Log($"更新选择区域");
             //更新选择区域
             endPosition = mousePosition;
             var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));

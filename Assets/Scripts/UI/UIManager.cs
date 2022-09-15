@@ -7,7 +7,27 @@ public class UIManager : MonoSingleton<UIManager>
     private Dictionary<UIType, List<BaseUI>> uiDic;
     protected GameObject UICanvas { get; private set; }
 
-    public bool UIIsShowing=> EventSystem.current.IsPointerOverGameObject();
+    private bool isShowingPanel;
+    /// <summary>
+    /// 正在显示panel，不响应游戏中的事件。
+    /// </summary>
+    public bool IsShowingPanel
+    {
+        get
+        {
+            return isShowingPanel;
+        }
+        private set
+        {
+            isShowingPanel = value;
+            SwitchMapState();
+        }
+    }
+
+    private void SwitchMapState()
+    {
+        if (!InputManager.Instance) return;
+    }
 
     public UIManager()
     {
@@ -18,6 +38,8 @@ public class UIManager : MonoSingleton<UIManager>
         uiDic.Add(UIType.DIALOG, new List<BaseUI>());
         uiDic.Add(UIType.TIP, new List<BaseUI>());
         uiDic.Add(UIType.SCENE_CHANGE, new List<BaseUI>());
+
+        SwitchMapState();
     }
 
     protected override void Awake()
@@ -27,10 +49,13 @@ public class UIManager : MonoSingleton<UIManager>
         UICanvas = GameObject.Instantiate(Resources.Load<GameObject>(UIPath.UICanvas));
         UICanvas.transform.SetParent(null);
         DontDestroyOnLoad(UICanvas);
+
+        if (GameController.Instance) GameController.Instance.Init();
     }
 
     public T Show<T>(UIType uiType, string path) where T : BaseUI
     {
+
         GameObject parent = GameObject.FindGameObjectWithTag("UICanvas");
         if (!parent)
         {
@@ -41,29 +66,71 @@ public class UIManager : MonoSingleton<UIManager>
         {
             if (item.path == path)
             {
+                item.gameObject.SetActive(true);
+
                 item.OnEnter();
+                SetManagerProperty(uiType);
                 return item as T;
             }
         }
 
         GameObject uiObject = GameObject.Instantiate(Resources.Load<GameObject>(path), parent.transform);
+
         var curUI = uiObject.GetComponent<BaseUI>();
         uiObject.name = curUI.uiName;
         uiDic[uiType].Add(curUI);
+
         curUI.OnEnter();
+        SetManagerProperty(uiType);
         return curUI as T;
     }
 
-    public void Hide<T>(UIType uiType) where T : BaseUI
+    private void SetManagerProperty(UIType uiType)
+    {
+        switch (uiType)
+        {
+            case UIType.CANVAS:
+                break;
+            case UIType.PANEL:
+                var showingPanelCount = 0;
+                foreach (var item in uiDic[uiType])
+                {
+                    if (item.isShowing)
+                    {
+                        showingPanelCount++;
+                    }
+                }
+                IsShowingPanel = showingPanelCount > 0;
+                break;
+            case UIType.DIALOG:
+                break;
+            case UIType.TIP:
+                break;
+            case UIType.SCENE_CHANGE:
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void Hide<T>(UIType uiType, bool destroyIt = false) where T : BaseUI
     {
         for (int i = 0; i < uiDic[uiType].Count; i++)
         {
             BaseUI item = uiDic[uiType][i];
             if (item.GetType() == typeof(T))
             {
-                uiDic[uiType].Remove(item);
                 item.OnExit();
-                Destroy(item.gameObject);
+                if (destroyIt)
+                {
+                    uiDic[uiType].Remove(item);
+                    Destroy(item.gameObject);
+                }
+                else
+                {
+                    item.gameObject.SetActive(false);
+                }
+                SetManagerProperty(uiType);
                 return;
             }
         }

@@ -262,11 +262,19 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 m_RebindOperation = null;
             }
 
+            //Disable the action before use
+            action.Disable();
+
             // Configure the rebind.
             m_RebindOperation = action.PerformInteractiveRebinding(bindingIndex)
+                .WithControlsExcluding("<Mouse>/leftButton")
+                .WithControlsExcluding("<Mouse>/rightButton")
+                .WithControlsExcluding("<Mouse>/press")
+                .WithControlsExcluding("<Pointer>/position")
                 .OnCancel(
                     operation =>
                     {
+                        action.Enable();
                         m_RebindStopEvent?.Invoke(this, operation);
                         m_RebindOverlay?.SetActive(false);
                         UpdateBindingDisplay();
@@ -275,8 +283,19 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 .OnComplete(
                     operation =>
                     {
+                        Debug.Log(operation);
+                        action.Enable();
                         m_RebindOverlay?.SetActive(false);
                         m_RebindStopEvent?.Invoke(this, operation);
+
+                        if (CheckDuplicateBindings(action, bindingIndex, allCompositeParts))
+                        {
+                            action.RemoveBindingOverride(bindingIndex);
+                            CleanUp();
+                            PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
+                            return;
+                        }
+
                         UpdateBindingDisplay();
                         CleanUp();
 
@@ -316,6 +335,40 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             m_RebindOperation.Start();
         }
 
+        private bool CheckDuplicateBindings(InputAction action, int bindingIndex, bool allCompositeParts=false)
+        {
+            //如果是单个按键，在actionmap中查找是否有重复按键
+            InputBinding newBinding = action.bindings[bindingIndex];
+            foreach (InputBinding binding in action.actionMap.bindings)
+            {
+                if (binding.action == newBinding.action)
+                {
+                    continue;
+                }
+                if (binding.effectivePath == newBinding.effectivePath)
+                {
+                    Debug.LogWarning($"Duplicate binding found:{newBinding.effectivePath}");
+                    return true;
+                }
+            }
+
+            //如果是复合按键（如方向键），需要继续在方向键这个action中查找是否有重复按键
+            if (allCompositeParts)
+            {
+                for (int i = 1; i < bindingIndex; i++)
+                {
+                    if (action.bindings[i].effectivePath == newBinding.effectivePath)
+                    {
+                        Debug.Log($"Duplicate binding found:{newBinding.effectivePath}");
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+
         protected void OnEnable()
         {
             if (s_RebindActionUIs == null)
@@ -323,6 +376,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             s_RebindActionUIs.Add(this);
             if (s_RebindActionUIs.Count == 1)
                 InputSystem.onActionChange += OnActionChange;
+        }
+
+        private void Start()
+        {
+            UpdateActionLabel();
+            UpdateBindingDisplay();
         }
 
         protected void OnDisable()
@@ -413,14 +472,14 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         // We want the label for the action name to update in edit mode, too, so
         // we kick that off from here.
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected void OnValidate()
         {
             UpdateActionLabel();
             UpdateBindingDisplay();
         }
 
-        #endif
+#endif
 
         private void UpdateActionLabel()
         {
