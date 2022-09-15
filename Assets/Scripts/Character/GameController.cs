@@ -37,51 +37,57 @@ public class GameController : MonoSingleton<GameController>
         allRtsUnits = new List<RTSUnit>();
     }
 
-    public void OnClickDoublePerformed()
+    public void OnClickDouble(CallbackContext callbackContext)
     {
-        if (UIManager.Instance.IsShowingPanel) return;
-        CleanInteraction();
-
-        Debug.Log("Ë«»÷.performed -------");
-        if (selectedUnits != null && selectedUnits.Count > 0)
+        if (callbackContext.performed)
         {
-            Prepare();
-            Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
-            FindRectOverlap(screenRect);
-        }
-    }
+            if (UIManager.Instance.IsShowingPanel) return;
+            CleanInteraction();
 
-    public void OnClickRightPerformed()
-    {
-        if (UIManager.Instance.IsShowingPanel) return;
-        CleanInteraction();
-
-        var ray = Camera.main.ScreenPointToRay(mousePosition);
-        var rayHits = Physics.RaycastAll(ray.origin, ray.direction);
-
-        if (rayHits == null || rayHits.Length == 0)
-        {
-            if (selectedUnits == null || selectedUnits.Count == 0) return;
-            var bound = selectedUnits[0].GetComponent<BoxCollider2D>().bounds;
-            var offset = (bound.max - bound.min).y + 0.8f;
-            var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
-            for (int i = 0; i < selectedUnits.Count; i++)
+            Debug.Log("Ë«»÷.performed -------");
+            if (selectedUnits != null && selectedUnits.Count > 0)
             {
-                RTSUnit item = selectedUnits[i];
-                var controller = item.GetComponent<PlayerMoveController>();
-                controller.Move(destinations[i]);
+                Prepare();
+                Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
+                FindRectOverlap(screenRect);
             }
         }
-        else
+    }
+
+    public void OnClickRight(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
         {
-            var options = rayHits[0].collider.GetComponent<IOption>();
-            options.OnInteraction();
+            if (UIManager.Instance.IsShowingPanel) return;
+            CleanInteraction();
+
+            var ray = Camera.main.ScreenPointToRay(mousePosition);
+            var rayHits = Physics.RaycastAll(ray.origin, ray.direction);
+
+            if (rayHits == null || rayHits.Length == 0)
+            {
+                if (selectedUnits == null || selectedUnits.Count == 0) return;
+                var bound = selectedUnits[0].GetComponent<BoxCollider2D>().bounds;
+                var offset = (bound.max - bound.min).y + 0.8f;
+                var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
+                for (int i = 0; i < selectedUnits.Count; i++)
+                {
+                    RTSUnit item = selectedUnits[i];
+                    var controller = item.GetComponent<PlayerMoveController>();
+                    controller.Move(destinations[i]);
+                }
+            }
+            else
+            {
+                var options = rayHits[0].collider.GetComponent<IOption>();
+                options.OnInteraction();
+            }
         }
     }
 
-    public void OnClickSetting(CallbackContext context)
+    public void OnClickSetting(CallbackContext callbackContext)
     {
-        if (context.performed)
+        if (callbackContext.performed)
             UIManager.Instance.Switch<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
     }
 
