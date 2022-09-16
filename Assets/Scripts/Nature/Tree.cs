@@ -14,7 +14,7 @@ public class Tree : MonoBehaviour, IOption
         var go = Instantiate(Resources.Load<GameObject>("Prefabs/UI/InteractionMenu/InteractionMenu"));
         go.name = go.name.Substring(0, go.name.LastIndexOf("(Clone)"));
         var menu = go.GetComponent<InteractionMenu>();
-        go.transform.SetParent(GameObject.Find("Canvas").transform);
+        go.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
         go.transform.position = GameController.Instance.mousePosition;
 
         var contentList = new List<optionStruct>();
