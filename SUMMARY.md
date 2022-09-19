@@ -63,6 +63,7 @@
   * [脚本序列化](unity/jiao-ben-xu-lie-hua.md)
   * [Mono生命周期](unity/mono-sheng-ming-zhou-qi.md)
   * [相机管理](unity/xiang-ji-guan-li.md)
+  * [Sprite Atlas](unity/sprite-atlas.md)
 * [C++](c++.md)
 * [设计模式](she-ji-mo-shi/README.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)

@@ -4,3 +4,4 @@
 
 <figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
+这里的高度(Height)其实意思就是屏幕长度。
