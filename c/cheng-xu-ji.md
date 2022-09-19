@@ -30,7 +30,7 @@ DLL文件的生成路径：**项目路径**\Library\ScriptAssemblies\xxxx.dll。
 
 2.开发过程中如果进行了编辑器扩展，创建了**Editor**文件夹，并在该目录下编写了脚本，则默认编译到Assembly-CSharp-Editor.dll文件中。
 
-![](../.gitbook/assets/20200329104201481.png)
+![](<../.gitbook/assets/20200329104201481 (1).png>)
 
 ## 自定义程序集
 
