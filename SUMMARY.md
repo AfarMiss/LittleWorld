@@ -46,6 +46,7 @@
     * [Terrain](unity/component/terrain.md)
     * [Sprite Renderer](unity/component/sprite-renderer.md)
     * [Sorting Group](unity/component/sorting-group.md)
+    * [Animation](unity/component/animation.md)
   * [插件](unity/cha-jian/README.md)
     * [DoTween](unity/cha-jian/dotween.md)
   * [生成物体](unity/sheng-cheng-wu-ti.md)
@@ -69,3 +70,5 @@
 * [C++](c++.md)
 * [设计模式](she-ji-mo-shi/README.md)
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
+  * [观察者模式](she-ji-mo-shi/guan-cha-zhe-mo-shi.md)
+  * [发布订阅模式](she-ji-mo-shi/fa-bu-ding-yue-mo-shi.md)

@@ -8,7 +8,7 @@ description: 三人成众
 
 在电脑中打开设置，搜索凭据。
 
-![](<.gitbook/assets/image (4).png>)
+![](<.gitbook/assets/image (4) (1).png>)
 
 ## 上传大文件
 
