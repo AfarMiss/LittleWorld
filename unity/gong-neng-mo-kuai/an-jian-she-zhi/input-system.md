@@ -126,6 +126,10 @@ private void PlayerInput_onActionTriggered(InputAction.CallbackContext context){
 
 针对移动这种持续性输入，可以在Update中读取CallbackContext.ReadValue的值，然后根据值来做一些持续性动作，而不必要使用performed；也可以使用started方法。
 
+## 区分点击和长按
+
+点击即是短按，与长按的区别只是按下的时间不同。所以可以通过在Started与Canceled事件之间计时的方式区分长/短按。
+
 ## 参考资料
 
 1. 官方输入系统教程 [https://www.cg.com.tw/UnityInputSystem](https://www.cg.com.tw/UnityInputSystem/)
