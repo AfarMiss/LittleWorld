@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MonoSingleton<T> : MonoBehaviour where T : Component
+public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance;
     public static T Instance
@@ -24,15 +24,13 @@ public class MonoSingleton<T> : MonoBehaviour where T : Component
 
     protected virtual void Awake()
     {
-        if (instance == null)
+        if(instance == null)
         {
-            instance = FindObjectOfType<T>();
-            if (instance == null)
-            {
-                var go = new GameObject($"[MonoSingleton]{typeof(T).Name}");
-                instance = go.AddComponent<T>();
-            }
-            DontDestroyOnLoad(instance);
+            instance = this as T;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 2833886035920287302}
   - component: {fileID: 8561022558944298164}
   - component: {fileID: 3923049921766403200}
+  - component: {fileID: 6028132770456723542}
   m_Layer: 0
   m_Name: FarmPlayer
   m_TagString: Player
@@ -492,6 +493,18 @@ SortingGroup:
   m_SortingLayerID: 422353195
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!114 &6028132770456723542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833886035920287303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2caf0d68c23f149b421147254393f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2833886036406452769
 GameObject:
   m_ObjectHideFlags: 0
