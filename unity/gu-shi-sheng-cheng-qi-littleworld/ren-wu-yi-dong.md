@@ -8,6 +8,17 @@ Rigidbody和Rigidbody2D均有此方法。
 
 用鼠标操作时并不能每次都能正确运行，在弄清楚原因之前不采用此方式；键盘操作可以采用此方式。
 
+代码示例：
+
+```
+private void Update()
+{
+    var localPlayer = GameObject.FindObjectOfType<FarmPlayer>();
+    var rigidgBody = localPlayer.GetComponent<Rigidbody2D>();
+    rigidgBody.MovePosition(rigidgBody.position + runSpeed * Time.deltaTime * input);
+}
+```
+
 ### Rigidbody.velocity
 
 Rigidbody和Rigidbody2D均有此属性。
