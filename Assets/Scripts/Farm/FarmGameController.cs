@@ -15,10 +15,10 @@ public class FarmGameController : MonoBehaviour
         input = context.ReadValue<Vector2>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         var localPlayer = GameObject.FindObjectOfType<FarmPlayer>();
         var rigidgBody = localPlayer.GetComponent<Rigidbody2D>();
-        rigidgBody.MovePosition(rigidgBody.position + runSpeed * Time.deltaTime * input);
+        rigidgBody.MovePosition(rigidgBody.position + runSpeed * Time.fixedDeltaTime * input);
     }
 }
