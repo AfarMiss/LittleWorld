@@ -8,10 +8,12 @@ Rigidbody和Rigidbody2D均有此方法。
 
 用鼠标操作时并不能每次都能正确运行，在弄清楚原因之前不采用此方式；键盘操作可以采用此方式。
 
+因为涉及到移动，所以需要放在FixedUpdate里更新，时间间隔也应该采用Time.fixedDeltaTime。
+
 代码示例：
 
 ```
-private void Update()
+private void FixedUpdate()
 {
     var localPlayer = GameObject.FindObjectOfType<FarmPlayer>();
     var rigidgBody = localPlayer.GetComponent<Rigidbody2D>();
