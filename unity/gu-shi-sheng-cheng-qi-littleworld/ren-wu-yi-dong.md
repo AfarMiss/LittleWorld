@@ -13,12 +13,12 @@ Rigidbody和Rigidbody2D均有此方法。
 代码示例：
 
 ```
-private void FixedUpdate()
-{
-    var localPlayer = GameObject.FindObjectOfType<FarmPlayer>();
-    var rigidgBody = localPlayer.GetComponent<Rigidbody2D>();
-    rigidgBody.MovePosition(rigidgBody.position + runSpeed * Time.deltaTime * input);
-}
+    private void FixedUpdate()
+    {
+        var localPlayer = GameObject.FindObjectOfType<FarmPlayer>();
+        var rigidgBody = localPlayer.GetComponent<Rigidbody2D>();
+        rigidgBody.MovePosition(rigidgBody.position + runSpeed * Time.fixedDeltaTime * input);
+    }
 ```
 
 ### Rigidbody.velocity
