@@ -242,6 +242,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+--- !u!1 &14552451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 14552453}
+  - component: {fileID: 14552452}
+  m_Layer: 0
+  m_Name: FarmGameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &14552452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14552451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6b65bc63bbce440a9ff742ac71acbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 3
+  runSpeed: 5
+--- !u!4 &14552453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14552451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.1601536, y: 0.7954197, z: -0.24205287}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &375080836
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,6 +1042,128 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1045778500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1045778502}
+  - component: {fileID: 1045778501}
+  m_Layer: 0
+  m_Name: PlayerInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1045778501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045778500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d8b489f6c55b2c6479c223bf1f6198e6, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 139fe534-6254-4a4e-bf2a-dba79fbc801b
+    m_ActionName: "\u6E38\u620F/\u955C\u5934\u63A7\u5236[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5315412f-e646-4c49-b0ab-0ec36774e878
+    m_ActionName: "\u6E38\u620F/\u9644\u52A0\u64CD\u4F5C[/Keyboard/shift]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6e0d1694-12f9-418b-bbb6-01aa59b989f3
+    m_ActionName: "\u6E38\u620F/\u53CC\u51FB[/Mouse/leftButton]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 25b70e9b-58f2-4bff-b063-1121e7a9a2bd
+    m_ActionName: "\u6E38\u620F/\u5DE6\u51FB[/Mouse/leftButton]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 334614ad-8641-443d-ae6f-1a38f1bcf712
+    m_ActionName: "\u6E38\u620F/\u53F3\u51FB[/Mouse/rightButton]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8751fcd9-b05a-47cd-b45c-03936c447e4c
+    m_ActionName: "\u6E38\u620F/\u8BBE\u7F6E[/Keyboard/escape]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 14552452}
+        m_TargetAssemblyTypeName: FarmGameController, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 033b9dde-4c2d-4eed-9c37-7ee2c72e2dc3
+    m_ActionName: "\u519C\u573A/\u4EBA\u7269\u79FB\u52A8[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9ab05d04-46de-4456-a689-76f3244c66f1
+    m_ActionName: "\u519C\u573A/\u8BBE\u7F6E[/Keyboard/escape]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c777a75d-ac00-4b5e-a284-2787ec5b0216
+    m_ActionName: "\u519C\u573A/\u884C\u8D70[/Keyboard/ctrl]"
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: "\u519C\u573A"
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!4 &1045778502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045778500}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.82824486, y: 5.222658, z: -0.1576504}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1058463103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,10 +1825,10 @@ MonoBehaviour:
   isSwingingToolLeft: 0
   isSwingingToolUp: 0
   isSwingingToolDown: 0
-  IdleRight: 0
-  IdleLeft: 0
-  IdleUp: 0
-  IdleDown: 0
+  idleRight: 0
+  idleLeft: 0
+  idleUp: 0
+  idleDown: 0
 --- !u!1 &8681510723493201670
 GameObject:
   m_ObjectHideFlags: 0

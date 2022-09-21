@@ -172,6 +172,118 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "农场",
+            "id": "be5212a7-a706-4192-b84a-5a944859a117",
+            "actions": [
+                {
+                    "name": "人物移动",
+                    "type": "Value",
+                    "id": "033b9dde-4c2d-4eed-9c37-7ee2c72e2dc3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "设置",
+                    "type": "Button",
+                    "id": "9ab05d04-46de-4456-a689-76f3244c66f1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "行走",
+                    "type": "Button",
+                    "id": "c777a75d-ac00-4b5e-a284-2787ec5b0216",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "14b30f2e-fb76-482f-a47f-0d94166f1def",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "设置",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "WSAD",
+                    "id": "57d2d416-2e89-4819-a0fe-85eb4d6d52d9",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "人物移动",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "0df78aaa-a712-4c1a-86ed-0c3e29d02e2d",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "人物移动",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "354648b2-de0a-4d6b-b1cd-cd45c954892d",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "人物移动",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "0ae00169-7d93-42e8-b034-138e891f6d99",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "人物移动",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "9d0d46ca-230f-45bd-ac2f-7b8e2679e14d",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "人物移动",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "71ffd91f-1032-4262-8ae2-3622c4de7a5b",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "行走",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
