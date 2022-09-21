@@ -47,6 +47,7 @@
     * [Sprite Renderer](unity/component/sprite-renderer.md)
     * [Sorting Group](unity/component/sorting-group.md)
     * [Animation](unity/component/animation.md)
+    * [Animator](unity/component/animator.md)
   * [插件](unity/cha-jian/README.md)
     * [DoTween](unity/cha-jian/dotween.md)
   * [生成物体](unity/sheng-cheng-wu-ti.md)
