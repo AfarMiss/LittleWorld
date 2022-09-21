@@ -21,6 +21,8 @@ Rigidbody和Rigidbody2D均有此方法。
     }
 ```
 
+**在按下行走键使人物从奔跑切换成行走时，镜头会有反复轻微抖动的现象，暂时不知道如何解决。**
+
 ### Rigidbody.velocity
 
 Rigidbody和Rigidbody2D均有此属性。
