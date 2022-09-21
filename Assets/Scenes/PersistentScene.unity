@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6779d8e93684a74fb611c3202795156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &375080836
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6779d8e93684a74fb611c3202795156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &943464416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,6 +1114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6779d8e93684a74fb611c3202795156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &1475154144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1127,7 @@ GameObject:
   - component: {fileID: 5880892960033333779}
   - component: {fileID: 1234695808244795943}
   - component: {fileID: 8429549403813709553}
+  - component: {fileID: 8429549403813709554}
   m_Layer: 0
   m_Name: FarmPlayer
   m_TagString: Player
@@ -1271,6 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6779d8e93684a74fb611c3202795156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &1828740089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,6 +1562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6779d8e93684a74fb611c3202795156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!210 &1234695808244795943
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -1616,6 +1622,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2caf0d68c23f149b421147254393f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8429549403813709554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475154144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59288ca41f3971d43b85e19c1dd35e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputX: 0
+  inputY: 0
+  isWalking: 0
+  isRunning: 0
+  isIdle: 0
+  isCarrying: 0
+  toolEffect: 0
+  isUsingToolRight: 0
+  isUsingToolLeft: 0
+  isUsingToolUp: 0
+  isUsingToolDown: 0
+  isLiftingToolRight: 0
+  isLiftingToolLeft: 0
+  isLiftingToolUp: 0
+  isLiftingToolDown: 0
+  isPickingRight: 0
+  isPickingLeft: 0
+  isPickingUp: 0
+  isPickingDown: 0
+  isSwingingToolRight: 0
+  isSwingingToolLeft: 0
+  isSwingingToolUp: 0
+  isSwingingToolDown: 0
+  IdleRight: 0
+  IdleLeft: 0
+  IdleUp: 0
+  IdleDown: 0
 --- !u!1 &8681510723493201670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,3 +1764,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6779d8e93684a74fb611c3202795156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
