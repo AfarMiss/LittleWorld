@@ -8,8 +8,7 @@ public class MovementAnimationParameterControl : MonoBehaviour
     private string inputYString = "yInput";
     private string isWalkingString = "isWalking";
     private string isRunningString = "isRunning";
-    private string isIdleString = "isIdle";
-    private string isCarryingString = "isCarrying";
+
     private string toolEffectString = "toolEffect";
     private string isUsingToolRightString = "isUsingToolRight";
     private string isUsingToolLeftString = "isUsingToolLeft";
@@ -59,8 +58,7 @@ public class MovementAnimationParameterControl : MonoBehaviour
         animator.SetFloat(Animator.StringToHash(inputYString), inputY);
         animator.SetBool(Animator.StringToHash(isWalkingString), isWalking);
         animator.SetBool(Animator.StringToHash(isRunningString), isRunning);
-        animator.SetBool(Animator.StringToHash(isIdleString), isIdle);
-        animator.SetBool(Animator.StringToHash(isCarryingString), isCarrying);
+
         animator.SetInteger(Animator.StringToHash(toolEffectString),(int)toolEffect);
         animator.SetBool(Animator.StringToHash(isUsingToolRightString), isUsingToolRight);
         animator.SetBool(Animator.StringToHash(isUsingToolLeftString), isUsingToolLeft);
