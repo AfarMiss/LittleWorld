@@ -1,3 +1,7 @@
-介绍文档
+# Unity
 
-https://app.gitbook.com/s/v5zrlI3EJ7Csynw3ZJrK/
+## API小注
+
+GetComponentsInChildren\<Button>(true)
+
+参数表示隐藏的物体也可以查找到。
