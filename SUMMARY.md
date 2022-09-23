@@ -17,6 +17,8 @@
     * [Sorting Group](unity/component/sorting-group.md)
     * [Animation](unity/component/animation.md)
     * [Animator](unity/component/animator.md)
+    * [2D](unity/component/2d/README.md)
+      * [TileMap Collider 2D](unity/component/2d/tilemap-collider-2d.md)
   * [插件](unity/cha-jian/README.md)
     * [DoTween](unity/cha-jian/dotween.md)
     * [TileMap](unity/cha-jian/tilemap.md)
