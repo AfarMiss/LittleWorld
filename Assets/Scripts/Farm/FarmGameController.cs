@@ -64,7 +64,7 @@ public class FarmGameController : MonoBehaviour
     private bool isPressWalking;
 
     [Range(1, 2)] public float walkSpeed = 2f;
-    [Range(4, 5)] public float runSpeed = 4f;
+    [Range(4, 8)] public float runSpeed = 4f;
 
     private Vector2 input;
 
