@@ -76,3 +76,4 @@
 * [故事生成器LittleWorld](gu-shi-sheng-cheng-qi-littleworld/README.md)
   * [写在最前](gu-shi-sheng-cheng-qi-littleworld/xie-zai-zui-qian.md)
   * [背景设定](gu-shi-sheng-cheng-qi-littleworld/bei-jing-she-ding.md)
+* [代码技巧](dai-ma-ji-qiao.md)
