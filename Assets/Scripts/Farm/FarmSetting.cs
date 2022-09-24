@@ -2,6 +2,14 @@ using UnityEngine;
 
 public static class FarmSetting
 {
+    public const float walkSpeed = 2f;
+    public const float runSpeed = 4f;
+
+    public const float targetAlpha = 0.45f;
+    public const float fadeInSeconds= 0.25f;
+    public const float fadeOutSeconds= 0.25f;
+
+
     private static string inputXString = "xInput";
     private static string inputYString = "yInput";
     private static string isWalkingString = "isWalking";

@@ -63,9 +63,6 @@ public class FarmGameController : MonoBehaviour
 
     private bool isPressWalking;
 
-    [Range(1, 2)] public float walkSpeed = 2f;
-    [Range(4, 8)] public float runSpeed = 4f;
-
     private Vector2 input;
 
     public void OnMove(CallbackContext context)
@@ -100,11 +97,11 @@ public class FarmGameController : MonoBehaviour
 
         if (isWalking)
         {
-            rigidgBody.MovePosition(rigidgBody.position + walkSpeed * Time.fixedDeltaTime * input);
+            rigidgBody.MovePosition(rigidgBody.position + FarmSetting.walkSpeed * Time.fixedDeltaTime * input);
         }
         if (isRunning)
         {
-            rigidgBody.MovePosition(rigidgBody.position + runSpeed * Time.fixedDeltaTime * input);
+            rigidgBody.MovePosition(rigidgBody.position + FarmSetting.runSpeed * Time.fixedDeltaTime * input);
         }
         if (isIdle)
         {
