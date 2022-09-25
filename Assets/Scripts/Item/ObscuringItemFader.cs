@@ -2,17 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class ObscuringItemFader : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private SpriteRenderer[] spriteRenderers;
+
+    private void Start()
     {
-        
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// µ­Èë
+    /// </summary>
+    public void FadeIn()
     {
-        
+        foreach (var item in spriteRenderers)
+        {
+            StartCoroutine(FadeInRoutine(item));
+        }
+    }
+
+    /// <summary>
+    /// µ­³ö
+    /// </summary>
+    public void FadeOut()
+    {
+        foreach (var item in spriteRenderers)
+        {
+            StartCoroutine(FadeOutRoutine(item));
+        }
+    }
+
+    private IEnumerator FadeOutRoutine(SpriteRenderer spriteRenderer)
+    {
+        var curAlpha = spriteRenderer.color.a;
+        var fadeOutVelocity = (1 - FarmSetting.targetAlpha) / FarmSetting.fadeOutSeconds;
+        while (curAlpha - FarmSetting.targetAlpha > 0.01f)
+        {
+            curAlpha -= fadeOutVelocity;
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, curAlpha);
+            yield return null;
+        }
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, FarmSetting.targetAlpha);
+    }
+
+    private IEnumerator FadeInRoutine(SpriteRenderer spriteRenderer)
+    {
+        var curAlpha = spriteRenderer.color.a;
+        var fadeInVelocity = (1 - FarmSetting.targetAlpha) / FarmSetting.fadeInSeconds;
+        while (1 - curAlpha > 0.01f)
+        {
+            curAlpha += fadeInVelocity;
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, curAlpha);
+            yield return null;
+        }
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
     }
 }
