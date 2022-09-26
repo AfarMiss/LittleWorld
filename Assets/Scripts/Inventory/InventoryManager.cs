@@ -9,11 +9,28 @@ public class InventoryManager : MonoSingleton<InventoryManager>
 
     private void Start()
     {
-        
+        CreateItemDetailsDictionary();
     }
 
     private void CreateItemDetailsDictionary()
     {
+        itemDetailsDictionary = new Dictionary<int, ItemDetails>();
+        foreach (var item in itemList.itemDetails)
+        {
+            itemDetailsDictionary.Add(item.itemCode, item);
+        }
+    }
 
+    public ItemDetails GetItemDetail(int itemCode)
+    {
+        if (itemDetailsDictionary==null) return null;
+        if(itemDetailsDictionary.TryGetValue(itemCode,out ItemDetails value))
+        {
+            return value;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
