@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField,ItemCodeDescription]
     private int itemCode;
 
     private SpriteRenderer spriteRenderer;
