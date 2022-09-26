@@ -24,9 +24,10 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this as T;
+            DontDestroyOnLoad(instance);
         }
         else
         {
