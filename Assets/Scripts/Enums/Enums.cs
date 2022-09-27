@@ -25,5 +25,5 @@ public enum ItemType
     none,
     count,
     furniture,
-    reapable_scenary,
+    reapable_scenery,
 }
