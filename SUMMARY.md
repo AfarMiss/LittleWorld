@@ -31,6 +31,7 @@
     * [相机管理](unity/gong-neng-mo-kuai/xiang-ji-guan-li/README.md)
       * [镜头移动](unity/gong-neng-mo-kuai/xiang-ji-guan-li/jing-tou-yi-dong.md)
     * [时间系统](unity/gong-neng-mo-kuai/ru-he-zhi-zuo-shi-jian-xi-tong.md)
+    * [库存系统](readme/gong-neng-mo-kuai/ku-cun-xi-tong.md)
   * [生成物体](unity/sheng-cheng-wu-ti.md)
   * [Unity编辑器拓展编写](unity/unity-bian-ji-qi-tuo-zhan-bian-xie/README.md)
     * [概览](unity/unity-bian-ji-qi-tuo-zhan-bian-xie/gai-lan.md)

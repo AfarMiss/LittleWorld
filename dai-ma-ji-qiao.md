@@ -9,9 +9,3 @@
 语句
 
 \#progma warning restore **414**\[与上方对应]
-
-## Debug
-
-清除所有控制台中的Error信息
-
-[Debug.ClearDeveloperConsole();](https://docs.unity3d.com/ScriptReference/Debug.ClearDeveloperConsole.html)
