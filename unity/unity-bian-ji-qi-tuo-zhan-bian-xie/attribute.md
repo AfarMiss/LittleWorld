@@ -4,8 +4,6 @@ description: 朝闻道，夕死可矣。
 
 # Attribute
 
-##
-
 ## Unity中的Attribute是如何实现的？
 
 ## Mirror中的SceneAttribute是如何将string类型在编辑器试图中转换成了可编辑的场景类型？
