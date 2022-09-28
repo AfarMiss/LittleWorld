@@ -4,6 +4,13 @@ public enum ToolEffect
     watering
 }
 
+public enum InventoryLocation
+{
+    player,
+    chest,
+    account,
+}
+
 public enum Direction
 {
     up,

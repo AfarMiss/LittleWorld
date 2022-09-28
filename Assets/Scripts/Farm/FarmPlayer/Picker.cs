@@ -12,8 +12,7 @@ public class Picker : MonoBehaviour
         var item = collision.GetComponent<Item>();
         if (item != null)
         {
-            var itemDetail = InventoryManager.Instance.GetItemDetail(item.ItemCode);
-            Debug.Log(itemDetail.itemDescription);
+            InventoryManager.Instance.AddItem(InventoryLocation.player, item, item.gameObject);
         }
     }
 }
