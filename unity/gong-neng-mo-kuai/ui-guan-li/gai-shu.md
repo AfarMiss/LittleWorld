@@ -34,6 +34,28 @@ UI的数据在内存中采用由List构成的Dictionary存储。
 
 如果Image采用的不是Simple模式，那么采用了Full Rect。
 
+## 动态修改UI到屏幕正上方/正下方
+
+### 正下方
+
+```
+rectTransform.pivot=new Vector2(0.5f,0f);
+rectTransform.anchorMin=new Vector2(0.5f,0f);
+rectTransform.anchorMax=new Vector2(0.5f,0f);
+rectTransform.anchoredPosition=new Vector2(0f,2.5f);
+```
+
+### 正上方
+
+```
+rectTransform.pivot=new Vector2(0.5f,1f);
+rectTransform.anchorMin=new Vector2(0.5f,1f);
+rectTransform.anchorMax=new Vector2(0.5f,1f);
+rectTransform.anchoredPosition=new Vector2(0f,-2.5f);
+```
+
+## AnchoredPosition
+
 ## 参考资料
 
 1. \[Unity编程]这大概是最好理解的UI框架了吧 [https://www.bilibili.com/video/BV1Bz4y1D7rL?p=10\&spm\_id\_from=pageDriver\&vd\_source=871f728d40a60dff8670a9af8d3e0076](https://www.bilibili.com/video/BV1Bz4y1D7rL?p=10\&spm\_id\_from=pageDriver\&vd\_source=871f728d40a60dff8670a9af8d3e0076)
