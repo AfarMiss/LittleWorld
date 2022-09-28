@@ -5,8 +5,10 @@ public class InventoryManager : MonoSingleton<InventoryManager>
 {
     private Dictionary<int, ItemDetails> itemDetailsDictionary;
     private List<List<InventoryItem>> inventoryDictionary;
+    public List<List<InventoryItem>> InventoryDictionary { get => inventoryDictionary; }
 
     [SerializeField] private SO_ItemList itemList = null;
+
 
     protected override void Awake()
     {

@@ -1,3 +1,5 @@
+using System;
+
 public delegate void MovementDelegate(float inputX, float inputY, bool isWalking, bool isRunning, bool isIdle, bool isCarrying,
     ToolEffect toolEffect,
     bool isUsingToolRight, bool isUsingToolLeft, bool isUsingToolUp, bool isUsingToolDown,
@@ -9,7 +11,9 @@ public delegate void MovementDelegate(float inputX, float inputY, bool isWalking
 public static class EventHandler
 {
     //Movement Event
-    public static event MovementDelegate MovementEevent;
+    public static event MovementDelegate MovementEvent;
+
+    public static event Action<Item> PickUpEvent;
 
     //Movement Event Call For Publishers
     public static void CallMovementEvent(float inputX, float inputY, bool isWalking, bool isRunning, bool isIdle, bool isCarrying,
@@ -20,15 +24,23 @@ public static class EventHandler
     bool isSwingingToolRight, bool isSwingingToolLeft, bool isSwingingToolUp, bool isSwingingToolDown,
     bool idleRight, bool idleLeft, bool idleUp, bool idleDown)
     {
-        if (MovementEevent != null)
+        if (MovementEvent != null)
         {
-            MovementEevent(inputX, inputY, isWalking, isRunning, isIdle, isCarrying,
+            MovementEvent(inputX, inputY, isWalking, isRunning, isIdle, isCarrying,
     toolEffect,
     isUsingToolRight, isUsingToolLeft, isUsingToolUp, isUsingToolDown,
    isLiftingToolRight, isLiftingToolLeft, isLiftingToolUp, isLiftingToolDown,
    isPickingRight, isPickingLeft, isPickingUp, isPickingDown,
    isSwingingToolRight, isSwingingToolLeft, isSwingingToolUp, isSwingingToolDown,
    idleRight, idleLeft, idleUp, idleDown);
+        }
+    }
+
+    public static void CallPickUpEvent(Item item)
+    {
+        if (PickUpEvent != null)
+        {
+            PickUpEvent(item);
         }
     }
 

@@ -38,12 +38,12 @@ public class MovementAnimationParameterControl : MonoBehaviour
 
     private void OnEnable()
     {
-        EventHandler.MovementEevent += SetAnimationParameter;
+        EventHandler.MovementEvent += SetAnimationParameter;
     }
 
     private void OnDisable()
     {
-        EventHandler.MovementEevent -= SetAnimationParameter;
+        EventHandler.MovementEvent -= SetAnimationParameter;
     }
 
     private void SetAnimationParameter(float inputX, float inputY, bool isWalking, bool isRunning, bool isIdle, bool isCarrying,

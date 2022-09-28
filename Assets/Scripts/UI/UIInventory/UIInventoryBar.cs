@@ -4,9 +4,43 @@ using UnityEngine;
 
 public class UIInventoryBar : MonoBehaviour
 {
-    [SerializeField] private RectTransform rectTransform;
+    [SerializeField]
+    private RectTransform rectTransform;
+    [SerializeField]
+    private UIInventorySlot[] uIInventorySlots;
+
     private Camera mainCamera;
     private bool isInBottom = true;
+
+    private void OnEnable()
+    {
+        EventHandler.PickUpEvent += OnPickUp;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.PickUpEvent -= OnPickUp;
+    }
+
+    private void OnPickUp(Item obj)
+    {
+        BindData(InventoryManager.Instance.InventoryDictionary[(int)InventoryLocation.player]);
+    }
+
+    private void BindData(List<InventoryItem> itemsList)
+    {
+        for (int i = 0; i < uIInventorySlots.Length; i++)
+        {
+            if (i < itemsList.Count)
+            {
+                uIInventorySlots[i].BindData(itemsList[i]);
+            }
+            else
+            {
+                uIInventorySlots[i].BindBlank();
+            }
+        }
+    }
 
     private void FixedUpdate()
     {

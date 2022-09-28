@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 2648173335763418449}
   - component: {fileID: 4961680662982326929}
   - component: {fileID: 8648580837304678487}
+  - component: {fileID: 7105657463477758842}
   m_Layer: 0
   m_Name: UIInventorySlot
   m_TagString: Untagged
@@ -167,6 +168,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &7105657463477758842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6680374677553872250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9e1ba078e8c7641b0b68a62f5eb17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantityText: {fileID: 3623953811902631422}
+  image: {fileID: 4961680662982326929}
+  blank: {fileID: 21300000, guid: 89c46045b5f23d840b62099f6f1f6344, type: 3}
 --- !u!1 &7141938750170748451
 GameObject:
   m_ObjectHideFlags: 0
