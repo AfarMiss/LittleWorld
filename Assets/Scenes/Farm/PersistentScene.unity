@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 451280014}
   - component: {fileID: 451280016}
   - component: {fileID: 451280015}
+  - component: {fileID: 451280017}
   m_Layer: 0
   m_Name: UIInventoryBar
   m_TagString: Untagged
@@ -458,6 +459,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451280013}
   m_CullTransparentMesh: 1
+--- !u!114 &451280017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451280013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b29ea8a816f5a34ebca39ba7589b5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectTransform: {fileID: 451280014}
 --- !u!1 &474499180
 GameObject:
   m_ObjectHideFlags: 0
