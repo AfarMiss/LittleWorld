@@ -48,14 +48,23 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         }
         else
         {
-            int localIndex = (int)location;
-            inventoryDictionary[localIndex].Add(new InventoryItem
-            {
-                itemCode = item.ItemCode,
-                itemQuantity = 1
-            });
+            AddItemInFirstNull(location, item);
         }
         PrintInventoryInfo(location);
+    }
+
+    private void AddItemInFirstNull(InventoryLocation localtion, Item item)
+    {
+        for (int i = 0; i < inventoryDictionary[(int)localtion].Count; i++)
+        {
+            if (inventoryDictionary[(int)localtion][i].itemCode == -1)
+            {
+                var newSlotItem = new InventoryItem(item.ItemCode, 1);
+                inventoryDictionary[(int)localtion][i] = newSlotItem;
+                return;
+            }
+        }
+        inventoryDictionary[(int)localtion].Add(new InventoryItem(item.ItemCode, 1));
     }
 
     private void PrintInventoryInfo(InventoryLocation location)
@@ -72,6 +81,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     public void AddItem(InventoryLocation location, Item item, GameObject gameObjectToDestroy)
     {
         AddItem(location, item);
+        EventHandler.CallUpdateInventoryEvent();
         Destroy(gameObjectToDestroy);
     }
 
@@ -87,6 +97,25 @@ public class InventoryManager : MonoSingleton<InventoryManager>
             }
         }
         return -1;
+    }
+
+    internal void SwapItem(InventoryLocation location, int itemFromIndex, int itemToIndex)
+    {
+        var maxIndex = Mathf.Max(itemToIndex, itemFromIndex);
+        if (maxIndex > inventoryDictionary[(int)location].Count - 1)
+        {
+            for (int i = inventoryDictionary[(int)location].Count - 1; i < maxIndex; i++)
+            {
+                inventoryDictionary[(int)location].Add(new InventoryItem(-1, 0));
+            }
+        }
+        var itemFrom = inventoryDictionary[(int)location][itemFromIndex];
+        var itemTo = inventoryDictionary[(int)location][itemToIndex];
+
+        inventoryDictionary[(int)location][itemFromIndex] = itemTo;
+        inventoryDictionary[(int)location][itemToIndex] = itemFrom;
+
+        EventHandler.CallUpdateInventoryEvent();
     }
 
     public ItemDetails GetItemDetail(int itemCode)
@@ -116,7 +145,8 @@ public class InventoryManager : MonoSingleton<InventoryManager>
             }
             else
             {
-                inventoryDictionary[localIndex].RemoveAt(itemPosition);
+                inventoryItem.itemCode = -1;
+                inventoryDictionary[localIndex][itemPosition] = inventoryItem;
             }
 
         }

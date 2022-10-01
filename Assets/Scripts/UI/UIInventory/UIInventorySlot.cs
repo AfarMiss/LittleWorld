@@ -22,14 +22,24 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private UIInventoryBar inventoryBar = null;
     [SerializeField]
     private GameObject itemPrefab = null;
+    [SerializeField]
+    private int itemSlotNumber;
 
     public void BindData(InventoryItem inventoryItem)
     {
         var itemDetail = InventoryManager.Instance.GetItemDetail(inventoryItem.itemCode);
-        this.image.sprite = itemDetail.itemSprite;
-        this.quantity = inventoryItem.itemQuantity;
-        this.itemDetails = itemDetail;
-        this.quantityText.text = inventoryItem.itemQuantity.ToString();
+        if (itemDetail != null)
+        {
+            this.image.sprite = itemDetail.itemSprite;
+            this.quantity = inventoryItem.itemQuantity;
+            this.itemDetails = itemDetail;
+            this.quantityText.text = inventoryItem.itemQuantity.ToString();
+        }
+        else
+        {
+            BindBlank();
+        }
+
     }
 
     public void BindBlank()
@@ -74,9 +84,10 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             Destroy(draggedItem);
 
+            //两个slot间交换
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.GetComponent<UIInventorySlot>() != null)
             {
-
+                InventoryManager.Instance.SwapItem(InventoryLocation.player, itemSlotNumber, eventData.pointerCurrentRaycast.gameObject.GetComponent<UIInventorySlot>().itemSlotNumber);
             }
             else
             {
