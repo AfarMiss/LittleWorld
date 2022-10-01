@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIInventorySlot : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHandler
+public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField]
     private Text quantityText;
@@ -18,7 +18,7 @@ public class UIInventorySlot : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
     private Transform parentItem;
     private GameObject draggedItem;
 
-    [SerializeField] 
+    [SerializeField]
     private UIInventoryBar inventoryBar = null;
     [SerializeField]
     private GameObject itemPrefab = null;
@@ -49,7 +49,7 @@ public class UIInventorySlot : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
     {
         if (itemDetails != null)
         {
-            FarmGameController.Instance.DisablePlayerInput();
+            //FarmGameController.Instance.DisablePlayerInput();
 
             draggedItem = Instantiate(inventoryBar.inventoryBarDraggedItem, inventoryBar.transform);
 
@@ -93,7 +93,7 @@ public class UIInventorySlot : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
     {
         if (itemDetails != null)
         {
-            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(UniBase.InputUtils.GetMouseWorldPositionFixedZ(-mainCamera.transform.position.z));
+            Vector3 worldPosition = UniBase.InputUtils.GetMousePositionToWorldWithSpecificZ(-mainCamera.transform.position.z);
 
             GameObject itemGameObject = Instantiate(itemPrefab, worldPosition, Quaternion.identity, parentItem);
             Item item = itemGameObject.GetComponent<Item>();

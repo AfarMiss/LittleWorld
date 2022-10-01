@@ -504,7 +504,7 @@ MonoBehaviour:
   - {fileID: 554132982}
   - {fileID: 1296290518}
   - {fileID: 1285628868}
-  inventoryBarDraggedItem: {fileID: 6268652213365651954, guid: af2a024c14bb2c74baa07aaa33d2d33c, type: 3}
+  inventoryBarDraggedItem: {fileID: 7072175870981117041, guid: dc06596123f3e6a42ae156835791f1a8, type: 3}
 --- !u!1 &474499180
 GameObject:
   m_ObjectHideFlags: 0

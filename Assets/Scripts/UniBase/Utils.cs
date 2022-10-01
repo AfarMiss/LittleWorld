@@ -61,7 +61,7 @@ namespace UniBase
             return a.Overlaps(Rectb);
         }
 
-        public static Vector3 GetMousePositionWithSameZ(this Vector3 a)
+        public static Vector3 GetMousePositionToWorldWithSameZ(this Vector3 a)
         {
 #if ENABLE_INPUT_SYSTEM
             Vector2 mousePosition = Mouse.current.position.ReadValue();
@@ -73,7 +73,7 @@ namespace UniBase
             return new Vector3(result.x, result.y, a.z);
         }
 
-        public static Vector3 GetMousePositionWithSpecificZ(float z)
+        public static Vector3 GetMousePositionToWorldWithSpecificZ(float z)
         {
 #if ENABLE_INPUT_SYSTEM
             Vector2 mousePosition = Mouse.current.position.ReadValue();

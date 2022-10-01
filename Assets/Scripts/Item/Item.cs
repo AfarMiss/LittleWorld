@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField,ItemCodeDescription]
+    [SerializeField, ItemCodeDescription]
     private int itemCode;
 
     private SpriteRenderer spriteRenderer;
@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
     {
         if (ItemCode != 0)
         {
-            Init(ItemCode);    
+            Init(ItemCode);
         }
     }
 
@@ -29,6 +29,11 @@ public class Item : MonoBehaviour
         {
             this.gameObject.AddComponent<NudgeItem>();
         }
-        
+
+        if (spriteRenderer.sprite == null)
+        {
+            spriteRenderer.sprite = itemDetail.itemSprite;
+        }
+
     }
 }
