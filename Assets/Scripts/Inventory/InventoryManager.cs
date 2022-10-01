@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,19 +38,13 @@ public class InventoryManager : MonoSingleton<InventoryManager>
 
     private void AddItem(InventoryLocation location, Item item)
     {
-        if (FindItemInInventory(location, item))
+        var itemPosition = FindItemInInventory(location, item);
+        if (itemPosition != -1)
         {
             int localIndex = (int)location;
-            for (int i = 0; i < inventoryDictionary[localIndex].Count; i++)
-            {
-                InventoryItem inventoryItem = inventoryDictionary[localIndex][i];
-                if (inventoryItem.itemCode == item.ItemCode)
-                {
-                    inventoryItem.itemQuantity += 1;
-                    inventoryDictionary[localIndex][i] = inventoryItem;
-                    break;
-                }
-            }
+            var inventoryItem = inventoryDictionary[localIndex][itemPosition];
+            inventoryItem.itemQuantity += 1;
+            inventoryDictionary[localIndex][itemPosition] = inventoryItem;
         }
         else
         {
@@ -80,17 +75,18 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         Destroy(gameObjectToDestroy);
     }
 
-    private bool FindItemInInventory(InventoryLocation location, Item item)
+    private int FindItemInInventory(InventoryLocation location, Item item)
     {
         int localIndex = (int)location;
-        foreach (var inventoryItem in inventoryDictionary[localIndex])
+        for (int i = 0; i < inventoryDictionary[localIndex].Count; i++)
         {
+            InventoryItem inventoryItem = inventoryDictionary[localIndex][i];
             if (inventoryItem.itemCode == item.ItemCode)
             {
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
     public ItemDetails GetItemDetail(int itemCode)
@@ -104,5 +100,31 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         {
             return null;
         }
+    }
+
+    internal void RemoveItem(InventoryLocation location, Item item)
+    {
+        var itemPosition = FindItemInInventory(location, item);
+        if (itemPosition != -1)
+        {
+            int localIndex = (int)location;
+            var inventoryItem = inventoryDictionary[localIndex][itemPosition];
+            inventoryItem.itemQuantity -= 1;
+            if (inventoryItem.itemQuantity > 0)
+            {
+                inventoryDictionary[localIndex][itemPosition] = inventoryItem;
+            }
+            else
+            {
+                inventoryDictionary[localIndex].RemoveAt(itemPosition);
+            }
+
+        }
+        else
+        {
+            Debug.LogError($"No Item:{item.ItemCode}");
+        }
+        EventHandler.CallUpdateInventoryEvent();
+        PrintInventoryInfo(location);
     }
 }

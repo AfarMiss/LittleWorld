@@ -17,7 +17,7 @@ public class Picker : MonoBehaviour
             {
                 InventoryManager.Instance.AddItem(InventoryLocation.player, item, item.gameObject);
             }
-            EventHandler.CallPickUpEvent(item);
+            EventHandler.CallUpdateInventoryEvent();
         }
     }
 }

@@ -13,7 +13,7 @@ public static class EventHandler
     //Movement Event
     public static event MovementDelegate MovementEvent;
 
-    public static event Action<Item> PickUpEvent;
+    public static event Action UpdateInventoryEvent;
 
     //Movement Event Call For Publishers
     public static void CallMovementEvent(float inputX, float inputY, bool isWalking, bool isRunning, bool isIdle, bool isCarrying,
@@ -36,12 +36,9 @@ public static class EventHandler
         }
     }
 
-    public static void CallPickUpEvent(Item item)
+    public static void CallUpdateInventoryEvent()
     {
-        if (PickUpEvent != null)
-        {
-            PickUpEvent(item);
-        }
+        UpdateInventoryEvent();
     }
 
 }

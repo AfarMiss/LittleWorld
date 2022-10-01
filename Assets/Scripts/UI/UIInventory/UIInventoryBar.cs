@@ -9,20 +9,22 @@ public class UIInventoryBar : MonoBehaviour
     [SerializeField]
     private UIInventorySlot[] uIInventorySlots;
 
+    public GameObject inventoryBarDraggedItem;
+
     private Camera mainCamera;
     private bool isInBottom = true;
 
     private void OnEnable()
     {
-        EventHandler.PickUpEvent += OnPickUp;
+        EventHandler.UpdateInventoryEvent += BindDataInBar;
     }
 
     private void OnDisable()
     {
-        EventHandler.PickUpEvent -= OnPickUp;
+        EventHandler.UpdateInventoryEvent -= BindDataInBar;
     }
 
-    private void OnPickUp(Item obj)
+    private void BindDataInBar()
     {
         BindData(InventoryManager.Instance.InventoryDictionary[(int)InventoryLocation.player]);
     }

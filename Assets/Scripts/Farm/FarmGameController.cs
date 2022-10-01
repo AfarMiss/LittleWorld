@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
-public class FarmGameController : MonoBehaviour
+public class FarmGameController : MonoSingleton<FarmGameController>
 {
     private float inputX;
     private float inputY;
@@ -62,12 +62,47 @@ public class FarmGameController : MonoBehaviour
     //public bool idleDown;
 
     private bool isPressWalking;
+    private bool playerInputIsEnable = true;
 
     private Vector2 input;
 
+    public bool PlayerInputIsEnable => playerInputIsEnable;
+
+    public void EnablePlayerInput()
+    {
+        playerInputIsEnable = true;
+    }
+
+    public void DisablePlayerInput()
+    {
+        playerInputIsEnable = false;
+    }
+
+    public void DisablePlayerInputAndResetMovement()
+    {
+        DisablePlayerInput();
+
+        ResetMovement();
+
+        UpdateAnimation();
+    }
+
+    private void ResetMovement()
+    {
+        //Reset Movement
+        inputX = 0f;
+        inputY= 0f;
+        isRunning = false;
+        isWalking = false;
+        isIdle = true;
+    }
+
     public void OnMove(CallbackContext context)
     {
-        input = context.ReadValue<Vector2>();
+        if (PlayerInputIsEnable)
+        {
+            input = context.ReadValue<Vector2>();
+        }
     }
 
     public void OnWalking(CallbackContext context)
