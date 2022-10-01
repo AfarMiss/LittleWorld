@@ -64,6 +64,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (draggedItem != null)
         {
             draggedItem.transform.position = UniBase.InputUtils.GetMousePosition();
+            Debug.Log($"draggedItem.transform.position :{draggedItem.transform.position}");
         }
     }
 
