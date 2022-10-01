@@ -6,4 +6,4 @@
 
 <figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
-如要去掉这个默认的父节点，需要点击一下预制体（不要进入预制体预览模式），在Inspector面板中修改预制体根节点下的Canvas组件，将其中的Render Mode修改为Screen Space-Camera。
+如要去掉这个默认的父节点，需要点击一下预制体（不要进入预制体预览模式），在Inspector面板中修改预制体根节点下的Canvas组件，将其中的Render Mode修改为Screen Space-Camera或者Screen Space-Overlay。
