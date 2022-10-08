@@ -8,6 +8,8 @@ description: 不积跬步，无以至千里。
 
 游戏名称暂定为LittleWorld。
 
+单机策略类游戏，类Rimworld。
+
 ## 基础设置
 
 LittleWorld基于X-Y轴构成2D平面，Z轴在大部分情况下都不起作用。
