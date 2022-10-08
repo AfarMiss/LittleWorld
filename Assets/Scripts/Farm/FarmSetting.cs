@@ -15,6 +15,15 @@ public static class FarmSetting
     private static string isWalkingString = "isWalking";
     private static string isRunningString = "isRunning";
 
+    public const string HoeingTool = "Hoe";
+    public const string Axe = "Axe";
+    public const string Pickaxe = "Pickaxe";
+    public const string ReapingTool = "ReapingTool";
+    public const string WateringTool = "WateringTool";
+    public const string CollectingTool = "CollectingTool";
+    public const string BreakingTool = "BreakingTool";
+    public const string ChoppingTool = "ChoppingTool";
+
     private static string toolEffectString = "toolEffect";
     private static string isUsingToolRightString = "isUsingToolRight";
     private static string isUsingToolLeftString = "isUsingToolLeft";

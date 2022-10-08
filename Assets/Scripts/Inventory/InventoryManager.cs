@@ -157,4 +157,47 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         EventHandler.CallUpdateInventoryEvent();
         PrintInventoryInfo(location);
     }
+
+    public string GetItemTypeDescription(ItemType itemType)
+    {
+        string itemTypeDescription = null;
+        switch (itemType)
+        {
+            //case ItemType.seed:
+            //    break;
+            //case ItemType.commodity:
+            //    break;
+            case ItemType.hoeing_tool:
+                itemTypeDescription = FarmSetting.HoeingTool;
+                break;
+            case ItemType.chopping_tool:
+                itemTypeDescription = FarmSetting.ChoppingTool;
+                break;
+            case ItemType.breaking_tool:
+                itemTypeDescription = FarmSetting.BreakingTool;
+                break;
+            case ItemType.collection_tool:
+                itemTypeDescription = FarmSetting.CollectingTool;
+                break;
+            case ItemType.watering_tool:
+                itemTypeDescription = FarmSetting.WateringTool;
+                break;
+            case ItemType.reaping_tool:
+                itemTypeDescription = FarmSetting.ReapingTool;
+                break;
+            //case ItemType.none:
+            //    break;
+            //case ItemType.count:
+            //    break;
+            //case ItemType.furniture:
+            //    break;
+            //case ItemType.reapable_scenery:
+            //    break;
+            default:
+                itemTypeDescription = itemType.ToString();
+                break;
+        }
+
+        return itemTypeDescription;
+    }
 }

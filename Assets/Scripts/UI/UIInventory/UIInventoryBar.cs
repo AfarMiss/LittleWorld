@@ -8,11 +8,15 @@ public class UIInventoryBar : MonoBehaviour
     private RectTransform rectTransform;
     [SerializeField]
     private UIInventorySlot[] uIInventorySlots;
-
+    [HideInInspector]
+    public GameObject inventoryTextBoxGameobject = null;
+    
     public GameObject inventoryBarDraggedItem;
 
     private Camera mainCamera;
     private bool isInBottom = true;
+
+    public bool IsInBottom { get => isInBottom; }
 
     private void OnEnable()
     {

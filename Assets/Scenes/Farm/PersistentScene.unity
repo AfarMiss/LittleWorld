@@ -264,7 +264,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -375,6 +375,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &300722842 stripped
@@ -508,6 +512,7 @@ MonoBehaviour:
   - {fileID: 554132982}
   - {fileID: 1296290518}
   - {fileID: 1285628868}
+  inventoryTextBoxGameobject: {fileID: 0}
   inventoryBarDraggedItem: {fileID: 7072175870981117041, guid: dc06596123f3e6a42ae156835791f1a8, type: 3}
 --- !u!1 &474499180
 GameObject:
@@ -833,6 +838,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &554132981 stripped
@@ -1148,6 +1157,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &1028418676 stripped
@@ -1395,6 +1408,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &1122635523 stripped
@@ -1520,6 +1537,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &1150562201 stripped
@@ -1645,6 +1666,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &1233170722 stripped
@@ -1770,6 +1795,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &1285628867 stripped
@@ -1895,6 +1924,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &1296290517 stripped
@@ -2020,6 +2053,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &1419132155 stripped
@@ -2150,6 +2187,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &1482226287 stripped
@@ -2275,6 +2316,10 @@ PrefabInstance:
       propertyPath: itemSlotNumber
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &1535128845 stripped
@@ -2596,6 +2641,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 451280017}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &8113627348654361745 stripped
