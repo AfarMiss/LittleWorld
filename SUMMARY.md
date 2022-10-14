@@ -88,3 +88,4 @@
 * [AI设计](ai-she-ji/README.md)
   * [行为树](ai-she-ji/hang-wei-shu.md)
   * [状态机](ai-she-ji/zhuang-tai-ji.md)
+* [FairyGUI](fairygui.md)
