@@ -95,3 +95,9 @@ SetChildIndex
 ### 子对象排序规则
 
 childrenRenderOrder，默认升序排列，从小到大依次渲染，序号大的显示在前面。
+
+## 元件
+
+元件是GObject,组件是GComponent，组件是元件的一种。
+
+元件是舞台上的最小组成单位。
