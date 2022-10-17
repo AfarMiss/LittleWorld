@@ -23,11 +23,40 @@ GRoot.inst.SetContentScaleFactor(1365, 768, UIContentScaler.ScreenMatchMode.Matc
         }
 ```
 
-### 同步加载
+### 同步加载元件
 
 ```
     GComponent view = UIPackage.CreateObject("Teach", "TeachPanel").asCom;
     GRoot.inst.AddChild(view);
+```
+
+### 动态同步加载图片
+
+```
+GImage img = UIPackage.CreateObject("Teach", "TeachPanel").asImage;
+view.AddChild(img);
+```
+
+### 获取图片
+
+```
+GImage img = view.GetChild("imgTest").asImage//参数为图片名
+```
+
+### 获取图形元件
+
+```
+GGraph graph = view.GetChild("graphTest").asGraph//参数为图形名，获取图形元件
+graph.DrawRect(100,100,4,Color.red,Color.white);//将图形绘制为矩形
+```
+
+### 动态创建图形
+
+```
+GGraph graph2 = new GGraph();
+graph.SetPosition(50,50,0);
+graph2.DrawRect(200,200,5,Color.white,Color.red);//创建一个矩形
+view.AddChild(graph2);
 ```
 
 ### 异步加载
@@ -40,7 +69,13 @@ GRoot.inst.SetContentScaleFactor(1365, 768, UIContentScaler.ScreenMatchMode.Matc
     });
 ```
 
-## GComponent常用API
+### 销毁
+
+```
+view.Dispose();
+```
+
+## GComponent/GObject常用API
 
 ### 位置
 
@@ -95,6 +130,16 @@ SetChildIndex
 ### 子对象排序规则
 
 childrenRenderOrder，默认升序排列，从小到大依次渲染，序号大的显示在前面。
+
+### 原生对象
+
+displayObject.gameObject
+
+displayObject就类似于挂在在场景对象上的一个组件，通过其gameObject属性可以获取到对应挂载的gameObject。
+
+### 自定义数据
+
+data
 
 ## 元件
 
