@@ -70,6 +70,7 @@
   * [单例模式](she-ji-mo-shi/dan-li-mo-shi.md)
   * [观察者模式](she-ji-mo-shi/guan-cha-zhe-mo-shi.md)
   * [发布订阅模式](she-ji-mo-shi/fa-bu-ding-yue-mo-shi.md)
+  * [工厂模式](she-ji-mo-shi/gong-chang-mo-shi.md)
   * [ECS](she-ji-mo-shi/ecs.md)
 * [Mirror](<README (1).md>)
   * [基于Mirror的联机](mirror/ji-yu-mirror-de-lian-ji/README.md)
