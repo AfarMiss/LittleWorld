@@ -91,4 +91,5 @@
   * [状态机](ai-she-ji/zhuang-tai-ji.md)
 * [ET](et.md)
   * [概述](et/gai-shu.md)
-* [FairyGUI](fairygui.md)
+* [FairyGUI](fairygui/README.md)
+  * [选择模式的列表的交互](fairygui/xuan-ze-mo-shi-de-lie-biao-de-jiao-hu.md)
