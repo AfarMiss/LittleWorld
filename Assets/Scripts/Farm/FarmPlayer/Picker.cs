@@ -13,7 +13,7 @@ public class Picker : MonoBehaviour
         if (item != null)
         {
             var itemDetail = InventoryManager.Instance.GetItemDetail(item.ItemCode);
-            if (itemDetail != null && itemDetail.itemType == ItemType.commodity)
+            if (itemDetail != null && itemDetail.canBePickedUp)
             {
                 InventoryManager.Instance.AddItem(InventoryLocation.player, item, item.gameObject);
             }
