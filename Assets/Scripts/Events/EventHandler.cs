@@ -15,6 +15,8 @@ public static class EventHandler
 
     public static event Action UpdateInventoryEvent;
 
+    public static event Action SelectedItemChangeEvent;
+
     //Movement Event Call For Publishers
     public static void CallMovementEvent(float inputX, float inputY, bool isWalking, bool isRunning, bool isIdle, bool isCarrying,
     ToolEffect toolEffect,
@@ -39,6 +41,11 @@ public static class EventHandler
     public static void CallUpdateInventoryEvent()
     {
         UpdateInventoryEvent();
+    }
+
+    public static void CallSelectedItemChangeEvent()
+    {
+        SelectedItemChangeEvent();
     }
 
 }

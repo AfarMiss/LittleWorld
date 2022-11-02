@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private Text quantityText;
@@ -18,22 +18,25 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Transform parentItem;
     private GameObject draggedItem;
     private Canvas parentCanvas;
+    private int slotIndex;
 
     [SerializeField]
-    private UIInventoryBar inventoryBar = null;
+    private UIInventoryBar parentBar = null;
     [SerializeField]
     private GameObject itemPrefab = null;
     [SerializeField]
     private int itemSlotNumber;
     [SerializeField]
     private GameObject inventoryTextBoxPrefab = null;
+    private bool isSelected;
 
     private void Awake()
     {
+        isSelected = false;
         parentCanvas = GetComponentInParent<Canvas>();
     }
 
-    public void BindData(InventoryItem inventoryItem)
+    public void BindData(InventoryItem inventoryItem, int slotIndex)
     {
         var itemDetail = InventoryManager.Instance.GetItemDetail(inventoryItem.itemCode);
         if (itemDetail != null)
@@ -47,10 +50,10 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             BindBlank();
         }
-
+        this.slotIndex = slotIndex;
     }
 
-    public void BindBlank()
+    private void BindBlank()
     {
         this.image.sprite = blank;
         this.quantity = 0;
@@ -69,7 +72,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             //FarmGameController.Instance.DisablePlayerInput();
 
-            draggedItem = Instantiate(inventoryBar.inventoryBarDraggedItem, inventoryBar.transform);
+            draggedItem = Instantiate(parentBar.inventoryBarDraggedItem, parentBar.transform);
 
             Image draggedItemImage = draggedItem.GetComponentInChildren<Image>();
             draggedItemImage.sprite = image.sprite;
@@ -133,33 +136,58 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (quantity != 0)
         {
-            inventoryBar.inventoryTextBoxGameobject = Instantiate(inventoryTextBoxPrefab, transform.position, Quaternion.identity);
-            inventoryBar.inventoryTextBoxGameobject.transform.SetParent(parentCanvas.transform, false);
+            parentBar.inventoryTextBoxGameobject = Instantiate(inventoryTextBoxPrefab, transform.position, Quaternion.identity);
+            parentBar.inventoryTextBoxGameobject.transform.SetParent(parentCanvas.transform, false);
 
-            UIInventoryTextBox inventoryTextBox = inventoryBar.inventoryTextBoxGameobject.GetComponent<UIInventoryTextBox>();
+            UIInventoryTextBox inventoryTextBox = parentBar.inventoryTextBoxGameobject.GetComponent<UIInventoryTextBox>();
 
             string itemTypeDescription = InventoryManager.Instance.GetItemTypeDescription(itemDetails.itemType);
 
             inventoryTextBox.SetTextboxText(itemDetails.itemDescription, itemTypeDescription, "", itemDetails.itemLongDescription, "", "");
 
-            if (inventoryBar.IsInBottom)
+            if (parentBar.IsInBottom)
             {
-                inventoryBar.inventoryTextBoxGameobject.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0f);
-                inventoryBar.inventoryTextBoxGameobject.transform.position = new Vector3(transform.position.x, transform.position.y + 50f, transform.position.z);
+                parentBar.inventoryTextBoxGameobject.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0f);
+                parentBar.inventoryTextBoxGameobject.transform.position = new Vector3(transform.position.x, transform.position.y + 50f, transform.position.z);
             }
             else
             {
-                inventoryBar.inventoryTextBoxGameobject.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 1f);
-                inventoryBar.inventoryTextBoxGameobject.transform.position = new Vector3(transform.position.x, transform.position.y - 50f, transform.position.z);
+                parentBar.inventoryTextBoxGameobject.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 1f);
+                parentBar.inventoryTextBoxGameobject.transform.position = new Vector3(transform.position.x, transform.position.y - 50f, transform.position.z);
             }
         }
     }
 
     public void DestroyInventoryTextBox()
     {
-        if (inventoryBar.inventoryTextBoxGameobject != null)
+        if (parentBar.inventoryTextBoxGameobject != null)
         {
-            Destroy(inventoryBar.inventoryTextBoxGameobject);
+            Destroy(parentBar.inventoryTextBoxGameobject);
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (isSelected)
+            {
+                ClearSelected();
+            }
+            else
+            {
+                SelectItem();
+            }
+        }
+    }
+
+    private void SelectItem()
+    {
+        EventCenter.Instance.Trigger(nameof(EventEnum.UPDATE_BAR_SELECTED), slotIndex);
+    }
+
+    private void ClearSelected()
+    {
+        EventCenter.Instance.Trigger(nameof(EventEnum.CLEAR_BAR_SELECTED));
     }
 }

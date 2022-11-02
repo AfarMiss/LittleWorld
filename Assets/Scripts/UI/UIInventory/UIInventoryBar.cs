@@ -10,7 +10,7 @@ public class UIInventoryBar : MonoBehaviour
     private UIInventorySlot[] uIInventorySlots;
     [HideInInspector]
     public GameObject inventoryTextBoxGameobject = null;
-    
+
     public GameObject inventoryBarDraggedItem;
 
     private Camera mainCamera;
@@ -39,11 +39,11 @@ public class UIInventoryBar : MonoBehaviour
         {
             if (i < itemsList.Count)
             {
-                uIInventorySlots[i].BindData(itemsList[i]);
+                uIInventorySlots[i].BindData(itemsList[i], i);
             }
             else
             {
-                uIInventorySlots[i].BindBlank();
+                uIInventorySlots[i].BindData(new InventoryItem(-1, -1), i);
             }
         }
     }

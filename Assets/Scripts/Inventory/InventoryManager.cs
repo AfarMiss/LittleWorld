@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InventoryManager : MonoSingleton<InventoryManager>
 {
     private Dictionary<int, ItemDetails> itemDetailsDictionary;
-    private List<List<InventoryItem>> inventoryDictionary;
-    public List<List<InventoryItem>> InventoryDictionary { get => inventoryDictionary; }
+    private List<List<InventoryItem>> inventoryItemsList;
+    private List<int> inventorySelectedList;
+    public List<List<InventoryItem>> InventoryDictionary { get => inventoryItemsList; }
+    public UnityAction<int> OnUpdateBarSelected { get; private set; }
 
     [SerializeField] private SO_ItemList itemList = null;
 
@@ -15,7 +18,8 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     {
         base.Awake();
         CreateItemDetailsDictionary();
-        CreateInventoryDictionary();
+        CreateInventoryList();
+        CreateSelectedList();
     }
 
     private void CreateItemDetailsDictionary()
@@ -27,12 +31,21 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         }
     }
 
-    private void CreateInventoryDictionary()
+    private void CreateInventoryList()
     {
-        inventoryDictionary = new List<List<InventoryItem>>();
+        inventoryItemsList = new List<List<InventoryItem>>();
         for (int i = 0; i < (int)InventoryLocation.account; i++)
         {
-            inventoryDictionary.Add(new List<InventoryItem>());
+            inventoryItemsList.Add(new List<InventoryItem>());
+        }
+    }
+
+    private void CreateSelectedList()
+    {
+        inventorySelectedList = new List<int>();
+        for (int i = 0; i < (int)InventoryLocation.account; i++)
+        {
+            inventorySelectedList.Add(-1);
         }
     }
 
@@ -42,9 +55,9 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         if (itemPosition != -1)
         {
             int localIndex = (int)location;
-            var inventoryItem = inventoryDictionary[localIndex][itemPosition];
+            var inventoryItem = inventoryItemsList[localIndex][itemPosition];
             inventoryItem.itemQuantity += 1;
-            inventoryDictionary[localIndex][itemPosition] = inventoryItem;
+            inventoryItemsList[localIndex][itemPosition] = inventoryItem;
         }
         else
         {
@@ -55,22 +68,22 @@ public class InventoryManager : MonoSingleton<InventoryManager>
 
     private void AddItemInFirstNull(InventoryLocation localtion, Item item)
     {
-        for (int i = 0; i < inventoryDictionary[(int)localtion].Count; i++)
+        for (int i = 0; i < inventoryItemsList[(int)localtion].Count; i++)
         {
-            if (inventoryDictionary[(int)localtion][i].itemCode == -1)
+            if (inventoryItemsList[(int)localtion][i].itemCode == -1)
             {
                 var newSlotItem = new InventoryItem(item.ItemCode, 1);
-                inventoryDictionary[(int)localtion][i] = newSlotItem;
+                inventoryItemsList[(int)localtion][i] = newSlotItem;
                 return;
             }
         }
-        inventoryDictionary[(int)localtion].Add(new InventoryItem(item.ItemCode, 1));
+        inventoryItemsList[(int)localtion].Add(new InventoryItem(item.ItemCode, 1));
     }
 
     private void PrintInventoryInfo(InventoryLocation location)
     {
         Debug.Log($"=======================");
-        var inventory = inventoryDictionary[(int)location];
+        var inventory = inventoryItemsList[(int)location];
         foreach (var item in inventory)
         {
             Debug.Log($"itemCode:{item.itemCode},itemQuantity:{item.itemQuantity}");
@@ -88,9 +101,9 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     private int FindItemInInventory(InventoryLocation location, Item item)
     {
         int localIndex = (int)location;
-        for (int i = 0; i < inventoryDictionary[localIndex].Count; i++)
+        for (int i = 0; i < inventoryItemsList[localIndex].Count; i++)
         {
-            InventoryItem inventoryItem = inventoryDictionary[localIndex][i];
+            InventoryItem inventoryItem = inventoryItemsList[localIndex][i];
             if (inventoryItem.itemCode == item.ItemCode)
             {
                 return i;
@@ -102,18 +115,18 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     internal void SwapItem(InventoryLocation location, int itemFromIndex, int itemToIndex)
     {
         var maxIndex = Mathf.Max(itemToIndex, itemFromIndex);
-        if (maxIndex > inventoryDictionary[(int)location].Count - 1)
+        if (maxIndex > inventoryItemsList[(int)location].Count - 1)
         {
-            for (int i = inventoryDictionary[(int)location].Count - 1; i < maxIndex; i++)
+            for (int i = inventoryItemsList[(int)location].Count - 1; i < maxIndex; i++)
             {
-                inventoryDictionary[(int)location].Add(new InventoryItem(-1, 0));
+                inventoryItemsList[(int)location].Add(new InventoryItem(-1, 0));
             }
         }
-        var itemFrom = inventoryDictionary[(int)location][itemFromIndex];
-        var itemTo = inventoryDictionary[(int)location][itemToIndex];
+        var itemFrom = inventoryItemsList[(int)location][itemFromIndex];
+        var itemTo = inventoryItemsList[(int)location][itemToIndex];
 
-        inventoryDictionary[(int)location][itemFromIndex] = itemTo;
-        inventoryDictionary[(int)location][itemToIndex] = itemFrom;
+        inventoryItemsList[(int)location][itemFromIndex] = itemTo;
+        inventoryItemsList[(int)location][itemToIndex] = itemFrom;
 
         EventHandler.CallUpdateInventoryEvent();
     }
@@ -137,16 +150,16 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         if (itemPosition != -1)
         {
             int localIndex = (int)location;
-            var inventoryItem = inventoryDictionary[localIndex][itemPosition];
+            var inventoryItem = inventoryItemsList[localIndex][itemPosition];
             inventoryItem.itemQuantity -= 1;
             if (inventoryItem.itemQuantity > 0)
             {
-                inventoryDictionary[localIndex][itemPosition] = inventoryItem;
+                inventoryItemsList[localIndex][itemPosition] = inventoryItem;
             }
             else
             {
                 inventoryItem.itemCode = -1;
-                inventoryDictionary[localIndex][itemPosition] = inventoryItem;
+                inventoryItemsList[localIndex][itemPosition] = inventoryItem;
             }
 
         }
@@ -199,5 +212,15 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         }
 
         return itemTypeDescription;
+    }
+
+    private void OnEnable()
+    {
+        EventCenter.Instance.Register(nameof(EventEnum.UPDATE_BAR_SELECTED), OnUpdateBarSelected);
+    }
+
+    private void OnDisable()
+    {
+        EventCenter.Instance.Unregister(nameof(EventEnum.UPDATE_BAR_SELECTED), OnUpdateBarSelected);
     }
 }
