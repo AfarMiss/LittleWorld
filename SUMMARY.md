@@ -51,6 +51,7 @@
   * [人物移动](unity/ren-wu-yi-dong.md)
   * [人物攻击](unity/ren-wu-gong-ji.md)
   * [协程](unity/xie-cheng.md)
+  * [资源加载](readme/zi-yuan-jia-zai.md)
 * [C#](c/README.md)
   * [在Unity中使用C#自定义属性](c/zai-unity-zhong-shi-yongczi-ding-yi-shu-xing.md)
   * [程序集](c/cheng-xu-ji.md)
