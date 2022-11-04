@@ -52,6 +52,7 @@
   * [人物攻击](unity/ren-wu-gong-ji.md)
   * [协程](unity/xie-cheng.md)
   * [资源加载](readme/zi-yuan-jia-zai.md)
+  * [2D物体朝向](readme/2d-wu-ti-zhao-xiang.md)
 * [C#](c/README.md)
   * [在Unity中使用C#自定义属性](c/zai-unity-zhong-shi-yongczi-ding-yi-shu-xing.md)
   * [程序集](c/cheng-xu-ji.md)
