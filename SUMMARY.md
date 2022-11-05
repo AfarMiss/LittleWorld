@@ -56,6 +56,8 @@
   * [粒子系统](readme/li-zi-xi-tong.md)
   * [对象池](readme/dui-xiang-chi.md)
   * [编码格式](readme/bian-ma-ge-shi.md)
+  * [Animator Override Contrllers](readme/animator-override-contrllers.md)
+  * [关于特效不可见的查找](readme/guan-yu-te-xiao-bu-ke-jian-de-cha-zhao.md)
 * [C#](c/README.md)
   * [在Unity中使用C#自定义属性](c/zai-unity-zhong-shi-yongczi-ding-yi-shu-xing.md)
   * [程序集](c/cheng-xu-ji.md)
