@@ -8,9 +8,9 @@ public class SO_AnimationType : ScriptableObject
     /// <summary>
     /// 动画clip
     /// </summary>
-    public Animation animationClip;
+    public AnimationClip animationClip;
     public AnimationName animationName;
-    public AnimationPartAnimator characterPart;
+    public CharacterPartAnimator characterPart;
     public PartVariantColour partVariantColour;
     public PartVariantType partVariantType;
 }
