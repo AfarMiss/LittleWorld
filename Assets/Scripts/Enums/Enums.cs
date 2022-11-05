@@ -43,3 +43,68 @@ public enum ItemType
     furniture,
     reapable_scenery,
 }
+
+public enum AnimationName
+{
+    idleDown,
+    idleUp,
+    idleLeft,
+    idleRight,
+    walkUp,
+    walkRight,
+    walkDown,
+    walkLeft,
+    runUp,
+    runRight,
+    runLeft,
+    runDown,
+    useToolUp,
+    useToolRight,
+    useToolLeft,
+    useToolDown,
+    swingToolUp,
+    swingToolRight,
+    swingToolLeft,
+    swingToolDown,
+    liftToolUp,
+    liftToolRight,
+    liftToolLeft,
+    liftToolDown,
+    holdToolUp,
+    holdToolRight,
+    holdToolLeft,
+    holdToolDown,
+    pickDown,
+    pickLeft,
+    pickRight,
+    pickUp,
+    count
+}
+
+public enum CharacterPartAnimator
+{
+    body,
+    arms,
+    hair,
+    tool,
+    hat,
+    count
+}
+
+public enum PartVariantColour
+{
+    none,
+    count
+}
+
+public enum PartVariantType
+{
+    none,
+    carry,
+    hoe,
+    pickaxe,
+    axe,
+    scythe,
+    wateringCan,
+    count
+}
