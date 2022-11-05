@@ -183,6 +183,11 @@ MonoBehaviour:
   quantityText: {fileID: 3623953811902631422}
   image: {fileID: 4961680662982326929}
   blank: {fileID: 21300000, guid: 89c46045b5f23d840b62099f6f1f6344, type: 3}
+  highLight: {fileID: 807185220846741969}
+  parentBar: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  itemSlotNumber: 0
+  inventoryTextBoxPrefab: {fileID: 0}
 --- !u!1 &7141938750170748451
 GameObject:
   m_ObjectHideFlags: 0

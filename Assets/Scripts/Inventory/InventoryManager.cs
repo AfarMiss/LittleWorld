@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,9 +7,8 @@ public class InventoryManager : MonoSingleton<InventoryManager>
 {
     private Dictionary<int, ItemDetails> itemDetailsDictionary;
     private List<List<InventoryItem>> inventoryItemsList;
-    private List<int> inventorySelectedList;
+    public List<int> inventorySelectedList;
     public List<List<InventoryItem>> InventoryDictionary { get => inventoryItemsList; }
-    public UnityAction<int> OnUpdateBarSelected { get; private set; }
 
     [SerializeField] private SO_ItemList itemList = null;
 
@@ -131,6 +130,11 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         EventHandler.CallUpdateInventoryEvent();
     }
 
+    /// <summary>
+    /// 获取物品信息
+    /// </summary>
+    /// <param name="itemCode"></param>
+    /// <returns></returns>
     public ItemDetails GetItemDetail(int itemCode)
     {
         if (itemDetailsDictionary == null) return null;
@@ -216,11 +220,18 @@ public class InventoryManager : MonoSingleton<InventoryManager>
 
     private void OnEnable()
     {
-        EventCenter.Instance.Register(nameof(EventEnum.UPDATE_BAR_SELECTED), OnUpdateBarSelected);
+        EventCenter.Instance.Register<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
     }
 
     private void OnDisable()
     {
-        EventCenter.Instance.Unregister(nameof(EventEnum.UPDATE_BAR_SELECTED), OnUpdateBarSelected);
+        EventCenter.Instance.Unregister<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
+    }
+
+    private void OnUpdateBarSelected(int arg0)
+    {
+        inventorySelectedList[(int)InventoryLocation.player] = arg0;
+        Debug.Log($"inventorySelectedList[(int)InventoryLocation.player]:{inventorySelectedList[(int)InventoryLocation.player]}");
+        EventCenter.Instance.Trigger(nameof(EventEnum.UI_CHANGE_BAR_SELECTED));
     }
 }

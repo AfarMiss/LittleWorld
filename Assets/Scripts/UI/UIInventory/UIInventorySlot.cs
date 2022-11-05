@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -19,6 +19,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private GameObject draggedItem;
     private Canvas parentCanvas;
     private int slotIndex;
+    public Image highLight;
 
     [SerializeField]
     private UIInventoryBar parentBar = null;
@@ -28,6 +29,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private int itemSlotNumber;
     [SerializeField]
     private GameObject inventoryTextBoxPrefab = null;
+    [SerializeField]
     private bool isSelected;
 
     private void Awake()
@@ -36,7 +38,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         parentCanvas = GetComponentInParent<Canvas>();
     }
 
-    public void BindData(InventoryItem inventoryItem, int slotIndex)
+    public void BindData(InventoryItem inventoryItem, int slotIndex, int hightLightIndex)
     {
         var itemDetail = InventoryManager.Instance.GetItemDetail(inventoryItem.itemCode);
         if (itemDetail != null)
@@ -51,6 +53,15 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             BindBlank();
         }
         this.slotIndex = slotIndex;
+        if (hightLightIndex == -1 || hightLightIndex != slotIndex)
+        {
+            highLight.color = new Color(1, 1, 1, 0);
+        }
+        else
+        {
+            highLight.color = new Color(1, 1, 1, 1);
+        }
+        Debug.Log($"hightLightIndex:{hightLightIndex},slotIndex:{slotIndex}");
     }
 
     private void BindBlank()
@@ -95,7 +106,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             Destroy(draggedItem);
 
-            //¡Ω∏ˆslotº‰Ωªªª
+            //‰∏§‰∏™slotÈó¥‰∫§Êç¢
             if (eventData.pointerCurrentRaycast.gameObject != null && eventData.pointerCurrentRaycast.gameObject.GetComponent<UIInventorySlot>() != null)
             {
                 DestroyInventoryTextBox();
@@ -183,11 +194,13 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void SelectItem()
     {
-        EventCenter.Instance.Trigger(nameof(EventEnum.UPDATE_BAR_SELECTED), slotIndex);
+        EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), slotIndex);
+        Debug.Log($"SelectItem:{slotIndex}");
     }
 
     private void ClearSelected()
     {
-        EventCenter.Instance.Trigger(nameof(EventEnum.CLEAR_BAR_SELECTED));
+        EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), -1);
+        Debug.Log($"SelectItem:-1");
     }
 }

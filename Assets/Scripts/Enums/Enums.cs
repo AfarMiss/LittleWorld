@@ -1,4 +1,4 @@
-public enum ToolEffect
+﻿public enum ToolEffect
 {
     none,
     watering
@@ -6,8 +6,17 @@ public enum ToolEffect
 
 public enum InventoryLocation
 {
+    /// <summary>
+    /// 玩家自身
+    /// </summary>
     player,
+    /// <summary>
+    /// 箱子中
+    /// </summary>
     chest,
+    /// <summary>
+    /// 账户中
+    /// </summary>
     account,
 }
 

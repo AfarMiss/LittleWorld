@@ -1,15 +1,19 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EventEnum 
+public enum EventEnum
 {
     /// <summary>
-    /// ÇåÀí¿É¼û²Ö¿âÖĞÑ¡ÖĞµÄÄÚÈİ
+    /// æ¸…ç†å¯è§ä»“åº“ä¸­é€‰ä¸­çš„å†…å®¹
     /// </summary>
     CLEAR_BAR_SELECTED,
     /// <summary>
-    /// ¸üĞÂ¿É¼û²Ö¿âÖĞÑ¡ÖĞµÄÄÚÈİ
+    /// æ”¹å˜å¯è§ä»“åº“ä¸­é€‰ä¸­çš„å†…å®¹
     /// </summary>
-    UPDATE_BAR_SELECTED,
+    CLIENT_CHANGE_BAR_SELECTED,
+    /// <summary>
+    /// ç®¡ç†å™¨æ”¹å˜é€‰ä¸­å†…å®¹å¯¹åº”UI
+    /// </summary>
+    UI_CHANGE_BAR_SELECTED,
 }

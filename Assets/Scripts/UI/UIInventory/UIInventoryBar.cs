@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,32 +18,39 @@ public class UIInventoryBar : MonoBehaviour
 
     public bool IsInBottom { get => isInBottom; }
 
+    private void Start()
+    {
+        BindData();
+    }
     private void OnEnable()
     {
-        EventHandler.UpdateInventoryEvent += BindDataInBar;
+        EventCenter.Instance.Register(nameof(EventEnum.UI_CHANGE_BAR_SELECTED), BindData);
+        EventHandler.UpdateInventoryEvent += BindData;
     }
 
     private void OnDisable()
     {
-        EventHandler.UpdateInventoryEvent -= BindDataInBar;
+        EventCenter.Instance.Unregister(nameof(EventEnum.UI_CHANGE_BAR_SELECTED), BindData);
+        EventHandler.UpdateInventoryEvent -= BindData;
     }
 
-    private void BindDataInBar()
+    private void BindData()
     {
-        BindData(InventoryManager.Instance.InventoryDictionary[(int)InventoryLocation.player]);
+        var hightLightIndex = InventoryManager.Instance.inventorySelectedList[(int)InventoryLocation.player];
+        BindDataWith(InventoryManager.Instance.InventoryDictionary[(int)InventoryLocation.player], hightLightIndex);
     }
 
-    private void BindData(List<InventoryItem> itemsList)
+    private void BindDataWith(List<InventoryItem> itemsList, int hightLightIndex)
     {
         for (int i = 0; i < uIInventorySlots.Length; i++)
         {
             if (i < itemsList.Count)
             {
-                uIInventorySlots[i].BindData(itemsList[i], i);
+                uIInventorySlots[i].BindData(itemsList[i], i, hightLightIndex);
             }
             else
             {
-                uIInventorySlots[i].BindData(new InventoryItem(-1, -1), i);
+                uIInventorySlots[i].BindData(new InventoryItem(-1, -1), i, hightLightIndex);
             }
         }
     }

@@ -364,6 +364,10 @@ PrefabInstance:
       value: UIInventorySlot7
       objectReference: {fileID: 0}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 5466280542741998534, guid: afce921e5c9fc61488fc4af2e8e276a8, type: 3}
@@ -715,6 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ef1d35edbe8b240b0860eddae3b74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventorySelectedList: 
   itemList: {fileID: 11400000, guid: b3dbf93d2144fac4886393c122ac1ccd, type: 2}
 --- !u!4 &518258366
 Transform:
@@ -826,6 +831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIInventorySlot9
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -1146,6 +1155,10 @@ PrefabInstance:
       value: UIInventorySlot4
       objectReference: {fileID: 0}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 5466280542741998534, guid: afce921e5c9fc61488fc4af2e8e276a8, type: 3}
@@ -1397,6 +1410,10 @@ PrefabInstance:
       value: UIInventorySlot6
       objectReference: {fileID: 0}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 5466280542741998534, guid: afce921e5c9fc61488fc4af2e8e276a8, type: 3}
@@ -1525,6 +1542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIInventorySlot1
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -1655,6 +1676,10 @@ PrefabInstance:
       value: UIInventorySlot3
       objectReference: {fileID: 0}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 5466280542741998534, guid: afce921e5c9fc61488fc4af2e8e276a8, type: 3}
@@ -1783,6 +1808,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIInventorySlot11
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -1913,6 +1942,10 @@ PrefabInstance:
       value: UIInventorySlot10
       objectReference: {fileID: 0}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 5466280542741998534, guid: afce921e5c9fc61488fc4af2e8e276a8, type: 3}
@@ -2041,6 +2074,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIInventorySlot8
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -2176,6 +2213,10 @@ PrefabInstance:
       value: UIInventorySlot5
       objectReference: {fileID: 0}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 5466280542741998534, guid: afce921e5c9fc61488fc4af2e8e276a8, type: 3}
@@ -2304,6 +2345,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIInventorySlot2
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -2545,6 +2590,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 451280014}
     m_Modifications:
+    - target: {fileID: 807185220846741969, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1130904586675634942, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2633,6 +2682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIInventorySlot0
       objectReference: {fileID: 0}
+    - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: parentBar
+      value: 
+      objectReference: {fileID: 451280017}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: itemPrefab
       value: 
