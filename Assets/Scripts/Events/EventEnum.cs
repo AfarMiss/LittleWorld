@@ -5,11 +5,7 @@ using UnityEngine;
 public enum EventEnum
 {
     /// <summary>
-    /// 清理可见仓库中选中的内容
-    /// </summary>
-    CLEAR_BAR_SELECTED,
-    /// <summary>
-    /// 改变可见仓库中选中的内容
+    /// 用户改变可见仓库中选中的内容
     /// </summary>
     CLIENT_CHANGE_BAR_SELECTED,
     /// <summary>

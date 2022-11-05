@@ -126,6 +126,8 @@ public class InventoryManager : MonoSingleton<InventoryManager>
 
         inventoryItemsList[(int)location][itemFromIndex] = itemTo;
         inventoryItemsList[(int)location][itemToIndex] = itemFrom;
+        inventorySelectedList[(int)InventoryLocation.player] = itemToIndex;
+        EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), itemToIndex);
 
         EventHandler.CallUpdateInventoryEvent();
     }
@@ -159,13 +161,14 @@ public class InventoryManager : MonoSingleton<InventoryManager>
             if (inventoryItem.itemQuantity > 0)
             {
                 inventoryItemsList[localIndex][itemPosition] = inventoryItem;
+                EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), itemPosition);
             }
             else
             {
                 inventoryItem.itemCode = -1;
                 inventoryItemsList[localIndex][itemPosition] = inventoryItem;
+                EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), -1);
             }
-
         }
         else
         {
