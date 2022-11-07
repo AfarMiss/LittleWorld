@@ -81,6 +81,9 @@ public enum AnimationName
     count
 }
 
+/// <summary>
+/// 身体部位
+/// </summary>
 public enum CharacterPartAnimator
 {
     body,
@@ -91,12 +94,18 @@ public enum CharacterPartAnimator
     count
 }
 
+/// <summary>
+/// 部位颜色
+/// </summary>
 public enum PartVariantColour
 {
     none,
     count
 }
 
+/// <summary>
+/// 动画类型
+/// </summary>
 public enum PartVariantType
 {
     none,

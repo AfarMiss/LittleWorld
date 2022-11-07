@@ -50,7 +50,7 @@ public class AnimationOverrides : MonoBehaviour
             }
 
             AnimatorOverrideController aoc = new AnimatorOverrideController(currentAnimator.runtimeAnimatorController);
-            List<AnimationClip> animationsList = new List<AnimationClip>();
+            List<AnimationClip> animationsList = new List<AnimationClip>(aoc.animationClips);
 
             foreach (AnimationClip animationClip in animationsList)
             {

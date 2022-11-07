@@ -235,6 +235,15 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     {
         inventorySelectedList[(int)InventoryLocation.player] = arg0;
         Debug.Log($"inventorySelectedList[(int)InventoryLocation.player]:{inventorySelectedList[(int)InventoryLocation.player]}");
+        InventoryItem curItem = inventoryItemsList[(int)InventoryLocation.player][arg0];
+        if (GetItemDetail(curItem.itemCode) != null && GetItemDetail(curItem.itemCode).canBeCarried)
+        {
+            FarmGameController.Instance.ShowCarriedItem(curItem.itemCode);
+        }
+        else
+        {
+            FarmGameController.Instance.ClearCarriedItem();
+        }
         EventCenter.Instance.Trigger(nameof(EventEnum.UI_CHANGE_BAR_SELECTED));
     }
 }

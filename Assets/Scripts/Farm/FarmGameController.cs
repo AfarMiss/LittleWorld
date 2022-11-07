@@ -1,10 +1,19 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
 public class FarmGameController : MonoSingleton<FarmGameController>
 {
+    private AnimationOverrides animationOverrides;
+    private List<CharacterAttribute> characterAttributeCustomisationList;
+
+    private CharacterAttribute armsCharacterAttribute;
+    private CharacterAttribute toolCharacterAttribute;
+
+    [Tooltip("Should be populated in the prefab with the equipped item sprite renderer")]
+    [SerializeField] private SpriteRenderer equippedItemSpriteRenderer = null;
+
     private float inputX;
     private float inputY;
     private bool isWalking;
@@ -32,34 +41,6 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     private bool idleLeft;
     private bool idleUp;
     private bool idleDown;
-
-    //public float inputX;
-    //public float inputY;
-    //public bool isWalking;
-    //public bool isRunning;
-    //public bool isIdle;
-    //public bool isCarrying;
-    //public ToolEffect toolEffect;
-    //public bool isUsingToolRight;
-    //public bool isUsingToolLeft;
-    //public bool isUsingToolUp;
-    //public bool isUsingToolDown;
-    //public bool isLiftingToolRight;
-    //public bool isLiftingToolLeft;
-    //public bool isLiftingToolUp;
-    //public bool isLiftingToolDown;
-    //public bool isPickingRight;
-    //public bool isPickingLeft;
-    //public bool isPickingUp;
-    //public bool isPickingDown;
-    //public bool isSwingingToolRight;
-    //public bool isSwingingToolLeft;
-    //public bool isSwingingToolUp;
-    //public bool isSwingingToolDown;
-    //public bool idleRight;
-    //public bool idleLeft;
-    //public bool idleUp;
-    //public bool idleDown;
 
     private bool isPressWalking;
     private bool playerInputIsEnable = true;
@@ -91,7 +72,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     {
         //Reset Movement
         inputX = 0f;
-        inputY= 0f;
+        inputY = 0f;
         isRunning = false;
         isWalking = false;
         isIdle = true;
@@ -119,7 +100,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
     private void FixedUpdate()
     {
-        #region ≤Œ ˝–ﬁ∏ƒ
+        #region ÂèÇÊï∞‰øÆÊîπ
         var localPlayer = GameObject.FindObjectOfType<FarmPlayer>();
         var rigidgBody = localPlayer.GetComponent<Rigidbody2D>();
 
@@ -154,5 +135,44 @@ public class FarmGameController : MonoSingleton<FarmGameController>
    isPickingRight, isPickingLeft, isPickingUp, isPickingDown,
    isSwingingToolRight, isSwingingToolLeft, isSwingingToolUp, isSwingingToolDown,
    idleRight, idleLeft, idleUp, idleDown);
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        animationOverrides = GetComponentInChildren<AnimationOverrides>();
+        armsCharacterAttribute = new CharacterAttribute(CharacterPartAnimator.arms, PartVariantColour.none, PartVariantType.none);
+        characterAttributeCustomisationList = new List<CharacterAttribute>();
+    }
+
+    public void ShowCarriedItem(int itemCode)
+    {
+        ItemDetails itemDetails = InventoryManager.Instance.GetItemDetail(itemCode);
+        if (itemDetails != null)
+        {
+            equippedItemSpriteRenderer.sprite = itemDetails.itemSprite;
+            equippedItemSpriteRenderer.color = new Color(1, 1, 1, 1);
+
+            armsCharacterAttribute.partVariantType = PartVariantType.carry;
+            characterAttributeCustomisationList.Clear();
+            characterAttributeCustomisationList.Add(armsCharacterAttribute);
+            animationOverrides.ApplyCharacterCustomisationParameters(characterAttributeCustomisationList);
+
+            isCarrying = true;
+        }
+    }
+
+    public void ClearCarriedItem()
+    {
+        equippedItemSpriteRenderer.sprite = null;
+        equippedItemSpriteRenderer.color = new Color(1, 1, 1, 0);
+
+        armsCharacterAttribute.partVariantType = PartVariantType.none;
+        characterAttributeCustomisationList.Clear();
+        characterAttributeCustomisationList.Add(armsCharacterAttribute);
+        animationOverrides.ApplyCharacterCustomisationParameters(characterAttributeCustomisationList);
+
+        isCarrying = false;
     }
 }
