@@ -6,7 +6,6 @@ using UnityEngine;
 public class CubeTest : MonoBehaviour
 {
     public Action OnFinish;
-    public bool usingPool;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Finish")
@@ -15,9 +14,8 @@ public class CubeTest : MonoBehaviour
         }
     }
 
-    public void Init(Action OnFinish, bool usingPool)
+    public void Init(Action OnFinish)
     {
         this.OnFinish = OnFinish;
-        this.usingPool = usingPool;
     }
 }

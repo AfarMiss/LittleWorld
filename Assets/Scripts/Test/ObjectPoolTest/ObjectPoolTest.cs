@@ -16,7 +16,7 @@ public class ObjectPoolTest : MonoBehaviour
         pool = new ObjectPool<GameObject>(OnCreate, OnGet, OnRelease, OnDestoryGameObject, true, 5000, 10000);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         for (int i = 0; i < generateNum; i++)
         {
@@ -27,7 +27,7 @@ public class ObjectPoolTest : MonoBehaviour
             else
             {
                 var go = Instantiate(cube, UnityEngine.Random.insideUnitSphere, Quaternion.identity);
-                go.GetComponent<CubeTest>().Init(() => Destroy(go), false);
+                go.GetComponent<CubeTest>().Init(() => Destroy(go));
             }
         }
     }
@@ -51,7 +51,7 @@ public class ObjectPoolTest : MonoBehaviour
     private GameObject OnCreate()
     {
         var go = Instantiate(cube, UnityEngine.Random.insideUnitSphere, Quaternion.identity);
-        go.GetComponent<CubeTest>().Init(() => pool.Release(go), true);
+        go.GetComponent<CubeTest>().Init(() => pool.Release(go));
         return go;
     }
 }

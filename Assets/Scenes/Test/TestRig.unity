@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96afd3806c052884c9303bd7805f192b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateNum: 50
+  generateNum: 100
   usePool: 1
   cube: {fileID: 6258638324634866348, guid: 027ef529ad09f0d41a6201cc95f4ff3f, type: 3}
 --- !u!4 &1335227820
