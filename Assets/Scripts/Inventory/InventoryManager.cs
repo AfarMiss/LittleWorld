@@ -235,15 +235,24 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     {
         inventorySelectedList[(int)InventoryLocation.player] = arg0;
         Debug.Log($"inventorySelectedList[(int)InventoryLocation.player]:{inventorySelectedList[(int)InventoryLocation.player]}");
-        InventoryItem curItem = inventoryItemsList[(int)InventoryLocation.player][arg0];
-        if (GetItemDetail(curItem.itemCode) != null && GetItemDetail(curItem.itemCode).canBeCarried)
+        //当操作是选中物体时，同步更新动画状态
+        if (arg0 != -1)
         {
-            FarmGameController.Instance.ShowCarriedItem(curItem.itemCode);
+            InventoryItem curItem = inventoryItemsList[(int)InventoryLocation.player][arg0];
+            if (GetItemDetail(curItem.itemCode) != null && GetItemDetail(curItem.itemCode).canBeCarried)
+            {
+                FarmGameController.Instance.ShowCarriedItem(curItem.itemCode);
+            }
+            else
+            {
+                FarmGameController.Instance.ClearCarriedItem();
+            }
         }
         else
         {
             FarmGameController.Instance.ClearCarriedItem();
         }
+
         EventCenter.Instance.Trigger(nameof(EventEnum.UI_CHANGE_BAR_SELECTED));
     }
 }

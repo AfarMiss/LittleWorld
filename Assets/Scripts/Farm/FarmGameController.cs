@@ -12,7 +12,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     private CharacterAttribute toolCharacterAttribute;
 
     [Tooltip("Should be populated in the prefab with the equipped item sprite renderer")]
-    [SerializeField] private SpriteRenderer equippedItemSpriteRenderer = null;
+    private SpriteRenderer equippedItemSpriteRenderer = null;
 
     private float inputX;
     private float inputY;
@@ -54,9 +54,21 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         playerInputIsEnable = true;
     }
 
+    private FarmPlayer localPlayer;
+    private Rigidbody2D rigidgBody;
+
     public void DisablePlayerInput()
     {
         playerInputIsEnable = false;
+    }
+
+    private void Start()
+    {
+        localPlayer = GameObject.FindObjectOfType<FarmPlayer>();
+        rigidgBody = localPlayer.GetComponent<Rigidbody2D>();
+
+        equippedItemSpriteRenderer = localPlayer.EquipRenderer;
+        animationOverrides = localPlayer.GetComponent<AnimationOverrides>();
     }
 
     public void DisablePlayerInputAndResetMovement()
@@ -101,8 +113,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     private void FixedUpdate()
     {
         #region 参数修改
-        var localPlayer = GameObject.FindObjectOfType<FarmPlayer>();
-        var rigidgBody = localPlayer.GetComponent<Rigidbody2D>();
+
 
         inputX = input.x;
         inputY = input.y;
@@ -141,7 +152,6 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     {
         base.Awake();
 
-        animationOverrides = GetComponentInChildren<AnimationOverrides>();
         armsCharacterAttribute = new CharacterAttribute(CharacterPartAnimator.arms, PartVariantColour.none, PartVariantType.none);
         characterAttributeCustomisationList = new List<CharacterAttribute>();
     }
