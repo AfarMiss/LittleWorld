@@ -60,6 +60,7 @@
   * [关于特效不可见的查找](readme/guan-yu-te-xiao-bu-ke-jian-de-cha-zhao.md)
   * [性能分析](readme/xing-neng-fen-xi.md)
   * [UnityEvent](readme/unityevent.md)
+  * [CompareTag vs ==](readme/comparetag-vs.md)
 * [C#](c/README.md)
   * [在Unity中使用C#自定义属性](c/zai-unity-zhong-shi-yongczi-ding-yi-shu-xing.md)
   * [程序集](c/cheng-xu-ji.md)
