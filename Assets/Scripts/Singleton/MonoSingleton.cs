@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
@@ -20,6 +20,14 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
             return instance;
         }
+    }
+
+    /// <summary>
+    /// 已经拥有实例
+    /// </summary>
+    public static bool hasInstance
+    {
+        get { return instance != null; }
     }
 
     protected virtual void Awake()

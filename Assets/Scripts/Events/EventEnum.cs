@@ -12,4 +12,15 @@ public enum EventEnum
     /// 管理器改变选中内容对应UI
     /// </summary>
     UI_CHANGE_BAR_SELECTED,
+
+    #region 时间相关事件
+    YEAR_CHANGE,
+    QUAD_CHANGE,
+    DAY_CHANGE,
+    HOUR_CHANGE,
+    MINUTE_CHANGE,
+    SECOND_CHANGE,
+
+    GAME_TICK,
+    #endregion
 }
