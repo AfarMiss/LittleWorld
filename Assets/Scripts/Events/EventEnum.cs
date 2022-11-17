@@ -23,4 +23,11 @@ public enum EventEnum
 
     GAME_TICK,
     #endregion
+
+    #region 场景相关事件
+    BEFORE_FADE_OUT,
+    BEFORE_SCENE_UNLOAD,
+    AFTER_NEXT_SCENE_LOAD,
+    AFTER_FADE_IN,
+    #endregion
 }

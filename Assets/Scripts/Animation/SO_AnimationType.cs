@@ -28,4 +28,9 @@ public class SO_AnimationType : ScriptableObject
     /// 动画种类
     /// </summary>
     public PartVariantType partVariantType;
+
+    IEnumerator test()
+    {
+        yield return null;
+    }
 }

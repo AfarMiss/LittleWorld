@@ -79,3 +79,19 @@ public class AnimationOverrides : MonoBehaviour
         }
     }
 }
+
+public class AnimationClipOverrides : List<KeyValuePair<string, AnimationClip>>
+{
+    public AnimationClipOverrides(int capacity) : base(capacity) { }
+
+    public AnimationClip this[string name]
+    {
+        get { return this.Find(x => x.Key.Equals(name)).Value; }
+        set
+        {
+            int index = this.FindIndex(x => x.Key.Equals(name));
+            if (index != -1)
+                this[index] = new KeyValuePair<string, AnimationClip>(this[index].Key, value);
+        }
+    }
+}

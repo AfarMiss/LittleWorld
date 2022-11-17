@@ -228,7 +228,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
 
     private void OnDisable()
     {
-        EventCenter.Instance.Unregister<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
+        EventCenter.Instance?.Unregister<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
     }
 
     private void OnUpdateBarSelected(int arg0)

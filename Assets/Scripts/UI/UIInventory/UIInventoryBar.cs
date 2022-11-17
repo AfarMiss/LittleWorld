@@ -30,7 +30,7 @@ public class UIInventoryBar : MonoBehaviour
 
     private void OnDisable()
     {
-        EventCenter.Instance.Unregister(nameof(EventEnum.UI_CHANGE_BAR_SELECTED), BindData);
+        EventCenter.Instance?.Unregister(nameof(EventEnum.UI_CHANGE_BAR_SELECTED), BindData);
         EventHandler.UpdateInventoryEvent -= BindData;
     }
 

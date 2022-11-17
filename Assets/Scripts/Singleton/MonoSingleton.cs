@@ -2,11 +2,16 @@
 
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
+    protected static bool AppIsQuit;
     private static T instance;
     public static T Instance
     {
         get
         {
+            if (AppIsQuit)
+            {
+                return null;
+            }
             if (instance == null)
             {
                 instance = FindObjectOfType<T>();
@@ -35,11 +40,17 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         if (instance == null)
         {
             instance = this as T;
+            AppIsQuit = false;
             DontDestroyOnLoad(instance);
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        AppIsQuit = true;
     }
 }
