@@ -1,14 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Cinemachine;
+using UnityEditor;
 
 public class SwitchConfineBoundingShape : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        SwitchBoundingShape();
-    }
-
     /// <summary>
     /// Switch the collider that cinemachine uses to define the edges of the screen.
     /// </summary>
@@ -19,5 +14,20 @@ public class SwitchConfineBoundingShape : MonoBehaviour
         cinemachineConfiner.m_BoundingShape2D = polygonCollider2D;
 
         cinemachineConfiner.InvalidatePathCache();
+    }
+
+    private void OnEnable()
+    {
+        EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
+    }
+
+    private void OnDisable()
+    {
+        EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
+    }
+
+    private void OnSceneLoaded()
+    {
+        SwitchBoundingShape();
     }
 }

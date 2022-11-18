@@ -117,3 +117,10 @@ public enum PartVariantType
     wateringCan,
     count
 }
+
+public enum SceneNameEnum
+{
+    Scene1_Farm,
+    Scene2_Field,
+    Scene3_Cabin,
+}
