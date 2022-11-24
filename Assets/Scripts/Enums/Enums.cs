@@ -118,8 +118,9 @@ public enum PartVariantType
     count
 }
 
-public enum SceneNameEnum
+public enum SceneEnum
 {
+    PersistentSccene,
     Scene1_Farm,
     Scene2_Field,
     Scene3_Cabin,

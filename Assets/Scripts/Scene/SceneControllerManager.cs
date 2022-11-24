@@ -11,14 +11,14 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
     [SerializeField] public float fadeDuration;
     [SerializeField] private CanvasGroup faderCanvasGroup = null;
     [SerializeField] private Image faderImage;
-    public SceneNameEnum startingSceneName;
+    public SceneEnum startingSceneName;
 
 
-    public void FadeAndLoadScene(string sceneName, Vector3 spawnPos)
+    public void TryChangeScene(string sceneName, Vector3 spawnPos)
     {
         if (!isFading)
         {
-            StartCoroutine(FadeAndSwitchScene(sceneName, spawnPos));
+            StartCoroutine(ChangeScene(sceneName, spawnPos));
         }
     }
 
@@ -40,14 +40,14 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
         faderCanvasGroup.blocksRaycasts = false;
     }
 
-    private IEnumerator LoadSceneAndSetActive(string sceneName)
+    private IEnumerator LoadActiveScene(string sceneName)
     {
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         Scene newlyLoadedScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
         SceneManager.SetActiveScene(newlyLoadedScene);
     }
 
-    private IEnumerator FadeAndSwitchScene(string sceneName, Vector3 spawnPos)
+    private IEnumerator ChangeScene(string sceneName, Vector3 spawnPos)
     {
         EventCenter.Instance.Trigger(EventEnum.BEFORE_FADE_OUT.ToString());
 
@@ -58,7 +58,7 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
 
         yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 
-        yield return StartCoroutine(LoadSceneAndSetActive(sceneName));
+        yield return StartCoroutine(LoadActiveScene(sceneName));
 
         EventCenter.Instance.Trigger(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString());
 
@@ -73,7 +73,7 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
         faderImage.color = new Color(0f, 0f, 0f, 1f);
         faderCanvasGroup.alpha = 1f;
 
-        yield return StartCoroutine(LoadSceneAndSetActive(startingSceneName.ToString()));
+        yield return StartCoroutine(LoadActiveScene(startingSceneName.ToString()));
 
         EventCenter.Instance.Trigger(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString());
 
@@ -84,6 +84,6 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
     public void LoadFarm()
     {
         var curPlayerPoint = GameObject.FindGameObjectWithTag(Tags.PlayerRespawnPoint);
-        SceneControllerManager.Instance.FadeAndLoadScene(SceneNameEnum.Scene1_Farm.ToString(), curPlayerPoint.transform.position);
+        SceneControllerManager.Instance.TryChangeScene(SceneEnum.Scene1_Farm.ToString(), curPlayerPoint.transform.position);
     }
 }

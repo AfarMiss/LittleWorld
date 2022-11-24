@@ -7,9 +7,12 @@ using UnityEngine;
 /// </summary>
 public class Director : MonoSingleton<Director>
 {
-    public FarmPlayer GetPlayer()
+    public FarmPlayer MainPlayer
     {
-        return FindObjectOfType<FarmPlayer>();
+        get
+        {
+            return GameObject.FindObjectOfType<FarmPlayer>();
+        }
     }
 
     private void Start()
