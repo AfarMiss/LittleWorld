@@ -7,7 +7,7 @@ public class SceneTeleport : MonoBehaviour
     [SerializeField] private SceneEnum nextScene;
     [SerializeField] private Vector2 telePosRef;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         var realTelePos = telePosRef;
 

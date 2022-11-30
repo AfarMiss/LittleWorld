@@ -52,6 +52,9 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
         EventCenter.Instance.Trigger(EventEnum.BEFORE_FADE_OUT.ToString());
 
         yield return StartCoroutine(Fade(1f));
+
+        SaveLoadManager.Instance.StoreCurrentSceneData();
+
         FarmPlayer.Instance.gameObject.transform.position = spawnPos;
 
         EventCenter.Instance.Trigger(EventEnum.BEFORE_SCENE_UNLOAD.ToString());
@@ -61,6 +64,8 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
         yield return StartCoroutine(LoadActiveScene(sceneName));
 
         EventCenter.Instance.Trigger(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString());
+
+        SaveLoadManager.Instance.RestoreCurrentSceneData();
 
         yield return StartCoroutine(Fade(0f));
 
@@ -76,6 +81,8 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
         yield return StartCoroutine(LoadActiveScene(startingSceneName.ToString()));
 
         EventCenter.Instance.Trigger(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString());
+
+        SaveLoadManager.Instance.RestoreCurrentSceneData();
 
         StartCoroutine(Fade(0f));
     }
