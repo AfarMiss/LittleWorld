@@ -26,13 +26,13 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
     private void OnEnable()
     {
         ISaveableRegister();
-        EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoad);
+        EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoad);
     }
 
     private void OnDisable()
     {
         ISaveableDeregister();
-        EventCenter.Instance.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoad);
+        EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoad);
     }
 
     private void AfterSceneLoad()
@@ -42,12 +42,12 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
     public void ISaveableDeregister()
     {
-        SaveLoadManager.Instance.iSaveableObjectList.Remove(this);
+        SaveLoadManager.Instance?.iSaveableObjectList.Remove(this);
     }
 
     public void ISaveableRegister()
     {
-        SaveLoadManager.Instance.iSaveableObjectList.Add(this);
+        SaveLoadManager.Instance?.iSaveableObjectList.Add(this);
     }
 
     public void ISaveableRestoreScene(string sceneName)
@@ -99,8 +99,10 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
     public void ISaveableStoreScene(string sceneName)
     {
+        //删除旧数据
         GameObjectSave.sceneData.Remove(sceneName);
 
+        //保存新数据
         List<SceneItem> sceneItemList = new List<SceneItem>();
         Item[] itemsInScene = FindObjectsOfType<Item>();
 
