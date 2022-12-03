@@ -146,11 +146,17 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             Vector3 worldPosition = UniBase.InputUtils.GetMousePositionToWorldWithSpecificZ(-mainCamera.transform.position.z);
 
-            GameObject itemGameObject = Instantiate(itemPrefab, worldPosition, Quaternion.identity, parentItem);
-            Item item = itemGameObject.GetComponent<Item>();
-            item.ItemCode = itemDetails.itemCode;
+            Vector3Int gridPos = GridPropertiesManager.Instance.grid.WorldToCell(worldPosition);
+            GridPropertyDetails details = GridPropertiesManager.Instance.GetGridPropertyDetails(gridPos.x, gridPos.y);
 
-            InventoryManager.Instance.RemoveItem(InventoryLocation.player, item);
+            if (details != null && details.canDropItem)
+            {
+                GameObject itemGameObject = Instantiate(itemPrefab, new Vector3(worldPosition.x, worldPosition.y - FarmSetting.gridCellSize * 0.5f, worldPosition.z), Quaternion.identity, parentItem);
+                Item item = itemGameObject.GetComponent<Item>();
+                item.ItemCode = itemDetails.itemCode;
+
+                InventoryManager.Instance.RemoveItem(InventoryLocation.player, item);
+            }
         }
     }
 

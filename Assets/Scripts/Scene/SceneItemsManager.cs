@@ -54,10 +54,10 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
     {
         if (GameObjectSave.sceneData.TryGetValue(sceneName, out SceneSave sceneSave))
         {
-            if (sceneSave.listSceneItemList != null)
+            if (sceneSave.sceneItemList != null)
             {
                 DestroySceneItems();
-                InstantiateSceneItems(sceneSave.listSceneItemList);
+                InstantiateSceneItems(sceneSave.sceneItemList);
             }
         }
     }
@@ -117,7 +117,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         }
 
         SceneSave sceneSave = new SceneSave();
-        sceneSave.listSceneItemList = sceneItemList;
+        sceneSave.sceneItemList = sceneItemList;
 
         GameObjectSave.sceneData.Add(sceneName, sceneSave);
     }

@@ -3,5 +3,6 @@
 [System.Serializable]
 public class SceneSave
 {
-    public List<SceneItem> listSceneItemList;
+    public List<SceneItem> sceneItemList;
+    public Dictionary<string, GridPropertyDetails> gridPropertyDetailsDictionary;
 }

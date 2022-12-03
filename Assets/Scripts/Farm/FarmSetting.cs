@@ -9,6 +9,8 @@ public static class FarmSetting
     public const float fadeInSeconds = 0.25f;
     public const float fadeOutSeconds = 0.25f;
 
+    public const float gridCellSize = 1f;
+
     public const float gameTick = 0.001f;
 
 
