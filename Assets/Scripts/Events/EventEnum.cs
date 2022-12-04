@@ -11,7 +11,7 @@ public enum EventEnum
     /// <summary>
     /// 管理器改变选中内容对应UI
     /// </summary>
-    UI_CHANGE_BAR_SELECTED,
+    INVENTORY_MANAGER_CHANGE_BAR_SELECTED,
 
     #region 时间相关事件
     YEAR_CHANGE,

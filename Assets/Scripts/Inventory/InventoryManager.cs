@@ -21,6 +21,19 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         CreateSelectedList();
     }
 
+    public ItemDetails GetItemDetailOfHighlight(InventoryLocation inventoryLocation)
+    {
+        var hightLightIndex = inventorySelectedList[(int)InventoryLocation.player];
+        if (hightLightIndex >= 0 && hightLightIndex < inventoryItemsList[(int)inventoryLocation].Count)
+        {
+            return GetItemDetail(inventoryItemsList[(int)inventoryLocation][hightLightIndex].itemCode);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     private void CreateItemDetailsDictionary()
     {
         itemDetailsDictionary = new Dictionary<int, ItemDetails>();
@@ -223,7 +236,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
 
     private void OnEnable()
     {
-        EventCenter.Instance.Register<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
+        EventCenter.Instance?.Register<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
     }
 
     private void OnDisable()
@@ -236,7 +249,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         inventorySelectedList[(int)InventoryLocation.player] = arg0;
         Debug.Log($"inventorySelectedList[(int)InventoryLocation.player]:{inventorySelectedList[(int)InventoryLocation.player]}");
         //当操作是选中物体时，同步更新动画状态
-        if (arg0 != -1)
+        if (arg0 >= 0 && arg0 < inventoryItemsList[(int)InventoryLocation.player].Count)
         {
             InventoryItem curItem = inventoryItemsList[(int)InventoryLocation.player][arg0];
             if (GetItemDetail(curItem.itemCode) != null && GetItemDetail(curItem.itemCode).canBeCarried)
@@ -253,6 +266,11 @@ public class InventoryManager : MonoSingleton<InventoryManager>
             FarmGameController.Instance.ClearCarriedItem();
         }
 
-        EventCenter.Instance.Trigger(nameof(EventEnum.UI_CHANGE_BAR_SELECTED));
+        EventCenter.Instance.Trigger(nameof(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED));
+    }
+
+    private int GetSelectedInventoryItem(InventoryLocation inventoryLocation)
+    {
+        return inventorySelectedList[(int)inventoryLocation];
     }
 }
