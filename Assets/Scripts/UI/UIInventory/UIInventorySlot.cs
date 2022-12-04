@@ -40,11 +40,13 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void OnEnable()
     {
+        EventCenter.Instance.Register(EventEnum.DROP_SELECTED_ITEM.ToString(), OnDropSelectedItem);
         EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
     }
 
     private void OnDisable()
     {
+        EventCenter.Instance.Unregister(EventEnum.DROP_SELECTED_ITEM.ToString(), OnDropSelectedItem);
         EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
     }
 
@@ -222,5 +224,13 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), -1);
         Debug.Log($"SelectItem:-1");
+    }
+
+    private void OnDropSelectedItem()
+    {
+        if (isSelected)
+        {
+            DropSelectedItemAtMousePosition();
+        }
     }
 }

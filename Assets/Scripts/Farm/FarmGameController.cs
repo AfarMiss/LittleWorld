@@ -5,6 +5,10 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class FarmGameController : MonoSingleton<FarmGameController>
 {
+    private WaitForSeconds afterUseToolAnimationPause;
+    private WaitForSeconds useToolAnimationPause;
+    private bool playerToolUseDisabled = false;
+
     private AnimationOverrides animationOverrides;
     private List<CharacterAttribute> characterAttributeCustomisationList;
 
@@ -45,6 +49,9 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     private bool isPressWalking;
     private bool playerInputIsEnable = true;
 
+    //后期剥离出来，最后用事件
+    private GridCursor gridCursor;
+
     private Vector2 input;
 
     public bool PlayerInputIsEnable => playerInputIsEnable;
@@ -69,6 +76,11 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
         equippedItemSpriteRenderer = localPlayer.EquipRenderer;
         animationOverrides = localPlayer.GetComponent<AnimationOverrides>();
+
+        useToolAnimationPause = new WaitForSeconds(FarmSetting.useToolAnimationPause);
+        afterUseToolAnimationPause = new WaitForSeconds(FarmSetting.afterUseToolAnimationPause);
+
+        gridCursor = GameObject.FindObjectOfType<GridCursor>();
     }
 
     public void DisablePlayerInputAndResetMovement()
@@ -107,6 +119,44 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         if (context.canceled)
         {
             isPressWalking = false;
+        }
+    }
+
+    public void OnClickLeft(CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            if (gridCursor.CursorIsEnable)
+            {
+                ProcessPlayerClickInput();
+            }
+        }
+    }
+
+    private void ProcessPlayerClickInput()
+    {
+        ResetMovement();
+        ItemDetails itemDetails = InventoryManager.Instance.GetSelectedItemDetail(InventoryLocation.player);
+
+        if (itemDetails != null)
+        {
+            switch (itemDetails.itemType)
+            {
+                case ItemType.seed:
+                    if (itemDetails.canBeDropped && gridCursor.CursorPositionIsValid)
+                    {
+                        EventCenter.Instance.Trigger(EventEnum.DROP_SELECTED_ITEM.ToString());
+                    }
+                    break;
+                case ItemType.commodity:
+                    if (itemDetails.canBeDropped && gridCursor.CursorPositionIsValid)
+                    {
+                        EventCenter.Instance.Trigger(EventEnum.DROP_SELECTED_ITEM.ToString());
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

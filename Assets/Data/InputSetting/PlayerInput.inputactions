@@ -196,6 +196,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "左击",
+                    "type": "Button",
+                    "id": "5ef038cd-eb9a-4aa2-a1ba-82c7f15ce4fa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "行走",
                     "type": "Button",
                     "id": "c777a75d-ac00-4b5e-a284-2787ec5b0216",
@@ -280,6 +289,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "行走",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb98faa1-6496-4f56-a42b-f4fbf9de0c78",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "左击",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

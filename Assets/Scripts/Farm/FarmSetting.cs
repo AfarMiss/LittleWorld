@@ -10,9 +10,12 @@ public static class FarmSetting
     public const float fadeOutSeconds = 0.25f;
 
     public const float gridCellSize = 1f;
+    public static Vector2 cursorSize = Vector2.one;
+
+    public static float useToolAnimationPause = 0.25f;
+    public static float afterUseToolAnimationPause = 0.2f;
 
     public const float gameTick = 0.001f;
-
 
     private static string inputXString = "xInput";
     private static string inputYString = "yInput";

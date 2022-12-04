@@ -21,7 +21,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         CreateSelectedList();
     }
 
-    public ItemDetails GetItemDetailOfHighlight(InventoryLocation inventoryLocation)
+    public ItemDetails GetSelectedItemDetail(InventoryLocation inventoryLocation)
     {
         var hightLightIndex = inventorySelectedList[(int)InventoryLocation.player];
         if (hightLightIndex >= 0 && hightLightIndex < inventoryItemsList[(int)inventoryLocation].Count)

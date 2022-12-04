@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -96,5 +96,47 @@ namespace UniBase
         }
     }
 
+    public static class OverlapHelper
+    {
+        /// <summary>
+        /// 添加矩形范围内所有T类型组件
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="listComponentsAtBoxPosition"></param>
+        /// <param name="point"></param>
+        /// <param name="size"></param>
+        /// <param name="angle"></param>
+        /// <returns></returns>
+        public static bool GetComponentsAtBoxLocation<T>(out List<T> listComponentsAtBoxPosition, Vector2 point, Vector2 size, float angle)
+        {
+            bool found = false;
+            List<T> listComponents = new List<T>();
 
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(point, size, angle);
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                //我认为这一段中两个Add有可能重复添加同一个组件
+                T tComponent = colliders[i].gameObject.GetComponentInParent<T>();
+                if (tComponent != null)
+                {
+                    found = true;
+                    listComponents.Add(tComponent);
+                }
+                else
+                {
+                    tComponent = colliders[i].gameObject.GetComponentInChildren<T>();
+                    if (tComponent != null)
+                    {
+                        found = true;
+                        listComponents.Add(tComponent);
+                    }
+                }
+            }
+
+            listComponentsAtBoxPosition = listComponents;
+
+            return found;
+        }
+    }
 }

@@ -55,7 +55,7 @@ public class GridCursor : MonoSingleton<GridCursor>
 
     private void OnUpdateBarSelected()
     {
-        var inventoryItem = InventoryManager.Instance.GetItemDetailOfHighlight(InventoryLocation.player);
+        var inventoryItem = InventoryManager.Instance.GetSelectedItemDetail(InventoryLocation.player);
         if (inventoryItem != null)
         {
             if (inventoryItem.itemUseGridRadius > 0)
@@ -122,8 +122,8 @@ public class GridCursor : MonoSingleton<GridCursor>
             return;
         }
 
-        ItemDetails details = InventoryManager.Instance.GetItemDetailOfHighlight(InventoryLocation.player);
-        if (details == null)
+        ItemDetails itemDetails = InventoryManager.Instance.GetSelectedItemDetail(InventoryLocation.player);
+        if (itemDetails == null)
         {
             SetCursorToInvalid();
             return;
@@ -136,7 +136,7 @@ public class GridCursor : MonoSingleton<GridCursor>
             return;
         }
 
-        switch (details.itemType)
+        switch (itemDetails.itemType)
         {
             case ItemType.seed:
                 if (!IsCursorValidForSeed(gridPropertyDetails))
@@ -152,9 +152,59 @@ public class GridCursor : MonoSingleton<GridCursor>
                     return;
                 }
                 break;
+            case ItemType.hoeing_tool:
+                if (!IsCursorValidForHoeingTool(gridPropertyDetails, itemDetails))
+                {
+                    SetCursorToInvalid();
+                    return;
+                }
+                break;
             default:
                 break;
         }
+    }
+
+    private bool IsCursorValidForHoeingTool(GridPropertyDetails gridPropertyDetails, ItemDetails itemDetails)
+    {
+        switch (itemDetails.itemType)
+        {
+            case ItemType.hoeing_tool:
+                if (gridPropertyDetails.isDiggable == true && gridPropertyDetails.daysSinceDug == -1)
+                {
+                    Vector3 cursorWorldPos = new Vector3(GetWorldPositionForCursor().x + 0.5f, GetWorldPositionForCursor().y + 0.5f, 0f);
+                    List<Item> itemList = new List<Item>();
+
+                    UniBase.OverlapHelper.GetComponentsAtBoxLocation<Item>(out itemList, cursorWorldPos, FarmSetting.cursorSize, 0f);
+
+                    bool foundReapable = false;
+
+                    foreach (var item in itemList)
+                    {
+                        if (InventoryManager.Instance.GetItemDetail(item.ItemCode).itemType == ItemType.reapable_scenery)
+                        {
+                            foundReapable = true;
+                            break;
+                        }
+                    }
+
+                    return !foundReapable;
+                }
+                else
+                {
+                    return false; ;
+                }
+            default:
+                return false;
+        }
+    }
+
+    /// <summary>
+    /// 获取当前grid位置[左下角]
+    /// </summary>
+    /// <returns></returns>
+    private Vector3 GetWorldPositionForCursor()
+    {
+        return grid.CellToWorld(GetGridPositionForCursor());
     }
 
     private bool IsCursorValidForCommodity(GridPropertyDetails gridPropertyDetails)
@@ -208,8 +258,9 @@ public class GridCursor : MonoSingleton<GridCursor>
         //从grid坐标转换到屏幕坐标
         Vector3 gridWorldPos = grid.CellToWorld(gridPos);
         Vector2 gridSceenPos = mainCamera.WorldToScreenPoint(gridWorldPos);
+        //目前没看出RectTransformUtility.PixelAdjustPoint和gridSceenPos得出的坐标差别是什么
         var pixelPos = RectTransformUtility.PixelAdjustPoint(gridSceenPos, cursorRectTransform, canvas);
-        Debug.Log($"gridSceenPos:{gridSceenPos},pixelPos:{pixelPos}");
+        //Debug.Log($"gridSceenPos:{gridSceenPos},pixelPos:{pixelPos}");
         //获取基于画布canvas的像素点坐标
         return pixelPos;
     }
