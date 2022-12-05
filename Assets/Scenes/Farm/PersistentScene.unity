@@ -2869,7 +2869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6680374677553872250, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: m_Name
-      value: b
+      value: UIInventorySlot2
       objectReference: {fileID: 0}
     - target: {fileID: 7105657463477758842, guid: bfbb5466c96523648a32719cc1391996, type: 3}
       propertyPath: parentBar

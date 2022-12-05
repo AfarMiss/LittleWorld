@@ -230,13 +230,13 @@ public class GridCursor : MonoSingleton<GridCursor>
         CursorPositionIsValid = true;
     }
 
-    private Vector3Int GetGridPositionForCursor()
+    public Vector3Int GetGridPositionForCursor()
     {
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(UniBase.InputUtils.GetMousePosition());
         return grid.WorldToCell(worldPos);
     }
 
-    private Vector3Int GetGridPositionForPlayer()
+    public Vector3Int GetGridPositionForPlayer()
     {
         return grid.WorldToCell(Director.Instance.MainPlayer.transform.position);
     }

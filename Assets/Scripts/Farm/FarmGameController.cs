@@ -7,6 +7,10 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 {
     private WaitForSeconds afterUseToolAnimationPause;
     private WaitForSeconds useToolAnimationPause;
+
+    /// <summary>
+    /// 玩家是否处于禁用物品状态
+    /// </summary>
     private bool playerToolUseDisabled = false;
 
     private AnimationOverrides animationOverrides;
@@ -47,6 +51,9 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     private bool idleDown;
 
     private bool isPressWalking;
+    /// <summary>
+    /// 玩家输入是否开启
+    /// </summary>
     private bool playerInputIsEnable = true;
 
     //后期剥离出来，最后用事件
@@ -124,18 +131,29 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
     public void OnClickLeft(CallbackContext context)
     {
-        if (context.canceled)
+        if (!playerToolUseDisabled)
         {
-            if (gridCursor.CursorIsEnable)
+            if (context.canceled)
             {
-                ProcessPlayerClickInput();
+                if (gridCursor.CursorIsEnable)
+                {
+                    Vector3Int cursorGridPosition = gridCursor.GetGridPositionForCursor();
+                    Vector3Int playerGridPosition = gridCursor.GetGridPositionForPlayer();
+                    ProcessPlayerClickInput(cursorGridPosition, playerGridPosition);
+                }
             }
         }
     }
 
-    private void ProcessPlayerClickInput()
+    private void ProcessPlayerClickInput(Vector3Int cursorGridPosition, Vector3Int playerGridPosition)
     {
         ResetMovement();
+
+        Vector3Int playerDirection = GetPlayerClickDirection(cursorGridPosition, playerGridPosition);
+        GridPropertyDetails gridPropertyDetails = GridPropertiesManager.Instance.GetGridPropertyDetails(cursorGridPosition.x, cursorGridPosition.y);
+
+
+
         ItemDetails itemDetails = InventoryManager.Instance.GetSelectedItemDetail(InventoryLocation.player);
 
         if (itemDetails != null)
@@ -154,9 +172,122 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                         EventCenter.Instance.Trigger(EventEnum.DROP_SELECTED_ITEM.ToString());
                     }
                     break;
+                case ItemType.hoeing_tool:
+                    ProcessPlayerClickInputTool(gridPropertyDetails, itemDetails, playerDirection);
+                    break;
                 default:
                     break;
             }
+        }
+    }
+
+    private void ProcessPlayerClickInputTool(GridPropertyDetails gridPropertyDetails, ItemDetails itemDetails, Vector3Int playerDirection)
+    {
+        switch (itemDetails.itemType)
+        {
+            case ItemType.hoeing_tool:
+                if (gridCursor.CursorPositionIsValid)
+                {
+                    HoeGrooundAtCursor(gridPropertyDetails, playerDirection);
+                }
+                break;
+            case ItemType.chopping_tool:
+                break;
+            case ItemType.breaking_tool:
+                break;
+            case ItemType.collection_tool:
+                break;
+            case ItemType.watering_tool:
+                break;
+            case ItemType.reaping_tool:
+                break;
+            case ItemType.none:
+                break;
+            case ItemType.count:
+                break;
+            case ItemType.furniture:
+                break;
+            case ItemType.reapable_scenery:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void HoeGrooundAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)
+    {
+        StartCoroutine(HoeGroundAtCursorRoutine(playerDirection, gridPropertyDetails));
+    }
+
+    private void ResetDir()
+    {
+        isUsingToolRight = false;
+        isUsingToolLeft = false;
+        isUsingToolUp = false;
+        isUsingToolDown = false;
+    }
+
+    private IEnumerator HoeGroundAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails)
+    {
+        playerInputIsEnable = false;
+        playerToolUseDisabled = true;
+
+        toolCharacterAttribute.partVariantType = PartVariantType.hoe;
+        characterAttributeCustomisationList.Clear();
+        characterAttributeCustomisationList.Add(toolCharacterAttribute);
+        animationOverrides.ApplyCharacterCustomisationParameters(characterAttributeCustomisationList);
+
+        if (playerDirection == Vector3Int.right)
+        {
+            isUsingToolRight = true;
+        }
+        else if (playerDirection == Vector3Int.left)
+        {
+            isUsingToolLeft = true;
+        }
+        else if (playerDirection == Vector3Int.up)
+        {
+            isUsingToolUp = true;
+        }
+        else if (playerDirection == Vector3Int.down)
+        {
+            isUsingToolDown = true;
+        }
+
+        yield return useToolAnimationPause;
+
+        if (gridPropertyDetails.daysSinceDug == -1)
+        {
+            gridPropertyDetails.daysSinceDug = 0;
+        }
+
+        GridPropertiesManager.Instance.SetGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY, gridPropertyDetails);
+
+        yield return afterUseToolAnimationPause;
+
+        ResetDir();
+
+        playerInputIsEnable = true;
+        playerToolUseDisabled = false;
+    }
+
+    private Vector3Int GetPlayerClickDirection(Vector3Int cursorGridPosition, Vector3Int playerGridPosition)
+    {
+        if (cursorGridPosition.x > playerGridPosition.x)
+        {
+            return Vector3Int.right;
+        }
+        else if (cursorGridPosition.x < playerGridPosition.x)
+        {
+            return Vector3Int.left;
+        }
+        else if (cursorGridPosition.y > playerGridPosition.y)
+        {
+            return Vector3Int.up;
+        }
+        else
+        {
+            return Vector3Int.down;
         }
     }
 

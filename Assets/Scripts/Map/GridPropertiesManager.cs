@@ -120,6 +120,15 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         gridPropertyDictionary[key] = gridPropertyDetails;
     }
 
+    public void SetGridPropertyDetails(int x, int y, GridPropertyDetails gridPropertyDetails)
+    {
+        string key = $"x{x}y{y}";
+        gridPropertyDetails.gridX = x;
+        gridPropertyDetails.gridY = y;
+
+        gridPropertyDictionary[key] = gridPropertyDetails;
+    }
+
     private GridPropertyDetails GetGridPropertyDetails(int x, int y, Dictionary<string, GridPropertyDetails> gridPropertyDictionary)
     {
         string key = $"x{x}y{y}";
