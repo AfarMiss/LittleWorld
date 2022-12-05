@@ -32,9 +32,11 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [SerializeField]
     private bool isSelected;
 
+    public bool IsSelected { get => isSelected; set => isSelected = value; }
+
     private void Awake()
     {
-        isSelected = false;
+        IsSelected = false;
         parentCanvas = GetComponentInParent<Canvas>();
     }
 
@@ -98,8 +100,8 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (itemDetails != null)
         {
+            SetSelected();
             //FarmGameController.Instance.DisablePlayerInput();
-
             draggedItem = Instantiate(parentBar.inventoryBarDraggedItem, parentBar.transform);
 
             Image draggedItemImage = draggedItem.GetComponentInChildren<Image>();
@@ -109,6 +111,11 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
     }
 
+    private void SetSelected()
+    {
+        SelectItem();
+        IsSelected = true;
+    }
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
@@ -133,10 +140,12 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
             else
             {
-                if (itemDetails.canBeDropped)
-                {
-                    DropSelectedItemAtMousePosition();
-                }
+                //这一部分交给FarmGameConroller.OnClickLeft，后期可以将丢弃键绑到键盘键[Q键之类的]，跟教程期间就先做此改动
+
+                //if (itemDetails.canBeDropped)
+                //{
+                //    DropSelectedItemAtMousePosition();
+                //}
             }
 
             FarmGameController.Instance.EnablePlayerInput();
@@ -202,20 +211,26 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (isSelected)
-            {
-                ClearSelected();
-            }
-            else
-            {
-                SelectItem();
-            }
-            isSelected = !isSelected;
+            CheckSelected();
         }
+    }
+
+    private void CheckSelected()
+    {
+        if (IsSelected)
+        {
+            ClearSelected();
+        }
+        else
+        {
+            SelectItem();
+        }
+        IsSelected = !IsSelected;
     }
 
     private void SelectItem()
     {
+        this.parentBar.ClearPlayerSelected();
         EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), slotIndex);
         Debug.Log($"SelectItem:{slotIndex}");
     }
@@ -228,7 +243,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void OnDropSelectedItem()
     {
-        if (isSelected)
+        if (IsSelected)
         {
             DropSelectedItemAtMousePosition();
         }

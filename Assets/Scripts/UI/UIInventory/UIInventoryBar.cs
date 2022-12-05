@@ -85,4 +85,12 @@ public class UIInventoryBar : MonoBehaviour
             }
         }
     }
+
+    public void ClearPlayerSelected()
+    {
+        foreach (var item in uIInventorySlots)
+        {
+            item.IsSelected = false;
+        }
+    }
 }
