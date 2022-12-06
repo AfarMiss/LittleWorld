@@ -152,6 +152,7 @@ public class GridCursor : MonoSingleton<GridCursor>
                     return;
                 }
                 break;
+            case ItemType.watering_tool:
             case ItemType.hoeing_tool:
                 if (!IsCursorValidForHoeingTool(gridPropertyDetails, itemDetails))
                 {
@@ -174,7 +175,7 @@ public class GridCursor : MonoSingleton<GridCursor>
                     Vector3 cursorWorldPos = new Vector3(GetWorldPositionForCursor().x + 0.5f, GetWorldPositionForCursor().y + 0.5f, 0f);
                     List<Item> itemList = new List<Item>();
 
-                    UniBase.OverlapHelper.GetComponentsAtBoxLocation<Item>(out itemList, cursorWorldPos, FarmSetting.cursorSize, 0f);
+                    UniBase.OverlapHelper.GetComponentsAtBoxLocation(out itemList, cursorWorldPos, FarmSetting.cursorSize, 0f);
 
                     bool foundReapable = false;
 
@@ -193,6 +194,8 @@ public class GridCursor : MonoSingleton<GridCursor>
                 {
                     return false; ;
                 }
+            case ItemType.watering_tool:
+                return gridPropertyDetails.daysSinceDug > -1 && gridPropertyDetails.daysSinceWatered == -1;
             default:
                 return false;
         }

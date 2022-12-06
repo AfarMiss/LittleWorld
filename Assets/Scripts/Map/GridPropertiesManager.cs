@@ -2,20 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(GenerateGUID))]
 public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISaveable
 {
+    private Tilemap groundDecoration1;
+    private Tilemap groundDecoration2;
     /// <summary>
     /// 当前地图格子设置信息
     /// </summary>
-    public Grid grid;
+    private Grid grid;
     /// <summary>
     /// 当前地图信息
     /// </summary>
     private Dictionary<string, GridPropertyDetails> gridPropertyDictionary;
     [SerializeField]
     private SO_GridProperties[] so_gridPropertiesArray = null;
+    [SerializeField]
+    private Tile[] dugGround = null;
 
     private string iSaveableUniqueID;
     public string ISaveableUniqueID { get => iSaveableUniqueID; set => iSaveableUniqueID = value; }
@@ -46,6 +51,9 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     private void AfterSceneLoaded()
     {
         grid = GameObject.FindObjectOfType<Grid>();
+
+        groundDecoration1 = GameObject.FindGameObjectWithTag(Tags.GroundDecoration1).GetComponent<Tilemap>();
+        groundDecoration2 = GameObject.FindGameObjectWithTag(Tags.GroundDecoration2).GetComponent<Tilemap>();
     }
 
     public void ISaveableDeregister()
@@ -61,6 +69,150 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     private void Start()
     {
         InitialiseGridProperties();
+    }
+
+    private void ClearDisplayGrouondDecorations()
+    {
+        groundDecoration1.ClearAllTiles();
+        groundDecoration2.ClearAllTiles();
+    }
+
+    private void ClearDisplayGridPropertyDetails()
+    {
+        ClearDisplayGrouondDecorations();
+    }
+
+    public void DisplayDugGroud(GridPropertyDetails gridPropertyDetails)
+    {
+        if (gridPropertyDetails.daysSinceDug > -1)
+        {
+            ConnectDugGround(gridPropertyDetails);
+        }
+    }
+
+    private void ConnectDugGround(GridPropertyDetails gridPropertyDetails)
+    {
+        Tile dugTile0 = SetDugTile(gridPropertyDetails.gridX, gridPropertyDetails.gridY);
+        groundDecoration1.SetTile(new Vector3Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY, 0), dugTile0);
+
+
+        SetAdjacentGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY + 1);
+        SetAdjacentGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY - 1);
+        SetAdjacentGridPropertyDetails(gridPropertyDetails.gridX - 1, gridPropertyDetails.gridY);
+        SetAdjacentGridPropertyDetails(gridPropertyDetails.gridX + 1, gridPropertyDetails.gridY);
+    }
+
+    private GridPropertyDetails SetAdjacentGridPropertyDetails(int gridX, int gridY)
+    {
+        GridPropertyDetails adjacentGridPropertyDetails;
+        adjacentGridPropertyDetails = GetGridPropertyDetails(gridX, gridY);
+        if (adjacentGridPropertyDetails != null && adjacentGridPropertyDetails.daysSinceDug > -1)
+        {
+            Tile dugTile = SetDugTile(gridX, gridY);
+            groundDecoration1.SetTile(new Vector3Int(gridX, gridY, 0), dugTile);
+        }
+
+        return adjacentGridPropertyDetails;
+    }
+
+    private Tile SetDugTile(int gridX, int gridY)
+    {
+        bool upDug = IsGridDug(gridX, gridY + 1);
+        bool downDug = IsGridDug(gridX, gridY - 1);
+        bool leftDug = IsGridDug(gridX - 1, gridY);
+        bool rightDug = IsGridDug(gridX + 1, gridY);
+
+        if (!upDug && !downDug && !rightDug && !leftDug)
+        {
+            return dugGround[0];
+        }
+        else if (!upDug && downDug && rightDug && !leftDug)
+        {
+            return dugGround[1];
+        }
+        else if (!upDug && downDug && rightDug && leftDug)
+        {
+            return dugGround[2];
+        }
+        else if (!upDug && downDug && !rightDug && leftDug)
+        {
+            return dugGround[3];
+        }
+        else if (!upDug && downDug && !rightDug && !leftDug)
+        {
+            return dugGround[4];
+        }
+        else if (upDug && downDug && rightDug && !leftDug)
+        {
+            return dugGround[5];
+        }
+        else if (upDug && downDug && rightDug && leftDug)
+        {
+            return dugGround[6];
+        }
+        else if (upDug && downDug && !rightDug && leftDug)
+        {
+            return dugGround[7];
+        }
+        else if (upDug && downDug && !rightDug && !leftDug)
+        {
+            return dugGround[8];
+        }
+        else if (upDug && !downDug && rightDug && !leftDug)
+        {
+            return dugGround[9];
+        }
+        else if (upDug && !downDug && rightDug && leftDug)
+        {
+            return dugGround[10];
+        }
+        else if (upDug && !downDug && !rightDug && leftDug)
+        {
+            return dugGround[11];
+        }
+        else if (upDug && !downDug && !rightDug && !leftDug)
+        {
+            return dugGround[12];
+        }
+        else if (!upDug && !downDug && rightDug && !leftDug)
+        {
+            return dugGround[13];
+        }
+        else if (!upDug && !downDug && rightDug && leftDug)
+        {
+            return dugGround[14];
+        }
+        else if (!upDug && !downDug && !rightDug && leftDug)
+        {
+            return dugGround[15];
+        }
+        return null;
+    }
+
+    private void DisplayGridPropertyDetails()
+    {
+        foreach (var item in gridPropertyDictionary)
+        {
+            GridPropertyDetails gridPropertyDetails = item.Value;
+            DisplayDugGroud(gridPropertyDetails);
+        }
+    }
+
+    private bool IsGridDug(int gridX, int gridY)
+    {
+        GridPropertyDetails gridPropertyDetails = GetGridPropertyDetails(gridX, gridY);
+        if (gridPropertyDetails == null)
+        {
+            return false;
+        }
+        else if (gridPropertyDetails.daysSinceDug > -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void InitialiseGridProperties()
@@ -155,6 +307,12 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
             if (sceneSave.gridPropertyDetailsDictionary != null)
             {
                 gridPropertyDictionary = sceneSave.gridPropertyDetailsDictionary;
+            }
+
+            if (gridPropertyDictionary.Count > 0)
+            {
+                ClearDisplayGridPropertyDetails();
+                DisplayGridPropertyDetails();
             }
         }
     }

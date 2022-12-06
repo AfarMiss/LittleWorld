@@ -7,6 +7,8 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 {
     private WaitForSeconds afterUseToolAnimationPause;
     private WaitForSeconds useToolAnimationPause;
+    private WaitForSeconds afterLiftToolAnimationPause;
+    private WaitForSeconds liftToolAnimationPause;
 
     /// <summary>
     /// 玩家是否处于禁用物品状态
@@ -36,9 +38,9 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     private bool isLiftingToolRight;
     private bool isLiftingToolLeft;
     private bool isLiftingToolUp;
-    private bool isLiftingToolDown;
     private bool isPickingRight;
     private bool isPickingLeft;
+    private bool isLiftingToolDown;
     private bool isPickingUp;
     private bool isPickingDown;
     private bool isSwingingToolRight;
@@ -86,6 +88,8 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
         useToolAnimationPause = new WaitForSeconds(FarmSetting.useToolAnimationPause);
         afterUseToolAnimationPause = new WaitForSeconds(FarmSetting.afterUseToolAnimationPause);
+        liftToolAnimationPause = new WaitForSeconds(FarmSetting.liftToolAnimationPause);
+        afterLiftToolAnimationPause = new WaitForSeconds(FarmSetting.afterLiftToolAnimationPause);
 
         gridCursor = GameObject.FindObjectOfType<GridCursor>();
     }
@@ -172,6 +176,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                         EventCenter.Instance.Trigger(EventEnum.DROP_SELECTED_ITEM.ToString());
                     }
                     break;
+                case ItemType.watering_tool:
                 case ItemType.hoeing_tool:
                     ProcessPlayerClickInputTool(gridPropertyDetails, itemDetails, playerDirection);
                     break;
@@ -198,6 +203,10 @@ public class FarmGameController : MonoSingleton<FarmGameController>
             case ItemType.collection_tool:
                 break;
             case ItemType.watering_tool:
+                if (gridCursor.CursorPositionIsValid)
+                {
+                    WaterGrooundAtCursor(gridPropertyDetails, playerDirection);
+                }
                 break;
             case ItemType.reaping_tool:
                 break;
@@ -214,6 +223,57 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         }
     }
 
+    private void WaterGrooundAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)
+    {
+        StartCoroutine(WaterGroundAtCursorRoutine(playerDirection, gridPropertyDetails));
+    }
+
+    private IEnumerator WaterGroundAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails)
+    {
+        playerInputIsEnable = false;
+        playerToolUseDisabled = true;
+
+        toolCharacterAttribute.partVariantType = PartVariantType.wateringCan;
+        characterAttributeCustomisationList.Clear();
+        characterAttributeCustomisationList.Add(toolCharacterAttribute);
+        animationOverrides.ApplyCharacterCustomisationParameters(characterAttributeCustomisationList);
+
+        toolEffect = ToolEffect.watering;
+
+        if (playerDirection == Vector3Int.right)
+        {
+            isLiftingToolRight = true;
+        }
+        else if (playerDirection == Vector3Int.left)
+        {
+            isLiftingToolLeft = true;
+        }
+        else if (playerDirection == Vector3Int.up)
+        {
+            isLiftingToolUp = true;
+        }
+        else if (playerDirection == Vector3Int.down)
+        {
+            isLiftingToolDown = true;
+        }
+
+        yield return useToolAnimationPause;
+
+        if (gridPropertyDetails.daysSinceWatered == -1)
+        {
+            gridPropertyDetails.daysSinceWatered = 0;
+        }
+
+        GridPropertiesManager.Instance.SetGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY, gridPropertyDetails);
+
+        yield return afterUseToolAnimationPause;
+
+        ResetDir();
+
+        playerInputIsEnable = true;
+        playerToolUseDisabled = false;
+    }
+
     private void HoeGrooundAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)
     {
         StartCoroutine(HoeGroundAtCursorRoutine(playerDirection, gridPropertyDetails));
@@ -225,6 +285,11 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         isUsingToolLeft = false;
         isUsingToolUp = false;
         isUsingToolDown = false;
+
+        isLiftingToolRight = false;
+        isLiftingToolLeft = false;
+        isLiftingToolUp = false;
+        isLiftingToolDown = false;
     }
 
     private IEnumerator HoeGroundAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails)
@@ -262,6 +327,8 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         }
 
         GridPropertiesManager.Instance.SetGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY, gridPropertyDetails);
+
+        GridPropertiesManager.Instance.DisplayDugGroud(gridPropertyDetails);
 
         yield return afterUseToolAnimationPause;
 
