@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class ItemDetails
@@ -9,7 +9,7 @@ public class ItemDetails
     public Sprite itemSprite;
     public string itemLongDescription;
     public short itemUseGridRadius;
-    public short itemUseRadius;
+    public float itemUseRadius;
     public bool isStartingItem;
     public bool canBePickedUp;
     public bool canBeDropped;

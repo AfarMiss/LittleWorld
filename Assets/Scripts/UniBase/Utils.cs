@@ -99,7 +99,7 @@ namespace UniBase
     public static class OverlapHelper
     {
         /// <summary>
-        /// 添加矩形范围内所有T类型组件
+        /// 判断矩形范围内是否含有T类型组件
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="listComponentsAtBoxPosition"></param>
@@ -135,6 +135,79 @@ namespace UniBase
             }
 
             listComponentsAtBoxPosition = listComponents;
+
+            return found;
+        }
+
+        /// <summary>
+        /// 判断矩形范围内是否含有T类型组件(不分配内存)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="numberOfCollidersToTest"></param>
+        /// <param name="point"></param>
+        /// <param name="size"></param>
+        /// <param name="angle"></param>
+        /// <returns></returns>
+        public static T[] GetComponentsAtBoxLocationNonAlloc<T>(int numberOfCollidersToTest, Vector2 point, Vector2 size, float angle)
+        {
+            Collider2D[] collider2DArray = new Collider2D[numberOfCollidersToTest];
+            Physics2D.OverlapBoxNonAlloc(point, size, angle, collider2DArray);
+
+            T tComponent = default(T);
+
+            T[] componentArray = new T[collider2DArray.Length];
+
+            for (int i = collider2DArray.Length - 1; i >= 0; i--)
+            {
+                if (collider2DArray[i] != null)
+                {
+                    tComponent = collider2DArray[i].gameObject.GetComponent<T>();
+                    if (tComponent != null)
+                    {
+                        componentArray[i] = tComponent;
+                    }
+                }
+            }
+
+            return componentArray;
+        }
+
+        /// <summary>
+        /// 判断鼠标点位置是否含有T类型组件
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="componentsAtPositionList"></param>
+        /// <param name="positionToCheck"></param>
+        /// <returns></returns>
+        public static bool GetComponentsAtCursorLocation<T>(out List<T> componentsAtPositionList, Vector3 positionToCheck)
+        {
+            bool found = false;
+
+            List<T> componentList = new List<T>();
+
+            Collider2D[] collider2DArray = Physics2D.OverlapPointAll(positionToCheck);
+            T tComponent = default(T);
+
+            for (int i = 0; i < collider2DArray.Length; i++)
+            {
+                tComponent = collider2DArray[i].gameObject.GetComponentInParent<T>();
+                if (tComponent != null)
+                {
+                    found = true;
+                    componentList.Add(tComponent);
+                }
+                else
+                {
+                    tComponent = collider2DArray[i].gameObject.GetComponentInChildren<T>();
+                    if (tComponent != null)
+                    {
+                        found = true;
+                        componentList.Add(tComponent);
+                    }
+                }
+            }
+
+            componentsAtPositionList = componentList;
 
             return found;
         }

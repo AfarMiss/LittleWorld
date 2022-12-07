@@ -12,6 +12,8 @@ public static class FarmSetting
     public const float gridCellSize = 1f;
     public static Vector2 cursorSize = Vector2.one;
 
+    public static float playerCentreYOffset = 0.875f;
+
     public static float useToolAnimationPause = 0.25f;
     public static float afterUseToolAnimationPause = 0.2f;
     public static float liftToolAnimationPause = 0.4f;

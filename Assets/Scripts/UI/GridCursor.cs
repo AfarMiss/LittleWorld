@@ -71,8 +71,8 @@ public class GridCursor : MonoSingleton<GridCursor>
         }
         else
         {
-            DisableCursor();
             SelectedItemType = ItemType.none;
+            DisableCursor();
         }
     }
 
@@ -152,8 +152,12 @@ public class GridCursor : MonoSingleton<GridCursor>
                     return;
                 }
                 break;
-            case ItemType.watering_tool:
             case ItemType.hoeing_tool:
+            case ItemType.chopping_tool:
+            case ItemType.breaking_tool:
+            case ItemType.collection_tool:
+            case ItemType.watering_tool:
+            case ItemType.reaping_tool:
                 if (!IsCursorValidForHoeingTool(gridPropertyDetails, itemDetails))
                 {
                     SetCursorToInvalid();
