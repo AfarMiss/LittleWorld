@@ -266,6 +266,8 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
         GridPropertiesManager.Instance.SetGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY, gridPropertyDetails);
 
+        GridPropertiesManager.Instance.DisplayWaterGroud(gridPropertyDetails);
+
         yield return afterUseToolAnimationPause;
 
         ResetDir();
