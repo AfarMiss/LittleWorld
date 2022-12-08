@@ -190,7 +190,7 @@ public class Cursor : MonoSingleton<Cursor>
         var inventoryItem = InventoryManager.Instance.GetSelectedItemDetail(InventoryLocation.player);
         if (inventoryItem != null)
         {
-            if (inventoryItem.itemUseGridRadius > 0)
+            if (inventoryItem.itemUseRadius > 0)
             {
                 EnableCursor();
             }
@@ -199,7 +199,7 @@ public class Cursor : MonoSingleton<Cursor>
                 DisableCursor();
             }
             SelectedItemType = inventoryItem.itemType;
-            ItemUseGridRadius = inventoryItem.itemUseGridRadius;
+            ItemUseGridRadius = inventoryItem.itemUseRadius;
         }
         else
         {
