@@ -14,6 +14,10 @@ public static class FarmSetting
 
     public static float playerCentreYOffset = 0.875f;
 
+    //reaping
+    public static int multipleReap = 2;
+    public static int reapDetectCount = 5;
+
     public static float useToolAnimationPause = 0.25f;
     public static float afterUseToolAnimationPause = 0.2f;
     public static float liftToolAnimationPause = 0.4f;

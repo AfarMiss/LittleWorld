@@ -39,7 +39,7 @@ public class GridCursor : MonoSingleton<GridCursor>
     /// 是否启用物品提示指针[显/隐]
     /// </summary>
     private bool cursorIsEnable;
-    public bool CursorIsEnable { get => cursorIsEnable; set => cursorIsEnable = value; }
+    public bool CursorIsEnabled { get => cursorIsEnable; set => cursorIsEnable = value; }
 
     private void OnEnable()
     {

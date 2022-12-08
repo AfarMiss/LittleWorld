@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
@@ -60,6 +61,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
     //后期剥离出来，最后用事件
     private GridCursor gridCursor;
+    private Cursor cursor;
 
     private Vector2 input;
 
@@ -92,6 +94,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         afterLiftToolAnimationPause = new WaitForSeconds(FarmSetting.afterLiftToolAnimationPause);
 
         gridCursor = GameObject.FindObjectOfType<GridCursor>();
+        cursor = GameObject.FindObjectOfType<Cursor>();
     }
 
     public void DisablePlayerInputAndResetMovement()
@@ -139,7 +142,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         {
             if (context.canceled)
             {
-                if (gridCursor.CursorIsEnable)
+                if (gridCursor.CursorIsEnabled || cursor.CursorIsEnabled)
                 {
                     Vector3Int cursorGridPosition = gridCursor.GetGridPositionForCursor();
                     Vector3Int playerGridPosition = gridCursor.GetGridPositionForPlayer();
@@ -180,6 +183,9 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                 case ItemType.hoeing_tool:
                     ProcessPlayerClickInputTool(gridPropertyDetails, itemDetails, playerDirection);
                     break;
+                case ItemType.reaping_tool:
+                    ReapGrooundAtCursor(cursorGridPosition, itemDetails);
+                    break;
                 default:
                     break;
             }
@@ -208,8 +214,6 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                     WaterGrooundAtCursor(gridPropertyDetails, playerDirection);
                 }
                 break;
-            case ItemType.reaping_tool:
-                break;
             case ItemType.none:
                 break;
             case ItemType.count:
@@ -220,6 +224,95 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                 break;
             default:
                 break;
+        }
+    }
+
+    private void ReapGrooundAtCursor(Vector3Int cursorPosition, ItemDetails itemDetails)
+    {
+        StartCoroutine(ReapGroundAtCursorRoutine(cursorPosition, itemDetails));
+    }
+
+    private IEnumerator ReapGroundAtCursorRoutine(Vector3Int cursorPosition, ItemDetails itemDetails)
+    {
+        playerInputIsEnable = false;
+        playerToolUseDisabled = true;
+
+        toolCharacterAttribute.partVariantType = PartVariantType.scythe;
+        characterAttributeCustomisationList.Clear();
+        characterAttributeCustomisationList.Add(toolCharacterAttribute);
+        animationOverrides.ApplyCharacterCustomisationParameters(characterAttributeCustomisationList);
+
+        toolEffect = ToolEffect.none;
+
+        var playerCentre = Director.Instance.MainPlayer.GetPlayrCentrePosition();
+
+        if (cursorPosition.x > playerCentre.x
+            && cursorPosition.y < playerCentre.y + itemDetails.itemUseRadius
+            && cursorPosition.y > playerCentre.y - itemDetails.itemUseGridRadius)
+        {
+            isSwingingToolRight = true;
+        }
+        else if (cursorPosition.x < playerCentre.x
+            && cursorPosition.y < playerCentre.y + itemDetails.itemUseRadius
+            && cursorPosition.y > playerCentre.y - itemDetails.itemUseGridRadius)
+        {
+            isSwingingToolLeft = true;
+        }
+        else if (cursorPosition.y > playerCentre.y)
+        {
+            isSwingingToolUp = true;
+        }
+        else
+        {
+            isSwingingToolDown = true;
+        }
+
+        yield return useToolAnimationPause;
+
+        //对场景的修改
+        var dir = GetSwingDir(cursorPosition, itemDetails);
+        var detectResult = UniBase.OverlapHelper.GetComponentsAtBoxLocationNonAlloc<Item>(FarmSetting.reapDetectCount,
+            playerCentre + (new Vector3(dir.x * itemDetails.itemUseRadius, dir.y * itemDetails.itemUseRadius)),
+            itemDetails.itemUseRadius * Vector2.one, 0);
+        var targetDestroyNum = Math.Min(detectResult.Length, FarmSetting.multipleReap);
+        for (int i = detectResult.Length - 1; i >= detectResult.Length - targetDestroyNum; i--)
+        {
+            Destroy(detectResult[i]?.gameObject);
+        }
+
+        yield return afterUseToolAnimationPause;
+
+        ResetDir();
+
+        playerInputIsEnable = true;
+        playerToolUseDisabled = false;
+    }
+
+    private Vector3Int GetSwingDir(Vector3Int cursorPosition, ItemDetails itemDetails)
+    {
+        var playerCentre = Director.Instance.MainPlayer.GetPlayrCentrePosition();
+
+        if (cursorPosition.x > playerCentre.x
+            && cursorPosition.y < playerCentre.y + itemDetails.itemUseRadius
+            && cursorPosition.y > playerCentre.y - itemDetails.itemUseRadius)
+        {
+            return Vector3Int.right;
+        }
+        else if (cursorPosition.x < playerCentre.x
+            && cursorPosition.y < playerCentre.y + itemDetails.itemUseRadius
+            && cursorPosition.y > playerCentre.y - itemDetails.itemUseRadius)
+        {
+            return Vector3Int.left;
+
+        }
+        else if (cursorPosition.y > playerCentre.y)
+        {
+            return Vector3Int.up;
+
+        }
+        else
+        {
+            return Vector3Int.down;
         }
     }
 
@@ -292,6 +385,11 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         isLiftingToolLeft = false;
         isLiftingToolUp = false;
         isLiftingToolDown = false;
+
+        isSwingingToolLeft = false;
+        isSwingingToolDown = false;
+        isSwingingToolRight = false;
+        isSwingingToolUp = false;
     }
 
     private IEnumerator HoeGroundAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails)
