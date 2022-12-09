@@ -141,6 +141,8 @@ namespace UniBase
 
         /// <summary>
         /// 判断矩形范围内是否含有T类型组件(不分配内存)
+        /// 不分配内存而使用自己指定的变量会产生有效数据居中，而两边数据为null的情况。
+        /// 如给予一个长度为5的数组存储数据，那么获得的结果有可能为{null,4,null,null,null}，有效数据只有一个，且下标为1
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="numberOfCollidersToTest"></param>
@@ -161,7 +163,7 @@ namespace UniBase
             {
                 if (collider2DArray[i] != null)
                 {
-                    tComponent = collider2DArray[i].gameObject.GetComponent<T>();
+                    tComponent = collider2DArray[i].gameObject.GetComponentInParent<T>();
                     if (tComponent != null)
                     {
                         componentArray[i] = tComponent;
