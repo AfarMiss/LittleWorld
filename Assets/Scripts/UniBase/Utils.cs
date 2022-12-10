@@ -38,6 +38,7 @@ namespace UniBase
 #else
             Vector2 mousePosition=Input.mousePosition;
 #endif
+            //Debug.Log($"dirmousePosition:{mousePosition}");
             return mousePosition;
         }
 

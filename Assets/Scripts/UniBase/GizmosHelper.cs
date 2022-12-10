@@ -1,18 +1,22 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GizmosHelper : MonoBehaviour
+public class GizmosHelper
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// 基于Unity世界坐标绘制矩形
+    /// </summary>
+    public static void DrawRect(Vector3 center, float width, float height)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        var rectCenter = center;
+        var p1 = rectCenter + new Vector3(-width, -height) * 0.5f;
+        var p2 = rectCenter + new Vector3(-width, height) * 0.5f;
+        var p3 = rectCenter + new Vector3(width, height) * 0.5f;
+        var p4 = rectCenter + new Vector3(width, -height) * 0.5f;
+        Gizmos.DrawLine(p1, p2);
+        Gizmos.DrawLine(p2, p3);
+        Gizmos.DrawLine(p3, p4);
+        Gizmos.DrawLine(p4, p1);
     }
 }

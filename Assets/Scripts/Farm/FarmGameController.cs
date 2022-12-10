@@ -245,20 +245,16 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         toolEffect = ToolEffect.none;
 
         var playerCentre = Director.Instance.MainPlayer.GetPlayrCentrePosition();
-
-        if (cursorPosition.x > playerCentre.x
-            && cursorPosition.y < playerCentre.y + itemDetails.itemUseRadius
-            && cursorPosition.y > playerCentre.y - itemDetails.itemUseGridRadius)
+        var dir = DirectionHelper.JudgeDir(playerCentre, cursorPosition);
+        if (dir == Vector3.right)
         {
             isSwingingToolRight = true;
         }
-        else if (cursorPosition.x < playerCentre.x
-            && cursorPosition.y < playerCentre.y + itemDetails.itemUseRadius
-            && cursorPosition.y > playerCentre.y - itemDetails.itemUseGridRadius)
+        else if (dir == Vector3.left)
         {
             isSwingingToolLeft = true;
         }
-        else if (cursorPosition.y > playerCentre.y)
+        else if (dir == Vector3.up)
         {
             isSwingingToolUp = true;
         }
@@ -270,7 +266,6 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         yield return useToolAnimationPause;
 
         //对场景的修改
-        var dir = GetSwingDir(cursorPosition, itemDetails);
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(UniBase.InputUtils.GetMousePosition());
         Debug.Log($"dirReal:{dir},cursorGridPosition:{cursorPosition},worldPos:{worldPos}");
         var detectResult = UniBase.OverlapHelper.GetComponentsAtBoxLocationNonAlloc<Item>(FarmSetting.reapDetectCount,
@@ -297,36 +292,6 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
         playerInputIsEnable = true;
         playerToolUseDisabled = false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        ItemDetails itemDetails = InventoryManager.Instance.GetSelectedItemDetail(InventoryLocation.player);
-        if (gridCursor == null || itemDetails == null) return;
-        Vector3Int cursorGridPosition = gridCursor.GetGridPositionForCursor();
-
-        var playerCentre = Director.Instance.MainPlayer.GetPlayrCentrePosition();
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(UniBase.InputUtils.GetMousePosition());
-        var dir = GetSwingDir(cursorGridPosition, itemDetails);
-        Debug.Log($"dir:{dir},cursorGridPosition:{cursorGridPosition},worldPos:{worldPos}");
-        var detectResult = UniBase.OverlapHelper.GetComponentsAtBoxLocationNonAlloc<Item>(FarmSetting.reapDetectCount,
-            playerCentre + (new Vector3(dir.x * itemDetails.itemUseRadius / 2, dir.y * itemDetails.itemUseRadius / 2)),
-            itemDetails.itemUseRadius * Vector2.one, 0);
-
-        var rectCenter = playerCentre + (new Vector3(dir.x * itemDetails.itemUseRadius / 2, dir.y * itemDetails.itemUseRadius / 2));
-        var width = itemDetails.itemUseRadius;
-        var height = itemDetails.itemUseRadius;
-        var p1 = rectCenter + new Vector3(-width, -height) * 0.5f;
-        var p2 = rectCenter + new Vector3(-width, height) * 0.5f;
-        var p3 = rectCenter + new Vector3(width, height) * 0.5f;
-        var p4 = rectCenter + new Vector3(width, -height) * 0.5f;
-        Gizmos.DrawLine(p1, p2);
-        Gizmos.DrawLine(p2, p3);
-        Gizmos.DrawLine(p3, p4);
-        Gizmos.DrawLine(p4, p1);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(rectCenter, dir);
     }
 
     private Vector3Int GetSwingDir(Vector3Int cursorPosition, ItemDetails itemDetails)
