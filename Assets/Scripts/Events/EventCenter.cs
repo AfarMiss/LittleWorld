@@ -19,6 +19,16 @@ public class EventInfo<T> : IEventInfo
     }
 }
 
+public class EventInfo<T1, T2> : IEventInfo
+{
+    public UnityAction<T1, T2> actions;
+
+    public EventInfo(UnityAction<T1, T2> action)
+    {
+        actions += action;
+    }
+}
+
 
 public class EventInfo : IEventInfo
 {
@@ -43,6 +53,18 @@ public class EventCenter : MonoSingleton<EventCenter>
     /// value对应监听事件对应的函数委托
     /// </summary>
     private Dictionary<string, IEventInfo> eventDic = new Dictionary<string, IEventInfo>();
+
+    public void Register<T1, T2>(string name, UnityAction<T1, T2> action)
+    {
+        if (eventDic.ContainsKey(name))
+        {
+            (eventDic[name] as EventInfo<T1, T2>).actions += action;
+        }
+        else
+        {
+            eventDic.Add(name, new EventInfo<T1, T2>(action));
+        }
+    }
 
     /// <summary>
     /// 添加事件监听（需要参数）
@@ -88,6 +110,15 @@ public class EventCenter : MonoSingleton<EventCenter>
             (eventDic[name] as EventInfo<T>).actions -= action;
         }
     }
+
+    public void Unregister<T1, T2>(string name, UnityAction<T1, T2> action)
+    {
+        if (eventDic.ContainsKey(name))
+        {
+            (eventDic[name] as EventInfo<T1, T2>).actions -= action;
+        }
+    }
+
     /// <summary>
     /// 移除事件监听（不需要参数）
     /// </summary>
@@ -109,6 +140,14 @@ public class EventCenter : MonoSingleton<EventCenter>
         if (eventDic.ContainsKey(name))
         {
             (eventDic[name] as EventInfo<T>).actions?.Invoke(info);
+        }
+    }
+
+    public void Trigger<T1, T2>(string name, T1 Param1, T2 Param2)
+    {
+        if (eventDic.ContainsKey(name))
+        {
+            (eventDic[name] as EventInfo<T1, T2>).actions?.Invoke(Param1, Param2);
         }
     }
     /// <summary>
@@ -133,6 +172,4 @@ public class EventCenter : MonoSingleton<EventCenter>
         eventDic.Clear();
 
     }
-
-
 }
