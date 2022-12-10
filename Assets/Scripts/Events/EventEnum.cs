@@ -34,4 +34,8 @@ public enum EventEnum
     AFTER_NEXT_SCENE_LOAD,
     AFTER_FADE_IN,
     #endregion
+
+    #region VFX
+    VFX_HARVEST_ACTION_EFFECT
+    #endregion
 }

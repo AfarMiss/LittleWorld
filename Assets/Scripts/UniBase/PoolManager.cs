@@ -17,14 +17,17 @@ public class PoolManager : MonoSingleton<PoolManager>
     /// </summary>
     private Dictionary<int, Queue<GameObject>> poolQueue;
 
-    private void Start()
+    public void CreatePool(int poolSize, GameObject poolPrefab, string poolName = null)
     {
-        poolInfo = new Dictionary<string, Pool>();
-        poolQueue = new Dictionary<int, Queue<GameObject>>();
-    }
+        if (poolInfo == null)
+        {
+            poolInfo = new Dictionary<string, Pool>();
+        }
+        if (poolQueue == null)
+        {
+            poolQueue = new Dictionary<int, Queue<GameObject>>();
+        }
 
-    public void CreatePool(int poolSize, GameObject poolPrefab, string poolName = null, Transform objectPoolTransform = null)
-    {
         if (poolInfo.ContainsKey(poolPrefab.GetInstanceID().ToString()))
         {
             return;

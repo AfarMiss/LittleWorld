@@ -147,6 +147,10 @@ public class EventCenter : MonoSingleton<EventCenter>
     {
         if (eventDic.ContainsKey(name))
         {
+            if ((eventDic[name] as EventInfo<T1, T2>) == null)
+            {
+                Debug.LogError($"未注册对应{typeof(T1)},{typeof(T2)}的事件");
+            }
             (eventDic[name] as EventInfo<T1, T2>).actions?.Invoke(Param1, Param2);
         }
     }

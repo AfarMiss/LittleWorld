@@ -277,6 +277,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         {
             if (detectResult[i] != null)
             {
+                EventCenter.Instance.Trigger(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), detectResult[i].transform.position, HarvestActionEffect.reaping);
                 Destroy(detectResult[i].gameObject);
                 curDestroyNum++;
                 if (targetDestroyNum == curDestroyNum)
@@ -292,34 +293,6 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
         playerInputIsEnable = true;
         playerToolUseDisabled = false;
-    }
-
-    private Vector3Int GetSwingDir(Vector3Int cursorPosition, ItemDetails itemDetails)
-    {
-        var playerCentre = Director.Instance.MainPlayer.GetPlayrCentrePosition();
-
-        if (cursorPosition.x > playerCentre.x
-            && cursorPosition.y < playerCentre.y + itemDetails.itemUseRadius
-            && cursorPosition.y > playerCentre.y - itemDetails.itemUseRadius)
-        {
-            return Vector3Int.right;
-        }
-        else if (cursorPosition.x < playerCentre.x
-            && cursorPosition.y < playerCentre.y + itemDetails.itemUseRadius
-            && cursorPosition.y > playerCentre.y - itemDetails.itemUseRadius)
-        {
-            return Vector3Int.left;
-
-        }
-        else if (cursorPosition.y > playerCentre.y)
-        {
-            return Vector3Int.up;
-
-        }
-        else
-        {
-            return Vector3Int.down;
-        }
     }
 
     private void WaterGrooundAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)
