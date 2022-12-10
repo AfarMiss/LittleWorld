@@ -130,6 +130,12 @@ private void PlayerInput_onActionTriggered(InputAction.CallbackContext context){
 
 点击即是短按，与长按的区别只是按下的时间不同。所以可以通过在Started与Canceled事件之间计时的方式区分长/短按。
 
+## Mouse.current.position
+
+该属性获取指针在当前世界坐标系的坐标值。
+
+在游戏代码中，其参考的坐标是游戏窗口\[如编辑器中的Game窗口]的坐标，坐标原点为左下角。而在编辑器代码中，该属性获得的数值是当前坐标系的坐标。这意味着如果你在EditorWindow.OnGUI等编辑器代码中获取Mouse Pointer.position，返回的值是本地GUI的坐标系下的坐标值，坐标原点是整个Unity编辑器窗口的左上角。
+
 ## 参考资料
 
 1. 官方输入系统教程 [https://www.cg.com.tw/UnityInputSystem](https://www.cg.com.tw/UnityInputSystem/)
