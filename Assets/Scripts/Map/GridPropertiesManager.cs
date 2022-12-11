@@ -7,6 +7,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 {
     delegate bool JudgeGrid(int gridX, int gridY);
 
+    private Transform cropParentTransform;
+
     private Tilemap groundDecoration1;
     private Tilemap groundDecoration2;
     /// <summary>
