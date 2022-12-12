@@ -36,6 +36,7 @@ public enum EventEnum
     #endregion
 
     #region VFX
-    VFX_HARVEST_ACTION_EFFECT
+    VFX_HARVEST_ACTION_EFFECT,
+    REMOVE_SELECTED_ITEM_FROM_INVENTORY
     #endregion
 }

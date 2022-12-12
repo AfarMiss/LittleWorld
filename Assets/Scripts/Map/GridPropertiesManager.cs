@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -19,6 +21,9 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     /// 当前地图信息
     /// </summary>
     private Dictionary<string, GridPropertyDetails> gridPropertyDictionary;
+
+    [SerializeField]
+    private SO_CropDetailsList so_CropDetailsList = null;
     [SerializeField]
     private SO_GridProperties[] so_gridPropertiesArray = null;
     [SerializeField]
@@ -54,6 +59,15 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private void AfterSceneLoaded()
     {
+        if (GameObject.FindGameObjectWithTag(Tags.CropsParentTransform) != null)
+        {
+            cropParentTransform = GameObject.FindGameObjectWithTag(Tags.CropsParentTransform).transform;
+        }
+        else
+        {
+            cropParentTransform = null;
+        }
+
         grid = GameObject.FindObjectOfType<Grid>();
 
         groundDecoration1 = GameObject.FindGameObjectWithTag(Tags.GroundDecoration1).GetComponent<Tilemap>();
@@ -84,6 +98,19 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     private void ClearDisplayGridPropertyDetails()
     {
         ClearDisplayGrouondDecorations();
+
+        ClearDisplayAllPlantedCrops();
+    }
+
+    private void ClearDisplayAllPlantedCrops()
+    {
+        Crop[] cropArray;
+        cropArray = FindObjectsOfType<Crop>();
+
+        foreach (var crop in cropArray)
+        {
+            Destroy(crop.gameObject);
+        }
     }
 
     public void DisplayDugGroud(GridPropertyDetails gridPropertyDetails)
@@ -228,6 +255,40 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
             GridPropertyDetails gridPropertyDetails = item.Value;
             DisplayDugGroud(gridPropertyDetails);
             DisplayWaterGroud(gridPropertyDetails);
+            DisplayPlantedCrop(gridPropertyDetails);
+        }
+    }
+
+    public void DisplayPlantedCrop(GridPropertyDetails gridPropertyDetails)
+    {
+        if (gridPropertyDetails.seedItemCode > -1)
+        {
+            CropDetails cropDetails = so_CropDetailsList.GetCropDetails(gridPropertyDetails.seedItemCode);
+            GameObject cropPrefab;
+            int growthStages = cropDetails.growthDays.Length;
+            int currentGrowthStage = 0;
+            int daysCounter = cropDetails.totalGrowthDays;
+            //找到当前生长期
+            for (int i = growthStages - 1; i > 0; i--)
+            {
+                if (daysCounter < gridPropertyDetails.growthDays)
+                {
+                    currentGrowthStage = i;
+                    break;
+                }
+
+                daysCounter -= cropDetails.growthDays[i];
+            }
+
+            cropPrefab = cropDetails.growthPrefab[currentGrowthStage];
+            Sprite growthSprite = cropDetails.growthSprite[currentGrowthStage];
+            Vector3 worldPosition = groundDecoration2.CellToWorld(new Vector3Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY, 0));
+            worldPosition = new Vector3(worldPosition.x + FarmSetting.gridCellSize / 2, worldPosition.y, worldPosition.z);
+            GameObject cropInstance = Instantiate(cropPrefab, worldPosition, Quaternion.identity);
+
+            cropInstance.GetComponentInChildren<SpriteRenderer>().sprite = growthSprite;
+            cropInstance.transform.SetParent(cropParentTransform);
+            cropInstance.GetComponent<Crop>().cropGridPosition = new Vector2Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY);
         }
     }
 
@@ -366,5 +427,38 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         SceneSave sceneSave = new SceneSave();
         sceneSave.gridPropertyDetailsDictionary = gridPropertyDictionary;
         GameObjectSave.sceneData.Add(sceneName, sceneSave);
+    }
+
+    private void AdvanceDay(int gameYear, int quarter, int gameDay, int gameDayOfWeek, int gameHour, int gameMinute, int gameSecond)
+    {
+        ClearDisplayGridPropertyDetails();
+
+        foreach (SO_GridProperties so_gridProperties in so_gridPropertiesArray)
+        {
+            if (GameObjectSave.sceneData.TryGetValue(so_gridProperties.sceneName.ToString(), out SceneSave sceneSave))
+            {
+                if (sceneSave.gridPropertyDetailsDictionary != null)
+                {
+                    for (int i = sceneSave.gridPropertyDetailsDictionary.Count - 1; i >= 0; i--)
+                    {
+                        KeyValuePair<string, GridPropertyDetails> item = sceneSave.gridPropertyDetailsDictionary.ElementAt(i);
+
+                        GridPropertyDetails gridPropertyDetails = item.Value;
+
+                        if (gridPropertyDetails.growthDays > -1)
+                        {
+                            gridPropertyDetails.growthDays += 1;
+                        }
+
+                        if (gridPropertyDetails.daysSinceWatered > -1)
+                        {
+                            gridPropertyDetails.daysSinceWatered = -1;
+                        }
+
+                        SetGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY, gridPropertyDetails, sceneSave.gridPropertyDetailsDictionary);
+                    }
+                }
+            }
+        }
     }
 }

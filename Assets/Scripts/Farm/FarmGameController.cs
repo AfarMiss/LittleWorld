@@ -168,6 +168,10 @@ public class FarmGameController : MonoSingleton<FarmGameController>
             switch (itemDetails.itemType)
             {
                 case ItemType.seed:
+                    if (itemDetails.canBeDropped && gridCursor.CursorPositionIsValid && gridPropertyDetails.daysSinceDug > -1 && gridPropertyDetails.seedItemCode == -1)
+                    {
+                        PlantSeedAtCursor(gridPropertyDetails, itemDetails);
+                    }
                     if (itemDetails.canBeDropped && gridCursor.CursorPositionIsValid)
                     {
                         EventCenter.Instance.Trigger(EventEnum.DROP_SELECTED_ITEM.ToString());
@@ -190,6 +194,16 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                     break;
             }
         }
+    }
+
+    private void PlantSeedAtCursor(GridPropertyDetails gridPropertyDetails, ItemDetails itemDetails)
+    {
+        gridPropertyDetails.seedItemCode = itemDetails.itemCode;
+        gridPropertyDetails.growthDays = 0;
+
+        GridPropertiesManager.Instance.DisplayPlantedCrop(gridPropertyDetails);
+
+        EventCenter.Instance.Trigger(EventEnum.REMOVE_SELECTED_ITEM_FROM_INVENTORY.ToString());
     }
 
     private void ProcessPlayerClickInputTool(GridPropertyDetails gridPropertyDetails, ItemDetails itemDetails, Vector3Int playerDirection)

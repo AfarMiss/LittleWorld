@@ -163,7 +163,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         }
     }
 
-    internal void RemoveItem(InventoryLocation location, Item item)
+    public void RemoveItem(InventoryLocation location, Item item)
     {
         var itemPosition = FindItemInInventory(location, item);
         if (itemPosition != -1)
@@ -186,6 +186,34 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         else
         {
             Debug.LogError($"No Item:{item.ItemCode}");
+        }
+        EventHandler.CallUpdateInventoryEvent();
+        PrintInventoryInfo(location);
+    }
+
+    public void RemoveItem(InventoryLocation location, int itemIndex)
+    {
+        var itemPosition = itemIndex;
+        if (itemPosition != -1)
+        {
+            int localIndex = (int)location;
+            var inventoryItem = inventoryItemsList[localIndex][itemPosition];
+            inventoryItem.itemQuantity -= 1;
+            if (inventoryItem.itemQuantity > 0)
+            {
+                inventoryItemsList[localIndex][itemPosition] = inventoryItem;
+                EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), itemPosition);
+            }
+            else
+            {
+                inventoryItem.itemCode = -1;
+                inventoryItemsList[localIndex][itemPosition] = inventoryItem;
+                EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), -1);
+            }
+        }
+        else
+        {
+            Debug.LogError($"No Item at {itemPosition} in player inventory");
         }
         EventHandler.CallUpdateInventoryEvent();
         PrintInventoryInfo(location);
@@ -237,11 +265,18 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     private void OnEnable()
     {
         EventCenter.Instance?.Register<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
+        EventCenter.Instance?.Register(nameof(EventEnum.REMOVE_SELECTED_ITEM_FROM_INVENTORY), RemoveSelectedItem);
     }
 
     private void OnDisable()
     {
         EventCenter.Instance?.Unregister<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
+        EventCenter.Instance?.Register(nameof(EventEnum.REMOVE_SELECTED_ITEM_FROM_INVENTORY), RemoveSelectedItem);
+    }
+
+    private void RemoveSelectedItem()
+    {
+        RemoveItem(InventoryLocation.player, GetSelectedInventoryItem(InventoryLocation.player));
     }
 
     private void OnUpdateBarSelected(int arg0)
