@@ -261,6 +261,18 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         }
     }
 
+    public CropDetails GetCropDetails(GridPropertyDetails gridPropertyDetails)
+    {
+        if (gridPropertyDetails != null && gridPropertyDetails.seedItemCode > -1)
+        {
+            return so_CropDetailsList.GetCropDetails(gridPropertyDetails.seedItemCode);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public void DisplayPlantedCrop(GridPropertyDetails gridPropertyDetails)
     {
         if (gridPropertyDetails.seedItemCode > -1)

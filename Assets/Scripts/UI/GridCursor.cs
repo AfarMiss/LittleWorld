@@ -158,7 +158,7 @@ public class GridCursor : MonoSingleton<GridCursor>
             case ItemType.collection_tool:
             case ItemType.watering_tool:
             case ItemType.reaping_tool:
-                if (!IsCursorValidForHoeingTool(gridPropertyDetails, itemDetails))
+                if (!IsCursorValidForTool(gridPropertyDetails, itemDetails))
                 {
                     SetCursorToInvalid();
                     return;
@@ -169,7 +169,7 @@ public class GridCursor : MonoSingleton<GridCursor>
         }
     }
 
-    private bool IsCursorValidForHoeingTool(GridPropertyDetails gridPropertyDetails, ItemDetails itemDetails)
+    private bool IsCursorValidForTool(GridPropertyDetails gridPropertyDetails, ItemDetails itemDetails)
     {
         switch (itemDetails.itemType)
         {
@@ -200,6 +200,9 @@ public class GridCursor : MonoSingleton<GridCursor>
                 }
             case ItemType.watering_tool:
                 return gridPropertyDetails.daysSinceDug > -1 && gridPropertyDetails.daysSinceWatered == -1;
+            case ItemType.collection_tool:
+                CropDetails cropDetails = GridPropertiesManager.Instance.GetCropDetails(gridPropertyDetails);
+                return gridPropertyDetails.seedItemCode > -1 && cropDetails != null && cropDetails.totalGrowthDays <= gridPropertyDetails.growthDays;
             default:
                 return false;
         }

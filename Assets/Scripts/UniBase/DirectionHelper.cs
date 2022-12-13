@@ -2,30 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DirectionHelper
+namespace UniBase
 {
-    public static Vector3 JudgeDir(Vector3 center, Vector3 point)
+    public class DirectionHelper
     {
-        var offset = point - center;
-        if ((offset.y >= offset.x && offset.x > 0) || (offset.y >= -offset.x && offset.x < 0))
+        public static Vector3Int JudgeDir(Vector3 center, Vector3 point)
         {
-            return Vector3.up;
-        }
-        else if ((offset.y <= offset.x && offset.x < 0) || (offset.y <= -offset.x && offset.x > 0))
-        {
-            return Vector3.down;
-        }
-        else if ((offset.y < offset.x && offset.y > 0) || (offset.y > -offset.x && offset.y < 0))
-        {
-            return Vector3.right;
-        }
-        else if ((offset.y > offset.x && offset.y < 0) || (offset.y < -offset.x && offset.y > 0))
-        {
-            return Vector3.left;
-        }
-        else
-        {
-            return Vector3.zero;
+            var offset = point - center;
+            if ((offset.y >= offset.x && offset.x >= 0) || (offset.y >= -offset.x && offset.x <= 0))
+            {
+                return Vector3Int.up;
+            }
+            else if ((offset.y <= offset.x && offset.x <= 0) || (offset.y <= -offset.x && offset.x >= 0))
+            {
+                return Vector3Int.down;
+            }
+            else if ((offset.y < offset.x && offset.y >= 0) || (offset.y > -offset.x && offset.y <= 0))
+            {
+                return Vector3Int.right;
+            }
+            else if ((offset.y > offset.x && offset.y <= 0) || (offset.y < -offset.x && offset.y >= 0))
+            {
+                return Vector3Int.left;
+            }
+            else
+            {
+                return Vector3Int.zero;
+            }
         }
     }
 }

@@ -182,6 +182,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                     break;
                 case ItemType.watering_tool:
                 case ItemType.hoeing_tool:
+                case ItemType.collection_tool:
                     ProcessPlayerClickInputTool(gridPropertyDetails, itemDetails, playerDirection);
                     break;
                 case ItemType.reaping_tool:
@@ -248,6 +249,10 @@ public class FarmGameController : MonoSingleton<FarmGameController>
             case ItemType.breaking_tool:
                 break;
             case ItemType.collection_tool:
+                if (gridCursor.CursorPositionIsValid)
+                {
+                    CollectAtCursor(gridPropertyDetails, playerDirection);
+                }
                 break;
             case ItemType.watering_tool:
                 if (gridCursor.CursorPositionIsValid)
@@ -268,6 +273,11 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         }
     }
 
+    private void CollectAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)
+    {
+        StartCoroutine(CollectGroundAtCursorRoutine(playerDirection, gridPropertyDetails));
+    }
+
     private void ReapGrooundAtCursor(Vector3Int cursorPosition, ItemDetails itemDetails)
     {
         StartCoroutine(ReapGroundAtCursorRoutine(cursorPosition, itemDetails));
@@ -286,7 +296,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         toolEffect = ToolEffect.none;
 
         var playerCentre = Director.Instance.MainPlayer.GetPlayrCentrePosition();
-        var dir = DirectionHelper.JudgeDir(playerCentre, cursorPosition);
+        var dir = UniBase.DirectionHelper.JudgeDir(playerCentre, cursorPosition);
         if (dir == Vector3.right)
         {
             isSwingingToolRight = true;
@@ -340,6 +350,53 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     {
         StartCoroutine(WaterGroundAtCursorRoutine(playerDirection, gridPropertyDetails));
     }
+
+    private IEnumerator CollectGroundAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails)
+    {
+        playerInputIsEnable = false;
+        playerToolUseDisabled = true;
+
+        toolCharacterAttribute.partVariantType = PartVariantType.carry;
+        characterAttributeCustomisationList.Clear();
+        characterAttributeCustomisationList.Add(toolCharacterAttribute);
+        animationOverrides.ApplyCharacterCustomisationParameters(characterAttributeCustomisationList);
+
+        toolEffect = ToolEffect.none;
+
+        if (playerDirection == Vector3Int.right)
+        {
+            isPickingRight = true;
+        }
+        else if (playerDirection == Vector3Int.left)
+        {
+            isPickingLeft = true;
+        }
+        else if (playerDirection == Vector3Int.up)
+        {
+            isPickingUp = true;
+        }
+        else if (playerDirection == Vector3Int.down)
+        {
+            isPickingDown = true;
+        }
+
+        yield return useToolAnimationPause;
+
+        if (gridPropertyDetails.daysSinceLastHarvest == -1)
+        {
+            gridPropertyDetails.daysSinceLastHarvest = 0;
+        }
+
+        GridPropertiesManager.Instance.SetGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY, gridPropertyDetails);
+
+        yield return afterUseToolAnimationPause;
+
+        ResetDir();
+
+        playerInputIsEnable = true;
+        playerToolUseDisabled = false;
+    }
+
 
     private IEnumerator WaterGroundAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails)
     {
@@ -410,6 +467,11 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         isSwingingToolDown = false;
         isSwingingToolRight = false;
         isSwingingToolUp = false;
+
+        isPickingLeft = false;
+        isPickingDown = false;
+        isPickingRight = false;
+        isPickingUp = false;
     }
 
     private IEnumerator HoeGroundAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails)
@@ -460,22 +522,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
     private Vector3Int GetPlayerClickDirection(Vector3Int cursorGridPosition, Vector3Int playerGridPosition)
     {
-        if (cursorGridPosition.x > playerGridPosition.x)
-        {
-            return Vector3Int.right;
-        }
-        else if (cursorGridPosition.x < playerGridPosition.x)
-        {
-            return Vector3Int.left;
-        }
-        else if (cursorGridPosition.y > playerGridPosition.y)
-        {
-            return Vector3Int.up;
-        }
-        else
-        {
-            return Vector3Int.down;
-        }
+        return UniBase.DirectionHelper.JudgeDir(playerGridPosition, cursorGridPosition);
     }
 
     private void FixedUpdate()
