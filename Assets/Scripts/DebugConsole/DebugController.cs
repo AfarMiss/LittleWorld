@@ -3,21 +3,21 @@ using UnityEngine;
 
 public class DebugController : MonoSingleton<DebugController>
 {
-    bool showConsole;
-    bool showHelp;
+    private bool showConsole;
+    private bool showHelp;
 
-    Vector2 scroll;
+    private Vector2 scroll;
 
-    public string input;
+    private string input;
 
-    GUIStyle defaultLabelStyle;
-    GUIStyle descriptionLabelStyle;
+    private GUIStyle defaultLabelStyle;
+    private GUIStyle descriptionLabelStyle;
 
-    public int descriptionSingleWidth;
+    private int descriptionSingleWidth;
 
-    public static DebugCommand KILL_RANDOM_ENEMY;
-    public static DebugCommand<int> TO_STAGE;
-    public static DebugCommand<int, int> USE_SKILL;
+    public static DebugCommand ADVANCE_DAY;
+    //public static DebugCommand<int> TO_STAGE;
+    //public static DebugCommand<int, int> USE_SKILL;
     public static DebugCommand HELP;
 
     public List<object> commandList;
@@ -39,15 +39,16 @@ public class DebugController : MonoSingleton<DebugController>
 
     protected override void Awake()
     {
-        KILL_RANDOM_ENEMY = new DebugCommand("kill_random_enemy", "杀死随机一个敌人", "kill_random_enemy", () =>
+        ADVANCE_DAY = new DebugCommand("advance_day", "向前进一天", "advance_day", () =>
         {
+            TimeManager.Instance.AdvanceDay();
         });
-        TO_STAGE = new DebugCommand<int>("go_stage", "进入指定关卡", "go_stage<stageIndex>", (stageIndex) =>
-        {
-        });
-        USE_SKILL = new DebugCommand<int, int>("use_skill", "使用技能", "use_skill<buffID,useCount>", (buffID, useCount) =>
-        {
-        });
+        //TO_STAGE = new DebugCommand<int>("go_stage", "进入指定关卡", "go_stage<stageIndex>", (stageIndex) =>
+        //{
+        //});
+        //USE_SKILL = new DebugCommand<int, int>("use_skill", "使用技能", "use_skill<buffID,useCount>", (buffID, useCount) =>
+        //{
+        //});
 
         HELP = new DebugCommand("help", "开启/关闭帮助指令", "help", () =>
         {
@@ -56,19 +57,14 @@ public class DebugController : MonoSingleton<DebugController>
 
         commandList = new List<object>
         {
-            KILL_RANDOM_ENEMY,
-            TO_STAGE,
-            USE_SKILL,
+            ADVANCE_DAY,
             HELP,
         };
     }
 
-    private void Update()
+    public void OnClickShowDebugWindow()
     {
-        if (Input.GetKeyDown(KeyCode.F12))
-        {
-            HandleShow();
-        }
+        HandleShow();
     }
 
     public void HandleShow()

@@ -49,12 +49,14 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     {
         ISaveableRegister();
         EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
+        EventCenter.Instance?.Register<GameTime>(EventEnum.DAY_CHANGE.ToString(), AdvanceDay);
     }
 
     private void OnDisable()
     {
         ISaveableDeregister();
         EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
+        EventCenter.Instance?.Unregister<GameTime>(EventEnum.DAY_CHANGE.ToString(), AdvanceDay);
     }
 
     private void AfterSceneLoaded()
@@ -429,7 +431,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         GameObjectSave.sceneData.Add(sceneName, sceneSave);
     }
 
-    private void AdvanceDay(int gameYear, int quarter, int gameDay, int gameDayOfWeek, int gameHour, int gameMinute, int gameSecond)
+    private void AdvanceDay(GameTime time)
     {
         ClearDisplayGridPropertyDetails();
 

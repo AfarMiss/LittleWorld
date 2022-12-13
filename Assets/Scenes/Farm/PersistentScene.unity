@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 14552453}
   - component: {fileID: 14552452}
+  - component: {fileID: 14552454}
   m_Layer: 0
   m_Name: FarmGameController
   m_TagString: Untagged
@@ -167,6 +168,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &14552454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14552451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67facd62cffb4314996a318c78cfa0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &270520721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,6 +1790,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f6f752d2-0048-49c4-bf00-b0b6abf95767
     m_ActionName: "\u519C\u573A/\u4E22\u5F03\u7269\u54C1[/Keyboard/q]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 14552451}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 48dba343-acff-49e6-bc6e-40ad738c14b8
+    m_ActionName: "\u519C\u573A/\u63A7\u5236\u53F0[/Keyboard/f12]"
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: "\u519C\u573A"

@@ -22,7 +22,11 @@ public class TimeManager : MonoSingleton<TimeManager>
         {
             curTickTime -= FarmSetting.gameTick;
             curGameTime.AddTick();
-            EventCenter.Instance.Trigger(nameof(EventEnum.GAME_TICK), curGameTime);
         }
+    }
+
+    public void AdvanceDay()
+    {
+        curGameTime.AddOneDay();
     }
 }

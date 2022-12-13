@@ -221,6 +221,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "控制台",
+                    "type": "Button",
+                    "id": "48dba343-acff-49e6-bc6e-40ad738c14b8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -320,6 +329,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "丢弃物品",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "014b349b-5417-4636-8540-5c0b7d5e8cfc",
+                    "path": "<Keyboard>/f12",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "控制台",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
