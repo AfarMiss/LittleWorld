@@ -49,14 +49,14 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     {
         ISaveableRegister();
         EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
-        EventCenter.Instance?.Register<GameTime>(EventEnum.DAY_CHANGE.ToString(), AdvanceDay);
+        EventCenter.Instance?.Register<GameTime>(EventEnum.DAY_CHANGE.ToString(), OnAdvanceDay);
     }
 
     private void OnDisable()
     {
         ISaveableDeregister();
         EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
-        EventCenter.Instance?.Unregister<GameTime>(EventEnum.DAY_CHANGE.ToString(), AdvanceDay);
+        EventCenter.Instance?.Unregister<GameTime>(EventEnum.DAY_CHANGE.ToString(), OnAdvanceDay);
     }
 
     private void AfterSceneLoaded()
@@ -417,10 +417,15 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
             if (gridPropertyDictionary.Count > 0)
             {
-                ClearDisplayGridPropertyDetails();
-                DisplayGridPropertyDetails();
+                UpdateDetails();
             }
         }
+    }
+
+    private void UpdateDetails()
+    {
+        ClearDisplayGridPropertyDetails();
+        DisplayGridPropertyDetails();
     }
 
     public void ISaveableStoreScene(string sceneName)
@@ -431,10 +436,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         GameObjectSave.sceneData.Add(sceneName, sceneSave);
     }
 
-    private void AdvanceDay(GameTime time)
+    private void OnAdvanceDay(GameTime time)
     {
-        ClearDisplayGridPropertyDetails();
-
         foreach (SO_GridProperties so_gridProperties in so_gridPropertiesArray)
         {
             if (GameObjectSave.sceneData.TryGetValue(so_gridProperties.sceneName.ToString(), out SceneSave sceneSave))
@@ -461,6 +464,9 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
                     }
                 }
             }
+
+            //更新显示
+            UpdateDetails();
         }
     }
 }
