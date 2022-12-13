@@ -140,7 +140,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     {
         if (!playerToolUseDisabled)
         {
-            if (context.canceled)
+            if (context.performed)
             {
                 if (gridCursor.CursorIsEnabled || cursor.CursorIsEnabled)
                 {
@@ -152,14 +152,21 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         }
     }
 
+    public void OnClickDrop(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Vector3Int cursorGridPosition = gridCursor.GetGridPositionForCursor();
+            DropItem(cursorGridPosition);
+        }
+    }
+
     private void ProcessPlayerClickInput(Vector3Int cursorGridPosition, Vector3Int playerGridPosition)
     {
         ResetMovement();
 
         Vector3Int playerDirection = GetPlayerClickDirection(cursorGridPosition, playerGridPosition);
         GridPropertyDetails gridPropertyDetails = GridPropertiesManager.Instance.GetGridPropertyDetails(cursorGridPosition.x, cursorGridPosition.y);
-
-
 
         ItemDetails itemDetails = InventoryManager.Instance.GetSelectedItemDetail(InventoryLocation.player);
 
@@ -172,6 +179,33 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                     {
                         PlantSeedAtCursor(gridPropertyDetails, itemDetails);
                     }
+                    break;
+                case ItemType.watering_tool:
+                case ItemType.hoeing_tool:
+                    ProcessPlayerClickInputTool(gridPropertyDetails, itemDetails, playerDirection);
+                    break;
+                case ItemType.reaping_tool:
+                    ReapGrooundAtCursor(cursorGridPosition, itemDetails);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void DropItem(Vector3Int cursorGridPosition)
+    {
+        ResetMovement();
+
+        GridPropertyDetails gridPropertyDetails = GridPropertiesManager.Instance.GetGridPropertyDetails(cursorGridPosition.x, cursorGridPosition.y);
+
+        ItemDetails itemDetails = InventoryManager.Instance.GetSelectedItemDetail(InventoryLocation.player);
+
+        if (itemDetails != null)
+        {
+            switch (itemDetails.itemType)
+            {
+                case ItemType.seed:
                     if (itemDetails.canBeDropped && gridCursor.CursorPositionIsValid)
                     {
                         EventCenter.Instance.Trigger(EventEnum.DROP_SELECTED_ITEM.ToString());
@@ -182,13 +216,6 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                     {
                         EventCenter.Instance.Trigger(EventEnum.DROP_SELECTED_ITEM.ToString());
                     }
-                    break;
-                case ItemType.watering_tool:
-                case ItemType.hoeing_tool:
-                    ProcessPlayerClickInputTool(gridPropertyDetails, itemDetails, playerDirection);
-                    break;
-                case ItemType.reaping_tool:
-                    ReapGrooundAtCursor(cursorGridPosition, itemDetails);
                     break;
                 default:
                     break;

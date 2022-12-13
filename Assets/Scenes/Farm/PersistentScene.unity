@@ -1761,6 +1761,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5ef038cd-eb9a-4aa2-a1ba-82c7f15ce4fa
     m_ActionName: "\u519C\u573A/\u5DE6\u51FB[/Mouse/leftButton]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 14552452}
+        m_TargetAssemblyTypeName: FarmGameController, Assembly-CSharp
+        m_MethodName: OnClickDrop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f6f752d2-0048-49c4-bf00-b0b6abf95767
+    m_ActionName: "\u519C\u573A/\u4E22\u5F03\u7269\u54C1[/Keyboard/q]"
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: "\u519C\u573A"
