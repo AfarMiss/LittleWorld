@@ -16,7 +16,7 @@ public class DebugController : MonoSingleton<DebugController>
     private int descriptionSingleWidth;
 
     public static DebugCommand ADVANCE_DAY;
-    //public static DebugCommand<int> TO_STAGE;
+    public static DebugCommand<int> ADVANCE_DAYS;
     //public static DebugCommand<int, int> USE_SKILL;
     public static DebugCommand HELP;
 
@@ -43,9 +43,10 @@ public class DebugController : MonoSingleton<DebugController>
         {
             TimeManager.Instance.AdvanceDay();
         });
-        //TO_STAGE = new DebugCommand<int>("go_stage", "进入指定关卡", "go_stage<stageIndex>", (stageIndex) =>
-        //{
-        //});
+        ADVANCE_DAYS = new DebugCommand<int>("advance_days", "向前多天", "advance_days<daysCount>", (daysCount) =>
+        {
+            TimeManager.Instance.AdvanceDay(daysCount);
+        });
         //USE_SKILL = new DebugCommand<int, int>("use_skill", "使用技能", "use_skill<buffID,useCount>", (buffID, useCount) =>
         //{
         //});
@@ -58,6 +59,7 @@ public class DebugController : MonoSingleton<DebugController>
         commandList = new List<object>
         {
             ADVANCE_DAY,
+            ADVANCE_DAYS,
             HELP,
         };
     }

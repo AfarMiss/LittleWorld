@@ -29,4 +29,12 @@ public class TimeManager : MonoSingleton<TimeManager>
     {
         curGameTime.AddOneDay();
     }
+
+    public void AdvanceDay(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            curGameTime.AddOneDay();
+        }
+    }
 }

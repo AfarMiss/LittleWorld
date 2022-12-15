@@ -382,13 +382,12 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
         yield return useToolAnimationPause;
 
-        SceneItemsManager.Instance.InstantiateSingleSceneItem(gridCursor.GetProducedItem(gridPropertyDetails), Director.Instance.MainPlayer.GetPlayrCentrePosition());
         var cropArray = FindObjectsOfType<Crop>();
         foreach (var item in cropArray)
         {
             if (item.cropGridPosition == new Vector2Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY))
             {
-                Destroy(item.gameObject);
+                item.Harvest(playerDirection);
                 break;
             }
         }
