@@ -16,6 +16,8 @@ public class GridCursor : MonoSingleton<GridCursor>
     [SerializeField] private Sprite greenCursorSprite = null;
     [SerializeField] private Sprite redCursorSprite = null;
 
+    [SerializeField] private SO_CropDetailsList cropDetailsList = null;
+
     /// <summary>
     /// 物品提示标记Grid对应是否可操作[红/绿]
     /// </summary>
@@ -202,7 +204,7 @@ public class GridCursor : MonoSingleton<GridCursor>
                 return gridPropertyDetails.daysSinceDug > -1 && gridPropertyDetails.daysSinceWatered == -1;
             case ItemType.collection_tool:
                 CropDetails cropDetails = GridPropertiesManager.Instance.GetCropDetails(gridPropertyDetails);
-                return gridPropertyDetails.seedItemCode > -1 && cropDetails != null && cropDetails.totalGrowthDays <= gridPropertyDetails.growthDays;
+                return gridPropertyDetails.seedItemCode > -1 && cropDetails != null && cropDetails.totalGrowthDays <= gridPropertyDetails.growthDays && cropDetails.CanUseToolToHarvestCrop(itemDetails.itemCode);
             default:
                 return false;
         }
@@ -273,6 +275,16 @@ public class GridCursor : MonoSingleton<GridCursor>
         //Debug.Log($"gridSceenPos:{gridSceenPos},pixelPos:{pixelPos}");
         //获取基于画布canvas的像素点坐标
         return pixelPos;
+    }
+
+    public CropDetails GetCropDetails(GridPropertyDetails details)
+    {
+        return cropDetailsList.GetCropDetails(details.seedItemCode);
+    }
+
+    public int GetProducedItem(GridPropertyDetails details)
+    {
+        return cropDetailsList.GetCropDetails(details.seedItemCode).GetProducedItemCode();
     }
 
 }

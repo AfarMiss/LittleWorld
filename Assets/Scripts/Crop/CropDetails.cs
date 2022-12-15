@@ -50,4 +50,9 @@ public class CropDetails
         }
         return -1;
     }
+
+    public int GetProducedItemCode()
+    {
+        return cropProducedItemCode[0];
+    }
 }

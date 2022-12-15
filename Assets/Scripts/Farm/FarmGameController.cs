@@ -382,7 +382,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
         yield return useToolAnimationPause;
 
-        SceneItemsManager.Instance.InstantiateSingleSceneItem(gridPropertyDetails.GetCommodityCode(), Director.Instance.MainPlayer.GetPlayrCentrePosition());
+        SceneItemsManager.Instance.InstantiateSingleSceneItem(gridCursor.GetProducedItem(gridPropertyDetails), Director.Instance.MainPlayer.GetPlayrCentrePosition());
         var cropArray = FindObjectsOfType<Crop>();
         foreach (var item in cropArray)
         {
@@ -393,7 +393,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
             }
         }
 
-        gridPropertyDetails.daysSinceLastHarvest = 0;
+        gridPropertyDetails.daysSinceLastHarvest = -1;
         gridPropertyDetails.growthDays = -1;
         gridPropertyDetails.seedItemCode = -1;
 
