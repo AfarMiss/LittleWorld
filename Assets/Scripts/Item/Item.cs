@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Item : MonoBehaviour
 {
@@ -34,6 +34,6 @@ public class Item : MonoBehaviour
         {
             spriteRenderer.sprite = itemDetail.itemSprite;
         }
-
+        this.ItemCode = itemCode;
     }
 }

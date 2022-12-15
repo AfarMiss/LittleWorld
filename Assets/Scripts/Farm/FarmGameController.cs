@@ -251,7 +251,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
             case ItemType.collection_tool:
                 if (gridCursor.CursorPositionIsValid)
                 {
-                    CollectAtCursor(gridPropertyDetails, playerDirection);
+                    CollectAtCursor(gridPropertyDetails, playerDirection, itemDetails);
                 }
                 break;
             case ItemType.watering_tool:
@@ -273,9 +273,9 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         }
     }
 
-    private void CollectAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)
+    private void CollectAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection, ItemDetails itemDetails)
     {
-        StartCoroutine(CollectGroundAtCursorRoutine(playerDirection, gridPropertyDetails));
+        StartCoroutine(CollectGroundAtCursorRoutine(playerDirection, gridPropertyDetails, itemDetails));
     }
 
     private void ReapGrooundAtCursor(Vector3Int cursorPosition, ItemDetails itemDetails)
@@ -351,7 +351,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         StartCoroutine(WaterGroundAtCursorRoutine(playerDirection, gridPropertyDetails));
     }
 
-    private IEnumerator CollectGroundAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails)
+    private IEnumerator CollectGroundAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails, ItemDetails itemDetails)
     {
         playerInputIsEnable = false;
         playerToolUseDisabled = true;
@@ -382,10 +382,20 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
         yield return useToolAnimationPause;
 
-        if (gridPropertyDetails.daysSinceLastHarvest == -1)
+        SceneItemsManager.Instance.InstantiateSingleSceneItem(gridPropertyDetails.GetCommodityCode(), Director.Instance.MainPlayer.GetPlayrCentrePosition());
+        var cropArray = FindObjectsOfType<Crop>();
+        foreach (var item in cropArray)
         {
-            gridPropertyDetails.daysSinceLastHarvest = 0;
+            if (item.cropGridPosition == new Vector2Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY))
+            {
+                Destroy(item.gameObject);
+                break;
+            }
         }
+
+        gridPropertyDetails.daysSinceLastHarvest = 0;
+        gridPropertyDetails.growthDays = -1;
+        gridPropertyDetails.seedItemCode = -1;
 
         GridPropertiesManager.Instance.SetGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY, gridPropertyDetails);
 

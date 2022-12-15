@@ -24,4 +24,15 @@ public class GridPropertyDetails
     {
 
     }
+
+    public int GetCommodityCode()
+    {
+        switch (seedItemCode)
+        {
+            case 10006:
+                return 10007;
+            default:
+                return -1;
+        }
+    }
 }

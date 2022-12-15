@@ -418,6 +418,11 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         return GetGridPropertyDetails(x, y, gridPropertyDictionary);
     }
 
+    public GridPropertyDetails GetGridPropertyDetails(Vector2Int pos)
+    {
+        return GetGridPropertyDetails(pos.x, pos.y, gridPropertyDictionary);
+    }
+
     public void ISaveableRestoreScene(string sceneName)
     {
         if (GameObjectSave.sceneData.TryGetValue(sceneName, out SceneSave sceneSave))
