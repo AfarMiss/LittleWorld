@@ -8,7 +8,6 @@ public class CropDetails
     [ItemCodeDescription]
     public int seedItemCode;
     public int[] growthDays;
-    public int totalGrowthDays;
     public GameObject[] growthPrefab;
     public Sprite[] growthSprite;
     public int[] seasons;
@@ -33,6 +32,19 @@ public class CropDetails
     public int[] cropProducedMinQuantity;
     public int[] cropProducedMaxQuantity;
     public int daysToRegrow;
+
+    public int totalGrowthDays
+    {
+        get
+        {
+            var result = 0;
+            foreach (var item in growthDays)
+            {
+                result += item;
+            }
+            return result;
+        }
+    }
 
     public bool CanUseToolToHarvestCrop(int toolItemCode)
     {
