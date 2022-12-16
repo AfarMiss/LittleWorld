@@ -27,10 +27,8 @@ public class CropDetails
     public int[] harvestToolItemCode;
     public int[] requiredHarvestActions;
 
-    [ItemCodeDescription]
-    public int[] cropProducedItemCode;
-    public int[] cropProducedMinQuantity;
-    public int[] cropProducedMaxQuantity;
+    public List<HarvestItem> harvestItems;
+
     public int daysToRegrow;
 
     public int totalGrowthDays
@@ -61,10 +59,5 @@ public class CropDetails
             }
         }
         return -1;
-    }
-
-    public int GetProducedItemCode()
-    {
-        return cropProducedItemCode[0];
     }
 }

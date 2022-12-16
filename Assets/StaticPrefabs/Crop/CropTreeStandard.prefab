@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8314130896468448467}
   - component: {fileID: 8314130896468448468}
   - component: {fileID: 8314130896468448469}
+  - component: {fileID: 7252187381592354439}
   m_Layer: 0
   m_Name: TreeSprite
   m_TagString: Untagged
@@ -107,6 +108,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &7252187381592354439
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8314130896468448466}
+  m_Enabled: 1
+  m_SortingLayerID: 422353195
+  m_SortingLayer: 6
+  m_SortingOrder: 0
 --- !u!1 &8314130896559531297
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +202,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &8314130897708276407
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,4 +334,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1

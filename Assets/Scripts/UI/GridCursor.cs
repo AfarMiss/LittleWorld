@@ -203,11 +203,17 @@ public class GridCursor : MonoSingleton<GridCursor>
             case ItemType.watering_tool:
                 return gridPropertyDetails.daysSinceDug > -1 && gridPropertyDetails.daysSinceWatered == -1;
             case ItemType.collection_tool:
-                CropDetails cropDetails = GridPropertiesManager.Instance.GetCropDetails(gridPropertyDetails);
-                return gridPropertyDetails.seedItemCode > -1 && cropDetails != null && cropDetails.totalGrowthDays <= gridPropertyDetails.growthDays && cropDetails.CanUseToolToHarvestCrop(itemDetails.itemCode);
+            case ItemType.chopping_tool:
+                return CheckCropTool(gridPropertyDetails, itemDetails);
             default:
                 return false;
         }
+    }
+
+    private static bool CheckCropTool(GridPropertyDetails gridPropertyDetails, ItemDetails itemDetails)
+    {
+        CropDetails cropDetails = GridPropertiesManager.Instance.GetCropDetails(gridPropertyDetails);
+        return gridPropertyDetails.seedItemCode > -1 && cropDetails != null && cropDetails.totalGrowthDays <= gridPropertyDetails.growthDays && cropDetails.CanUseToolToHarvestCrop(itemDetails.itemCode);
     }
 
     /// <summary>
@@ -281,10 +287,4 @@ public class GridCursor : MonoSingleton<GridCursor>
     {
         return cropDetailsList.GetCropDetails(details.seedItemCode);
     }
-
-    public int GetProducedItem(GridPropertyDetails details)
-    {
-        return cropDetailsList.GetCropDetails(details.seedItemCode).GetProducedItemCode();
-    }
-
 }

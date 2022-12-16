@@ -183,6 +183,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                 case ItemType.watering_tool:
                 case ItemType.hoeing_tool:
                 case ItemType.collection_tool:
+                case ItemType.chopping_tool:
                     ProcessPlayerClickInputTool(gridPropertyDetails, itemDetails, playerDirection);
                     break;
                 case ItemType.reaping_tool:
@@ -245,6 +246,10 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                 }
                 break;
             case ItemType.chopping_tool:
+                if (gridCursor.CursorPositionIsValid)
+                {
+                    ChopAtCursor(gridPropertyDetails, playerDirection);
+                }
                 break;
             case ItemType.breaking_tool:
                 break;
@@ -271,6 +276,60 @@ public class FarmGameController : MonoSingleton<FarmGameController>
             default:
                 break;
         }
+    }
+
+    private void ChopAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)
+    {
+        StartCoroutine(ChopAtCursorRoutine(playerDirection, gridPropertyDetails));
+    }
+
+    private IEnumerator ChopAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails)
+    {
+        playerInputIsEnable = false;
+        playerToolUseDisabled = true;
+
+        toolCharacterAttribute.partVariantType = PartVariantType.axe;
+        characterAttributeCustomisationList.Clear();
+        characterAttributeCustomisationList.Add(toolCharacterAttribute);
+        animationOverrides.ApplyCharacterCustomisationParameters(characterAttributeCustomisationList);
+
+        toolEffect = ToolEffect.none;
+
+        if (playerDirection == Vector3Int.right)
+        {
+            isUsingToolRight = true;
+        }
+        else if (playerDirection == Vector3Int.left)
+        {
+            isUsingToolLeft = true;
+        }
+        else if (playerDirection == Vector3Int.up)
+        {
+            isUsingToolUp = true;
+        }
+        else if (playerDirection == Vector3Int.down)
+        {
+            isUsingToolDown = true;
+        }
+
+        yield return useToolAnimationPause;
+
+        var cropArray = FindObjectsOfType<Crop>();
+        foreach (var item in cropArray)
+        {
+            if (item.cropGridPosition == new Vector2Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY))
+            {
+                item.TryHarvest(playerDirection, gridPropertyDetails);
+                break;
+            }
+        }
+
+        yield return afterUseToolAnimationPause;
+
+        ResetDir();
+
+        playerInputIsEnable = true;
+        playerToolUseDisabled = false;
     }
 
     private void CollectAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection, ItemDetails itemDetails)
@@ -387,7 +446,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         {
             if (item.cropGridPosition == new Vector2Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY))
             {
-                item.Harvest(playerDirection);
+                item.TryHarvest(playerDirection, gridPropertyDetails);
                 break;
             }
         }
