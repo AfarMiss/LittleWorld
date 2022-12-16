@@ -5,6 +5,10 @@ using UnityEngine;
 public class Crop : MonoBehaviour
 {
     private int currentHarvestAction = 0;
+
+    [Tooltip("This should be populated from child transform gameobject showing harvest effect spawn point")]
+    [SerializeField] private Transform harvestActionEffectTransform = null;
+
     [HideInInspector]
     public Vector2Int cropGridPosition;
 
@@ -79,6 +83,11 @@ public class Crop : MonoBehaviour
             else
             {
                 cropAnimator.SetBool("usetoolleft", true);
+            }
+
+            if (cropDetail.isHarvestActionEffect)
+            {
+                EventCenter.Instance.Trigger(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), harvestActionEffectTransform.position, HarvestActionEffect.deciduousLeavesFalling);
             }
         }
 
