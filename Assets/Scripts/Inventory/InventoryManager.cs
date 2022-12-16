@@ -287,6 +287,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         if (arg0 >= 0 && arg0 < inventoryItemsList[(int)InventoryLocation.player].Count)
         {
             InventoryItem curItem = inventoryItemsList[(int)InventoryLocation.player][arg0];
+            //如果物体标记为可携带，则举起该物体。
             if (GetItemDetail(curItem.itemCode) != null && GetItemDetail(curItem.itemCode).canBeCarried)
             {
                 FarmGameController.Instance.ShowCarriedItem(curItem.itemCode);
