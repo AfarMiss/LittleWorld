@@ -40,4 +40,5 @@ public enum EventEnum
     REMOVE_SELECTED_ITEM_FROM_INVENTORY,
     #endregion
     GRID_MODIFY,
+    INSTANTIATE_CROP_PREFAB,
 }

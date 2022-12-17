@@ -13,6 +13,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private Tilemap groundDecoration1;
     private Tilemap groundDecoration2;
+    private bool isFirstTimeSceneLoaded = true;
     /// <summary>
     /// 当前地图格子设置信息
     /// </summary>
@@ -392,6 +393,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
             {
                 this.gridPropertyDictionary = gridPropertyDictionary;
             }
+            sceneSave.boolDictionary = new Dictionary<string, bool>();
+            sceneSave.boolDictionary.Add("isFirstTimeSceneLoaded", true);
             GameObjectSave.sceneData.Add(so_GridProperties.sceneName.ToString(), sceneSave);
         }
     }
@@ -445,6 +448,16 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
             if (sceneSave.gridPropertyDetailsDictionary != null)
             {
                 gridPropertyDictionary = sceneSave.gridPropertyDetailsDictionary;
+            }
+
+            if (sceneSave.boolDictionary != null && sceneSave.boolDictionary.TryGetValue("isFirstTimeSceneLoaded", out bool storedIsFirstTimeSceneLoaded))
+            {
+                isFirstTimeSceneLoaded = storedIsFirstTimeSceneLoaded;
+            }
+            if (isFirstTimeSceneLoaded)
+            {
+                EventCenter.Instance.Trigger(EventEnum.INSTANTIATE_CROP_PREFAB.ToString());
+                isFirstTimeSceneLoaded = false;
             }
 
             if (gridPropertyDictionary.Count > 0)
