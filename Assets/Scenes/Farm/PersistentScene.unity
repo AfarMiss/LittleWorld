@@ -3344,6 +3344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reapingEffect: {fileID: 7621092222056753258, guid: 54c659a8118f6bd43ae372df5a96f8d7, type: 3}
   deciduousEffect: {fileID: 3095571677349356745, guid: 26a497542df926142918a5979c411d15, type: 3}
+  choppingStump: {fileID: 6144180590027112159, guid: c40a56ae010e1da4a8ca0abada96adef, type: 3}
 --- !u!4 &1923647980
 Transform:
   m_ObjectHideFlags: 0

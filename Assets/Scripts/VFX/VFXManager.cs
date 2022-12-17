@@ -6,6 +6,7 @@ public class VFXManager : MonoSingleton<VFXManager>
 {
     [SerializeField] private GameObject reapingEffect;
     [SerializeField] private GameObject deciduousEffect;
+    [SerializeField] private GameObject choppingStump;
     private void OnEnable()
     {
         EventCenter.Instance?.Register<Vector3, HarvestActionEffect>(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), OnHarvestActionEffect);
@@ -13,35 +14,21 @@ public class VFXManager : MonoSingleton<VFXManager>
 
     private void Start()
     {
-        PoolManager.Instance.CreatePool(20, reapingEffect, HarvestActionEffect.reaping.ToString());
-        PoolManager.Instance.CreatePool(20, deciduousEffect, HarvestActionEffect.deciduousLeavesFalling.ToString());
+        PoolManager.Instance.CreatePool(5, reapingEffect, HarvestActionEffect.reaping.ToString());
+        PoolManager.Instance.CreatePool(5, deciduousEffect, HarvestActionEffect.deciduousLeavesFalling.ToString());
+        PoolManager.Instance.CreatePool(5, choppingStump, HarvestActionEffect.choppingTreeTrunk.ToString());
     }
 
     private void OnHarvestActionEffect(Vector3 arg0, HarvestActionEffect arg1)
     {
-        switch (arg1)
-        {
-            case HarvestActionEffect.deciduousLeavesFalling:
-                var deciduousLeavesFalling = PoolManager.Instance.GetNextObject(HarvestActionEffect.deciduousLeavesFalling.ToString());
-                deciduousLeavesFalling.transform.position = arg0;
-                StartCoroutine(StartReapVFX(deciduousLeavesFalling));
-                break;
-            case HarvestActionEffect.pineConesFalling:
-                break;
-            case HarvestActionEffect.choppingTreeTrunk:
-                break;
-            case HarvestActionEffect.breakingStone:
-                break;
-            case HarvestActionEffect.reaping:
-                var reap = PoolManager.Instance.GetNextObject(HarvestActionEffect.reaping.ToString());
-                reap.transform.position = arg0;
-                StartCoroutine(StartReapVFX(reap));
-                break;
-            case HarvestActionEffect.none:
-                break;
-            default:
-                break;
-        }
+        CreateVFX(arg1, arg0);
+    }
+
+    private void CreateVFX(HarvestActionEffect effect, Vector3 arg0)
+    {
+        var reap = PoolManager.Instance.GetNextObject(effect.ToString());
+        reap.transform.position = arg0;
+        StartCoroutine(StartReapVFX(reap, effect));
     }
 
     private void OnDisable()
@@ -49,9 +36,9 @@ public class VFXManager : MonoSingleton<VFXManager>
         EventCenter.Instance?.Register<Vector3, HarvestActionEffect>(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), OnHarvestActionEffect);
     }
 
-    private IEnumerator StartReapVFX(GameObject obj)
+    private IEnumerator StartReapVFX(GameObject obj, HarvestActionEffect effectType)
     {
         yield return new WaitForSeconds(2f);
-        PoolManager.Instance.Putback(HarvestActionEffect.reaping.ToString(), obj);
+        PoolManager.Instance.Putback(effectType.ToString(), obj);
     }
 }
