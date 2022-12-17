@@ -21,8 +21,6 @@ public class CropDetails
     public int[] seasons;
     public Sprite harvestedSprite;
 
-    [ItemCodeDescription]
-    public int harvestedTransformItemCode;
     public bool hideCropBeforeHarvestedAnimation;
     public bool disableCropCollidersBeforeHarvestedAnimation;
 

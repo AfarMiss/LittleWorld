@@ -7,6 +7,7 @@ public class VFXManager : MonoSingleton<VFXManager>
     [SerializeField] private GameObject reapingEffect;
     [SerializeField] private GameObject deciduousEffect;
     [SerializeField] private GameObject choppingStump;
+    [SerializeField] private GameObject pinecone;
     private void OnEnable()
     {
         EventCenter.Instance?.Register<Vector3, HarvestActionEffect>(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), OnHarvestActionEffect);
@@ -17,6 +18,7 @@ public class VFXManager : MonoSingleton<VFXManager>
         PoolManager.Instance.CreatePool(5, reapingEffect, HarvestActionEffect.reaping.ToString());
         PoolManager.Instance.CreatePool(5, deciduousEffect, HarvestActionEffect.deciduousLeavesFalling.ToString());
         PoolManager.Instance.CreatePool(5, choppingStump, HarvestActionEffect.choppingTreeTrunk.ToString());
+        PoolManager.Instance.CreatePool(5, pinecone, HarvestActionEffect.pineConesFalling.ToString());
     }
 
     private void OnHarvestActionEffect(Vector3 arg0, HarvestActionEffect arg1)
