@@ -69,10 +69,22 @@ public class Crop : MonoBehaviour
             Destroy(gameObject);
 
             //数据设置
-            gridPropertyDetails.daysSinceLastHarvest = -1;
-            gridPropertyDetails.growthDays = -1;
-            gridPropertyDetails.seedItemCode = -1;
+            if (cropDetail.afterHarvestSeedItemCode > -1)
+            {
+                gridPropertyDetails.daysSinceLastHarvest = 0;
+                gridPropertyDetails.growthDays = 0;
+                gridPropertyDetails.seedItemCode = cropDetail.afterHarvestSeedItemCode;
+            }
+            else
+            {
+                gridPropertyDetails.daysSinceLastHarvest = -1;
+                gridPropertyDetails.growthDays = -1;
+                gridPropertyDetails.seedItemCode = -1;
+            }
+
+
             GridPropertiesManager.Instance.SetGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY, gridPropertyDetails);
+            EventCenter.Instance?.Trigger<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), gridPropertyDetails);
         }
         else
         {

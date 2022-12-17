@@ -50,6 +50,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         ISaveableRegister();
         EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
         EventCenter.Instance?.Register<GameTime>(EventEnum.DAY_CHANGE.ToString(), OnAdvanceDay);
+        EventCenter.Instance?.Register<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify);
     }
 
     private void OnDisable()
@@ -57,6 +58,19 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         ISaveableDeregister();
         EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
         EventCenter.Instance?.Unregister<GameTime>(EventEnum.DAY_CHANGE.ToString(), OnAdvanceDay);
+        EventCenter.Instance?.Unregister<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify);
+    }
+
+    private void OnGridModify(GridPropertyDetails details)
+    {
+        string key = $"x{details.gridX}y{details.gridY}";
+        gridPropertyDictionary.TryGetValue(key, out var value);
+        if (value != null)
+        {
+            gridPropertyDictionary[key] = details;
+        }
+
+        UpdateAllDetails();
     }
 
     private void AfterSceneLoaded()
@@ -93,8 +107,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private void ClearDisplayGrouondDecorations()
     {
-        groundDecoration1.ClearAllTiles();
-        groundDecoration2.ClearAllTiles();
+        groundDecoration1?.ClearAllTiles();
+        groundDecoration2?.ClearAllTiles();
     }
 
     private void ClearDisplayGridPropertyDetails()
@@ -252,6 +266,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private void DisplayGridPropertyDetails()
     {
+        if (gridPropertyDictionary == null) return;
         foreach (var item in gridPropertyDictionary)
         {
             GridPropertyDetails gridPropertyDetails = item.Value;
@@ -434,12 +449,18 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
             if (gridPropertyDictionary.Count > 0)
             {
-                UpdateDetails();
+                UpdateAllDetails();
             }
         }
     }
 
-    private void UpdateDetails()
+    private void UpdateAllDetails()
+    {
+        ClearDisplayGridPropertyDetails();
+        DisplayGridPropertyDetails();
+    }
+
+    private void UpdateSingleDetails()
     {
         ClearDisplayGridPropertyDetails();
         DisplayGridPropertyDetails();
@@ -481,9 +502,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
                     }
                 }
             }
-
-            //更新显示
-            UpdateDetails();
+            UpdateAllDetails();
         }
     }
 }

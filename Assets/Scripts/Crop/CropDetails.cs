@@ -8,7 +8,15 @@ public class CropDetails
     [ItemCodeDescription]
     public int seedItemCode;
     public int[] growthDays;
+    /// <summary>
+    /// 成长预设
+    /// </summary>
     public GameObject[] growthPrefab;
+    /// <summary>
+    /// 收获后遗留物(当做一种立刻成熟的特殊作物)
+    /// </summary>
+    [ItemCodeDescription]
+    public int afterHarvestSeedItemCode = -1;
     public Sprite[] growthSprite;
     public int[] seasons;
     public Sprite harvestedSprite;
