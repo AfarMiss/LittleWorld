@@ -99,7 +99,7 @@ public class Crop : MonoBehaviour
 
             if (cropDetail.isHarvestActionEffect)
             {
-                EventCenter.Instance.Trigger(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), harvestActionEffectTransform.position, HarvestActionEffect.deciduousLeavesFalling);
+                EventCenter.Instance.Trigger(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), harvestActionEffectTransform.position, cropDetail.harvestActionEffect);
             }
         }
 
