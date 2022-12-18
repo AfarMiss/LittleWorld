@@ -204,6 +204,7 @@ public class GridCursor : MonoSingleton<GridCursor>
                 return gridPropertyDetails.daysSinceDug > -1 && gridPropertyDetails.daysSinceWatered == -1;
             case ItemType.collection_tool:
             case ItemType.chopping_tool:
+            case ItemType.breaking_tool:
                 return CheckCropTool(gridPropertyDetails, itemDetails);
             default:
                 return false;

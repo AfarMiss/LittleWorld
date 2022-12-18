@@ -24,24 +24,24 @@ public class Crop : MonoBehaviour
     {
         var cropDetail = GridPropertiesManager.Instance.GetCropDetails(gridPropertyDetails);
 
-        //动画机相关
-        if (harvestAnimationSpriteRender != null)
-        {
-            if (cropDetail.isHarvestedAnimation)
-            {
-                harvestAnimationSpriteRender.enabled = true;
-                harvestAnimationSpriteRender.sprite = cropDetail.harvestedSprite;
-            }
-            else
-            {
-                harvestAnimationSpriteRender.enabled = false;
-            }
-        }
-
         currentHarvestAction++;
 
         if (currentHarvestAction >= cropDetail.requiredHarvestActions[0])
         {
+            //动画机相关
+            if (harvestAnimationSpriteRender != null)
+            {
+                if (cropDetail.isHarvestedAnimation)
+                {
+                    harvestAnimationSpriteRender.enabled = true;
+                    harvestAnimationSpriteRender.sprite = cropDetail.harvestedSprite;
+                }
+                else
+                {
+                    harvestAnimationSpriteRender.enabled = false;
+                }
+            }
+
 
             if (playerDir == Vector3Int.right || playerDir == Vector3Int.up)
             {
@@ -63,7 +63,7 @@ public class Crop : MonoBehaviour
                 for (int i = 0; i < harvestCount; i++)
                 {
                     SceneItemsManager.Instance.InstantiateSingleSceneItem(item.harvestItemCode,
-                        Director.Instance.MainPlayer.GetPlayrCentrePosition() + (Vector3)Random.insideUnitCircle);
+                        transform.position + (Vector3)Random.insideUnitCircle);
                 }
             }
             Destroy(gameObject);

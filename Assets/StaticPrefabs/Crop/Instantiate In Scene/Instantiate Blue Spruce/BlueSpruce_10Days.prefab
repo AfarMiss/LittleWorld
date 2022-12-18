@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1016276881136113736, guid: 58ddb2cbe2ddd3b4baa58ab42c89399a, type: 3}
       propertyPath: growthDays
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6447783178897235775, guid: 58ddb2cbe2ddd3b4baa58ab42c89399a, type: 3}
       propertyPath: m_Sprite

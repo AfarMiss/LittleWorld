@@ -184,6 +184,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                 case ItemType.hoeing_tool:
                 case ItemType.collection_tool:
                 case ItemType.chopping_tool:
+                case ItemType.breaking_tool:
                     ProcessPlayerClickInputTool(gridPropertyDetails, itemDetails, playerDirection);
                     break;
                 case ItemType.reaping_tool:
@@ -252,6 +253,10 @@ public class FarmGameController : MonoSingleton<FarmGameController>
                 }
                 break;
             case ItemType.breaking_tool:
+                if (gridCursor.CursorPositionIsValid)
+                {
+                    BreakAtCursor(gridPropertyDetails, playerDirection);
+                }
                 break;
             case ItemType.collection_tool:
                 if (gridCursor.CursorPositionIsValid)
@@ -276,6 +281,60 @@ public class FarmGameController : MonoSingleton<FarmGameController>
             default:
                 break;
         }
+    }
+
+    private void BreakAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)
+    {
+        StartCoroutine(BreakAtCursorRoutine(playerDirection, gridPropertyDetails));
+    }
+
+    private IEnumerator BreakAtCursorRoutine(Vector3Int playerDirection, GridPropertyDetails gridPropertyDetails)
+    {
+        playerInputIsEnable = false;
+        playerToolUseDisabled = true;
+
+        toolCharacterAttribute.partVariantType = PartVariantType.pickaxe;
+        characterAttributeCustomisationList.Clear();
+        characterAttributeCustomisationList.Add(toolCharacterAttribute);
+        animationOverrides.ApplyCharacterCustomisationParameters(characterAttributeCustomisationList);
+
+        toolEffect = ToolEffect.none;
+
+        if (playerDirection == Vector3Int.right)
+        {
+            isUsingToolRight = true;
+        }
+        else if (playerDirection == Vector3Int.left)
+        {
+            isUsingToolLeft = true;
+        }
+        else if (playerDirection == Vector3Int.up)
+        {
+            isUsingToolUp = true;
+        }
+        else if (playerDirection == Vector3Int.down)
+        {
+            isUsingToolDown = true;
+        }
+
+        yield return useToolAnimationPause;
+
+        var cropArray = FindObjectsOfType<Crop>();
+        foreach (var item in cropArray)
+        {
+            if (item.cropGridPosition == new Vector2Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY))
+            {
+                item.TryHarvest(playerDirection, gridPropertyDetails);
+                break;
+            }
+        }
+
+        yield return afterUseToolAnimationPause;
+
+        ResetDir();
+
+        playerInputIsEnable = true;
+        playerToolUseDisabled = false;
     }
 
     private void ChopAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)

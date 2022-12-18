@@ -3346,6 +3346,7 @@ MonoBehaviour:
   deciduousEffect: {fileID: 3095571677349356745, guid: 26a497542df926142918a5979c411d15, type: 3}
   choppingStump: {fileID: 6144180590027112159, guid: c40a56ae010e1da4a8ca0abada96adef, type: 3}
   pinecone: {fileID: 3095571677349356745, guid: 01963808377432c4bbfdff9a2e1b497e, type: 3}
+  breakingStone: {fileID: 6144180590027112159, guid: e223ccfd8bffd4142a7afaca66796fd5, type: 3}
 --- !u!4 &1923647980
 Transform:
   m_ObjectHideFlags: 0
