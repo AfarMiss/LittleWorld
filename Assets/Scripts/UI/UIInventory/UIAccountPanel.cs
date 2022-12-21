@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIInventoryBar : BaseUI
+public class UIAccountPanel : MonoBehaviour
 {
     [SerializeField]
     private RectTransform rectTransform;
@@ -15,14 +15,9 @@ public class UIInventoryBar : BaseUI
 
     public bool IsInBottom { get => isInBottom; }
 
-    public override string path => UIPath.Panel_ConciseInventoryPanel;
-
-    private void Start()
-    {
-        BindData();
-    }
     private void OnEnable()
     {
+        BindData();
         EventCenter.Instance.Register(nameof(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED), BindData);
     }
 
@@ -39,7 +34,7 @@ public class UIInventoryBar : BaseUI
 
     private void BindDataWith(List<InventoryItem> itemsList, int hightLightIndex)
     {
-        for (int i = 0; i < uIInventorySlots.Length; i++)
+        for (int i = 0; i < FarmSetting.playerMaxRepositoryCapacity; i++)
         {
             if (i < itemsList.Count)
             {
@@ -54,7 +49,7 @@ public class UIInventoryBar : BaseUI
 
     private void FixedUpdate()
     {
-        CheckUIPos();
+        //CheckUIPos();
     }
 
     private void CheckUIPos()
@@ -89,9 +84,5 @@ public class UIInventoryBar : BaseUI
         {
             item.IsSelected = false;
         }
-    }
-
-    public override void OnClickClose()
-    {
     }
 }

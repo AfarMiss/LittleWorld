@@ -5,6 +5,9 @@ public static class FarmSetting
     public const float walkSpeed = 2f;
     public const float runSpeed = 4f;
 
+    public static int playerCurrentRepositoryCapacity = 24;
+    public static int playerMaxRepositoryCapacity = 48;
+
     public const float targetAlpha = 0.45f;
     public const float fadeInSeconds = 0.25f;
     public const float fadeOutSeconds = 0.25f;
