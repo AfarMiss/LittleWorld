@@ -300,6 +300,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531853497902189 stripped
@@ -437,6 +445,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531853291924970 stripped
@@ -574,6 +590,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531854091444871 stripped
@@ -711,6 +735,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531852909425264 stripped
@@ -848,6 +880,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531852847021330 stripped
@@ -985,6 +1025,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531853098022116 stripped
@@ -1122,6 +1170,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531852612172095 stripped
@@ -1259,6 +1315,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531852693859292 stripped
@@ -1396,6 +1460,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531852691905226 stripped
@@ -1533,6 +1605,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531852732319516 stripped
@@ -1670,6 +1750,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!224 &2301531852829452166 stripped
@@ -1807,6 +1895,14 @@ PrefabInstance:
       propertyPath: inventoryTextBoxPrefab
       value: 
       objectReference: {fileID: 3330834546716662718, guid: 2d38cef9d359b91448b8e470ac63ba62, type: 3}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956115541510358396, guid: bfbb5466c96523648a32719cc1391996, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbb5466c96523648a32719cc1391996, type: 3}
 --- !u!114 &163343967152893194 stripped
