@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIInventoryBar : MonoBehaviour
+public class UIInventoryBar : BaseUI
 {
     [SerializeField]
     private RectTransform rectTransform;
@@ -18,6 +18,8 @@ public class UIInventoryBar : MonoBehaviour
 
     public bool IsInBottom { get => isInBottom; }
 
+    public override string path => UIPath.Panel_ConciseInventoryPanel;
+
     private void Start()
     {
         BindData();
@@ -25,13 +27,11 @@ public class UIInventoryBar : MonoBehaviour
     private void OnEnable()
     {
         EventCenter.Instance.Register(nameof(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED), BindData);
-        EventHandler.UpdateInventoryEvent += BindData;
     }
 
     private void OnDisable()
     {
         EventCenter.Instance?.Unregister(nameof(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED), BindData);
-        EventHandler.UpdateInventoryEvent -= BindData;
     }
 
     private void BindData()
@@ -92,5 +92,10 @@ public class UIInventoryBar : MonoBehaviour
         {
             item.IsSelected = false;
         }
+    }
+
+    public override void OnClickClose()
+    {
+        throw new System.NotImplementedException();
     }
 }

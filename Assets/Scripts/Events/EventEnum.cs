@@ -17,6 +17,8 @@ public enum EventEnum
     /// </summary>
     DROP_SELECTED_ITEM,
 
+    UpdateInventory,
+
     #region 时间相关事件
     YEAR_CHANGE,
     QUAD_CHANGE,

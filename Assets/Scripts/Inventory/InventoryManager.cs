@@ -106,7 +106,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     public void AddItem(InventoryLocation location, Item item, GameObject gameObjectToDestroy)
     {
         AddItem(location, item);
-        EventHandler.CallUpdateInventoryEvent();
+        EventCenter.Instance.Trigger(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED.ToString());
         Destroy(gameObjectToDestroy);
     }
 
@@ -142,7 +142,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         inventorySelectedList[(int)InventoryLocation.player] = itemToIndex;
         EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), itemToIndex);
 
-        EventHandler.CallUpdateInventoryEvent();
+        EventCenter.Instance.Trigger(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED.ToString());
     }
 
     /// <summary>
@@ -187,7 +187,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         {
             Debug.LogError($"No Item:{item.ItemCode}");
         }
-        EventHandler.CallUpdateInventoryEvent();
+        EventCenter.Instance.Trigger(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED.ToString());
         PrintInventoryInfo(location);
     }
 
@@ -215,7 +215,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         {
             Debug.LogError($"No Item at {itemPosition} in player inventory");
         }
-        EventHandler.CallUpdateInventoryEvent();
+        EventCenter.Instance.Trigger(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED.ToString());
         PrintInventoryInfo(location);
     }
 
