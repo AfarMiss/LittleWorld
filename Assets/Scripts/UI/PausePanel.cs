@@ -33,4 +33,9 @@ public class PausePanel : BaseUI
     {
         UIManager.Instance.Hide<PausePanel>(UIType.PANEL);
     }
+
+    public void OnClickQuit()
+    {
+        Application.Quit();
+    }
 }
