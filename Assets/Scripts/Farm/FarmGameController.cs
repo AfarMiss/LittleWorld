@@ -161,6 +161,14 @@ public class FarmGameController : MonoSingleton<FarmGameController>
         }
     }
 
+    public void OnClickPause(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            UIManager.Instance.Switch<PausePanel>(UIType.PANEL, UIPath.Panel_PausePanel);
+        }
+    }
+
     private void ProcessPlayerClickInput(Vector3Int cursorGridPosition, Vector3Int playerGridPosition)
     {
         ResetMovement();
