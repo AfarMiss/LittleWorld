@@ -68,6 +68,7 @@
   * [物理场景模拟](readme/wu-li-chang-jing-mo-ni.md)
   * [Gizmos与Handler](readme/gizmos-yu-handler.md)
   * [Physics2D设置一览](readme/physics2d-she-zhi-yi-lan.md)
+  * [报错及解决](readme/bao-cuo-ji-jie-jue.md)
 * [C#](c/README.md)
   * [在Unity中使用C#自定义属性](c/zai-unity-zhong-shi-yongczi-ding-yi-shu-xing.md)
   * [程序集](c/cheng-xu-ji.md)
