@@ -43,7 +43,7 @@ public class SaveLoadManager : MonoSingleton<SaveLoadManager>
             FileStream file = System.IO.File.Open(Application.persistentDataPath + "/WildHopeCreek.dat", FileMode.Open);
             gameSave = (GameSave)bf.Deserialize(file);
 
-            for (int i = 0; i < iSaveableObjectList.Count - 1; i++)
+            for (int i = 0; i < iSaveableObjectList.Count; i++)
             {
                 if (gameSave.gameObjectData.ContainsKey(iSaveableObjectList[i].ISaveableUniqueID))
                 {
