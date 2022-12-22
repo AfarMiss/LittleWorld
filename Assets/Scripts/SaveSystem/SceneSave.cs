@@ -3,6 +3,7 @@
 [System.Serializable]
 public class SceneSave
 {
+    public GameTime gameTime;
     public Dictionary<string, bool> boolDictionary;
     public Dictionary<string, string> stringDictionary;
     public Dictionary<string, Vector3Serializable> vector3Dictionary;

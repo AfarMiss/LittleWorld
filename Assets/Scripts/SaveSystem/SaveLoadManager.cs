@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class SaveLoadManager : MonoSingleton<SaveLoadManager>
 {
-    public GameSave gameSave;
     public List<ISaveable> iSaveableObjectList;
     private string saveName = "WildHopeCreek";
 
@@ -35,12 +34,15 @@ public class SaveLoadManager : MonoSingleton<SaveLoadManager>
         }
     }
 
+    /// <summary>
+    /// 加载存档
+    /// </summary>
     public void LoadDataFromFile()
     {
         BinaryFormatter bf = new BinaryFormatter();
         if (System.IO.File.Exists($"{Application.persistentDataPath}/{saveName}.dat"))
         {
-            gameSave = new GameSave();
+            var gameSave = new GameSave();
             FileStream file = System.IO.File.Open($"{Application.persistentDataPath}/{saveName}.dat", FileMode.Open);
             gameSave = (GameSave)bf.Deserialize(file);
 
@@ -63,9 +65,12 @@ public class SaveLoadManager : MonoSingleton<SaveLoadManager>
         UIManager.Instance.Hide<PausePanel>(UIType.PANEL);
     }
 
+    /// <summary>
+    /// 存储存档
+    /// </summary>
     public void SaveDataToFile()
     {
-        gameSave = new GameSave();
+        var gameSave = new GameSave();
         foreach (ISaveable saveable in iSaveableObjectList)
         {
             gameSave.gameObjectData.Add(saveable.ISaveableUniqueID, saveable.ISaveableSave());
