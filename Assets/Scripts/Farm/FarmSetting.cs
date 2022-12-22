@@ -2,6 +2,8 @@
 
 public static class FarmSetting
 {
+    public const string PersistentScene = "PersistentScene";
+
     public const float walkSpeed = 2f;
     public const float runSpeed = 4f;
 

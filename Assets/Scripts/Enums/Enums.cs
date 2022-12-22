@@ -25,7 +25,8 @@ public enum Direction
     up,
     down,
     left,
-    right
+    right,
+    none
 }
 
 public enum ItemType

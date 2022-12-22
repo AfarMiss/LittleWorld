@@ -11,6 +11,51 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     private WaitForSeconds afterLiftToolAnimationPause;
     private WaitForSeconds liftToolAnimationPause;
 
+    private Vector3Int playerDirection;
+    public Vector3Int PlayerDirection
+    {
+        get { return playerDirection; }
+        set
+        {
+            playerDirection = value;
+            SetPlayerDirection();
+        }
+    }
+
+    private void SetPlayerDirection()
+    {
+        if (playerDirection == Vector3Int.up)
+        {
+            EventHandler.CallMovementEvent(0f, 0f, false, false, false, false, ToolEffect.none,
+                false, false, false, false, false, false, false, false, false, false, false,
+                false, false, false, false, false, false, false, true, false);
+        }
+        else if (playerDirection == Vector3Int.down)
+        {
+            EventHandler.CallMovementEvent(0f, 0f, false, false, false, false, ToolEffect.none,
+    false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, true);
+        }
+        else if (playerDirection == Vector3Int.right)
+        {
+            EventHandler.CallMovementEvent(0f, 0f, false, false, false, false, ToolEffect.none,
+    false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, true, false, false, false);
+        }
+        else if (playerDirection == Vector3Int.left)
+        {
+            EventHandler.CallMovementEvent(0f, 0f, false, false, false, false, ToolEffect.none,
+    false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, true, false, false);
+        }
+        else
+        {
+            EventHandler.CallMovementEvent(0f, 0f, false, false, false, false, ToolEffect.none,
+false, false, false, false, false, false, false, false, false, false, false,
+false, false, false, false, false, false, false, false, true);
+        }
+    }
+
     /// <summary>
     /// 玩家是否处于禁用物品状态
     /// </summary>
@@ -173,7 +218,7 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     {
         ResetMovement();
 
-        Vector3Int playerDirection = GetPlayerClickDirection(cursorGridPosition, playerGridPosition);
+        playerDirection = GetPlayerClickDirection(cursorGridPosition, playerGridPosition);
         GridPropertyDetails gridPropertyDetails = GridPropertiesManager.Instance.GetGridPropertyDetails(cursorGridPosition.x, cursorGridPosition.y);
 
         ItemDetails itemDetails = InventoryManager.Instance.GetSelectedItemDetail(InventoryLocation.player);

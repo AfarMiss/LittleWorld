@@ -1409,7 +1409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d4ad94e8ac03147be3d9a383dd37a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 1
+  fadeDuration: 0.3
   faderCanvasGroup: {fileID: 1186315403}
   faderImage: {fileID: 1186315401}
   startingSceneName: 1
@@ -1560,6 +1560,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 54c0da4c00430b04cb4fb48da3bd082f, type: 2}
   - {fileID: 11400000, guid: 8ad37b9ede0bf2a449915cfe55d89eb8, type: 2}
   - {fileID: 11400000, guid: dfffeb842d4190e42ba6dacad30a7631, type: 2}
+--- !u!114 &1475154159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654542150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1419f1b3714fa48943e5edb7e0b79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gUID: f9016416-0d15-4076-82c4-ec8934010ff7
 --- !u!1 &1584648778
 GameObject:
   m_ObjectHideFlags: 0
