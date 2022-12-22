@@ -22,7 +22,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public Image highLight;
 
     [SerializeField]
-    private UIInventoryBar parentBar = null;
+    private BaseInventory parentBar = null;
     [SerializeField]
     private GameObject itemPrefab = null;
     [SerializeField]
