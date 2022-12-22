@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class PausePanel : BaseUI
@@ -37,5 +39,15 @@ public class PausePanel : BaseUI
     public void OnClickQuit()
     {
         Application.Quit();
+    }
+
+    public void LoadDataFromFile()
+    {
+        SaveLoadManager.Instance.LoadDataFromFile();
+    }
+
+    public void SaveDataToFile()
+    {
+        SaveLoadManager.Instance.SaveDataToFile();
     }
 }
