@@ -50,6 +50,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         EventCenter.Instance?.Unregister(EventEnum.DROP_SELECTED_ITEM.ToString(), OnDropSelectedItem);
         EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
+        Destroy(draggedItem);
     }
 
     private void OnSceneLoaded()

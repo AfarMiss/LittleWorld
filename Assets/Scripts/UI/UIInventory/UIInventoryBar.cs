@@ -19,4 +19,35 @@ public class UIInventoryBar : BaseInventory
             }
         }
     }
+
+    private void FixedUpdate()
+    {
+        CheckUIPos();
+    }
+
+    protected override void CheckUIPos()
+    {
+        if (FarmPlayer.Instance != null)
+        {
+            var playerViewPortPos = Camera.main.WorldToViewportPoint(FarmPlayer.Instance.transform.position);
+            if (playerViewPortPos.y > 0.3f && !isInBottom)
+            {
+                rectTransform.pivot = new Vector2(0.5f, 0f);
+                rectTransform.anchorMin = new Vector2(0.5f, 0f);
+                rectTransform.anchorMax = new Vector2(0.5f, 0f);
+                rectTransform.anchoredPosition = new Vector2(0f, 2.5f);
+
+                isInBottom = true;
+            }
+            if (playerViewPortPos.y <= 0.3f && isInBottom)
+            {
+                rectTransform.pivot = new Vector2(0.5f, 1f);
+                rectTransform.anchorMin = new Vector2(0.5f, 1f);
+                rectTransform.anchorMax = new Vector2(0.5f, 1f);
+                rectTransform.anchoredPosition = new Vector2(0f, -2.5f);
+
+                isInBottom = false;
+            }
+        }
+    }
 }
