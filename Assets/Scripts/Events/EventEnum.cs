@@ -11,13 +11,11 @@ public enum EventEnum
     /// <summary>
     /// 管理器改变选中内容对应UI
     /// </summary>
-    INVENTORY_MANAGER_CHANGE_BAR_SELECTED,
+    UPDATE_INVENTORY,
     /// <summary>
     /// 丢弃选中物品
     /// </summary>
     DROP_SELECTED_ITEM,
-
-    UpdateInventory,
 
     #region 时间相关事件
     YEAR_CHANGE,

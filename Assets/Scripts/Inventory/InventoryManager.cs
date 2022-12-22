@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InventoryManager : MonoSingleton<InventoryManager>
+public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
 {
+    private int[] inventoryListCapacityIntArray = { 12, 48 };
+    private UIInventoryBar inventoryBar;
     private Dictionary<int, ItemDetails> itemDetailsDictionary;
-    private List<List<InventoryItem>> inventoryItemsList;
+    private List<InventoryItem>[] inventoryItemsList;
     public List<int> inventorySelectedList;
-    public List<List<InventoryItem>> InventoryDictionary { get => inventoryItemsList; }
+    public List<InventoryItem>[] InventoryDictionary { get => inventoryItemsList; }
+    private string iSaveableUniqueID;
+    public string ISaveableUniqueID { get => iSaveableUniqueID; set => iSaveableUniqueID = value; }
+    public GameObjectSave gameObjectSave;
+    public GameObjectSave GameObjectSave { get => gameObjectSave; set => gameObjectSave = value; }
 
     [SerializeField] private SO_ItemList itemList = null;
 
+    private void Start()
+    {
+        inventoryBar = FindObjectOfType<UIInventoryBar>();
+    }
 
     protected override void Awake()
     {
@@ -19,6 +29,9 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         CreateItemDetailsDictionary();
         CreateInventoryList();
         CreateSelectedList();
+
+        ISaveableUniqueID = GetComponent<GenerateGUID>().GUID;
+        GameObjectSave = new GameObjectSave();
     }
 
     public ItemDetails GetSelectedItemDetail(InventoryLocation inventoryLocation)
@@ -45,10 +58,10 @@ public class InventoryManager : MonoSingleton<InventoryManager>
 
     private void CreateInventoryList()
     {
-        inventoryItemsList = new List<List<InventoryItem>>();
-        for (int i = 0; i < (int)InventoryLocation.account; i++)
+        inventoryItemsList = new List<InventoryItem>[3];
+        for (int i = 0; i <= (int)InventoryLocation.account; i++)
         {
-            inventoryItemsList.Add(new List<InventoryItem>());
+            inventoryItemsList[i] = (new List<InventoryItem>());
         }
     }
 
@@ -106,7 +119,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     public void AddItem(InventoryLocation location, Item item, GameObject gameObjectToDestroy)
     {
         AddItem(location, item);
-        EventCenter.Instance.Trigger(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED.ToString());
+        EventCenter.Instance.Trigger(EventEnum.UPDATE_INVENTORY.ToString());
         Destroy(gameObjectToDestroy);
     }
 
@@ -142,7 +155,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         inventorySelectedList[(int)InventoryLocation.player] = itemToIndex;
         EventCenter.Instance.Trigger(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), itemToIndex);
 
-        EventCenter.Instance.Trigger(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED.ToString());
+        EventCenter.Instance.Trigger(EventEnum.UPDATE_INVENTORY.ToString());
     }
 
     /// <summary>
@@ -187,7 +200,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         {
             Debug.LogError($"No Item:{item.ItemCode}");
         }
-        EventCenter.Instance.Trigger(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED.ToString());
+        EventCenter.Instance.Trigger(EventEnum.UPDATE_INVENTORY.ToString());
         PrintInventoryInfo(location);
     }
 
@@ -215,7 +228,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         {
             Debug.LogError($"No Item at {itemPosition} in player inventory");
         }
-        EventCenter.Instance.Trigger(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED.ToString());
+        EventCenter.Instance.Trigger(EventEnum.UPDATE_INVENTORY.ToString());
         PrintInventoryInfo(location);
     }
 
@@ -266,12 +279,14 @@ public class InventoryManager : MonoSingleton<InventoryManager>
     {
         EventCenter.Instance?.Register<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
         EventCenter.Instance?.Register(nameof(EventEnum.REMOVE_SELECTED_ITEM_FROM_INVENTORY), RemoveSelectedItem);
+        ISaveableRegister();
     }
 
     private void OnDisable()
     {
         EventCenter.Instance?.Unregister<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
         EventCenter.Instance?.Register(nameof(EventEnum.REMOVE_SELECTED_ITEM_FROM_INVENTORY), RemoveSelectedItem);
+        ISaveableDeregister();
     }
 
     private void RemoveSelectedItem()
@@ -302,11 +317,68 @@ public class InventoryManager : MonoSingleton<InventoryManager>
             FarmGameController.Instance.ClearCarriedItem();
         }
 
-        EventCenter.Instance.Trigger(nameof(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED));
+        EventCenter.Instance.Trigger(nameof(EventEnum.UPDATE_INVENTORY));
     }
 
     private int GetSelectedInventoryItem(InventoryLocation inventoryLocation)
     {
         return inventorySelectedList[(int)inventoryLocation];
+    }
+
+    public void ISaveableRegister()
+    {
+        SaveLoadManager.Instance.iSaveableObjectList.Add(this);
+    }
+
+    public void ISaveableDeregister()
+    {
+        SaveLoadManager.Instance?.iSaveableObjectList.Remove(this);
+    }
+
+    public void ISaveableStoreScene(string sceneName)
+    {
+    }
+
+    public void ISaveableRestoreScene(string sceneName)
+    {
+    }
+
+    public GameObjectSave ISaveableSave()
+    {
+        SceneSave sceneSave = new SceneSave();
+        GameObjectSave.sceneData.Remove(FarmSetting.PersistentScene);
+        sceneSave.listInvItemArray = inventoryItemsList;
+        sceneSave.intArrayDictionary = new Dictionary<string, int[]>
+        {
+            { "inventoryListCapacityArray", inventoryListCapacityIntArray }
+        };
+
+        GameObjectSave.sceneData.Add(FarmSetting.PersistentScene, sceneSave);
+        return GameObjectSave;
+    }
+
+    public void ISaveableLoad(GameSave gameSave)
+    {
+        if (gameSave.gameObjectData.TryGetValue(ISaveableUniqueID, out GameObjectSave gameObjectSave))
+        {
+            GameObjectSave = gameObjectSave;
+            if (gameObjectSave.sceneData.TryGetValue(FarmSetting.PersistentScene, out SceneSave sceneSave))
+            {
+                if (sceneSave.listInvItemArray != null)
+                {
+                    inventoryItemsList = sceneSave.listInvItemArray;
+
+                    //清除选中物品
+                    EventCenter.Instance.Trigger(EventEnum.UPDATE_INVENTORY.ToString());
+                    FarmGameController.Instance.ClearCarriedItem();
+                }
+
+                if (sceneSave.intArrayDictionary != null && sceneSave.intArrayDictionary.TryGetValue("inventoryListCapacityArray",
+                    out int[] inventoryCapacityArray))
+                {
+                    inventoryListCapacityIntArray = inventoryCapacityArray;
+                }
+            }
+        }
     }
 }

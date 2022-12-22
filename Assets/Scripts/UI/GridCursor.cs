@@ -46,13 +46,13 @@ public class GridCursor : MonoSingleton<GridCursor>
     private void OnEnable()
     {
         EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), SceneLoad);
-        EventCenter.Instance?.Register(nameof(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
+        EventCenter.Instance?.Register(nameof(EventEnum.UPDATE_INVENTORY), OnUpdateBarSelected);
     }
 
     private void OnDisable()
     {
         EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), SceneLoad);
-        EventCenter.Instance?.Unregister(nameof(EventEnum.INVENTORY_MANAGER_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
+        EventCenter.Instance?.Unregister(nameof(EventEnum.UPDATE_INVENTORY), OnUpdateBarSelected);
     }
 
     private void OnUpdateBarSelected()

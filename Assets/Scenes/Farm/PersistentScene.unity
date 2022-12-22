@@ -731,6 +731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 518258366}
   - component: {fileID: 518258365}
+  - component: {fileID: 518258367}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -767,6 +768,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &518258367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518258364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1419f1b3714fa48943e5edb7e0b79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gUID: f13f57b1-8e76-470b-b024-e681a3c366bf
 --- !u!1 &579020405
 GameObject:
   m_ObjectHideFlags: 0
