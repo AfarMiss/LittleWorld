@@ -10,6 +10,7 @@ public class SaveLoadManager : MonoSingleton<SaveLoadManager>
 {
     public GameSave gameSave;
     public List<ISaveable> iSaveableObjectList;
+    private string saveName = "WildHopeCreek";
 
     protected override void Awake()
     {
@@ -37,10 +38,10 @@ public class SaveLoadManager : MonoSingleton<SaveLoadManager>
     public void LoadDataFromFile()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        if (System.IO.File.Exists(Application.persistentDataPath + "/WildHopeCreek.dat"))
+        if (System.IO.File.Exists($"{Application.persistentDataPath}/{saveName}.dat"))
         {
             gameSave = new GameSave();
-            FileStream file = System.IO.File.Open(Application.persistentDataPath + "/WildHopeCreek.dat", FileMode.Open);
+            FileStream file = System.IO.File.Open($"{Application.persistentDataPath}/{saveName}.dat", FileMode.Open);
             gameSave = (GameSave)bf.Deserialize(file);
 
             for (int i = 0; i < iSaveableObjectList.Count; i++)
@@ -72,7 +73,7 @@ public class SaveLoadManager : MonoSingleton<SaveLoadManager>
 
         BinaryFormatter bf = new BinaryFormatter();
 
-        FileStream file = System.IO.File.Open(Application.persistentDataPath + "/WildHopeCreek.dat", FileMode.Create);
+        FileStream file = System.IO.File.Open($"{Application.persistentDataPath}/{saveName}.dat", FileMode.Create);
 
         bf.Serialize(file, gameSave);
         file.Close();
