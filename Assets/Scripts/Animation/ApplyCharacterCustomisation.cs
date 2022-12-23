@@ -258,7 +258,7 @@ public class ApplyCharacterCustomisation : MonoBehaviour
         int y = (inputShirtStyleNo / shirtSpriteWidth) * shirtSpriteHeight;
         int x = (inputShirtStyleNo % shirtSpriteWidth) * shirtSpriteWidth;
 
-        Color[] shirtPixels = shirtsBaseTexture.GetPixels(x, y, shirtTextureWidth, shirtSpriteHeight);
+        Color[] shirtPixels = shirtsBaseTexture.GetPixels(x, y, shirtTextureWidth, shirtTextureHeight);
 
         selectedShirt.SetPixels(shirtPixels);
         selectedShirt.Apply();
