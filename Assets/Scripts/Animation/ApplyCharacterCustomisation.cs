@@ -5,29 +5,21 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-[System.Serializable]
-public class colorSwap
-{
-    public Color fromColor;
-    public Color toColor;
-
-    public colorSwap(Color fromColor, Color toColor)
-    {
-        this.fromColor = fromColor;
-        this.toColor = toColor;
-    }
-}
-
 public class ApplyCharacterCustomisation : MonoBehaviour
 {
     [Header("Base Textures")]
     [SerializeField] private Texture2D maleFarmerBaseTexture = null;
     [SerializeField] private Texture2D femaleFarmerBaseTexture = null;
     [SerializeField] private Texture2D shirtsBaseTexture = null;
+
+    /// <summary>
+    /// 确定性别后的玩家Texture
+    /// </summary>
     private Texture2D farmerBaseTexture;
 
     [Header("OutputBase Texture To Be Used For Animation")]
-    [SerializeField] private Texture2D farmBaseCustomised = null;
+    [SerializeField]
+    private Texture2D farmBaseCustomised = null;
     private Texture2D farmerBaseShirtsUpdated;
     private Texture2D selectedShirt;
 
@@ -54,15 +46,10 @@ public class ApplyCharacterCustomisation : MonoBehaviour
     private int shirtSpriteHeight = 9;
     private int shirtStylesInSpriteWidth = 16;
 
-    private List<colorSwap> colorSwapList;
-
-    private Color32 armTargetColor1 = new Color32(77, 12, 12, 255);
-    private Color32 armTargetColor2 = new Color32(138, 41, 41, 255);
-    private Color32 armTargetColor3 = new Color32(172, 50, 50, 255);
+    private List<ColorSwap> colorSwapList;
 
     private void Awake()
     {
-        colorSwapList = new List<colorSwap>();
 
         ProcessCustomisation();
     }
@@ -78,7 +65,7 @@ public class ApplyCharacterCustomisation : MonoBehaviour
     private void MergeCustomisations()
     {
         Color[] farmerShirtPixels = farmerBaseShirtsUpdated.GetPixels(0, 0, bodyColumns * farmerSpriteWidth, farmerBaseTexture.height);
-        Color[] farmerTrouserPixelsSelection = farmerBaseTexture.GetPixels(288, 0, 96, farmerBaseTexture.height);
+        Color[] farmerTrouserPixelsSelection = farmerBaseTexture.GetPixels(farmerSpriteWidth * 18, 0, bodyColumns * farmerSpriteWidth, farmerBaseTexture.height);
 
         Color[] farmerBodyPixels = farmBaseCustomised.GetPixels(0, 0, bodyColumns * farmerSpriteWidth, farmerBaseTexture.height);
 
@@ -122,12 +109,12 @@ public class ApplyCharacterCustomisation : MonoBehaviour
 
         ChangePixelColors(farmerPixelsToRecolour, colorSwapList);
 
-        farmBaseCustomised.SetPixels(0, 0, 288, farmerBaseTexture.height, farmerPixelsToRecolour);
+        farmBaseCustomised.SetPixels(0, 0, 18 * farmerSpriteWidth, farmerBaseTexture.height, farmerPixelsToRecolour);
 
         farmBaseCustomised.Apply();
     }
 
-    private void ChangePixelColors(Color[] farmerPixelsToRecolour, List<colorSwap> colorSwapList)
+    private void ChangePixelColors(Color[] farmerPixelsToRecolour, List<ColorSwap> colorSwapList)
     {
         for (int i = 0; i < farmerPixelsToRecolour.Length; i++)
         {
@@ -146,16 +133,32 @@ public class ApplyCharacterCustomisation : MonoBehaviour
 
     private bool isSameColor(Color color1, Color color2)
     {
-        return ((color1.r == color2.r && color1.g == color2.g && color1.b == color2.b && color1.a == color2.a));
+        //比较浮点数会因为有微小误差导致并不完全相等
+        //return ((color1.r == color2.r && color1.g == color2.g && color1.b == color2.b && color1.a == color2.a));
+
+        return (UnityEngine.ColorUtility.ToHtmlStringRGBA(color1)
+            == UnityEngine.ColorUtility.ToHtmlStringRGBA(color2));
     }
 
     private void PopulateArmColorSwapList()
     {
+        colorSwapList = new List<ColorSwap>();
         colorSwapList.Clear();
 
-        colorSwapList.Add(new colorSwap(armTargetColor1, selectedShirt.GetPixel(0, 7)));
-        colorSwapList.Add(new colorSwap(armTargetColor2, selectedShirt.GetPixel(0, 6)));
-        colorSwapList.Add(new colorSwap(armTargetColor3, selectedShirt.GetPixel(0, 5)));
+        //使用红色衣服颜色间接获取手臂原色
+        var originalShirt = new Texture2D(shirtTextureWidth, shirtTextureHeight);
+        originalShirt.filterMode = FilterMode.Point;
+        Color[] shirtPixels = shirtsBaseTexture.GetPixels(0, 0, shirtTextureWidth, shirtTextureHeight);
+        originalShirt.SetPixels(shirtPixels);
+        originalShirt.Apply();
+
+        var armOriginalColor1 = originalShirt.GetPixel(0, 7);
+        var armOriginalColor2 = originalShirt.GetPixel(0, 6);
+        var armOriginalColor3 = originalShirt.GetPixel(0, 5);
+
+        colorSwapList.Add(new ColorSwap(armOriginalColor1, selectedShirt.GetPixel(0, 7)));
+        colorSwapList.Add(new ColorSwap(armOriginalColor2, selectedShirt.GetPixel(0, 6)));
+        colorSwapList.Add(new ColorSwap(armOriginalColor3, selectedShirt.GetPixel(0, 5)));
     }
 
     private void ProcessGender()
@@ -177,9 +180,7 @@ public class ApplyCharacterCustomisation : MonoBehaviour
 
     private void ProcessShirt()
     {
-        bodyFacingArray = new Facing[bodyColumns, bodyRows];
         PopulateBodyFacingArray();
-        bodyShirtOffsetArray = new Vector2Int[bodyColumns, bodyRows];
         PopulateBodyShirtOffsetArray();
         AddShirtToTexture(inputShirtStyleNo);
         ApplyShirtTextureToBase();
@@ -190,6 +191,7 @@ public class ApplyCharacterCustomisation : MonoBehaviour
         farmerBaseShirtsUpdated = new Texture2D(farmerBaseTexture.width, farmerBaseTexture.height);
         farmerBaseShirtsUpdated.filterMode = FilterMode.Point;
 
+        //清理先前Texture内容
         SetTextureToTransparent(farmerBaseShirtsUpdated);
 
         Color[] frontShirtPixels;
@@ -226,10 +228,10 @@ public class ApplyCharacterCustomisation : MonoBehaviour
                         farmerBaseShirtsUpdated.SetPixels(pixelX, pixelY, shirtSpriteWidth, shirtSpriteHeight, frontShirtPixels);
                         break;
                     case Facing.back:
-                        farmerBaseShirtsUpdated.SetPixels(pixelX, pixelY, shirtSpriteWidth, shirtSpriteHeight, frontShirtPixels);
+                        farmerBaseShirtsUpdated.SetPixels(pixelX, pixelY, shirtSpriteWidth, shirtSpriteHeight, backShirtPixels);
                         break;
                     case Facing.right:
-                        farmerBaseShirtsUpdated.SetPixels(pixelX, pixelY, shirtSpriteWidth, shirtSpriteHeight, frontShirtPixels);
+                        farmerBaseShirtsUpdated.SetPixels(pixelX, pixelY, shirtSpriteWidth, shirtSpriteHeight, rightShirtPixels);
                         break;
                     default:
                         break;
@@ -255,8 +257,8 @@ public class ApplyCharacterCustomisation : MonoBehaviour
         selectedShirt = new Texture2D(shirtTextureWidth, shirtTextureHeight);
         selectedShirt.filterMode = FilterMode.Point;
 
-        int y = (inputShirtStyleNo / shirtSpriteWidth) * shirtSpriteHeight;
-        int x = (inputShirtStyleNo % shirtSpriteWidth) * shirtSpriteWidth;
+        int y = 0;
+        int x = inputShirtStyleNo * shirtSpriteWidth;
 
         Color[] shirtPixels = shirtsBaseTexture.GetPixels(x, y, shirtTextureWidth, shirtTextureHeight);
 
@@ -266,6 +268,7 @@ public class ApplyCharacterCustomisation : MonoBehaviour
 
     private void PopulateBodyShirtOffsetArray()
     {
+        bodyShirtOffsetArray = new Vector2Int[bodyColumns, bodyRows];
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 6; j++)
@@ -304,50 +307,50 @@ public class ApplyCharacterCustomisation : MonoBehaviour
 
         bodyShirtOffsetArray[0, 14] = new Vector2Int(4, 9);
         bodyShirtOffsetArray[1, 14] = new Vector2Int(4, 12);
-        bodyShirtOffsetArray[2, 14] = new Vector2Int(5, 7);
-        bodyShirtOffsetArray[3, 14] = new Vector2Int(5, 5);
+        bodyShirtOffsetArray[2, 14] = new Vector2Int(4, 7);
+        bodyShirtOffsetArray[3, 14] = new Vector2Int(4, 5);
         bodyShirtOffsetArray[4, 14] = new Vector2Int(4, 9);
         bodyShirtOffsetArray[5, 14] = new Vector2Int(4, 12);
 
         bodyShirtOffsetArray[0, 15] = new Vector2Int(4, 8);
         bodyShirtOffsetArray[1, 15] = new Vector2Int(4, 5);
-        bodyShirtOffsetArray[2, 15] = new Vector2Int(5, 9);
-        bodyShirtOffsetArray[3, 15] = new Vector2Int(5, 12);
+        bodyShirtOffsetArray[2, 15] = new Vector2Int(4, 9);
+        bodyShirtOffsetArray[3, 15] = new Vector2Int(4, 12);
         bodyShirtOffsetArray[4, 15] = new Vector2Int(4, 8);
         bodyShirtOffsetArray[5, 15] = new Vector2Int(4, 5);
 
         bodyShirtOffsetArray[0, 16] = new Vector2Int(4, 9);
         bodyShirtOffsetArray[1, 16] = new Vector2Int(4, 10);
-        bodyShirtOffsetArray[2, 16] = new Vector2Int(5, 7);
-        bodyShirtOffsetArray[3, 16] = new Vector2Int(5, 8);
+        bodyShirtOffsetArray[2, 16] = new Vector2Int(4, 7);
+        bodyShirtOffsetArray[3, 16] = new Vector2Int(4, 8);
         bodyShirtOffsetArray[4, 16] = new Vector2Int(4, 9);
         bodyShirtOffsetArray[5, 16] = new Vector2Int(4, 10);
 
         bodyShirtOffsetArray[0, 17] = new Vector2Int(4, 7);
         bodyShirtOffsetArray[1, 17] = new Vector2Int(4, 8);
-        bodyShirtOffsetArray[2, 17] = new Vector2Int(5, 9);
-        bodyShirtOffsetArray[3, 17] = new Vector2Int(5, 10);
+        bodyShirtOffsetArray[2, 17] = new Vector2Int(4, 9);
+        bodyShirtOffsetArray[3, 17] = new Vector2Int(4, 10);
         bodyShirtOffsetArray[4, 17] = new Vector2Int(4, 7);
         bodyShirtOffsetArray[5, 17] = new Vector2Int(4, 8);
 
         bodyShirtOffsetArray[0, 18] = new Vector2Int(4, 10);
         bodyShirtOffsetArray[1, 18] = new Vector2Int(4, 9);
-        bodyShirtOffsetArray[2, 18] = new Vector2Int(5, 9);
-        bodyShirtOffsetArray[3, 18] = new Vector2Int(5, 10);
+        bodyShirtOffsetArray[2, 18] = new Vector2Int(4, 9);
+        bodyShirtOffsetArray[3, 18] = new Vector2Int(4, 10);
         bodyShirtOffsetArray[4, 18] = new Vector2Int(4, 9);
         bodyShirtOffsetArray[5, 18] = new Vector2Int(4, 9);
 
         bodyShirtOffsetArray[0, 19] = new Vector2Int(4, 10);
         bodyShirtOffsetArray[1, 19] = new Vector2Int(4, 9);
-        bodyShirtOffsetArray[2, 19] = new Vector2Int(5, 9);
-        bodyShirtOffsetArray[3, 19] = new Vector2Int(5, 10);
+        bodyShirtOffsetArray[2, 19] = new Vector2Int(4, 9);
+        bodyShirtOffsetArray[3, 19] = new Vector2Int(4, 10);
         bodyShirtOffsetArray[4, 19] = new Vector2Int(4, 9);
         bodyShirtOffsetArray[5, 19] = new Vector2Int(4, 9);
 
         bodyShirtOffsetArray[0, 20] = new Vector2Int(4, 10);
         bodyShirtOffsetArray[1, 20] = new Vector2Int(4, 9);
-        bodyShirtOffsetArray[2, 20] = new Vector2Int(5, 9);
-        bodyShirtOffsetArray[3, 20] = new Vector2Int(5, 10);
+        bodyShirtOffsetArray[2, 20] = new Vector2Int(4, 9);
+        bodyShirtOffsetArray[3, 20] = new Vector2Int(4, 10);
         bodyShirtOffsetArray[4, 20] = new Vector2Int(4, 9);
         bodyShirtOffsetArray[5, 20] = new Vector2Int(4, 9);
 
@@ -355,6 +358,7 @@ public class ApplyCharacterCustomisation : MonoBehaviour
 
     private void PopulateBodyFacingArray()
     {
+        bodyFacingArray = new Facing[bodyColumns, bodyRows];
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 6; j++)
