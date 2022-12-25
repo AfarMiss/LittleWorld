@@ -11,17 +11,26 @@ public class ApplyCharacterCustomisation : MonoBehaviour
     [SerializeField] private Texture2D maleFarmerBaseTexture = null;
     [SerializeField] private Texture2D femaleFarmerBaseTexture = null;
     [SerializeField] private Texture2D shirtsBaseTexture = null;
+    [SerializeField]
+    [Range(0, 1)]
+    private int hairStyleNo;
 
     /// <summary>
     /// 确定性别后的玩家Texture
     /// </summary>
     private Texture2D farmerBaseTexture;
+    [SerializeField]
+    private Texture2D farmerHairTexture;
 
     [Header("OutputBase Texture To Be Used For Animation")]
     [SerializeField]
     private Texture2D farmBaseCustomised = null;
     [SerializeField]
+    private Texture2D farmHairCustomised = null;
+    [SerializeField]
     private Color trousersColor;
+    [SerializeField]
+    private Color hairColor;
     private Texture2D farmerBaseShirtsUpdated;
     private Texture2D selectedShirt;
 
@@ -61,7 +70,21 @@ public class ApplyCharacterCustomisation : MonoBehaviour
         ProcessGender();
         ProcessShirt();
         ProcessArms();
+        ProcessHairStyle();
         MergeCustomisations();
+    }
+
+    private void ProcessHairStyle()
+    {
+        int x = hairStyleNo * 16;
+        int height = farmerSpriteHight * 3;
+        Color[] hairs = farmerHairTexture.GetPixels(x, 0, 16, height);
+        for (int i = 0; i < hairs.Length; i++)
+        {
+            hairs[i] *= hairColor;
+        }
+        farmHairCustomised.SetPixels(0, 0, 16, height, hairs);
+        farmHairCustomised.Apply();
     }
 
     private void MergeCustomisations()
