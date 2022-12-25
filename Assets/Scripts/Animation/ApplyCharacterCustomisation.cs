@@ -11,6 +11,7 @@ public class ApplyCharacterCustomisation : MonoBehaviour
     [SerializeField] private Texture2D maleFarmerBaseTexture = null;
     [SerializeField] private Texture2D femaleFarmerBaseTexture = null;
     [SerializeField] private Texture2D shirtsBaseTexture = null;
+    [SerializeField] private Texture2D hatBaseTexture = null;
     [SerializeField]
     [Range(0, 1)]
     private int hairStyleNo;
@@ -28,6 +29,8 @@ public class ApplyCharacterCustomisation : MonoBehaviour
     [SerializeField]
     private Texture2D farmHairCustomised = null;
     [SerializeField]
+    private Texture2D farmHatCustomised = null;
+    [SerializeField]
     private Color trousersColor;
     [SerializeField]
     private Color hairColor;
@@ -37,6 +40,10 @@ public class ApplyCharacterCustomisation : MonoBehaviour
     [Header("Select Shirt Style")]
     [Range(0f, 1f)]
     [SerializeField] private int inputShirtStyleNo = 0;
+
+    [Header("Select Hat Style")]
+    [Range(0f, 1f)]
+    [SerializeField] private int inputHatStyleNo = 0;
 
     [Header("Select Sex:0-Male,1-Female")]
     [Range(0f, 1f)]
@@ -71,7 +78,17 @@ public class ApplyCharacterCustomisation : MonoBehaviour
         ProcessShirt();
         ProcessArms();
         ProcessHairStyle();
+        ProcessHatStyle();
         MergeCustomisations();
+    }
+
+    private void ProcessHatStyle()
+    {
+        int x = inputHatStyleNo * 20;
+        int height = 20 * 4;
+        Color[] hats = hatBaseTexture.GetPixels(x, 0, 20, height);
+        farmHatCustomised.SetPixels(0, 0, 20, height, hats);
+        farmHatCustomised.Apply();
     }
 
     private void ProcessHairStyle()
