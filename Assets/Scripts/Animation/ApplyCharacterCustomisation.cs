@@ -20,6 +20,8 @@ public class ApplyCharacterCustomisation : MonoBehaviour
     [Header("OutputBase Texture To Be Used For Animation")]
     [SerializeField]
     private Texture2D farmBaseCustomised = null;
+    [SerializeField]
+    private Color trousersColor;
     private Texture2D farmerBaseShirtsUpdated;
     private Texture2D selectedShirt;
 
@@ -66,6 +68,10 @@ public class ApplyCharacterCustomisation : MonoBehaviour
     {
         Color[] farmerShirtPixels = farmerBaseShirtsUpdated.GetPixels(0, 0, bodyColumns * farmerSpriteWidth, farmerBaseTexture.height);
         Color[] farmerTrouserPixelsSelection = farmerBaseTexture.GetPixels(farmerSpriteWidth * 18, 0, bodyColumns * farmerSpriteWidth, farmerBaseTexture.height);
+        for (int i = 0; i < farmerTrouserPixelsSelection.Length; i++)
+        {
+            farmerTrouserPixelsSelection[i] *= trousersColor;
+        }
 
         Color[] farmerBodyPixels = farmBaseCustomised.GetPixels(0, 0, bodyColumns * farmerSpriteWidth, farmerBaseTexture.height);
 
