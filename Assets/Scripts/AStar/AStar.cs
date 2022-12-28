@@ -18,6 +18,25 @@ namespace AStar
         public List<Node> openList;
         public List<Node> closeList;
 
+        public AStar(Vector2Int startNode, Vector2Int endNode, int mapWidth, int mapHeight)
+        {
+            this.mapWidth = mapWidth;
+            this.mapHeight = mapHeight;
+            gridNodes = new GridNodes(mapWidth, mapHeight);
+
+            //填入数据
+            for (int i = 0; i < mapHeight; i++)
+            {
+                for (int j = 0; j < mapWidth; j++)
+                {
+                    gridNodes.nodes[j, i] = new Node(new Vector2Int(j, i), false);
+                }
+            }
+
+            this.startNode = gridNodes.GetNode(startNode.x, startNode.y);
+            this.endNode = gridNodes.GetNode(endNode.x, endNode.y);
+        }
+
         public Stack<Node> CalculatePath(out bool findPath)
         {
             findPath = false;
@@ -25,7 +44,6 @@ namespace AStar
             openList = new List<Node>();
             closeList = new List<Node>();
 
-            gridNodes = new GridNodes(mapWidth, mapHeight);
             startNode.gCost = 0;
             startNode.hCost = GetHCost(startNode, endNode);
 
@@ -46,7 +64,6 @@ namespace AStar
                 else
                 {
                     EvaluateNeighbour(currentNode);
-                    return null;
                 }
             }
             return null;
@@ -69,6 +86,14 @@ namespace AStar
 
             return result;
 
+        }
+
+        public void OutputPath(Stack<Node> nodes)
+        {
+            while (nodes.Count > 0)
+            {
+                Debug.Log($"{nodes.Pop()}");
+            }
         }
 
         private int GetParentIndex(List<Node> closedNodes, Node curNode)
@@ -100,21 +125,31 @@ namespace AStar
                     {
                         continue;
                     }
+                    if (i < 0 || i >= mapWidth || j < 0 || j >= mapHeight)
+                    {
+                        continue;
+                    }
 
                     var curEvaluate = gridNodes.GetNode(i, j);
+                    if (closeList.Contains(curEvaluate))
+                    {
+                        continue;
+                    }
 
                     if (!curEvaluate.isObstacle)
                     {
+                        var tempCurEvaluate = curEvaluate;
+                        tempCurEvaluate.gCost = currentNode.gCost + Vector2Int.Distance(new Vector2Int(i, j), currentNode.pos);
+                        tempCurEvaluate.hCost = GetHCost(tempCurEvaluate, endNode);
+                        tempCurEvaluate.parent = currentNode;
+
                         if (!openList.Contains(curEvaluate))
                         {
+                            curEvaluate = tempCurEvaluate;
                             openList.Add(curEvaluate);
                         }
                         else
                         {
-                            var tempCurEvaluate = new Node(new Vector2Int(i, j), curEvaluate.isObstacle);
-                            tempCurEvaluate.gCost = curEvaluate.gCost + Vector2Int.Distance(new Vector2Int(i, j), curEvaluate.pos);
-                            tempCurEvaluate.hCost = GetHCost(tempCurEvaluate, endNode);
-                            tempCurEvaluate.parent = currentNode;
                             if (tempCurEvaluate.FCost < curEvaluate.FCost)
                             {
                                 curEvaluate = tempCurEvaluate;
@@ -124,6 +159,7 @@ namespace AStar
                 }
             }
         }
+
     }
 }
 

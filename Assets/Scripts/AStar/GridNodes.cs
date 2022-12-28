@@ -15,7 +15,7 @@ namespace AStar
 
         public Node GetNode(int x, int y)
         {
-            return (nodes[y, x]);
+            return (nodes[x, y]);
         }
     }
 }
