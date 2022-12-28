@@ -18,11 +18,18 @@ namespace AStar
         public List<Node> openList;
         public List<Node> closeList;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="startNode">起始点</param>
+        /// <param name="endNode">终点</param>
+        /// <param name="mapWidth">横向边长度</param>
+        /// <param name="mapHeight">纵向边长度</param>
         public AStar(Vector2Int startNode, Vector2Int endNode, int mapWidth, int mapHeight)
         {
             this.mapWidth = mapWidth;
             this.mapHeight = mapHeight;
-            gridNodes = new GridNodes(mapWidth, mapHeight);
+            gridNodes = new GridNodes(mapHeight, mapWidth);
 
             //填入数据
             for (int i = 0; i < mapHeight; i++)
@@ -88,12 +95,16 @@ namespace AStar
 
         }
 
-        public void OutputPath(Stack<Node> nodes)
+        public void OutputPath(Stack<Node> nodes, bool found)
         {
-            while (nodes.Count > 0)
+            Debug.Log($"===================OutputPath");
+            Debug.Log($"path found:{found}");
+            while (nodes != null && nodes.Count > 0)
             {
-                Debug.Log($"{nodes.Pop()}");
+                var curNode = nodes.Pop();
+                Debug.Log($"curNode.pos:{curNode.pos}");
             }
+            Debug.Log($"===================OutputPathEnd");
         }
 
         private int GetParentIndex(List<Node> closedNodes, Node curNode)
@@ -160,6 +171,10 @@ namespace AStar
             }
         }
 
+        public void SetObstacle(int x, int y)
+        {
+            gridNodes.SetObstacle(x, y);
+        }
     }
 }
 
