@@ -8,6 +8,8 @@ namespace AStar
 {
     public class AStar
     {
+        private int originalX;
+        private int originalY;
         public Node startNode;
         public Node endNode;
         public int mapWidth;
@@ -25,10 +27,12 @@ namespace AStar
         /// <param name="endNode">终点</param>
         /// <param name="mapWidth">横向边长度</param>
         /// <param name="mapHeight">纵向边长度</param>
-        public AStar(Vector2Int startNode, Vector2Int endNode, int mapWidth, int mapHeight)
+        public AStar(Vector2Int startNode, Vector2Int endNode, int mapWidth, int mapHeight, int originalX, int originalY)
         {
             this.mapWidth = mapWidth;
             this.mapHeight = mapHeight;
+            this.originalX = originalX;
+            this.originalY = originalY;
             gridNodes = new GridNodes(mapHeight, mapWidth);
 
             //填入数据
@@ -40,8 +44,8 @@ namespace AStar
                 }
             }
 
-            this.startNode = gridNodes.GetNode(startNode.x, startNode.y);
-            this.endNode = gridNodes.GetNode(endNode.x, endNode.y);
+            this.startNode = gridNodes.GetNode(startNode.x - originalX, startNode.y - originalY);
+            this.endNode = gridNodes.GetNode(endNode.x - originalX, endNode.y - originalY);
         }
 
         public Stack<Node> CalculatePath(out bool findPath)
@@ -141,7 +145,7 @@ namespace AStar
                         continue;
                     }
 
-                    var curEvaluate = gridNodes.GetNode(i, j);
+                    var curEvaluate = gridNodes.GetNode(i - originalX, j - originalY);
                     if (closeList.Contains(curEvaluate))
                     {
                         continue;
@@ -173,7 +177,7 @@ namespace AStar
 
         public void SetObstacle(int x, int y)
         {
-            gridNodes.SetObstacle(x, y);
+            gridNodes.SetObstacle(x - originalX, y - originalY);
         }
     }
 }

@@ -26,7 +26,10 @@ public class PathManager : MonoBehaviour
 startPos,
 endPos,
 gridProperties.gridWidth,
-gridProperties.gridHeight);
+gridProperties.gridHeight,
+gridProperties.originX,
+gridProperties.originY
+);
 
         foreach (var grid in gridProperties.gridPropertyList)
         {
@@ -39,7 +42,7 @@ gridProperties.gridHeight);
 
     private void OnDisable()
     {
-        EventCenter.Instance.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnNextSceneLoad);
+        EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnNextSceneLoad);
     }
 
     private void CalculatePath()
