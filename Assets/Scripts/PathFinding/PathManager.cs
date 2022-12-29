@@ -1,16 +1,14 @@
-﻿using System;
+﻿using AStar;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PathManager : MonoBehaviour
+public class PathManager : MonoSingleton<PathManager>
 {
     AStar.AStar aStar;
-    [SerializeField]
-    private Vector2Int startPos;
-    [SerializeField]
-    private Vector2Int endPos;
     private SO_GridProperties gridProperties;
 
     private void OnEnable()
@@ -23,8 +21,6 @@ public class PathManager : MonoBehaviour
         gridProperties = GridPropertiesManager.Instance.GetActiveSceneGridProperties();
 
         aStar = new AStar.AStar(
-startPos,
-endPos,
 gridProperties.gridWidth,
 gridProperties.gridHeight,
 gridProperties.originX,
@@ -45,9 +41,32 @@ gridProperties.originY
         EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnNextSceneLoad);
     }
 
-    private void CalculatePath()
+    public Stack<Vector2Int> CalculatePath(Vector2Int startPos, Vector2Int endPos)
     {
+        aStar.SetStartPos(startPos);
+        aStar.SetEndPos(endPos);
         var path = aStar.CalculatePath(out var findPath);
-        aStar.OutputPath(path, findPath);
+        return OutputPath(path, findPath);
+    }
+
+    public void SetStartPos(Vector2Int startPos)
+    {
+        aStar.SetStartPos(startPos);
+    }
+
+    public Stack<Vector2Int> OutputPath(Stack<Node> nodes, bool found)
+    {
+        Stack<Vector2Int> result = new Stack<Vector2Int>();
+        while (nodes != null && nodes.Count > 0)
+        {
+            Node curNode = nodes.Pop();
+            result.Push(curNode.pos + new Vector2Int(aStar.originalX, aStar.originalY));
+        }
+        return result;
+    }
+
+    public void SetEndPos(Vector2Int endPos)
+    {
+        aStar.SetEndPos(endPos);
     }
 }
