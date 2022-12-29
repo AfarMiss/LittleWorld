@@ -1,23 +1,42 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniBase;
 using UnityEngine;
 
 public class PathNavigation : MonoBehaviour
 {
     public List<NPCSchedule> nPCSchedules;
     private Grid mapGrid;
-    private Stack<Vector2Int> curPath;
+    private Queue<Vector2Int> curPath;
 
-    private void Start()
+    private bool curTargetIsReached = true;
+
+    private async void Start()
+    {
+        await TaskHelper.Wait(() => PathManager.Instance.Initialized == true);
+        Move();
+    }
+
+    public void Move()
     {
         mapGrid = GameObject.FindObjectOfType<Grid>();
+        var currentPos = mapGrid.WorldToCell(transform.position);
+        curPath = PathManager.Instance.CalculatePath(new Vector2Int(currentPos.x, currentPos.y), nPCSchedules[0].targetPos);
+        StartCoroutine(MoveInPath());
+    }
 
-        curPath = PathManager.Instance.CalculatePath((Vector2Int)mapGrid.WorldToCell(transform.position), nPCSchedules[0].targetPos);
+    private IEnumerator MoveInPath()
+    {
         while (curPath.Count > 0)
         {
-            var curTarget = curPath.Pop();
-            MoveTo(curTarget);
+            if (curTargetIsReached)
+            {
+                curTargetIsReached = false;
+                var curTarget = curPath.Dequeue();
+                MoveTo(curTarget);
+            }
+            yield return null;
         }
     }
 
@@ -28,12 +47,13 @@ public class PathNavigation : MonoBehaviour
 
     private IEnumerator MoveCoroutine(Vector2Int target)
     {
-        var worldPos = mapGrid.CellToWorld((Vector3Int)target);
+        var worldPos = mapGrid.CellToWorld(new Vector3Int(target.x, target.y, 0));
         var dir = worldPos - transform.position;
-        while (Vector3.Distance(transform.position, (Vector3Int)target) > 0.0625f)
+        while (Vector3.Distance(transform.position, worldPos) > 0.2)
         {
-            GetComponent<Rigidbody2D>().MovePosition(dir * Time.fixedDeltaTime * 4f);
+            GetComponent<Rigidbody2D>().MovePosition(transform.position + dir.normalized * Time.fixedDeltaTime * 2f);
             yield return null;
         }
+        curTargetIsReached = true;
     }
 }

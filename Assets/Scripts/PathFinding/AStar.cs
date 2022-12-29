@@ -152,7 +152,7 @@ namespace AStar
                         continue;
                     }
 
-                    var curEvaluate = gridNodes.GetNode(i - originalX, j - originalY);
+                    var curEvaluate = gridNodes.GetNode(i , j );
                     if (closeList.Contains(curEvaluate))
                     {
                         continue;
