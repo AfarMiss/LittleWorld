@@ -47,6 +47,18 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         GameObjectSave = new GameObjectSave();
     }
 
+    public SO_GridProperties GetActiveSceneGridProperties()
+    {
+        foreach (var item in so_gridPropertiesArray)
+        {
+            if (SceneManager.GetActiveScene().name == item.sceneName.ToString())
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+
     private void OnEnable()
     {
         ISaveableRegister();
