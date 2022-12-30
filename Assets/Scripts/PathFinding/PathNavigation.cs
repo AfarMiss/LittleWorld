@@ -53,6 +53,7 @@ public class PathNavigation : MonoBehaviour
                 }
                 else
                 {
+                    //完成到达指定目的地后的工作
                     ac.ResetMovement();
                     switch (nPCSchedule.workType)
                     {

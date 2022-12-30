@@ -12,4 +12,7 @@ public class SceneSave
 
     public List<InventoryItem>[] listInvItemArray;
     public Dictionary<string, int[]> intArrayDictionary;
+
+    //人物
+    public PathNavigation[] characters;
 }
