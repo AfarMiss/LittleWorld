@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 public delegate void MovementDelegate(float inputX, float inputY, bool isWalking, bool isRunning, bool isIdle, bool isCarrying,
     ToolEffect toolEffect,

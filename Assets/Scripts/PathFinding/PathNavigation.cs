@@ -11,19 +11,31 @@ public class PathNavigation : MonoBehaviour
     private Queue<Vector2Int> curPath;
 
     private bool curTargetIsReached = true;
+    private bool curScheduleIsReached = true;
+    public Vector3 Speed;
 
     private async void Start()
     {
         await TaskHelper.Wait(() => PathManager.Instance.Initialized == true);
-        Move();
+        StartCoroutine(Move());
     }
 
-    public void Move()
+    public IEnumerator Move()
     {
         mapGrid = GameObject.FindObjectOfType<Grid>();
-        var currentPos = mapGrid.WorldToCell(transform.position);
-        curPath = PathManager.Instance.CalculatePath(new Vector2Int(currentPos.x, currentPos.y), nPCSchedules[0].targetPos);
-        StartCoroutine(MoveInPath());
+
+        while (nPCSchedules.Count > 0)
+        {
+            if (curScheduleIsReached)
+            {
+                curScheduleIsReached = false;
+                var currentPos = mapGrid.WorldToCell(transform.position);
+                curPath = PathManager.Instance.CalculatePath(new Vector2Int(currentPos.x, currentPos.y), nPCSchedules[0].targetPos);
+                nPCSchedules.RemoveAt(0);
+                StartCoroutine(MoveInPath());
+            }
+            yield return null;
+        }
     }
 
     private IEnumerator MoveInPath()
@@ -38,6 +50,7 @@ public class PathNavigation : MonoBehaviour
             }
             yield return null;
         }
+        curScheduleIsReached = true;
     }
 
     public void MoveTo(Vector2Int target)
@@ -48,12 +61,15 @@ public class PathNavigation : MonoBehaviour
     private IEnumerator MoveCoroutine(Vector2Int target)
     {
         var worldPos = mapGrid.CellToWorld(new Vector3Int(target.x, target.y, 0));
-        var dir = worldPos - transform.position;
+        Vector3 dir = worldPos - transform.position;
+        this.Speed = dir.normalized;
+
         while (Vector3.Distance(transform.position, worldPos) > 0.2)
         {
             GetComponent<Rigidbody2D>().MovePosition(transform.position + dir.normalized * Time.fixedDeltaTime * 2f);
             yield return null;
         }
         curTargetIsReached = true;
+        this.Speed = Vector3.zero;
     }
 }
