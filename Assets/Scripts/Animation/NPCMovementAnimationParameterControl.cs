@@ -34,33 +34,33 @@ public class NPCMovementAnimationParameterControl : MonoBehaviour
 
     public Animator[] animators;
 
-    private float inputX;
-    private float inputY;
-    private bool isWalking;
-    private bool isRunning;
-    private bool isIdle;
-    private bool isCarrying;
-    private ToolEffect toolEffect;
-    private bool isUsingToolRight;
-    private bool isUsingToolLeft;
-    private bool isUsingToolUp;
-    private bool isUsingToolDown;
-    private bool isLiftingToolRight;
-    private bool isLiftingToolLeft;
-    private bool isLiftingToolUp;
-    private bool isPickingRight;
-    private bool isPickingLeft;
-    private bool isLiftingToolDown;
-    private bool isPickingUp;
-    private bool isPickingDown;
-    private bool isSwingingToolRight;
-    private bool isSwingingToolLeft;
-    private bool isSwingingToolUp;
-    private bool isSwingingToolDown;
-    private bool idleRight;
-    private bool idleLeft;
-    private bool idleUp;
-    private bool idleDown;
+    public float inputX;
+    public float inputY;
+    public bool isWalking;
+    public bool isRunning;
+    public bool isIdle;
+    public bool isCarrying;
+    public ToolEffect toolEffect;
+    public bool isUsingToolRight;
+    public bool isUsingToolLeft;
+    public bool isUsingToolUp;
+    public bool isUsingToolDown;
+    public bool isLiftingToolRight;
+    public bool isLiftingToolLeft;
+    public bool isLiftingToolUp;
+    public bool isPickingRight;
+    public bool isPickingLeft;
+    public bool isLiftingToolDown;
+    public bool isPickingUp;
+    public bool isPickingDown;
+    public bool isSwingingToolRight;
+    public bool isSwingingToolLeft;
+    public bool isSwingingToolUp;
+    public bool isSwingingToolDown;
+    public bool idleRight;
+    public bool idleLeft;
+    public bool idleUp;
+    public bool idleDown;
 
     private void Init()
     {
@@ -76,6 +76,16 @@ public class NPCMovementAnimationParameterControl : MonoBehaviour
     bool idleRight, bool idleLeft, bool idleUp, bool idleDown)
     {
 
+    }
+
+    public void ResetMovement()
+    {
+        //Reset Movement
+        inputX = 0f;
+        inputY = 0f;
+        isRunning = false;
+        isWalking = false;
+        isIdle = true;
     }
 
     private void Update()

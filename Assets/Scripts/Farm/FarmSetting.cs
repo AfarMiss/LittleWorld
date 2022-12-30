@@ -28,6 +28,9 @@ public static class FarmSetting
     public static float liftToolAnimationPause = 0.4f;
     public static float afterLiftToolAnimationPause = 0.4f;
 
+    /// <summary>
+    /// 游戏中的一秒时长
+    /// </summary>
     public const float gameTick = 0.001f;
 
     private static string inputXString = "xInput";

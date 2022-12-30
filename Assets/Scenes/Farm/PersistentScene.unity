@@ -3042,8 +3042,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nPCSchedules:
   - targetPos: {x: -7, y: 3}
+    workType: 1
+    lastTime: 1
   - targetPos: {x: 10, y: 10}
+    workType: 0
+    lastTime: 2
   - targetPos: {x: 10, y: -6}
+    workType: 1
+    lastTime: 1
   Speed: {x: 0, y: 0, z: 0}
 --- !u!114 &7387729701400379334
 MonoBehaviour:
@@ -3070,3 +3076,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animators: []
+  inputX: 0
+  inputY: 0
+  isWalking: 0
+  isRunning: 0
+  isIdle: 0
+  isCarrying: 0
+  toolEffect: 0
+  isUsingToolRight: 0
+  isUsingToolLeft: 0
+  isUsingToolUp: 0
+  isUsingToolDown: 0
+  isLiftingToolRight: 0
+  isLiftingToolLeft: 0
+  isLiftingToolUp: 0
+  isPickingRight: 0
+  isPickingLeft: 0
+  isLiftingToolDown: 0
+  isPickingUp: 0
+  isPickingDown: 0
+  isSwingingToolRight: 0
+  isSwingingToolLeft: 0
+  isSwingingToolUp: 0
+  isSwingingToolDown: 0
+  idleRight: 0
+  idleLeft: 0
+  idleUp: 0
+  idleDown: 0

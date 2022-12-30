@@ -154,3 +154,9 @@ public enum Facing
     back,
     right,
 }
+
+public enum WorkType
+{
+    dug,
+    water,
+}

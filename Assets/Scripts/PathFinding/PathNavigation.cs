@@ -31,22 +31,56 @@ public class PathNavigation : MonoBehaviour
                 curScheduleIsReached = false;
                 var currentPos = mapGrid.WorldToCell(transform.position);
                 curPath = PathManager.Instance.CalculatePath(new Vector2Int(currentPos.x, currentPos.y), nPCSchedules[0].targetPos);
+                StartCoroutine(MoveInPath(nPCSchedules[0]));
                 nPCSchedules.RemoveAt(0);
-                StartCoroutine(MoveInPath());
             }
             yield return null;
         }
     }
 
-    private IEnumerator MoveInPath()
+    private IEnumerator MoveInPath(NPCSchedule nPCSchedule)
     {
-        while (curPath.Count > 0)
+        var ac = GetComponent<NPCMovementAnimationParameterControl>();
+        while (curPath.Count >= 0)
         {
             if (curTargetIsReached)
             {
-                curTargetIsReached = false;
-                var curTarget = curPath.Dequeue();
-                MoveTo(curTarget);
+                if (curPath.Count > 0)
+                {
+                    curTargetIsReached = false;
+                    var curTarget = curPath.Dequeue();
+                    MoveTo(curTarget);
+                }
+                else
+                {
+                    ac.ResetMovement();
+                    switch (nPCSchedule.workType)
+                    {
+                        case WorkType.dug:
+                            ac.isUsingToolRight = true;
+                            break;
+                        case WorkType.water:
+                            ac.isLiftingToolRight = true;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    yield return new WaitForSeconds(nPCSchedule.lastTime * FarmSetting.gameTick * 60 * 60);
+
+                    switch (nPCSchedule.workType)
+                    {
+                        case WorkType.dug:
+                            ac.isUsingToolRight = false;
+                            break;
+                        case WorkType.water:
+                            ac.isLiftingToolRight = false;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                }
             }
             yield return null;
         }
