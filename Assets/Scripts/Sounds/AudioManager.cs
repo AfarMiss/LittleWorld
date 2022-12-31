@@ -132,7 +132,7 @@ public class AudioManager : MonoSingleton<AudioManager>
 
     private void OnDisable()
     {
-        EventCenter.Instance.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), PlayerSceneSound);
+        EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), PlayerSceneSound);
     }
 
     void Start()

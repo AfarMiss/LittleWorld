@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TimeManager : MonoSingleton<TimeManager>, ISaveable
 {
+    public GameTime CurGameTime => curGameTime;
     private GameTime curGameTime;
 
     private float curTickTime;
