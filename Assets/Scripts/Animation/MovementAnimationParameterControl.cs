@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,6 +34,7 @@ public class MovementAnimationParameterControl : MonoBehaviour
     public Animator animator;
     private void AnimationEventPlayFootstepSound()
     {
+        AudioManager.Instance.PlaySound(SoundName.effectFootstepHardGround);
     }
 
     private void OnEnable()
@@ -59,7 +60,7 @@ public class MovementAnimationParameterControl : MonoBehaviour
         animator.SetBool(FarmSetting.isWalkingIndex, isWalking);
         animator.SetBool(FarmSetting.isRunningIndex, isRunning);
 
-        animator.SetInteger(FarmSetting.toolEffectIndex,(int)toolEffect);
+        animator.SetInteger(FarmSetting.toolEffectIndex, (int)toolEffect);
         animator.SetBool(FarmSetting.isUsingToolRightIndex, isUsingToolRight);
         animator.SetBool(FarmSetting.isUsingToolLeftIndex, isUsingToolLeft);
         animator.SetBool(FarmSetting.isUsingToolUpIndex, isUsingToolUp);
