@@ -69,7 +69,7 @@ public class GameController : MonoSingleton<GameController>
                 if (selectedUnits == null || selectedUnits.Count == 0) return;
                 var bound = selectedUnits[0].GetComponent<BoxCollider2D>().bounds;
                 var offset = (bound.max - bound.min).y + 0.8f;
-                var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
+                var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionToWorldWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
                 for (int i = 0; i < selectedUnits.Count; i++)
                 {
                     RTSUnit item = selectedUnits[i];

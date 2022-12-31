@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public abstract class BaseUI : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public abstract class BaseUI : MonoBehaviour
     public UIType UIType { get; private set; }
 
     /// <summary>
-    /// ½øÈëÊ±
+    /// è¿›å…¥æ—¶
     /// </summary>
     public virtual void OnEnter()
     {
@@ -17,17 +17,17 @@ public abstract class BaseUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ÔİÍ£Ê±
+    /// æš‚åœæ—¶
     /// </summary>
     public virtual void OnPause() { }
 
     /// <summary>
-    /// ¼ÌĞøÊ±
+    /// ç»§ç»­æ—¶
     /// </summary>
     public virtual void OnResume() { }
 
     /// <summary>
-    /// ÍË³öÊ±
+    /// é€€å‡ºæ—¶
     /// </summary>
     public virtual void OnExit()
     {
@@ -38,5 +38,5 @@ public abstract class BaseUI : MonoBehaviour
     {
     }
 
-    public abstract void OnClickClose();
+    public virtual void OnClickClose() { }
 }

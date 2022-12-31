@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,7 +9,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     private bool isShowingPanel;
     /// <summary>
-    /// ÕıÔÚÏÔÊ¾panel£¬²»ÏìÓ¦ÓÎÏ·ÖĞµÄÊÂ¼ş¡£
+    /// æ­£åœ¨æ˜¾ç¤ºpanelï¼Œä¸å“åº”æ¸¸æˆä¸­çš„äº‹ä»¶ã€‚
     /// </summary>
     public bool IsShowingPanel
     {
@@ -45,12 +45,12 @@ public class UIManager : MonoSingleton<UIManager>
     protected override void Awake()
     {
         base.Awake();
-        //³õÊ¼»¯»­²¼
+        //åˆå§‹åŒ–ç”»å¸ƒ
         UICanvas = GameObject.Instantiate(Resources.Load<GameObject>(UIPath.UICanvas));
         UICanvas.transform.SetParent(null);
         DontDestroyOnLoad(UICanvas);
 
-        if (GameController.Instance) GameController.Instance.Init();
+        if (GameController.hasInstance) GameController.Instance.Init();
     }
 
     public T Show<T>(UIType uiType, string path) where T : BaseUI
@@ -163,14 +163,14 @@ public class UIManager : MonoSingleton<UIManager>
 
 public enum UIType
 {
-    //»­²¼
+    //ç”»å¸ƒ
     CANVAS,
-    //Ãæ°å£¬Ò»ÖÖÃæ°åÖ»ÔÊĞí³öÏÖÒ»¸ö
+    //é¢æ¿ï¼Œä¸€ç§é¢æ¿åªå…è®¸å‡ºç°ä¸€ä¸ª
     PANEL,
-    //¶Ô»°¿ò£¬ÔÊĞí³öÏÖ¶à¸ö
+    //å¯¹è¯æ¡†ï¼Œå…è®¸å‡ºç°å¤šä¸ª
     DIALOG,
-    //ÌáÊ¾¿ò£¬ÏÔÊ¾ÔÚ¶Ô»°¿ò×óÉÏ½Ç
+    //æç¤ºæ¡†ï¼Œæ˜¾ç¤ºåœ¨å¯¹è¯æ¡†å·¦ä¸Šè§’
     TIP,
-    //×ª³¡Ãæ°å£¬ÏÔÊ¾ÔÚ×îÇ°·½
+    //è½¬åœºé¢æ¿ï¼Œæ˜¾ç¤ºåœ¨æœ€å‰æ–¹
     SCENE_CHANGE,
 }
