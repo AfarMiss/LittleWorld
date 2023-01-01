@@ -12,15 +12,21 @@ public class PathNavigation : MonoBehaviour
 
     private bool curTargetIsReached = true;
     private bool curScheduleIsReached = true;
-    public Vector3 Speed;
+    [HideInInspector] public Vector3 Speed;
+
+    private bool managerInitialized = false;
 
     private async void Start()
     {
         await TaskHelper.Wait(() => PathManager.Instance.Initialized == true);
+    }
+
+    public void AStarMove()
+    {
         StartCoroutine(Move());
     }
 
-    public IEnumerator Move()
+    private IEnumerator Move()
     {
         mapGrid = GameObject.FindObjectOfType<Grid>();
 
