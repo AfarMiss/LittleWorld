@@ -466,7 +466,8 @@ false, false, false, false, false, false, false, false, true);
 
         toolEffect = ToolEffect.none;
 
-        var playerCentre = Director.Instance.MainPlayer.GetPlayrCentrePosition();
+        var playerCentre = Vector3.zero;
+
         var dir = UniBase.DirectionHelper.JudgeDir(playerCentre, cursorPosition);
         if (dir == Vector3.right)
         {

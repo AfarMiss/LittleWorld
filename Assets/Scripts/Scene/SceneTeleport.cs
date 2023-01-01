@@ -14,11 +14,11 @@ public class SceneTeleport : MonoBehaviour
         //当坐标填为0时，沿用当前玩家的X/Y坐标
         if (Mathf.Approximately(telePosRef.x, 0))
         {
-            realTelePos.x = Director.Instance.MainPlayer.transform.position.x;
+            //realTelePos.x = Director.Instance.MainPlayer.transform.position.x;
         }
         if (Mathf.Approximately(telePosRef.y, 0))
         {
-            realTelePos.y = Director.Instance.MainPlayer.transform.position.y;
+            //realTelePos.y = Director.Instance.MainPlayer.transform.position.y;
         }
 
         SceneControllerManager.Instance.TryChangeScene(nextScene.ToString(), realTelePos);

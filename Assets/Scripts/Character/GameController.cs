@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+Ôªøusing System.Collections.Generic;
 using UniBase;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
@@ -41,10 +41,10 @@ public class GameController : MonoSingleton<GameController>
     {
         if (callbackContext.performed)
         {
-            if (UIManager.Instance.IsShowingPanel) return;
+            //if (UIManager.Instance.IsShowingPanel) return;
             CleanInteraction();
 
-            Debug.Log("À´ª˜.performed -------");
+            Debug.Log("ÂèåÂáª.performed -------");
             if (selectedUnits != null && selectedUnits.Count > 0)
             {
                 Prepare();
@@ -58,7 +58,7 @@ public class GameController : MonoSingleton<GameController>
     {
         if (callbackContext.performed)
         {
-            if (UIManager.Instance.IsShowingPanel) return;
+            //if (UIManager.Instance.IsShowingPanel) return;
             CleanInteraction();
 
             var ray = Camera.main.ScreenPointToRay(mousePosition);
@@ -95,14 +95,14 @@ public class GameController : MonoSingleton<GameController>
     {
         if (callbackContext.performed)
         {
-            if (UIManager.Instance.IsShowingPanel) return;
+            //if (UIManager.Instance.IsShowingPanel) return;
             var camMove = callbackContext.ReadValue<Vector2>();
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(camMove);
         }
         else if (callbackContext.canceled)
         {
-            if (UIManager.Instance.IsShowingPanel) return;
+            //if (UIManager.Instance.IsShowingPanel) return;
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(Vector2.zero);
         }
@@ -113,14 +113,14 @@ public class GameController : MonoSingleton<GameController>
     {
         if (callbackContext.started)
         {
-            if (UIManager.Instance.IsShowingPanel) return;
+            //if (UIManager.Instance.IsShowingPanel) return;
             startPosition = mousePosition;
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
         }
         else if (callbackContext.canceled)
         {
-            if (UIManager.Instance.IsShowingPanel) return;
+            //if (UIManager.Instance.IsShowingPanel) return;
             CleanInteraction();
 
             endPosition = mousePosition;
@@ -151,7 +151,7 @@ public class GameController : MonoSingleton<GameController>
         {
             allRtsUnits.Add(item.GetComponent<RTSUnit>());
         }
-        if (!InputManager.Instance.myController.actions["∏Ωº”≤Ÿ◊˜"].IsPressed())
+        if (!InputManager.Instance.myController.actions["ÈôÑÂä†Êìç‰Ωú"].IsPressed())
         {
             selectedUnits.Clear();
             //all units clear
@@ -212,15 +212,16 @@ public class GameController : MonoSingleton<GameController>
 
     private void Update()
     {
-        if (UIManager.Instance.IsShowingPanel || !isInit) return;
+        //if (UIManager.Instance.IsShowingPanel || !isInit) return;
+        if (!isInit) return;
         mousePosition = InputUtils.GetMousePosition();
 #if UNITY_EDITOR
-        Debug.Log($"InputManager.Instance.myController.actions[◊Ûª˜].IsPressed():{InputManager.Instance.myController.actions["◊Ûª˜"].IsPressed()}");
+        Debug.Log($"InputManager.Instance.myController.actions[Â∑¶Âáª].IsPressed():{InputManager.Instance.myController.actions["Â∑¶Âáª"].IsPressed()}");
 #endif
-        if (InputManager.Instance.myController.actions["◊Ûª˜"].IsPressed())
+        if (InputManager.Instance.myController.actions["Â∑¶Âáª"].IsPressed())
         {
-            Debug.Log($"∏¸–¬—°‘Ò«¯”Ú");
-            //∏¸–¬—°‘Ò«¯”Ú
+            Debug.Log($"Êõ¥Êñ∞ÈÄâÊã©Âå∫Âüü");
+            //Êõ¥Êñ∞ÈÄâÊã©Âå∫Âüü
             endPosition = mousePosition;
             var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
             var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));

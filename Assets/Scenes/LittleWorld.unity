@@ -449,6 +449,30 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8751fcd9-b05a-47cd-b45c-03936c447e4c
     m_ActionName: "\u6E38\u620F/\u8BBE\u7F6E[/Keyboard/escape]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 033b9dde-4c2d-4eed-9c37-7ee2c72e2dc3
+    m_ActionName: "\u519C\u573A/\u4EBA\u7269\u79FB\u52A8[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9ab05d04-46de-4456-a689-76f3244c66f1
+    m_ActionName: "\u519C\u573A/\u8BBE\u7F6E[/Keyboard/escape]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5ef038cd-eb9a-4aa2-a1ba-82c7f15ce4fa
+    m_ActionName: "\u519C\u573A/\u5DE6\u51FB[/Mouse/leftButton]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c777a75d-ac00-4b5e-a284-2787ec5b0216
+    m_ActionName: "\u519C\u573A/\u884C\u8D70[/Keyboard/shift]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f6f752d2-0048-49c4-bf00-b0b6abf95767
+    m_ActionName: "\u519C\u573A/\u4E22\u5F03\u7269\u54C1[/Keyboard/q]"
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 48dba343-acff-49e6-bc6e-40ad738c14b8
+    m_ActionName: "\u519C\u573A/\u63A7\u5236\u53F0[/Keyboard/f12]"
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: "\u6E38\u620F"
@@ -492,6 +516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1413222953}
   - component: {fileID: 1413222952}
+  - component: {fileID: 1413222954}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -576,6 +601,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1413222954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413222951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!4 &1728653593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2431074402063594364, guid: 8f364e37243e2594581f51f5e854bd9b, type: 3}

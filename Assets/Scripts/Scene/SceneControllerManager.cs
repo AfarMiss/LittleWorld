@@ -55,7 +55,7 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
 
         SaveLoadManager.Instance.StoreCurrentSceneData();
 
-        FarmPlayer.Instance.gameObject.transform.position = spawnPos;
+        //FarmPlayer.Instance.gameObject.transform.position = spawnPos;
 
         EventCenter.Instance.Trigger(EventEnum.BEFORE_SCENE_UNLOAD.ToString());
 

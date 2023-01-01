@@ -44,7 +44,7 @@ public class Cursor : MonoSingleton<Cursor>
     {
         Vector3 cursorWorldPosition = GetWorldPositionForCursor();
 
-        SetCursorValidity(cursorWorldPosition, Director.Instance.MainPlayer.GetPlayrCentrePosition());
+        //SetCursorValidity(cursorWorldPosition, Director.Instance.MainPlayer.GetPlayrCentrePosition());
 
         cursorRectTransform.position = GetRectTransformPositionForCursor();
     }

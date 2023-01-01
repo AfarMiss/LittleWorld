@@ -7,18 +7,10 @@ using UnityEngine;
 /// </summary>
 public class Director : MonoSingleton<Director>
 {
-    public FarmPlayer MainPlayer
-    {
-        get
-        {
-            return GameObject.FindObjectOfType<FarmPlayer>();
-        }
-    }
-
     private void Start()
     {
         UIManager.Instance.Show<MainInfoPanel>(UIType.PANEL, UIPath.Main_UI_Panel);
-        UIManager.Instance.Show<UIInventoryBar>(UIType.PANEL, UIPath.Panel_ConciseInventoryPanel);
+        //UIManager.Instance.Show<UIInventoryBar>(UIType.PANEL, UIPath.Panel_ConciseInventoryPanel);
         TimeManager.Instance.Init();
     }
 }
