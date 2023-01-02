@@ -9,6 +9,7 @@ public class PathNavigationOnly : MonoBehaviour
     public Queue<Vector2Int> pathSchedules = new Queue<Vector2Int>();
     private Grid mapGrid;
     private Queue<Vector2Int> curPath;
+    private Vector2Int curTarget;
     [SerializeField] private LineRenderer lineRenderer;
 
     private bool curTargetIsReached = true;
@@ -33,14 +34,26 @@ public class PathNavigationOnly : MonoBehaviour
 
     private void DrawLine(Queue<Vector2Int> path)
     {
-
+        if (path == null) return;
         var pathArray = path.ToArray();
-        lineRenderer.positionCount = pathArray.Length + 1;
+        lineRenderer.positionCount = pathArray.Length + 2;
         lineRenderer.SetPosition(0, this.transform.position);
-        for (int i = 0; i < path.Count; i++)
+        if (curTarget != null)
         {
-            lineRenderer.SetPosition(i + 1, new Vector3(pathArray[i].x, pathArray[i].y, 0));
+            lineRenderer.SetPosition(1, new Vector3(curTarget.x, curTarget.y, 0));
+            for (int i = 0; i < path.Count; i++)
+            {
+                lineRenderer.SetPosition(i + 2, new Vector3(pathArray[i].x, pathArray[i].y, 0));
+            }
         }
+        else
+        {
+            for (int i = 0; i < path.Count; i++)
+            {
+                lineRenderer.SetPosition(i + 1, new Vector3(pathArray[i].x, pathArray[i].y, 0));
+            }
+        }
+
     }
 
     private IEnumerator Move()
@@ -70,7 +83,7 @@ public class PathNavigationOnly : MonoBehaviour
                 if (curPath.Count > 0)
                 {
                     curTargetIsReached = false;
-                    var curTarget = curPath.Dequeue();
+                    curTarget = curPath.Dequeue();
                     MoveTo(curTarget);
                 }
                 else
@@ -95,7 +108,7 @@ public class PathNavigationOnly : MonoBehaviour
         Vector3 dir = worldPos - transform.position;
         this.Speed = dir.normalized;
 
-        while (Vector3.Distance(transform.position, worldPos) > 0.2)
+        while (Vector3.Distance(transform.position, worldPos) > 0.05)
         {
             GetComponent<Rigidbody2D>().MovePosition(transform.position + dir.normalized * Time.fixedDeltaTime * 4f);
             yield return null;
