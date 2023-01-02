@@ -11,6 +11,7 @@ public class PathNavigationOnly : MonoBehaviour
     private Queue<Vector2Int> curPath;
     private Vector2Int curTarget;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private GameObject targetPoint;
 
     private bool curTargetIsReached = true;
     private bool curScheduleIsReached = true;
@@ -39,6 +40,13 @@ public class PathNavigationOnly : MonoBehaviour
     {
         if (path == null) return;
         var pathArray = path.ToArray();
+        if (pathArray.Length != 0)
+        {
+            targetPoint.transform.SetPositionAndRotation(
+                new Vector3(pathArray[pathArray.Length - 1].x, pathArray[pathArray.Length - 1].y, 0),
+                Quaternion.identity
+                );
+        }
         lineRenderer.positionCount = pathArray.Length + 2;
         lineRenderer.SetPosition(0, this.transform.position);
         if (curTarget != null)
@@ -56,6 +64,8 @@ public class PathNavigationOnly : MonoBehaviour
                 lineRenderer.SetPosition(i + 1, new Vector3(pathArray[i].x, pathArray[i].y, 0));
             }
         }
+
+
 
     }
 
@@ -79,6 +89,8 @@ public class PathNavigationOnly : MonoBehaviour
     private IEnumerator MoveInPath(Vector2Int nPCSchedule)
     {
         lineRenderer.enabled = true;
+        targetPoint.gameObject.SetActive(true);
+
         while (curPath.Count > 0)
         {
             if (curTargetIsReached)
@@ -97,7 +109,9 @@ public class PathNavigationOnly : MonoBehaviour
             yield return null;
         }
         curScheduleIsReached = true;
+
         lineRenderer.enabled = false;
+        targetPoint.gameObject.SetActive(false);
     }
 
     public void MoveTo(Vector2Int target)
