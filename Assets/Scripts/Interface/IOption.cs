@@ -1,8 +1,9 @@
+﻿using LittleWorldObject;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IOption 
+public interface IOption
 {
-    public void OnInteraction();
+    public void OnInteraction(Humanbeing humanbeing);
 }

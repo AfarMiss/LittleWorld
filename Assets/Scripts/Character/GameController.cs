@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using LittleWorldObject;
+using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
@@ -41,7 +42,7 @@ public class GameController : MonoSingleton<GameController>
         if (callbackContext.performed)
         {
             //if (UIManager.Instance.IsShowingPanel) return;
-            CleanInteraction();
+            //CleanInteraction();
 
             Debug.Log("双击.performed -------");
             if (selectedUnits != null && selectedUnits.Count > 0)
@@ -79,8 +80,12 @@ public class GameController : MonoSingleton<GameController>
             }
             else
             {
-                var options = rayHits[0].collider.GetComponent<IOption>();
-                options.OnInteraction();
+                //对单人进行操作
+                if (selectedUnits.Count == 1)
+                {
+                    var options = rayHits[0].collider.GetComponent<IOption>();
+                    options.OnInteraction(selectedUnits[0].GetComponent<Humanbeing>());
+                }
             }
         }
     }
@@ -109,6 +114,11 @@ public class GameController : MonoSingleton<GameController>
 
     }
 
+    public void OnESC()
+    {
+        allRtsUnits.Clear();
+    }
+
     public void OnLeft(CallbackContext callbackContext)
     {
         if (callbackContext.started)
@@ -121,7 +131,7 @@ public class GameController : MonoSingleton<GameController>
         else if (callbackContext.canceled)
         {
             //if (UIManager.Instance.IsShowingPanel) return;
-            CleanInteraction();
+            //CleanInteraction();
 
             endPosition = mousePosition;
             selectedArea.gameObject.SetActive(false);
@@ -131,11 +141,10 @@ public class GameController : MonoSingleton<GameController>
             FindBoundOverlap();
 
             Debug.Log("Click.canceled -------");
-            allRtsUnits.Clear();
         }
     }
 
-    private void CleanInteraction()
+    public void CleanInteraction()
     {
         var interactions = GameObject.FindObjectsOfType<InteractionMenu>();
         foreach (var item in interactions)
@@ -215,9 +224,7 @@ public class GameController : MonoSingleton<GameController>
         //if (UIManager.Instance.IsShowingPanel || !isInit) return;
         if (!isInit) return;
         mousePosition = InputUtils.GetMousePosition();
-#if UNITY_EDITOR
-        Debug.Log($"InputManager.Instance.myController.actions[左击].IsPressed():{InputManager.Instance.myController.actions["左击"].IsPressed()}");
-#endif
+
         if (InputManager.Instance.myController.actions["左击"].IsPressed())
         {
             Debug.Log($"更新选择区域");

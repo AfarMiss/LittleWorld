@@ -11,7 +11,7 @@ namespace LittleWorldObject
         protected int fruitCount;
         protected int woodCount;
 
-        public void OnInteraction()
+        public void OnInteraction(Humanbeing humanbeing)
         {
             var go = Instantiate(Resources.Load<GameObject>("Prefabs/UI/InteractionMenu/InteractionMenu"));
             go.name = go.name.Substring(0, go.name.LastIndexOf("(Clone)"));
@@ -33,7 +33,7 @@ namespace LittleWorldObject
                 content = "摘取果实",
                 OnClickOption = () =>
                 {
-                    Debug.Log("正在摘取果实！");
+                    humanbeing.Pick(this);
                 }
             });
 

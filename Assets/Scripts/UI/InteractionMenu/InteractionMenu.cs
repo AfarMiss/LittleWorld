@@ -1,7 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InteractionMenu : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class InteractionMenu : MonoBehaviour
         this.options = new List<InteractionOption>();
         foreach (var optionContent in options)
         {
-            var optionObject= Instantiate(optionPrefab, this.transform);
+            var optionObject = Instantiate(optionPrefab, this.transform);
             var option = optionObject.GetComponent<InteractionOption>();
             option.BindData(optionContent);
             this.options.Add(option);

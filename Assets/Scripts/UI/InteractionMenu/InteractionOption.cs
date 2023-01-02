@@ -1,10 +1,11 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InteractionOption : MonoBehaviour
+public class InteractionOption : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Text content;
     [SerializeField] private Image bg;
@@ -26,6 +27,13 @@ public class InteractionOption : MonoBehaviour
     public void OnClick()
     {
         OnClickOption?.Invoke();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnClick();
+
+        GameController.Instance.CleanInteraction();
     }
 }
 

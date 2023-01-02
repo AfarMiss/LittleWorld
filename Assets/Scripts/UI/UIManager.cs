@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class UIManager : MonoSingleton<UIManager>
 {
+    [SerializeField]
+    private GameObject sliderPrefab;
+
     private Dictionary<UIType, List<BaseUI>> uiDic;
     protected GameObject UICanvas { get; private set; }
 
