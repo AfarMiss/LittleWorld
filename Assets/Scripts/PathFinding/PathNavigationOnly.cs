@@ -16,8 +16,6 @@ public class PathNavigationOnly : MonoBehaviour
     private bool curScheduleIsReached = true;
     [HideInInspector] public Vector3 Speed;
 
-    private bool managerInitialized = false;
-
     private async void Start()
     {
         await TaskHelper.Wait(() => PathManager.Instance.Initialized == true);
@@ -26,6 +24,11 @@ public class PathNavigationOnly : MonoBehaviour
     public void AddMovePositionAndMove(Vector3 worldPos)
     {
         mapGrid = GameObject.FindObjectOfType<Grid>();
+        curScheduleIsReached = true;
+        curTargetIsReached = true;
+        pathSchedules?.Clear();
+        curPath?.Clear();
+
         var cellPosition = mapGrid.WorldToCell(worldPos);
         pathSchedules.Enqueue(new Vector2Int(cellPosition.x, cellPosition.y));
         StopAllCoroutines();
