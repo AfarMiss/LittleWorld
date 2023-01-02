@@ -12,7 +12,6 @@ public class GameController : MonoSingleton<GameController>
     private RectTransform selectedArea;
     private bool isInit = false;
 
-    [SerializeField] private GameObject InteractionMenu;
     [SerializeField] private RectTransform selectedAreaPrefab;
 
     private Rect realSelection;
@@ -62,7 +61,7 @@ public class GameController : MonoSingleton<GameController>
             CleanInteraction();
 
             var ray = Camera.main.ScreenPointToRay(mousePosition);
-            var rayHits = Physics.RaycastAll(ray.origin, ray.direction);
+            var rayHits = Physics2D.RaycastAll(ray.origin, ray.direction);
 
             if (rayHits == null || rayHits.Length == 0)
             {
