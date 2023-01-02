@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class PathNavigationOnly : MonoBehaviour
     public Queue<Vector2Int> pathSchedules = new Queue<Vector2Int>();
     private Grid mapGrid;
     private Queue<Vector2Int> curPath;
+    [SerializeField] private LineRenderer lineRenderer;
 
     private bool curTargetIsReached = true;
     private bool curScheduleIsReached = true;
@@ -29,9 +31,20 @@ public class PathNavigationOnly : MonoBehaviour
         StartCoroutine(Move());
     }
 
-    private IEnumerator Move()
+    private void DrawLine(Queue<Vector2Int> path)
     {
 
+        var pathArray = path.ToArray();
+        lineRenderer.positionCount = pathArray.Length + 1;
+        lineRenderer.SetPosition(0, this.transform.position);
+        for (int i = 0; i < path.Count; i++)
+        {
+            lineRenderer.SetPosition(i + 1, new Vector3(pathArray[i].x, pathArray[i].y, 0));
+        }
+    }
+
+    private IEnumerator Move()
+    {
         while (pathSchedules.Count > 0)
         {
             if (curScheduleIsReached)
@@ -40,6 +53,7 @@ public class PathNavigationOnly : MonoBehaviour
                 var currentPos = mapGrid.WorldToCell(transform.position);
                 var target = pathSchedules.Dequeue();
                 curPath = PathManager.Instance.CalculatePath(new Vector2Int(currentPos.x, currentPos.y), target);
+
                 StartCoroutine(MoveInPath(target));
             }
             yield return null;
@@ -48,6 +62,7 @@ public class PathNavigationOnly : MonoBehaviour
 
     private IEnumerator MoveInPath(Vector2Int nPCSchedule)
     {
+        lineRenderer.enabled = true;
         while (curPath.Count > 0)
         {
             if (curTargetIsReached)
@@ -66,6 +81,7 @@ public class PathNavigationOnly : MonoBehaviour
             yield return null;
         }
         curScheduleIsReached = true;
+        lineRenderer.enabled = false;
     }
 
     public void MoveTo(Vector2Int target)
@@ -86,5 +102,10 @@ public class PathNavigationOnly : MonoBehaviour
         }
         curTargetIsReached = true;
         this.Speed = Vector3.zero;
+    }
+
+    private void Update()
+    {
+        DrawLine(curPath);
     }
 }
