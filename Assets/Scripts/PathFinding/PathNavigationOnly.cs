@@ -9,6 +9,7 @@ public class PathNavigationOnly : MonoBehaviour
     public Queue<Vector2Int> pathSchedules = new Queue<Vector2Int>();
     private Grid mapGrid;
     private Queue<Vector2Int> curPath;
+    private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
     private Vector2Int curTarget;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameObject targetPoint;
@@ -43,25 +44,25 @@ public class PathNavigationOnly : MonoBehaviour
         if (pathArray.Length != 0)
         {
             targetPoint.transform.SetPositionAndRotation(
-                new Vector3(pathArray[pathArray.Length - 1].x, pathArray[pathArray.Length - 1].y, 0),
+                new Vector3(pathArray[pathArray.Length - 1].x, pathArray[pathArray.Length - 1].y, 0) + imageOffset,
                 Quaternion.identity
                 );
         }
         lineRenderer.positionCount = pathArray.Length + 2;
-        lineRenderer.SetPosition(0, this.transform.position);
+        lineRenderer.SetPosition(0, this.transform.position + imageOffset);
         if (curTarget != null)
         {
-            lineRenderer.SetPosition(1, new Vector3(curTarget.x, curTarget.y, 0));
+            lineRenderer.SetPosition(1, new Vector3(curTarget.x, curTarget.y, 0) + imageOffset);
             for (int i = 0; i < path.Count; i++)
             {
-                lineRenderer.SetPosition(i + 2, new Vector3(pathArray[i].x, pathArray[i].y, 0));
+                lineRenderer.SetPosition(i + 2, new Vector3(pathArray[i].x, pathArray[i].y, 0) + imageOffset);
             }
         }
         else
         {
             for (int i = 0; i < path.Count; i++)
             {
-                lineRenderer.SetPosition(i + 1, new Vector3(pathArray[i].x, pathArray[i].y, 0));
+                lineRenderer.SetPosition(i + 1, new Vector3(pathArray[i].x, pathArray[i].y, 0) + imageOffset);
             }
         }
 
