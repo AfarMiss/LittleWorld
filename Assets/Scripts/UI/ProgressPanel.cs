@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class ProgressPanel : BaseUI
 {
+    private void Start()
+    {
+        PoolManager.Instance.CreatePool(10, progressPrefab, PoolEnum.Progress.ToString(), transform);
+    }
     private void OnEnable()
     {
         EventCenter.Instance.Register<PickFruitMessage>(EventEnum.PICK_FRUIT.ToString(), OnPickFruit);
@@ -14,7 +18,8 @@ public class ProgressPanel : BaseUI
     private void OnPickFruit(PickFruitMessage message)
     {
         var screenPos = InputUtils.GetScreenPosition(message.pickFruitPos);
-        var go = Instantiate(progressPrefab, screenPos, Quaternion.identity, transform);
+        var go = PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
+        go.transform.position = screenPos;
         StartCoroutine(ChangeSlider(go));
     }
 
@@ -27,6 +32,8 @@ public class ProgressPanel : BaseUI
             yield return null;
             gs.progress = curProgress += 0.01f;
         }
+
+        PoolManager.Instance.Putback(PoolEnum.Progress.ToString(), gs.gameObject);
     }
 
     private void OnDisable()

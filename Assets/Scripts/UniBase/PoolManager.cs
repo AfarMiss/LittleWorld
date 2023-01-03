@@ -17,7 +17,7 @@ public class PoolManager : MonoSingleton<PoolManager>
     /// </summary>
     private Dictionary<int, Queue<GameObject>> poolQueue;
 
-    public void CreatePool(int poolSize, GameObject poolPrefab, string poolName = null)
+    public void CreatePool(int poolSize, GameObject poolPrefab, string poolName = null, Transform parent = null)
     {
         if (poolInfo == null)
         {
@@ -46,7 +46,17 @@ public class PoolManager : MonoSingleton<PoolManager>
 
             for (int i = 0; i < pool.poolSize; i++)
             {
-                GameObject go = Instantiate(poolPrefab, transform);
+                GameObject go;
+                Transform realParent = null;
+                if (parent != null)
+                {
+                    realParent = parent;
+                }
+                else
+                {
+                    realParent = transform;
+                }
+                go = Instantiate(poolPrefab, realParent);
                 go.SetActive(false);
                 if (poolQueue.ContainsKey(poolPrefab.GetInstanceID()))
                 {
@@ -56,6 +66,7 @@ public class PoolManager : MonoSingleton<PoolManager>
                 {
                     poolQueue.Add(poolPrefab.GetInstanceID(), new Queue<GameObject>());
                 }
+
             }
         }
     }

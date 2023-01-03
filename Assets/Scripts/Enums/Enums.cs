@@ -189,4 +189,5 @@ public enum SoundName
 public enum PoolEnum
 {
     Sounds,
+    Progress,
 }

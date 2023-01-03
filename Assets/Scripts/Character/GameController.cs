@@ -13,6 +13,8 @@ public class GameController : MonoSingleton<GameController>
     private RectTransform selectedArea;
     private bool isInit = false;
 
+    public bool hasOperation = false;
+
     [SerializeField] private RectTransform selectedAreaPrefab;
 
     private Rect realSelection;
@@ -47,7 +49,7 @@ public class GameController : MonoSingleton<GameController>
             Debug.Log("双击.performed -------");
             if (selectedUnits != null && selectedUnits.Count > 0)
             {
-                Prepare();
+                TryClearSelectedUnits();
                 Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
                 FindRectOverlap(screenRect);
             }
@@ -58,7 +60,6 @@ public class GameController : MonoSingleton<GameController>
     {
         if (callbackContext.performed)
         {
-            //if (UIManager.Instance.IsShowingPanel) return;
             CleanInteraction();
 
             var ray = Camera.main.ScreenPointToRay(mousePosition);
@@ -72,11 +73,7 @@ public class GameController : MonoSingleton<GameController>
                 var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionToWorldWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
                 for (int i = 0; i < selectedUnits.Count; i++)
                 {
-                    RTSUnit item = selectedUnits[i];
-                    var controller = item.GetComponent<PathNavigationOnly>();
-                    var curPos = InputUtils.GetMouseWorldPosition();
-                    var human = item.GetComponent<Humanbeing>();
-                    controller.AddMovePositionAndMove(curPos, null);
+                    SelectToMove(selectedUnits[i]);
                 }
             }
             else
@@ -85,10 +82,24 @@ public class GameController : MonoSingleton<GameController>
                 if (selectedUnits.Count == 1)
                 {
                     var options = rayHits[0].collider.GetComponent<IOption>();
-                    options.OnInteraction(selectedUnits[0].GetComponent<Humanbeing>());
+                    if (options != null)
+                    {
+                        options.OnInteraction(selectedUnits[0].GetComponent<Humanbeing>());
+                    }
+                    else
+                    {
+                        SelectToMove(selectedUnits[0]);
+                    }
                 }
             }
         }
+    }
+
+    private void SelectToMove(RTSUnit item)
+    {
+        var controller = item.GetComponent<PathNavigationOnly>();
+        var curPos = InputUtils.GetMouseWorldPosition();
+        controller.AddMovePositionAndMove(curPos, null);
     }
 
     public void OnClickSetting(CallbackContext callbackContext)
@@ -131,13 +142,10 @@ public class GameController : MonoSingleton<GameController>
         }
         else if (callbackContext.canceled)
         {
-            //if (UIManager.Instance.IsShowingPanel) return;
-            //CleanInteraction();
-
             endPosition = mousePosition;
             selectedArea.gameObject.SetActive(false);
 
-            Prepare();
+            TryClearSelectedUnits();
 
             FindBoundOverlap();
 
@@ -154,22 +162,29 @@ public class GameController : MonoSingleton<GameController>
         }
     }
 
-    private void Prepare()
+    private void TryClearSelectedUnits()
     {
         var allRtsUnitsObjects = GameObject.FindObjectsOfType<RTSUnit>();
         foreach (var item in allRtsUnitsObjects)
         {
             allRtsUnits.Add(item.GetComponent<RTSUnit>());
         }
-        if (!InputManager.Instance.myController.actions["附加操作"].IsPressed())
+        if (!(InputManager.Instance.myController.actions["附加操作"].IsPressed()
+            || GameObject.FindObjectsOfType<InteractionOption>().Length != 0))
         {
-            selectedUnits.Clear();
-            //all units clear
-            foreach (var unit in allRtsUnits)
-            {
-                unit.isSelected = false;
-            }
+            ClearSelectedUnits();
         }
+    }
+
+    private void ClearSelectedUnits()
+    {
+        selectedUnits.Clear();
+        //all units clear
+        foreach (var unit in allRtsUnits)
+        {
+            unit.isSelected = false;
+        }
+
     }
 
     private void FindBoundOverlap()
