@@ -45,6 +45,18 @@ namespace AStar
             }
         }
 
+        public void ClearLastValue()
+        {
+            //填入数据
+            for (int i = 0; i < mapHeight; i++)
+            {
+                for (int j = 0; j < mapWidth; j++)
+                {
+                    gridNodes.nodes[j, i].ClearLastValue();
+                }
+            }
+        }
+
         public void SetStartPos(Vector2Int startNode)
         {
             this.startNode = gridNodes.GetNode(startNode.x - originalX, startNode.y - originalY);
@@ -58,6 +70,8 @@ namespace AStar
         public Stack<Node> CalculatePath(out bool findPath)
         {
             findPath = false;
+
+            ClearLastValue();
 
             openList = new List<Node>();
             closeList = new List<Node>();
@@ -120,15 +134,22 @@ namespace AStar
 
         private int GetParentIndex(List<Node> closedNodes, Node curNode)
         {
-            var indexResult = -1;
-            for (indexResult = 0; indexResult < closedNodes.Count; indexResult++)
+            var indexResult = 0;
+            for (; indexResult < closedNodes.Count; indexResult++)
             {
                 if (curNode.parent == closedNodes[indexResult])
                 {
                     break;
                 }
             }
-            return indexResult;
+            if (indexResult < closedNodes.Count)
+            {
+                return indexResult;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         public float GetHCost(Node start, Node end)
