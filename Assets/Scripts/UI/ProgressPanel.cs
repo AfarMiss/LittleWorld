@@ -20,17 +20,17 @@ public class ProgressPanel : BaseUI
         var screenPos = InputUtils.GetScreenPosition(message.pickFruitPos);
         var go = PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
         go.transform.position = screenPos;
-        StartCoroutine(ChangeSlider(go));
+        StartCoroutine(ChangeSlider(go, message));
     }
 
-    private IEnumerator ChangeSlider(GameObject go)
+    private IEnumerator ChangeSlider(GameObject go, PickFruitMessage message)
     {
         float curProgress = 0;
         var gs = go.GetComponent<GeneralSlider>();
         while (gs.progress < 1)
         {
             yield return null;
-            gs.progress = curProgress += 0.01f;
+            gs.progress = (curProgress += Time.deltaTime) / message.totalPickTime;
         }
 
         PoolManager.Instance.Putback(PoolEnum.Progress.ToString(), gs.gameObject);

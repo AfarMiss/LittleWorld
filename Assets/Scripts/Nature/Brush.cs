@@ -8,8 +8,10 @@ namespace LittleWorldObject
 {
     public class Brush : Plant, IOption
     {
-        protected int fruitCount;
-        protected int woodCount;
+        public int fruitCount = 5;
+        public int woodCount;
+        public int fruitItemCode = 10024;
+        public float pickTime = 3;
 
         public void OnInteraction(Humanbeing humanbeing)
         {
