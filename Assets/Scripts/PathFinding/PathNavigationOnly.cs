@@ -52,9 +52,12 @@ public class PathNavigationOnly : MonoBehaviour
                 Quaternion.identity
                 );
         }
-        else
+        else if (curTarget != null)
         {
-            targetPoint.gameObject.SetActive(false);
+            targetPoint.transform.SetPositionAndRotation(
+    new Vector3(curTarget.x, curTarget.y, 0) + imageOffset,
+    Quaternion.identity
+    );
         }
         lineRenderer.positionCount = pathArray.Length + 2;
         lineRenderer.SetPosition(0, this.transform.position + imageOffset);
@@ -128,6 +131,7 @@ public class PathNavigationOnly : MonoBehaviour
         curScheduleIsReached = true;
 
         lineRenderer.enabled = false;
+        targetPoint.gameObject.SetActive(false);
     }
 
     public void MoveTo(Vector2Int target)
