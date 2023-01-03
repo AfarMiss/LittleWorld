@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PathNavigationOnly : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PathNavigationOnly : MonoBehaviour
     private Queue<Vector2Int> curPath;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
     private Vector2Int curTarget;
+    private UnityAction afterReached;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameObject targetPoint;
 
@@ -23,7 +25,7 @@ public class PathNavigationOnly : MonoBehaviour
         await TaskHelper.Wait(() => PathManager.Instance.Initialized == true);
     }
 
-    public void AddMovePositionAndMove(Vector3 worldPos)
+    public void AddMovePositionAndMove(Vector3 worldPos, UnityAction afterReached)
     {
         mapGrid = GameObject.FindObjectOfType<Grid>();
         curScheduleIsReached = true;
@@ -35,6 +37,8 @@ public class PathNavigationOnly : MonoBehaviour
         pathSchedules.Enqueue(new Vector2Int(cellPosition.x, cellPosition.y));
         StopAllCoroutines();
         StartCoroutine(Move());
+
+        this.afterReached = afterReached;
     }
 
     private void DrawLine(Queue<Vector2Int> path)
@@ -98,7 +102,7 @@ public class PathNavigationOnly : MonoBehaviour
         lineRenderer.enabled = true;
         targetPoint.gameObject.SetActive(true);
 
-        while (curPath.Count > 0)
+        while (curPath.Count >= 0)
         {
             if (curTargetIsReached)
             {
@@ -111,6 +115,8 @@ public class PathNavigationOnly : MonoBehaviour
                 else
                 {
                     //完成到达指定目的地后的工作
+                    afterReached?.Invoke();
+                    break;
                 }
             }
             yield return null;

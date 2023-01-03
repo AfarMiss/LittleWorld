@@ -41,4 +41,9 @@ public enum EventEnum
     #endregion
     GRID_MODIFY,
     INSTANTIATE_CROP_PREFAB,
+
+    /// <summary>
+    /// 采摘果实
+    /// </summary>
+    PICK_FRUIT,
 }

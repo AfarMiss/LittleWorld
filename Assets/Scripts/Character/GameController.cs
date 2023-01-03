@@ -75,7 +75,8 @@ public class GameController : MonoSingleton<GameController>
                     RTSUnit item = selectedUnits[i];
                     var controller = item.GetComponent<PathNavigationOnly>();
                     var curPos = InputUtils.GetMouseWorldPosition();
-                    controller.AddMovePositionAndMove(curPos);
+                    var human = item.GetComponent<Humanbeing>();
+                    controller.AddMovePositionAndMove(curPos, null);
                 }
             }
             else
