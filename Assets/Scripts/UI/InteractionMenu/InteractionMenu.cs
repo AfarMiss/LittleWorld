@@ -30,7 +30,7 @@ public class InteractionMenu : MonoBehaviour
 
             var screenRect = new Rect(rect.position.x, rect.position.y, rect.rect.width, rect.rect.height);
             Debug.Log($"{rect.name}:{screenRect}");
-            if (screenRect.Contains(GameController.Instance.mousePosition))
+            if (screenRect.Contains(InputController.Instance.mousePosition))
             {
                 Debug.Log($"{item.name} is raycasting");
                 item.SetFocus(true);

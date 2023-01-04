@@ -19,7 +19,7 @@ namespace LittleWorldObject
             go.name = go.name.Substring(0, go.name.LastIndexOf("(Clone)"));
             var menu = go.GetComponent<InteractionMenu>();
             go.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
-            go.transform.position = GameController.Instance.mousePosition;
+            go.transform.position = InputController.Instance.mousePosition;
 
             var contentList = new List<optionStruct>();
             contentList.Add(new optionStruct()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PickFruitMessage
 {
+    public int fruitID;
     public int fruitType;
     public float totalPickTime;
     public int fruitCount;

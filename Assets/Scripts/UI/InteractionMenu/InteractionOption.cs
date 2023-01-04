@@ -33,7 +33,7 @@ public class InteractionOption : MonoBehaviour, IPointerClickHandler
     {
         OnClick();
 
-        GameController.Instance.CleanInteraction();
+        InputController.Instance.CleanInteraction();
     }
 }
 

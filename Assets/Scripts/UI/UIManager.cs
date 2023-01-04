@@ -54,7 +54,7 @@ public class UIManager : MonoSingleton<UIManager>
         UICanvas.transform.SetParent(null);
         DontDestroyOnLoad(UICanvas);
 
-        if (GameController.hasInstance) GameController.Instance.Init();
+        if (InputController.hasInstance) InputController.Instance.Init();
     }
 
     public T Show<T>(UIType uiType, string path) where T : BaseUI

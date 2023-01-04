@@ -46,4 +46,5 @@ public enum EventEnum
     /// 采摘果实
     /// </summary>
     PICK_FRUIT,
+    UNPICK_FRUIT,
 }

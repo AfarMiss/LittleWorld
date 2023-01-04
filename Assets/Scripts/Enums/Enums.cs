@@ -191,3 +191,8 @@ public enum PoolEnum
     Sounds,
     Progress,
 }
+
+public enum ActionEnum
+{
+    PICK,
+}

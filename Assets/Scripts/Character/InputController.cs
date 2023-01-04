@@ -1,10 +1,11 @@
 ﻿using LittleWorldObject;
+using System;
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
-public class GameController : MonoSingleton<GameController>
+public class InputController : MonoSingleton<InputController>
 {
     private Vector3 startPosition;
     private Vector3 endPosition;
@@ -43,9 +44,6 @@ public class GameController : MonoSingleton<GameController>
     {
         if (callbackContext.performed)
         {
-            //if (UIManager.Instance.IsShowingPanel) return;
-            //CleanInteraction();
-
             Debug.Log("双击.performed -------");
             if (selectedUnits != null && selectedUnits.Count > 0)
             {
@@ -73,6 +71,7 @@ public class GameController : MonoSingleton<GameController>
                 var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionToWorldWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
                 for (int i = 0; i < selectedUnits.Count; i++)
                 {
+                    ResetHumansAction(selectedUnits[i]);
                     SelectToMove(selectedUnits[i]);
                 }
             }
@@ -93,6 +92,12 @@ public class GameController : MonoSingleton<GameController>
                 }
             }
         }
+    }
+
+    private void ResetHumansAction(RTSUnit rTSUnit)
+    {
+        var human = rTSUnit.GetComponent<Humanbeing>();
+        human.CancelAllActivity();
     }
 
     private void SelectToMove(RTSUnit item)
