@@ -60,6 +60,10 @@ struct相比class有更好的内存管理效率
 
 
 
+格式上，对不同的模块进行命名空间的区分是一个好习惯。
+
+
+
 参考资料
 
 1. Unity 游戏框架搭建 决定版 [https://learn.u3d.cn/tutorial/framework\_design?chapterId=63562b29edca72001f21d172#](https://learn.u3d.cn/tutorial/framework\_design?chapterId=63562b29edca72001f21d172)
