@@ -22,7 +22,7 @@ public class PathNavigationOnly : MonoBehaviour
 
     private async void Start()
     {
-        await TaskHelper.Wait(() => PathManager.Instance.Initialized == true);
+        await TaskHelper.Wait(() => GlobalPathManager.Instance.Initialized == true);
     }
 
     public void AddMovePositionAndMove(Vector3 worldPos, UnityAction afterReached)
@@ -90,7 +90,7 @@ public class PathNavigationOnly : MonoBehaviour
                 curScheduleIsReached = false;
                 var currentPos = mapGrid.WorldToCell(transform.position);
                 var target = pathSchedules.Dequeue();
-                curPath = PathManager.Instance.CalculatePath(new Vector2Int(currentPos.x, currentPos.y), target);
+                curPath = GlobalPathManager.Instance.CalculatePath(new Vector2Int(currentPos.x, currentPos.y), target);
 
                 //如果路径不止一个点时，去掉起点
                 if (curPath.Count > 1)

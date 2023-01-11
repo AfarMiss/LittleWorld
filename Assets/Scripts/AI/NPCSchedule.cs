@@ -6,7 +6,7 @@ using UnityEngine;
 public class NPCSchedule
 {
     public Vector2Int targetPos;
-    public WorkType workType;
+    public WorkTypeEnum workType;
     /// <summary>
     /// 持续时间(单位/小时)
     /// </summary>

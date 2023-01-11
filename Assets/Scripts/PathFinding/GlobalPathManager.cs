@@ -8,15 +8,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PathManager : MonoSingleton<PathManager>
+public class GlobalPathManager : Singleton<GlobalPathManager>
 {
     public bool Initialized => initialized;
     private bool initialized = false;
     AStar.AStar aStar;
     private SO_GridProperties gridProperties;
 
-    private void OnEnable()
+    private GlobalPathManager() { }
+
+    public override void Initialize()
     {
+        base.Initialize();
         EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), InitMapInfo);
     }
 

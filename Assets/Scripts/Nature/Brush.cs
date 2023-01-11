@@ -13,6 +13,11 @@ namespace LittleWorldObject
         public int fruitItemCode = 10024;
         public float pickTime = 3;
 
+        private void Start()
+        {
+            ItemName = "灌木丛";
+        }
+
         public void OnInteraction(Humanbeing humanbeing)
         {
             var go = Instantiate(Resources.Load<GameObject>("Prefabs/UI/InteractionMenu/InteractionMenu"));
@@ -42,11 +47,5 @@ namespace LittleWorldObject
             menu.BindData(contentList);
         }
 
-    }
-
-    public struct OptionInfo
-    {
-        private string optionContent;
-        private Action optionAction;
     }
 }

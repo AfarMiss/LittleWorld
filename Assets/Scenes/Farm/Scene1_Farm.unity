@@ -51878,6 +51878,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707807b25c5a0244a8c4a0189699bb00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fruitCount: 5
+  woodCount: 0
+  fruitItemCode: 10024
+  pickTime: 3
 --- !u!1 &410028054
 GameObject:
   m_ObjectHideFlags: 0

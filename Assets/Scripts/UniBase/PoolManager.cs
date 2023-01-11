@@ -1,21 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager : MonoSingleton<PoolManager>
+public class PoolManager : Singleton<PoolManager>
 {
     /// <summary>
     /// 对象池配置
     /// </summary>
     private Dictionary<string, Pool> poolInfo;
     /// <summary>
-    /// 对象池父节点
-    /// </summary>
-    //private Transform objectPoolTransform;
-    /// <summary>
     /// 对象池队列
     /// </summary>
     private Dictionary<int, Queue<GameObject>> poolQueue;
+    /// <summary>
+    /// 默认父节点
+    /// </summary>
+    private Transform defaultParent;
+
+    private PoolManager() { }
 
     public void CreatePool(int poolSize, GameObject poolPrefab, string poolName = null, Transform parent = null)
     {
@@ -54,9 +57,9 @@ public class PoolManager : MonoSingleton<PoolManager>
                 }
                 else
                 {
-                    realParent = transform;
+                    realParent = defaultParent;
                 }
-                go = Instantiate(poolPrefab, realParent);
+                go = GameObject.Instantiate(poolPrefab, realParent);
                 go.SetActive(false);
                 if (poolQueue.ContainsKey(poolPrefab.GetInstanceID()))
                 {
@@ -106,9 +109,19 @@ public class PoolManager : MonoSingleton<PoolManager>
             }
             else
             {
-                Destroy(curObject);
+                GameObject.Destroy(curObject);
             }
         }
 
+    }
+
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        defaultParent = new GameObject().transform;
+        defaultParent.name = "defaultPoolParent";
+        GameObject.DontDestroyOnLoad(defaultParent);
     }
 }

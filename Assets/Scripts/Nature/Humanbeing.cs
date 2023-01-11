@@ -11,6 +11,8 @@ namespace LittleWorldObject
         public int curInteractionItemID;
         private void Start()
         {
+            ItemName = "人类";
+
             actionQueue = new Queue<HumanAction>();
             curInteractionItemID = -1;
         }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UniBase;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -110,7 +111,9 @@ public class InputController : MonoSingleton<InputController>
     public void OnClickSetting(CallbackContext callbackContext)
     {
         if (callbackContext.performed)
-            UIManager.Instance.Switch<SettingPanel>(UIType.PANEL, UIPath.Panel_SettingPanel);
+        {
+            UIManager.Instance.Switch<PausePanel>(UIType.PANEL, UIPath.Panel_PausePanel);
+        }
     }
 
     public void OnCameraControl(CallbackContext callbackContext)
@@ -184,7 +187,7 @@ public class InputController : MonoSingleton<InputController>
     private void ClearSelectedUnits()
     {
         selectedUnits.Clear();
-        //all units clear
+
         foreach (var unit in allRtsUnits)
         {
             unit.isSelected = false;
@@ -214,6 +217,12 @@ public class InputController : MonoSingleton<InputController>
                 }
             }
         }
+
+        //展示信息
+        if (selectedUnits.Count == 1)
+        {
+            selectedUnits[0].GetComponent<WorldObject>().ShowBriefInfo();
+        }
     }
 
     private void FindRectOverlap(Rect other)
@@ -242,7 +251,6 @@ public class InputController : MonoSingleton<InputController>
 
     private void Update()
     {
-        //if (UIManager.Instance.IsShowingPanel || !isInit) return;
         if (!isInit) return;
         mousePosition = InputUtils.GetMousePosition();
 

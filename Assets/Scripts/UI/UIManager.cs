@@ -52,7 +52,11 @@ public class UIManager : MonoSingleton<UIManager>
         //初始化画布
         UICanvas = GameObject.Instantiate(Resources.Load<GameObject>(UIPath.UICanvas));
         UICanvas.transform.SetParent(null);
+
         DontDestroyOnLoad(UICanvas);
+
+        UIManager.Instance.Show<MainInfoPanel>(UIType.PANEL, UIPath.Main_UI_Panel);
+        UIManager.Instance.Show<ProgressPanel>(UIType.PANEL, UIPath.Panel_ProgressPanel);
 
         if (InputController.hasInstance) InputController.Instance.Init();
     }

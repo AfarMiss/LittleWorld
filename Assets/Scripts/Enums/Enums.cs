@@ -155,10 +155,11 @@ public enum Facing
     right,
 }
 
-public enum WorkType
+public enum WorkTypeEnum
 {
     dug,
     water,
+    gotoLoc,
 }
 
 public enum SoundName
