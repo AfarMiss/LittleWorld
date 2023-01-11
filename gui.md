@@ -339,6 +339,16 @@ Color RGBSlider (Rect screenRect, Color rgb) {
 
 可以通过该控件动态改变代码中myColor的值
 
+使用即时渲染GUI，可以拓展编辑器，
+
+1.自定义窗口；
+
+2.自定义属性绘制（自定义 Serializable 类的 GUI，使用属性特性来自定义脚本成员的 GUI）；
+
+3.以及自定义脚本Inspector窗口样式
+
+4.使用TreeView展示层级数据（未细看）
+
 
 
 ## 参考资料
