@@ -149,7 +149,7 @@ public class PathNavigationOnly : MonoBehaviour
         targetPoint.gameObject.SetActive(false);
     }
 
-    public void MoveTo(Vector2Int target)
+    private void MoveTo(Vector2Int target)
     {
         StartCoroutine(MoveCoroutine(target));
     }

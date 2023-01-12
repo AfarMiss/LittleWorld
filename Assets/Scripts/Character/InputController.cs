@@ -76,7 +76,8 @@ public class InputController : MonoSingleton<InputController>
                 var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionToWorldWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
                 for (int i = 0; i < selectedUnits.Count; i++)
                 {
-                    SelectToMove(selectedUnits[i]);
+                    var human = SceneItemsManager.Instance.GetWorldObjectById(selectedUnits[0].instanceID);
+                    AddMoveWork(human);
                 }
             }
             else
@@ -88,18 +89,25 @@ public class InputController : MonoSingleton<InputController>
                     FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, mousePosition);
                     if (opts.Length == 0)
                     {
-                        SelectToMove(selectedUnits[0]);
+                        AddMoveWork(human);
                     }
                 }
             }
         }
     }
 
+    private void AddMoveWork(WorldObject human)
+    {
+        var controller = selectedUnits.Find
+            (x => x.GetComponent<PathNavigationOnly>().humanID == human.instanceID);
+        var curPos = InputUtils.GetMouseWorldPosition();
+        controller.GetComponent<PathNavigationOnly>().AddMovePositionAndMove(curPos, null);
+        (human as Humanbeing).AddWork(WorkTypeEnum.gotoLoc, curPos.ToVector3Int());
+    }
+
     private void SelectToMove(RTSUnit item)
     {
-        var controller = item.GetComponent<PathNavigationOnly>();
-        var curPos = InputUtils.GetMouseWorldPosition();
-        controller.AddMovePositionAndMove(curPos, null);
+
     }
 
     public void OnClickSetting(CallbackContext callbackContext)

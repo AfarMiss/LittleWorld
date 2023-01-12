@@ -48,9 +48,13 @@ namespace LittleWorld
         private WorkTypeEnum workType;
         private Action whenReached;
         private Vector3Int workPos;
+        public bool showPercent;
 
-        public SingleWork(string uniqueKey, Humanbeing worker, WorkStateEnum workState, WorkTypeEnum workType, Action whenReached, Vector3Int workPos,
-            int curFinishedAmount, int workTotalAmount
+        public SingleWork(string uniqueKey, Humanbeing worker,
+            WorkStateEnum workState, WorkTypeEnum workType,
+            Action whenReached, Vector3Int workPos,
+            int curFinishedAmount, int workTotalAmount,
+            bool showPercent = false
             )
         {
             this.worker = worker;
@@ -61,6 +65,7 @@ namespace LittleWorld
             this.uniqueKey = uniqueKey;
             this.curFinishedAmount = curFinishedAmount;
             this.workTotalAmount = workTotalAmount;
+            this.showPercent = showPercent;
         }
     }
 }

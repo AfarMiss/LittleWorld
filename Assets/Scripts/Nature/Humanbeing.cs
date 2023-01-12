@@ -26,6 +26,7 @@ namespace LittleWorldObject
         {
             Action whenReached = null;
             var totalWorkAmount = 24;
+            var showPercent = true;
             switch (workType)
             {
                 case WorkTypeEnum.dug:
@@ -35,7 +36,8 @@ namespace LittleWorldObject
                     totalWorkAmount = 240;
                     break;
                 case WorkTypeEnum.gotoLoc:
-                    totalWorkAmount = 240;
+                    showPercent = false;
+                    totalWorkAmount = 0;
                     break;
                 case WorkTypeEnum.chop:
                     totalWorkAmount = 240;
@@ -54,7 +56,8 @@ namespace LittleWorldObject
                 whenReached,
                 targetPos,
                 0,
-                totalWorkAmount));
+                totalWorkAmount,
+                showPercent));
         }
 
         public override void Tick()

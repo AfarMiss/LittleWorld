@@ -47,6 +47,12 @@ namespace LittleWorld
             return true;
         }
 
+        public bool CancelAllWork()
+        {
+            WorkQueue.Clear();
+            return true;
+        }
+
         public bool GetWorkAndStart()
         {
             if (workQueue == null || workQueue.Count == 0)
@@ -78,15 +84,15 @@ namespace LittleWorld
 
         private void ProcessWorkPercent(SingleWork work)
         {
-            if (work.curFinishedAmount < work.workTotalAmount)
-            {
-                work.curFinishedAmount++;
-            }
-            if (work.curFinishedAmount >= work.workTotalAmount)
+            if (work.workTotalAmount <= 0 || work.curFinishedAmount >= work.workTotalAmount)
             {
                 work.WorkState = WorkStateEnum.Done;
             }
-            EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), work);
+            if (work.curFinishedAmount < work.workTotalAmount)
+            {
+                work.curFinishedAmount++;
+                EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), work);
+            }
         }
     }
 }
