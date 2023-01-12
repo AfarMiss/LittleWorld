@@ -24,21 +24,31 @@ public class ProgressPanel : BaseUI
         x.poolInstance.GetComponent<GeneralSlider>() != null &&
         x.poolInstance.GetComponent<GeneralSlider>().uniqueID == message.uniqueKey);
 
-        var go = poolItem?.poolInstance;
-        var screenPos = InputUtils.GetScreenPosition(message.WorkPos);
-        if (go == null)
+        if (message.showPercent)
         {
-            go = PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
-            go.transform.position = screenPos;
-            go.GetComponent<GeneralSlider>().uniqueID = message.uniqueKey;
+            var go = poolItem?.poolInstance;
+            var screenPos = InputUtils.GetScreenPosition(message.WorkPos);
+            if (go == null)
+            {
+                go = PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
+                go.transform.position = screenPos;
+                go.GetComponent<GeneralSlider>().uniqueID = message.uniqueKey;
+            }
+            ChangeSlider(go, message);
         }
-        ChangeSlider(go, message);
     }
 
     private void ChangeSlider(GameObject go, SingleWork message)
     {
         var gs = go.GetComponent<GeneralSlider>();
-        gs.progress = (float)message.curFinishedAmount / message.workTotalAmount;
+        if (message.workTotalAmount > 0)
+        {
+            gs.progress = (float)message.curFinishedAmount / message.workTotalAmount;
+        }
+        else
+        {
+            gs.progress = 1;
+        }
 
     }
 

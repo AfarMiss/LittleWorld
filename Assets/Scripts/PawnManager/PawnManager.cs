@@ -43,7 +43,5 @@ public class PawnManager : Singleton<PawnManager>
         {
             pawn.Tick();
         }
-
-        Debug.Log("Tick PawnManager");
     }
 }
