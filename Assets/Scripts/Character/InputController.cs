@@ -84,7 +84,8 @@ public class InputController : MonoSingleton<InputController>
                 //对单人进行操作
                 if (selectedUnits.Count == 1)
                 {
-                    optionStruct[] opts = FloatMenuMaker.MakeFloatMenuAt(mousePosition);
+                    var human = SceneItemsManager.Instance.GetWorldObjectById(selectedUnits[0].instanceID);
+                    FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, mousePosition);
                     if (opts.Length == 0)
                     {
                         SelectToMove(selectedUnits[0]);

@@ -42,9 +42,10 @@ public enum EventEnum
     GRID_MODIFY,
     INSTANTIATE_CROP_PREFAB,
 
-    /// <summary>
-    /// 采摘果实
-    /// </summary>
-    PICK_FRUIT,
-    UNPICK_FRUIT,
+    REACH_WORK_POINT,
+
+    WORK_GOTO_WORK_POS,
+    WORK_WORKING,
+    WORK_SUSPEND,
+    WORK_DONE,
 }

@@ -19,10 +19,10 @@ namespace LittleWorldObject
             this.gridPos = gridPos;
         }
 
-        public override List<optionStruct> AddFloatMenu()
+        public override List<FloatOption> AddFloatMenu()
         {
-            List<optionStruct> contentList = new List<optionStruct>();
-            contentList.Add(new optionStruct()
+            List<FloatOption> contentList = new List<FloatOption>();
+            contentList.Add(new FloatOption()
             {
                 content = "砍树",
                 OnClickOption = () =>
@@ -30,7 +30,7 @@ namespace LittleWorldObject
                     Debug.Log("正在砍树！");
                 }
             });
-            contentList.Add(new optionStruct()
+            contentList.Add(new FloatOption()
             {
                 content = "摘取果实",
                 OnClickOption = () =>

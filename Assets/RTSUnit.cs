@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class RTSUnit : MonoBehaviour
 {
     public GameObject outline;
     private bool _isSelected = false;
+    public int instanceID;
     public bool isSelected
     {
         set
@@ -24,6 +26,11 @@ public class RTSUnit : MonoBehaviour
         {
             return _isSelected;
         }
+    }
+
+    internal void Initialize(int instanceID)
+    {
+        this.instanceID = instanceID;
     }
 
     private void Awake()

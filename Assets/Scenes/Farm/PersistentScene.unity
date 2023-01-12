@@ -1203,6 +1203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 5466280542741998534, guid: afce921e5c9fc61488fc4af2e8e276a8, type: 3}
+  sceneItemList: []
 --- !u!114 &875034388
 MonoBehaviour:
   m_ObjectHideFlags: 0

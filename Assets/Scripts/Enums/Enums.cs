@@ -161,6 +161,8 @@ public enum WorkTypeEnum
     dug,
     water,
     gotoLoc,
+    chop,
+    harvest,
 }
 
 public enum SoundName

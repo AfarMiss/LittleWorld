@@ -27,6 +27,7 @@ public class PawnManager : Singleton<PawnManager>
         var curPawn = GameObject.Instantiate(pawnRes);
         curPawn.GetComponent<Transform>().transform.position = pos;
         curPawn.GetComponent<PathNavigationOnly>().Initialize(human.instanceID);
+        curPawn.GetComponent<RTSUnit>().Initialize(human.instanceID);
     }
 
     public void AddPawn(Humanbeing human)
@@ -38,6 +39,10 @@ public class PawnManager : Singleton<PawnManager>
     public override void Tick()
     {
         base.Tick();
+        foreach (var pawn in pawns)
+        {
+            pawn.Tick();
+        }
 
         Debug.Log("Tick PawnManager");
     }

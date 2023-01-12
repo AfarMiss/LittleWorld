@@ -12,7 +12,7 @@ public class InteractionOption : MonoBehaviour, IPointerClickHandler
     public Color focus;
     public Color unfocus;
     private Action OnClickOption;
-    public void BindData(optionStruct option)
+    public void BindData(FloatOption option)
     {
         this.content.text = option.content;
         this.name = option.content;
@@ -37,7 +37,7 @@ public class InteractionOption : MonoBehaviour, IPointerClickHandler
     }
 }
 
-public struct optionStruct
+public class FloatOption
 {
     public string content;
     public Action OnClickOption;

@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PoolManager : Singleton<PoolManager>
 {
     /// <summary>
-    /// 对象池配置
+    /// 对象池配置信息
     /// </summary>
     private Dictionary<string, Pool> poolInfo;
     /// <summary>
-    /// 对象池队列
+    /// 对象池队列,使用List是因为Queue在元素出栈后不好管理
     /// </summary>
-    private Dictionary<int, Queue<GameObject>> poolQueue;
+    private Dictionary<int, List<PoolItem<GameObject>>> poolQueue;
     /// <summary>
     /// 默认父节点
     /// </summary>
@@ -28,7 +30,7 @@ public class PoolManager : Singleton<PoolManager>
         }
         if (poolQueue == null)
         {
-            poolQueue = new Dictionary<int, Queue<GameObject>>();
+            poolQueue = new Dictionary<int, List<PoolItem<GameObject>>>();
         }
 
         if (poolInfo.ContainsKey(poolPrefab.GetInstanceID().ToString()))
@@ -63,15 +65,31 @@ public class PoolManager : Singleton<PoolManager>
                 go.SetActive(false);
                 if (poolQueue.ContainsKey(poolPrefab.GetInstanceID()))
                 {
-                    poolQueue[poolPrefab.GetInstanceID()].Enqueue(go);
+                    poolQueue[poolPrefab.GetInstanceID()].Add(new PoolItem<GameObject>(go));
                 }
                 else
                 {
-                    poolQueue.Add(poolPrefab.GetInstanceID(), new Queue<GameObject>());
+                    poolQueue.Add(poolPrefab.GetInstanceID(), new List<PoolItem<GameObject>>());
                 }
 
             }
         }
+    }
+
+    public PoolItem<T> Find<T>(Predicate<PoolItem<T>> match)
+    {
+        var allGameobjects = new List<PoolItem<T>>();
+        //To convert the Keys to a List of their own:
+        //listNumber = dicNumber.Select(kvp => kvp.Key).ToList();
+        //Or you can shorten it up and not even bother using select:
+        //listNumber = dicNumber.Keys.ToList();
+        var values = poolQueue.Values;
+        var valueList = values.ToList();
+        foreach (var item in valueList)
+        {
+            allGameobjects.AddRange(item);
+        }
+        return allGameobjects.Find(match);
     }
 
     public GameObject GetNextObject(string key)
@@ -81,9 +99,9 @@ public class PoolManager : Singleton<PoolManager>
             var curPool = poolInfo[key];
             if (poolQueue.ContainsKey(curPool.prefabId))
             {
-                var curGo = poolQueue[curPool.prefabId].Dequeue();
-                curGo.SetActive(true);
-                return curGo;
+                var curGo = poolQueue[curPool.prefabId].Find(x => !x.hasBeenUsed);
+                curGo.poolInstance.SetActive(true);
+                return curGo.poolInstance;
             }
             else
             {
@@ -105,7 +123,11 @@ public class PoolManager : Singleton<PoolManager>
             if (poolQueue.ContainsKey(curPool.prefabId))
             {
                 curObject.SetActive(false);
-                poolQueue[curPool.prefabId].Enqueue(curObject);
+                var curPoolItem = poolQueue[curPool.prefabId].
+                    Find(x =>
+                    x.poolInstance.GetInstanceID()
+                    == curObject.GetInstanceID());
+                curPoolItem.hasBeenUsed = false;
             }
             else
             {

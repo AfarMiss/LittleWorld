@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum WorkStateEnum
 {
+    None = -1,
     OnGoing = 0,
     Working = 1,
     Suspend = 2,

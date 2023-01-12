@@ -188,4 +188,9 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
     {
         return worldItems.Find(x => x.instanceID == instanceID);
     }
+
+    private void Update()
+    {
+        pawnManager.Tick();
+    }
 }

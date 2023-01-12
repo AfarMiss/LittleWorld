@@ -1,6 +1,8 @@
-﻿using System;
+﻿using LittleWorld;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UniBase;
 using UnityEngine;
 
@@ -12,47 +14,47 @@ public class ProgressPanel : BaseUI
     }
     private void OnEnable()
     {
-        EventCenter.Instance.Register<PickFruitMessage>(EventEnum.PICK_FRUIT.ToString(), OnPickFruit);
-        EventCenter.Instance.Register<UnpickFruitMessage>(EventEnum.UNPICK_FRUIT.ToString(), OnUnpickFruit);
+        EventCenter.Instance.Register<SingleWork>(EventEnum.WORK_WORKING.ToString(), OnWorking);
+        EventCenter.Instance.Register<SingleWork>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
     }
 
-    private void OnPickFruit(PickFruitMessage message)
+    private void OnWorking(SingleWork message)
     {
-        var screenPos = InputUtils.GetScreenPosition(message.pickFruitPos);
-        var go = PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
-        go.transform.position = screenPos;
-        StartCoroutine(ChangeSlider(go, message));
-    }
+        var poolItem = PoolManager.Instance.Find<GameObject>(x =>
+        x.poolInstance.GetComponent<GeneralSlider>() != null &&
+        x.poolInstance.GetComponent<GeneralSlider>().uniqueID == message.uniqueKey);
 
-    private IEnumerator ChangeSlider(GameObject go, PickFruitMessage message)
-    {
-        float curProgress = 0;
-        var gs = go.GetComponent<GeneralSlider>();
-        gs.instanceID = message.fruitID;
-        while (gs.progress < 1)
+        var go = poolItem?.poolInstance;
+        var screenPos = InputUtils.GetScreenPosition(message.WorkPos);
+        if (go == null)
         {
-            yield return null;
-            gs.progress = (curProgress += Time.deltaTime) / message.totalPickTime;
+            go = PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
+            go.transform.position = screenPos;
+            go.GetComponent<GeneralSlider>().uniqueID = message.uniqueKey;
         }
+        ChangeSlider(go, message);
+    }
 
-        PoolManager.Instance.Putback(PoolEnum.Progress.ToString(), gs.gameObject);
+    private void ChangeSlider(GameObject go, SingleWork message)
+    {
+        var gs = go.GetComponent<GeneralSlider>();
+        gs.progress = (float)message.curFinishedAmount / message.workTotalAmount;
+
     }
 
     private void OnDisable()
     {
-        EventCenter.Instance?.Unregister<PickFruitMessage>(EventEnum.PICK_FRUIT.ToString(), OnPickFruit);
-        EventCenter.Instance?.Unregister<UnpickFruitMessage>(EventEnum.UNPICK_FRUIT.ToString(), OnUnpickFruit);
+        EventCenter.Instance?.Unregister<SingleWork>(EventEnum.WORK_WORKING.ToString(), OnWorking);
+        EventCenter.Instance?.Unregister<SingleWork>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
     }
 
-    private void OnUnpickFruit(UnpickFruitMessage arg0)
+    private void OnWorkDone(SingleWork arg0)
     {
-        var sliders = GameObject.FindObjectsOfType<GeneralSlider>();
-        foreach (var item in sliders)
+        var activeObjects = FindObjectsOfType<GeneralSlider>();
+        var needPutbackSlider = activeObjects.ToList<GeneralSlider>().Find(x => x.uniqueID == arg0.uniqueKey);
+        if (needPutbackSlider != null)
         {
-            if (item.instanceID == arg0.fruitID)
-            {
-                PoolManager.Instance.Putback(PoolEnum.Progress.ToString(), item.gameObject);
-            }
+            PoolManager.Instance.Putback(PoolEnum.Progress.ToString(), needPutbackSlider.gameObject);
         }
     }
 

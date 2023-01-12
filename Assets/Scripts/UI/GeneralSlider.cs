@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GeneralSlider : MonoBehaviour
 {
-    public int instanceID;
+    public string uniqueID;
     public float progress
     {
         get

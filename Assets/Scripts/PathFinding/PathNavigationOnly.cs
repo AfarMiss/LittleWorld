@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniBase;
+using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,21 +23,23 @@ public class PathNavigationOnly : MonoBehaviour
     private bool curScheduleIsReached = true;
     private Vector3 Speed;
 
+    public bool isMoving => Speed.magnitude != 0;
+
     /// <summary>
     /// 代表的itemInstanceID
     /// </summary>
-    public int instanceID;
+    public int humanID;
 
     public void Initialize(int instanceID)
     {
-        this.instanceID = instanceID;
+        this.humanID = instanceID;
     }
     private async void Start()
     {
         await TaskHelper.Wait(() => GlobalPathManager.Instance.Initialized == true);
     }
 
-    public void AddMovePositionAndMove(Vector3 worldPos, UnityAction afterReached)
+    public void AddMovePositionAndMove(Vector3 worldPos, UnityAction afterReached = null)
     {
         mapGrid = GameObject.FindObjectOfType<Grid>();
         curScheduleIsReached = true;
@@ -134,6 +137,7 @@ public class PathNavigationOnly : MonoBehaviour
                 {
                     //完成到达指定目的地后的工作
                     afterReached?.Invoke();
+                    afterReached = null;
                     break;
                 }
             }
@@ -162,7 +166,7 @@ public class PathNavigationOnly : MonoBehaviour
             yield return null;
         }
         curTargetIsReached = true;
-        var human = SceneItemsManager.Instance.GetWorldObjectById(instanceID);
+        var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
         human.GridPos = new Vector3Int((int)worldPos.x, (int)worldPos.y, 0);
         this.Speed = Vector3.zero;
     }
@@ -170,5 +174,27 @@ public class PathNavigationOnly : MonoBehaviour
     private void Update()
     {
         DrawLine(curPath);
+    }
+
+    private void OnEnable()
+    {
+        EventCenter.Instance.Register<SingleWork>(EventEnum.WORK_GOTO_WORK_POS.ToString(), OnGoToWorkPos);
+    }
+
+    private void OnGoToWorkPos(SingleWork work)
+    {
+        if (work.worker.instanceID != humanID)
+        {
+            return;
+        }
+        AddMovePositionAndMove(work.WorkPos, () =>
+        {
+            EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
+        });
+    }
+
+    private void OnDisable()
+    {
+        EventCenter.Instance?.Unregister<SingleWork>(EventEnum.WORK_GOTO_WORK_POS.ToString(), OnGoToWorkPos);
     }
 }

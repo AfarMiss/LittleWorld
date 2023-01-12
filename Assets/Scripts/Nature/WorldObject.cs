@@ -36,7 +36,7 @@ namespace LittleWorldObject
 
         }
 
-        public virtual List<optionStruct> AddFloatMenu()
+        public virtual List<FloatOption> AddFloatMenu()
         {
             return null;
         }
