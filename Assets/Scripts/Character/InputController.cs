@@ -98,10 +98,7 @@ public class InputController : MonoSingleton<InputController>
 
     private void AddMoveWork(WorldObject human)
     {
-        var controller = selectedUnits.Find
-            (x => x.GetComponent<PathNavigationOnly>().humanID == human.instanceID);
         var curPos = InputUtils.GetMouseWorldPosition();
-        controller.GetComponent<PathNavigationOnly>().AddMovePositionAndMove(curPos, null);
         (human as Humanbeing).AddWork(WorkTypeEnum.gotoLoc, curPos.ToVector3Int());
     }
 

@@ -4,13 +4,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniBase;
+using Unity.VisualScripting;
 using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PathNavigationOnly : MonoBehaviour
 {
-    public Queue<Vector2Int> pathSchedules = new Queue<Vector2Int>();
     private Grid mapGrid;
     private Queue<Vector2Int> curPath;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
@@ -20,7 +20,6 @@ public class PathNavigationOnly : MonoBehaviour
     [SerializeField] private GameObject targetPoint;
 
     private bool curTargetIsReached = true;
-    private bool curScheduleIsReached = true;
     private Vector3 Speed;
 
     public bool isMoving => Speed.magnitude != 0;
@@ -36,23 +35,27 @@ public class PathNavigationOnly : MonoBehaviour
     }
     private async void Start()
     {
+        curPath = new Queue<Vector2Int>();
         await TaskHelper.Wait(() => GlobalPathManager.Instance.Initialized == true);
     }
 
-    public void AddMovePositionAndMove(Vector3 worldPos, UnityAction afterReached = null)
+    public void ResetPath()
+    {
+        curTargetIsReached = true;
+        curPath?.Clear();
+    }
+
+    public void CreateNewPath(Vector3 worldPos, UnityAction afterReached = null)
     {
         mapGrid = GameObject.FindObjectOfType<Grid>();
-        curScheduleIsReached = true;
-        curTargetIsReached = true;
-        pathSchedules?.Clear();
-        curPath?.Clear();
-
         var cellPosition = mapGrid.WorldToCell(worldPos);
-        pathSchedules.Enqueue(new Vector2Int(cellPosition.x, cellPosition.y));
-        StopAllCoroutines();
-        StartCoroutine(Move());
-
         this.afterReached = afterReached;
+
+        var currentPos = mapGrid.WorldToCell(transform.position);
+        curPath = GlobalPathManager.Instance.CalculatePath(
+            new Vector2Int(currentPos.x, currentPos.y),
+            new Vector2Int(cellPosition.x, cellPosition.y)
+            );
     }
 
     private void DrawLine(Queue<Vector2Int> path)
@@ -95,84 +98,67 @@ public class PathNavigationOnly : MonoBehaviour
 
     }
 
-    private IEnumerator Move()
+    private void Tick()
     {
-        while (pathSchedules.Count > 0)
-        {
-            if (curScheduleIsReached)
-            {
-                curScheduleIsReached = false;
-                var currentPos = mapGrid.WorldToCell(transform.position);
-                var target = pathSchedules.Dequeue();
-                curPath = GlobalPathManager.Instance.CalculatePath(new Vector2Int(currentPos.x, currentPos.y), target);
-
-                //如果路径不止一个点时，去掉起点
-                if (curPath.Count > 1)
-                {
-                    curPath.Dequeue();
-                }
-
-                StartCoroutine(MoveInPath(target));
-            }
-            yield return null;
-        }
+        MoveInPath();
     }
 
-    private IEnumerator MoveInPath(Vector2Int nPCSchedule)
+    private void MoveInPath()
     {
         lineRenderer.enabled = true;
         targetPoint.gameObject.SetActive(true);
 
-        while (curPath.Count >= 0)
+        if (curTargetIsReached)
         {
-            if (curTargetIsReached)
+            if (curPath.Count > 0)
             {
-                if (curPath.Count > 0)
-                {
-                    curTargetIsReached = false;
-                    curTarget = curPath.Dequeue();
-                    MoveTo(curTarget);
-                }
-                else
-                {
-                    //完成到达指定目的地后的工作
-                    afterReached?.Invoke();
-                    afterReached = null;
-                    break;
-                }
+                curTarget = curPath.Dequeue();
+                MoveTo(curTarget);
             }
-            yield return null;
-        }
-        curScheduleIsReached = true;
+            else
+            {
+                lineRenderer.enabled = false;
+                targetPoint.gameObject.SetActive(false);
 
-        lineRenderer.enabled = false;
-        targetPoint.gameObject.SetActive(false);
+                //完成到达指定目的地后的工作
+                afterReached?.Invoke();
+                afterReached = null;
+            }
+        }
+        else
+        {
+            MoveTo(curTarget);
+        }
     }
 
     private void MoveTo(Vector2Int target)
     {
-        StartCoroutine(MoveCoroutine(target));
+        SingleStep(target);
     }
 
-    private IEnumerator MoveCoroutine(Vector2Int target)
+    private void SingleStep(Vector2Int target)
     {
         var worldPos = mapGrid.CellToWorld(new Vector3Int(target.x, target.y, 0));
         Vector3 dir = worldPos - transform.position;
-        this.Speed = dir.normalized * 4f;
 
-        while (Vector3.Distance(transform.position, worldPos) > 0.05)
+        if (Vector3.Distance(transform.position, worldPos) > 0.05)
         {
+            curTargetIsReached = false;
+            this.Speed = dir.normalized * 4f;
             GetComponent<Rigidbody2D>().MovePosition(transform.position + Speed * Time.fixedDeltaTime);
-            yield return null;
         }
-        curTargetIsReached = true;
-        var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
-        human.GridPos = new Vector3Int((int)worldPos.x, (int)worldPos.y, 0);
-        this.Speed = Vector3.zero;
+        else
+        {
+            curTargetIsReached = true;
+            this.Speed = Vector3.zero;
+            var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
+            human.GridPos = new Vector3Int((int)worldPos.x, (int)worldPos.y, 0);
+        }
     }
 
     private void Update()
     {
+        Tick();
         DrawLine(curPath);
     }
 
@@ -187,7 +173,7 @@ public class PathNavigationOnly : MonoBehaviour
         {
             return;
         }
-        AddMovePositionAndMove(work.WorkPos, () =>
+        CreateNewPath(work.WorkPos, () =>
         {
             EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
         });
