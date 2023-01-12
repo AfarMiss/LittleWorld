@@ -6,27 +6,22 @@ using UnityEngine;
 
 namespace LittleWorldObject
 {
-    public class Brush : Plant, IOption
+    public class Brush : Plant
     {
         public int fruitCount = 5;
         public int woodCount;
         public int fruitItemCode = 10024;
         public float pickTime = 3;
 
-        private void Start()
+        public Brush(Vector3Int gridPos) : base(gridPos)
         {
             ItemName = "灌木丛";
+            this.gridPos = gridPos;
         }
 
-        public void OnInteraction(Humanbeing humanbeing)
+        public override List<optionStruct> AddFloatMenu()
         {
-            var go = Instantiate(Resources.Load<GameObject>("Prefabs/UI/InteractionMenu/InteractionMenu"));
-            go.name = go.name.Substring(0, go.name.LastIndexOf("(Clone)"));
-            var menu = go.GetComponent<InteractionMenu>();
-            go.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
-            go.transform.position = InputController.Instance.mousePosition;
-
-            var contentList = new List<optionStruct>();
+            List<optionStruct> contentList = new List<optionStruct>();
             contentList.Add(new optionStruct()
             {
                 content = "砍树",
@@ -40,11 +35,11 @@ namespace LittleWorldObject
                 content = "摘取果实",
                 OnClickOption = () =>
                 {
-                    humanbeing.Pick(this);
+                    Debug.Log("摘取果实！");
                 }
             });
 
-            menu.BindData(contentList);
+            return contentList;
         }
 
     }

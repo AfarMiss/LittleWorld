@@ -43,6 +43,7 @@ public enum ItemType
     count,
     furniture,
     reapable_scenery,
+    animal,
 }
 
 public enum AnimationName

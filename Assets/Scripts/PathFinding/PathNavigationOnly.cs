@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LittleWorld;
+using LittleWorldObject;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniBase;
@@ -18,8 +20,17 @@ public class PathNavigationOnly : MonoBehaviour
 
     private bool curTargetIsReached = true;
     private bool curScheduleIsReached = true;
-    [HideInInspector] public Vector3 Speed;
+    private Vector3 Speed;
 
+    /// <summary>
+    /// 代表的itemInstanceID
+    /// </summary>
+    public int instanceID;
+
+    public void Initialize(int instanceID)
+    {
+        this.instanceID = instanceID;
+    }
     private async void Start()
     {
         await TaskHelper.Wait(() => GlobalPathManager.Instance.Initialized == true);
@@ -143,14 +154,16 @@ public class PathNavigationOnly : MonoBehaviour
     {
         var worldPos = mapGrid.CellToWorld(new Vector3Int(target.x, target.y, 0));
         Vector3 dir = worldPos - transform.position;
-        this.Speed = dir.normalized;
+        this.Speed = dir.normalized * 4f;
 
         while (Vector3.Distance(transform.position, worldPos) > 0.05)
         {
-            GetComponent<Rigidbody2D>().MovePosition(transform.position + dir.normalized * Time.fixedDeltaTime * 4f);
+            GetComponent<Rigidbody2D>().MovePosition(transform.position + Speed * Time.fixedDeltaTime);
             yield return null;
         }
         curTargetIsReached = true;
+        var human = SceneItemsManager.Instance.GetWorldObjectById(instanceID);
+        human.GridPos = new Vector3Int((int)worldPos.x, (int)worldPos.y, 0);
         this.Speed = Vector3.zero;
     }
 

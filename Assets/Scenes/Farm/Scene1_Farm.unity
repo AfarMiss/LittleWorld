@@ -51861,27 +51861,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4688369735622006425, guid: 65a568a70ddd840449984c82d6a830bf, type: 3}
   m_PrefabInstance: {fileID: 369722257}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &369722259 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4688369735622006430, guid: 65a568a70ddd840449984c82d6a830bf, type: 3}
-  m_PrefabInstance: {fileID: 369722257}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &369722260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369722259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 707807b25c5a0244a8c4a0189699bb00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fruitCount: 5
-  woodCount: 0
-  fruitItemCode: 10024
-  pickTime: 3
 --- !u!1 &410028054
 GameObject:
   m_ObjectHideFlags: 0

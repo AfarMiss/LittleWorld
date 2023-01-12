@@ -5,10 +5,20 @@ namespace LittleWorldObject
 {
     public class WorldObject
     {
+        public int instanceID;
+        public WorldObject(Vector3Int gridPos)
+        {
+            this.gridPos = gridPos;
+            this.instanceID = SceneItemsManager.ItemInstanceID++;
+        }
+
         protected float maxHealth;
         protected float curHealth;
 
         protected string ItemName;
+        public Vector3Int gridPos;
+
+        public Vector3Int GridPos { get => gridPos; set => gridPos = value; }
 
         public virtual void ShowBriefInfo()
         {
@@ -22,6 +32,16 @@ namespace LittleWorldObject
         }
 
         public virtual void Tick()
+        {
+
+        }
+
+        public virtual List<optionStruct> AddFloatMenu()
+        {
+            return null;
+        }
+
+        public virtual void OnStart()
         {
 
         }

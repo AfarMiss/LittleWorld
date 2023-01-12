@@ -7,16 +7,8 @@ namespace LittleWorldObject
 {
     public class Animal : WorldObject
     {
-        // Start is called before the first frame update
-        void Start()
+        public Animal(Vector3Int gridPos) : base(gridPos)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }

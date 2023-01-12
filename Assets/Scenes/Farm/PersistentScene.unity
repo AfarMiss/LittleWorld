@@ -1470,8 +1470,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 14552455}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: OnLeft
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnClickLeft
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

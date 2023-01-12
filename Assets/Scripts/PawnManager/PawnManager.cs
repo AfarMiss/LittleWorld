@@ -1,4 +1,5 @@
-﻿using SRF;
+﻿using LittleWorldObject;
+using SRF;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,20 +7,32 @@ using UnityEngine;
 
 public class PawnManager : Singleton<PawnManager>
 {
-    private PawnManager() { }
+    private PawnManager()
+    {
+    }
+
+    public List<Humanbeing> Pawns => pawns;
+    private List<Humanbeing> pawns;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        GenerateNewPawn();
+        pawns = new List<Humanbeing>();
     }
 
-    private void GenerateNewPawn()
+    private void RenderPawn(Vector3Int pos, Humanbeing human)
     {
         var pawnRes = Resources.Load("Prefabs/Character/Pawn");
         var curPawn = GameObject.Instantiate(pawnRes);
-        curPawn.GetComponent<Transform>().ResetLocal();
+        curPawn.GetComponent<Transform>().transform.position = pos;
+        curPawn.GetComponent<PathNavigationOnly>().Initialize(human.instanceID);
+    }
+
+    public void AddPawn(Humanbeing human)
+    {
+        pawns.Add(human);
+        RenderPawn(human.GridPos, human);
     }
 
     public override void Tick()

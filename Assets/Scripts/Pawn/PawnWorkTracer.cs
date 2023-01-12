@@ -1,15 +1,16 @@
-﻿using System.Collections;
+﻿using LittleWorldObject;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PawnWorkTracer
 {
-    public PawnWorkTracer(Pawn pawn)
+    public PawnWorkTracer(Humanbeing pawn)
     {
         this.pawn = pawn;
         workQueue = new Queue<SingleWork>();
     }
-    private Pawn pawn;
+    private Humanbeing pawn;
     public Queue<SingleWork> WorkQueue => workQueue;
     private Queue<SingleWork> workQueue;
 

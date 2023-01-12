@@ -1,9 +1,13 @@
-﻿using LittleWorldObject;
+﻿using LittleWorld;
+using LittleWorld.Window;
+using LittleWorldObject;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UniBase;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
+using static UnityEditor.Progress;
 using static UnityEngine.InputSystem.InputAction;
 
 public class InputController : MonoSingleton<InputController>
@@ -72,7 +76,6 @@ public class InputController : MonoSingleton<InputController>
                 var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionToWorldWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
                 for (int i = 0; i < selectedUnits.Count; i++)
                 {
-                    ResetHumansAction(selectedUnits[i]);
                     SelectToMove(selectedUnits[i]);
                 }
             }
@@ -81,24 +84,14 @@ public class InputController : MonoSingleton<InputController>
                 //对单人进行操作
                 if (selectedUnits.Count == 1)
                 {
-                    var options = rayHits[0].collider.GetComponent<IOption>();
-                    if (options != null)
-                    {
-                        options.OnInteraction(selectedUnits[0].GetComponent<Humanbeing>());
-                    }
-                    else
+                    optionStruct[] opts = FloatMenuMaker.MakeFloatMenuAt(mousePosition);
+                    if (opts.Length == 0)
                     {
                         SelectToMove(selectedUnits[0]);
                     }
                 }
             }
         }
-    }
-
-    private void ResetHumansAction(RTSUnit rTSUnit)
-    {
-        var human = rTSUnit.GetComponent<Humanbeing>();
-        human.CancelAllActivity();
     }
 
     private void SelectToMove(RTSUnit item)
@@ -139,7 +132,7 @@ public class InputController : MonoSingleton<InputController>
         allRtsUnits.Clear();
     }
 
-    public void OnLeft(CallbackContext callbackContext)
+    public void OnClickLeft(CallbackContext callbackContext)
     {
         if (callbackContext.started)
         {
@@ -221,7 +214,17 @@ public class InputController : MonoSingleton<InputController>
         //展示信息
         if (selectedUnits.Count == 1)
         {
-            selectedUnits[0].GetComponent<WorldObject>().ShowBriefInfo();
+            var worldObject = WorldUtility.GetWorldObjectsInRect(realSelection);
+            {
+                if (worldObject != null && worldObject.Length > 0)
+                {
+                    worldObject[0].ShowBriefInfo();
+                }
+                else
+                {
+                    UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
+                }
+            }
         }
     }
 

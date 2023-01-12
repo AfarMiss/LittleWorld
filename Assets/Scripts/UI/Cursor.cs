@@ -104,12 +104,12 @@ public class Cursor : MonoSingleton<Cursor>
         }
     }
 
-    private bool SetCursorValidityTool(Vector3 cursorPosition, Vector3 playerPosition, ItemDetails itemDetails)
+    private bool SetCursorValidityTool(Vector3 cursorWorldPosition, Vector3 playerPosition, ItemDetails itemDetails)
     {
         switch (itemDetails.itemType)
         {
             case ItemType.reaping_tool:
-                return SetCursorValidityReapingTool(cursorPosition, playerPosition, itemDetails);
+                return SetCursorValidityReapingTool(cursorWorldPosition, playerPosition, itemDetails);
             default:
                 return false;
         }
@@ -118,9 +118,9 @@ public class Cursor : MonoSingleton<Cursor>
     private bool SetCursorValidityReapingTool(Vector3 cursorPosition, Vector3 playerPosition, ItemDetails equippedItemDetails)
     {
 
-        if (UniBase.OverlapHelper.GetComponentsAtCursorLocation(out List<Item> items, cursorPosition))
+        if (UniBase.OverlapHelper.GetComponentsAtCursorLocation(out Item[] items, cursorPosition))
         {
-            if (items.Count != 0)
+            if (items.Length != 0)
             {
                 foreach (Item item in items)
                 {

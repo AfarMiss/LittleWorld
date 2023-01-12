@@ -10,7 +10,7 @@ namespace LittleWorld
     /// </summary>
     public class Root : MonoSingleton<Root>
     {
-        private PawnManager pawnManager;
+        private SceneItemsManager sceneItemsManager;
         private UIManager uIManager;
         private TimeManager timeManager;
         private GlobalPathManager globalPathManager;
@@ -21,7 +21,7 @@ namespace LittleWorld
             uIManager = UIManager.Instance;
             timeManager = TimeManager.Instance;
 
-            pawnManager = PawnManager.Instance;
+            sceneItemsManager = SceneItemsManager.Instance;
             globalPathManager = GlobalPathManager.Instance;
             poolManager = PoolManager.Instance;
 
@@ -31,7 +31,6 @@ namespace LittleWorld
 
         private void Update()
         {
-            pawnManager.Tick();
         }
     }
 }

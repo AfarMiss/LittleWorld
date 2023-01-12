@@ -6,6 +6,9 @@ namespace LittleWorldObject
 {
     public class Plant : WorldObject
     {
+        public Plant(Vector3Int gridPos) : base(gridPos)
+        {
+        }
     }
 }
 
