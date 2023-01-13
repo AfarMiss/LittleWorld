@@ -6,7 +6,10 @@
 
 不使用JsonUtility，而是使用Json.net（Newtonsoft.Json）。
 
+使用Path.Combine连接路径
+
 ## 参考资料
 
 1. SAVE & LOAD SYSTEM in Unity [https://www.youtube.com/watch?v=XOjd\_qU2Ido](https://www.youtube.com/watch?v=XOjd\_qU2Ido)
 2. Data Persistence - Save & load your game state while avoiding common mistakes | Unity Tutorial [https://www.youtube.com/watch?v=mntS45g8OK4](https://www.youtube.com/watch?v=mntS45g8OK4)
+3. Rimworld源码

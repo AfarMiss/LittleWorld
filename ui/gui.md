@@ -137,7 +137,7 @@ void OnGUI () {
 }
 ```
 
-<figure><img src=".gitbook/assets/gsg-GroupCenteredControls.png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/gsg-GroupCenteredControls.png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
 
 **组可以嵌套**
 
@@ -235,7 +235,7 @@ void OnGUI()
 }
 </code></pre>
 
-<figure><img src=".gitbook/assets/gsg-NestedGroupsLayout.png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/gsg-NestedGroupsLayout.png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
 
 ### 使用 GUILayoutOption 定义一些控件
 
@@ -253,7 +253,7 @@ void OnGUI()
 }
 ```
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
 
 ### 复合控件
 
@@ -281,7 +281,7 @@ float LabelSlider(Rect screenRect, float sliderValue, float sliderMaxValue, stri
 }
 ```
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption><p>复合控件</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>复合控件</p></figcaption></figure>
 
 通过使用\_\_静态\_\_函数，可以创建自成一体的完整复合控件集合。这样，就不必在需要使用函数的同一脚本中声明该函数。
 
@@ -335,7 +335,7 @@ Color RGBSlider (Rect screenRect, Color rgb) {
 }
 ```
 
-<figure><img src=".gitbook/assets/image (10).png" alt=""><figcaption><p>动态修改RGB示例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption><p>动态修改RGB示例</p></figcaption></figure>
 
 可以通过该控件动态改变代码中myColor的值
 
