@@ -24,13 +24,7 @@ public class UIManager : MonoSingleton<UIManager>
         private set
         {
             isShowingPanel = value;
-            SwitchMapState();
         }
-    }
-
-    private void SwitchMapState()
-    {
-        if (!InputManager.Instance) return;
     }
 
     public UIManager()
@@ -42,8 +36,6 @@ public class UIManager : MonoSingleton<UIManager>
         uiDic.Add(UIType.DIALOG, new List<BaseUI>());
         uiDic.Add(UIType.TIP, new List<BaseUI>());
         uiDic.Add(UIType.SCENE_CHANGE, new List<BaseUI>());
-
-        SwitchMapState();
     }
 
     protected override void Awake()
@@ -57,8 +49,6 @@ public class UIManager : MonoSingleton<UIManager>
 
         UIManager.Instance.Show<MainInfoPanel>(UIType.PANEL, UIPath.Main_UI_Panel);
         UIManager.Instance.Show<ProgressPanel>(UIType.PANEL, UIPath.Panel_ProgressPanel);
-
-        if (InputController.hasInstance) InputController.Instance.Init();
     }
 
     public T Show<T>(UIType uiType, string path) where T : BaseUI

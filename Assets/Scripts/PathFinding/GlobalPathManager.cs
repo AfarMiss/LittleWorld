@@ -1,16 +1,11 @@
 ﻿using AStar;
-using System;
-using System.Collections;
+using LittleWorld;
+using LittleWorld.Interface;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class GlobalPathManager : Singleton<GlobalPathManager>
+public class GlobalPathManager : Singleton<GlobalPathManager>, IObserveSceneChange
 {
     private Grid mapGrid;
     public bool Initialized => initialized;
@@ -20,7 +15,6 @@ public class GlobalPathManager : Singleton<GlobalPathManager>
 
     private GlobalPathManager()
     {
-        mapGrid = GameObject.FindObjectOfType<Grid>();
     }
 
     public Vector3Int WorldToCell(Vector3 worldPos)
@@ -48,6 +42,8 @@ public class GlobalPathManager : Singleton<GlobalPathManager>
     {
         base.Initialize();
         EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), InitMapInfo);
+
+        ObserveChangeSceneRegister();
     }
 
     private void InitMapInfo()
@@ -70,11 +66,6 @@ gridProperties.originY
         }
 
         initialized = true;
-    }
-
-    private void OnDisable()
-    {
-        EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), InitMapInfo);
     }
 
     public Queue<Vector2Int> CalculatePath(Vector2Int startPos, Vector2Int endPos)
@@ -104,5 +95,24 @@ gridProperties.originY
     public void SetEndPos(Vector2Int endPos)
     {
         aStar.SetEndPos(endPos);
+    }
+
+    public void AfterSceneLoad()
+    {
+        mapGrid = GameObject.FindObjectOfType<Grid>();
+    }
+
+    public void BeforeSceneUnload()
+    {
+    }
+
+    public void ObserveChangeSceneRegister()
+    {
+        Root.Instance.ObserveSceneChanges.Add(this);
+    }
+
+    public void ObserveChangeSceneUnregister()
+    {
+        Root.Instance.ObserveSceneChanges.Remove(this);
     }
 }

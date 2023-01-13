@@ -76,6 +76,11 @@ public class InputController : MonoSingleton<InputController>
         }
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Init();
+    }
 
     public void Init()
     {
@@ -128,15 +133,12 @@ public class InputController : MonoSingleton<InputController>
             if (SinglePawnSelected)
             {
                 //对单人进行操作
-                if (SelectedObjects.Count == 1)
+                var human = SceneItemsManager.Instance.GetWorldObjectById(SelectedObjects[0].instanceID);
+                FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, Current.MousePos);
+                if (opts.Length == 0)
                 {
-                    var human = SceneItemsManager.Instance.GetWorldObjectById(SelectedObjects[0].instanceID);
-                    FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, Current.MousePos);
-                    if (opts.Length == 0)
-                    {
-                        var curPos = InputUtils.GetMouseWorldPosition();
-                        AddMoveWork(human, curPos);
-                    }
+                    var curPos = InputUtils.GetMouseWorldPosition();
+                    AddMoveWork(human, curPos);
                 }
             }
         }

@@ -57,7 +57,10 @@ namespace LittleWorld
         public bool CancelAllWork()
         {
             WorkQueue.Clear();
-            curWork.WorkState = WorkStateEnum.FORCE_ABORT;
+            if (curWork != null)
+            {
+                curWork.WorkState = WorkStateEnum.FORCE_ABORT;
+            }
             return true;
         }
 

@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using LittleWorld.Interface;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,17 +18,52 @@ namespace LittleWorld
         private GlobalPathManager globalPathManager;
         private PoolManager poolManager;
 
-        private void Start()
+        public List<IObserveSceneChange> ObserveSceneChanges;
+
+        private void OnEnable()
         {
+            EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
+            EventCenter.Instance.Register(EventEnum.BEFORE_SCENE_UNLOAD.ToString(), OnSceneUnloaded);
+        }
+
+        private void OnSceneUnloaded()
+        {
+            foreach (var item in ObserveSceneChanges)
+            {
+                item.BeforeSceneUnload();
+            }
+        }
+
+        private void OnSceneLoaded()
+        {
+            foreach (var item in ObserveSceneChanges)
+            {
+                item.AfterSceneLoad();
+            }
+        }
+
+        private void OnDisable()
+        {
+            EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
+            EventCenter.Instance?.Unregister(EventEnum.BEFORE_SCENE_UNLOAD.ToString(), OnSceneUnloaded);
+
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            ObserveSceneChanges = new List<IObserveSceneChange>();
+
             uIManager = UIManager.Instance;
             timeManager = TimeManager.Instance;
-
             sceneItemsManager = SceneItemsManager.Instance;
             globalPathManager = GlobalPathManager.Instance;
             poolManager = PoolManager.Instance;
 
             uIManager.Initialize();
             timeManager.Initialize();
+
         }
 
         private void Update()
