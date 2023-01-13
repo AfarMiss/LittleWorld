@@ -31,6 +31,14 @@ namespace LittleWorldObject
             });
         }
 
+        public static void ShowMultiInfo(int multiCount)
+        {
+            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel.ToString());
+            briefPanel.BindBriefInfo(
+                $"多种x{multiCount}",
+                null);
+        }
+
         public virtual void Tick()
         {
 

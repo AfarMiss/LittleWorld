@@ -232,13 +232,17 @@ public class InputController : MonoSingleton<InputController>
         //展示信息
         var worldObject = WorldUtility.GetWorldObjectsInRect(realSelection);
         {
-            if (worldObject != null && worldObject.Length > 0)
+            if (worldObject == null || worldObject.Length == 0)
+            {
+                UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
+            }
+            if (worldObject.Length == 1)
             {
                 worldObject[0].ShowBriefInfo();
             }
-            else
+            if (worldObject.Length > 1)
             {
-                UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
+                WorldObject.ShowMultiInfo(worldObject.Length);
             }
         }
     }

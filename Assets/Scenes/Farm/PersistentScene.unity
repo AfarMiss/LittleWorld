@@ -180,7 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f756af69adab0a141ba9f986fc8769fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasOperation: 0
   selectedAreaPrefab: {fileID: 8264267579888564747, guid: 2206aee96f6a4ec48a4668c88d05759b, type: 3}
 --- !u!1 &270520721
 GameObject:

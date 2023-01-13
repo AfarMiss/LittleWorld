@@ -26,6 +26,11 @@ public class BriefInfoPanel : BaseUI
             briefInfoItems.Clear();
         }
         this.InfoTitle.text = infoTitle;
+        if (briefItems == null)
+        {
+            return;
+        }
+        //这里如果briefItems==null会报空
         foreach (var item in briefItems)
         {
             var briefItem = Instantiate(briefItemObject, briefItemParent);

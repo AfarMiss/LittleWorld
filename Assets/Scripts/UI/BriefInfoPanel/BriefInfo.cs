@@ -12,6 +12,5 @@ public class BriefInfo
     {
         this.title = title;
         this.content = content;
-        var pos = UnityEngine.Input.mousePosition;
     }
 }
