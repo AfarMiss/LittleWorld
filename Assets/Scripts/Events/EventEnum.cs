@@ -48,4 +48,5 @@ public enum EventEnum
     WORK_WORKING,
     WORK_SUSPEND,
     WORK_DONE,
+    FORCE_ABORT,
 }

@@ -32,7 +32,6 @@ public class InteractionOption : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         OnClick();
-
         InputController.Instance.CleanInteraction();
     }
 }

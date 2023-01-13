@@ -36,6 +36,9 @@ namespace LittleWorld
                     case WorkStateEnum.Done:
                         EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), this);
                         break;
+                    case WorkStateEnum.FORCE_ABORT:
+                        EventCenter.Instance.Trigger(EventEnum.FORCE_ABORT.ToString(), this);
+                        break;
                     default:
                         break;
                 }

@@ -15,7 +15,7 @@ namespace LittleWorld.Window
             go.name = go.name.Substring(0, go.name.LastIndexOf("(Clone)"));
             var menu = go.GetComponent<InteractionMenu>();
             go.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
-            go.transform.position = InputController.Instance.mousePosition;
+            go.transform.position = Current.MousePos;
 
             var contentList = new List<FloatOption>();
 

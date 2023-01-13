@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using LittleWorld;
+using System.Collections;
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
@@ -30,7 +31,7 @@ public class InteractionMenu : MonoBehaviour
 
             var screenRect = new Rect(rect.position.x, rect.position.y, rect.rect.width, rect.rect.height);
             Debug.Log($"{rect.name}:{screenRect}");
-            if (screenRect.Contains(InputController.Instance.mousePosition))
+            if (screenRect.Contains(Current.MousePos))
             {
                 Debug.Log($"{item.name} is raycasting");
                 item.SetFocus(true);

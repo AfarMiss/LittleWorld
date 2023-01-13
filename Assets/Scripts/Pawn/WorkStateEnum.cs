@@ -9,4 +9,5 @@ public enum WorkStateEnum
     Working = 1,
     Suspend = 2,
     Done = 3,
+    FORCE_ABORT = 4,
 }

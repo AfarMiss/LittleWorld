@@ -47,9 +47,17 @@ namespace LittleWorld
             return true;
         }
 
+        public bool ClearAndAddWork(SingleWork singleWork)
+        {
+            CancelAllWork();
+            workQueue.Enqueue(singleWork);
+            return true;
+        }
+
         public bool CancelAllWork()
         {
             WorkQueue.Clear();
+            curWork.WorkState = WorkStateEnum.FORCE_ABORT;
             return true;
         }
 
@@ -79,6 +87,10 @@ namespace LittleWorld
             if (curWork.WorkState == WorkStateEnum.OnGoing)
             {
 
+            }
+            if (curWork.WorkState == WorkStateEnum.FORCE_ABORT)
+            {
+                curWork = null;
             }
         }
 

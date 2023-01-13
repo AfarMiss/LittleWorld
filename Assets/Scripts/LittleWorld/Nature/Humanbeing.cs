@@ -9,18 +9,19 @@ namespace LittleWorldObject
     public class Humanbeing : Animal
     {
         private PawnWorkTracer pawnWorkTracer;
+        private PawnHealthTracer PawnHealthTracer;
+        private PawnPathTracer PawnPathTracer;
+
+        public Queue<HumanAction> actionQueue;
+
         public Humanbeing(Vector3Int gridPos) : base(gridPos)
         {
-            this.gridPos = gridPos;
             ItemName = "人类";
-            actionQueue = new Queue<HumanAction>();
-            curInteractionItemID = -1;
 
+            this.gridPos = gridPos;
+            actionQueue = new Queue<HumanAction>();
             pawnWorkTracer = new PawnWorkTracer(this);
         }
-        public Queue<HumanAction> actionQueue;
-        public Coroutine curPickCoroutine;
-        public int curInteractionItemID;
 
         public void AddWork(WorkTypeEnum workType, Vector3Int targetPos)
         {
@@ -48,16 +49,26 @@ namespace LittleWorldObject
                 default:
                     break;
             }
-            pawnWorkTracer.AddWork(
-                new SingleWork($"{this.instanceID}_{workType}_{PawnWorkTracer.workID++}",
-                this,
-                WorkStateEnum.None,
-                workType,
-                whenReached,
-                targetPos,
-                0,
-                totalWorkAmount,
-                showPercent));
+
+            var curWork =
+    new SingleWork($"{this.instanceID}_{workType}_{PawnWorkTracer.workID++}",
+    this,
+    WorkStateEnum.None,
+    workType,
+    whenReached,
+    targetPos,
+    0,
+    totalWorkAmount,
+    showPercent);
+
+            if (!Current.IsAdditionalMode)
+            {
+                pawnWorkTracer.ClearAndAddWork(curWork);
+            }
+            else
+            {
+                pawnWorkTracer.AddWork(curWork);
+            }
         }
 
         public override void Tick()

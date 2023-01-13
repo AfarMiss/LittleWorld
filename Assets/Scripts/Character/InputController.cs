@@ -7,6 +7,7 @@ using System.Linq;
 using UniBase;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
+using UnityEngine.Analytics;
 using static UnityEditor.Progress;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -14,17 +15,67 @@ public class InputController : MonoSingleton<InputController>
 {
     private Vector3 startPosition;
     private Vector3 endPosition;
-    private List<RTSUnit> selectedUnits;
-    private List<RTSUnit> allRtsUnits;
+
+    [SerializeField]
+    private RectTransform selectedAreaPrefab;
+
+    private List<WorldObject> SelectedObjects => WorldUtility.GetWorldObjectsInRect(realSelection).ToList();
+    public bool AdditionalAction => additionalAction;
+    public Rect ScreenSelectionArea => realSelection;
+    /// <summary>
+    /// 是否为附加模式
+    /// </summary>
+    private bool additionalAction;
+
     private RectTransform selectedArea;
-    private bool isInit = false;
-
-    public bool hasOperation = false;
-
-    [SerializeField] private RectTransform selectedAreaPrefab;
 
     private Rect realSelection;
-    public Vector2 mousePosition { get; private set; }
+
+    private bool isInit = false;
+
+    public bool MultiPawnSelected =>
+             SelectedObjects != null
+        && SelectedObjects.Count > 1
+        && SelectedObjects.Find(x => x as Humanbeing == null) == null;
+    public bool SinglePawnSelected =>
+            SelectedObjects.Count == 1
+    && SelectedObjects.Find(x => x as Humanbeing == null) == null;
+    public bool NoSelected => SelectedObjects.Count == 0;
+    private bool NonHumanSelected =>
+        SelectedObjects.Count == 0
+        || SelectedObjects.Find(x => x as Humanbeing == null) != null;
+    private bool MultiTypeSelected
+    {
+        get
+        {
+            if (SelectedObjects == null || SelectedObjects.Count == 0)
+            {
+                return false;
+            }
+
+            var typeHashSet = new HashSet<Type>();
+            foreach (var item in SelectedObjects)
+            {
+                if (typeHashSet.Contains(item.GetType()))
+                {
+                    continue;
+                }
+                else
+                {
+                    if (typeHashSet.Count == 0)
+                    {
+                        typeHashSet.Add(item.GetType());
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return typeHashSet.Count > 1;
+        }
+    }
+
 
     public void Init()
     {
@@ -37,24 +88,16 @@ public class InputController : MonoSingleton<InputController>
         realSelection = new Rect();
 
         isInit = true;
-    }
-
-    private void Start()
-    {
-        selectedUnits = new List<RTSUnit>();
-        allRtsUnits = new List<RTSUnit>();
+        additionalAction = false;
     }
 
     public void OnClickDouble(CallbackContext callbackContext)
     {
         if (callbackContext.performed)
         {
-            Debug.Log("双击.performed -------");
-            if (selectedUnits != null && selectedUnits.Count > 0)
+            if (SelectedObjects != null && SelectedObjects.Count > 0)
             {
                 TryClearSelectedUnits();
-                Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
-                FindRectOverlap(screenRect);
             }
         }
     }
@@ -65,46 +108,43 @@ public class InputController : MonoSingleton<InputController>
         {
             CleanInteraction();
 
-            var ray = Camera.main.ScreenPointToRay(mousePosition);
-            var rayHits = Physics2D.RaycastAll(ray.origin, ray.direction);
-
-            if (rayHits == null || rayHits.Length == 0)
+            //根据框选状态确定执行操作
+            if (NoSelected || NonHumanSelected || MultiTypeSelected)
             {
-                if (selectedUnits == null || selectedUnits.Count == 0) return;
-                var bound = selectedUnits[0].GetComponent<BoxCollider2D>().bounds;
-                var offset = (bound.max - bound.min).y + 0.8f;
-                var destinations = InputUtils.GetLinearDestinations(InputUtils.GetMousePositionToWorldWithSpecificZ(selectedUnits[0].transform.position.z), selectedUnits.Count, offset);
-                for (int i = 0; i < selectedUnits.Count; i++)
+                return;
+            }
+            //根据选中单位的信息做出对应操作
+            if (MultiPawnSelected)
+            {
+                //对多人进行操作
+                for (int i = 0; i < SelectedObjects.Count; i++)
                 {
-                    var human = SceneItemsManager.Instance.GetWorldObjectById(selectedUnits[0].instanceID);
-                    AddMoveWork(human);
+                    var curPos = InputUtils.GetMouseWorldPosition();
+                    var human = SceneItemsManager.Instance.GetWorldObjectById(SelectedObjects[0].instanceID);
+                    AddMoveWork(human, curPos);
                 }
             }
-            else
+
+            if (SinglePawnSelected)
             {
                 //对单人进行操作
-                if (selectedUnits.Count == 1)
+                if (SelectedObjects.Count == 1)
                 {
-                    var human = SceneItemsManager.Instance.GetWorldObjectById(selectedUnits[0].instanceID);
-                    FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, mousePosition);
+                    var human = SceneItemsManager.Instance.GetWorldObjectById(SelectedObjects[0].instanceID);
+                    FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, Current.MousePos);
                     if (opts.Length == 0)
                     {
-                        AddMoveWork(human);
+                        var curPos = InputUtils.GetMouseWorldPosition();
+                        AddMoveWork(human, curPos);
                     }
                 }
             }
         }
     }
 
-    private void AddMoveWork(WorldObject human)
+    private void AddMoveWork(WorldObject human, Vector3 targetPos)
     {
-        var curPos = InputUtils.GetMouseWorldPosition();
-        (human as Humanbeing).AddWork(WorkTypeEnum.gotoLoc, curPos.ToVector3Int());
-    }
-
-    private void SelectToMove(RTSUnit item)
-    {
-
+        (human as Humanbeing).AddWork(WorkTypeEnum.gotoLoc, targetPos.ToVector3Int());
     }
 
     public void OnClickSetting(CallbackContext callbackContext)
@@ -119,46 +159,51 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.performed)
         {
-            //if (UIManager.Instance.IsShowingPanel) return;
             var camMove = callbackContext.ReadValue<Vector2>();
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(camMove);
         }
         else if (callbackContext.canceled)
         {
-            //if (UIManager.Instance.IsShowingPanel) return;
             CameraController camController = Camera.main.GetComponent<CameraController>();
             camController.Move(Vector2.zero);
         }
 
     }
 
-    public void OnESC()
-    {
-        allRtsUnits.Clear();
-    }
-
     public void OnClickLeft(CallbackContext callbackContext)
     {
         if (callbackContext.started)
         {
-            //if (UIManager.Instance.IsShowingPanel) return;
-            startPosition = mousePosition;
+            startPosition = Current.MousePos;
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
         }
         else if (callbackContext.canceled)
         {
-            endPosition = mousePosition;
+            endPosition = Current.MousePos;
             selectedArea.gameObject.SetActive(false);
 
             TryClearSelectedUnits();
 
-            FindBoundOverlap();
+            SelectWorldObjects();
 
             Debug.Log("Click.canceled -------");
         }
     }
+
+    private void OnClickShift(CallbackContext callbackContext)
+    {
+        if (callbackContext.started)
+        {
+            additionalAction = true;
+        }
+        else if (callbackContext.canceled)
+        {
+            additionalAction = false;
+        }
+    }
+
 
     public void CleanInteraction()
     {
@@ -171,13 +216,7 @@ public class InputController : MonoSingleton<InputController>
 
     private void TryClearSelectedUnits()
     {
-        var allRtsUnitsObjects = GameObject.FindObjectsOfType<RTSUnit>();
-        foreach (var item in allRtsUnitsObjects)
-        {
-            allRtsUnits.Add(item.GetComponent<RTSUnit>());
-        }
-        if (!(InputManager.Instance.myController.actions["附加操作"].IsPressed()
-            || GameObject.FindObjectsOfType<InteractionOption>().Length != 0))
+        if (!additionalAction || GameObject.FindObjectsOfType<InteractionOption>().Length != 0)
         {
             ClearSelectedUnits();
         }
@@ -185,75 +224,21 @@ public class InputController : MonoSingleton<InputController>
 
     private void ClearSelectedUnits()
     {
-        selectedUnits.Clear();
-
-        foreach (var unit in allRtsUnits)
-        {
-            unit.isSelected = false;
-        }
-
+        SelectedObjects.Clear();
     }
 
-    private void FindBoundOverlap()
+    private void SelectWorldObjects()
     {
-        foreach (var item in allRtsUnits)
-        {
-            if (item.TryGetComponent<RTSUnit>(out var comp))
-            {
-                var rtsCollider = item.GetComponent<Collider2D>();
-                if (realSelection.OverlapBound(rtsCollider.bounds))
-                {
-                    if (selectedUnits.Contains(comp))
-                    {
-                        item.isSelected = false;
-                        selectedUnits.Remove(comp);
-                    }
-                    else
-                    {
-                        item.isSelected = true;
-                        selectedUnits.Add(comp);
-                    }
-                }
-            }
-        }
-
         //展示信息
-        if (selectedUnits.Count == 1)
+        var worldObject = WorldUtility.GetWorldObjectsInRect(realSelection);
         {
-            var worldObject = WorldUtility.GetWorldObjectsInRect(realSelection);
+            if (worldObject != null && worldObject.Length > 0)
             {
-                if (worldObject != null && worldObject.Length > 0)
-                {
-                    worldObject[0].ShowBriefInfo();
-                }
-                else
-                {
-                    UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
-                }
+                worldObject[0].ShowBriefInfo();
             }
-        }
-    }
-
-    private void FindRectOverlap(Rect other)
-    {
-        foreach (var item in allRtsUnits)
-        {
-            if (item.TryGetComponent<RTSUnit>(out var comp))
+            else
             {
-                var rtsCollider = item.GetComponent<Collider2D>();
-                if (other.OverlapBound(rtsCollider.bounds))
-                {
-                    if (selectedUnits.Contains(comp))
-                    {
-                        item.isSelected = false;
-                        selectedUnits.Remove(comp);
-                    }
-                    else
-                    {
-                        item.isSelected = true;
-                        selectedUnits.Add(comp);
-                    }
-                }
+                UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
             }
         }
     }
@@ -261,20 +246,22 @@ public class InputController : MonoSingleton<InputController>
     private void Update()
     {
         if (!isInit) return;
-        mousePosition = InputUtils.GetMousePosition();
 
         if (InputManager.Instance.myController.actions["左击"].IsPressed())
         {
-            Debug.Log($"更新选择区域");
-            //更新选择区域
-            endPosition = mousePosition;
-            var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
-            var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
-            selectedArea.position = lowerLeft;
-            selectedArea.sizeDelta = upperRight - lowerLeft;
-
-            realSelection.position = lowerLeft;
-            realSelection.size = selectedArea.sizeDelta;
+            UpdateSelectArea();
         }
+    }
+
+    private void UpdateSelectArea()
+    {
+        endPosition = Current.MousePos;
+        var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
+        var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
+        selectedArea.position = lowerLeft;
+        selectedArea.sizeDelta = upperRight - lowerLeft;
+
+        realSelection.position = lowerLeft;
+        realSelection.size = selectedArea.sizeDelta;
     }
 }

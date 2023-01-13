@@ -6,16 +6,43 @@ using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class GlobalPathManager : Singleton<GlobalPathManager>
 {
+    private Grid mapGrid;
     public bool Initialized => initialized;
     private bool initialized = false;
     AStar.AStar aStar;
     private SO_GridProperties gridProperties;
 
-    private GlobalPathManager() { }
+    private GlobalPathManager()
+    {
+        mapGrid = GameObject.FindObjectOfType<Grid>();
+    }
+
+    public Vector3Int WorldToCell(Vector3 worldPos)
+    {
+        return mapGrid.WorldToCell(worldPos);
+    }
+
+    public Vector3 CellToWorld(Vector3Int cellPos)
+    {
+        return mapGrid.CellToWorld(cellPos);
+    }
+
+    public Queue<Vector2Int> CreateNewPath(Vector3 startPos, Vector3 endPos, UnityAction afterReached = null)
+    {
+        var endCellPos = WorldToCell(endPos);
+        var startCellPos = WorldToCell(startPos);
+
+        return GlobalPathManager.Instance.CalculatePath(
+            new Vector2Int(startCellPos.x, startCellPos.y),
+            new Vector2Int(endCellPos.x, endCellPos.y)
+            );
+    }
 
     public override void Initialize()
     {

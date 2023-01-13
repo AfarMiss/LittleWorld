@@ -20,7 +20,7 @@ namespace LittleWorld
         public static WorldObject[] GetWorldObjectsInRect(Rect screenRect)
         {
             var allItemsInfo = SceneItemsManager.Instance.worldItems;
-            var itemsAtPos = allItemsInfo.FindAll(x => screenRect.Contains(Camera.main.WorldToScreenPoint(x.gridPos)));
+            var itemsAtPos = allItemsInfo.FindAll(x => screenRect.ScreenContainsWorldPos(x.gridPos));
             return itemsAtPos.ToArray();
         }
 

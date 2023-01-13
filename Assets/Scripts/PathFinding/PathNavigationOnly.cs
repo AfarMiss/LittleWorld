@@ -1,17 +1,11 @@
 ﻿using LittleWorld;
-using LittleWorldObject;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UniBase;
-using Unity.VisualScripting;
-using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PathNavigationOnly : MonoBehaviour
 {
-    private Grid mapGrid;
     private Queue<Vector2Int> curPath;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
     private Vector2Int curTarget;
@@ -33,29 +27,15 @@ public class PathNavigationOnly : MonoBehaviour
     {
         this.humanID = instanceID;
     }
-    private async void Start()
+    private void Start()
     {
         curPath = new Queue<Vector2Int>();
-        await TaskHelper.Wait(() => GlobalPathManager.Instance.Initialized == true);
     }
 
     public void ResetPath()
     {
         curTargetIsReached = true;
         curPath?.Clear();
-    }
-
-    public void CreateNewPath(Vector3 worldPos, UnityAction afterReached = null)
-    {
-        mapGrid = GameObject.FindObjectOfType<Grid>();
-        var cellPosition = mapGrid.WorldToCell(worldPos);
-        this.afterReached = afterReached;
-
-        var currentPos = mapGrid.WorldToCell(transform.position);
-        curPath = GlobalPathManager.Instance.CalculatePath(
-            new Vector2Int(currentPos.x, currentPos.y),
-            new Vector2Int(cellPosition.x, cellPosition.y)
-            );
     }
 
     private void DrawLine(Queue<Vector2Int> path)
@@ -94,8 +74,8 @@ public class PathNavigationOnly : MonoBehaviour
             }
         }
 
-
-
+        lineRenderer.startColor = new Color(1, 1, 1, 0.5f);
+        lineRenderer.endColor = new Color(1, 1, 1, 0.5f);
     }
 
     private void Tick()
@@ -138,7 +118,7 @@ public class PathNavigationOnly : MonoBehaviour
 
     private void SingleStep(Vector2Int target)
     {
-        var worldPos = mapGrid.CellToWorld(new Vector3Int(target.x, target.y, 0));
+        var worldPos = GlobalPathManager.Instance.CellToWorld(new Vector3Int(target.x, target.y, 0));
         Vector3 dir = worldPos - transform.position;
 
         if (Vector3.Distance(transform.position, worldPos) > 0.05)
@@ -173,10 +153,10 @@ public class PathNavigationOnly : MonoBehaviour
         {
             return;
         }
-        CreateNewPath(work.WorkPos, () =>
-        {
-            EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
-        });
+        curPath = GlobalPathManager.Instance.CreateNewPath(transform.position, work.WorkPos, () =>
+         {
+             EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
+         });
     }
 
     private void OnDisable()

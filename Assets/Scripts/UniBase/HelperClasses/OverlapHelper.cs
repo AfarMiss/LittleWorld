@@ -121,6 +121,25 @@ namespace UniBase
 
             return found;
         }
+
+        public static bool ScreenOverlapBound(this Rect a, Bounds b)
+        {
+            var minPoint = Camera.main.WorldToScreenPoint(b.min);
+            var maxPoint = Camera.main.WorldToScreenPoint(b.max);
+            var Rectb = new Rect(minPoint, maxPoint - minPoint);
+
+            return a.Overlaps(Rectb);
+        }
+
+        public static bool ScreenContainsWorldPos(this Rect a, Vector3 b)
+        {
+            return a.Contains(Camera.main.WorldToScreenPoint(b));
+        }
+
+        public static bool ScreenContainsWorldIntPos(this Rect a, Vector3Int b)
+        {
+            return a.ScreenContainsWorldPos((Vector3)b);
+        }
     }
 
 }
