@@ -13,5 +13,3 @@ Rimworld的窗口是如何实现的
 到目前为止大部分的图形绘制均使用了Graphics.DrawMesh。
 
 路径查找是集中在PathFinder.FindPath中。
-
-队列是缓存信息的关键，有了队列，就能够延迟处理信息，而不必要在一帧中纠结。
