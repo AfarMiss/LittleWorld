@@ -27,7 +27,7 @@ public class GlobalPathManager : Singleton<GlobalPathManager>, IObserveSceneChan
         return mapGrid.CellToWorld(cellPos);
     }
 
-    public Queue<Vector2Int> CreateNewPath(Vector3 startPos, Vector3 endPos, UnityAction afterReached = null)
+    public Queue<Vector2Int> CreateNewPath(Vector3 startPos, Vector3 endPos)
     {
         var endCellPos = WorldToCell(endPos);
         var startCellPos = WorldToCell(startPos);
@@ -36,6 +36,7 @@ public class GlobalPathManager : Singleton<GlobalPathManager>, IObserveSceneChan
             new Vector2Int(startCellPos.x, startCellPos.y),
             new Vector2Int(endCellPos.x, endCellPos.y)
             );
+
     }
 
     public override void Initialize()

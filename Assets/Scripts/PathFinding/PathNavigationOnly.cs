@@ -9,11 +9,11 @@ public class PathNavigationOnly : MonoBehaviour
     private Queue<Vector2Int> curPath;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
     private Vector2Int curTarget;
-    private UnityAction afterReached;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameObject targetPoint;
 
     private bool curTargetIsReached = true;
+    private bool AtDestination = true;
     private Vector3 Speed;
 
     public bool isMoving => Speed.magnitude != 0;
@@ -35,6 +35,7 @@ public class PathNavigationOnly : MonoBehaviour
     public void ResetPath()
     {
         curTargetIsReached = true;
+        AtDestination = true;
         curPath?.Clear();
     }
 
@@ -74,8 +75,8 @@ public class PathNavigationOnly : MonoBehaviour
             }
         }
 
-        lineRenderer.startColor = new Color(1, 1, 1, 0.5f);
-        lineRenderer.endColor = new Color(1, 1, 1, 0.5f);
+        lineRenderer.startColor = new Color(1, 1, 1, 0.3f);
+        lineRenderer.endColor = new Color(1, 1, 1, 0.3f);
     }
 
     private void Tick()
@@ -88,26 +89,29 @@ public class PathNavigationOnly : MonoBehaviour
         lineRenderer.enabled = true;
         targetPoint.gameObject.SetActive(true);
 
-        if (curTargetIsReached)
+        if (!AtDestination)
         {
-            if (curPath.Count > 0)
+            if (curTargetIsReached)
             {
-                curTarget = curPath.Dequeue();
-                MoveTo(curTarget);
+                if (curPath.Count > 0)
+                {
+                    curTarget = curPath.Dequeue();
+                    curTargetIsReached = false;
+                    return;
+                }
+                else
+                {
+                    AtDestination = true;
+                    lineRenderer.enabled = false;
+                    targetPoint.gameObject.SetActive(false);
+                    //完成到达指定目的地后的工作
+                    EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
+                }
             }
             else
             {
-                lineRenderer.enabled = false;
-                targetPoint.gameObject.SetActive(false);
-
-                //完成到达指定目的地后的工作
-                afterReached?.Invoke();
-                afterReached = null;
+                MoveTo(curTarget);
             }
-        }
-        else
-        {
-            MoveTo(curTarget);
         }
     }
 
@@ -153,10 +157,8 @@ public class PathNavigationOnly : MonoBehaviour
         {
             return;
         }
-        curPath = GlobalPathManager.Instance.CreateNewPath(transform.position, work.WorkPos, () =>
-         {
-             EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
-         });
+        curPath = GlobalPathManager.Instance.CreateNewPath(transform.position, work.WorkPos);
+        AtDestination = false;
     }
 
     private void OnDisable()

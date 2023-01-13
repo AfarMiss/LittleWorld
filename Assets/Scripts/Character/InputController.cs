@@ -19,7 +19,7 @@ public class InputController : MonoSingleton<InputController>
     [SerializeField]
     private RectTransform selectedAreaPrefab;
 
-    private List<WorldObject> SelectedObjects => WorldUtility.GetWorldObjectsInRect(realSelection).ToList();
+    private List<WorldObject> selectedObjects;
     public bool AdditionalAction => additionalAction;
     public Rect ScreenSelectionArea => realSelection;
     /// <summary>
@@ -34,27 +34,27 @@ public class InputController : MonoSingleton<InputController>
     private bool isInit = false;
 
     public bool MultiPawnSelected =>
-             SelectedObjects != null
-        && SelectedObjects.Count > 1
-        && SelectedObjects.Find(x => x as Humanbeing == null) == null;
+             selectedObjects != null
+        && selectedObjects.Count > 1
+        && selectedObjects.Find(x => x as Humanbeing == null) == null;
     public bool SinglePawnSelected =>
-            SelectedObjects.Count == 1
-    && SelectedObjects.Find(x => x as Humanbeing == null) == null;
-    public bool NoSelected => SelectedObjects.Count == 0;
+            selectedObjects.Count == 1
+    && selectedObjects.Find(x => x as Humanbeing == null) == null;
+    public bool NoSelected => selectedObjects == null || selectedObjects.Count == 0;
     private bool NonHumanSelected =>
-        SelectedObjects.Count == 0
-        || SelectedObjects.Find(x => x as Humanbeing == null) != null;
+        selectedObjects.Count == 0
+        || selectedObjects.Find(x => x as Humanbeing == null) != null;
     private bool MultiTypeSelected
     {
         get
         {
-            if (SelectedObjects == null || SelectedObjects.Count == 0)
+            if (selectedObjects == null || selectedObjects.Count == 0)
             {
                 return false;
             }
 
             var typeHashSet = new HashSet<Type>();
-            foreach (var item in SelectedObjects)
+            foreach (var item in selectedObjects)
             {
                 if (typeHashSet.Contains(item.GetType()))
                 {
@@ -84,6 +84,7 @@ public class InputController : MonoSingleton<InputController>
 
     public void Init()
     {
+        selectedObjects = new List<WorldObject>();
         RectTransform rectObject = Instantiate(selectedAreaPrefab);
         rectObject.name = rectObject.name.Substring(0, rectObject.name.LastIndexOf("(Clone)"));
         rectObject.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
@@ -100,7 +101,7 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.performed)
         {
-            if (SelectedObjects != null && SelectedObjects.Count > 0)
+            if (selectedObjects != null && selectedObjects.Count > 0)
             {
                 TryClearSelectedUnits();
             }
@@ -122,10 +123,10 @@ public class InputController : MonoSingleton<InputController>
             if (MultiPawnSelected)
             {
                 //对多人进行操作
-                for (int i = 0; i < SelectedObjects.Count; i++)
+                for (int i = 0; i < selectedObjects.Count; i++)
                 {
                     var curPos = InputUtils.GetMouseWorldPosition();
-                    var human = SceneItemsManager.Instance.GetWorldObjectById(SelectedObjects[0].instanceID);
+                    var human = SceneItemsManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
                     AddMoveWork(human, curPos);
                 }
             }
@@ -133,7 +134,7 @@ public class InputController : MonoSingleton<InputController>
             if (SinglePawnSelected)
             {
                 //对单人进行操作
-                var human = SceneItemsManager.Instance.GetWorldObjectById(SelectedObjects[0].instanceID);
+                var human = SceneItemsManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
                 FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, Current.MousePos);
                 if (opts.Length == 0)
                 {
@@ -188,13 +189,13 @@ public class InputController : MonoSingleton<InputController>
 
             TryClearSelectedUnits();
 
-            SelectWorldObjects();
+            selectedObjects = SelectWorldObjects();
 
             Debug.Log("Click.canceled -------");
         }
     }
 
-    private void OnClickShift(CallbackContext callbackContext)
+    public void OnClickShift(CallbackContext callbackContext)
     {
         if (callbackContext.started)
         {
@@ -226,10 +227,10 @@ public class InputController : MonoSingleton<InputController>
 
     private void ClearSelectedUnits()
     {
-        SelectedObjects.Clear();
+        selectedObjects?.Clear();
     }
 
-    private void SelectWorldObjects()
+    private List<WorldObject> SelectWorldObjects()
     {
         //展示信息
         var worldObject = WorldUtility.GetWorldObjectsInRect(realSelection);
@@ -237,6 +238,7 @@ public class InputController : MonoSingleton<InputController>
             if (worldObject == null || worldObject.Length == 0)
             {
                 UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
+                return null;
             }
             if (worldObject.Length == 1)
             {
@@ -247,6 +249,7 @@ public class InputController : MonoSingleton<InputController>
                 WorldObject.ShowMultiInfo(worldObject.Length);
             }
         }
+        return worldObject.ToList();
     }
 
     private void Update()
