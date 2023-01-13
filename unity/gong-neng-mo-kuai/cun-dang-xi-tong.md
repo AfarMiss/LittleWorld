@@ -8,6 +8,10 @@
 
 使用Path.Combine连接路径
 
+Resources.UnloadUnusedAssets
+
+Rimworld的存档采用XML的方式进行存储。
+
 ## 参考资料
 
 1. SAVE & LOAD SYSTEM in Unity [https://www.youtube.com/watch?v=XOjd\_qU2Ido](https://www.youtube.com/watch?v=XOjd\_qU2Ido)

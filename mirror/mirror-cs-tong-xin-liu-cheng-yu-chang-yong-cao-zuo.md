@@ -47,7 +47,8 @@
 
 对应的gameplayer则将会在稍后调用
 
-<pre><code><strong>                public override void OnStartLocalPlayer()</strong></code></pre>
+<pre><code><strong>                public override void OnStartLocalPlayer()
+</strong></code></pre>
 
 服务器可以删除连接对应的gameplayer，第二个参数为是否摧毁对应的gameplayer
 
