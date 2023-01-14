@@ -1,10 +1,6 @@
----
-description: >-
-  Unity 的 IMGUI 控件使用一个名为 OnGUI() 的特殊函数。只要启用包含脚本，就会在每帧调用 OnGUI() 函数，就像 Update()
-  函数一样。
----
-
 # GUI
+
+Unity 的 IMGUI 控件使用一个名为 OnGUI() 的特殊函数。只要启用包含脚本，就会在每帧调用 OnGUI() 函数，就像 Update() 函数一样。
 
 ## 声明 GUI 控件时，需要三段关键信息：
 
