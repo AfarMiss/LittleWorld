@@ -21,6 +21,6 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        referencePoint.position += this.dir * Time.deltaTime * speed * 2;
+        Camera.main.transform.position += this.dir * Time.deltaTime * speed * 2;
     }
 }

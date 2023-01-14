@@ -8,6 +8,7 @@ using UniBase;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.Experimental.Rendering.Universal;
 using static UnityEditor.Progress;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -45,6 +46,8 @@ public class InputController : MonoSingleton<InputController>
     private bool NonHumanSelected =>
         selectedObjects.Count == 0
         || selectedObjects.Find(x => x as Humanbeing == null) != null;
+
+
     private bool MultiTypeSelected
     {
         get
@@ -108,6 +111,29 @@ public class InputController : MonoSingleton<InputController>
             }
         }
     }
+
+    /// <summary>
+    /// 放大/缩小区域
+    /// </summary>
+    /// <param name="callbackContext"></param>
+    public void OnMouseScroll(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            var scrollValue = callbackContext.ReadValue<Vector2>();
+            Debug.Log(callbackContext.ReadValue<Vector2>());
+            if (scrollValue.y > 0)
+            {
+                FindObjectOfType<PixelPerfectCamera>().assetsPPU++;
+            }
+            else if (scrollValue.y < 0)
+            {
+                FindObjectOfType<PixelPerfectCamera>().assetsPPU--;
+            }
+            //FindObjectOfType<PixelPerfectCamera>().assetsPPU--;
+        }
+    }
+
 
     public void OnClickRight(CallbackContext callbackContext)
     {
