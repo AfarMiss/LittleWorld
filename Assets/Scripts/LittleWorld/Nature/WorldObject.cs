@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LittleWorldObject
@@ -17,6 +18,22 @@ namespace LittleWorldObject
 
         protected string ItemName;
         public Vector3Int gridPos;
+        public Vector3 RenderPos
+        {
+            get
+            {
+                if (this as Humanbeing != null)
+                {
+                    var navis = GameObject.FindObjectsOfType<PathNavigationOnly>();
+                    var humanNavi = navis.ToList().Find(x => x.humanID == instanceID);
+                    return humanNavi != null ? humanNavi.renderPos : gridPos;
+                }
+                else
+                {
+                    return gridPos;
+                }
+            }
+        }
 
         public Vector3Int GridPos { get => gridPos; set => gridPos = value; }
 

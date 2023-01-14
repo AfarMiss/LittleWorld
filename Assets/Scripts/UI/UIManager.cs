@@ -161,6 +161,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     private void OnGUI()
     {
+        #region 绘制选择单位
         if (InputController.Instance.SelectedObjects == null) return;
 
         //因为目前底层使用了 UnityEngine.Graphics.DrawTexture
@@ -171,9 +172,10 @@ public class UIManager : MonoSingleton<UIManager>
         {
             foreach (var item in InputController.Instance.SelectedObjects)
             {
-                GraphicsUtiliy.DrawSelectedIcon(item.GridPos.ToWorldVector2(), 1, 1);
+                GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.ToWorldVector2(), 1, 1);
             }
         }
+        #endregion
     }
 }
 

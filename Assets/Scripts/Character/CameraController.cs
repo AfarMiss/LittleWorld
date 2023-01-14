@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour
         this.dir = new Vector3(dir.x, dir.y, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
         Camera.main.transform.position += this.dir * Time.deltaTime * speed * 2;

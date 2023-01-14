@@ -14,9 +14,10 @@ public class PathNavigationOnly : MonoBehaviour
 
     private bool curTargetIsReached = true;
     private bool AtDestination = true;
-    private Vector3 Speed;
+    private Vector3 speed;
+    public Vector2 renderPos => transform.position;
 
-    public bool isMoving => Speed.magnitude != 0;
+    public bool isMoving => speed.magnitude != 0;
 
     /// <summary>
     /// 代表的itemInstanceID
@@ -106,6 +107,7 @@ public class PathNavigationOnly : MonoBehaviour
                     targetPoint.gameObject.SetActive(false);
                     //完成到达指定目的地后的工作
                     EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
+                    Debug.Log($"Reached {curTarget}");
                 }
             }
             else
@@ -128,13 +130,13 @@ public class PathNavigationOnly : MonoBehaviour
         if (Vector3.Distance(transform.position, worldPos) > 0.05)
         {
             curTargetIsReached = false;
-            this.Speed = dir.normalized * 4f;
-            GetComponent<Rigidbody2D>().MovePosition(transform.position + Speed * Time.fixedDeltaTime);
+            this.speed = dir.normalized * 4f;
+            GetComponent<Rigidbody2D>().MovePosition(transform.position + speed * Time.fixedDeltaTime);
         }
         else
         {
             curTargetIsReached = true;
-            this.Speed = Vector3.zero;
+            this.speed = Vector3.zero;
             var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
             human.GridPos = worldPos.ToVector3Int();
         }
