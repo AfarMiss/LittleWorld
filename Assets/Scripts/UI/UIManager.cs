@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using LittleWorld.Graphics;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
@@ -156,6 +157,15 @@ public class UIManager : MonoSingleton<UIManager>
             }
         }
         return false;
+    }
+
+    private void OnGUI()
+    {
+        if (InputController.Instance.SelectedObjects == null) return;
+        foreach (var item in InputController.Instance.SelectedObjects)
+        {
+            GraphicsUtiliy.DrawSelectedIcon(item.GridPos.ToWorldVector2(), 1, 1);
+        }
     }
 }
 

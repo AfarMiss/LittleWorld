@@ -136,7 +136,7 @@ public class PathNavigationOnly : MonoBehaviour
             curTargetIsReached = true;
             this.Speed = Vector3.zero;
             var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
-            human.GridPos = new Vector3Int((int)worldPos.x, (int)worldPos.y, 0);
+            human.GridPos = worldPos.ToVector3Int();
         }
     }
 

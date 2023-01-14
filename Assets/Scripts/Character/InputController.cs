@@ -19,6 +19,7 @@ public class InputController : MonoSingleton<InputController>
     [SerializeField]
     private RectTransform selectedAreaPrefab;
 
+    public List<WorldObject> SelectedObjects => selectedObjects;
     private List<WorldObject> selectedObjects;
     public bool AdditionalAction => additionalAction;
     public Rect ScreenSelectionArea => realSelection;
