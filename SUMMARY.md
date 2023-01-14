@@ -119,7 +119,7 @@
   * [AB包(AssetBundle)](re-geng-xin-he-lua/ab-bao-assetbundle.md)
 * [ET](et.md)
   * [概述](et/gai-shu.md)
-* [渲染](xuan-ran/README.md)
+* [渲染](xuan-ran.md)
   * [Unity.Graphics](xuan-ran/unity.graphics.md)
 * [UI](ui/README.md)
   * [FairyGUI](fairygui/README.md)
