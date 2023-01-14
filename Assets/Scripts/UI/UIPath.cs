@@ -9,4 +9,5 @@
     public static string Panel_ConciseInventoryPanel = "Prefabs/UI/Panel/UIInventoryBar";
 
     public static string Image_Selected = "Assets\\Resources\\MiniMap\\MiniWorldSprites\\User Interface\\BoxSelector.png";
+    public static string Image_Destination = "Assets\\Resources\\MiniMap\\MiniWorldSprites\\User Interface\\CircleLarge_OutlineOnly.png";
 }

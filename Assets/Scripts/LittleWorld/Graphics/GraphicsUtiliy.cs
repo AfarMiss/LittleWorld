@@ -42,8 +42,26 @@ namespace LittleWorld.Graphics
             var textureHeight = (int)textureHeightVector.y;
 
             Texture2D tex = GetTexture2D(UIPath.Image_Selected);
-            var desColor = tex.GetPixels(0, 0, tex.width / 2, tex.height);
             DrawTexture(new Rect(screenRect, new Vector2(textureWidth, textureHeight)), tex, new Rect(0f, 0f, 0.5f, 1f));
         }
+
+        public static void DrawDestinationIcon(Vector2 bottomLeftPoint, float worldWidth, float worldHeight)
+        {
+            var upperLeftPoint = (bottomLeftPoint + new Vector2(0, 1)).ToScreenPos();
+            var screenRect = new Vector2(upperLeftPoint.x, Screen.height - upperLeftPoint.y);
+            var textureWidthVector =
+                (bottomLeftPoint + new Vector2(worldWidth, 0)).ToScreenPos()
+                - bottomLeftPoint.ToScreenPos();
+            var textureWidth = (int)textureWidthVector.x;
+
+            var textureHeightVector =
+    (bottomLeftPoint + new Vector2(0, worldHeight)).ToScreenPos()
+    - bottomLeftPoint.ToScreenPos();
+            var textureHeight = (int)textureHeightVector.y;
+
+            Texture2D tex = GetTexture2D(UIPath.Image_Destination);
+            DrawTexture(new Rect(screenRect, new Vector2(textureWidth, textureHeight)), tex);
+        }
+
     }
 }

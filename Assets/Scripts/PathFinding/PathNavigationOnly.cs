@@ -7,13 +7,13 @@ using UnityEngine.Events;
 public class PathNavigationOnly : MonoBehaviour
 {
     private Queue<Vector2Int> curPath;
+    public Vector2Int curDestination;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
     private Vector2Int curTarget;
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private GameObject targetPoint;
 
     private bool curTargetIsReached = true;
-    private bool AtDestination = true;
+    public bool atDestination = true;
     private Vector3 speed;
     public Vector2 renderPos => transform.position;
 
@@ -36,28 +36,15 @@ public class PathNavigationOnly : MonoBehaviour
     public void ResetPath()
     {
         curTargetIsReached = true;
-        AtDestination = true;
+        atDestination = true;
         curPath?.Clear();
+        curDestination = default;
     }
 
     private void DrawLine(Queue<Vector2Int> path)
     {
         if (path == null) return;
         var pathArray = path.ToArray();
-        if (pathArray.Length != 0)
-        {
-            targetPoint.transform.SetPositionAndRotation(
-                new Vector3(pathArray[pathArray.Length - 1].x, pathArray[pathArray.Length - 1].y, 0) + imageOffset,
-                Quaternion.identity
-                );
-        }
-        else if (curTarget != null)
-        {
-            targetPoint.transform.SetPositionAndRotation(
-    new Vector3(curTarget.x, curTarget.y, 0) + imageOffset,
-    Quaternion.identity
-    );
-        }
         lineRenderer.positionCount = pathArray.Length + 2;
         lineRenderer.SetPosition(0, this.transform.position + imageOffset);
         if (curTarget != null)
@@ -88,9 +75,8 @@ public class PathNavigationOnly : MonoBehaviour
     private void MoveInPath()
     {
         lineRenderer.enabled = true;
-        targetPoint.gameObject.SetActive(true);
 
-        if (!AtDestination)
+        if (!atDestination)
         {
             if (curTargetIsReached)
             {
@@ -102,9 +88,8 @@ public class PathNavigationOnly : MonoBehaviour
                 }
                 else
                 {
-                    AtDestination = true;
+                    atDestination = true;
                     lineRenderer.enabled = false;
-                    targetPoint.gameObject.SetActive(false);
                     //完成到达指定目的地后的工作
                     EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
                     Debug.Log($"Reached {curTarget}");
@@ -160,7 +145,8 @@ public class PathNavigationOnly : MonoBehaviour
             return;
         }
         curPath = GlobalPathManager.Instance.CreateNewPath(transform.position, work.WorkPos);
-        AtDestination = false;
+        curDestination = work.WorkPos.ToWorldVector2Int();
+        atDestination = false;
     }
 
     private void OnDisable()

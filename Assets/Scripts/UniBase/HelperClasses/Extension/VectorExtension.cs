@@ -20,6 +20,11 @@ public static class VectorExtension
         return new Vector2(worldVector.x, worldVector.y);
     }
 
+    public static Vector2Int ToWorldVector2Int(this Vector3Int worldVector)
+    {
+        return new Vector2Int(worldVector.x, worldVector.y);
+    }
+
     public static Vector2 ToWorldVector2(this Vector3 worldVector)
     {
         return new Vector2(worldVector.x, worldVector.y);
