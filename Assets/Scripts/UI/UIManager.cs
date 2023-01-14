@@ -162,9 +162,17 @@ public class UIManager : MonoSingleton<UIManager>
     private void OnGUI()
     {
         if (InputController.Instance.SelectedObjects == null) return;
-        foreach (var item in InputController.Instance.SelectedObjects)
+
+        //因为目前底层使用了 UnityEngine.Graphics.DrawTexture
+        //所以需要限制在接收到这个事件时触发。
+        //否则目前可能会产生多重绘制,具体原因尚不清楚。
+        //https://docs.unity3d.com/ScriptReference/Graphics.DrawTexture.html
+        if (Event.current.type.Equals(EventType.Repaint))
         {
-            GraphicsUtiliy.DrawSelectedIcon(item.GridPos.ToWorldVector2(), 1, 1);
+            foreach (var item in InputController.Instance.SelectedObjects)
+            {
+                GraphicsUtiliy.DrawSelectedIcon(item.GridPos.ToWorldVector2(), 1, 1);
+            }
         }
     }
 }

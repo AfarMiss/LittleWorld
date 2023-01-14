@@ -187,6 +187,7 @@ public class InputController : MonoSingleton<InputController>
 
     public void OnCameraControl(CallbackContext callbackContext)
     {
+
         if (callbackContext.performed)
         {
             var camMove = callbackContext.ReadValue<Vector2>();

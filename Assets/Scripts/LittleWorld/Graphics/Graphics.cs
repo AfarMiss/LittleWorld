@@ -7,9 +7,16 @@ namespace LittleWorld.Graphics
 {
     public static class GraphicsUtiliy
     {
-        public static void DrawTexture(Rect rect, Texture2D texture2D)
+        public static void DrawTexture(Rect rect, Texture2D texture2D, Rect sourceRect = default)
         {
-            UnityEngine.Graphics.DrawTexture(rect, texture2D);
+            if (sourceRect == default)
+            {
+                UnityEngine.Graphics.DrawTexture(rect, texture2D);
+            }
+            else
+            {
+                UnityEngine.Graphics.DrawTexture(rect, texture2D, sourceRect, 0, 0, 0, 0);
+            }
         }
 
         private static Texture2D GetTexture2D(string selectedPath)
@@ -36,10 +43,7 @@ namespace LittleWorld.Graphics
 
             Texture2D tex = GetTexture2D(UIPath.Image_Selected);
             var desColor = tex.GetPixels(0, 0, tex.width / 2, tex.height);
-            Texture2D desTex = new Texture2D(tex.width / 2, tex.height);
-            desTex.SetPixels(desColor);
-            desTex.Apply();
-            DrawTexture(new Rect(GUIPos, new Vector2(textureWidth, textureHeight)), desTex);
+            DrawTexture(new Rect(GUIPos, new Vector2(textureWidth, textureHeight)), tex, new Rect(0f, 0f, 0.5f, 1f));
         }
     }
 }
