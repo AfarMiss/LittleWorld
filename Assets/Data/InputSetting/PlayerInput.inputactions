@@ -67,6 +67,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "鼠标镜头控制",
+                    "type": "Value",
+                    "id": "c1783bac-657a-4140-bef4-8fb7e7764349",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "镜头拖拽",
+                    "type": "Button",
+                    "id": "ce9d1bf2-cdf0-4cee-8b4b-99ee6e2ba03a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -188,6 +206,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "放大/缩小",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "468a906e-5d5a-438d-92c0-5e3ea7a159a9",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "鼠标镜头控制",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5502a3f3-431b-40c6-954e-62a28318ecde",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "镜头拖拽",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class PathNavigationOnly : MonoBehaviour
 {
+    public int lastStampFrameCount = -1;
     private Queue<Vector2Int> curPath;
     public Vector2Int curDestination;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
@@ -146,6 +147,7 @@ public class PathNavigationOnly : MonoBehaviour
         }
         curPath = GlobalPathManager.Instance.CreateNewPath(transform.position, work.WorkPos);
         curDestination = work.WorkPos.ToWorldVector2Int();
+        lastStampFrameCount = Time.frameCount;
         atDestination = false;
     }
 

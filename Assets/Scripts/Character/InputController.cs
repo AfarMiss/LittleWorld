@@ -14,8 +14,8 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class InputController : MonoSingleton<InputController>
 {
-    private Vector3 startPosition;
-    private Vector3 endPosition;
+    private Vector3 onClickLeftStartPosition;
+    private Vector3 onClickLeftEndPosition;
 
     [SerializeField]
     private RectTransform selectedAreaPrefab;
@@ -30,6 +30,7 @@ public class InputController : MonoSingleton<InputController>
     private bool additionalAction;
 
     private RectTransform selectedArea;
+    private CameraController CamController => Camera.main.GetComponent<CameraController>();
 
     private Rect realSelection;
 
@@ -46,6 +47,7 @@ public class InputController : MonoSingleton<InputController>
     private bool NonHumanSelected =>
         selectedObjects.Count == 0
         || selectedObjects.Find(x => x as Humanbeing == null) != null;
+    private bool cameraDraging = false;
 
 
     private bool MultiTypeSelected
@@ -99,6 +101,7 @@ public class InputController : MonoSingleton<InputController>
 
         isInit = true;
         additionalAction = false;
+        cameraDraging = false;
     }
 
     public void OnClickDouble(CallbackContext callbackContext)
@@ -191,28 +194,49 @@ public class InputController : MonoSingleton<InputController>
         if (callbackContext.performed)
         {
             var camMove = callbackContext.ReadValue<Vector2>();
-            CameraController camController = Camera.main.GetComponent<CameraController>();
-            camController.Move(camMove);
+            CamController.Move(camMove);
         }
         else if (callbackContext.canceled)
         {
-            CameraController camController = Camera.main.GetComponent<CameraController>();
-            camController.Move(Vector2.zero);
+            CamController.Move(Vector2.zero);
         }
+    }
 
+    public void OnClickCameraDrag(CallbackContext callbackContext)
+    {
+        if (callbackContext.started)
+        {
+            cameraDraging = true;
+        }
+        else if (callbackContext.canceled)
+        {
+            cameraDraging = false;
+        }
+    }
+
+    public void OnMouseCameraControl(CallbackContext callbackContext)
+    {
+        if (!cameraDraging)
+        {
+            return;
+        }
+        if (callbackContext.performed)
+        {
+            CamController.MoveDelta(-callbackContext.ReadValue<Vector2>());
+        }
     }
 
     public void OnClickLeft(CallbackContext callbackContext)
     {
         if (callbackContext.started)
         {
-            startPosition = Current.MousePos;
+            onClickLeftStartPosition = Current.MousePos;
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
         }
         else if (callbackContext.canceled)
         {
-            endPosition = Current.MousePos;
+            onClickLeftEndPosition = Current.MousePos;
             selectedArea.gameObject.SetActive(false);
 
             TryClearSelectedUnits();
@@ -292,9 +316,9 @@ public class InputController : MonoSingleton<InputController>
 
     private void UpdateSelectArea()
     {
-        endPosition = Current.MousePos;
-        var lowerLeft = new Vector2(Mathf.Min(startPosition.x, endPosition.x), Mathf.Min(startPosition.y, endPosition.y));
-        var upperRight = new Vector2(Mathf.Max(startPosition.x, endPosition.x), Mathf.Max(startPosition.y, endPosition.y));
+        onClickLeftEndPosition = Current.MousePos;
+        var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Min(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
+        var upperRight = new Vector2(Mathf.Max(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Max(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
         selectedArea.position = lowerLeft;
         selectedArea.sizeDelta = upperRight - lowerLeft;
 

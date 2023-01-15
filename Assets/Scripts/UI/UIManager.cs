@@ -179,9 +179,9 @@ public class UIManager : MonoSingleton<UIManager>
             var allNavis = GameObject.FindObjectsOfType<PathNavigationOnly>();
             foreach (var item in allNavis)
             {
-                if (!item.atDestination)
+                if (!item.atDestination && item.lastStampFrameCount > 0 && Time.frameCount - item.lastStampFrameCount <= 50)
                 {
-                    GraphicsUtiliy.DrawDestinationIcon(item.curDestination, 1, 1);
+                    GraphicsUtiliy.DrawDestinationIcon(item.curDestination, 1, 1, 0.3f);
                 }
             }
             #endregion

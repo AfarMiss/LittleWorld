@@ -7,15 +7,15 @@ public class CameraController : MonoBehaviour
     private Vector3 dir;
     public Transform referencePoint;
     [SerializeField, Range(0, 10)] private float speed = 3;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     public void Move(Vector2 dir)
     {
         this.dir = new Vector3(dir.x, dir.y, 0);
+    }
+
+    public void MoveDelta(Vector2 delta)
+    {
+        Camera.main.transform.position += new Vector3(delta.x / 25, delta.y / 25, 0);
     }
 
     void Update()

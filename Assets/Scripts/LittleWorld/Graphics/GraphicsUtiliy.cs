@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using LittleWorld.UI;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 namespace LittleWorld.Graphics
 {
@@ -19,7 +21,7 @@ namespace LittleWorld.Graphics
             }
         }
 
-        private static Texture2D GetTexture2D(string selectedPath)
+        public static Texture2D GetTexture2D(string selectedPath)
         {
             var rawData = System.IO.File.ReadAllBytes(selectedPath);
             Texture2D tex = new Texture2D(0, 0);
@@ -45,7 +47,7 @@ namespace LittleWorld.Graphics
             DrawTexture(new Rect(screenRect, new Vector2(textureWidth, textureHeight)), tex, new Rect(0f, 0f, 0.5f, 1f));
         }
 
-        public static void DrawDestinationIcon(Vector2 bottomLeftPoint, float worldWidth, float worldHeight)
+        public static void DrawDestinationIcon(Vector2 bottomLeftPoint, float worldWidth, float worldHeight, float alpha)
         {
             var upperLeftPoint = (bottomLeftPoint + new Vector2(0, 1)).ToScreenPos();
             var screenRect = new Vector2(upperLeftPoint.x, Screen.height - upperLeftPoint.y);
@@ -59,7 +61,8 @@ namespace LittleWorld.Graphics
     - bottomLeftPoint.ToScreenPos();
             var textureHeight = (int)textureHeightVector.y;
 
-            Texture2D tex = GetTexture2D(UIPath.Image_Destination);
+            Texture2D tex = TextureDatabase.Image_Destination;
+
             DrawTexture(new Rect(screenRect, new Vector2(textureWidth, textureHeight)), tex);
         }
 

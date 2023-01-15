@@ -1389,6 +1389,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2232eeea-4e5f-4153-b60d-12d3850fb2cd
     m_ActionName: "\u6E38\u620F/\u653E\u5927[/Mouse/forwardButton]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 14552455}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnMouseCameraControl
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c1783bac-657a-4140-bef4-8fb7e7764349
+    m_ActionName: "\u6E38\u620F/\u9F20\u6807\u955C\u5934\u63A7\u5236[/Mouse/middleButton]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 14552455}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: OnClickCameraDrag
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ce9d1bf2-cdf0-4cee-8b4b-99ee6e2ba03a
+    m_ActionName: "\u6E38\u620F/\u955C\u5934\u62D6\u62FD[/Mouse/middleButton]"
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: "\u6E38\u620F"
