@@ -25,7 +25,7 @@ namespace LittleWorld.Window
             {
                 if (worldObject is Plant curPlant)
                 {
-                    var plantOpts = AddPlantFloatMenu(human, mousePos.GetWorldPosition().ToVector3Int(), curPlant);
+                    var plantOpts = AddPlantFloatMenu(human, mousePos.GetWorldPosition().ToCell(), curPlant);
                     contentList.AddRange(plantOpts);
                 }
             }

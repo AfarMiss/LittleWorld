@@ -133,7 +133,7 @@ public class InputController : MonoSingleton<InputController>
 
     private void AddMoveWork(WorldObject human, Vector3 targetPos)
     {
-        (human as Humanbeing).AddWork(WorkTypeEnum.gotoLoc, targetPos.ToVector3Int());
+        (human as Humanbeing).AddWork(WorkTypeEnum.gotoLoc, targetPos.ToCell());
     }
 
     public void OnClickSetting(CallbackContext callbackContext)
@@ -241,6 +241,10 @@ public class InputController : MonoSingleton<InputController>
     private List<WorldObject> SelectWorldObjects(SelectType selectType)
     {
         var worldObjectArray = WorldUtility.GetWorldObjectsInRect(realSelection);
+        if (worldObjectArray == null)
+        {
+            return null;
+        }
         var worldObject = worldObjectArray.ToList().GetSelected(selectType);
 
         if (worldObject == null || worldObject.Count == 0)

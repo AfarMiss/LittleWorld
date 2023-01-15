@@ -5,9 +5,9 @@ using UnityEngine;
 
 public static class VectorExtension
 {
-    public static Vector3Int ToVector3Int(this Vector3 vector)
+    public static Vector3Int ToCell(this Vector3 vector)
     {
-        return new Vector3Int((int)vector.x, (int)vector.y, (int)vector.z);
+        return new Vector3Int(Mathf.FloorToInt(vector.x), Mathf.FloorToInt(vector.y), Mathf.FloorToInt(vector.z));
     }
 
     public static Vector2 ToScreenPos(this Vector2 worldVector)
