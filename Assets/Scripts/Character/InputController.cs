@@ -194,11 +194,11 @@ public class InputController : MonoSingleton<InputController>
         {
             onClickLeftEndPosition = Current.MousePos;
             selectedArea.gameObject.SetActive(false);
-
-            TryClearSelectedUnits();
-
-            selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
-
+            if (!UIManager.Instance.ReactMenu)
+            {
+                TryClearSelectedUnits();
+                selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
+            }
             Debug.Log("Click.canceled -------");
         }
     }
@@ -223,6 +223,7 @@ public class InputController : MonoSingleton<InputController>
         {
             Destroy(item.gameObject);
         }
+        UIManager.Instance.ReactMenu = false;
     }
 
     private void TryClearSelectedUnits()

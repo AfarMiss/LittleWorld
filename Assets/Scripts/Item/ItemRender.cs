@@ -9,9 +9,11 @@ public class ItemRender : MonoBehaviour
 
     public int ItemCode { get { return itemCode; } set { itemCode = value; } }
 
-    private void Awake()
+    private void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        Init(ItemCode);
+        Debug.Log("itemcode:" + ItemCode);
     }
 
     public void Init(int itemCode)
@@ -22,11 +24,9 @@ public class ItemRender : MonoBehaviour
             this.gameObject.AddComponent<NudgeItem>();
         }
 
-        if (spriteRenderer.sprite == null)
-        {
-            spriteRenderer.sprite = itemDetail.itemSprite;
-            spriteRenderer.transform.localPosition = new Vector3(spriteRenderer.size.x / 2, spriteRenderer.size.y / 2, 0);
-        }
+        spriteRenderer.sprite = itemDetail.itemSprite;
+        spriteRenderer.transform.localPosition = new Vector3(spriteRenderer.size.x / 2, spriteRenderer.size.y / 2, 0);
+
         this.ItemCode = itemCode;
     }
 }

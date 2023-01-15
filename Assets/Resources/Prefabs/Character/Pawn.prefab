@@ -212,6 +212,7 @@ MonoBehaviour:
   curDestination: {x: 0, y: 0}
   lineRenderer: {fileID: 1675277764}
   atDestination: 1
+  curRenderPos: {x: 0, y: 0}
   humanID: 0
 --- !u!114 &6286444439015531861
 MonoBehaviour:
@@ -225,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3533e1908a7731c44b82c21b0eba9474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCode: 0
+  itemCode: 10026
 --- !u!1 &2431074402101447301
 GameObject:
   m_ObjectHideFlags: 0

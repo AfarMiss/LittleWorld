@@ -1,8 +1,7 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class ObscuringItemFader : MonoBehaviour
 {
     private SpriteRenderer[] spriteRenderers;
@@ -13,7 +12,7 @@ public class ObscuringItemFader : MonoBehaviour
     }
 
     /// <summary>
-    /// µ­Èë
+    /// æ·¡å…¥
     /// </summary>
     public void FadeIn()
     {
@@ -24,7 +23,7 @@ public class ObscuringItemFader : MonoBehaviour
     }
 
     /// <summary>
-    /// µ­³ö
+    /// æ·¡å‡º
     /// </summary>
     public void FadeOut()
     {

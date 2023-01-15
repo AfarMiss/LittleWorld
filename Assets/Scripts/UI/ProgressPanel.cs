@@ -16,6 +16,7 @@ public class ProgressPanel : BaseUI
     {
         EventCenter.Instance.Register<SingleWork>(EventEnum.WORK_WORKING.ToString(), OnWorking);
         EventCenter.Instance.Register<SingleWork>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
+        EventCenter.Instance.Register<SingleWork>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
     }
 
     private void OnWorking(SingleWork message)
@@ -56,12 +57,23 @@ public class ProgressPanel : BaseUI
     {
         EventCenter.Instance?.Unregister<SingleWork>(EventEnum.WORK_WORKING.ToString(), OnWorking);
         EventCenter.Instance?.Unregister<SingleWork>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
+        EventCenter.Instance?.Unregister<SingleWork>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
     }
 
     private void OnWorkDone(SingleWork arg0)
     {
-        var activeObjects = FindObjectsOfType<GeneralSlider>();
-        var needPutbackSlider = activeObjects.ToList<GeneralSlider>().Find(x => x.uniqueID == arg0.uniqueKey);
+        Putback(arg0);
+    }
+
+    private void OnWorkForceAbort(SingleWork arg0)
+    {
+        Putback(arg0);
+    }
+
+    private static void Putback(SingleWork arg0)
+    {
+        var needPutbackSlider = FindObjectsOfType<GeneralSlider>().ToList()
+            .Find(x => x.uniqueID == arg0.uniqueKey);
         if (needPutbackSlider != null)
         {
             PoolManager.Instance.Putback(PoolEnum.Progress.ToString(), needPutbackSlider.gameObject);

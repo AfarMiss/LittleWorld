@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class UIManager : MonoSingleton<UIManager>
 {
+    public bool ReactMenu;
+
     [SerializeField]
     private GameObject sliderPrefab;
 

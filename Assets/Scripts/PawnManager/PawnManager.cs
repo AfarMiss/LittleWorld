@@ -25,7 +25,6 @@ public class PawnManager : Singleton<PawnManager>
     {
         var pawnRes = Resources.Load("Prefabs/Character/Pawn");
         var curPawn = GameObject.Instantiate(pawnRes);
-        curPawn.GetComponent<ItemRender>().Init(10026);
         curPawn.GetComponent<Transform>().transform.position = pos;
         curPawn.GetComponent<PathNavigationOnly>().Initialize(human.instanceID);
     }
