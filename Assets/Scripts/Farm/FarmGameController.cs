@@ -492,7 +492,7 @@ false, false, false, false, false, false, false, false, true);
         //对场景的修改
         Vector3 worldPos = cursorPosition.GetWorldPosition();
         Debug.Log($"dirReal:{dir},cursorGridPosition:{cursorPosition},worldPos:{worldPos}");
-        var detectResult = OverlapHelper.GetComponentsAtBoxLocationNonAlloc<Item>(FarmSetting.reapDetectCount,
+        var detectResult = OverlapHelper.GetComponentsAtBoxLocationNonAlloc<ItemRender>(FarmSetting.reapDetectCount,
             playerCentre + (new Vector3(dir.x * itemDetails.itemUseRadius / 2, dir.y * itemDetails.itemUseRadius / 2)),
             itemDetails.itemUseRadius * Vector2.one, 0);
         var targetDestroyNum = Math.Min(detectResult.Length, FarmSetting.multipleReap);

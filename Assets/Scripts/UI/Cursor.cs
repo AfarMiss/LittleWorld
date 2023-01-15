@@ -118,11 +118,11 @@ public class Cursor : MonoSingleton<Cursor>
     private bool SetCursorValidityReapingTool(Vector3 cursorPosition, Vector3 playerPosition, ItemDetails equippedItemDetails)
     {
 
-        if (UniBase.OverlapHelper.GetComponentsAtCursorLocation(out Item[] items, cursorPosition))
+        if (UniBase.OverlapHelper.GetComponentsAtCursorLocation(out ItemRender[] items, cursorPosition))
         {
             if (items.Length != 0)
             {
-                foreach (Item item in items)
+                foreach (ItemRender item in items)
                 {
                     if (InventoryManager.Instance.GetItemDetail(item.ItemCode).itemType == ItemType.reapable_scenery)
                     {

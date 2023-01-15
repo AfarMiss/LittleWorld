@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Item : MonoBehaviour
+public class ItemRender : MonoBehaviour
 {
     [SerializeField, ItemCodeDescription]
     private int itemCode;
@@ -14,14 +14,6 @@ public class Item : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void Start()
-    {
-        if (ItemCode != 0)
-        {
-            Init(ItemCode);
-        }
-    }
-
     public void Init(int itemCode)
     {
         var itemDetail = InventoryManager.Instance.GetItemDetail(itemCode);
@@ -33,6 +25,7 @@ public class Item : MonoBehaviour
         if (spriteRenderer.sprite == null)
         {
             spriteRenderer.sprite = itemDetail.itemSprite;
+            spriteRenderer.transform.localPosition = new Vector3(spriteRenderer.size.x / 2, spriteRenderer.size.y / 2, 0);
         }
         this.ItemCode = itemCode;
     }

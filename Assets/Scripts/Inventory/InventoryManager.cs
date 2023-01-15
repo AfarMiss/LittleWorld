@@ -74,7 +74,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
         }
     }
 
-    private void AddItem(InventoryLocation location, Item item)
+    private void AddItem(InventoryLocation location, ItemRender item)
     {
         var itemPosition = FindItemInInventory(location, item);
         if (itemPosition != -1)
@@ -91,7 +91,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
         PrintInventoryInfo(location);
     }
 
-    private void AddItemInFirstNull(InventoryLocation localtion, Item item)
+    private void AddItemInFirstNull(InventoryLocation localtion, ItemRender item)
     {
         for (int i = 0; i < inventoryItemsList[(int)localtion].Count; i++)
         {
@@ -116,14 +116,14 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
         Debug.Log($"=======================");
     }
 
-    public void AddItem(InventoryLocation location, Item item, GameObject gameObjectToDestroy)
+    public void AddItem(InventoryLocation location, ItemRender item, GameObject gameObjectToDestroy)
     {
         AddItem(location, item);
         EventCenter.Instance.Trigger(EventEnum.UPDATE_INVENTORY.ToString());
         Destroy(gameObjectToDestroy);
     }
 
-    private int FindItemInInventory(InventoryLocation location, Item item)
+    private int FindItemInInventory(InventoryLocation location, ItemRender item)
     {
         int localIndex = (int)location;
         for (int i = 0; i < inventoryItemsList[localIndex].Count; i++)
@@ -176,7 +176,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
         }
     }
 
-    public void RemoveItem(InventoryLocation location, Item item)
+    public void RemoveItem(InventoryLocation location, ItemRender item)
     {
         var itemPosition = FindItemInInventory(location, item);
         if (itemPosition != -1)

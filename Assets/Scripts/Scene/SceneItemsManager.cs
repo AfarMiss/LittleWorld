@@ -92,7 +92,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
     private GameObject InstantiateSingleSceneItem(SceneItem item)
     {
         GameObject itemGameObject = Instantiate(itemPrefab, new Vector3(item.position.x, item.position.y, item.position.z), Quaternion.identity, parentItem);
-        Item itemComponent = itemGameObject.GetComponent<Item>();
+        ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
         itemComponent.ItemCode = item.itemCode;
         itemComponent.name = item.itemName;
         return itemGameObject;
@@ -101,13 +101,13 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
     public void InstantiateSingleSceneItem(int itemCode, Vector3 itemPosition)
     {
         GameObject itemGameObject = Instantiate(itemPrefab, itemPosition, Quaternion.identity, parentItem);
-        Item itemComponent = itemGameObject.GetComponent<Item>();
+        ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
         itemComponent.Init(itemCode);
     }
 
     private void DestroySceneItems()
     {
-        Item[] itemsInScene = GameObject.FindObjectsOfType<Item>();
+        ItemRender[] itemsInScene = GameObject.FindObjectsOfType<ItemRender>();
         for (int i = itemsInScene.Length - 1; i >= 0; i--)
         {
             Destroy(itemsInScene[i].gameObject);
@@ -131,7 +131,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
     private List<SceneItem> CreateNewItemList()
     {
         List<SceneItem> sceneItemList = new List<SceneItem>();
-        Item[] itemsInScene = FindObjectsOfType<Item>();
+        ItemRender[] itemsInScene = FindObjectsOfType<ItemRender>();
 
         foreach (var item in itemsInScene)
         {

@@ -1,15 +1,15 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 可捡起物体的对象
+/// 鍙崱璧风墿浣撶殑瀵硅薄
 /// </summary>
 public class Picker : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var item = collision.GetComponent<Item>();
+        var item = collision.GetComponent<ItemRender>();
         if (item != null)
         {
             var itemDetail = InventoryManager.Instance.GetItemDetail(item.ItemCode);

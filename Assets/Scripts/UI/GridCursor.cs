@@ -179,7 +179,7 @@ public class GridCursor : MonoSingleton<GridCursor>
                 if (gridPropertyDetails.isDiggable == true && gridPropertyDetails.daysSinceDug == -1)
                 {
                     Vector3 cursorWorldPos = new Vector3(GetWorldPositionForCursor().x + 0.5f, GetWorldPositionForCursor().y + 0.5f, 0f);
-                    List<Item> itemList = new List<Item>();
+                    List<ItemRender> itemList = new List<ItemRender>();
 
                     UniBase.OverlapHelper.GetComponentsAtBoxLocation(out itemList, cursorWorldPos, FarmSetting.cursorSize, 0f);
 
