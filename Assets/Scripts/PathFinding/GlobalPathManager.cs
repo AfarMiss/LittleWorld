@@ -32,10 +32,14 @@ public class GlobalPathManager : Singleton<GlobalPathManager>, IObserveSceneChan
         var endCellPos = WorldToCell(endPos);
         var startCellPos = WorldToCell(startPos);
 
-        return GlobalPathManager.Instance.CalculatePath(
+        var originalData = GlobalPathManager.Instance.CalculatePath(
             new Vector2Int(startCellPos.x, startCellPos.y),
             new Vector2Int(endCellPos.x, endCellPos.y)
             );
+        originalData.Dequeue();
+        Debug.Log(string.Concat($"startPos: {startPos},startCellPos:{startCellPos},",
+             originalData.Count > 0 ? $"firstPathPoint:{originalData.Peek()}" : ""));
+        return originalData;
 
     }
 

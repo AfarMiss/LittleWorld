@@ -104,17 +104,17 @@ namespace AStar
         public Stack<Node> RetrievePath(List<Node> closedNodes)
         {
             var result = new Stack<Node>();
-            result.Push(closedNodes[closedNodes.Count - 1]);
             var curNode = closedNodes[closedNodes.Count - 1];
-            var parentIndex = GetParentIndex(closedNodes, curNode);
 
-            while (parentIndex > 0)
+            while (curNode != startNode)
             {
-                parentIndex = GetParentIndex(closedNodes, curNode);
-                result.Push(closedNodes[parentIndex]);
+                var parentIndex = GetParentIndex(closedNodes, curNode);
+                result.Push(curNode);
                 curNode = closedNodes[parentIndex];
                 closedNodes.RemoveAt(parentIndex);
             }
+
+            result.Push(curNode);
 
             return result;
 
