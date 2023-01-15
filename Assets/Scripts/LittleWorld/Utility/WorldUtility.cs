@@ -24,7 +24,7 @@ namespace LittleWorld
             {
                 return null;
             }
-            var itemsAtPos = allItemsInfo.FindAll(x => screenRect.ScreenContainsWorldPos(x.gridPos));
+            var itemsAtPos = allItemsInfo.FindAll(x => screenRect.ScreenContainsWorldPos(x.GridPos));
             return itemsAtPos.ToArray();
         }
 

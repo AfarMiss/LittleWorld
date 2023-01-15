@@ -17,7 +17,7 @@ namespace LittleWorldObject
         protected float curHealth;
 
         protected string ItemName;
-        public Vector3Int gridPos;
+        protected Vector3Int gridPos;
         public Vector3 RenderPos
         {
             get

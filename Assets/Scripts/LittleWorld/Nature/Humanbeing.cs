@@ -17,6 +17,7 @@ namespace LittleWorldObject
         public Humanbeing(Vector3Int gridPos) : base(gridPos)
         {
             ItemName = "人类";
+            moveSpeed = 9;
 
             this.gridPos = gridPos;
             actionQueue = new Queue<HumanAction>();

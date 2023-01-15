@@ -39,4 +39,14 @@ public static class VectorExtension
     {
         return new Vector2(worldVector.x, worldVector.y);
     }
+
+    public static bool InStraightLine(this Vector2Int thisPoint, Vector3Int refPoint)
+    {
+        return thisPoint.x == refPoint.x || thisPoint.y == refPoint.y;
+    }
+
+    public static bool InStraightLine(this Vector2Int thisPoint, Vector2Int refPoint)
+    {
+        return thisPoint.x == refPoint.x || thisPoint.y == refPoint.y;
+    }
 }
