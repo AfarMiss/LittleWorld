@@ -183,6 +183,10 @@ AdvertisementsREPORT THIS AD
 
 也可以省下讀取的時間
 
+
+
+Any()方法需要查询对象不为空，否则报错。
+
 参考
 
 1.简单linq查询[https://kw0006667.wordpress.com/2013/05/29/clinq%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-from-where-select/](https://kw0006667.wordpress.com/2013/05/29/clinq%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-from-where-select/)
