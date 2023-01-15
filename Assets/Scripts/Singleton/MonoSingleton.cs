@@ -27,6 +27,20 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
+    public virtual void Initialize()
+    {
+        if (instance == null)
+        {
+            instance = FindObjectOfType<T>();
+            if (instance == null)
+            {
+                var go = new GameObject($"[MonoSingleton]{typeof(T).Name}");
+                instance = go.AddComponent<T>();
+            }
+            DontDestroyOnLoad(instance);
+        }
+    }
+
     /// <summary>
     /// 已经拥有实例
     /// </summary>
@@ -46,7 +60,11 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            if (instance != this)
+            {
+                Debug.LogError($"Already has another singleton for {typeof(T).Name},this has been Destoryed");
+                Destroy(gameObject);
+            }
         }
     }
 

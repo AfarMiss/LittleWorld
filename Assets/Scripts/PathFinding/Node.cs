@@ -21,6 +21,13 @@ namespace AStar
             this.isObstacle = isObstacle;
         }
 
+        public void ClearLastValue()
+        {
+            this.parent = null;
+            gCost = 0;
+            hCost = 0;
+        }
+
         public int CompareTo(Node other)
         {
             var compareF = this.FCost.CompareTo(other.FCost);

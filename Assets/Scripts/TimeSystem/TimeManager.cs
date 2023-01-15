@@ -17,12 +17,14 @@ public class TimeManager : MonoSingleton<TimeManager>, ISaveable
     protected override void Awake()
     {
         base.Awake();
-        iSaveableUniqueID = GetComponent<GenerateGUID>().GUID;
+        iSaveableUniqueID = gameObject.GetOrAddComponent<GenerateGUID>().GUID;
         GameObjectSave = new GameObjectSave();
     }
 
-    public void Init()
+    public override void Initialize()
     {
+        base.Initialize();
+
         curTickTime = 0;
         curGameTime = new GameTime(6000, 1, 1, 6, 0, 0);
         EventCenter.Instance.Trigger(EventEnum.SECOND_CHANGE.ToString(), curGameTime);

@@ -257,7 +257,8 @@ public class GridCursor : MonoSingleton<GridCursor>
 
     public Vector3Int GetGridPositionForPlayer()
     {
-        return grid.WorldToCell(Director.Instance.MainPlayer.transform.position);
+        return Vector3Int.zero;
+        //return grid.WorldToCell(Director.Instance.MainPlayer.transform.position);
     }
 
     public void DisableCursor()

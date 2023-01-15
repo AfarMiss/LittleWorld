@@ -43,6 +43,7 @@ public enum ItemType
     count,
     furniture,
     reapable_scenery,
+    animal,
 }
 
 public enum AnimationName
@@ -155,10 +156,13 @@ public enum Facing
     right,
 }
 
-public enum WorkType
+public enum WorkTypeEnum
 {
     dug,
     water,
+    gotoLoc,
+    chop,
+    harvest,
 }
 
 public enum SoundName
@@ -189,4 +193,10 @@ public enum SoundName
 public enum PoolEnum
 {
     Sounds,
+    Progress,
+}
+
+public enum ActionEnum
+{
+    PICK,
 }

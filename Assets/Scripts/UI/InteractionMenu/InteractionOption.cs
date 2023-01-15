@@ -1,17 +1,18 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InteractionOption : MonoBehaviour
+public class InteractionOption : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Text content;
     [SerializeField] private Image bg;
     public Color focus;
     public Color unfocus;
     private Action OnClickOption;
-    public void BindData(optionStruct option)
+    public void BindData(FloatOption option)
     {
         this.content.text = option.content;
         this.name = option.content;
@@ -27,9 +28,15 @@ public class InteractionOption : MonoBehaviour
     {
         OnClickOption?.Invoke();
     }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnClick();
+        InputController.Instance.CleanInteraction();
+    }
 }
 
-public struct optionStruct
+public class FloatOption
 {
     public string content;
     public Action OnClickOption;

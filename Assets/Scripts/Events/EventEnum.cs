@@ -41,4 +41,12 @@ public enum EventEnum
     #endregion
     GRID_MODIFY,
     INSTANTIATE_CROP_PREFAB,
+
+    REACH_WORK_POINT,
+
+    WORK_GOTO_WORK_POS,
+    WORK_WORKING,
+    WORK_SUSPEND,
+    WORK_DONE,
+    FORCE_ABORT,
 }

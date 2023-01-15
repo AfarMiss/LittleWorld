@@ -12,15 +12,21 @@ public class PathNavigation : MonoBehaviour
 
     private bool curTargetIsReached = true;
     private bool curScheduleIsReached = true;
-    public Vector3 Speed;
+    [HideInInspector] public Vector3 Speed;
+
+    private bool managerInitialized = false;
 
     private async void Start()
     {
-        await TaskHelper.Wait(() => PathManager.Instance.Initialized == true);
+        await TaskHelper.Wait(() => GlobalPathManager.Instance.Initialized == true);
+    }
+
+    public void AStarMove()
+    {
         StartCoroutine(Move());
     }
 
-    public IEnumerator Move()
+    private IEnumerator Move()
     {
         mapGrid = GameObject.FindObjectOfType<Grid>();
 
@@ -30,7 +36,7 @@ public class PathNavigation : MonoBehaviour
             {
                 curScheduleIsReached = false;
                 var currentPos = mapGrid.WorldToCell(transform.position);
-                curPath = PathManager.Instance.CalculatePath(new Vector2Int(currentPos.x, currentPos.y), nPCSchedules[0].targetPos);
+                curPath = GlobalPathManager.Instance.CalculatePath(new Vector2Int(currentPos.x, currentPos.y), nPCSchedules[0].targetPos);
                 StartCoroutine(MoveInPath(nPCSchedules[0]));
                 nPCSchedules.RemoveAt(0);
             }
@@ -57,10 +63,10 @@ public class PathNavigation : MonoBehaviour
                     ac.ResetMovement();
                     switch (nPCSchedule.workType)
                     {
-                        case WorkType.dug:
+                        case WorkTypeEnum.dug:
                             ac.isUsingToolRight = true;
                             break;
-                        case WorkType.water:
+                        case WorkTypeEnum.water:
                             ac.isLiftingToolRight = true;
                             break;
                         default:
@@ -71,10 +77,10 @@ public class PathNavigation : MonoBehaviour
 
                     switch (nPCSchedule.workType)
                     {
-                        case WorkType.dug:
+                        case WorkTypeEnum.dug:
                             ac.isUsingToolRight = false;
                             break;
-                        case WorkType.water:
+                        case WorkTypeEnum.water:
                             ac.isLiftingToolRight = false;
                             break;
                         default:

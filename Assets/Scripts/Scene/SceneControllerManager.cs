@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LittleWorld.Interface;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -54,8 +55,6 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
         yield return StartCoroutine(Fade(1f));
 
         SaveLoadManager.Instance.StoreCurrentSceneData();
-
-        FarmPlayer.Instance.gameObject.transform.position = spawnPos;
 
         EventCenter.Instance.Trigger(EventEnum.BEFORE_SCENE_UNLOAD.ToString());
 

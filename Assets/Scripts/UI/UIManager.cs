@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using LittleWorld.Graphics;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class UIManager : MonoSingleton<UIManager>
 {
+    [SerializeField]
+    private GameObject sliderPrefab;
+
     private Dictionary<UIType, List<BaseUI>> uiDic;
     protected GameObject UICanvas { get; private set; }
 
@@ -20,13 +25,7 @@ public class UIManager : MonoSingleton<UIManager>
         private set
         {
             isShowingPanel = value;
-            SwitchMapState();
         }
-    }
-
-    private void SwitchMapState()
-    {
-        if (!InputManager.Instance) return;
     }
 
     public UIManager()
@@ -38,8 +37,6 @@ public class UIManager : MonoSingleton<UIManager>
         uiDic.Add(UIType.DIALOG, new List<BaseUI>());
         uiDic.Add(UIType.TIP, new List<BaseUI>());
         uiDic.Add(UIType.SCENE_CHANGE, new List<BaseUI>());
-
-        SwitchMapState();
     }
 
     protected override void Awake()
@@ -48,9 +45,11 @@ public class UIManager : MonoSingleton<UIManager>
         //初始化画布
         UICanvas = GameObject.Instantiate(Resources.Load<GameObject>(UIPath.UICanvas));
         UICanvas.transform.SetParent(null);
+
         DontDestroyOnLoad(UICanvas);
 
-        if (GameController.hasInstance) GameController.Instance.Init();
+        UIManager.Instance.Show<MainInfoPanel>(UIType.PANEL, UIPath.Main_UI_Panel);
+        UIManager.Instance.Show<ProgressPanel>(UIType.PANEL, UIPath.Panel_ProgressPanel);
     }
 
     public T Show<T>(UIType uiType, string path) where T : BaseUI
@@ -158,6 +157,36 @@ public class UIManager : MonoSingleton<UIManager>
             }
         }
         return false;
+    }
+
+    private void OnGUI()
+    {
+        if (InputController.Instance.SelectedObjects == null) return;
+        //因为目前底层使用了 UnityEngine.Graphics.DrawTexture
+        //所以需要限制在接收到这个事件时触发。
+        //否则目前可能会产生多重绘制,具体原因尚不清楚。
+        //https://docs.unity3d.com/ScriptReference/Graphics.DrawTexture.html
+        if (Event.current.type.Equals(EventType.Repaint))
+        {
+            #region 绘制选择单位
+            foreach (var item in InputController.Instance.SelectedObjects)
+            {
+                GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.ToWorldVector2(), 1, 1);
+            }
+            #endregion
+
+            #region 绘制路径终点
+            var allNavis = GameObject.FindObjectsOfType<PathNavigationOnly>();
+            foreach (var item in allNavis)
+            {
+                if (!item.atDestination && item.lastStampFrameCount > 0 && Time.frameCount - item.lastStampFrameCount <= 50)
+                {
+                    GraphicsUtiliy.DrawDestinationIcon(item.curDestination, 1, 1, 0.3f);
+                }
+            }
+            #endregion
+
+        }
     }
 }
 
