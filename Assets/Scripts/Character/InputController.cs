@@ -35,52 +35,7 @@ public class InputController : MonoSingleton<InputController>
     private Rect realSelection;
 
     private bool isInit = false;
-
-    public bool MultiPawnSelected =>
-             selectedObjects != null
-        && selectedObjects.Count > 1
-        && selectedObjects.Find(x => x as Humanbeing == null) == null;
-    public bool SinglePawnSelected =>
-            selectedObjects.Count == 1
-    && selectedObjects.Find(x => x as Humanbeing == null) == null;
-    public bool NoSelected => selectedObjects == null || selectedObjects.Count == 0;
-    private bool NonHumanSelected =>
-        selectedObjects.Count == 0
-        || selectedObjects.Find(x => x as Humanbeing == null) != null;
     private bool cameraDraging = false;
-
-
-    private bool MultiTypeSelected
-    {
-        get
-        {
-            if (selectedObjects == null || selectedObjects.Count == 0)
-            {
-                return false;
-            }
-
-            var typeHashSet = new HashSet<Type>();
-            foreach (var item in selectedObjects)
-            {
-                if (typeHashSet.Contains(item.GetType()))
-                {
-                    continue;
-                }
-                else
-                {
-                    if (typeHashSet.Count == 0)
-                    {
-                        typeHashSet.Add(item.GetType());
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            return typeHashSet.Count > 1;
-        }
-    }
 
     protected override void Awake()
     {
@@ -145,12 +100,13 @@ public class InputController : MonoSingleton<InputController>
             CleanInteraction();
 
             //根据框选状态确定执行操作
-            if (NoSelected || NonHumanSelected || MultiTypeSelected)
+            if (selectedObjects.NoSelected() || selectedObjects.NonHumanSelected()
+                || selectedObjects.MultiTypeSelected())
             {
                 return;
             }
             //根据选中单位的信息做出对应操作
-            if (MultiPawnSelected)
+            if (selectedObjects.MultiPawnSelected())
             {
                 //对多人进行操作
                 for (int i = 0; i < selectedObjects.Count; i++)
@@ -161,7 +117,7 @@ public class InputController : MonoSingleton<InputController>
                 }
             }
 
-            if (SinglePawnSelected)
+            if (selectedObjects.SinglePawnSelected())
             {
                 //对单人进行操作
                 var human = SceneItemsManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
@@ -241,7 +197,7 @@ public class InputController : MonoSingleton<InputController>
 
             TryClearSelectedUnits();
 
-            selectedObjects = SelectWorldObjects();
+            selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
 
             Debug.Log("Click.canceled -------");
         }
@@ -282,24 +238,23 @@ public class InputController : MonoSingleton<InputController>
         selectedObjects?.Clear();
     }
 
-    private List<WorldObject> SelectWorldObjects()
+    private List<WorldObject> SelectWorldObjects(SelectType selectType)
     {
-        //展示信息
-        var worldObject = WorldUtility.GetWorldObjectsInRect(realSelection);
+        var worldObjectArray = WorldUtility.GetWorldObjectsInRect(realSelection);
+        var worldObject = worldObjectArray.ToList().GetSelected(selectType);
+
+        if (worldObject == null || worldObject.Count == 0)
         {
-            if (worldObject == null || worldObject.Length == 0)
-            {
-                UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
-                return null;
-            }
-            if (worldObject.Length == 1)
-            {
-                worldObject[0].ShowBriefInfo();
-            }
-            if (worldObject.Length > 1)
-            {
-                WorldObject.ShowMultiInfo(worldObject.Length);
-            }
+            UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
+            return null;
+        }
+        if (worldObject.Count == 1)
+        {
+            worldObject[0].ShowBriefInfo();
+        }
+        if (worldObject.Count > 1)
+        {
+            WorldObject.ShowMultiInfo(worldObject.Count);
         }
         return worldObject.ToList();
     }
