@@ -187,6 +187,36 @@ AdvertisementsREPORT THIS AD
 
 Any()方法需要查询对象不为空，否则报错。
 
+解决方法可以是添加拓展方法
+
+```csharp
+public static class IEnumerableExtension
+{       
+    public static IEnumerable<T> Safe<T>(this IEnumerable<T> source)
+    {
+        if (source == null)
+        {
+            yield break;
+        }
+
+        foreach (var item in source)
+        {
+            yield return item;
+        }
+    }
+}
+```
+
+然后查询时这样写
+
+```csharp
+ if (!myList.Safe().Any())
+ {
+      //一些操作
+      myList.Add("new item"); 
+ }
+```
+
 参考
 
 1.简单linq查询[https://kw0006667.wordpress.com/2013/05/29/clinq%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-from-where-select/](https://kw0006667.wordpress.com/2013/05/29/clinq%E7%B0%A1%E5%96%AE%E4%BD%BF%E7%94%A8-from-where-select/)
