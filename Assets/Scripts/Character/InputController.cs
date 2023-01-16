@@ -194,11 +194,16 @@ public class InputController : MonoSingleton<InputController>
         {
             onClickLeftEndPosition = Current.MousePos;
             selectedArea.gameObject.SetActive(false);
-            if (!UIManager.Instance.ReactMenu)
+
+            var floatMenu = FindObjectOfType<InteractionMenu>();
+            //点击点不包含交互菜单则重新选择框选单位
+            if (floatMenu == null || !(floatMenu.transform as RectTransform).RectangleContainsScreenPoint(Current.MousePos))
             {
+                CleanInteraction();
                 TryClearSelectedUnits();
                 selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
             }
+
             Debug.Log("Click.canceled -------");
         }
     }

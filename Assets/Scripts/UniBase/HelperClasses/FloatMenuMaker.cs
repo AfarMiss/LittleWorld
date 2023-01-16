@@ -30,7 +30,7 @@ namespace LittleWorld.Window
                 }
             }
 
-            UIManager.Instance.ReactMenu = true;
+            UIManager.Instance.ReactMenu = contentList.Count != 0;
             menu.BindData(contentList);
 
             return contentList.ToArray();

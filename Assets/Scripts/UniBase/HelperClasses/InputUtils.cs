@@ -105,5 +105,10 @@ namespace UniBase
             }
             return result;
         }
+
+        public static bool RectangleContainsScreenPoint(this RectTransform rect, Vector2 screenPoint)
+        {
+            return RectTransformUtility.RectangleContainsScreenPoint(rect, screenPoint);
+        }
     }
 }
