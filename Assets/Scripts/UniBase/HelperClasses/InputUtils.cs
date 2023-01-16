@@ -68,8 +68,7 @@ namespace UniBase
                 Debug.LogError("Main Camera is null!");
                 return Vector3.zero;
             }
-            Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPos);
-            return screenPoint;
+            return Camera.main.WorldToScreenPoint(worldPos);
         }
 
         public static Vector3 GetMousePositionToWorldWithSameZ(this Vector3 a)

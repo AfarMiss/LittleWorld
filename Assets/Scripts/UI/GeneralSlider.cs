@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UniBase;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GeneralSlider : MonoBehaviour
 {
     public string uniqueID;
+    public Vector3 sliderFollowPos;
     public float progress
     {
         get
@@ -16,5 +18,10 @@ public class GeneralSlider : MonoBehaviour
         {
             GetComponent<Slider>().value = value;
         }
+    }
+
+    private void Update()
+    {
+        transform.position = InputUtils.GetScreenPosition(sliderFollowPos);
     }
 }

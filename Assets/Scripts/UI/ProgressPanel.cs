@@ -34,6 +34,7 @@ public class ProgressPanel : BaseUI
                 go = PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
                 go.transform.position = screenPos;
                 go.GetComponent<GeneralSlider>().uniqueID = message.uniqueKey;
+                go.GetComponent<GeneralSlider>().sliderFollowPos = message.WorkPos;
             }
             ChangeSlider(go, message);
         }
