@@ -1,4 +1,4 @@
-﻿using LittleWorldObject;
+﻿using LittleWorld.Object;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

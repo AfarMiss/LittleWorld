@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace LittleWorld.Object
 {
-    public class Plant : WorldObject
+    public class Food : WorldObject
     {
-        public Plant(Vector3Int gridPos) : base(gridPos)
+        public float nutrition;
+        public Food(Vector3Int gridPos) : base(gridPos)
         {
         }
     }
 }
-

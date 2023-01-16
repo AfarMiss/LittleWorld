@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace LittleWorldObject
+namespace LittleWorld.Object
 {
     public class WorldObject
     {
@@ -17,6 +17,7 @@ namespace LittleWorldObject
         protected float curHealth;
 
         protected string ItemName;
+        public float mass;
         protected Vector3Int gridPos;
         public Vector3 RenderPos
         {

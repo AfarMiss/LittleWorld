@@ -1,10 +1,11 @@
 ﻿using LittleWorld;
+using LittleWorld.Work;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LittleWorldObject
+namespace LittleWorld.Object
 {
     public class Humanbeing : Animal
     {
@@ -29,6 +30,7 @@ namespace LittleWorldObject
             Action whenReached = null;
             var totalWorkAmount = 24;
             var showPercent = true;
+            var workerPos = WorkUtility.GetRandomWorkAroundPoint(targetPos);
             switch (workType)
             {
                 case WorkTypeEnum.dug:
@@ -38,6 +40,7 @@ namespace LittleWorldObject
                     totalWorkAmount = 240;
                     break;
                 case WorkTypeEnum.gotoLoc:
+                    workerPos = targetPos;
                     showPercent = false;
                     totalWorkAmount = 0;
                     break;
@@ -60,6 +63,7 @@ namespace LittleWorldObject
     targetPos,
     0,
     totalWorkAmount,
+    workerPos,
     showPercent);
 
             if (!Current.IsAdditionalMode)

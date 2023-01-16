@@ -1,4 +1,4 @@
-﻿using LittleWorldObject;
+﻿using LittleWorld.Object;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +9,8 @@ namespace LittleWorld
     {
         public string uniqueKey;
         public Action WhenReached => whenReached;
-        public Vector3Int WorkPos => workPos;
+        public Vector3Int WorkerPos => workerPos;
+        private Vector3Int workerPos;
 
         public int workTotalAmount;
         public int curFinishedAmount;
@@ -51,12 +52,14 @@ namespace LittleWorld
         private WorkTypeEnum workType;
         private Action whenReached;
         private Vector3Int workPos;
+        public Vector3Int WorkPos => workPos;
         public bool showPercent;
 
         public SingleWork(string uniqueKey, Humanbeing worker,
             WorkStateEnum workState, WorkTypeEnum workType,
             Action whenReached, Vector3Int workPos,
             int curFinishedAmount, int workTotalAmount,
+            Vector3Int workerPos,
             bool showPercent = false
             )
         {
@@ -69,6 +72,7 @@ namespace LittleWorld
             this.curFinishedAmount = curFinishedAmount;
             this.workTotalAmount = workTotalAmount;
             this.showPercent = showPercent;
+            this.workerPos = workerPos;
         }
     }
 }

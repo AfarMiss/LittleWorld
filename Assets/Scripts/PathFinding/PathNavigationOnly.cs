@@ -1,6 +1,6 @@
 ﻿using LittleWorld;
 using LittleWorld.Extension;
-using LittleWorldObject;
+using LittleWorld.Object;
 using System.Collections.Generic;
 using System.Linq;
 using UniBase;
@@ -129,7 +129,7 @@ public class PathNavigationOnly : MonoBehaviour
     {
         var worldPos = GlobalPathManager.Instance.CellToWorld(new Vector3Int(target.x, target.y, 0));
         var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
-        Debug.Log("human.gridPos:" + human.GridPos);
+        //Debug.Log("human.gridPos:" + human.GridPos);
 
         if (walkLeftCost > 0)
         {
@@ -162,8 +162,8 @@ public class PathNavigationOnly : MonoBehaviour
             return;
         }
         var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
-        curPath = GlobalPathManager.Instance.CreateNewPath(human.GridPos, work.WorkPos);
-        curDestination = work.WorkPos.ToWorldVector2Int();
+        curPath = GlobalPathManager.Instance.CreateNewPath(human.GridPos, work.WorkerPos);
+        curDestination = work.WorkerPos.ToWorldVector2Int();
         lastStampFrameCount = Time.frameCount;
         atDestination = false;
     }
