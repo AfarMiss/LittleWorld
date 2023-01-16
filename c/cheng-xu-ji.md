@@ -11,8 +11,7 @@ description: 理解TA的动作，让大家更高效的协作
 
 应用程序结构：包含 应用程序域（AppDomain），程序集（Assembly），模块（Module），类型（Type），成员（EventInfo、FieldInfo、MethodInfo、PropertyInfo） 几个层次。
 
-DLL文件的生成路径：**项目路径**\Library\ScriptAssemblies\xxxx.dll。\
-
+DLL文件的生成路径：**项目路径**\Library\ScriptAssemblies\xxxx.dll。\\
 
 ![](https://img-blog.csdnimg.cn/20200329102627414.png?x-oss-process=image/watermark,type\_ZmFuZ3poZW5naGVpdGk,shadow\_10,text\_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzQwNTg0NQ==,size\_16,color\_FFFFFF,t\_70)
 
@@ -30,7 +29,7 @@ DLL文件的生成路径：**项目路径**\Library\ScriptAssemblies\xxxx.dll。
 
 2.开发过程中如果进行了编辑器扩展，创建了**Editor**文件夹，并在该目录下编写了脚本，则默认编译到Assembly-CSharp-Editor.dll文件中。
 
-![](../.gitbook/assets/20200329104201481.png)
+![](<../.gitbook/assets/20200329104201481 (1).png>)
 
 ## 自定义程序集
 
@@ -50,15 +49,11 @@ DLL文件的生成路径：**项目路径**\Library\ScriptAssemblies\xxxx.dll。
 
 为了将非子文件夹下的脚本添加到一个已存在的程序集中，可在此文件夹下创建程序集引用资源。
 
-
-
 每个文件夹中，只能创建一个程序集定义或程序集定义引用。
 
 如果在已经具有程序集定义或程序集定义引用的文件夹的子文件夹中创建程序集定义或程序集定义引用，则 Unity 会将子文件夹中的所有脚本及其子项编译到子文件夹中定义的程序集内，而不是父文件夹中定义的程序集内。
 
-
-
-## 参考资料&#x20;
+## 参考资料
 
 1. Unity关于程序集（Assembly ）的那些事\_DwarfTitan的博客-程序员宅基地[https://www.cxyzjd.com/article/weixin\_43405845/105174096](https://www.cxyzjd.com/article/weixin\_43405845/105174096)。
 2. 官方关于程序集的论述[https://docs.unity3d.com/cn/2020.3/Manual/ScriptCompilationAssemblyDefinitionFiles.html](https://docs.unity3d.com/cn/2020.3/Manual/ScriptCompilationAssemblyDefinitionFiles.html)

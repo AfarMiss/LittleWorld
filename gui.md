@@ -14,7 +14,7 @@ Unity 的 IMGUI 控件使用一个名为 OnGUI() 的特殊函数。只要启用�
 
 #### Position
 
-**Position** 是所有 **GUI** 控件函数中的第一个参数。此参数本身随附一个 **Rect()** 函数。**Rect()** 定义四个属性：\_\_最左侧位置**、**最顶部位置**、**总宽度**、**总高度**。所有这些值都以\_\_整数\_\_提供，对应于像素值。所有 UnityGUI 控件均在\_\_屏幕空间 (Screen Space)** 中工作，此空间表示已发布的播放器的分辨率（以像素为单位）。
+**Position** 是所有 **GUI** 控件函数中的第一个参数。此参数本身随附一个 **Rect()** 函数。**Rect()** 定义四个属性：\_\_最左侧位置\*\*、**最顶部位置**、**总宽度**、**总高度**。所有这些值都以\_\_整数\_\_提供，对应于像素值。所有 UnityGUI 控件均在\_\_屏幕空间 (Screen Space)\*\* 中工作，此空间表示已发布的播放器的分辨率（以像素为单位）。
 
 控件种类
 
@@ -25,8 +25,6 @@ Button,InputField,label,repeatButton,TextArea,Toggle,ToolBar,SelectionGrid,Horiz
 GUISkin 只不过是 GUIStyle 的集合。
 
 ### 使用GUIStyle
-
-
 
 要声明GUIStyle变量，可以在脚本中声明：
 
@@ -197,8 +195,6 @@ void OnGUI () {
 
 水平组内的所有控件都将始终采用水平布局方式。垂直组内的所有控件都将始终采用垂直布局方式。这听起来很简单，但若要将组嵌套在彼此内部，就不那么简单了。通过嵌套的方式可在任何能够想象的配置中排列任意数量的控件。
 
-
-
 <pre><code>// C# using UnityEngine; using System.Collections;
 public class GUITest : MonoBehaviour {
 <strong>private float sliderValue = 1.0f;
@@ -231,7 +227,7 @@ void OnGUI()
 }
 </code></pre>
 
-<figure><img src=".gitbook/assets/gsg-NestedGroupsLayout.png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
+<figure><img src=".gitbook/assets/gsg-NestedGroupsLayout (1).png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
 
 ### 使用 GUILayoutOption 定义一些控件
 
@@ -252,8 +248,6 @@ void OnGUI()
 <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
 
 ### 复合控件
-
-
 
 ```
 public class TestGUIStyle : MonoBehaviour 
@@ -283,8 +277,6 @@ float LabelSlider(Rect screenRect, float sliderValue, float sliderMaxValue, stri
 
 修改上述代码
 
-
-
 <pre><code>// C# using UnityEngine; using System.Collections;
 public class CompoundControls : MonoBehaviour {
 <strong>public static float LabelSlider (Rect screenRect, float sliderValue, float sliderMaxValue, string labelText) {
@@ -302,8 +294,6 @@ public class CompoundControls : MonoBehaviour {
 通过将以上示例保存在名为 **CompoundControls** 的脚本中，只需输入 **CompoundControls.LabelSlider()** 并提供参数，即可从任何其他脚本调用 **LabelSlider()** 函数。
 
 ### 复合控件的嵌套
-
-
 
 ```
 // C# using UnityEngine; using System.Collections;
@@ -344,8 +334,6 @@ Color RGBSlider (Rect screenRect, Color rgb) {
 3.以及自定义脚本Inspector窗口样式
 
 4.使用TreeView展示层级数据（未细看）
-
-
 
 ## 参考资料
 
