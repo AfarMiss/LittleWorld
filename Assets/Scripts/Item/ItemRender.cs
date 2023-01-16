@@ -25,7 +25,10 @@ public class ItemRender : MonoBehaviour
         }
 
         spriteRenderer.sprite = itemDetail.itemSprite;
-        spriteRenderer.transform.localPosition = new Vector3(spriteRenderer.size.x / 2, spriteRenderer.size.y / 2, 0);
+        spriteRenderer.transform.localScale = Vector3.one;
+        var xOffset = spriteRenderer.sprite.pivot.x / spriteRenderer.sprite.pixelsPerUnit;
+        var yOffset = spriteRenderer.sprite.pivot.y / spriteRenderer.sprite.pixelsPerUnit;
+        spriteRenderer.transform.localPosition = new Vector3(xOffset, yOffset, 0);
 
         this.ItemCode = itemCode;
     }
