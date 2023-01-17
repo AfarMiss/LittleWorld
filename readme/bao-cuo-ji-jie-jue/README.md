@@ -8,14 +8,14 @@
 
 用Visual Studio Installer安装Desktop Development With C++
 
-
-
 **UnityException: FindObjectsOfType is not allowed to be called from a MonoBehaviour constructor (or instance field initializer), call it in Awake or Start instead. Called from MonoBehaviour 'UIManager' on game object '\[MonoSingleton]UIManager'. See "Script Serialization" page in the Unity Manual for further details.**
 
-****
+***
 
-不能在MonoBehaviour 的构造器或Instance属性中使用FindObjectsOfType&#x20;
+不能在MonoBehaviour 的构造器或Instance属性中使用FindObjectsOfType
 
 也就是说MonoBehaviour其实是可以有构造函数的，只不过有额外的一些限制。
+
+Resource.Load方法无法在继承了MonoBehaviour的类中的构造器中使用。具体可见Unity手册中脚本序列化(Script Serialization)一节。
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
