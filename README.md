@@ -36,6 +36,10 @@ int\[] 三角形顶点，所存储数字与vertices索引对应，三角形三�
 
 
 
+## Texture的Filter Mode
+
+
+
 参考
 
 1.[https://blog.csdn.net/qq\_19533777/article/details/104528361](https://blog.csdn.net/qq\_19533777/article/details/104528361)
