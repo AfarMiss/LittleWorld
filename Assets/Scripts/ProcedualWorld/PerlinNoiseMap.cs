@@ -10,8 +10,7 @@ namespace ProcedualWorld
     public class PerlinNoiseMap : MonoBehaviour
     {
         Dictionary<int, Sprite> tileset;
-        [SerializeField]
-        TextureManager textureManager;
+        TextureManager textureManager => TextureManager.Instance;
         [SerializeField]
         private GameObject prefab_terrain;
         [SerializeField]
@@ -27,8 +26,8 @@ namespace ProcedualWorld
             return seed.GetHashCode() % 50000;
         }
 
-        public int map_width = 32;
-        public int map_height = 18;
+        public int map_width = 100;
+        public int map_height = 100;
 
         public float lacunarity = 2;
 
@@ -77,7 +76,7 @@ namespace ProcedualWorld
             tile.GetComponent<SpriteRenderer>().sprite = tileSprite;
 
             tile.name = string.Format("tile_x{0}_y{1}", x, y);
-            tile.transform.localPosition = new Vector3(x, y, 0);
+            tile.transform.localPosition = new Vector3(x - map_width / 2, y - map_height / 2, 0);
         }
     }
 }

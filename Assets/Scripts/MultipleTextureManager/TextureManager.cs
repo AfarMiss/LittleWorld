@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MultipleTxture
 {
-    public class TextureManager : MonoBehaviour
+    public class TextureManager : MonoSingleton<TextureManager>
     {
         [SerializeField]
         private TextureDatabase database;
