@@ -66,5 +66,35 @@ namespace LittleWorld.Graphics
             DrawTexture(new Rect(screenRect, new Vector2(textureWidth, textureHeight)), tex);
         }
 
+        public static Texture2D SpriteToTexture(Sprite sprite)
+        {
+            var targetTex = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
+            var pixels = sprite.texture.GetPixels(
+                (int)sprite.textureRect.x,
+                (int)sprite.textureRect.y,
+                (int)sprite.textureRect.width,
+                (int)sprite.textureRect.height);
+            targetTex.SetPixels(pixels);
+            targetTex.Apply();
+
+            return targetTex;
+        }
+
+        public static Sprite TextureToSprite(Texture2D t2d)
+        {
+            return Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), Vector2.zero);
+        }
+
+        public static Texture2D CloneTexture(Texture2D originTex)
+        {
+            Texture2D newTex;
+            newTex = new Texture2D(originTex.width, originTex.height);
+            Color[] colors = originTex.GetPixels(0, 0, originTex.width, originTex.height);
+            newTex.SetPixels(colors);
+            newTex.Apply();
+
+            return newTex;
+        }
+
     }
 }
