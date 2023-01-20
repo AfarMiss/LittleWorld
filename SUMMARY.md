@@ -3,6 +3,7 @@
 * [项目引言](README.md)
 * [程序化生成地面](cheng-xu-hua-sheng-cheng-di-mian/README.md)
   * [柏林噪声](cheng-xu-hua-sheng-cheng-di-mian/bai-lin-zao-sheng.md)
+  * [Cellular Automata](cheng-xu-hua-sheng-cheng-di-mian/cellular-automata.md)
 * [数据持久化](<README (2).md>)
   * [XML](shu-ju-chi-jiu-hua/xml.md)
   * [存储路径](shu-ju-chi-jiu-hua/cun-chu-lu-jing.md)
