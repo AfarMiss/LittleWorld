@@ -53,7 +53,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     public SO_GridProperties GetActiveSceneGridProperties()
     {
-        foreach (var item in so_gridPropertiesArray)
+        foreach (SO_GridProperties item in so_gridPropertiesArray)
         {
             if (SceneManager.GetActiveScene().name == item.sceneName.ToString())
             {

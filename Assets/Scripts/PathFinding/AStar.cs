@@ -4,7 +4,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Analytics;
 
-namespace AStar
+namespace AStarUtility
 {
     public class AStar
     {

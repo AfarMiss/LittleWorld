@@ -1,17 +1,16 @@
-﻿using AStar;
+﻿using AStarUtility;
 using LittleWorld;
 using LittleWorld.Interface;
+using LittleWorld.MapUtility;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GlobalPathManager : Singleton<GlobalPathManager>, IObserveSceneChange
+public class GlobalPathManager : Singleton<GlobalPathManager>
 {
     private Grid mapGrid;
-    public bool Initialized => initialized;
-    private bool initialized = false;
-    AStar.AStar aStar;
-    private SO_GridProperties gridProperties;
+    public Map curMap;
+    public string seed;
 
     private GlobalPathManager()
     {
@@ -32,92 +31,24 @@ public class GlobalPathManager : Singleton<GlobalPathManager>, IObserveSceneChan
         var endCellPos = WorldToCell(endPos);
         var startCellPos = WorldToCell(startPos);
 
-        var originalData = GlobalPathManager.Instance.CalculatePath(
+        var originalData = curMap.CalculatePath(
             new Vector2Int(startCellPos.x, startCellPos.y),
             new Vector2Int(endCellPos.x, endCellPos.y)
             );
-        originalData.Dequeue();
+        originalData.TryDequeue(out var path);
         Debug.Log(string.Concat($"startPos: {startPos},startCellPos:{startCellPos},",
-             originalData.Count > 0 ? $"firstPathPoint:{originalData.Peek()}" : ""));
+             originalData.Count > 0 ? $"firstPathPoint:{originalData.TryPeek(out var firstPathPoint)}" : ""));
         return originalData;
-
     }
 
     public override void Initialize()
     {
         base.Initialize();
-        EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), InitMapInfo);
-
-        ObserveChangeSceneRegister();
+        EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), InitAllMaps);
     }
 
-    private void InitMapInfo()
+    private void InitAllMaps()
     {
-        gridProperties = GridPropertiesManager.Instance.GetActiveSceneGridProperties();
-
-        aStar = new AStar.AStar(
-gridProperties.gridWidth,
-gridProperties.gridHeight,
-gridProperties.originX,
-gridProperties.originY
-);
-
-        foreach (var grid in gridProperties.gridPropertyList)
-        {
-            if (grid.gridBoolProperty == GridBoolProperty.isNPCObstacle)
-            {
-                aStar.SetObstacle(grid.gridCoordinate.x, grid.gridCoordinate.y);
-            }
-        }
-
-        initialized = true;
-    }
-
-    public Queue<Vector2Int> CalculatePath(Vector2Int startPos, Vector2Int endPos)
-    {
-        aStar.SetStartPos(startPos);
-        aStar.SetEndPos(endPos);
-        var path = aStar.CalculatePath(out var findPath);
-        return OutputPath(path, findPath);
-    }
-
-    public void SetStartPos(Vector2Int startPos)
-    {
-        aStar.SetStartPos(startPos);
-    }
-
-    public Queue<Vector2Int> OutputPath(Stack<Node> nodes, bool found)
-    {
-        Queue<Vector2Int> result = new Queue<Vector2Int>();
-        while (nodes != null && nodes.Count > 0)
-        {
-            Node curNode = nodes.Pop();
-            result.Enqueue(curNode.pos + new Vector2Int(aStar.originalX, aStar.originalY));
-        }
-        return result;
-    }
-
-    public void SetEndPos(Vector2Int endPos)
-    {
-        aStar.SetEndPos(endPos);
-    }
-
-    public void AfterSceneLoad()
-    {
-        mapGrid = GameObject.FindObjectOfType<Grid>();
-    }
-
-    public void BeforeSceneUnload()
-    {
-    }
-
-    public void ObserveChangeSceneRegister()
-    {
-        Root.Instance.ObserveSceneChanges.Add(this);
-    }
-
-    public void ObserveChangeSceneUnregister()
-    {
-        Root.Instance.ObserveSceneChanges.Remove(this);
+        curMap = new Map(new Vector2Int(100, 100), seeds);
     }
 }
