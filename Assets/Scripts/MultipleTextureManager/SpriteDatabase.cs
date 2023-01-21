@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace MultipleTxture
 {
-    [CreateAssetMenu(fileName = "TextureDatabase", menuName = "ScriptableObject/TextureDatabase")]
-    public class TextureDatabase : ScriptableObject
+    [CreateAssetMenu(fileName = "SpriteDatabase", menuName = "ScriptableObject/SpriteDatabase")]
+    public class SpriteDatabase : ScriptableObject
     {
-        public List<TextureDetail> textureDetailList;
+        public List<SpriteDetail> textureDetailList;
 
         public Sprite Get(string terrainName)
         {

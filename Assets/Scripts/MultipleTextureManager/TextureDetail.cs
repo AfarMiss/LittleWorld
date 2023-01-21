@@ -5,7 +5,7 @@ using UnityEngine;
 namespace MultipleTxture
 {
     [System.Serializable]
-    public class TextureDetail
+    public class SpriteDetail
     {
         public string spriteName;
         public Sprite sprite;

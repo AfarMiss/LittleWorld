@@ -7,7 +7,7 @@ namespace MultipleTxture
     public class TextureManager : MonoSingleton<TextureManager>
     {
         [SerializeField]
-        private TextureDatabase database;
+        private SpriteDatabase database;
 
 
         public Sprite GetTerrain(string terrainName)

@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace LittleWorld.Map
 {
-    public class Map
+    public class MapGridDetails
     {
-        public Vector2Int MapSize;
-        public MapGridDetails[] GridDetails;
+        public Vector2Int pos;
+        public float altitude;
     }
-
 }

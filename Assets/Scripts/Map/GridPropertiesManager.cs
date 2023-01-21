@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MultipleTxture;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.U2D.Path;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -12,8 +14,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private Transform cropParentTransform;
 
-    private Tilemap groundDecoration1;
-    private Tilemap groundDecoration2;
+    private Tilemap waterLayer;
+    private Tilemap plainLayer;
     private bool isFirstTimeSceneLoaded = true;
     /// <summary>
     /// 当前地图格子设置信息
@@ -32,6 +34,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     private Tile[] dugGround = null;
     [SerializeField]
     private Tile[] waterGround = null;
+    public Tile[] BasicTerrainTiles => basicTerrainTiles;
+    private Tile[] basicTerrainTiles = null;
 
     private string iSaveableUniqueID;
     public string ISaveableUniqueID { get => iSaveableUniqueID; set => iSaveableUniqueID = value; }
@@ -65,6 +69,41 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
         EventCenter.Instance?.Register<GameTime>(EventEnum.DAY_CHANGE.ToString(), OnAdvanceDay);
         EventCenter.Instance?.Register<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify);
+
+        FormatBasicTerrainData();
+
+    }
+
+    private void FormatBasicTerrainData()
+    {
+        basicTerrainTiles = new Tile[3];
+        var waterTile = new Tile()
+        {
+            sprite = TextureManager.Instance.GetTerrain("TEX_water"),
+            name = "TEX_water"
+        };
+        basicTerrainTiles[0] = waterTile;
+        basicTerrainTiles[1] = new Tile()
+        {
+            sprite = TextureManager.Instance.GetTerrain("TEX_plain"),
+            name = "TEX_plain"
+        };
+        basicTerrainTiles[2] = new Tile()
+        {
+            sprite = TextureManager.Instance.GetTerrain("TEX_mountain"),
+            name = "TEX_mountain"
+        };
+    }
+
+    public Tile GetBasicTerrainTile(int index)
+    {
+        return basicTerrainTiles[index];
+    }
+
+    public void SetTile(string mapName, Vector3 pos, Tile tile)
+    {
+        var tilemap = GameObject.FindGameObjectWithTag(mapName).GetComponent<Tilemap>();
+        tilemap.SetTile(pos.ToCell(), tile);
     }
 
     private void OnDisable()
@@ -99,9 +138,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         }
 
         grid = GameObject.FindObjectOfType<Grid>();
-
-        groundDecoration1 = GameObject.FindGameObjectWithTag(Tags.GroundDecoration1).GetComponent<Tilemap>();
-        groundDecoration2 = GameObject.FindGameObjectWithTag(Tags.GroundDecoration2).GetComponent<Tilemap>();
+        waterLayer = GameObject.FindGameObjectWithTag(Tags.Water).GetComponent<Tilemap>();
+        plainLayer = GameObject.FindGameObjectWithTag(Tags.Plain).GetComponent<Tilemap>();
     }
 
     public void ISaveableDeregister()
@@ -121,8 +159,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private void ClearDisplayGrouondDecorations()
     {
-        groundDecoration1?.ClearAllTiles();
-        groundDecoration2?.ClearAllTiles();
+        waterLayer?.ClearAllTiles();
+        plainLayer?.ClearAllTiles();
     }
 
     private void ClearDisplayGridPropertyDetails()
@@ -185,7 +223,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         if (adjacentGridPropertyDetails != null && adjacentGridPropertyDetails.daysSinceDug > -1)
         {
             Tile dugTile = SetTile(gridX, gridY, dugGround, IsGridDug);
-            groundDecoration1.SetTile(new Vector3Int(gridX, gridY, 0), dugTile);
+            waterLayer.SetTile(new Vector3Int(gridX, gridY, 0), dugTile);
         }
 
         return adjacentGridPropertyDetails;
@@ -198,7 +236,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         if (adjacentGridPropertyDetails != null && adjacentGridPropertyDetails.daysSinceWatered > -1)
         {
             Tile waterTile = SetTile(gridX, gridY, waterGround, IsGridWatered);
-            groundDecoration2.SetTile(new Vector3Int(gridX, gridY, 0), waterTile);
+            plainLayer.SetTile(new Vector3Int(gridX, gridY, 0), waterTile);
         }
 
         return adjacentGridPropertyDetails;
@@ -325,7 +363,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
             cropPrefab = cropDetails.growthPrefab[currentGrowthStage];
             Sprite growthSprite = cropDetails.growthSprite[currentGrowthStage];
-            Vector3 worldPosition = groundDecoration2.CellToWorld(new Vector3Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY, 0));
+            Vector3 worldPosition = plainLayer.CellToWorld(new Vector3Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY, 0));
             worldPosition = new Vector3(worldPosition.x + FarmSetting.gridCellSize / 2, worldPosition.y, worldPosition.z);
             GameObject cropInstance = Instantiate(cropPrefab, worldPosition, Quaternion.identity);
 

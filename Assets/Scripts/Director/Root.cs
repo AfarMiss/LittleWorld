@@ -1,4 +1,5 @@
 ﻿using LittleWorld.Interface;
+using MultipleTxture;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace LittleWorld
         private TimeManager timeManager;
         private GlobalPathManager globalPathManager;
         private PoolManager poolManager;
+        private TextureManager textureManager;
 
         public List<IObserveSceneChange> ObserveSceneChanges;
 
@@ -60,6 +62,7 @@ namespace LittleWorld
             sceneItemsManager = SceneItemsManager.Instance;
             globalPathManager = GlobalPathManager.Instance;
             poolManager = PoolManager.Instance;
+            textureManager = TextureManager.Instance;
 
             uIManager.Initialize();
             timeManager.Initialize();

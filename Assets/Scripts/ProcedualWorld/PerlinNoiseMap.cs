@@ -71,12 +71,20 @@ namespace ProcedualWorld
 
         private void RenderTile(int tile_id, int x, int y)
         {
-            Sprite tileSprite = tileset[tile_id];
-            GameObject tile = Instantiate(prefab_terrain, transform);
-            tile.GetComponent<SpriteRenderer>().sprite = tileSprite;
+            var curTile = GridPropertiesManager.Instance.GetBasicTerrainTile(tile_id);
+            switch (tile_id)
+            {
+                case 0:
+                    GridPropertiesManager.Instance.SetTile("Water", new Vector3(x - map_width / 2, y - map_height / 2, 0), curTile);
+                    break;
+                case 1:
+                case 2:
+                    GridPropertiesManager.Instance.SetTile("Plain", new Vector3(x - map_width / 2, y - map_height / 2, 0), curTile);
+                    break;
+                default:
+                    break;
+            }
 
-            tile.name = string.Format("tile_x{0}_y{1}", x, y);
-            tile.transform.localPosition = new Vector3(x - map_width / 2, y - map_height / 2, 0);
         }
     }
 }
