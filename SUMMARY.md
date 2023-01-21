@@ -70,6 +70,7 @@
     * [安装package后无法引用的问题](readme/bao-cuo-ji-jie-jue/an-zhuang-package-hou-wu-fa-yin-yong-de-wen-ti.md)
   * [Project Setting](readme/project-setting.md)
   * [Job System](readme/job-system.md)
+  * [常用属性](readme-1/chang-yong-shu-xing.md)
 * [模块化设计](unity/gong-neng-mo-kuai/README.md)
   * [对于模块化设计的一些思考](dui-yu-mo-kuai-hua-she-ji-de-yi-xie-si-kao.md)
   * [按键设置](unity/gong-neng-mo-kuai/an-jian-she-zhi/README.md)
