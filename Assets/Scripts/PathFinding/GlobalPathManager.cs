@@ -49,6 +49,6 @@ public class GlobalPathManager : Singleton<GlobalPathManager>
 
     private void InitAllMaps()
     {
-        curMap = new Map(new Vector2Int(100, 100), seeds);
+        curMap = new Map(new Vector2Int(100, 100), seed);
     }
 }
