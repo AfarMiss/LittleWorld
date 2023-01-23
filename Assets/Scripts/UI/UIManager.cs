@@ -54,6 +54,12 @@ public class UIManager : MonoSingleton<UIManager>
         //UIManager.Instance.Show<ProgressPanel>(UIType.PANEL, UIPath.Panel_ProgressPanel);
     }
 
+    public T ShowPanel<T>(string path = null) where T : BaseUI, new()
+    {
+        string realPath = path != null ? path : $"Prefabs/UI/Panel/{typeof(T).Name}";
+        return Show<T>(UIType.PANEL, realPath);
+    }
+
     public T Show<T>(UIType uiType, string path) where T : BaseUI, new()
     {
         GameObject parent = GameObject.FindGameObjectWithTag("UICanvas");
@@ -67,6 +73,7 @@ public class UIManager : MonoSingleton<UIManager>
             if (item.Path == path)
             {
                 item.gameObject.SetActive(true);
+                item.transform.SetAsLastSibling();
 
                 item.OnEnter();
                 SetManagerProperty(uiType);
@@ -133,6 +140,33 @@ public class UIManager : MonoSingleton<UIManager>
                 SetManagerProperty(uiType);
                 return;
             }
+        }
+    }
+
+    public void HideAll(UIType uiType, bool destroyIt = false)
+    {
+        foreach (BaseUI item in uiDic[uiType])
+        {
+            item.OnExit();
+            if (destroyIt)
+            {
+                uiDic[uiType].Remove(item);
+                Destroy(item.gameObject);
+            }
+            else
+            {
+                item.gameObject.SetActive(false);
+            }
+            SetManagerProperty(uiType);
+        }
+    }
+
+
+    public void HideAll(bool destroyIt = false)
+    {
+        foreach (var item in uiDic)
+        {
+            HideAll(item.Key);
         }
     }
 

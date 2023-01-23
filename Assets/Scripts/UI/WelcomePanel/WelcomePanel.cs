@@ -10,5 +10,15 @@ namespace LittleWorld.UI
         public override string Path => base.Path;
 
         public override UIType UiType => UIType.PANEL;
+
+        public void OnClickStartNewGame()
+        {
+            UIManager.Instance.ShowPanel<StartNewGamePanel>();
+        }
+
+        public void OnClickLoadGame()
+        {
+
+        }
     }
 }

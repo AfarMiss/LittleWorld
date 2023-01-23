@@ -1,9 +1,11 @@
 ﻿
 using LittleWorld.Object;
+using LittleWorld.Extension;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEditor.PlayerSettings;
@@ -29,7 +31,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         base.Awake();
 
         ItemInstanceID = 0;
-        ISaveableUniqueID = GetComponent<GenerateGUID>().GUID;
+        ISaveableUniqueID = gameObject.GetOrAddComponent<GenerateGUID>().GUID;
         GameObjectSave = new GameObjectSave();
         pawnManager = PawnManager.Instance;
 
