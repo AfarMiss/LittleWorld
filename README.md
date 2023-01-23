@@ -2,7 +2,7 @@
 
 ## **项目类型**
 
-类Rimworld游戏开发，模拟经营类，持续开发中。从Entry场景进入。
+类Rimworld游戏开发，模拟经营类，持续开发中。从PersistentScene场景进入。
 
 ## 开发计划
 
