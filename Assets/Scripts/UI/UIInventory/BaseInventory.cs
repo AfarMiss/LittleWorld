@@ -15,7 +15,7 @@ public abstract class BaseInventory : BaseUI
 
     public bool IsInBottom { get => isInBottom; }
 
-    public override string path => "";
+    public override string Path => "";
 
     protected virtual void CheckUIPos() { }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PausePanel : BaseUI
 {
-    public override string path => UIPath.Panel_PausePanel;
+    public override string Path => UIPath.Panel_PausePanel;
     [SerializeField] private List<SettingPanelBtn> pausePagesBtns;
 
     private void Start()

@@ -123,9 +123,8 @@ public enum PartVariantType
 public enum SceneEnum
 {
     PersistentSccene,
-    Scene1_Farm,
-    Scene2_Field,
-    Scene3_Cabin,
+    FarmScene,
+    Entry,
 }
 
 public enum GridBoolProperty

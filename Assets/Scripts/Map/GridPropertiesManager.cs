@@ -138,8 +138,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         }
 
         grid = GameObject.FindObjectOfType<Grid>();
-        waterLayer = GameObject.FindGameObjectWithTag(Tags.Water).GetComponent<Tilemap>();
-        plainLayer = GameObject.FindGameObjectWithTag(Tags.Plain).GetComponent<Tilemap>();
+        waterLayer = GameObject.FindGameObjectWithTag(Tags.Water)?.GetComponent<Tilemap>();
+        plainLayer = GameObject.FindGameObjectWithTag(Tags.Plain)?.GetComponent<Tilemap>();
     }
 
     public void ISaveableDeregister()

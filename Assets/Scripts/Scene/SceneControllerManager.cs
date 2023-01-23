@@ -85,11 +85,4 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
 
         StartCoroutine(Fade(0f));
     }
-
-    [ContextMenu("LoadFarm")]
-    public void LoadFarm()
-    {
-        var curPlayerPoint = GameObject.FindGameObjectWithTag(Tags.PlayerRespawnPoint);
-        SceneControllerManager.Instance.TryChangeScene(SceneEnum.Scene1_Farm.ToString(), curPlayerPoint.transform.position);
-    }
 }

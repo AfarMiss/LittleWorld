@@ -10,4 +10,6 @@
 
     public static string Image_Selected = "Assets\\Resources\\MiniMap\\MiniWorldSprites\\User Interface\\BoxSelector.png";
     public static string Image_Destination = "Assets\\Resources\\MiniMap\\MiniWorldSprites\\User Interface\\CircleLarge_OutlineOnly.png";
+
+    public static string Panel_WelcomePanel = "Prefabs/UI/Panel/WelcomePanel";
 }

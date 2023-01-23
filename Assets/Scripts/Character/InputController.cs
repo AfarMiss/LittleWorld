@@ -184,6 +184,10 @@ public class InputController : MonoSingleton<InputController>
 
     public void OnClickLeft(CallbackContext callbackContext)
     {
+        if (Root.Instance.GameState != GameState.PLAYING)
+        {
+            return;
+        }
         if (callbackContext.started)
         {
             onClickLeftStartPosition = Current.MousePos;

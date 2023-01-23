@@ -50,13 +50,12 @@ public class UIManager : MonoSingleton<UIManager>
 
         DontDestroyOnLoad(UICanvas);
 
-        UIManager.Instance.Show<MainInfoPanel>(UIType.PANEL, UIPath.Main_UI_Panel);
-        UIManager.Instance.Show<ProgressPanel>(UIType.PANEL, UIPath.Panel_ProgressPanel);
+        //UIManager.Instance.Show<MainInfoPanel>(UIType.PANEL, UIPath.Main_UI_Panel);
+        //UIManager.Instance.Show<ProgressPanel>(UIType.PANEL, UIPath.Panel_ProgressPanel);
     }
 
-    public T Show<T>(UIType uiType, string path) where T : BaseUI
+    public T Show<T>(UIType uiType, string path) where T : BaseUI, new()
     {
-
         GameObject parent = GameObject.FindGameObjectWithTag("UICanvas");
         if (!parent)
         {
@@ -65,7 +64,7 @@ public class UIManager : MonoSingleton<UIManager>
         }
         foreach (var item in uiDic[uiType])
         {
-            if (item.path == path)
+            if (item.Path == path)
             {
                 item.gameObject.SetActive(true);
 
@@ -78,7 +77,7 @@ public class UIManager : MonoSingleton<UIManager>
         GameObject uiObject = GameObject.Instantiate(Resources.Load<GameObject>(path), parent.transform);
 
         var curUI = uiObject.GetComponent<BaseUI>();
-        uiObject.name = curUI.uiName;
+        uiObject.name = curUI.UiName;
         uiDic[uiType].Add(curUI);
 
         curUI.OnEnter();
@@ -96,7 +95,7 @@ public class UIManager : MonoSingleton<UIManager>
                 var showingPanelCount = 0;
                 foreach (var item in uiDic[uiType])
                 {
-                    if (item.isShowing)
+                    if (item.IsShowing)
                     {
                         showingPanelCount++;
                     }
@@ -137,7 +136,7 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
-    public void Switch<T>(UIType uiType, string path) where T : BaseUI
+    public void Switch<T>(UIType uiType, string path) where T : BaseUI, new()
     {
         if (FindPanelIsShowing<T>(uiType, path))
         {
@@ -153,9 +152,9 @@ public class UIManager : MonoSingleton<UIManager>
     {
         foreach (var item in uiDic[uiType])
         {
-            if (item.path == path)
+            if (item.Path == path)
             {
-                return item.isShowing;
+                return item.IsShowing;
             }
         }
         return false;

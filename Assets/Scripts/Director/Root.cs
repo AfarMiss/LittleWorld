@@ -13,12 +13,25 @@ namespace LittleWorld
     /// </summary>
     public class Root : MonoSingleton<Root>
     {
-        private SceneItemsManager sceneItemsManager;
         private UIManager uIManager;
-        private TimeManager timeManager;
-        private GlobalPathManager globalPathManager;
         private PoolManager poolManager;
         private TextureManager textureManager;
+        public Game CurGame => curGame;
+        private Game curGame;
+        public GameState GameState
+        {
+            get
+            {
+                if (curGame != null)
+                {
+                    return curGame.state;
+                }
+                else
+                {
+                    return GameState.UNINIT;
+                }
+            }
+        }
 
         public List<IObserveSceneChange> ObserveSceneChanges;
 
@@ -58,15 +71,10 @@ namespace LittleWorld
             ObserveSceneChanges = new List<IObserveSceneChange>();
 
             uIManager = UIManager.Instance;
-            timeManager = TimeManager.Instance;
-            sceneItemsManager = SceneItemsManager.Instance;
-            globalPathManager = GlobalPathManager.Instance;
             poolManager = PoolManager.Instance;
             textureManager = TextureManager.Instance;
 
             uIManager.Initialize();
-            timeManager.Initialize();
-
         }
 
         private void Update()

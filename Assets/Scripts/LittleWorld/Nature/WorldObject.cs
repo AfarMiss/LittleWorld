@@ -40,7 +40,7 @@ namespace LittleWorld.Object
 
         public virtual void ShowBriefInfo()
         {
-            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel.ToString());
+            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
             briefPanel.BindBriefInfo(
                 ItemName,
                 new List<BriefInfo>()
@@ -51,7 +51,7 @@ namespace LittleWorld.Object
 
         public static void ShowMultiInfo(int multiCount)
         {
-            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel.ToString());
+            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
             briefPanel.BindBriefInfo(
                 $"多种x{multiCount}",
                 null);
