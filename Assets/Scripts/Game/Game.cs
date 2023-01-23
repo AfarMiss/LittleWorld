@@ -7,6 +7,13 @@ namespace LittleWorld
     public class Game
     {
         public GameState state;
+        public GlobalPathManager pathManager;
+
+        public Game()
+        {
+            pathManager = GlobalPathManager.Instance;
+            state = GameState.PREPARING;
+        }
     }
 
     public enum GameState

@@ -199,3 +199,10 @@ public enum ActionEnum
 {
     PICK,
 }
+
+public enum MapSize
+{
+    SMALL,
+    MEDIUM,
+    LARGE,
+}

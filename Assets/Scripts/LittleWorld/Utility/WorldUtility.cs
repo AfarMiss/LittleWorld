@@ -33,5 +33,19 @@ namespace LittleWorld
             Grid grid = GameObject.FindObjectOfType<Grid>();
             return grid.WorldToCell(worldPos);
         }
+
+        public static Vector2Int WorldToCellXY(this Vector3 worldPos)
+        {
+            Grid grid = GameObject.FindObjectOfType<Grid>();
+            var cellPos = grid.WorldToCell(worldPos);
+
+            return new Vector2Int(cellPos.x, cellPos.y);
+        }
+
+        public static Vector3 CellToWorld(this Vector3Int cellPos)
+        {
+            Grid grid = GameObject.FindObjectOfType<Grid>();
+            return grid.CellToWorld(cellPos);
+        }
     }
 }

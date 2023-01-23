@@ -14,6 +14,7 @@ namespace LittleWorld.UI
         public void OnClickStartNewGame()
         {
             UIManager.Instance.ShowPanel<StartNewGamePanel>();
+            Root.Instance.CurGame = new Game();
         }
 
         public void OnClickLoadGame()

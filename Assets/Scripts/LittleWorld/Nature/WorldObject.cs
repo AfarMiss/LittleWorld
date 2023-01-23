@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using LittleWorld.MapUtility;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -7,10 +8,11 @@ namespace LittleWorld.Object
     public class WorldObject
     {
         public int instanceID;
-        public WorldObject(Vector3Int gridPos)
+        public WorldObject(Vector3Int gridPos, Map map = null)
         {
             this.gridPos = gridPos;
             this.instanceID = SceneItemsManager.ItemInstanceID++;
+            curMap = map ?? GlobalPathManager.Instance.MainMap;
         }
 
         protected float maxHealth;
@@ -19,6 +21,7 @@ namespace LittleWorld.Object
         protected string ItemName;
         public float mass;
         protected Vector3Int gridPos;
+        public Map curMap;
         public Vector3 RenderPos
         {
             get

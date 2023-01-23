@@ -1,54 +1,47 @@
-﻿using AStarUtility;
-using LittleWorld;
-using LittleWorld.Interface;
+﻿using LittleWorld;
 using LittleWorld.MapUtility;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class GlobalPathManager : Singleton<GlobalPathManager>
 {
-    private Grid mapGrid;
-    public Map curMap;
-    public string seed;
+    public List<Map> maps;
+    private Map mainMap;
+    public Map MainMap => mainMap;
 
     private GlobalPathManager()
     {
     }
-
-    public Vector3Int WorldToCell(Vector3 worldPos)
-    {
-        return mapGrid.WorldToCell(worldPos);
-    }
-
-    public Vector3 CellToWorld(Vector3Int cellPos)
-    {
-        return mapGrid.CellToWorld(cellPos);
-    }
-
     public Queue<Vector2Int> CreateNewPath(Vector3 startPos, Vector3 endPos)
     {
-        var endCellPos = WorldToCell(endPos);
-        var startCellPos = WorldToCell(startPos);
-
-        var originalData = curMap.CalculatePath(
-            new Vector2Int(startCellPos.x, startCellPos.y),
-            new Vector2Int(endCellPos.x, endCellPos.y)
-            );
-        originalData.TryDequeue(out var path);
-        Debug.Log(string.Concat($"startPos: {startPos},startCellPos:{startCellPos},",
-             originalData.Count > 0 ? $"firstPathPoint:{originalData.TryPeek(out var firstPathPoint)}" : ""));
-        return originalData;
+        return mainMap.CalculatePath(startPos, endPos);
+    }
+    public override void OnCreateInstance()
+    {
+        base.OnCreateInstance();
+        EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitMainMaps);
     }
 
-    public override void Initialize()
+    private void InitMainMaps(MainMapInfo mainMapInfo)
     {
-        base.Initialize();
-        EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), InitAllMaps);
+        mainMap = new Map(Map.GetMapSize(mainMapInfo.size), mainMapInfo.seed);
+        MapRenderManager.Instance.RenderMap(mainMap);
     }
+}
 
-    private void InitAllMaps()
+public class MainMapInfo
+{
+    public string seed;
+    public MapSize size;
+
+    public MainMapInfo(string seed, string size = "MEDIUM")
     {
-        curMap = new Map(new Vector2Int(100, 100), seed);
+        this.seed = seed;
+        if (Enum.TryParse(typeof(MapSize), size, out var result))
+        {
+            this.size = (MapSize)result;
+        };
+        this.size = MapSize.MEDIUM;
     }
 }

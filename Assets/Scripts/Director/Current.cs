@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using MultipleTxture;
+using System.Collections;
 using System.Collections.Generic;
 using UniBase;
+using UnityEditor;
 using UnityEngine;
 
 namespace LittleWorld
@@ -13,6 +15,8 @@ namespace LittleWorld
         public static Vector2 MousePos => InputUtils.GetMousePosition();
 
         public static bool IsAdditionalMode => InputController.Instance.AdditionalAction;
+
+        public static TextureManager TextureManager => TextureManager.Instance;
 
         public static Rect ScreenSelectionArea => InputController.Instance.ScreenSelectionArea;
     }

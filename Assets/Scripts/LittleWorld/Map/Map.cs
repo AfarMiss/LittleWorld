@@ -28,6 +28,21 @@ namespace LittleWorld.MapUtility
 
         public float lacunarity = 2;
 
+        public static Vector2Int GetMapSize(MapSize mapSize)
+        {
+            switch (mapSize)
+            {
+                case global::MapSize.SMALL:
+                    return new Vector2Int(50, 50);
+                case global::MapSize.MEDIUM:
+                    return new Vector2Int(100, 100);
+                case global::MapSize.LARGE:
+                    return new Vector2Int(150, 150);
+                default:
+                    return new Vector2Int(100, 100);
+            }
+        }
+
         public Map(Vector2Int MapSize, string seed)
         {
             this.MapSize = MapSize;
@@ -66,12 +81,15 @@ namespace LittleWorld.MapUtility
         }
 
 
-        public Queue<Vector2Int> CalculatePath(Vector2Int startPos, Vector2Int endPos)
+        public Queue<Vector2Int> CalculatePath(Vector3 startPos, Vector3 endPos)
         {
-            aStar.SetStartPos(startPos);
-            aStar.SetEndPos(endPos);
+            aStar.SetStartPos(startPos.WorldToCellXY());
+            aStar.SetEndPos(endPos.WorldToCellXY());
             var path = aStar.CalculatePath(out var findPath);
-            return OutputPath(path, findPath);
+            var outputPath = OutputPath(path, findPath);
+            outputPath.TryDequeue(out var result);
+
+            return outputPath;
         }
 
         private Queue<Vector2Int> OutputPath(Stack<Node> nodes, bool found)

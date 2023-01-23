@@ -1,4 +1,5 @@
-﻿using LittleWorld.MapUtility;
+﻿using LittleWorld;
+using LittleWorld.MapUtility;
 using MultipleTxture;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,8 +11,13 @@ namespace ProcedualWorld
 {
     public class MapRender : MonoBehaviour
     {
-        Dictionary<int, Sprite> tileset;
-        TextureManager textureManager => TextureManager.Instance;
+        private static Dictionary<int, Sprite> tileset;
+        private Map map;
+
+        public void Init(Map map)
+        {
+            this.map = map;
+        }
 
         private void Start()
         {
@@ -21,9 +27,9 @@ namespace ProcedualWorld
         private void CreateTileset()
         {
             tileset = new Dictionary<int, Sprite>();
-            tileset.Add(0, textureManager.GetTerrain("TEX_water"));
-            tileset.Add(1, textureManager.GetTerrain("TEX_plain"));
-            tileset.Add(2, textureManager.GetTerrain("TEX_mountain"));
+            tileset.Add(0, Current.TextureManager.GetTerrain("TEX_water"));
+            tileset.Add(1, Current.TextureManager.GetTerrain("TEX_plain"));
+            tileset.Add(2, Current.TextureManager.GetTerrain("TEX_mountain"));
         }
 
         public void RenderMap(Map map)

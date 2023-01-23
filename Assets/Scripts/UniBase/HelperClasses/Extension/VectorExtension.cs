@@ -15,6 +15,11 @@ public static class VectorExtension
         return new Vector2Int(Mathf.FloorToInt(vector.x), Mathf.FloorToInt(vector.y));
     }
 
+    public static Vector3Int ExpandTo3(this Vector2Int vector2)
+    {
+        return new Vector3Int(vector2.x, vector2.y, 0);
+    }
+
     public static Vector2 ToScreenPos(this Vector2 worldVector)
     {
         return Camera.main.WorldToScreenPoint(worldVector);

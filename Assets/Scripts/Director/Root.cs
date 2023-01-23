@@ -16,15 +16,14 @@ namespace LittleWorld
         private UIManager uIManager;
         private PoolManager poolManager;
         private TextureManager textureManager;
-        public Game CurGame => curGame;
         private Game curGame;
         public GameState GameState
         {
             get
             {
-                if (curGame != null)
+                if (CurGame != null)
                 {
-                    return curGame.state;
+                    return CurGame.state;
                 }
                 else
                 {
@@ -32,6 +31,8 @@ namespace LittleWorld
                 }
             }
         }
+
+        public Game CurGame { get => curGame; set => curGame = value; }
 
         public List<IObserveSceneChange> ObserveSceneChanges;
 
