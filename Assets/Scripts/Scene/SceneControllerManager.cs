@@ -51,7 +51,7 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
 
     private IEnumerator ChangeScene(string sceneName)
     {
-        if (SceneManager.GetActiveScene().name == SceneEnum.PersistentSccene.ToString())
+        if (SceneManager.GetActiveScene().name != SceneEnum.PersistentSccene.ToString())
         {
             EventCenter.Instance.Trigger(EventEnum.BEFORE_FADE_OUT.ToString());
             yield return StartCoroutine(Fade(1f));
