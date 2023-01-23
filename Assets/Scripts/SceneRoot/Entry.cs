@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LittleWorld.EntryUtility
+namespace LittleWorld
 {
     public class Entry : MonoBehaviour
     {
