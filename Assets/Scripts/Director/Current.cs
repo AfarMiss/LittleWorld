@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UniBase;
+﻿using UniBase;
 using UnityEngine;
 
 namespace LittleWorld
@@ -13,6 +11,8 @@ namespace LittleWorld
         public static Vector2 MousePos => InputUtils.GetMousePosition();
 
         public static bool IsAdditionalMode => InputController.Instance.AdditionalAction;
+
+        public static TileManager TileManager => TileManager.Instance;
 
         public static Rect ScreenSelectionArea => InputController.Instance.ScreenSelectionArea;
     }

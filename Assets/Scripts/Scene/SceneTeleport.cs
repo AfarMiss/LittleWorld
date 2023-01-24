@@ -21,6 +21,6 @@ public class SceneTeleport : MonoBehaviour
             //realTelePos.y = Director.Instance.MainPlayer.transform.position.y;
         }
 
-        SceneControllerManager.Instance.TryChangeScene(nextScene.ToString(), realTelePos);
+        SceneControllerManager.Instance.TryChangeScene(nextScene.ToString());
     }
 }

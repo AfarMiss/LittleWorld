@@ -5,8 +5,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     private Vector3 dir;
-    public Transform referencePoint;
+    private Transform referencePoint;
     [SerializeField, Range(0, 10)] private float speed = 3;
+    private void Awake()
+    {
+        referencePoint = new GameObject("referencePoint").transform;
+        referencePoint.transform.position = Vector3.zero;
+    }
 
     public void Move(Vector2 dir)
     {

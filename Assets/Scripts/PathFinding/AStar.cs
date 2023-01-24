@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using LittleWorld.MapUtility;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Analytics;
 
-namespace AStar
+namespace AStarUtility
 {
     public class AStar
     {
@@ -28,6 +29,23 @@ namespace AStar
         /// <param name="mapWidth">横向边长度</param>
         /// <param name="mapHeight">纵向边长度</param>
         public AStar(int mapWidth, int mapHeight, int originalX, int originalY)
+        {
+            CreateBasic(mapWidth, mapHeight, originalX, originalY);
+        }
+
+        public AStar(int mapWidth, int mapHeight, int originalX, int originalY, MapGridDetails[] details)
+        {
+            CreateBasic(mapWidth, mapHeight, originalX, originalY);
+            foreach (var item in details)
+            {
+                if (item.gridAltitudeLayer < 20)
+                {
+                    SetObstacle(item.pos.x, item.pos.y);
+                }
+            }
+        }
+
+        private void CreateBasic(int mapWidth, int mapHeight, int originalX, int originalY)
         {
             this.mapWidth = mapWidth;
             this.mapHeight = mapHeight;
@@ -205,7 +223,7 @@ namespace AStar
 
         public void SetObstacle(int x, int y)
         {
-            gridNodes.SetObstacle(x - originalX, y - originalY);
+            gridNodes.SetObstacle(x, y);
         }
     }
 }

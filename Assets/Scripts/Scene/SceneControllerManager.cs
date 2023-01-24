@@ -15,11 +15,12 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
     public SceneEnum startingSceneName;
 
 
-    public void TryChangeScene(string sceneName, Vector3 spawnPos)
+    public void TryChangeScene(string sceneName)
     {
         if (!isFading)
         {
-            StartCoroutine(ChangeScene(sceneName, spawnPos));
+            StartCoroutine(ChangeScene(sceneName));
+            UIManager.Instance.HideAll();
         }
     }
 
@@ -48,48 +49,25 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
         SceneManager.SetActiveScene(newlyLoadedScene);
     }
 
-    private IEnumerator ChangeScene(string sceneName, Vector3 spawnPos)
+    private IEnumerator ChangeScene(string sceneName)
     {
-        EventCenter.Instance.Trigger(EventEnum.BEFORE_FADE_OUT.ToString());
-
-        yield return StartCoroutine(Fade(1f));
-
-        SaveLoadManager.Instance.StoreCurrentSceneData();
-
-        EventCenter.Instance.Trigger(EventEnum.BEFORE_SCENE_UNLOAD.ToString());
-
-        yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-
+        if (SceneManager.GetActiveScene().name != SceneEnum.PersistentScene.ToString())
+        {
+            EventCenter.Instance.Trigger(EventEnum.BEFORE_FADE_OUT.ToString());
+            yield return StartCoroutine(Fade(1f));
+            SaveLoadManager.Instance.StoreCurrentSceneData();
+            EventCenter.Instance.Trigger(EventEnum.BEFORE_SCENE_UNLOAD.ToString());
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
         yield return StartCoroutine(LoadActiveScene(sceneName));
-
         EventCenter.Instance.Trigger(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString());
-
         SaveLoadManager.Instance.RestoreCurrentSceneData();
-
         yield return StartCoroutine(Fade(0f));
-
         EventCenter.Instance.Trigger(EventEnum.AFTER_FADE_IN.ToString());
-
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        faderImage.color = new Color(0f, 0f, 0f, 1f);
-        faderCanvasGroup.alpha = 1f;
-
-        yield return StartCoroutine(LoadActiveScene(startingSceneName.ToString()));
-
-        EventCenter.Instance.Trigger(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString());
-
-        SaveLoadManager.Instance.RestoreCurrentSceneData();
-
-        StartCoroutine(Fade(0f));
-    }
-
-    [ContextMenu("LoadFarm")]
-    public void LoadFarm()
-    {
-        var curPlayerPoint = GameObject.FindGameObjectWithTag(Tags.PlayerRespawnPoint);
-        SceneControllerManager.Instance.TryChangeScene(SceneEnum.Scene1_Farm.ToString(), curPlayerPoint.transform.position);
+        TryChangeScene(SceneEnum.Entry.ToString());
     }
 }

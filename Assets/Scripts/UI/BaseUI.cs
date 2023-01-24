@@ -2,18 +2,26 @@
 
 public abstract class BaseUI : MonoBehaviour
 {
-    public bool isShowing { get; private set; }
-    public string uiName => path.Substring(path.LastIndexOf('/') + 1);
-    public abstract string path { get; }
+    public bool IsShowing { get; private set; }
+    public string UiName => GetType().Name;
+    public virtual string Path
+    {
+        get
+        {
+            var enumName = System.Enum.GetName(typeof(UIType), UiType);
+            var folderName = enumName.Substring(0, 1) + enumName.Substring(1).ToLower();
+            return $"Prefabs/UI/{folderName}/{GetType().Name}";
+        }
+    }
 
-    public UIType UIType { get; private set; }
+    public virtual UIType UiType => UIType.PANEL;
 
     /// <summary>
     /// 进入时
     /// </summary>
     public virtual void OnEnter()
     {
-        isShowing = true;
+        IsShowing = true;
     }
 
     /// <summary>
@@ -31,7 +39,7 @@ public abstract class BaseUI : MonoBehaviour
     /// </summary>
     public virtual void OnExit()
     {
-        isShowing = false;
+        IsShowing = false;
     }
 
     public void Initialize()

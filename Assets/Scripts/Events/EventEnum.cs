@@ -44,9 +44,15 @@ public enum EventEnum
 
     REACH_WORK_POINT,
 
+    #region 工作相关
     WORK_GOTO_WORK_POS,
     WORK_WORKING,
     WORK_SUSPEND,
     WORK_DONE,
     FORCE_ABORT,
+    #endregion
+
+    #region 游戏流程相关
+    START_NEW_GAME,
+    #endregion
 }

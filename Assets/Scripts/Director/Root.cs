@@ -1,4 +1,5 @@
-﻿using LittleWorld.Interface;
+﻿using LittleWorld.Command;
+using LittleWorld.Interface;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,11 +13,34 @@ namespace LittleWorld
     /// </summary>
     public class Root : MonoSingleton<Root>
     {
-        private SceneItemsManager sceneItemsManager;
         private UIManager uIManager;
-        private TimeManager timeManager;
-        private GlobalPathManager globalPathManager;
         private PoolManager poolManager;
+        private TileManager textureManager;
+        private CommandCenter commandCenter;
+        private Game curGame;
+        public GameState GameState
+        {
+            get
+            {
+                if (CurGame != null)
+                {
+                    return CurGame.state;
+                }
+                else
+                {
+                    return GameState.UNINIT;
+                }
+            }
+            set
+            {
+                if (CurGame != null)
+                {
+                    CurGame.state = value;
+                }
+            }
+        }
+
+        public Game CurGame { get => curGame; set => curGame = value; }
 
         public List<IObserveSceneChange> ObserveSceneChanges;
 
@@ -56,18 +80,17 @@ namespace LittleWorld
             ObserveSceneChanges = new List<IObserveSceneChange>();
 
             uIManager = UIManager.Instance;
-            timeManager = TimeManager.Instance;
-            sceneItemsManager = SceneItemsManager.Instance;
-            globalPathManager = GlobalPathManager.Instance;
             poolManager = PoolManager.Instance;
+            textureManager = TileManager.Instance;
+            commandCenter = CommandCenter.Instance;
 
             uIManager.Initialize();
-            timeManager.Initialize();
-
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
+            CurGame?.Tick();
+            commandCenter?.Tick();
         }
     }
 }

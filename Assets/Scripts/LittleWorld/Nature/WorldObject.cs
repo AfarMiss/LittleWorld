@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using LittleWorld.MapUtility;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -7,10 +8,11 @@ namespace LittleWorld.Object
     public class WorldObject
     {
         public int instanceID;
-        public WorldObject(Vector3Int gridPos)
+        public WorldObject(Vector3Int gridPos, Map map = null)
         {
             this.gridPos = gridPos;
             this.instanceID = SceneItemsManager.ItemInstanceID++;
+            curMap = map ?? MapManager.Instance.ColonyMap;
         }
 
         protected float maxHealth;
@@ -19,6 +21,7 @@ namespace LittleWorld.Object
         protected string ItemName;
         public float mass;
         protected Vector3Int gridPos;
+        public Map curMap;
         public Vector3 RenderPos
         {
             get
@@ -40,7 +43,7 @@ namespace LittleWorld.Object
 
         public virtual void ShowBriefInfo()
         {
-            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel.ToString());
+            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
             briefPanel.BindBriefInfo(
                 ItemName,
                 new List<BriefInfo>()
@@ -51,7 +54,7 @@ namespace LittleWorld.Object
 
         public static void ShowMultiInfo(int multiCount)
         {
-            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel.ToString());
+            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
             briefPanel.BindBriefInfo(
                 $"多种x{multiCount}",
                 null);

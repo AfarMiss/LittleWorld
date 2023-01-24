@@ -94,7 +94,7 @@ public class FarmPlayer : MonoSingleton<FarmPlayer>, ISaveable
                 {
                     if (sceneSave.stringDictionary.TryGetValue("currentScene", out string currentScene))
                     {
-                        SceneControllerManager.Instance.TryChangeScene(currentScene, transform.position);
+                        SceneControllerManager.Instance.TryChangeScene(currentScene);
                     }
 
                     if (sceneSave.stringDictionary.TryGetValue("playerDirection", out string playerDir))

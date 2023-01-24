@@ -11,6 +11,7 @@ using UnityEngine.Analytics;
 using UnityEngine.Experimental.Rendering.Universal;
 using static UnityEditor.Progress;
 using static UnityEngine.InputSystem.InputAction;
+using LittleWorld.MapUtility;
 
 public class InputController : MonoSingleton<InputController>
 {
@@ -105,13 +106,13 @@ public class InputController : MonoSingleton<InputController>
             {
                 return;
             }
+            var curPos = InputUtils.GetMouseWorldPosition().ClampInMap(MapManager.Instance.curDisplayMap);
             //根据选中单位的信息做出对应操作
             if (selectedObjects.MultiPawnSelected())
             {
                 //对多人进行操作
                 for (int i = 0; i < selectedObjects.Count; i++)
                 {
-                    var curPos = InputUtils.GetMouseWorldPosition();
                     var human = SceneItemsManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
                     AddMoveWork(human, curPos);
                 }
@@ -124,7 +125,6 @@ public class InputController : MonoSingleton<InputController>
                 FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, Current.MousePos);
                 if (opts.Length == 0)
                 {
-                    var curPos = InputUtils.GetMouseWorldPosition();
                     AddMoveWork(human, curPos);
                 }
             }
@@ -184,6 +184,10 @@ public class InputController : MonoSingleton<InputController>
 
     public void OnClickLeft(CallbackContext callbackContext)
     {
+        if (Root.Instance.GameState != GameState.PLAYING)
+        {
+            return;
+        }
         if (callbackContext.started)
         {
             onClickLeftStartPosition = Current.MousePos;

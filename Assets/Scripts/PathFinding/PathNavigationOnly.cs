@@ -127,7 +127,6 @@ public class PathNavigationOnly : MonoBehaviour
 
     private void SingleStep(Vector2Int target)
     {
-        var worldPos = GlobalPathManager.Instance.CellToWorld(new Vector3Int(target.x, target.y, 0));
         var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
         //Debug.Log("human.gridPos:" + human.GridPos);
 
@@ -140,7 +139,7 @@ public class PathNavigationOnly : MonoBehaviour
         else
         {
             curTargetIsReached = true;
-            human.GridPos = worldPos.ToCell();
+            human.GridPos = target.To3();
         }
     }
 
@@ -162,7 +161,7 @@ public class PathNavigationOnly : MonoBehaviour
             return;
         }
         var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
-        curPath = GlobalPathManager.Instance.CreateNewPath(human.GridPos, work.WorkerPos);
+        curPath = MapManager.Instance.CreateNewPath(human.GridPos, work.WorkerPos);
         curDestination = work.WorkerPos.ToWorldVector2Int();
         lastStampFrameCount = Time.frameCount;
         atDestination = false;

@@ -13,7 +13,7 @@ public class FiniteStateMachine
     /// <summary>
     /// 状态字典
     /// </summary>
-    private Dictionary<StateEnum, BaseState> statesDic;
+    private Dictionary<GameState, BaseState> statesDic;
 
     public void SetDefaultState(BaseState state)
     {
@@ -39,7 +39,7 @@ public class FiniteStateMachine
 
     public FiniteStateMachine()
     {
-        statesDic = new Dictionary<StateEnum, BaseState>();
+        statesDic = new Dictionary<GameState, BaseState>();
     }
 
     /// <summary>

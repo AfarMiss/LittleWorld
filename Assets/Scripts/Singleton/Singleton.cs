@@ -22,7 +22,7 @@ public class Singleton<T> where T : Singleton<T>
 
                 instance = ctor.Invoke(null) as T;
 
-                instance.Initialize();
+                instance.OnCreateInstance();
             }
             return instance;
         }
@@ -33,7 +33,7 @@ public class Singleton<T> where T : Singleton<T>
 
     }
 
-    public virtual void Initialize()
+    public virtual void OnCreateInstance()
     {
 
     }

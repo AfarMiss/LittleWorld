@@ -1,6 +1,8 @@
-﻿using System;
+﻿using LittleWorld.Extension;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.U2D.Path;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -12,13 +14,9 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private Transform cropParentTransform;
 
-    private Tilemap groundDecoration1;
-    private Tilemap groundDecoration2;
+    private Tilemap waterLayer;
+    private Tilemap plainLayer;
     private bool isFirstTimeSceneLoaded = true;
-    /// <summary>
-    /// 当前地图格子设置信息
-    /// </summary>
-    private Grid grid;
     /// <summary>
     /// 当前地图信息
     /// </summary>
@@ -49,7 +47,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     public SO_GridProperties GetActiveSceneGridProperties()
     {
-        foreach (var item in so_gridPropertiesArray)
+        foreach (SO_GridProperties item in so_gridPropertiesArray)
         {
             if (SceneManager.GetActiveScene().name == item.sceneName.ToString())
             {
@@ -65,6 +63,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
         EventCenter.Instance?.Register<GameTime>(EventEnum.DAY_CHANGE.ToString(), OnAdvanceDay);
         EventCenter.Instance?.Register<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify);
+
     }
 
     private void OnDisable()
@@ -89,19 +88,17 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private void AfterSceneLoaded()
     {
-        if (GameObject.FindGameObjectWithTag(Tags.CropsParentTransform) != null)
+        if (GameObject.FindGameObjectWithTag(Tags.CropsParentTransform.ToString()) != null)
         {
-            cropParentTransform = GameObject.FindGameObjectWithTag(Tags.CropsParentTransform).transform;
+            cropParentTransform = GameObject.FindGameObjectWithTag(Tags.CropsParentTransform.ToString()).transform;
         }
         else
         {
             cropParentTransform = null;
         }
 
-        grid = GameObject.FindObjectOfType<Grid>();
-
-        groundDecoration1 = GameObject.FindGameObjectWithTag(Tags.GroundDecoration1).GetComponent<Tilemap>();
-        groundDecoration2 = GameObject.FindGameObjectWithTag(Tags.GroundDecoration2).GetComponent<Tilemap>();
+        waterLayer = GameObject.FindGameObjectWithTag(Tags.Water.ToString())?.GetComponent<Tilemap>();
+        plainLayer = GameObject.FindGameObjectWithTag(Tags.Plain.ToString())?.GetComponent<Tilemap>();
     }
 
     public void ISaveableDeregister()
@@ -121,8 +118,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private void ClearDisplayGrouondDecorations()
     {
-        groundDecoration1?.ClearAllTiles();
-        groundDecoration2?.ClearAllTiles();
+        waterLayer?.ClearAllTiles();
+        plainLayer?.ClearAllTiles();
     }
 
     private void ClearDisplayGridPropertyDetails()
@@ -185,7 +182,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         if (adjacentGridPropertyDetails != null && adjacentGridPropertyDetails.daysSinceDug > -1)
         {
             Tile dugTile = SetTile(gridX, gridY, dugGround, IsGridDug);
-            groundDecoration1.SetTile(new Vector3Int(gridX, gridY, 0), dugTile);
+            waterLayer.SetTile(new Vector3Int(gridX, gridY, 0), dugTile);
         }
 
         return adjacentGridPropertyDetails;
@@ -198,7 +195,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         if (adjacentGridPropertyDetails != null && adjacentGridPropertyDetails.daysSinceWatered > -1)
         {
             Tile waterTile = SetTile(gridX, gridY, waterGround, IsGridWatered);
-            groundDecoration2.SetTile(new Vector3Int(gridX, gridY, 0), waterTile);
+            plainLayer.SetTile(new Vector3Int(gridX, gridY, 0), waterTile);
         }
 
         return adjacentGridPropertyDetails;
@@ -325,7 +322,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
             cropPrefab = cropDetails.growthPrefab[currentGrowthStage];
             Sprite growthSprite = cropDetails.growthSprite[currentGrowthStage];
-            Vector3 worldPosition = groundDecoration2.CellToWorld(new Vector3Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY, 0));
+            Vector3 worldPosition = plainLayer.CellToWorld(new Vector3Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY, 0));
             worldPosition = new Vector3(worldPosition.x + FarmSetting.gridCellSize / 2, worldPosition.y, worldPosition.z);
             GameObject cropInstance = Instantiate(cropPrefab, worldPosition, Quaternion.identity);
 
@@ -482,14 +479,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private void UpdateAllDetails()
     {
-        ClearDisplayGridPropertyDetails();
-        DisplayGridPropertyDetails();
-    }
-
-    private void UpdateSingleDetails()
-    {
-        ClearDisplayGridPropertyDetails();
-        DisplayGridPropertyDetails();
+        //ClearDisplayGridPropertyDetails();
+        //DisplayGridPropertyDetails();
     }
 
     public void ISaveableStoreScene(string sceneName)

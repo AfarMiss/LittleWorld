@@ -14,9 +14,9 @@ public class PawnManager : Singleton<PawnManager>
     public List<Humanbeing> Pawns => pawns;
     private List<Humanbeing> pawns;
 
-    public override void Initialize()
+    public override void OnCreateInstance()
     {
-        base.Initialize();
+        base.OnCreateInstance();
 
         pawns = new List<Humanbeing>();
     }

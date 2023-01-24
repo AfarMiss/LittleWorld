@@ -122,10 +122,9 @@ public enum PartVariantType
 
 public enum SceneEnum
 {
-    PersistentSccene,
-    Scene1_Farm,
-    Scene2_Field,
-    Scene3_Cabin,
+    PersistentScene,
+    FarmScene,
+    Entry,
 }
 
 public enum GridBoolProperty
@@ -199,4 +198,18 @@ public enum PoolEnum
 public enum ActionEnum
 {
     PICK,
+}
+
+public enum MapSize
+{
+    SMALL,
+    MEDIUM,
+    LARGE,
+}
+
+public enum TerrainLayer
+{
+    Altitude,
+    Terrain,
+    Item
 }

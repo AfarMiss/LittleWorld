@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AStar
+namespace AStarUtility
 {
     public class GridNodes
     {

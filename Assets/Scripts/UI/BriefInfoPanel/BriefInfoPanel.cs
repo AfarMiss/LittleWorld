@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BriefInfoPanel : BaseUI
 {
-    public override string path => UIPath.Panel_BriefInfoPanel;
+    public override string Path => UIPath.Panel_BriefInfoPanel;
     [SerializeField] private GameObject briefItemObject;
     [SerializeField] private Text InfoTitle;
     [SerializeField] private Transform briefItemParent;

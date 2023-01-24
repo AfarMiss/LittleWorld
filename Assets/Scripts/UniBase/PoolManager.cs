@@ -138,9 +138,9 @@ public class PoolManager : Singleton<PoolManager>
     }
 
 
-    public override void Initialize()
+    public override void OnCreateInstance()
     {
-        base.Initialize();
+        base.OnCreateInstance();
 
         defaultParent = new GameObject().transform;
         defaultParent.name = "defaultPoolParent";

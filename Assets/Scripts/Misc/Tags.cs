@@ -1,12 +1,12 @@
-﻿public static class Tags
+﻿
+public enum Tags
 {
-    public const string BoundsConfiner = "BoundsConfiner";
-    public const string ItemsParentTransform = "ItemsParentTransform";
-    public const string PlayerRespawnPoint = "PlayerRespawnPoint";
-
-    public const string GroundDecoration1 = "GroundDecoration1";
-    public const string GroundDecoration2 = "GroundDecoration2";
-
-    public const string CropsParentTransform = "CropsParentTransform";
-
+    BoundsConfiner,
+    ItemsParentTransform,
+    PlayerRespawnPoint,
+    Water,
+    Plain,
+    CropsParentTransform,
+    Altitude,
+    Terrain,
 }

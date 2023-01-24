@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SettingPanel : BaseUI
 {
-    public override string path => UIPath.Panel_SettingPanel;
+    public override string Path => UIPath.Panel_SettingPanel;
 
     public override void OnClickClose()
     {

@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using LittleWorld.GameStateSpace;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseState
 {
-    protected StateEnum stateID;
-    public StateEnum StateID { get => stateID; }
-    public Dictionary<TransitionEnum, StateEnum> transitionDic;
-    public  FiniteStateMachine finiteStateMachine;
+    protected GameState stateID;
+    public GameState StateID { get => stateID; }
+    public Dictionary<TransitionEnum, GameState> transitionDic;
+    public FiniteStateMachine finiteStateMachine;
 
     /// <summary>
     /// 状态开始
@@ -46,7 +47,7 @@ public abstract class BaseState
     /// </summary>
     public virtual void OnReset()
     {
-        
+
     }
 
     /// <summary>
@@ -57,7 +58,7 @@ public abstract class BaseState
 
     }
 
-    public void AddTransition(TransitionEnum transition, StateEnum stateID)
+    public void AddTransition(TransitionEnum transition, GameState stateID)
     {
         if (transitionDic.ContainsKey(transition))
         {
@@ -74,9 +75,9 @@ public abstract class BaseState
         }
     }
 
-    public BaseState(StateEnum stateID)
+    public BaseState(GameState stateID)
     {
-        this.transitionDic = new Dictionary<TransitionEnum, StateEnum>();
+        this.transitionDic = new Dictionary<TransitionEnum, GameState>();
         this.stateID = stateID;
     }
 }

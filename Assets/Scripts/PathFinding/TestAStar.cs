@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestAStar : MonoBehaviour
 {
-    AStar.AStar aStar;
+    AStarUtility.AStar aStar;
 
     private void Start()
     {

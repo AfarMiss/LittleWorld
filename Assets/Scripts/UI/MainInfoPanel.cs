@@ -8,7 +8,7 @@ public class MainInfoPanel : BaseUI
     public Text houtText;
     public Text YearQuadDayText;
 
-    public override string path => UIPath.Main_UI_Panel;
+    public override string Path => UIPath.Main_UI_Panel;
 
     private void OnEnable()
     {

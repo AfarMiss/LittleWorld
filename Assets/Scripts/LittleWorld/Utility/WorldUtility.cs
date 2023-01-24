@@ -1,10 +1,8 @@
-﻿using LittleWorld.Object;
-using System.Collections;
-using System.Collections.Generic;
+﻿using LittleWorld.MapUtility;
+using LittleWorld.Object;
 using UniBase;
+using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace LittleWorld
 {
@@ -32,6 +30,20 @@ namespace LittleWorld
         {
             Grid grid = GameObject.FindObjectOfType<Grid>();
             return grid.WorldToCell(worldPos);
+        }
+
+        public static Vector2Int WorldToCellXY(this Vector3 worldPos)
+        {
+            Grid grid = GameObject.FindObjectOfType<Grid>();
+            var cellPos = grid.WorldToCell(worldPos);
+
+            return new Vector2Int(cellPos.x, cellPos.y);
+        }
+
+        public static Vector3 CellToWorld(this Vector3Int cellPos)
+        {
+            Grid grid = GameObject.FindObjectOfType<Grid>();
+            return grid.CellToWorld(cellPos);
         }
     }
 }

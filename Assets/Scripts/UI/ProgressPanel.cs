@@ -83,6 +83,6 @@ public class ProgressPanel : BaseUI
 
     [SerializeField]
     private GameObject progressPrefab;
-    public override string path => UIPath.Panel_ProgressPanel;
+    public override string Path => UIPath.Panel_ProgressPanel;
 
 }
