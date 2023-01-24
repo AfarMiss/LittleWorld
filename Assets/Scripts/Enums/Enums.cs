@@ -206,3 +206,10 @@ public enum MapSize
     MEDIUM,
     LARGE,
 }
+
+public enum TerrainLayer
+{
+    Water,
+    Plain,
+    Mountain
+}

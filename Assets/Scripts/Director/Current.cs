@@ -1,8 +1,4 @@
-﻿using MultipleTxture;
-using System.Collections;
-using System.Collections.Generic;
-using UniBase;
-using UnityEditor;
+﻿using UniBase;
 using UnityEngine;
 
 namespace LittleWorld
@@ -16,7 +12,7 @@ namespace LittleWorld
 
         public static bool IsAdditionalMode => InputController.Instance.AdditionalAction;
 
-        public static TextureManager TextureManager => TextureManager.Instance;
+        public static TileManager TileManager => TileManager.Instance;
 
         public static Rect ScreenSelectionArea => InputController.Instance.ScreenSelectionArea;
     }

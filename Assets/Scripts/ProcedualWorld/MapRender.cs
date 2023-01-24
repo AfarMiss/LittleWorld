@@ -5,18 +5,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
 namespace ProcedualWorld
 {
     public class MapRender : MonoBehaviour
     {
-        private static Dictionary<int, Sprite> tileset;
+        private static Dictionary<int, Tile> tileset;
         private Map map;
+        public Tilemap altitudeLayer;
+        public Tilemap plainLayer;
 
         public void Init(Map map)
         {
             this.map = map;
+            altitudeLayer = GameObject.FindGameObjectWithTag(Tags.Water)?.GetComponent<Tilemap>();
+            plainLayer = GameObject.FindGameObjectWithTag(Tags.Plain)?.GetComponent<Tilemap>();
         }
 
         private void Start()
@@ -26,10 +31,10 @@ namespace ProcedualWorld
 
         private void CreateTileset()
         {
-            tileset = new Dictionary<int, Sprite>();
-            tileset.Add(0, Current.TextureManager.GetTerrain("TEX_water"));
-            tileset.Add(1, Current.TextureManager.GetTerrain("TEX_plain"));
-            tileset.Add(2, Current.TextureManager.GetTerrain("TEX_mountain"));
+            tileset = new Dictionary<int, Tile>();
+            tileset.Add(0, Current.TileManager.GetTerrain("TEX_water"));
+            tileset.Add(1, Current.TileManager.GetTerrain("TEX_plain"));
+            tileset.Add(2, Current.TileManager.GetTerrain("TEX_mountain"));
         }
 
         public void RenderMap(Map map)

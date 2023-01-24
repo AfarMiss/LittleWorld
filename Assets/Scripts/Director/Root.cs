@@ -1,6 +1,5 @@
 ﻿using LittleWorld.Command;
 using LittleWorld.Interface;
-using MultipleTxture;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ namespace LittleWorld
     {
         private UIManager uIManager;
         private PoolManager poolManager;
-        private TextureManager textureManager;
+        private TileManager textureManager;
         private CommandCenter commandCenter;
         private Game curGame;
         public GameState GameState
@@ -82,7 +81,7 @@ namespace LittleWorld
 
             uIManager = UIManager.Instance;
             poolManager = PoolManager.Instance;
-            textureManager = TextureManager.Instance;
+            textureManager = TileManager.Instance;
             commandCenter = CommandCenter.Instance;
 
             uIManager.Initialize();

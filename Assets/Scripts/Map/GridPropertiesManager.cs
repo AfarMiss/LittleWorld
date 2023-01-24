@@ -1,5 +1,4 @@
 ﻿using LittleWorld.Extension;
-using MultipleTxture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +30,6 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     private Tile[] dugGround = null;
     [SerializeField]
     private Tile[] waterGround = null;
-    public Tile[] BasicTerrainTiles => basicTerrainTiles;
-    private Tile[] basicTerrainTiles = null;
 
     private string iSaveableUniqueID;
     public string ISaveableUniqueID { get => iSaveableUniqueID; set => iSaveableUniqueID = value; }
@@ -67,31 +64,6 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
         EventCenter.Instance?.Register<GameTime>(EventEnum.DAY_CHANGE.ToString(), OnAdvanceDay);
         EventCenter.Instance?.Register<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify);
 
-        FormatBasicTerrainData();
-
-    }
-
-    private void FormatBasicTerrainData()
-    {
-        basicTerrainTiles = new Tile[3];
-
-        basicTerrainTiles[0] = ScriptableObject.CreateInstance<Tile>();
-        basicTerrainTiles[0].SetTileLayer("TEX_water");
-        basicTerrainTiles[1] = ScriptableObject.CreateInstance<Tile>();
-        basicTerrainTiles[1].SetTileLayer("TEX_plain");
-        basicTerrainTiles[2] = ScriptableObject.CreateInstance<Tile>();
-        basicTerrainTiles[2].SetTileLayer("TEX_mountain");
-    }
-
-    public Tile GetBasicTerrainTile(int index)
-    {
-        return basicTerrainTiles[index];
-    }
-
-    public void SetTile(string mapName, Vector3 pos, Tile tile)
-    {
-        var tilemap = GameObject.FindGameObjectWithTag(mapName).GetComponent<Tilemap>();
-        tilemap.SetTile(pos.ToCell(), tile);
     }
 
     private void OnDisable()

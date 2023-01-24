@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine.Tilemaps;
 
-namespace MultipleTxture
+namespace LittleWorld
 {
     [System.Serializable]
-    public class SpriteDetail
+    public class TileDetail
     {
         public string spriteName;
-        public Sprite sprite;
+        public Tile tile;
     }
 }
