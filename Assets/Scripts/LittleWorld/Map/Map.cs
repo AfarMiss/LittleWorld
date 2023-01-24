@@ -18,7 +18,7 @@ namespace LittleWorld.MapUtility
         /// <summary>
         /// water-plain-mountain
         /// </summary>
-        private int layerCount = 3;
+        private int layerCount = 100;
 
         private int SeedToInt()
         {

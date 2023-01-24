@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2177499736282955115}
   m_Layer: 0
   m_Name: Item
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4952029642100531329}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3981384949147099961
 GameObject:
@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 2356813825807469748}
   - component: {fileID: 4465849837890261740}
   m_Layer: 0
-  m_Name: Mountain
-  m_TagString: Mountain
+  m_Name: Terrain
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4952029642100531329}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &2356813825807469748
 Tilemap:
@@ -441,8 +441,8 @@ GameObject:
   - component: {fileID: 4952029640760911714}
   - component: {fileID: 4952029640760911715}
   m_Layer: 0
-  m_Name: Water&Plain
-  m_TagString: Water_Plain
+  m_Name: Altitude
+  m_TagString: Altitude
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -766,8 +766,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4952029640760911724}
-  - {fileID: 2177499736282955115}
   - {fileID: 3796570733552016364}
+  - {fileID: 2177499736282955115}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

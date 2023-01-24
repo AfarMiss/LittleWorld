@@ -88,17 +88,17 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private void AfterSceneLoaded()
     {
-        if (GameObject.FindGameObjectWithTag(Tags.CropsParentTransform) != null)
+        if (GameObject.FindGameObjectWithTag(Tags.CropsParentTransform.ToString()) != null)
         {
-            cropParentTransform = GameObject.FindGameObjectWithTag(Tags.CropsParentTransform).transform;
+            cropParentTransform = GameObject.FindGameObjectWithTag(Tags.CropsParentTransform.ToString()).transform;
         }
         else
         {
             cropParentTransform = null;
         }
 
-        waterLayer = GameObject.FindGameObjectWithTag(Tags.Water)?.GetComponent<Tilemap>();
-        plainLayer = GameObject.FindGameObjectWithTag(Tags.Plain)?.GetComponent<Tilemap>();
+        waterLayer = GameObject.FindGameObjectWithTag(Tags.Water.ToString())?.GetComponent<Tilemap>();
+        plainLayer = GameObject.FindGameObjectWithTag(Tags.Plain.ToString())?.GetComponent<Tilemap>();
     }
 
     public void ISaveableDeregister()

@@ -11,8 +11,6 @@ namespace LittleWorld
     {
         public List<TileDetail> textureDetailList;
 
-        public List<Tile> waterPlainDetailList;
-
         public Tile Get(string terrainName)
         {
             var item = textureDetailList.Find(x => x.spriteName == terrainName);

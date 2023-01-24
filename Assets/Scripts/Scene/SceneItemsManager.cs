@@ -54,7 +54,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
     private void AfterSceneLoad()
     {
-        parentItem = GameObject.FindGameObjectWithTag(Tags.ItemsParentTransform)?.transform;
+        parentItem = GameObject.FindGameObjectWithTag(Tags.ItemsParentTransform.ToString())?.transform;
         sceneItemList = CreateNewItemList();
         worldItems = CreateNewWorldItemsList(sceneItemList);
     }

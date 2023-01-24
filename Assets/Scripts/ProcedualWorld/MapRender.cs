@@ -1,6 +1,5 @@
 ﻿using LittleWorld;
 using LittleWorld.MapUtility;
-using MultipleTxture;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,26 +14,25 @@ namespace ProcedualWorld
         private static Dictionary<int, Tile> tileset;
         private Map map;
         public Tilemap altitudeLayer;
-        public Tilemap plainLayer;
+        public Tilemap terrainLayer;
 
         public void Init(Map map)
         {
             this.map = map;
-            altitudeLayer = GameObject.FindGameObjectWithTag(Tags.Water)?.GetComponent<Tilemap>();
-            plainLayer = GameObject.FindGameObjectWithTag(Tags.Plain)?.GetComponent<Tilemap>();
-        }
-
-        private void Start()
-        {
+            altitudeLayer = GameObject.FindGameObjectWithTag(Tags.Altitude.ToString())?.GetComponent<Tilemap>();
+            terrainLayer = GameObject.FindGameObjectWithTag(Tags.Terrain.ToString())?.GetComponent<Tilemap>();
             CreateTileset();
         }
 
         private void CreateTileset()
         {
             tileset = new Dictionary<int, Tile>();
-            tileset.Add(0, Current.TileManager.GetTerrain("TEX_water"));
-            tileset.Add(1, Current.TileManager.GetTerrain("TEX_plain"));
-            tileset.Add(2, Current.TileManager.GetTerrain("TEX_mountain"));
+            tileset.Add(0, Current.TileManager.GetTerrain("TEX_water_4"));
+            tileset.Add(1, Current.TileManager.GetTerrain("TEX_water_3"));
+            tileset.Add(2, Current.TileManager.GetTerrain("TEX_water_2"));
+            tileset.Add(3, Current.TileManager.GetTerrain("TEX_water_1"));
+            tileset.Add(4, Current.TileManager.GetTerrain("TEX_shore"));
+            tileset.Add(5, Current.TileManager.GetTerrain("TEX_plain"));
         }
 
         public void RenderMap(Map map)
@@ -53,18 +51,17 @@ namespace ProcedualWorld
 
         private void RenderTile(Vector2Int bottomLeft, int tile_id, int x, int y)
         {
-            var curTile = GridPropertiesManager.Instance.GetBasicTerrainTile(tile_id);
-            switch (tile_id)
+            if (tile_id >= 0 && tile_id < 40)
             {
-                case 0:
-                    GridPropertiesManager.Instance.SetTile("Water", new Vector3(x + bottomLeft.x, y + bottomLeft.y, 0), curTile);
-                    break;
-                case 1:
-                case 2:
-                    GridPropertiesManager.Instance.SetTile("Plain", new Vector3(x + bottomLeft.x, y + bottomLeft.y, 0), curTile);
-                    break;
-                default:
-                    break;
+                altitudeLayer.SetTile(new Vector3(x + bottomLeft.x, y + bottomLeft.y, 0).ToCell(), tileset[tile_id / 10]);
+            }
+            else if (tile_id >= 0 && tile_id < 50)
+            {
+                altitudeLayer.SetTile(new Vector3(x + bottomLeft.x, y + bottomLeft.y, 0).ToCell(), tileset[4]);
+            }
+            else
+            {
+                altitudeLayer.SetTile(new Vector3(x + bottomLeft.x, y + bottomLeft.y, 0).ToCell(), tileset[5]);
             }
         }
     }

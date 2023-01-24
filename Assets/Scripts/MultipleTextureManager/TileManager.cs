@@ -15,12 +15,5 @@ namespace LittleWorld
         {
             return database.Get(terrainName);
         }
-
-        public Tile[] GetBasicTerrain()
-        {
-            return database.waterPlainDetailList.ToArray();
-        }
-
-
     }
 }

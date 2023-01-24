@@ -55,7 +55,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void OnSceneLoaded()
     {
-        parentItem = GameObject.FindGameObjectWithTag(Tags.ItemsParentTransform).transform;
+        parentItem = GameObject.FindGameObjectWithTag(Tags.ItemsParentTransform.ToString()).transform;
     }
 
     public void BindData(InventoryItem inventoryItem, int slotIndex, int hightLightIndex)

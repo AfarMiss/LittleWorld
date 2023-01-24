@@ -209,7 +209,7 @@ public enum MapSize
 
 public enum TerrainLayer
 {
-    Water,
-    Plain,
-    Mountain
+    Altitude,
+    Terrain,
+    Item
 }
