@@ -51,11 +51,11 @@ namespace ProcedualWorld
 
         private void RenderTile(Vector2Int bottomLeft, int tile_id, int x, int y)
         {
-            if (tile_id >= 0 && tile_id < 40)
+            if (tile_id >= 0 && tile_id < 20)
             {
-                altitudeLayer.SetTile(new Vector3(x + bottomLeft.x, y + bottomLeft.y, 0).ToCell(), tileset[tile_id / 10]);
+                altitudeLayer.SetTile(new Vector3(x + bottomLeft.x, y + bottomLeft.y, 0).ToCell(), tileset[tile_id / 5]);
             }
-            else if (tile_id >= 0 && tile_id < 50)
+            else if (tile_id >= 20 && tile_id < 30)
             {
                 altitudeLayer.SetTile(new Vector3(x + bottomLeft.x, y + bottomLeft.y, 0).ToCell(), tileset[4]);
             }
