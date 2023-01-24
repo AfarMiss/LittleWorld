@@ -78,8 +78,9 @@ namespace LittleWorld
             uIManager.Initialize();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
+            CurGame?.Tick();
         }
     }
 }

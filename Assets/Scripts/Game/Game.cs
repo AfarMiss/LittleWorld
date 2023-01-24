@@ -16,6 +16,12 @@ namespace LittleWorld
             timeManager = TimeManager.Instance;
             state = GameState.PREPARING;
         }
+
+        public void Tick()
+        {
+            pathManager.Tick();
+            timeManager.Tick();
+        }
     }
 
     public enum GameState
