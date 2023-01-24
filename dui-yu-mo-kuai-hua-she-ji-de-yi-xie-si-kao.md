@@ -14,8 +14,6 @@
 
 4.Command
 
-
-
 模块化一般也有三种
 
 单例
@@ -23,8 +21,6 @@
 IOC
 
 分层 例如MVC，三层架构，领域驱动分层
-
-
 
 交互逻辑
 
@@ -34,23 +30,15 @@ view->model
 
 model->view
 
-
-
 成型的框架研究
 
 PureMVC,StrangelOC,uFrame,.Net Core的DDD实现
 
-
-
 数据是底层，表现是顶层
-
-
 
 struct相比class有更好的内存管理效率
 
 命令模式可以让逻辑的调用和执行在空间、时间都实现分离。
-
-
 
 表现层到底层用Command
 
@@ -58,14 +46,12 @@ struct相比class有更好的内存管理效率
 
 表现层能够查询数据，可以被替换。
 
-
-
 格式上，对不同的模块进行命名空间的区分是一个好习惯。
 
+接口的显式实现
 
+void ICanSayHello.SayHello(){}
 
 参考资料
 
 1. Unity 游戏框架搭建 决定版 [https://learn.u3d.cn/tutorial/framework\_design?chapterId=63562b29edca72001f21d172#](https://learn.u3d.cn/tutorial/framework\_design?chapterId=63562b29edca72001f21d172)
-
-&#x20;
