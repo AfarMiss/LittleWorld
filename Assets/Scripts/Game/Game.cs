@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using LittleWorld.GameStateSpace;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,15 @@ namespace LittleWorld
             pathManager = GlobalPathManager.Instance;
             timeManager = TimeManager.Instance;
             state = GameState.PREPARING;
+
+            //gameStateFSM = new FiniteStateMachine();
+            //var preparingState = new PreparingState(GameState.PREPARING);
+            //var playingState = new PlayingState(GameState.PLAYING);
+            //gameStateFSM.AddState(preparingState);
+            //gameStateFSM.AddState(playingState);
+
+            //gameStateFSM.SetDefaultState(preparingState);
+            //gameStateFSM.Start();
         }
 
         public void Tick()
@@ -22,12 +32,5 @@ namespace LittleWorld
             pathManager.Tick();
             timeManager.Tick();
         }
-    }
-
-    public enum GameState
-    {
-        UNINIT,
-        PREPARING,
-        PLAYING
     }
 }

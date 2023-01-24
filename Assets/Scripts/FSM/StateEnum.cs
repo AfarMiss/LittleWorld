@@ -1,31 +1,18 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum StateEnum
+public enum GameState
 {
     /// <summary>
-    /// 等待
+    /// 未初始化
     /// </summary>
-    WAITING,
+    UNINIT,
     /// <summary>
-    /// 弹射流程
+    /// 准备
     /// </summary>
-    SHOOT,
+    PREPARING,
     /// <summary>
-    /// 停止/结算流程
+    /// 正在游戏
     /// </summary>
-    CALCULATION,
-    /// <summary>
-    /// 三选一升级流程
-    /// </summary>
-    LEVEL_UP,
-    /// <summary>
-    /// 敌人回合
-    /// </summary>
-    ENEMY,
-    /// <summary>
-    /// 胜利
-    /// </summary>
-    VICTORY
+    PLAYING
 }

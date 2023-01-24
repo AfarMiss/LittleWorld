@@ -1,4 +1,5 @@
-﻿using LittleWorld.Interface;
+﻿using LittleWorld.Command;
+using LittleWorld.Interface;
 using MultipleTxture;
 using System;
 using System.Collections;
@@ -16,6 +17,7 @@ namespace LittleWorld
         private UIManager uIManager;
         private PoolManager poolManager;
         private TextureManager textureManager;
+        private CommandCenter commandCenter;
         private Game curGame;
         public GameState GameState
         {
@@ -28,6 +30,13 @@ namespace LittleWorld
                 else
                 {
                     return GameState.UNINIT;
+                }
+            }
+            set
+            {
+                if (CurGame != null)
+                {
+                    CurGame.state = value;
                 }
             }
         }
@@ -74,6 +83,7 @@ namespace LittleWorld
             uIManager = UIManager.Instance;
             poolManager = PoolManager.Instance;
             textureManager = TextureManager.Instance;
+            commandCenter = CommandCenter.Instance;
 
             uIManager.Initialize();
         }
@@ -81,6 +91,7 @@ namespace LittleWorld
         private void FixedUpdate()
         {
             CurGame?.Tick();
+            commandCenter?.Tick();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using LittleWorld.Command;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,8 +14,7 @@ namespace LittleWorld.UI
 
         public void OnClickStartNewGame()
         {
-            UIManager.Instance.ShowPanel<StartNewGamePanel>();
-            Root.Instance.CurGame = new Game();
+            CommandCenter.Instance.Enqueue(new StartNewGameCommand());
         }
 
         public void OnClickLoadGame()
