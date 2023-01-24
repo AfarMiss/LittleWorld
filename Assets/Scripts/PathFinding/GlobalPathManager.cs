@@ -41,7 +41,10 @@ public class MainMapInfo
         if (Enum.TryParse(typeof(MapSize), size, out var result))
         {
             this.size = (MapSize)result;
-        };
-        this.size = MapSize.MEDIUM;
+        }
+        else
+        {
+            this.size = MapSize.MEDIUM;
+        }
     }
 }

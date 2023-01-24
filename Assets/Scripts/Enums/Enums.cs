@@ -122,7 +122,7 @@ public enum PartVariantType
 
 public enum SceneEnum
 {
-    PersistentSccene,
+    PersistentScene,
     FarmScene,
     Entry,
 }

@@ -56,6 +56,8 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
             //如果使用instance = this as T;会遇到this挂载的gameobject如果同时挂载了别的脚本，as关键字无法分析this类型的情况
             instance = this.gameObject.GetComponent<T>();
             AppIsQuit = false;
+            //非根节点DontDestroyOnLoad无效
+            transform.SetParent(null);
             DontDestroyOnLoad(instance);
         }
         else

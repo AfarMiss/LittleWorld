@@ -1,4 +1,5 @@
-﻿using MultipleTxture;
+﻿using LittleWorld.Extension;
+using MultipleTxture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,6 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     private Tilemap waterLayer;
     private Tilemap plainLayer;
     private bool isFirstTimeSceneLoaded = true;
-    /// <summary>
-    /// 当前地图格子设置信息
-    /// </summary>
-    private Grid grid;
     /// <summary>
     /// 当前地图信息
     /// </summary>
@@ -77,22 +74,13 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     private void FormatBasicTerrainData()
     {
         basicTerrainTiles = new Tile[3];
-        var waterTile = new Tile()
-        {
-            sprite = TextureManager.Instance.GetTerrain("TEX_water"),
-            name = "TEX_water"
-        };
-        basicTerrainTiles[0] = waterTile;
-        basicTerrainTiles[1] = new Tile()
-        {
-            sprite = TextureManager.Instance.GetTerrain("TEX_plain"),
-            name = "TEX_plain"
-        };
-        basicTerrainTiles[2] = new Tile()
-        {
-            sprite = TextureManager.Instance.GetTerrain("TEX_mountain"),
-            name = "TEX_mountain"
-        };
+
+        basicTerrainTiles[0] = ScriptableObject.CreateInstance<Tile>();
+        basicTerrainTiles[0].SetTileLayer("TEX_water");
+        basicTerrainTiles[1] = ScriptableObject.CreateInstance<Tile>();
+        basicTerrainTiles[1].SetTileLayer("TEX_plain");
+        basicTerrainTiles[2] = ScriptableObject.CreateInstance<Tile>();
+        basicTerrainTiles[2].SetTileLayer("TEX_mountain");
     }
 
     public Tile GetBasicTerrainTile(int index)
@@ -137,7 +125,6 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
             cropParentTransform = null;
         }
 
-        grid = GameObject.FindObjectOfType<Grid>();
         waterLayer = GameObject.FindGameObjectWithTag(Tags.Water)?.GetComponent<Tilemap>();
         plainLayer = GameObject.FindGameObjectWithTag(Tags.Plain)?.GetComponent<Tilemap>();
     }
@@ -520,14 +507,8 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private void UpdateAllDetails()
     {
-        ClearDisplayGridPropertyDetails();
-        DisplayGridPropertyDetails();
-    }
-
-    private void UpdateSingleDetails()
-    {
-        ClearDisplayGridPropertyDetails();
-        DisplayGridPropertyDetails();
+        //ClearDisplayGridPropertyDetails();
+        //DisplayGridPropertyDetails();
     }
 
     public void ISaveableStoreScene(string sceneName)

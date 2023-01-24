@@ -8,10 +8,12 @@ namespace LittleWorld
     {
         public GameState state;
         public GlobalPathManager pathManager;
+        public TimeManager timeManager;
 
         public Game()
         {
             pathManager = GlobalPathManager.Instance;
+            timeManager = TimeManager.Instance;
             state = GameState.PREPARING;
         }
     }
