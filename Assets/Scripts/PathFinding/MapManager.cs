@@ -4,18 +4,19 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalPathManager : Singleton<GlobalPathManager>
+public class MapManager : Singleton<MapManager>
 {
     public List<Map> maps;
-    private Map mainMap;
-    public Map MainMap => mainMap;
+    private Map colonyMap;
+    public Map curDisplayMap;
+    public Map ColonyMap => colonyMap;
 
-    private GlobalPathManager()
+    private MapManager()
     {
     }
     public Queue<Vector2Int> CreateNewPath(Vector3 startPos, Vector3 endPos)
     {
-        return mainMap.CalculatePath(startPos, endPos);
+        return colonyMap.CalculatePath(startPos, endPos);
     }
     public override void OnCreateInstance()
     {
@@ -25,8 +26,9 @@ public class GlobalPathManager : Singleton<GlobalPathManager>
 
     private void InitMainMaps(MainMapInfo mainMapInfo)
     {
-        mainMap = new Map(Map.GetMapSize(mainMapInfo.size), mainMapInfo.seed);
-        MapRenderManager.Instance.RenderMap(mainMap);
+        colonyMap = new Map(Map.GetMapSize(mainMapInfo.size), mainMapInfo.seed);
+        MapRenderManager.Instance.RenderMap(colonyMap);
+        curDisplayMap = colonyMap;
     }
 }
 

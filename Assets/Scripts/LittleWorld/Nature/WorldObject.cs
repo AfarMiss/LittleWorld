@@ -12,7 +12,7 @@ namespace LittleWorld.Object
         {
             this.gridPos = gridPos;
             this.instanceID = SceneItemsManager.ItemInstanceID++;
-            curMap = map ?? GlobalPathManager.Instance.MainMap;
+            curMap = map ?? MapManager.Instance.ColonyMap;
         }
 
         protected float maxHealth;

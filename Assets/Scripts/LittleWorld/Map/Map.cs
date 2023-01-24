@@ -83,8 +83,8 @@ namespace LittleWorld.MapUtility
 
         public Queue<Vector2Int> CalculatePath(Vector3 startPos, Vector3 endPos)
         {
-            aStar.SetStartPos(startPos.WorldToCellXY());
-            aStar.SetEndPos(endPos.WorldToCellXY());
+            aStar.SetStartPos(startPos.WorldToCellXY().ClampInMap(this));
+            aStar.SetEndPos(endPos.WorldToCellXY().ClampInMap(this));
             var path = aStar.CalculatePath(out var findPath);
             var outputPath = OutputPath(path, findPath);
             outputPath.TryDequeue(out var result);

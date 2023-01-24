@@ -1,10 +1,8 @@
-﻿using LittleWorld.Object;
-using System.Collections;
-using System.Collections.Generic;
+﻿using LittleWorld.MapUtility;
+using LittleWorld.Object;
 using UniBase;
+using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace LittleWorld
 {
