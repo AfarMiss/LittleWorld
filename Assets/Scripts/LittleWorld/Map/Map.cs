@@ -50,7 +50,6 @@ namespace LittleWorld.MapUtility
             MapLeftBottomPoint = new Vector2Int(-MapSize.x / 2, -MapSize.y / 2);
             mapGrids = new MapGridDetails[MapSize.x * MapSize.y];
 
-            aStar = new AStar(MapSize.x, MapSize.y, MapLeftBottomPoint.x, MapLeftBottomPoint.y);
 
             var index = 0;
             for (int x = 0; x < MapSize.x; x++)
@@ -60,6 +59,7 @@ namespace LittleWorld.MapUtility
                     mapGrids[index++] = new MapGridDetails(new Vector2Int(x, y), GetIdUsingPerlin(x, y));
                 }
             }
+            aStar = new AStar(MapSize.x, MapSize.y, MapLeftBottomPoint.x, MapLeftBottomPoint.y, mapGrids);
         }
 
         public bool GetGrid(int x, int y, out MapGridDetails result)
