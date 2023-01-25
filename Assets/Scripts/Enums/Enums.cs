@@ -213,3 +213,9 @@ public enum TerrainLayer
     Terrain,
     Item
 }
+
+public enum MouseState
+{
+    Normal,
+    ManagePlantZone,
+}

@@ -21,6 +21,9 @@ public class InputController : MonoSingleton<InputController>
     [SerializeField]
     private RectTransform selectedAreaPrefab;
 
+    [SerializeField]
+    private Sprite selectIcon;
+
     public List<WorldObject> SelectedObjects => selectedObjects;
     private List<WorldObject> selectedObjects;
     public bool AdditionalAction => additionalAction;
@@ -29,6 +32,7 @@ public class InputController : MonoSingleton<InputController>
     /// 是否为附加模式
     /// </summary>
     private bool additionalAction;
+    public MouseState mouseState = MouseState.Normal;
 
     private RectTransform selectedArea;
     private CameraController CamController => Camera.main.GetComponent<CameraController>();
@@ -98,6 +102,7 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.performed)
         {
+            SetMouseStateToDefault();
             CleanInteraction();
 
             //根据框选状态确定执行操作
@@ -129,6 +134,12 @@ public class InputController : MonoSingleton<InputController>
                 }
             }
         }
+    }
+
+    private void SetMouseStateToDefault()
+    {
+        Debug.Log("RemoveZoneState");
+        this.mouseState = MouseState.Normal;
     }
 
     private void AddMoveWork(WorldObject human, Vector3 targetPos)
@@ -184,10 +195,35 @@ public class InputController : MonoSingleton<InputController>
 
     public void OnClickLeft(CallbackContext callbackContext)
     {
+        OnPlayingGameProgress(callbackContext);
+    }
+
+    private void OnPlayingGameProgress(CallbackContext callbackContext)
+    {
         if (Root.Instance.GameState != GameState.PLAYING)
         {
             return;
         }
+        //先响应UI，再响应游戏场景
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        switch (mouseState)
+        {
+            case MouseState.Normal:
+                Select(callbackContext);
+                break;
+            case MouseState.ManagePlantZone:
+                AddZone(callbackContext);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void Select(CallbackContext callbackContext)
+    {
         if (callbackContext.started)
         {
             onClickLeftStartPosition = Current.MousePos;
@@ -209,6 +245,29 @@ public class InputController : MonoSingleton<InputController>
             }
 
             Debug.Log("Click.canceled -------");
+        }
+    }
+
+    private void AddZone(CallbackContext callbackContext)
+    {
+        if (callbackContext.started)
+        {
+            Debug.Log("AddZone");
+            onClickLeftStartPosition = Current.MousePos;
+        }
+        else if (callbackContext.canceled)
+        {
+            onClickLeftEndPosition = Current.MousePos;
+
+            var floatMenu = FindObjectOfType<InteractionMenu>();
+            //点击点不包含交互菜单则重新选择框选单位
+            if (floatMenu == null || !(floatMenu.transform as RectTransform).RectangleContainsScreenPoint(Current.MousePos))
+            {
+                CleanInteraction();
+                TryClearSelectedUnits();
+                selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
+            }
+
         }
     }
 

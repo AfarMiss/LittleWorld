@@ -181,6 +181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedAreaPrefab: {fileID: 8264267579888564747, guid: 2206aee96f6a4ec48a4668c88d05759b, type: 3}
+  selectIcon: {fileID: 0}
+  mouseState: 0
 --- !u!1 &270520721
 GameObject:
   m_ObjectHideFlags: 0

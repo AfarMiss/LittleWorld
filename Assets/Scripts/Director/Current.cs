@@ -8,6 +8,17 @@ namespace LittleWorld
     /// </summary>
     public static class Current
     {
+        public static MouseState MouseState
+        {
+            get
+            {
+                return InputController.Instance.mouseState;
+            }
+            set
+            {
+                InputController.Instance.mouseState = value;
+            }
+        }
         public static Vector2 MousePos => InputUtils.GetMousePosition();
 
         public static bool IsAdditionalMode => InputController.Instance.AdditionalAction;

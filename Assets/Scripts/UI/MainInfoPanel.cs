@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using LittleWorld.Command;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,8 +39,9 @@ public class MainInfoPanel : BaseUI
         YearQuadDayText.text = $"{time.year}年 {time.quad}象 {time.day}日";
     }
 
-    public override void OnClickClose()
+    public void OnClickPlantZone()
     {
-        UIManager.Instance.Hide<MainInfoPanel>(UIType.PANEL);
+        Debug.Log("AddZoneState");
+        CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ManagePlantZone));
     }
 }

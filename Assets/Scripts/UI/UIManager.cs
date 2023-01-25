@@ -1,4 +1,5 @@
 ﻿using LittleWorld.Graphics;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -118,6 +119,15 @@ public class UIManager : MonoSingleton<UIManager>
             default:
                 break;
         }
+    }
+
+    public void Hide(Type type, UIType uiType, bool destroyIt = false)
+    {
+        this.GetType().GetMethod("Hide").MakeGenericMethod(type).Invoke(this, new object[]
+        {
+            uiType,
+            destroyIt,
+        });
     }
 
     public void Hide<T>(UIType uiType, bool destroyIt = false) where T : BaseUI

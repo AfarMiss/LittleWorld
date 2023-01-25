@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public abstract class BaseUI : MonoBehaviour
 {
@@ -46,5 +47,8 @@ public abstract class BaseUI : MonoBehaviour
     {
     }
 
-    public virtual void OnClickClose() { }
+    public virtual void OnClickClose()
+    {
+        UIManager.Instance.Hide(this.GetType(), UiType);
+    }
 }
