@@ -13,10 +13,18 @@ using static UnityEditor.Progress;
 using static UnityEngine.InputSystem.InputAction;
 using LittleWorld.MapUtility;
 
+
 public class InputController : MonoSingleton<InputController>
 {
+    public delegate void OnPlantZoneChanged(MapGridDetails[] details);
     private Vector3 onClickLeftStartPosition;
     private Vector3 onClickLeftEndPosition;
+    private OnPlantZoneChanged onPlantZoneChanged;
+
+    public void AddEventOnZoomChanged(OnPlantZoneChanged onChanged)
+    {
+        this.onPlantZoneChanged += onChanged;
+    }
 
     private Vector3 onClickLeftStartPositionWorldPosition => Camera.main.ScreenToWorldPoint(onClickLeftStartPosition);
     private Vector3 onClickLeftEndPositionWorldPosition => Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
@@ -87,7 +95,7 @@ public class InputController : MonoSingleton<InputController>
         if (callbackContext.performed)
         {
             var scrollValue = callbackContext.ReadValue<Vector2>();
-            Debug.Log(callbackContext.ReadValue<Vector2>());
+            //Debug.Log(callbackContext.ReadValue<Vector2>());
             if (scrollValue.y > 0)
             {
                 FindObjectOfType<PixelPerfectCamera>().assetsPPU++;
@@ -255,18 +263,12 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.started)
         {
-            Debug.Log("AddZone");
             onClickLeftStartPosition = Current.MousePos;
         }
         else if (callbackContext.canceled)
         {
-            onClickLeftEndPosition = Current.MousePos;
-            var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
-            foreach (var item in grids)
-            {
-                Debug.Log("gridsItem:" + item.pos);
-            }
-            Debug.Log("GetWorldRect:" + GetWorldRect());
+            var empty = new MapGridDetails[0];
+            onPlantZoneChanged?.Invoke(empty);
         }
     }
 
@@ -351,6 +353,12 @@ public class InputController : MonoSingleton<InputController>
         realSelection.size = selectedArea.sizeDelta;
 
         RenderSelectionArea(lowerLeft, upperRight);
+        if (mouseState == MouseState.ManagePlantZone)
+        {
+            onClickLeftEndPosition = Current.MousePos;
+            var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
+            onPlantZoneChanged?.Invoke(grids);
+        }
     }
 
     private Rect GetWorldRect()
@@ -380,8 +388,10 @@ public class InputController : MonoSingleton<InputController>
             if (item.gridRect.Overlaps(worldRect))
             {
                 grids.Add(item);
+                Debug.Log("worldRectgrids:" + item.pos);
             }
         }
+        Debug.Log("worldRect:" + worldRect);
         return grids.ToArray();
     }
 }

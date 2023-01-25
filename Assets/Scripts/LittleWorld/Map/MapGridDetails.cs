@@ -14,7 +14,7 @@ namespace LittleWorld.MapUtility
         {
             this.pos = pos;
             this.gridAltitudeLayer = gridAltitudeLayer;
-            gridRect = new Rect(pos - new Vector2(0.5f, 0.5f), Vector2.one);
+            gridRect = new Rect(pos, Vector2.one);
         }
     }
 }

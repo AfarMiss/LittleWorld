@@ -61,7 +61,26 @@ namespace LittleWorld.Graphics
     - bottomLeftPoint.ToScreenPos();
             var textureHeight = (int)textureHeightVector.y;
 
-            Texture2D tex = TextureDatabase.Image_Destination;
+            Texture2D tex = TextureDatabase.Tex_Destination;
+
+            DrawTexture(new Rect(screenRect, new Vector2(textureWidth, textureHeight)), tex);
+        }
+
+        public static void DrawZoomGreen(Vector2 bottomLeftPoint, float worldWidth, float worldHeight, float alpha)
+        {
+            var upperLeftPoint = (bottomLeftPoint + new Vector2(0, 1)).ToScreenPos();
+            var screenRect = new Vector2(upperLeftPoint.x, Screen.height - upperLeftPoint.y);
+            var textureWidthVector =
+                (bottomLeftPoint + new Vector2(worldWidth, 0)).ToScreenPos()
+                - bottomLeftPoint.ToScreenPos();
+            var textureWidth = (int)textureWidthVector.x;
+
+            var textureHeightVector =
+    (bottomLeftPoint + new Vector2(0, worldHeight)).ToScreenPos()
+    - bottomLeftPoint.ToScreenPos();
+            var textureHeight = (int)textureHeightVector.y;
+
+            Texture2D tex = TextureDatabase.Tex_Zoom_Green;
 
             DrawTexture(new Rect(screenRect, new Vector2(textureWidth, textureHeight)), tex);
         }

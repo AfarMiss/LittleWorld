@@ -1,9 +1,11 @@
 ﻿using LittleWorld.Graphics;
+using LittleWorld.MapUtility;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class UIManager : MonoSingleton<UIManager>
 {
@@ -13,6 +15,10 @@ public class UIManager : MonoSingleton<UIManager>
     private GameObject sliderPrefab;
 
     private Dictionary<UIType, List<BaseUI>> uiDic;
+
+    private bool needDrawPlantZoom = false;
+    MapGridDetails[] details = null;
+
     protected GameObject UICanvas { get; private set; }
 
     private bool isShowingPanel;
@@ -31,6 +37,12 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
+    public override void Initialize()
+    {
+        base.Initialize();
+        InputController.Instance.AddEventOnZoomChanged(OnPlantZoomChanged);
+    }
+
     public UIManager()
     {
         uiDic = new Dictionary<UIType, List<BaseUI>>();
@@ -40,6 +52,12 @@ public class UIManager : MonoSingleton<UIManager>
         uiDic.Add(UIType.DIALOG, new List<BaseUI>());
         uiDic.Add(UIType.TIP, new List<BaseUI>());
         uiDic.Add(UIType.SCENE_CHANGE, new List<BaseUI>());
+
+    }
+
+    private void OnPlantZoomChanged(MapGridDetails[] details)
+    {
+        this.details = details;
     }
 
     protected override void Awake()
@@ -231,8 +249,20 @@ public class UIManager : MonoSingleton<UIManager>
             }
             #endregion
 
+            #region 绘制种植选择层
+            if (details != null)
+            {
+                foreach (var item in details)
+                {
+                    GraphicsUtiliy.DrawZoomGreen(item.pos, 1, 1, 1);
+                }
+            }
+            #endregion
+
         }
     }
+
+
 }
 
 public enum UIType
