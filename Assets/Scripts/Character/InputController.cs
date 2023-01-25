@@ -18,6 +18,9 @@ public class InputController : MonoSingleton<InputController>
     private Vector3 onClickLeftStartPosition;
     private Vector3 onClickLeftEndPosition;
 
+    private Vector3 onClickLeftStartPositionWorldPosition => Camera.main.ScreenToWorldPoint(onClickLeftStartPosition);
+    private Vector3 onClickLeftEndPositionWorldPosition => Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
+
     [SerializeField]
     private RectTransform selectedAreaPrefab;
 
@@ -258,16 +261,12 @@ public class InputController : MonoSingleton<InputController>
         else if (callbackContext.canceled)
         {
             onClickLeftEndPosition = Current.MousePos;
-
-            var floatMenu = FindObjectOfType<InteractionMenu>();
-            //点击点不包含交互菜单则重新选择框选单位
-            if (floatMenu == null || !(floatMenu.transform as RectTransform).RectangleContainsScreenPoint(Current.MousePos))
+            var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
+            foreach (var item in grids)
             {
-                CleanInteraction();
-                TryClearSelectedUnits();
-                selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
+                Debug.Log("gridsItem:" + item.pos);
             }
-
+            Debug.Log("GetWorldRect:" + GetWorldRect());
         }
     }
 
@@ -347,10 +346,42 @@ public class InputController : MonoSingleton<InputController>
         onClickLeftEndPosition = Current.MousePos;
         var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Min(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
         var upperRight = new Vector2(Mathf.Max(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Max(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
-        selectedArea.position = lowerLeft;
-        selectedArea.sizeDelta = upperRight - lowerLeft;
 
         realSelection.position = lowerLeft;
         realSelection.size = selectedArea.sizeDelta;
+
+        RenderSelectionArea(lowerLeft, upperRight);
+    }
+
+    private Rect GetWorldRect()
+    {
+        Rect worldRect = new Rect();
+
+        var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPositionWorldPosition.x, onClickLeftEndPositionWorldPosition.x), Mathf.Min(onClickLeftStartPositionWorldPosition.y, onClickLeftEndPositionWorldPosition.y));
+        var upperRight = new Vector2(Mathf.Max(onClickLeftStartPositionWorldPosition.x, onClickLeftEndPositionWorldPosition.x), Mathf.Max(onClickLeftStartPositionWorldPosition.y, onClickLeftEndPositionWorldPosition.y));
+
+        worldRect.position = lowerLeft;
+        worldRect.size = upperRight - lowerLeft;
+
+        return worldRect;
+    }
+
+    private void RenderSelectionArea(Vector2 lowerLeft, Vector2 upperRight)
+    {
+        selectedArea.position = lowerLeft;
+        selectedArea.sizeDelta = upperRight - lowerLeft;
+    }
+
+    public MapGridDetails[] GetWorldGrids(Map map, Rect worldRect)
+    {
+        List<MapGridDetails> grids = new List<MapGridDetails>();
+        foreach (var item in map.mapGrids)
+        {
+            if (item.gridRect.Overlaps(worldRect))
+            {
+                grids.Add(item);
+            }
+        }
+        return grids.ToArray();
     }
 }

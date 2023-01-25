@@ -8,11 +8,13 @@ namespace LittleWorld.MapUtility
     {
         public Vector2Int pos;
         public int gridAltitudeLayer;
+        public Rect gridRect;
 
         public MapGridDetails(Vector2Int pos, int gridAltitudeLayer)
         {
             this.pos = pos;
             this.gridAltitudeLayer = gridAltitudeLayer;
+            gridRect = new Rect(pos - new Vector2(0.5f, 0.5f), Vector2.one);
         }
     }
 }

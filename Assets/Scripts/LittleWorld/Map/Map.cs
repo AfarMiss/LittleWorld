@@ -6,10 +6,13 @@ using UnityEngine;
 
 namespace LittleWorld.MapUtility
 {
+    /// <summary>
+    /// 所有地图的左下角坐标均为(0,0)
+    /// </summary>
     public class Map
     {
         public Vector2Int MapSize;
-        public Vector2Int MapLeftBottomPoint;
+        public Vector2Int MapLeftBottomPoint = Vector2Int.zero;
         public MapGridDetails[] mapGrids;
         private AStar aStar;
         [SerializeField]
@@ -46,7 +49,6 @@ namespace LittleWorld.MapUtility
         {
             this.MapSize = MapSize;
             this.seed = seed;
-            MapLeftBottomPoint = new Vector2Int(-MapSize.x / 2, -MapSize.y / 2);
             mapGrids = new MapGridDetails[MapSize.x * MapSize.y];
 
 

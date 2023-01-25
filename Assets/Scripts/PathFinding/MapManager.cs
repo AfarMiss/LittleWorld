@@ -37,16 +37,9 @@ public class MainMapInfo
     public string seed;
     public MapSize size;
 
-    public MainMapInfo(string seed, string size = "MEDIUM")
+    public MainMapInfo(string seed, MapSize size)
     {
         this.seed = seed;
-        if (Enum.TryParse(typeof(MapSize), size, out var result))
-        {
-            this.size = (MapSize)result;
-        }
-        else
-        {
-            this.size = MapSize.MEDIUM;
-        }
+        this.size = size;
     }
 }
