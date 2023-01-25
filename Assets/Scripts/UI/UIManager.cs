@@ -224,7 +224,6 @@ public class UIManager : MonoSingleton<UIManager>
 
     private void OnGUI()
     {
-        if (InputController.Instance.SelectedObjects == null) return;
         //因为目前底层使用了 UnityEngine.Graphics.DrawTexture
         //所以需要限制在接收到这个事件时触发。
         //否则目前可能会产生多重绘制,具体原因尚不清楚。
@@ -232,9 +231,12 @@ public class UIManager : MonoSingleton<UIManager>
         if (Event.current.type.Equals(EventType.Repaint))
         {
             #region 绘制选择单位
-            foreach (var item in InputController.Instance.SelectedObjects)
+            if (InputController.Instance.SelectedObjects != null)
             {
-                GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.ToWorldVector2(), 1, 1);
+                foreach (var item in InputController.Instance.SelectedObjects)
+                {
+                    GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.ToWorldVector2(), 1, 1);
+                }
             }
             #endregion
 

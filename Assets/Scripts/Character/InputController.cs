@@ -20,6 +20,9 @@ public class InputController : MonoSingleton<InputController>
     private Vector3 onClickLeftStartPosition;
     private Vector3 onClickLeftEndPosition;
     private OnPlantZoneChanged onPlantZoneChanged;
+    private bool needRespondToUI =>
+        UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()
+    && mouseState != MouseState.Normal;
 
     public void AddEventOnZoomChanged(OnPlantZoneChanged onChanged)
     {
@@ -216,7 +219,7 @@ public class InputController : MonoSingleton<InputController>
             return;
         }
         //先响应UI，再响应游戏场景
-        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        if (needRespondToUI)
         {
             return;
         }
@@ -348,6 +351,12 @@ public class InputController : MonoSingleton<InputController>
 
     private void UpdateSelectArea()
     {
+        //优先响应UI
+        if (needRespondToUI)
+        {
+            return;
+        }
+
         onClickLeftEndPosition = Current.MousePos;
         onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
         var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Min(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
@@ -393,10 +402,10 @@ public class InputController : MonoSingleton<InputController>
             if (item.gridRect.Overlaps(worldRect))
             {
                 grids.Add(item);
-                Debug.Log("worldRectgrids:" + item.pos);
+                //Debug.Log("worldRectgrids:" + item.pos);
             }
         }
-        Debug.Log("worldRectRect:" + worldRect);
+        //Debug.Log("worldRectRect:" + worldRect);
         return grids.ToArray();
     }
 }
