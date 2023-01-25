@@ -26,6 +26,7 @@ namespace LittleWorld
             if (curWork == null)
             {
                 Debug.LogError("worker has no work");
+                return;
             }
 
             curWork.WorkState = WorkStateEnum.Working;

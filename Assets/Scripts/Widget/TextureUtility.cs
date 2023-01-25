@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.U2D.Sprites;
 using UnityEngine;
 
 namespace LittleWorld.Widget
@@ -24,6 +25,10 @@ namespace LittleWorld.Widget
                 {
                     //修改Texture Type
                     texImporter.textureType = TextureImporterType.Sprite;
+                    texImporter.spritePixelsPerUnit = 16;
+                    texImporter.spriteImportMode = SpriteImportMode.Multiple;
+                    texImporter.filterMode = FilterMode.Point;
+
                     ////修改Aniso Level
                     //texImporter.anisoLevel = 0;
                     ////修改Read/Write enabled 
