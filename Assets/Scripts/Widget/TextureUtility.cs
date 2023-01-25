@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditor.U2D.Sprites;
 using UnityEngine;
 
-namespace LittleWorld.Widget
+namespace LittleWorld.TextureUtility
 {
     public class SetTextureInfo : EditorWindow
     {

@@ -15,7 +15,7 @@ namespace LittleWorld
     {
         private UIManager uIManager;
         private PoolManager poolManager;
-        private TileManager textureManager;
+        private TileManager tileManager;
         private CommandCenter commandCenter;
         private Game curGame;
         public GameState GameState
@@ -81,7 +81,7 @@ namespace LittleWorld
 
             uIManager = UIManager.Instance;
             poolManager = PoolManager.Instance;
-            textureManager = TileManager.Instance;
+            tileManager = TileManager.Instance;
             commandCenter = CommandCenter.Instance;
 
             uIManager.Initialize();
