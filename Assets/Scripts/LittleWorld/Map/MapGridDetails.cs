@@ -9,6 +9,9 @@ namespace LittleWorld.MapUtility
         public Vector2Int pos;
         public int gridAltitudeLayer;
         public Rect gridRect;
+        public bool isPlantZone;
+        public bool isLand => gridAltitudeLayer >= 30;
+
 
         public MapGridDetails(Vector2Int pos, int gridAltitudeLayer)
         {

@@ -12,6 +12,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 using static UnityEditor.Progress;
 using static UnityEngine.InputSystem.InputAction;
 using LittleWorld.MapUtility;
+using System.Runtime.CompilerServices;
 
 
 public class InputController : MonoSingleton<InputController>
@@ -34,9 +35,6 @@ public class InputController : MonoSingleton<InputController>
 
     [SerializeField]
     private RectTransform selectedAreaPrefab;
-
-    [SerializeField]
-    private Sprite selectIcon;
 
     public List<WorldObject> SelectedObjects => selectedObjects;
     private List<WorldObject> selectedObjects;
@@ -107,7 +105,6 @@ public class InputController : MonoSingleton<InputController>
             {
                 FindObjectOfType<PixelPerfectCamera>().assetsPPU--;
             }
-            //FindObjectOfType<PixelPerfectCamera>().assetsPPU--;
         }
     }
 
@@ -273,6 +270,14 @@ public class InputController : MonoSingleton<InputController>
         }
         else if (callbackContext.canceled)
         {
+            var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
+            foreach (var grid in grids)
+            {
+                if (grid.isLand)
+                {
+                    grid.isPlantZone = true;
+                }
+            }
             var empty = new MapGridDetails[0];
             onPlantZoneChanged?.Invoke(empty);
         }

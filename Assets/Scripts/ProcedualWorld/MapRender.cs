@@ -1,5 +1,8 @@
 ﻿using LittleWorld;
+using LittleWorld.Graphics;
 using LittleWorld.MapUtility;
+using LittleWorld.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -62,6 +65,26 @@ namespace ProcedualWorld
             else
             {
                 altitudeLayer.SetTile(new Vector3(x + bottomLeft.x, y + bottomLeft.y, 0).ToCell(), tileset[5]);
+            }
+        }
+
+        private void OnGUI()
+        {
+            if (Event.current.type.Equals(EventType.Repaint))
+            {
+                RenderPlantZone();
+            }
+
+        }
+
+        private void RenderPlantZone()
+        {
+            foreach (var grid in map.mapGrids)
+            {
+                if (grid.isPlantZone)
+                {
+                    GraphicsUtiliy.DrawTexture(grid.pos, 1, 1, TextureDatabase.Tex_Zoom_Plant_Area);
+                }
             }
         }
     }

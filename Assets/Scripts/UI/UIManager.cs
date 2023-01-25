@@ -246,7 +246,7 @@ public class UIManager : MonoSingleton<UIManager>
             {
                 if (!item.atDestination && item.lastStampFrameCount > 0 && Time.frameCount - item.lastStampFrameCount <= 50)
                 {
-                    GraphicsUtiliy.DrawDestinationIcon(item.curDestination, 1, 1, 0.3f);
+                    GraphicsUtiliy.DrawDestinationIcon(item.curDestination, 1, 1);
                 }
             }
             #endregion
@@ -256,7 +256,7 @@ public class UIManager : MonoSingleton<UIManager>
             {
                 foreach (var item in details)
                 {
-                    GraphicsUtiliy.DrawZoomGreen(item.pos, 1, 1, 1);
+                    GraphicsUtiliy.DrawZoomGreen(item.pos, 1, 1);
                 }
             }
             #endregion

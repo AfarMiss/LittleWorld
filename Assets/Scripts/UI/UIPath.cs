@@ -9,8 +9,9 @@
     public static string Panel_ConciseInventoryPanel = "Prefabs/UI/Panel/UIInventoryBar";
 
     public static string Image_Selected = "Assets\\Resources\\MiniMap\\MiniWorldSprites\\User Interface\\BoxSelector.png";
+    public static string Image_ZoomIndictor = "Assets\\Resources\\MiniMap\\MiniWorldSprites\\User Interface\\ZoneIndicator.png";
     public static string Image_Destination = "Assets\\Resources\\MiniMap\\MiniWorldSprites\\User Interface\\CircleLarge_OutlineOnly.png";
-    public static string Image_Zoom = "Assets\\Resources\\MiniMap\\MiniWorldSprites\\User Interface\\Highlighted-Boxes.png";
+    public static string Image_ZoomDynamic = "Assets\\Resources\\MiniMap\\MiniWorldSprites\\User Interface\\Highlighted-Boxes.png";
 
     public static string Panel_WelcomePanel = "Prefabs/UI/Panel/WelcomePanel";
 }
