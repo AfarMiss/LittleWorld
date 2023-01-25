@@ -26,8 +26,8 @@ public class InputController : MonoSingleton<InputController>
         this.onPlantZoneChanged += onChanged;
     }
 
-    private Vector3 onClickLeftStartPositionWorldPosition => Camera.main.ScreenToWorldPoint(onClickLeftStartPosition);
-    private Vector3 onClickLeftEndPositionWorldPosition => Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
+    private Vector3 onClickLeftStartPositionWorldPosition;
+    private Vector3 onClickLeftEndPositionWorldPosition;
 
     [SerializeField]
     private RectTransform selectedAreaPrefab;
@@ -238,12 +238,14 @@ public class InputController : MonoSingleton<InputController>
         if (callbackContext.started)
         {
             onClickLeftStartPosition = Current.MousePos;
+            onClickLeftStartPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftStartPosition);
             selectedArea.gameObject.SetActive(true);
             Debug.Log("Click.started -------");
         }
         else if (callbackContext.canceled)
         {
             onClickLeftEndPosition = Current.MousePos;
+            onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
             selectedArea.gameObject.SetActive(false);
 
             var floatMenu = FindObjectOfType<InteractionMenu>();
@@ -264,6 +266,7 @@ public class InputController : MonoSingleton<InputController>
         if (callbackContext.started)
         {
             onClickLeftStartPosition = Current.MousePos;
+            onClickLeftStartPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftStartPosition);
         }
         else if (callbackContext.canceled)
         {
@@ -346,6 +349,7 @@ public class InputController : MonoSingleton<InputController>
     private void UpdateSelectArea()
     {
         onClickLeftEndPosition = Current.MousePos;
+        onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
         var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Min(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
         var upperRight = new Vector2(Mathf.Max(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Max(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
 
@@ -356,6 +360,7 @@ public class InputController : MonoSingleton<InputController>
         if (mouseState == MouseState.ManagePlantZone)
         {
             onClickLeftEndPosition = Current.MousePos;
+            onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
             var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
             onPlantZoneChanged?.Invoke(grids);
         }
@@ -391,7 +396,7 @@ public class InputController : MonoSingleton<InputController>
                 Debug.Log("worldRectgrids:" + item.pos);
             }
         }
-        Debug.Log("worldRect:" + worldRect);
+        Debug.Log("worldRectRect:" + worldRect);
         return grids.ToArray();
     }
 }
