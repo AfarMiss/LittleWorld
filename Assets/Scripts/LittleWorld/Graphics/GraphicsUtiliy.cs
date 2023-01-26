@@ -9,6 +9,11 @@ namespace LittleWorld.Graphics
 {
     public static class GraphicsUtiliy
     {
+        public static void DrawMesh(Material material)
+        {
+            UnityEngine.Graphics.DrawMesh(MeshUtility.MeshUtil.Quad(Vector3.one), Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer("Default"));
+        }
+
         private static void DrawTextureInternal(Rect rect, Texture2D texture2D, Rect sourceRect = default)
         {
             if (sourceRect == default)
