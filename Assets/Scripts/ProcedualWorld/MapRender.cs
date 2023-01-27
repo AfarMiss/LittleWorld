@@ -68,37 +68,21 @@ namespace ProcedualWorld
             }
         }
 
-        private void OnGUI()
-        {
-            if (Event.current.type.Equals(EventType.Repaint))
-            {
-                RenderPlantZone();
-            }
-
-        }
-
         private void Update()
         {
             #region 绘制种植选择层
-            if (details != null)
+            if (map.mapGrids != null)
             {
-                foreach (var item in details)
+                foreach (var item in map.mapGrids)
                 {
-                    GraphicsUtiliy.DrawZoomGreen(item.pos, 1, 1);
+                    if (item.isPlantZone)
+                    {
+                        GraphicsUtiliy.DrawPlantZoom(item.pos);
+                        Debug.Log($"draw plant zoom pos:{item.pos}");
+                    }
                 }
             }
             #endregion
-        }
-
-        private void RenderPlantZone()
-        {
-            foreach (var grid in map.mapGrids)
-            {
-                if (grid.isPlantZone)
-                {
-                    GraphicsUtiliy.DrawTexture(grid.pos, 1, 1, TextureDatabase.Tex_Zoom_Plant_Area);
-                }
-            }
         }
     }
 }

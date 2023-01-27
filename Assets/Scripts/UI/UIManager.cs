@@ -17,7 +17,6 @@ public class UIManager : MonoSingleton<UIManager>
     private Dictionary<UIType, List<BaseUI>> uiDic;
 
     private bool needDrawPlantZoom = false;
-    MapGridDetails[] details = null;
 
     protected GameObject UICanvas { get; private set; }
 
@@ -37,12 +36,6 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        InputController.Instance.AddEventOnZoomChanged(OnPlantZoomChanged);
-    }
-
     public UIManager()
     {
         uiDic = new Dictionary<UIType, List<BaseUI>>();
@@ -53,11 +46,6 @@ public class UIManager : MonoSingleton<UIManager>
         uiDic.Add(UIType.TIP, new List<BaseUI>());
         uiDic.Add(UIType.SCENE_CHANGE, new List<BaseUI>());
 
-    }
-
-    private void OnPlantZoomChanged(MapGridDetails[] details)
-    {
-        this.details = details;
     }
 
     protected override void Awake()

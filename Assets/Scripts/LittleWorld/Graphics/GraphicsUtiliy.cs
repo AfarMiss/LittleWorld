@@ -14,11 +14,11 @@ namespace LittleWorld.Graphics
             UnityEngine.Graphics.DrawMesh(MeshUtility.MeshUtil.Quad(Vector3.one), Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
-        public static void DrawColorMesh(Color color, Vector3 pos, string layerName = "Default")
+        public static void DrawColorQuadMesh(Color color, Vector3 pos, int zoomLayer, string layerName = "Default")
         {
-            var material = new Material(Shader.Find("Unlit/Color"));
+            var material = MaterialDatabase.PlantZoomMaterial;
             material.color = color;
-            UnityEngine.Graphics.DrawMesh(MeshUtility.MeshUtil.Quad(pos), Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+            UnityEngine.Graphics.DrawMesh(MeshUtility.MeshUtil.Quad(pos - Vector3.forward * zoomLayer), Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
         private static void DrawTextureInternal(Rect rect, Texture2D texture2D, Rect sourceRect = default)
@@ -99,11 +99,9 @@ namespace LittleWorld.Graphics
             return resultRect;
         }
 
-        public static void DrawZoomGreen(Vector2 bottomLeftPoint, float worldWidth, float worldHeight)
+        public static void DrawPlantZoom(Vector2 bottomLeftPoint)
         {
-            Rect resultRect = GetScreenRect(bottomLeftPoint, worldWidth, worldHeight);
-            Texture2D tex = TextureDatabase.Tex_Zoom_Green;
-            DrawTextureInternal(resultRect, tex);
+            DrawColorQuadMesh(Color.green, bottomLeftPoint, 1);
         }
 
         public static Texture2D SpriteToTexture(Sprite sprite)
