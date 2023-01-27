@@ -3,29 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 using static UnityEditor.Progress;
 
 namespace LittleWorld.Graphics
 {
-    public static class GraphicsUtiliy
+    public class GraphicsUtiliy
     {
         public static void DrawMesh(Material material, string layerName = "Default")
         {
-            UnityEngine.Graphics.DrawMesh(MeshUtility.MeshUtil.Quad(Vector3.zero), Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+
+            var mesh = MeshUtility.MeshUtil.Quad(Vector3.zero);
+            UnityEngine.Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
         public static void DrawSelectedPlantZoom(Vector3 pos, Material material, int zoomLayer, string layerName = "Default")
         {
             var mesh = MeshUtility.MeshUtil.GreenZoom(pos - Vector3.forward * zoomLayer);
             UnityEngine.Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
-            foreach (var item in mesh.vertices)
-            {
-                Debug.Log($"grids.info.vertice: {item}");
-            }
         }
 
         public static void DrawColorQuadMesh(Color color, Vector3 pos, int zoomLayer, string layerName = "Default")
         {
+
             var material = MaterialDatabase.Instance.PlantZoomMaterial;
             material.color = color;
             UnityEngine.Graphics.DrawMesh(MeshUtility.MeshUtil.Quad(pos - Vector3.forward * zoomLayer), Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));

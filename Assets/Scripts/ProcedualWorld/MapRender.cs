@@ -78,7 +78,6 @@ namespace ProcedualWorld
                     if (item.isPlantZone)
                     {
                         GraphicsUtiliy.DrawPlantZoom(item.pos);
-                        Debug.Log($"draw plant zoom pos:{item.pos}");
                     }
                 }
             }
