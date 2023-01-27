@@ -111,7 +111,8 @@ namespace LittleWorld.Graphics
 
         public static void DrawPlantZoom(Vector2 bottomLeftPoint)
         {
-            DrawColorQuadMesh(Color.green, bottomLeftPoint, 1);
+            //默认alpha值为1f
+            DrawColorQuadMesh(new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f), bottomLeftPoint, 1);
         }
 
         public static Texture2D SpriteToTexture(Sprite sprite)
