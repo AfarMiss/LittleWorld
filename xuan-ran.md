@@ -16,6 +16,10 @@ Renderqueue小于2500的物体 始终在 Renderqueue大于2500之前绘制。
 
 ### 三、Sorting Layer
 
+1. 物体的SortingLayer。 根据 Project Setting - Tags & Layers 中的顺序，越靠上的SortingLayer 越先渲染。
+2. 物体的OrderInLayer。 数字越小越先渲染。
+3. 物体距离摄像机的距离。 越远的越先渲染。
+
 在Tags & Layers设置中可见
 
 如果Camera相同，那接下来就看Sorting Layers，越低越早绘制。
