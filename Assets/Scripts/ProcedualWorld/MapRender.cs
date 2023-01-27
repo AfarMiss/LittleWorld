@@ -77,6 +77,19 @@ namespace ProcedualWorld
 
         }
 
+        private void Update()
+        {
+            #region 绘制种植选择层
+            if (details != null)
+            {
+                foreach (var item in details)
+                {
+                    GraphicsUtiliy.DrawZoomGreen(item.pos, 1, 1);
+                }
+            }
+            #endregion
+        }
+
         private void RenderPlantZone()
         {
             foreach (var grid in map.mapGrids)

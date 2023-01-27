@@ -251,16 +251,6 @@ public class UIManager : MonoSingleton<UIManager>
             }
             #endregion
 
-            #region 绘制种植选择层
-            if (details != null)
-            {
-                foreach (var item in details)
-                {
-                    GraphicsUtiliy.DrawZoomGreen(item.pos, 1, 1);
-                }
-            }
-            #endregion
-
         }
     }
 

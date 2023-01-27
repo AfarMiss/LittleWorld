@@ -11,6 +11,6 @@ public class TestMesh : MonoBehaviour
     }
     public void Update()
     {
-        GraphicsUtiliy.DrawMesh(material);
+        // GraphicsUtiliy.DrawColorMesh(Color.blue, new Vector3(1, 1, -1));
     }
 }
