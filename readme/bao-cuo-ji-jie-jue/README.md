@@ -18,4 +18,10 @@
 
 Resource.Load方法无法在继承了MonoBehaviour的类中的构造器中使用。具体可见Unity手册中脚本序列化(Script Serialization)一节。
 
+**Resource ID out of range in SetResource**
+
+创建资源过多，导致Resource ID不够用，
+
+例如在Update中创建过多Mesh对象，导致上述问题。
+
 <figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
