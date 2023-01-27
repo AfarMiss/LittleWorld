@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace LittleWorld
 {
-    public class MaterialDatabase
+    public class MaterialDatabase : MonoSingleton<MaterialDatabase>
     {
-        public static Material PlantZoomMaterial = new Material(Shader.Find("Unlit/Color"));
+        public Material PlantZoomMaterial;
+        public Material selectMaterial;
     }
 }

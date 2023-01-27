@@ -1,11 +1,7 @@
 ﻿using LittleWorld.Graphics;
-using LittleWorld.MapUtility;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class UIManager : MonoSingleton<UIManager>
 {
@@ -56,9 +52,6 @@ public class UIManager : MonoSingleton<UIManager>
         UICanvas.transform.SetParent(null);
 
         DontDestroyOnLoad(UICanvas);
-
-        //UIManager.Instance.Show<MainInfoPanel>(UIType.PANEL, UIPath.Main_UI_Panel);
-        //UIManager.Instance.Show<ProgressPanel>(UIType.PANEL, UIPath.Panel_ProgressPanel);
     }
 
     public T ShowPanel<T>(string path = null) where T : BaseUI, new()

@@ -13,7 +13,8 @@ using static UnityEditor.Progress;
 using static UnityEngine.InputSystem.InputAction;
 using LittleWorld.MapUtility;
 using System.Runtime.CompilerServices;
-
+using Unity.VisualScripting;
+using LittleWorld.Graphics;
 
 public class InputController : MonoSingleton<InputController>
 {
@@ -377,8 +378,15 @@ public class InputController : MonoSingleton<InputController>
             onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
             var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
             onPlantZoneChanged?.Invoke(grids);
+            Debug.Log("grids.Length:" + grids.Length);
+            foreach (var item in grids)
+            {
+                GraphicsUtiliy.DrawSelectedPlantZoom(item.pos.To3(), MaterialDatabase.Instance.selectMaterial, 2, "GameDisplay");
+            }
         }
     }
+
+
 
     private Rect GetWorldRect()
     {

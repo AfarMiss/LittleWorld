@@ -26,5 +26,18 @@ namespace LittleWorld.MeshUtility
             mesh.RecalculateNormals();
             return mesh;
         }
+
+        public static Mesh GreenZoom(Vector3 pos)
+        {
+            var quad = Quad(pos);
+            quad.uv = new Vector2[]
+            {
+                new Vector2(0.4f,0),
+                new Vector2(0.6f,0),
+                new Vector2(0.4f,1f),
+                new Vector2(0.6f,1f),
+        };
+            return quad;
+        }
     }
 }
