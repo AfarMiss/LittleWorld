@@ -16,6 +16,7 @@ namespace LittleWorld.MapUtility
         public Vector2Int MapLeftBottomPoint = Vector2Int.zero;
         public MapGridDetails[] mapGrids;
         public List<MapSection> sectionList;
+        private HashSet<Vector2Int> plantGridPos;
         public Color[] sectionColor;
         public MapSection CurSelectedSection;
         public int sectionColorSeed = 0;
@@ -107,7 +108,15 @@ namespace LittleWorld.MapUtility
             var vec2 = new List<Vector2Int>();
             foreach (var item in gridIndexs)
             {
-                vec2.Add(item.pos);
+                if (plantGridPos.Contains(item.pos))
+                {
+                    continue;
+                }
+                else
+                {
+                    vec2.Add(item.pos);
+                    plantGridPos.Add(item.pos);
+                }
             }
             sectionColorSeed = (++sectionColorSeed) % MaterialDatabase.Instance.PlantZoomMaterials.Length;
             var newSection = new MapSection(vec2, $"{type.ToString()} nextPlantSectionIndex", type, sectionColorSeed);
@@ -169,6 +178,7 @@ namespace LittleWorld.MapUtility
                 new Color(1,0,0,0.09f),
                 new Color(0.5f,0,0.5f,0.09f),
     };
+            plantGridPos = new HashSet<Vector2Int>();
         }
 
         public bool GetGrid(int x, int y, out MapGridDetails result)
