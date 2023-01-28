@@ -150,6 +150,17 @@ else
 * Graphics.CreateGraphicsFence(GraphicsFenceType,SynchronisationStage)：创建一个GraphicsFence，在最后Blit、Clear、Draw、Dispatch或Texture Copy命令之后传递到GPU。通常用于GPU计算同步。
 * Graphics.WaitOnAsyncGraphicsFence：GPU等待GraphicsFence同步。
 
+## Mesh
+
+Mesh.vertices不能单独赋值
+
+```
+            //这样无法赋值给vertices
+            mesh.vertices[i] = verBase + offset;
+            //正确
+            mesh.vertices=vertices;
+```
+
 ## 参考资料
 
 1. [https://zhuanlan.zhihu.com/p/442781670](https://zhuanlan.zhihu.com/p/442781670)
