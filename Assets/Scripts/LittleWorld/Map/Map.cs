@@ -16,7 +16,7 @@ namespace LittleWorld.MapUtility
         public Vector2Int MapLeftBottomPoint = Vector2Int.zero;
         public MapGridDetails[] mapGrids;
         public List<MapSection> sectionList;
-        private HashSet<Vector2Int> plantGridPos;
+        private HashSet<Vector2Int> plantHash;
         public Color[] sectionColor;
         public MapSection CurSelectedSection;
         public int sectionColorSeed = 0;
@@ -56,10 +56,11 @@ namespace LittleWorld.MapUtility
             var section = CurSelectedSection;
             foreach (var item in gridIndexs)
             {
-                var result = section.gridIndexs.Find(x => x == item.pos);
-                if (result == null)
+                var result = section.gridIndexs.Find(x => x == item);
+                if (result == null && !plantHash.Contains(item.pos) && item.isLand)
                 {
-                    section.gridIndexs.Add(result);
+                    section.gridIndexs.Add(item);
+                    plantHash.Add(item.pos);
                 }
                 else
                 {
@@ -71,17 +72,20 @@ namespace LittleWorld.MapUtility
 
         public bool ShrinkZone(MapGridDetails[] gridIndexs)
         {
-            var section = CurSelectedSection;
-            foreach (var item in gridIndexs)
+            foreach (var section in sectionList)
             {
-                var result = section.gridIndexs.Find(x => x == item.pos);
-                if (result != null)
+                foreach (var item in gridIndexs)
                 {
-                    section.gridIndexs.Remove(result);
-                }
-                else
-                {
-                    continue;
+                    var result = section.gridIndexs.Find(x => x == item);
+                    if (result != null)
+                    {
+                        section.gridIndexs.Remove(result);
+                        plantHash.Remove(result.pos);
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
             }
             return true;
@@ -89,9 +93,13 @@ namespace LittleWorld.MapUtility
 
         public bool DeleteSection()
         {
-            var mapSection = CurSelectedSection;
             try
             {
+                var mapSection = CurSelectedSection;
+                foreach (var item in mapSection.gridIndexs)
+                {
+                    plantHash.Remove(item.pos);
+                }
                 sectionList.Remove(mapSection);
                 return true;
             }
@@ -105,21 +113,21 @@ namespace LittleWorld.MapUtility
 
         public bool AddSection(MapGridDetails[] gridIndexs, SectionType type)
         {
-            var vec2 = new List<Vector2Int>();
+            var mapGridDetails = new List<MapGridDetails>();
             foreach (var item in gridIndexs)
             {
-                if (plantGridPos.Contains(item.pos) || !item.isLand)
+                if (plantHash.Contains(item.pos) || !item.isLand)
                 {
                     continue;
                 }
                 else
                 {
-                    vec2.Add(item.pos);
-                    plantGridPos.Add(item.pos);
+                    mapGridDetails.Add(item);
+                    plantHash.Add(item.pos);
                 }
             }
             sectionColorSeed = (++sectionColorSeed) % MaterialDatabase.Instance.PlantZoomMaterials.Length;
-            var newSection = new MapSection(vec2, $"{type.ToString()} nextPlantSectionIndex", type, sectionColorSeed);
+            var newSection = new MapSection(mapGridDetails, $"{type.ToString()} nextPlantSectionIndex", type, sectionColorSeed);
             sectionList.Add(newSection);
             CurSelectedSection = newSection;
             return true;
@@ -178,7 +186,7 @@ namespace LittleWorld.MapUtility
                 new Color(1,0,0,0.09f),
                 new Color(0.5f,0,0.5f,0.09f),
     };
-            plantGridPos = new HashSet<Vector2Int>();
+            plantHash = new HashSet<Vector2Int>();
         }
 
         public bool GetGrid(int x, int y, out MapGridDetails result)
