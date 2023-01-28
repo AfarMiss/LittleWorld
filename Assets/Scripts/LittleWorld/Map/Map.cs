@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static System.Collections.Specialized.BitVector32;
 
 namespace LittleWorld.MapUtility
 {
@@ -14,6 +15,15 @@ namespace LittleWorld.MapUtility
         public Vector2Int MapSize;
         public Vector2Int MapLeftBottomPoint = Vector2Int.zero;
         public MapGridDetails[] mapGrids;
+        public List<MapSection> sectionList;
+        public int nextPlantSectionIndex
+        {
+            get
+            {
+                sectionList.FindAll(x => x.sectionType == SectionType.PLANT);
+                return sectionList.Count + 1;
+            }
+        }
         private AStar aStar;
         [SerializeField]
         private string seed;
@@ -33,6 +43,61 @@ namespace LittleWorld.MapUtility
 
                 return result.ToArray();
             }
+        }
+
+        public bool ExpandZone(List<Vector2Int> gridIndexs, MapSection section)
+        {
+            foreach (var item in gridIndexs)
+            {
+                var result = section.gridIndexs.Find(x => x == item);
+                if (result == null)
+                {
+                    section.gridIndexs.Add(result);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return true;
+        }
+
+        public bool RemoveZone(List<Vector2Int> gridIndexs, MapSection section)
+        {
+            foreach (var item in gridIndexs)
+            {
+                var result = section.gridIndexs.Find(x => x == item);
+                if (result != null)
+                {
+                    section.gridIndexs.Remove(result);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return true;
+        }
+
+        public bool DeleteSection(MapSection mapSection)
+        {
+            try
+            {
+                sectionList.Remove(mapSection);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"delete error:{e}");
+                return false;
+                throw;
+            }
+        }
+
+        public bool AddSection(List<Vector2Int> gridIndexs, SectionType type)
+        {
+            sectionList.Add(new MapSection(gridIndexs, $"{type.ToString()} nextPlantSectionIndex", type));
+            return true;
         }
 
         /// <summary>
@@ -66,6 +131,7 @@ namespace LittleWorld.MapUtility
         {
             this.MapSize = MapSize;
             this.seed = seed;
+            this.sectionList = new List<MapSection>();
             mapGrids = new MapGridDetails[MapSize.x * MapSize.y];
 
 

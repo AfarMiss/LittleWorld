@@ -415,10 +415,8 @@ public class InputController : MonoSingleton<InputController>
             if (item.gridRect.Overlaps(worldRect))
             {
                 grids.Add(item);
-                //Debug.Log("worldRectgrids:" + item.pos);
             }
         }
-        //Debug.Log("worldRectRect:" + worldRect);
         return grids.ToArray();
     }
 }

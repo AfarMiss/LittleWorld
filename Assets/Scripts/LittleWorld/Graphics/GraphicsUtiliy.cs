@@ -23,14 +23,14 @@ namespace LittleWorld.Graphics
             UnityEngine.Graphics.DrawMesh(mesh, pos, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
-        public static void DrawMesh(Material material, Mesh mesh, string layerName = "Default")
+        public static void DrawMesh(Material material, Mesh mesh, float forwardDistance = 1, string layerName = "Default")
         {
-            UnityEngine.Graphics.DrawMesh(mesh, -Vector3.forward, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+            UnityEngine.Graphics.DrawMesh(mesh, -Vector3.forward * forwardDistance, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
-        public static void DrawSelectedPlantZoom(Vector3 pos, Material material, int zoomLayer, string layerName = "Default")
+        public static void DrawSelectedPlantZoom(Vector3 pos, Material material, int forwardDistance = 1, string layerName = "Default")
         {
-            var mesh = MeshUtil.GreenZoom(pos - Vector3.forward * zoomLayer);
+            var mesh = MeshUtil.GreenZoom(pos - Vector3.forward * forwardDistance);
             UnityEngine.Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
