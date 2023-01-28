@@ -155,9 +155,9 @@ else
 Mesh.vertices不能单独赋值
 
 ```
-            //这样无法赋值给vertices
+            //无法通过索引器给vertices单个元素赋值
             mesh.vertices[i] = verBase + offset;
-            //正确
+            //正确,整体赋值
             mesh.vertices=vertices;
 ```
 
