@@ -70,7 +70,8 @@ namespace ProcedualWorld
 
         private void Update()
         {
-            //绘制种植区
+            //绘制种植区，种植区现在绘制的Mesh在没有变化的情况下依然会每帧都重新计算
+            //应该存储种植区的mesh，没有变化时就使用旧的，减少运算量
             GraphicsUtiliy.DrawPlantZoom(map.GetAllPlantGridsPos);
         }
     }
