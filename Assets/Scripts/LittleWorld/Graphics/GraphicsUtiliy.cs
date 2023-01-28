@@ -1,4 +1,5 @@
-﻿using LittleWorld.UI;
+﻿using LittleWorld.MeshUtility;
+using LittleWorld.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,13 +14,23 @@ namespace LittleWorld.Graphics
         public static void DrawMesh(Material material, string layerName = "Default")
         {
 
-            var mesh = MeshUtility.MeshUtil.Quad(Vector3.zero);
+            var mesh = MeshUtil.Quad(Vector3.zero);
             UnityEngine.Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+        }
+
+        public static void DrawMesh(Material material, Mesh mesh, Vector3 pos, string layerName = "Default")
+        {
+            UnityEngine.Graphics.DrawMesh(mesh, pos, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+        }
+
+        public static void DrawMesh(Material material, Mesh mesh, string layerName = "Default")
+        {
+            UnityEngine.Graphics.DrawMesh(mesh, -Vector3.forward, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
         public static void DrawSelectedPlantZoom(Vector3 pos, Material material, int zoomLayer, string layerName = "Default")
         {
-            var mesh = MeshUtility.MeshUtil.GreenZoom(pos - Vector3.forward * zoomLayer);
+            var mesh = MeshUtil.GreenZoom(pos - Vector3.forward * zoomLayer);
             UnityEngine.Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
@@ -28,7 +39,7 @@ namespace LittleWorld.Graphics
 
             var material = MaterialDatabase.Instance.PlantZoomMaterial;
             material.color = color;
-            UnityEngine.Graphics.DrawMesh(MeshUtility.MeshUtil.Quad(pos - Vector3.forward * zoomLayer), Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+            UnityEngine.Graphics.DrawMesh(MeshUtil.Quad(pos - Vector3.forward * zoomLayer), Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
         private static void DrawTextureInternal(Rect rect, Texture2D texture2D, Rect sourceRect = default)
@@ -109,10 +120,20 @@ namespace LittleWorld.Graphics
             return resultRect;
         }
 
-        public static void DrawPlantZoom(Vector2 bottomLeftPoint)
+        private static void DrawPlantZoom(Vector2 bottomLeftPoint)
         {
             //默认alpha值为1f
             DrawColorQuadMesh(new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f), bottomLeftPoint, 1);
+        }
+
+        public static void DrawPlantZoom(Vector2Int[] poses)
+        {
+            if (poses == null || poses.Length == 0)
+            {
+                return;
+            }
+            var mesh = MeshUtil.PlantZone(poses);
+            DrawMesh(MaterialDatabase.Instance.PlantZoomMaterial, mesh);
         }
 
         public static Texture2D SpriteToTexture(Sprite sprite)

@@ -70,18 +70,8 @@ namespace ProcedualWorld
 
         private void Update()
         {
-            #region 绘制种植选择层
-            if (map.mapGrids != null)
-            {
-                foreach (var item in map.mapGrids)
-                {
-                    if (item.isPlantZone)
-                    {
-                        GraphicsUtiliy.DrawPlantZoom(item.pos);
-                    }
-                }
-            }
-            #endregion
+            //绘制种植区
+            GraphicsUtiliy.DrawPlantZoom(map.GetAllPlantGridsPos);
         }
     }
 }

@@ -18,6 +18,23 @@ namespace LittleWorld.MapUtility
         [SerializeField]
         private string seed;
 
+        public Vector2Int[] GetAllPlantGridsPos
+        {
+            get
+            {
+                var result = new List<Vector2Int>();
+                foreach (var item in mapGrids)
+                {
+                    if (item.isPlantZone)
+                    {
+                        result.Add(item.pos);
+                    }
+                }
+
+                return result.ToArray();
+            }
+        }
+
         /// <summary>
         /// water-plain-mountain
         /// </summary>
