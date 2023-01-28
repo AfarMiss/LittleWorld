@@ -9,7 +9,7 @@ namespace LittleWorld
         /// <summary>
         /// 种植区Material
         /// </summary>
-        public Material PlantZoomMaterial;
+        public Material[] PlantZoomMaterials;
         /// <summary>
         /// 选择种植区时的Material
         /// </summary>

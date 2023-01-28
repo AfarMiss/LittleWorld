@@ -217,5 +217,8 @@ public enum TerrainLayer
 public enum MouseState
 {
     Normal,
-    ManagePlantZone,
+    ExpandZone,
+    ShrinkZone,
+    AddSection,
+    DeleteSection,
 }

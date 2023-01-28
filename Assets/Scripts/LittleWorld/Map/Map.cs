@@ -16,6 +16,11 @@ namespace LittleWorld.MapUtility
         public Vector2Int MapLeftBottomPoint = Vector2Int.zero;
         public MapGridDetails[] mapGrids;
         public List<MapSection> sectionList;
+        public Color[] sectionColor;
+        public MapSection CurSelectedSection;
+        public int sectionColorSeed = 0;
+
+
         public int nextPlantSectionIndex
         {
             get
@@ -45,11 +50,12 @@ namespace LittleWorld.MapUtility
             }
         }
 
-        public bool ExpandZone(List<Vector2Int> gridIndexs, MapSection section)
+        public bool ExpandZone(MapGridDetails[] gridIndexs)
         {
+            var section = CurSelectedSection;
             foreach (var item in gridIndexs)
             {
-                var result = section.gridIndexs.Find(x => x == item);
+                var result = section.gridIndexs.Find(x => x == item.pos);
                 if (result == null)
                 {
                     section.gridIndexs.Add(result);
@@ -62,11 +68,12 @@ namespace LittleWorld.MapUtility
             return true;
         }
 
-        public bool RemoveZone(List<Vector2Int> gridIndexs, MapSection section)
+        public bool ShrinkZone(MapGridDetails[] gridIndexs)
         {
+            var section = CurSelectedSection;
             foreach (var item in gridIndexs)
             {
-                var result = section.gridIndexs.Find(x => x == item);
+                var result = section.gridIndexs.Find(x => x == item.pos);
                 if (result != null)
                 {
                     section.gridIndexs.Remove(result);
@@ -79,8 +86,9 @@ namespace LittleWorld.MapUtility
             return true;
         }
 
-        public bool DeleteSection(MapSection mapSection)
+        public bool DeleteSection()
         {
+            var mapSection = CurSelectedSection;
             try
             {
                 sectionList.Remove(mapSection);
@@ -94,9 +102,17 @@ namespace LittleWorld.MapUtility
             }
         }
 
-        public bool AddSection(List<Vector2Int> gridIndexs, SectionType type)
+        public bool AddSection(MapGridDetails[] gridIndexs, SectionType type)
         {
-            sectionList.Add(new MapSection(gridIndexs, $"{type.ToString()} nextPlantSectionIndex", type));
+            var vec2 = new List<Vector2Int>();
+            foreach (var item in gridIndexs)
+            {
+                vec2.Add(item.pos);
+            }
+            sectionColorSeed = (++sectionColorSeed) % MaterialDatabase.Instance.PlantZoomMaterials.Length;
+            var newSection = new MapSection(vec2, $"{type.ToString()} nextPlantSectionIndex", type, sectionColorSeed);
+            sectionList.Add(newSection);
+            CurSelectedSection = newSection;
             return true;
         }
 
@@ -144,6 +160,15 @@ namespace LittleWorld.MapUtility
                 }
             }
             aStar = new AStar(MapSize.x, MapSize.y, MapLeftBottomPoint.x, MapLeftBottomPoint.y, mapGrids);
+
+            //区域颜色
+            sectionColor = new Color[4]
+    {
+                new Color(0,0,1,0.09f),
+                new Color(0,1,0,0.09f),
+                new Color(1,0,0,0.09f),
+                new Color(0.5f,0,0.5f,0.09f),
+    };
         }
 
         public bool GetGrid(int x, int y, out MapGridDetails result)

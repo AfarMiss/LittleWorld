@@ -1,19 +1,13 @@
 ﻿using LittleWorld;
 using LittleWorld.Window;
 using LittleWorld.Object;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniBase;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.Experimental.Rendering.Universal;
-using static UnityEditor.Progress;
 using static UnityEngine.InputSystem.InputAction;
 using LittleWorld.MapUtility;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using LittleWorld.Graphics;
 
 public class InputController : MonoSingleton<InputController>
@@ -22,9 +16,8 @@ public class InputController : MonoSingleton<InputController>
     private Vector3 onClickLeftStartPosition;
     private Vector3 onClickLeftEndPosition;
     private OnPlantZoneChanged onPlantZoneChanged;
-    private bool needRespondToUI =>
-        UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()
-    && mouseState != MouseState.Normal;
+    private bool needRespondToUI;
+
 
     public void AddEventOnZoomChanged(OnPlantZoneChanged onChanged)
     {
@@ -45,7 +38,19 @@ public class InputController : MonoSingleton<InputController>
     /// 是否为附加模式
     /// </summary>
     private bool additionalAction;
-    public MouseState mouseState = MouseState.Normal;
+    //Current.CurMap.ExpandZone(gridIndexs, section);
+    public MouseState MouseState
+    {
+        set
+        {
+            mouseState = value;
+        }
+        get
+        {
+            return mouseState;
+        }
+    }
+    private MouseState mouseState = MouseState.Normal;
 
     private RectTransform selectedArea;
     private CameraController CamController => Camera.main.GetComponent<CameraController>();
@@ -151,7 +156,7 @@ public class InputController : MonoSingleton<InputController>
     private void SetMouseStateToDefault()
     {
         Debug.Log("RemoveZoneState");
-        this.mouseState = MouseState.Normal;
+        this.MouseState = MouseState.Normal;
     }
 
     private void AddMoveWork(WorldObject human, Vector3 targetPos)
@@ -221,16 +226,51 @@ public class InputController : MonoSingleton<InputController>
         {
             return;
         }
-        switch (mouseState)
+
+        if (callbackContext.started)
+        {
+            onClickLeftStartPosition = Current.MousePos;
+            onClickLeftStartPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftStartPosition);
+            Debug.Log("Click.started -------");
+        }
+
+        switch (MouseState)
         {
             case MouseState.Normal:
                 Select(callbackContext);
                 break;
-            case MouseState.ManagePlantZone:
-                AddZone(callbackContext);
+            case MouseState.AddSection:
+                AddSection(callbackContext);
+                break;
+            case MouseState.DeleteSection:
+                DeleteSection(callbackContext);
+                break;
+            case MouseState.ShrinkZone:
+                ShrinkZone(callbackContext);
+                break;
+            case MouseState.ExpandZone:
+                ExpandZone(callbackContext);
                 break;
             default:
                 break;
+        }
+    }
+
+    private void ExpandZone(CallbackContext callbackContext)
+    {
+        if (callbackContext.canceled)
+        {
+            var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
+            Current.CurMap.ExpandZone(grids);
+        }
+    }
+
+    private void ShrinkZone(CallbackContext callbackContext)
+    {
+        if (callbackContext.canceled)
+        {
+            var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
+            Current.CurMap.ShrinkZone(grids);
         }
     }
 
@@ -238,10 +278,7 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.started)
         {
-            onClickLeftStartPosition = Current.MousePos;
-            onClickLeftStartPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftStartPosition);
             selectedArea.gameObject.SetActive(true);
-            Debug.Log("Click.started -------");
         }
         else if (callbackContext.canceled)
         {
@@ -262,25 +299,20 @@ public class InputController : MonoSingleton<InputController>
         }
     }
 
-    private void AddZone(CallbackContext callbackContext)
+    private void AddSection(CallbackContext callbackContext)
     {
-        if (callbackContext.started)
-        {
-            onClickLeftStartPosition = Current.MousePos;
-            onClickLeftStartPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftStartPosition);
-        }
-        else if (callbackContext.canceled)
+        if (callbackContext.canceled)
         {
             var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
-            foreach (var grid in grids)
-            {
-                if (grid.isLand)
-                {
-                    grid.isPlantZone = true;
-                }
-            }
-            var empty = new MapGridDetails[0];
-            onPlantZoneChanged?.Invoke(empty);
+            Current.CurMap.AddSection(grids, SectionType.PLANT);
+        }
+    }
+
+    private void DeleteSection(CallbackContext callbackContext)
+    {
+        if (callbackContext.canceled)
+        {
+            Current.CurMap.DeleteSection();
         }
     }
 
@@ -295,7 +327,6 @@ public class InputController : MonoSingleton<InputController>
             additionalAction = false;
         }
     }
-
 
     public void CleanInteraction()
     {
@@ -348,7 +379,10 @@ public class InputController : MonoSingleton<InputController>
     private void Update()
     {
         if (!isInit) return;
-
+        needRespondToUI =
+            //IsPointerOverGameObject在非update方法中调用会警告
+            UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()
+            && MouseState != MouseState.Normal;
         if (InputManager.Instance.myController.actions["左击"].IsPressed())
         {
             UpdateSelectArea();
@@ -371,22 +405,19 @@ public class InputController : MonoSingleton<InputController>
         realSelection.position = lowerLeft;
         realSelection.size = selectedArea.sizeDelta;
 
-        RenderSelectionArea(lowerLeft, upperRight);
-        if (mouseState == MouseState.ManagePlantZone)
+        if (MapManager.Instance.ColonyMap != null)
         {
-            onClickLeftEndPosition = Current.MousePos;
-            onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
             var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
-            onPlantZoneChanged?.Invoke(grids);
-            Debug.Log("grids.Length:" + grids.Length);
             foreach (var item in grids)
             {
                 GraphicsUtiliy.DrawSelectedPlantZoom(item.pos.To3(), MaterialDatabase.Instance.selectMaterial, 2, "GameDisplay");
             }
         }
+
+
+        RenderSelectionArea(lowerLeft, upperRight);
+
     }
-
-
 
     private Rect GetWorldRect()
     {

@@ -181,7 +181,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedAreaPrefab: {fileID: 8264267579888564747, guid: 2206aee96f6a4ec48a4668c88d05759b, type: 3}
-  mouseState: 0
 --- !u!1 &270520721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb405810326433479a5bcaa76e69744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlantZoomMaterial: {fileID: 2100000, guid: 951e9331f045c6949a76897c2fba5b57, type: 2}
+  PlantZoomMaterials:
+  - {fileID: 2100000, guid: 8d99d0e214cf27745b2d3c51ba3648f6, type: 2}
+  - {fileID: 2100000, guid: 951e9331f045c6949a76897c2fba5b57, type: 2}
+  - {fileID: 2100000, guid: 20f3e18427c4a014c984301c62a00045, type: 2}
   selectMaterial: {fileID: 2100000, guid: 60b4317849966e846b36e569f8f8cdb7, type: 2}
 --- !u!4 &1423665525
 Transform:

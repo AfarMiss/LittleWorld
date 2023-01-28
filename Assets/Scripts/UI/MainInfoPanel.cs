@@ -1,4 +1,6 @@
-﻿using LittleWorld.Command;
+﻿using LittleWorld;
+using LittleWorld.Command;
+using LittleWorld.MapUtility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,9 +41,24 @@ public class MainInfoPanel : BaseUI
         YearQuadDayText.text = $"{time.year}年 {time.quad}象 {time.day}日";
     }
 
-    public void OnClickPlantZone()
+
+    public void ExpandZone()
     {
-        Debug.Log("AddZoneState");
-        CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ManagePlantZone));
+        CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ExpandZone));
+    }
+
+    public void ShrinkZone()
+    {
+        CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ShrinkZone));
+    }
+
+    public void DeleteSection()
+    {
+        CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.DeleteSection));
+    }
+
+    public void AddSection()
+    {
+        CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.AddSection));
     }
 }

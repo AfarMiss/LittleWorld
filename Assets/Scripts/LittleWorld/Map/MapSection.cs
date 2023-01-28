@@ -9,13 +9,17 @@ namespace LittleWorld.MapUtility
         public List<Vector2Int> gridIndexs;
         public string sectionName;
         public SectionType sectionType;
+        public int sectionColorIndex;
 
-        public MapSection(List<Vector2Int> gridIndexs, string sectionName, SectionType sectionType)
+        public MapSection(List<Vector2Int> gridIndexs, string sectionName, SectionType sectionType, int sectionColorIndex)
         {
             this.gridIndexs = gridIndexs;
             this.sectionName = sectionName;
             this.sectionType = sectionType;
+            this.sectionColorIndex = sectionColorIndex;
         }
+
+
     }
 
     public enum SectionType

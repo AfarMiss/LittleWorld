@@ -34,11 +34,9 @@ namespace LittleWorld.Graphics
             UnityEngine.Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
-        public static void DrawColorQuadMesh(Color color, Vector3 pos, int zoomLayer, string layerName = "Default")
+        public static void DrawColorQuadMesh(Vector3 pos, int materialIndex, int zoomLayer, string layerName = "Default")
         {
-
-            var material = MaterialDatabase.Instance.PlantZoomMaterial;
-            material.color = color;
+            var material = MaterialDatabase.Instance.PlantZoomMaterials[materialIndex];
             UnityEngine.Graphics.DrawMesh(MeshUtil.Quad(pos - Vector3.forward * zoomLayer), Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
         }
 
@@ -120,20 +118,14 @@ namespace LittleWorld.Graphics
             return resultRect;
         }
 
-        private static void DrawPlantZoom(Vector2 bottomLeftPoint)
-        {
-            //默认alpha值为1f
-            DrawColorQuadMesh(new Color(Color.red.r, Color.red.g, Color.red.b, 0.2f), bottomLeftPoint, 1);
-        }
-
-        public static void DrawPlantZoom(Vector2Int[] poses)
+        public static void DrawPlantZoom(Vector2Int[] poses, int colorIndex)
         {
             if (poses == null || poses.Length == 0)
             {
                 return;
             }
             var mesh = MeshUtil.PlantZone(poses);
-            DrawMesh(MaterialDatabase.Instance.PlantZoomMaterial, mesh);
+            DrawMesh(MaterialDatabase.Instance.PlantZoomMaterials[colorIndex], mesh);
         }
 
         public static Texture2D SpriteToTexture(Sprite sprite)
