@@ -108,7 +108,7 @@ namespace LittleWorld.MapUtility
             var vec2 = new List<Vector2Int>();
             foreach (var item in gridIndexs)
             {
-                if (plantGridPos.Contains(item.pos))
+                if (plantGridPos.Contains(item.pos) || !item.isLand)
                 {
                     continue;
                 }
