@@ -12,6 +12,8 @@ Persistence 振幅指数
 
 ## 柏林噪声函数生成过程
 
+Unity已内置柏林噪声函数Mathf.PerlinNoise(float x,float y)，x和y的取值即为内置柏林噪声对应2D曲面上的点的“高度”，在实际测试过程中，x,y的取值不宜超过50000。
+
 
 
 ## 参考资料
