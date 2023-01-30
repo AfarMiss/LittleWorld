@@ -1,4 +1,5 @@
 ﻿using LittleWorld.Item;
+using LittleWorld.MapUtility;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,19 @@ namespace LittleWorld.Window
 
             var contentList = new List<FloatOption>();
 
-            var worldObjects = WorldUtility.GetWorldObjectsAt(mousePos.GetWorldPosition());
+            var objects = WorldUtility.GetWorldObjectsAt(mousePos.GetWorldPosition());
 
-            foreach (var worldObject in worldObjects)
+            foreach (var worldObject in objects)
             {
                 if (worldObject is Plant curPlant)
                 {
                     var plantOpts = AddPlantFloatMenu(human, mousePos.GetWorldPosition().ToCell(), curPlant);
+                    contentList.AddRange(plantOpts);
+                }
+
+                if (worldObject is MapSection curSection)
+                {
+                    var plantOpts = AddSectionFloatMenu(human, mousePos.GetWorldPosition().ToCell(), curSection);
                     contentList.AddRange(plantOpts);
                 }
             }
@@ -53,6 +60,21 @@ namespace LittleWorld.Window
                 OnClickOption = () =>
                 {
                     worker.AddWork(WorkTypeEnum.harvest, targetPos);
+                }
+            });
+
+            return contentList;
+        }
+
+        public static List<FloatOption> AddSectionFloatMenu(Humanbeing worker, Vector3Int targetPos, MapSection section)
+        {
+            List<FloatOption> contentList = new List<FloatOption>();
+            contentList.Add(new FloatOption()
+            {
+                content = $"种植{section.sectionName}",
+                OnClickOption = () =>
+                {
+                    worker.AddWork(WorkTypeEnum.sow, targetPos);
                 }
             });
 

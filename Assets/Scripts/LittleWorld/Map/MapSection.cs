@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LittleWorld.MapUtility
 {
-    public class MapSection : Object
+    public class MapSection : Item.Object
     {
         public static int SectionIDSeed = 0;
         public List<MapGridDetails> grids;

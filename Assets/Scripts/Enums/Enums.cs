@@ -162,6 +162,7 @@ public enum WorkTypeEnum
     gotoLoc,
     chop,
     harvest,
+    sow,
 }
 
 public enum SoundName

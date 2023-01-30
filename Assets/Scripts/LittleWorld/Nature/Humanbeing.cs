@@ -50,6 +50,9 @@ namespace LittleWorld.Item
                 case WorkTypeEnum.harvest:
                     totalWorkAmount = 240;
                     break;
+                case WorkTypeEnum.sow:
+                    totalWorkAmount = 240;
+                    break;
                 default:
                     break;
             }

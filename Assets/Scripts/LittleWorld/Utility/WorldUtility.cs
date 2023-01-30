@@ -5,15 +5,25 @@ using System.Linq;
 using UniBase;
 using Unity.Mathematics;
 using UnityEngine;
+using Unity.VisualScripting;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 namespace LittleWorld
 {
     public static class WorldUtility
     {
-        public static WorldObject[] GetWorldObjectsAt(Vector3 pos)
+        public static Item.Object[] GetWorldObjectsAt(Vector3 pos)
         {
+            List<Item.Object> itemsAtPos = new List<Item.Object>();
+
+            var worldGridPos = pos.WorldToCell();
             var allItemsInfo = SceneItemsManager.Instance.worldItems;
-            var itemsAtPos = allItemsInfo.FindAll(x => x.GridPos == pos.WorldToCell());
+            itemsAtPos.AddRange(allItemsInfo.FindAll(x => x.GridPos == worldGridPos));
+
+            var allSection = Current.CurMap.sectionDic.Values.ToList();
+            MapSection atSection = allSection.Find(x => x.GridPosList.Contains(worldGridPos.To2()));
+            itemsAtPos.Add(atSection);
+
             return itemsAtPos.ToArray();
         }
 
