@@ -33,7 +33,7 @@ public class InputController : MonoSingleton<InputController>
     public List<WorldObject> SelectedObjects => selectedObjects;
     private List<WorldObject> selectedObjects;
     public bool AdditionalAction => additionalAction;
-    public Rect ScreenSelectionArea => realSelection;
+    public Rect ScreenSelectionArea => screenRealSelection;
     /// <summary>
     /// 是否为附加模式
     /// </summary>
@@ -55,7 +55,7 @@ public class InputController : MonoSingleton<InputController>
     private RectTransform selectedArea;
     private CameraController CamController => Camera.main.GetComponent<CameraController>();
 
-    private Rect realSelection;
+    private Rect screenRealSelection;
 
     private bool isInit = false;
     private bool cameraDraging = false;
@@ -75,7 +75,7 @@ public class InputController : MonoSingleton<InputController>
         rectObject.gameObject.SetActive(false);
 
         selectedArea = rectObject.GetComponent<RectTransform>();
-        realSelection = new Rect();
+        screenRealSelection = new Rect();
 
         isInit = true;
         additionalAction = false;
@@ -260,7 +260,8 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.canceled)
         {
-            var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
+            var grids = GetWorldGrids(MapManager.Instance.ColonyMap,
+                InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition));
             Current.CurMap.ExpandZone(grids);
         }
     }
@@ -269,7 +270,8 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.canceled)
         {
-            var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
+            var grids = GetWorldGrids(MapManager.Instance.ColonyMap,
+                InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition));
             Current.CurMap.ShrinkZone(grids);
         }
     }
@@ -303,7 +305,8 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.canceled)
         {
-            var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
+            var grids = GetWorldGrids(MapManager.Instance.ColonyMap,
+                InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition));
             Current.CurMap.AddSection(grids, SectionType.PLANT);
         }
     }
@@ -353,12 +356,15 @@ public class InputController : MonoSingleton<InputController>
 
     private List<WorldObject> SelectWorldObjects(SelectType selectType)
     {
-        var worldObjectArray = WorldUtility.GetWorldObjectsInRect(realSelection);
+        var worldRect = InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition);
+        var worldObjectArray = WorldUtility.GetWorldObjectsInRect(worldRect);
         if (worldObjectArray == null)
         {
             return null;
         }
         var worldObject = worldObjectArray.ToList().GetSelected(selectType);
+
+
 
         if (worldObject == null || worldObject.Count == 0)
         {
@@ -402,8 +408,8 @@ public class InputController : MonoSingleton<InputController>
         var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Min(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
         var upperRight = new Vector2(Mathf.Max(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Max(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
 
-        realSelection.position = lowerLeft;
-        realSelection.size = selectedArea.sizeDelta;
+        screenRealSelection.position = lowerLeft;
+        screenRealSelection.size = selectedArea.sizeDelta;
 
         switch (mouseState)
         {
@@ -425,25 +431,13 @@ public class InputController : MonoSingleton<InputController>
     {
         if (MapManager.Instance.ColonyMap != null)
         {
-            var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
+            var grids = GetWorldGrids(MapManager.Instance.ColonyMap,
+                InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition));
             foreach (var item in grids)
             {
                 GraphicsUtiliy.DrawSelectedPlantZoom(item.pos.To3(), MaterialDatabase.Instance.selectMaterial, 2, "GameDisplay");
             }
         }
-    }
-
-    private Rect GetWorldRect()
-    {
-        Rect worldRect = new Rect();
-
-        var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPositionWorldPosition.x, onClickLeftEndPositionWorldPosition.x), Mathf.Min(onClickLeftStartPositionWorldPosition.y, onClickLeftEndPositionWorldPosition.y));
-        var upperRight = new Vector2(Mathf.Max(onClickLeftStartPositionWorldPosition.x, onClickLeftEndPositionWorldPosition.x), Mathf.Max(onClickLeftStartPositionWorldPosition.y, onClickLeftEndPositionWorldPosition.y));
-
-        worldRect.position = lowerLeft;
-        worldRect.size = upperRight - lowerLeft;
-
-        return worldRect;
     }
 
     private void RenderSelectionArea(Vector2 lowerLeft, Vector2 upperRight)

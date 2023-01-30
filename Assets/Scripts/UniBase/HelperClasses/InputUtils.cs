@@ -109,5 +109,18 @@ namespace UniBase
         {
             return RectTransformUtility.RectangleContainsScreenPoint(rect, screenPoint);
         }
+
+        public static Rect GetWorldRect(Vector3 startWorldPos, Vector3 endWorldPos)
+        {
+            Rect worldRect = new Rect();
+
+            var lowerLeft = new Vector2(Mathf.Min(startWorldPos.x, endWorldPos.x), Mathf.Min(startWorldPos.y, endWorldPos.y));
+            var upperRight = new Vector2(Mathf.Max(startWorldPos.x, endWorldPos.x), Mathf.Max(startWorldPos.y, endWorldPos.y));
+
+            worldRect.position = lowerLeft;
+            worldRect.size = upperRight - lowerLeft;
+
+            return worldRect;
+        }
     }
 }

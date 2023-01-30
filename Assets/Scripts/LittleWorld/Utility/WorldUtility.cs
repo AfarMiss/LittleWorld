@@ -1,5 +1,7 @@
 ﻿using LittleWorld.MapUtility;
 using LittleWorld.Object;
+using System.Collections.Generic;
+using System.Linq;
 using UniBase;
 using Unity.Mathematics;
 using UnityEngine;
@@ -15,14 +17,20 @@ namespace LittleWorld
             return itemsAtPos.ToArray();
         }
 
-        public static WorldObject[] GetWorldObjectsInRect(Rect screenRect)
+        public static WorldObject[] GetWorldObjectsInRect(Rect worldRect)
         {
+            var mapGrids = Current.CurMap.mapGrids.ToList().FindAll(x => x.gridRect.Overlaps(worldRect));
             var allItemsInfo = SceneItemsManager.Instance.worldItems;
             if (allItemsInfo == null)
             {
                 return null;
             }
-            var itemsAtPos = allItemsInfo.FindAll(x => screenRect.ScreenContainsWorldPos(x.GridPos));
+            HashSet<Vector2Int> poses = new HashSet<Vector2Int>();
+            foreach (var item in mapGrids)
+            {
+                poses.Add(item.pos);
+            }
+            var itemsAtPos = allItemsInfo.FindAll(x => poses.Contains(x.GridPos.To2()));
             return itemsAtPos.ToArray();
         }
 
