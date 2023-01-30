@@ -1,4 +1,5 @@
 ﻿using LittleWorld.Item;
+using LittleWorld.Jobs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,106 +9,59 @@ namespace LittleWorld
 {
     public class PawnWorkTracer
     {
-        public static int workID;
+        public static int workID = 0;
+        public Queue<Work> workQueue;
         public PawnWorkTracer(Humanbeing pawn)
         {
             this.pawn = pawn;
-            workQueue = new Queue<SingleWork>();
-
-            EventCenter.Instance.Register<int>(EventEnum.REACH_WORK_POINT.ToString(), OnReachWorkPoint);
+            workQueue = new Queue<Work>();
         }
+        public WorkStatus CurStatus = WorkStatus.NoWork;
+        public int curFinishedAmount;
+        public int workTotalAmount;
 
-        private void OnReachWorkPoint(int instanceID)
+        public enum WorkStatus
         {
-            if (pawn.instanceID != instanceID)
-            {
-                return;
-            }
-            if (curWork == null)
-            {
-                Debug.LogError("worker has no work");
-                return;
-            }
-
-            curWork.WorkState = WorkStateEnum.Working;
-            if (curWork.WhenReached != null)
-            {
-                curWork.WhenReached();
-            }
+            Working,
+            NoWork,
         }
 
-        private Humanbeing pawn;
-        public Queue<SingleWork> WorkQueue => workQueue;
-        private Queue<SingleWork> workQueue;
+        public Humanbeing pawn;
 
         private SingleWork curWork;
 
         public bool AddWork(SingleWork singleWork)
         {
-            workQueue.Enqueue(singleWork);
             return true;
         }
 
         public bool ClearAndAddWork(SingleWork singleWork)
         {
-            CancelAllWork();
-            workQueue.Enqueue(singleWork);
-            return true;
-        }
-
-        public bool CancelAllWork()
-        {
-            WorkQueue.Clear();
-            if (curWork != null)
-            {
-                curWork.WorkState = WorkStateEnum.FORCE_ABORT;
-            }
-            return true;
-        }
-
-        public bool GetWorkAndStart()
-        {
-            if (workQueue == null || workQueue.Count == 0)
-            {
-                return false;
-            }
-            curWork = workQueue.Dequeue();
-
-            curWork.WorkState = WorkStateEnum.OnGoing;
-            return true;
+            return false;
         }
 
         public void Tick()
         {
-            if (curWork == null || curWork.WorkState == WorkStateEnum.Done)
+            switch (CurStatus)
             {
-                GetWorkAndStart();
-                return;
-            }
-            if (curWork.WorkState == WorkStateEnum.Working)
-            {
-                ProcessWorkPercent(curWork);
-            }
-            if (curWork.WorkState == WorkStateEnum.OnGoing)
-            {
-
-            }
-            if (curWork.WorkState == WorkStateEnum.FORCE_ABORT)
-            {
-                curWork = null;
+                case WorkStatus.Working:
+                    break;
+                case WorkStatus.NoWork:
+                    break;
+                default:
+                    break;
             }
         }
 
-        private void ProcessWorkPercent(SingleWork work)
+        private void ProcessWorkPercent(PawnWorkTracer work)
         {
-            if (work.workTotalAmount <= 0 || work.curFinishedAmount >= work.workTotalAmount)
+            if (curFinishedAmount >= workTotalAmount)
             {
-                work.WorkState = WorkStateEnum.Done;
+                CurStatus = WorkStatus.NoWork;
             }
-            if (work.curFinishedAmount < work.workTotalAmount)
+            if (curFinishedAmount < workTotalAmount)
             {
-                work.curFinishedAmount++;
-                EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), work);
+                curFinishedAmount++;
             }
         }
     }

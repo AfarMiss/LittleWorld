@@ -222,7 +222,7 @@ public class UIManager : MonoSingleton<UIManager>
             #endregion
 
             #region 绘制路径终点
-            var allNavis = GameObject.FindObjectsOfType<PathNavigationOnly>();
+            var allNavis = GameObject.FindObjectsOfType<PathNavigation>();
             foreach (var item in allNavis)
             {
                 if (!item.atDestination && item.lastStampFrameCount > 0 && Time.frameCount - item.lastStampFrameCount <= 50)

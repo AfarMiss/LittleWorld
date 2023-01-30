@@ -7,7 +7,7 @@ namespace LittleWorld.Item
     public class Food : WorldObject
     {
         public float nutrition;
-        public Food(Vector3Int gridPos) : base(gridPos)
+        public Food(Vector2Int gridPos) : base(gridPos)
         {
         }
     }

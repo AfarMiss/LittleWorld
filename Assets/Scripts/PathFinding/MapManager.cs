@@ -14,7 +14,7 @@ public class MapManager : Singleton<MapManager>
     private MapManager()
     {
     }
-    public Queue<Vector2Int> CreateNewPath(Vector3 startPos, Vector3 endPos)
+    public Queue<Vector2Int> CreateNewPath(Vector2 startPos, Vector2 endPos)
     {
         return colonyMap.CalculatePath(startPos, endPos);
     }

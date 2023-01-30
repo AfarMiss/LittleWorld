@@ -6,7 +6,8 @@ namespace LittleWorld.Item
 {
     public class Plant : WorldObject
     {
-        public Plant(Vector3Int gridPos) : base(gridPos)
+        public int cutWorkAmount;
+        public Plant(Vector2Int gridPos) : base(gridPos)
         {
         }
     }

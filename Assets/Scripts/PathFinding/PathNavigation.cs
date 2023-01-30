@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PathNavigationOnly : MonoBehaviour
+public class PathNavigation : MonoBehaviour
 {
     public int lastStampFrameCount = -1;
     private Queue<Vector2Int> curPath;
@@ -139,7 +139,7 @@ public class PathNavigationOnly : MonoBehaviour
         else
         {
             curTargetIsReached = true;
-            human.GridPos = target.To3();
+            human.GridPos = target;
         }
     }
 
@@ -149,11 +149,6 @@ public class PathNavigationOnly : MonoBehaviour
         DrawLine(curPath);
     }
 
-    private void OnEnable()
-    {
-        EventCenter.Instance.Register<SingleWork>(EventEnum.WORK_GOTO_WORK_POS.ToString(), OnGoToWorkPos);
-    }
-
     private void OnGoToWorkPos(SingleWork work)
     {
         if (work.worker.instanceID != humanID)
@@ -161,14 +156,18 @@ public class PathNavigationOnly : MonoBehaviour
             return;
         }
         var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
-        curPath = MapManager.Instance.CreateNewPath(human.GridPos, work.WorkerPos);
+        curPath = MapManager.Instance.CreateNewPath(human.GridPos, work.WorkerPos.To2());
         curDestination = work.WorkerPos.ToWorldVector2Int();
         lastStampFrameCount = Time.frameCount;
         atDestination = false;
     }
 
-    private void OnDisable()
+    public void GoToLoc(Vector2Int target)
     {
-        EventCenter.Instance?.Unregister<SingleWork>(EventEnum.WORK_GOTO_WORK_POS.ToString(), OnGoToWorkPos);
+        var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
+        curPath = MapManager.Instance.CreateNewPath(human.GridPos, target);
+        curDestination = target;
+        lastStampFrameCount = Time.frameCount;
+        atDestination = false;
     }
 }

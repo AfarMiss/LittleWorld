@@ -51,7 +51,7 @@ namespace LittleWorld.Window
                 content = $"伐除{plant.GetType().Name}",
                 OnClickOption = () =>
                 {
-                    worker.AddWork(WorkTypeEnum.chop, targetPos);
+                    worker.AddWork(WorkTypeEnum.cut, targetPos);
                 }
             });
             contentList.Add(new FloatOption()

@@ -1,5 +1,5 @@
 ﻿using LittleWorld;
-using LittleWorld.Work;
+using LittleWorld.WorkUtility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,20 +9,60 @@ namespace LittleWorld.Item
 {
     public class Humanbeing : Animal
     {
-        private PawnWorkTracer pawnWorkTracer;
-        private PawnHealthTracer PawnHealthTracer;
-        private PawnPathTracer PawnPathTracer;
+        public enum MotionStatus
+        {
+            Idle,
+            Running,
+        }
+
+        private PawnWorkTracer workTracer;
+        private PawnHealthTracer healthTracer;
+        private PathNavigation pathTracer;
+
+        public MotionStatus motion = MotionStatus.Idle;
+
+        public void SetNavi(PathNavigation PawnPathTracer)
+        {
+            this.pathTracer = PawnPathTracer;
+        }
+
+        public int GetWorkSpeed(WorkTypeEnum type)
+        {
+            switch (type)
+            {
+                case WorkTypeEnum.dug:
+                    return 2;
+                case WorkTypeEnum.water:
+                    return 2;
+                case WorkTypeEnum.gotoLoc:
+                    return 2;
+                case WorkTypeEnum.cut:
+                    return 2;
+                case WorkTypeEnum.harvest:
+                    return 2;
+                case WorkTypeEnum.sow:
+                    return 2;
+                default:
+                    return 2;
+            }
+        }
+
+        public void GoToLoc(Vector2Int target)
+        {
+            pathTracer.GoToLoc(target);
+        }
 
         public Queue<HumanAction> actionQueue;
+        public MotionStatus motionStatus;
 
-        public Humanbeing(Vector3Int gridPos) : base(gridPos)
+        public Humanbeing(Vector2Int gridPos) : base(gridPos)
         {
             ItemName = "人类";
             moveSpeed = 9;
 
             this.gridPos = gridPos;
             actionQueue = new Queue<HumanAction>();
-            pawnWorkTracer = new PawnWorkTracer(this);
+            workTracer = new PawnWorkTracer(this);
         }
 
         public void AddWork(WorkTypeEnum workType, Vector3Int targetPos)
@@ -30,7 +70,7 @@ namespace LittleWorld.Item
             Action whenReached = null;
             var totalWorkAmount = 24;
             var showPercent = true;
-            var workerPos = WorkUtility.GetRandomWorkAroundPoint(targetPos);
+            var workerPos = WorkUtility.WorkUtility.GetRandomWorkAroundPoint(targetPos);
             switch (workType)
             {
                 case WorkTypeEnum.dug:
@@ -44,7 +84,7 @@ namespace LittleWorld.Item
                     showPercent = false;
                     totalWorkAmount = 0;
                     break;
-                case WorkTypeEnum.chop:
+                case WorkTypeEnum.cut:
                     totalWorkAmount = 240;
                     break;
                 case WorkTypeEnum.harvest:
@@ -71,18 +111,18 @@ namespace LittleWorld.Item
 
             if (!Current.IsAdditionalMode)
             {
-                pawnWorkTracer.ClearAndAddWork(curWork);
+                workTracer.ClearAndAddWork(curWork);
             }
             else
             {
-                pawnWorkTracer.AddWork(curWork);
+                workTracer.AddWork(curWork);
             }
         }
 
         public override void Tick()
         {
             base.Tick();
-            pawnWorkTracer.Tick();
+            workTracer.Tick();
         }
     }
 }

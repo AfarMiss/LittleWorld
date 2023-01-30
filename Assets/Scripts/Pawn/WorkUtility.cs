@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LittleWorld.Work
+namespace LittleWorld.WorkUtility
 {
     public static class WorkUtility
     {

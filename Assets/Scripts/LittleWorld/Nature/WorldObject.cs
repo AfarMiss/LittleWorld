@@ -8,7 +8,7 @@ namespace LittleWorld.Item
     public class WorldObject : Object
     {
         public int instanceID;
-        public WorldObject(Vector3Int gridPos, Map map = null)
+        public WorldObject(Vector2Int gridPos, Map map = null)
         {
             this.gridPos = gridPos;
             this.instanceID = SceneItemsManager.ItemInstanceID++;
@@ -20,7 +20,7 @@ namespace LittleWorld.Item
 
         protected string ItemName;
         public float mass;
-        protected Vector3Int gridPos;
+        protected Vector2Int gridPos;
         public Map curMap;
         public Vector3 RenderPos
         {
@@ -28,18 +28,18 @@ namespace LittleWorld.Item
             {
                 if (this as Humanbeing != null)
                 {
-                    var navis = GameObject.FindObjectsOfType<PathNavigationOnly>();
+                    var navis = GameObject.FindObjectsOfType<PathNavigation>();
                     var humanNavi = navis.ToList().Find(x => x.humanID == instanceID);
                     return humanNavi != null ? humanNavi.renderPos : gridPos;
                 }
                 else
                 {
-                    return gridPos;
+                    return gridPos.To3();
                 }
             }
         }
 
-        public Vector3Int GridPos { get => gridPos; set => gridPos = value; }
+        public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
 
         public virtual void ShowBriefInfo()
         {

@@ -14,6 +14,7 @@ namespace LittleWorld
 
         public int workTotalAmount;
         public int curFinishedAmount;
+
         public WorkStateEnum WorkState
         {
             get
@@ -29,7 +30,6 @@ namespace LittleWorld
                         EventCenter.Instance.Trigger(EventEnum.WORK_GOTO_WORK_POS.ToString(), this);
                         break;
                     case WorkStateEnum.Working:
-                        EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), this);
                         break;
                     case WorkStateEnum.Suspend:
                         EventCenter.Instance.Trigger(EventEnum.WORK_SUSPEND.ToString(), this);

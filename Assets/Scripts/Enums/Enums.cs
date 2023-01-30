@@ -160,7 +160,7 @@ public enum WorkTypeEnum
     dug,
     water,
     gotoLoc,
-    chop,
+    cut,
     harvest,
     sow,
 }

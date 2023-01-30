@@ -6,7 +6,7 @@ namespace LittleWorld.Item
 {
     public class Berries : Food
     {
-        public Berries(Vector3Int gridPos) : base(gridPos)
+        public Berries(Vector2Int gridPos) : base(gridPos)
         {
             nutrition = 0.05f;
         }

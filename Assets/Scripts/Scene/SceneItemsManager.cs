@@ -36,7 +36,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         pawnManager = PawnManager.Instance;
 
         //测试代码
-        var curHuman = new Humanbeing(Vector3Int.zero);
+        var curHuman = new Humanbeing(Vector2Int.zero);
         pawnManager.AddPawn(curHuman);
     }
 
@@ -156,7 +156,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
             switch (item.itemCode)
             {
                 case 10025:
-                    worldItems.Add(new Brush((Vector3Int)item.position));
+                    worldItems.Add(new Brush(((Vector3Int)item.position).To2()));
                     break;
                 default:
                     break;

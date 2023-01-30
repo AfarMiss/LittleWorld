@@ -13,7 +13,7 @@ namespace LittleWorld.Item
         public int fruitItemCode = 10024;
         public float pickTime = 3;
 
-        public Brush(Vector3Int gridPos) : base(gridPos)
+        public Brush(Vector2Int gridPos) : base(gridPos)
         {
             ItemName = "灌木丛";
             this.gridPos = gridPos;
