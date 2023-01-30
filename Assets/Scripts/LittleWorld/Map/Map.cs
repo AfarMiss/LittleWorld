@@ -18,8 +18,19 @@ namespace LittleWorld.MapUtility
         public Dictionary<int, MapSection> sectionDic;
         private HashSet<Vector2Int> plantHash;
         public Color[] sectionColor;
-        public int selectedSectionID;
+        private int selectedSectionID;
         public int sectionColorSeed = 0;
+        public int SelectedSectionID { get => selectedSectionID; }
+
+        public void ChangeCurrentSection(MapSection section)
+        {
+            if (sectionDic.Values.Contains(section))
+            {
+                selectedSectionID = section.sectionID;
+                Debug.Log("selectedSectionID:" + Current.CurMap.SelectedSectionID);
+                Debug.Log("sectionCount:" + Current.CurMap.sectionDic.Count);
+            }
+        }
 
         private AStar aStar;
         [SerializeField]
@@ -42,15 +53,16 @@ namespace LittleWorld.MapUtility
             }
         }
 
+
         public bool ExpandZone(MapGridDetails[] gridIndexs)
         {
-            var section = sectionDic[selectedSectionID];
+            var section = sectionDic[SelectedSectionID];
             foreach (var item in gridIndexs)
             {
-                var result = section.gridIndexs.Find(x => x == item);
+                var result = section.grids.Find(x => x == item);
                 if (result == null && !plantHash.Contains(item.pos) && item.isLand)
                 {
-                    section.gridIndexs.Add(item);
+                    section.grids.Add(item);
                     plantHash.Add(item.pos);
                 }
                 else
@@ -67,10 +79,10 @@ namespace LittleWorld.MapUtility
             {
                 foreach (var item in gridIndexs)
                 {
-                    var result = section.Value.gridIndexs.Find(x => x == item);
+                    var result = section.Value.grids.Find(x => x == item);
                     if (result != null)
                     {
-                        section.Value.gridIndexs.Remove(result);
+                        section.Value.grids.Remove(result);
                         plantHash.Remove(result.pos);
                     }
                     else
@@ -86,12 +98,12 @@ namespace LittleWorld.MapUtility
         {
             try
             {
-                var mapSection = sectionDic[selectedSectionID];
-                foreach (var item in mapSection.gridIndexs)
+                var mapSection = sectionDic[SelectedSectionID];
+                foreach (var item in mapSection.grids)
                 {
                     plantHash.Remove(item.pos);
                 }
-                sectionDic.Remove(selectedSectionID);
+                sectionDic.Remove(SelectedSectionID);
                 return true;
             }
             catch (System.Exception e)
@@ -117,10 +129,14 @@ namespace LittleWorld.MapUtility
                     plantHash.Add(item.pos);
                 }
             }
+            if (mapGridDetails.Count == 0)
+            {
+                return false;
+            }
             sectionColorSeed = (++sectionColorSeed) % MaterialDatabase.Instance.PlantZoomMaterials.Length;
-            var newSection = new MapSection(mapGridDetails, $"{type.ToString()} nextPlantSectionIndex", type, sectionColorSeed);
+            var newSection = new MapSection(mapGridDetails, type, sectionColorSeed);
             sectionDic.Add(newSection.sectionID, newSection);
-            selectedSectionID = newSection.sectionID;
+            ChangeCurrentSection(newSection);
             return true;
         }
 

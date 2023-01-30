@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LittleWorld.Object
+namespace LittleWorld.Item
 {
     public class Berries : Food
     {

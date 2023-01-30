@@ -1,6 +1,6 @@
 ﻿using LittleWorld;
 using LittleWorld.Window;
-using LittleWorld.Object;
+using LittleWorld.Item;
 using System.Collections.Generic;
 using System.Linq;
 using UniBase;
@@ -59,6 +59,9 @@ public class InputController : MonoSingleton<InputController>
 
     private bool isInit = false;
     private bool cameraDraging = false;
+
+    Rect WorldRect => InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition);
+
 
     protected override void Awake()
     {
@@ -295,6 +298,10 @@ public class InputController : MonoSingleton<InputController>
                 CleanInteraction();
                 TryClearSelectedUnits();
                 selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
+                if (selectedObjects == null)
+                {
+                    var section = SelectSectionObjects();
+                }
             }
 
             Debug.Log("Click.canceled -------");
@@ -354,10 +361,17 @@ public class InputController : MonoSingleton<InputController>
         selectedObjects?.Clear();
     }
 
+    public MapSection SelectSectionObjects()
+    {
+        var section = WorldUtility.GetSectionsInRect(WorldRect);
+        Current.CurMap.ChangeCurrentSection(section);
+        return section;
+
+    }
+
     private List<WorldObject> SelectWorldObjects(SelectType selectType)
     {
-        var worldRect = InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition);
-        var worldObjectArray = WorldUtility.GetWorldObjectsInRect(worldRect);
+        var worldObjectArray = WorldUtility.GetWorldObjectsInRect(WorldRect);
         if (worldObjectArray == null)
         {
             return null;

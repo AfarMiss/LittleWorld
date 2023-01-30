@@ -4,11 +4,8 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class Plant : WorldObject
+    public class Object
     {
-        public Plant(Vector3Int gridPos) : base(gridPos)
-        {
-        }
+
     }
 }
-

@@ -1,5 +1,5 @@
 ﻿using LittleWorld.MapUtility;
-using LittleWorld.Object;
+using LittleWorld.Item;
 using System.Collections.Generic;
 using System.Linq;
 using UniBase;
@@ -32,6 +32,31 @@ namespace LittleWorld
             }
             var itemsAtPos = allItemsInfo.FindAll(x => poses.Contains(x.GridPos.To2()));
             return itemsAtPos.ToArray();
+        }
+
+        public static MapSection GetSectionsInRect(Rect worldRect)
+        {
+            //先判断是否是单击
+            var mapGrids = Current.CurMap.mapGrids.ToList().FindAll(x => x.gridRect.Overlaps(worldRect));
+            if (mapGrids.Count != 1)
+            {
+                return null;
+            }
+            var sectionDic = Current.CurMap.sectionDic;
+            if (sectionDic == null)
+            {
+                return null;
+            }
+
+            foreach (var item in sectionDic)
+            {
+                if (item.Value.GridPosList.Contains(mapGrids[0].pos))
+                {
+                    return item.Value;
+                }
+            }
+            return null;
+
         }
 
         public static Vector3Int WorldToCell(this Vector3 worldPos)

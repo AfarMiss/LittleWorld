@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace LittleWorld.MapUtility
 {
-    public class MapSection
+    public class MapSection : Object
     {
         public static int SectionIDSeed = 0;
-        public List<MapGridDetails> gridIndexs;
-        public List<Vector2Int> gridVector
+        public List<MapGridDetails> grids;
+        public List<Vector2Int> GridPosList
         {
             get
             {
                 var result = new List<Vector2Int>();
-                foreach (var item in gridIndexs)
+                foreach (var item in grids)
                 {
                     result.Add(item.pos);
                 }
@@ -25,13 +25,13 @@ namespace LittleWorld.MapUtility
         public int sectionColorIndex;
         public int sectionID;
 
-        public MapSection(List<MapGridDetails> gridIndexs, string sectionName, SectionType sectionType, int sectionColorIndex)
+        public MapSection(List<MapGridDetails> gridIndexs, SectionType sectionType, int sectionColorIndex)
         {
-            this.gridIndexs = gridIndexs;
-            this.sectionName = sectionName;
+            this.grids = gridIndexs;
             this.sectionType = sectionType;
             this.sectionColorIndex = sectionColorIndex;
             this.sectionID = SectionIDSeed++;
+            this.sectionName = $"{sectionType.ToString()}_{sectionID}";
         }
 
 

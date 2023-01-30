@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace LittleWorld.Object
+namespace LittleWorld.Item
 {
-    public class WorldObject
+    public class WorldObject : Object
     {
         public int instanceID;
         public WorldObject(Vector3Int gridPos, Map map = null)

@@ -74,7 +74,7 @@ namespace ProcedualWorld
             //应该存储种植区的mesh，没有变化时就使用旧的，减少运算量
             foreach (var item in map.sectionDic)
             {
-                GraphicsUtiliy.DrawPlantZoom(item.Value.gridVector.ToArray(), item.Value.sectionColorIndex);
+                GraphicsUtiliy.DrawPlantZoom(item.Value.GridPosList.ToArray(), item.Value.sectionColorIndex);
             }
         }
     }

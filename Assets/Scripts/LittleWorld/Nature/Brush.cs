@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
 
-namespace LittleWorld.Object
+namespace LittleWorld.Item
 {
     public class Brush : Plant
     {

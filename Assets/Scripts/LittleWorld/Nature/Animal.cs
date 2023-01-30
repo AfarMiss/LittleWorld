@@ -1,9 +1,9 @@
-﻿using LittleWorld.Object;
+﻿using LittleWorld.Item;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LittleWorld.Object
+namespace LittleWorld.Item
 {
     public class Animal : WorldObject
     {
