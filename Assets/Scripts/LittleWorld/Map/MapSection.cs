@@ -6,6 +6,7 @@ namespace LittleWorld.MapUtility
 {
     public class MapSection
     {
+        public static int SectionIDSeed = 0;
         public List<MapGridDetails> gridIndexs;
         public List<Vector2Int> gridVector
         {
@@ -22,6 +23,7 @@ namespace LittleWorld.MapUtility
         public string sectionName;
         public SectionType sectionType;
         public int sectionColorIndex;
+        public int sectionID;
 
         public MapSection(List<MapGridDetails> gridIndexs, string sectionName, SectionType sectionType, int sectionColorIndex)
         {
@@ -29,6 +31,7 @@ namespace LittleWorld.MapUtility
             this.sectionName = sectionName;
             this.sectionType = sectionType;
             this.sectionColorIndex = sectionColorIndex;
+            this.sectionID = SectionIDSeed++;
         }
 
 

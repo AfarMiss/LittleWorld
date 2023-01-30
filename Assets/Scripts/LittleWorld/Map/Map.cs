@@ -15,21 +15,12 @@ namespace LittleWorld.MapUtility
         public Vector2Int MapSize;
         public Vector2Int MapLeftBottomPoint = Vector2Int.zero;
         public MapGridDetails[] mapGrids;
-        public List<MapSection> sectionList;
+        public Dictionary<int, MapSection> sectionDic;
         private HashSet<Vector2Int> plantHash;
         public Color[] sectionColor;
-        public MapSection CurSelectedSection;
+        public int selectedSectionID;
         public int sectionColorSeed = 0;
 
-
-        public int nextPlantSectionIndex
-        {
-            get
-            {
-                sectionList.FindAll(x => x.sectionType == SectionType.PLANT);
-                return sectionList.Count + 1;
-            }
-        }
         private AStar aStar;
         [SerializeField]
         private string seed;
@@ -53,7 +44,7 @@ namespace LittleWorld.MapUtility
 
         public bool ExpandZone(MapGridDetails[] gridIndexs)
         {
-            var section = CurSelectedSection;
+            var section = sectionDic[selectedSectionID];
             foreach (var item in gridIndexs)
             {
                 var result = section.gridIndexs.Find(x => x == item);
@@ -72,14 +63,14 @@ namespace LittleWorld.MapUtility
 
         public bool ShrinkZone(MapGridDetails[] gridIndexs)
         {
-            foreach (var section in sectionList)
+            foreach (var section in sectionDic)
             {
                 foreach (var item in gridIndexs)
                 {
-                    var result = section.gridIndexs.Find(x => x == item);
+                    var result = section.Value.gridIndexs.Find(x => x == item);
                     if (result != null)
                     {
-                        section.gridIndexs.Remove(result);
+                        section.Value.gridIndexs.Remove(result);
                         plantHash.Remove(result.pos);
                     }
                     else
@@ -95,12 +86,12 @@ namespace LittleWorld.MapUtility
         {
             try
             {
-                var mapSection = CurSelectedSection;
+                var mapSection = sectionDic[selectedSectionID];
                 foreach (var item in mapSection.gridIndexs)
                 {
                     plantHash.Remove(item.pos);
                 }
-                sectionList.Remove(mapSection);
+                sectionDic.Remove(selectedSectionID);
                 return true;
             }
             catch (System.Exception e)
@@ -128,8 +119,8 @@ namespace LittleWorld.MapUtility
             }
             sectionColorSeed = (++sectionColorSeed) % MaterialDatabase.Instance.PlantZoomMaterials.Length;
             var newSection = new MapSection(mapGridDetails, $"{type.ToString()} nextPlantSectionIndex", type, sectionColorSeed);
-            sectionList.Add(newSection);
-            CurSelectedSection = newSection;
+            sectionDic.Add(newSection.sectionID, newSection);
+            selectedSectionID = newSection.sectionID;
             return true;
         }
 
@@ -164,7 +155,7 @@ namespace LittleWorld.MapUtility
         {
             this.MapSize = MapSize;
             this.seed = seed;
-            this.sectionList = new List<MapSection>();
+            this.sectionDic = new Dictionary<int, MapSection>();
             mapGrids = new MapGridDetails[MapSize.x * MapSize.y];
 
 
