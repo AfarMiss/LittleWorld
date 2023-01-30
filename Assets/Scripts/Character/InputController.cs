@@ -405,6 +405,24 @@ public class InputController : MonoSingleton<InputController>
         realSelection.position = lowerLeft;
         realSelection.size = selectedArea.sizeDelta;
 
+        switch (mouseState)
+        {
+            case MouseState.Normal:
+                RenderSelectionArea(lowerLeft, upperRight);
+                break;
+            case MouseState.ExpandZone:
+            case MouseState.ShrinkZone:
+            case MouseState.AddSection:
+            case MouseState.DeleteSection:
+                RenderPlantManager();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void RenderPlantManager()
+    {
         if (MapManager.Instance.ColonyMap != null)
         {
             var grids = GetWorldGrids(MapManager.Instance.ColonyMap, GetWorldRect());
@@ -413,10 +431,6 @@ public class InputController : MonoSingleton<InputController>
                 GraphicsUtiliy.DrawSelectedPlantZoom(item.pos.To3(), MaterialDatabase.Instance.selectMaterial, 2, "GameDisplay");
             }
         }
-
-
-        RenderSelectionArea(lowerLeft, upperRight);
-
     }
 
     private Rect GetWorldRect()
