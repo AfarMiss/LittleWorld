@@ -17,6 +17,7 @@ namespace LittleWorld.Item
         {
             ItemName = "灌木丛";
             this.gridPos = gridPos;
+            itemCode = 10027;
         }
 
         public override List<FloatOption> AddFloatMenu()

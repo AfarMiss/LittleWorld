@@ -64,6 +64,7 @@ namespace LittleWorld.Item
         {
             ItemName = "人类";
             moveSpeed = 9;
+            itemCode = 10026;
 
             this.gridPos = gridPos;
             actionQueue = new Queue<HumanAction>();

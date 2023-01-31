@@ -21,7 +21,7 @@ namespace LittleWorld.Jobs
                 {
                     treeStatus = tree.Process();
                 }
-                return treeStatus;
+                return tree.status;
             }
             return Node.Status.FAILURE;
         }

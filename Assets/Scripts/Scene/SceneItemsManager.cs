@@ -15,7 +15,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
     public static int ItemInstanceID;
     private Transform parentItem;
     [SerializeField]
-    private GameObject itemPrefab = null;
+    private GameObject itemPrefab;
     public List<SceneItem> sceneItemList;
     public List<WorldObject> worldItems;
 
@@ -37,6 +37,10 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
         //测试代码
         var curHuman = new Humanbeing(Vector2Int.zero);
+        var brush1 = new Brush(Vector2Int.one);
+        var brush2 = new Brush(Vector2Int.one * 2);
+        RenderItem(brush1);
+        RenderItem(brush2);
         pawnManager.AddPawn(curHuman);
     }
 
@@ -100,11 +104,18 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         return itemGameObject;
     }
 
-    public void InstantiateSingleSceneItem(int itemCode, Vector3 itemPosition)
+    public void RenderItem(int itemCode, Vector3 itemPosition)
     {
         GameObject itemGameObject = Instantiate(itemPrefab, itemPosition, Quaternion.identity, parentItem);
         ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
         itemComponent.Init(itemCode);
+    }
+
+    public void RenderItem(WorldObject wo)
+    {
+        GameObject itemGameObject = Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, parentItem);
+        ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
+        itemComponent.Init(wo.itemCode);
     }
 
     private void DestroySceneItems()

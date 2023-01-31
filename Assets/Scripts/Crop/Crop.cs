@@ -62,7 +62,7 @@ public class Crop : MonoBehaviour
                 var harvestCount = Random.Range(item.minQuantity, item.maxQuantity);
                 for (int i = 0; i < harvestCount; i++)
                 {
-                    SceneItemsManager.Instance.InstantiateSingleSceneItem(item.harvestItemCode,
+                    SceneItemsManager.Instance.RenderItem(item.harvestItemCode,
                         transform.position + (Vector3)Random.insideUnitCircle);
                 }
             }

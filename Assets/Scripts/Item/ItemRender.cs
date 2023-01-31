@@ -9,13 +9,6 @@ public class ItemRender : MonoBehaviour
 
     public int ItemCode { get { return itemCode; } set { itemCode = value; } }
 
-    private void Start()
-    {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        Init(ItemCode);
-        Debug.Log("itemcode:" + ItemCode);
-    }
-
     public void Init(int itemCode)
     {
         var itemDetail = InventoryManager.Instance.GetItemDetail(itemCode);
@@ -24,6 +17,7 @@ public class ItemRender : MonoBehaviour
             this.gameObject.AddComponent<NudgeItem>();
         }
 
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.sprite = itemDetail.itemSprite;
         spriteRenderer.transform.localScale = Vector3.one;
         var xOffset = spriteRenderer.sprite.pivot.x / spriteRenderer.sprite.pixelsPerUnit;

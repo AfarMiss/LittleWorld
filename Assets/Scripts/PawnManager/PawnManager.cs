@@ -27,6 +27,7 @@ public class PawnManager : Singleton<PawnManager>
         var curPawn = GameObject.Instantiate(pawnRes);
         curPawn.GetComponent<Transform>().transform.position = pos;
         curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
+        curPawn.GetComponent<ItemRender>().Init(human.itemCode);
 
     }
 

@@ -7,6 +7,7 @@ namespace LittleWorld.Item
 {
     public class WorldObject : Object
     {
+        public int itemCode;
         public int instanceID;
         public WorldObject(Vector2Int gridPos, Map map = null)
         {

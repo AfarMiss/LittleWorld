@@ -29,6 +29,7 @@ namespace LittleWorld.Jobs
             //sow
 
             this.gridsPos = gridsPos;
+            tree.PrintTree();
         }
 
         public Node.Status DoCut(Vector2Int destination, Humanbeing human)
