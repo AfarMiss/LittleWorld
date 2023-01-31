@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GeneralSlider : MonoBehaviour
 {
-    public string uniqueID;
+    public int uniqueID;
     public Vector3 sliderFollowPos;
     public float progress
     {

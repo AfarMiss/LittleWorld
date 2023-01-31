@@ -1,4 +1,5 @@
 ﻿using LittleWorld;
+using LittleWorld.Message;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,67 +15,59 @@ public class ProgressPanel : BaseUI
     }
     private void OnEnable()
     {
-        EventCenter.Instance.Register<SingleWork>(EventEnum.WORK_WORKING.ToString(), OnWorking);
-        EventCenter.Instance.Register<SingleWork>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
-        EventCenter.Instance.Register<SingleWork>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
+        EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_WORKING.ToString(), OnWorking);
+        EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
+        EventCenter.Instance.Register<WorkMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
     }
 
-    private void OnWorking(SingleWork message)
+    private void OnWorking(WorkMessage message)
     {
         var poolItem = PoolManager.Instance.Find<GameObject>(x =>
         x.poolInstance.GetComponent<GeneralSlider>() != null &&
-        x.poolInstance.GetComponent<GeneralSlider>().uniqueID == message.uniqueKey);
+        x.poolInstance.GetComponent<GeneralSlider>().uniqueID == message.worker.GetHashCode());
 
         if (message.showPercent)
         {
             var go = poolItem?.poolInstance;
-            var screenPos = InputUtils.GetScreenPosition(message.WorkPos);
+            var screenPos = InputUtils.GetScreenPosition(message.workPos.To3());
             if (go == null)
             {
                 go = PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
                 go.transform.position = screenPos;
-                go.GetComponent<GeneralSlider>().uniqueID = message.uniqueKey;
-                go.GetComponent<GeneralSlider>().sliderFollowPos = message.WorkPos;
+                go.GetComponent<GeneralSlider>().uniqueID = message.worker.GetHashCode();
+                go.GetComponent<GeneralSlider>().sliderFollowPos = message.workPos.To3();
             }
             ChangeSlider(go, message);
         }
     }
 
-    private void ChangeSlider(GameObject go, SingleWork message)
+    private void ChangeSlider(GameObject go, WorkMessage message)
     {
         var gs = go.GetComponent<GeneralSlider>();
-        if (message.workTotalAmount > 0)
-        {
-            gs.progress = (float)message.curFinishedAmount / message.workTotalAmount;
-        }
-        else
-        {
-            gs.progress = 1;
-        }
-
+        gs.progress = message.workPercent;
     }
 
     private void OnDisable()
     {
-        EventCenter.Instance?.Unregister<SingleWork>(EventEnum.WORK_WORKING.ToString(), OnWorking);
-        EventCenter.Instance?.Unregister<SingleWork>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
-        EventCenter.Instance?.Unregister<SingleWork>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
+        EventCenter.Instance?.Unregister<WorkMessage>(EventEnum.WORK_WORKING.ToString(), OnWorking);
+        EventCenter.Instance?.Unregister<WorkMessage>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
+        EventCenter.Instance?.Unregister<WorkMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
     }
 
-    private void OnWorkDone(SingleWork arg0)
+    private void OnWorkDone(WorkMessage arg0)
     {
         Putback(arg0);
     }
 
-    private void OnWorkForceAbort(SingleWork arg0)
+    private void OnWorkForceAbort(WorkMessage arg0)
     {
         Putback(arg0);
     }
 
-    private static void Putback(SingleWork arg0)
+    private static void Putback(WorkMessage arg0)
     {
         var needPutbackSlider = FindObjectsOfType<GeneralSlider>().ToList()
-            .Find(x => x.uniqueID == arg0.uniqueKey);
+            .Find(x => x.uniqueID == arg0.worker.GetHashCode());
         if (needPutbackSlider != null)
         {
             PoolManager.Instance.Putback(PoolEnum.Progress.ToString(), needPutbackSlider.gameObject);

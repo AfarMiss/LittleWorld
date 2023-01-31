@@ -37,6 +37,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         }
     }
     public HashSet<WorldObject> worldItems = new HashSet<WorldObject>();
+    public Dictionary<LittleWorld.Item.Object, GameObject> worldItemsRenderer = new Dictionary<LittleWorld.Item.Object, GameObject>();
 
     public void RegisterItem(WorldObject worldObject)
     {
@@ -47,6 +48,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
     {
         if (worldItems.Contains(worldObject))
         {
+            DisRenderItem(worldObject);
             worldItems.Remove(worldObject);
         }
     }
@@ -109,7 +111,6 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         {
             if (sceneSave.sceneItemList != null)
             {
-                DestroySceneItems();
                 InstantiateSceneItems(sceneSave.sceneItemList);
             }
         }
@@ -146,15 +147,17 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         GameObject itemGameObject = Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, parentItem);
         ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
         itemComponent.Init(wo.itemCode);
+        worldItemsRenderer.Add(wo, itemGameObject);
     }
 
-    private void DestroySceneItems()
+    public void DisRenderItem(WorldObject wo)
     {
-        ItemRender[] itemsInScene = GameObject.FindObjectsOfType<ItemRender>();
-        for (int i = itemsInScene.Length - 1; i >= 0; i--)
+        worldItemsRenderer.TryGetValue(wo, out var go);
+        if (go != null)
         {
-            Destroy(itemsInScene[i].gameObject);
+            Destroy(go);
         }
+        worldItemsRenderer.Remove(wo);
     }
 
     public void ISaveableStoreScene(string sceneName)

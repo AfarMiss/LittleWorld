@@ -8,7 +8,7 @@ namespace BehaviourTreeUtility
     public class Node
     {
         public enum Status { SUCCESS, RUNNING, FAILURE }
-        public Status status;
+        public Status status = Status.RUNNING;
         public List<Node> children = new List<Node>();
         public int currentChild = 0;
         public string name;

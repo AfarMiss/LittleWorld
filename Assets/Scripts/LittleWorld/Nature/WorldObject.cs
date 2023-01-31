@@ -17,6 +17,11 @@ namespace LittleWorld.Item
             SceneItemsManager.Instance.RegisterItem(this);
         }
 
+        public void Destroy()
+        {
+            SceneItemsManager.Instance.UnregisterItem(this);
+        }
+
         protected float maxHealth;
         protected float curHealth;
 

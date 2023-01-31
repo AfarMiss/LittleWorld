@@ -12,6 +12,7 @@ namespace LittleWorld.Jobs
 {
     public class SowWork : Work
     {
+        private int curCutAmount = 0;
         MapGridDetails[] gridsPos;
         protected void CreateWorkSequence(MapGridDetails[] gridsPos, Humanbeing humanbeing)
         {
@@ -34,8 +35,6 @@ namespace LittleWorld.Jobs
 
         public Node.Status DoCut(Vector2Int destination, Humanbeing human)
         {
-            int curCutAmount = 0;
-            float sliderValue = 0;
             var objects = WorldUtility.GetWorldObjectsAt(destination);
             if (objects == null)
             {
@@ -45,15 +44,22 @@ namespace LittleWorld.Jobs
             if (curPlant != null)
             {
                 var totalAmount = (curPlant as Plant).cutWorkAmount;
+                float sliderValue = 0;
+                if (totalAmount != 0)
+                {
+                    sliderValue = curCutAmount / (float)totalAmount;
+                }
                 if (curCutAmount < totalAmount)
                 {
+                    EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(sliderValue, human, destination));
                     curCutAmount += human.GetWorkSpeed(WorkTypeEnum.cut);
-                    sliderValue = curCutAmount / (float)totalAmount;
-                    EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(sliderValue, human));
                     return Node.Status.RUNNING;
                 }
                 else
                 {
+                    EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(sliderValue, human, destination));
+                    curCutAmount = 0;
+                    (curPlant as WorldObject).Destroy();
                     return Node.Status.SUCCESS;
                 }
             }
