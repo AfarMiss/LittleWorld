@@ -5,24 +5,30 @@ using UnityEngine;
 
 namespace BehaviourTreeUtility
 {
-    public class HumanPointWork : Node
+    public class DynamicWalk : Node
     {
         public Vector2Int destination;
         public Humanbeing human;
         public bool surround = true;
         public delegate Status Tick(Vector2Int destination, Humanbeing human);
+        public delegate Vector2Int GetPos();
         public Tick ProcessMethod;
+        public GetPos getPos;
 
-        public HumanPointWork(string name, Vector2Int destination, Humanbeing human, Tick ProcessMethod)
+        public DynamicWalk(string name, Humanbeing human, Tick tick, GetPos getPos)
         {
-            this.destination = destination;
             this.human = human;
             this.name = name;
-            this.ProcessMethod = GoToLoc;
+            this.ProcessMethod = tick;
+            this.getPos = getPos;
         }
 
         public override Status Process()
         {
+            if (getPos != null)
+            {
+                destination = getPos();
+            }
             Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
                 return ProcessMethod(destination, human);

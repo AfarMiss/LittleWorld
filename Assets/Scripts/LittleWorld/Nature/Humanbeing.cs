@@ -1,8 +1,12 @@
 ﻿using LittleWorld;
+using LittleWorld.Extension;
+using LittleWorld.Jobs;
+using LittleWorld.MapUtility;
 using LittleWorld.WorkUtility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LittleWorld.Item
@@ -18,6 +22,7 @@ namespace LittleWorld.Item
         private PawnWorkTracer workTracer;
         private PawnHealthTracer healthTracer;
         private PathNavigation pathTracer;
+
 
         public MotionStatus motion = MotionStatus.Idle;
 
@@ -67,55 +72,27 @@ namespace LittleWorld.Item
 
         public void AddWork(WorkTypeEnum workType, Vector3Int targetPos)
         {
-            Action whenReached = null;
-            var totalWorkAmount = 24;
-            var showPercent = true;
-            var workerPos = WorkUtility.WorkUtility.GetRandomWorkAroundPoint(targetPos);
             switch (workType)
             {
                 case WorkTypeEnum.dug:
-                    totalWorkAmount = 240;
                     break;
                 case WorkTypeEnum.water:
-                    totalWorkAmount = 240;
                     break;
                 case WorkTypeEnum.gotoLoc:
-                    workerPos = targetPos;
-                    showPercent = false;
-                    totalWorkAmount = 0;
                     break;
                 case WorkTypeEnum.cut:
-                    totalWorkAmount = 240;
                     break;
                 case WorkTypeEnum.harvest:
-                    totalWorkAmount = 240;
                     break;
                 case WorkTypeEnum.sow:
-                    totalWorkAmount = 240;
+                    var grids = WorldUtility.GetWorldObjectsAt(targetPos).OfType<MapSection>();
+                    if (grids.Safe().Any())
+                    {
+                        workTracer.AddWork(new SowWork(grids.ToList().First().grids, this));
+                    }
                     break;
                 default:
                     break;
-            }
-
-            var curWork =
-    new SingleWork($"{this.instanceID}_{workType}_{PawnWorkTracer.workID++}",
-    this,
-    WorkStateEnum.None,
-    workType,
-    whenReached,
-    targetPos,
-    0,
-    totalWorkAmount,
-    workerPos,
-    showPercent);
-
-            if (!Current.IsAdditionalMode)
-            {
-                workTracer.ClearAndAddWork(curWork);
-            }
-            else
-            {
-                workTracer.AddWork(curWork);
             }
         }
 

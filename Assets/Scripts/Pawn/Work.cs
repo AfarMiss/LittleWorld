@@ -9,7 +9,22 @@ namespace LittleWorld.Jobs
     {
         public static int WorkIDSeed = 0;
 
-        protected BehaviourTree workBehaviourTree;
+        protected BehaviourTree tree;
+        Node.Status treeStatus = Node.Status.RUNNING;
+
+
+        public Node.Status Tick()
+        {
+            if (tree != null)
+            {
+                if (tree.status != Node.Status.SUCCESS)
+                {
+                    treeStatus = tree.Process();
+                }
+                return treeStatus;
+            }
+            return Node.Status.FAILURE;
+        }
 
     }
 }

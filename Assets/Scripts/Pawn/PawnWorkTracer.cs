@@ -1,4 +1,5 @@
-﻿using LittleWorld.Item;
+﻿using AStarUtility;
+using LittleWorld.Item;
 using LittleWorld.Jobs;
 using System;
 using System.Collections;
@@ -28,10 +29,12 @@ namespace LittleWorld
 
         public Humanbeing pawn;
 
-        private SingleWork curWork;
+        private Work curWork;
+        public BehaviourTreeUtility.Node.Status curTreeStatus;
 
-        public bool AddWork(SingleWork singleWork)
+        public bool AddWork(Work singleWork)
         {
+            workQueue.Enqueue(singleWork);
             return true;
         }
 
@@ -42,14 +45,21 @@ namespace LittleWorld
 
         public void Tick()
         {
-            switch (CurStatus)
+            if (curWork == null)
             {
-                case WorkStatus.Working:
-                    break;
-                case WorkStatus.NoWork:
-                    break;
-                default:
-                    break;
+                if (workQueue.Count == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    curWork = workQueue.Dequeue();
+                }
+            }
+            var status = curWork.Tick();
+            if (status == BehaviourTreeUtility.Node.Status.SUCCESS)
+            {
+                curWork = null;
             }
         }
 
@@ -59,8 +69,9 @@ namespace LittleWorld
             {
                 CurStatus = WorkStatus.NoWork;
             }
-            if (curFinishedAmount < workTotalAmount)
+            else
             {
+                CurStatus = WorkStatus.Working;
                 curFinishedAmount++;
             }
         }

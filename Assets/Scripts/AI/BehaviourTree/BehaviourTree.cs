@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BehaviourTreeUtility
@@ -9,6 +10,25 @@ namespace BehaviourTreeUtility
         public BehaviourTree()
         {
             name = "Tree";
+        }
+
+        private Dictionary<string, object> dataContext = new Dictionary<string, object>();
+
+        public void SetVariable(string key, object value)
+        {
+            dataContext[key] = value;
+        }
+
+        public object GetVariable(string key)
+        {
+            if (dataContext.TryGetValue(key, out var value))
+            {
+                return value;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public BehaviourTree(string n)

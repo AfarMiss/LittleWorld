@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using LittleWorld.Item;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace BehaviourTreeUtility
         public List<Node> children = new List<Node>();
         public int currentChild = 0;
         public string name;
+        public Node root;
 
         public Node()
         {
@@ -37,6 +39,21 @@ namespace BehaviourTreeUtility
         public virtual Status Process()
         {
             return children[currentChild].Process();
+        }
+
+        public static Node.Status GoToLoc(Vector2Int destination, Humanbeing human)
+        {
+            if (human.motion == Humanbeing.MotionStatus.Idle)
+            {
+                human.GoToLoc(destination);
+                human.motion = Humanbeing.MotionStatus.Running;
+            }
+            if (human.GridPos == destination)
+            {
+                human.motion = Humanbeing.MotionStatus.Idle;
+                return Node.Status.SUCCESS;
+            }
+            return Node.Status.RUNNING;
         }
     }
 }
