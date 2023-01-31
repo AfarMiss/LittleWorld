@@ -18,7 +18,7 @@ namespace LittleWorld
 
             var worldGridPos = pos.WorldToCell();
             var allItemsInfo = SceneItemsManager.Instance.worldItems;
-            itemsAtPos.AddRange(allItemsInfo.FindAll(x => x.GridPos == worldGridPos.To2()));
+            itemsAtPos.AddRange(allItemsInfo.ToList().FindAll(x => x.GridPos == worldGridPos.To2()));
 
             var allSection = Current.CurMap.sectionDic.Values.ToList();
             MapSection atSection = allSection.Find(x => x.GridPosList.Contains(worldGridPos.To2()));
@@ -44,7 +44,7 @@ namespace LittleWorld
             {
                 poses.Add(item.pos);
             }
-            var itemsAtPos = allItemsInfo.FindAll(x => poses.Contains(x.GridPos));
+            var itemsAtPos = allItemsInfo.ToList().FindAll(x => poses.Contains(x.GridPos));
             return itemsAtPos.ToArray();
         }
 

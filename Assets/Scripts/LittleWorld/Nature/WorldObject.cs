@@ -14,6 +14,7 @@ namespace LittleWorld.Item
             this.gridPos = gridPos;
             this.instanceID = SceneItemsManager.ItemInstanceID++;
             curMap = map ?? MapManager.Instance.ColonyMap;
+            SceneItemsManager.Instance.RegisterItem(this);
         }
 
         protected float maxHealth;

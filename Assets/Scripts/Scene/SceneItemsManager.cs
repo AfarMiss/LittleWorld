@@ -16,8 +16,40 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
     private Transform parentItem;
     [SerializeField]
     private GameObject itemPrefab;
-    public List<SceneItem> sceneItemList;
-    public List<WorldObject> worldItems;
+    public List<SceneItem> sceneItemList
+    {
+        get
+        {
+            List<SceneItem> sceneItemList = new List<SceneItem>();
+            ItemRender[] itemsInScene = FindObjectsOfType<ItemRender>();
+
+            foreach (var item in itemsInScene)
+            {
+                SceneItem sceneItem = new SceneItem();
+                sceneItem.itemCode = item.ItemCode;
+                sceneItem.position = new Vector3Serializable(item.transform.position);
+                sceneItem.itemName = item.name;
+
+                sceneItemList.Add(sceneItem);
+            }
+
+            return sceneItemList;
+        }
+    }
+    public HashSet<WorldObject> worldItems = new HashSet<WorldObject>();
+
+    public void RegisterItem(WorldObject worldObject)
+    {
+        worldItems.Add(worldObject);
+    }
+
+    public void UnregisterItem(WorldObject worldObject)
+    {
+        if (worldItems.Contains(worldObject))
+        {
+            worldItems.Remove(worldObject);
+        }
+    }
 
     public PawnManager pawnManager;
 
@@ -59,8 +91,6 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
     private void AfterSceneLoad()
     {
         parentItem = GameObject.FindGameObjectWithTag(Tags.ItemsParentTransform.ToString())?.transform;
-        sceneItemList = CreateNewItemList();
-        worldItems = CreateNewWorldItemsList(sceneItemList);
     }
 
     public void ISaveableDeregister()
@@ -132,56 +162,11 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         //删除旧数据
         GameObjectSave.sceneData.Remove(sceneName);
 
-        //保存新数据
-        sceneItemList = CreateNewItemList();
-
         SceneSave sceneSave = new SceneSave();
         sceneSave.sceneItemList = sceneItemList;
 
         GameObjectSave.sceneData.Add(sceneName, sceneSave);
     }
-
-    private List<SceneItem> CreateNewItemList()
-    {
-        List<SceneItem> sceneItemList = new List<SceneItem>();
-        ItemRender[] itemsInScene = FindObjectsOfType<ItemRender>();
-
-        foreach (var item in itemsInScene)
-        {
-            SceneItem sceneItem = new SceneItem();
-            sceneItem.itemCode = item.ItemCode;
-            sceneItem.position = new Vector3Serializable(item.transform.position);
-            sceneItem.itemName = item.name;
-
-            sceneItemList.Add(sceneItem);
-        }
-
-        return sceneItemList;
-    }
-
-    private List<WorldObject> CreateNewWorldItemsList(List<SceneItem> sceneItems)
-    {
-        List<WorldObject> worldItems = new List<WorldObject>();
-        foreach (var item in sceneItems)
-        {
-            switch (item.itemCode)
-            {
-                case 10025:
-                    worldItems.Add(new Brush(((Vector3Int)item.position).To2()));
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        foreach (var pawn in pawnManager.Pawns)
-        {
-            worldItems.Add(pawn);
-        }
-
-        return worldItems;
-    }
-
     public GameObjectSave ISaveableSave()
     {
         ISaveableStoreScene(SceneManager.GetActiveScene().name);
@@ -199,7 +184,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
     public WorldObject GetWorldObjectById(int instanceID)
     {
-        return worldItems.Find(x => x.instanceID == instanceID);
+        return worldItems.ToList().Find(x => x.instanceID == instanceID);
     }
 
     private void Update()
