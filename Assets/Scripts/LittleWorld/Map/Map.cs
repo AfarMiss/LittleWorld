@@ -98,12 +98,18 @@ namespace LittleWorld.MapUtility
         {
             try
             {
+                if (selectedSectionID < 0)
+                {
+                    Debug.LogWarning("Has no section!");
+                    return false;
+                }
                 var mapSection = sectionDic[SelectedSectionID];
                 foreach (var item in mapSection.grids)
                 {
                     plantHash.Remove(item.pos);
                 }
                 sectionDic.Remove(SelectedSectionID);
+                selectedSectionID = -1;
                 return true;
             }
             catch (System.Exception e)
