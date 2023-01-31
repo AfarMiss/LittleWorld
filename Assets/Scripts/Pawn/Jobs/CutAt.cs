@@ -1,11 +1,11 @@
-﻿using BehaviourTreeUtility;
+﻿using AI;
 using LittleWorld.Item;
 using LittleWorld.Message;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static BehaviourTreeUtility.RobberBehaviour;
+using static AI.RobberBehaviour;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace LittleWorld.Jobs

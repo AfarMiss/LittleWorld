@@ -1,4 +1,5 @@
-﻿using LittleWorld;
+﻿using Littleworld.Extension;
+using LittleWorld;
 using LittleWorld.Extension;
 using LittleWorld.Jobs;
 using LittleWorld.MapUtility;
@@ -62,6 +63,7 @@ namespace LittleWorld.Item
 
         public Humanbeing(Vector2Int gridPos) : base(gridPos)
         {
+            Debug.Log("Humanbeing");
             ItemName = "人类";
             moveSpeed = 9;
             itemCode = 10026;
@@ -69,6 +71,7 @@ namespace LittleWorld.Item
             this.gridPos = gridPos;
             actionQueue = new Queue<HumanAction>();
             workTracer = new PawnWorkTracer(this);
+
         }
 
         public void AddWork(WorkTypeEnum workType, Vector3Int targetPos)
@@ -89,7 +92,7 @@ namespace LittleWorld.Item
                     var grids = WorldUtility.GetWorldObjectsAt(targetPos).OfType<MapSection>();
                     if (grids.Safe().Any())
                     {
-                        workTracer.AddWork(new SowWork(grids.ToList().First().grids, this));
+                        workTracer.AddWork(new SowWork(ObjectCode.wheatPlant.ToInt(), grids.ToList().First().grids, this));
                     }
                     break;
                 default:

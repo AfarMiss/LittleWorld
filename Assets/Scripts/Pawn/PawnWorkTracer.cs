@@ -30,7 +30,7 @@ namespace LittleWorld
         public Humanbeing pawn;
 
         private Work curWork;
-        public BehaviourTreeUtility.Node.Status curTreeStatus;
+        public AI.Node.Status curTreeStatus;
 
         public bool AddWork(Work singleWork)
         {
@@ -57,7 +57,7 @@ namespace LittleWorld
                 }
             }
             var status = curWork.Tick();
-            if (status == BehaviourTreeUtility.Node.Status.SUCCESS)
+            if (status == AI.Node.Status.SUCCESS)
             {
                 curWork = null;
             }

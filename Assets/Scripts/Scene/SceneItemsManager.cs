@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEditor.PlayerSettings;
+using Littleworld.Extension;
 
 public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 {
@@ -71,10 +72,11 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
         //测试代码
         var curHuman = new Humanbeing(Vector2Int.zero);
-        var brush1 = new Brush(Vector2Int.one);
-        var brush2 = new Brush(Vector2Int.one * 2);
+        var brush1 = new Plant("灌木", 10027, 100, new Vector2Int(2, 3));
+        var brush2 = new Plant("灌木", 10027, 100, Vector2Int.one);
         RenderItem(brush1);
         RenderItem(brush2);
+
         pawnManager.AddPawn(curHuman);
     }
 

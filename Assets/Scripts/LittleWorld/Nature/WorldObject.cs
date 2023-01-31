@@ -11,6 +11,7 @@ namespace LittleWorld.Item
         public int instanceID;
         public WorldObject(Vector2Int gridPos, Map map = null)
         {
+            Debug.Log("WorldObject");
             this.gridPos = gridPos;
             this.instanceID = SceneItemsManager.ItemInstanceID++;
             curMap = map ?? MapManager.Instance.ColonyMap;

@@ -202,6 +202,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2e92a61802edadc4495e4d901e3a97cb, type: 3}
   - {fileID: 21300000, guid: 37e09848a493a0a4b89a743f73f75963, type: 3}
   - {fileID: 21300000, guid: 4fb548784c08c2c40b86a99493efa98d, type: 3}
+  - {fileID: 21300000, guid: 50030c884d2f02d4f8304e8284f5697c, type: 3}
   - {fileID: 21300000, guid: c31ef2d8735edaa4c898f9e490b6d95e, type: 3}
   - {fileID: 21300000, guid: 131450598c5b71541bde630f6e67edb5, type: 3}
   - {fileID: 6887888638497536022, guid: afeab3b9fd0c19442af661a1d1f72d1b, type: 3}
@@ -818,6 +819,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 730e572c78cf0244ca0db36bb8f3af7f, type: 3}
   - {fileID: 21300000, guid: 2a61f48c8f2dfed4da6f2f8e2485ee15, type: 3}
   - {fileID: 21300000, guid: 90499fac1706de44382ab07f7887e79e, type: 3}
+  - {fileID: 21300000, guid: 61d94f2dcb284494f9887f3eec7a4390, type: 3}
   - {fileID: 21300000, guid: b2eff0cde9f776947b747c1a4cc96406, type: 3}
   - {fileID: 21300000, guid: d1488fdd7509cda4f9b89da8bb3c5a68, type: 3}
   - {fileID: 21300000, guid: ffd3a07e9702a614284d1e5a4be9f532, type: 3}
@@ -1037,6 +1039,7 @@ SpriteAtlas:
   - GreenGridCursor
   - Cactus1
   - Stone1Seed
+  - CommonSeedBag
   - HalfCollisionTile
   - Lamp
   - IndoorsTileset_15
@@ -1653,6 +1656,7 @@ SpriteAtlas:
   - Acorn
   - Chair
   - Collision Tile Diagonal
+  - WheatSeed
   - InventoryHighlight
   - PauseScreenSelectedTab
   - Stone2Seed

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace BehaviourTreeUtility
+namespace AI
 {
     public class RobberBehaviour : MonoBehaviour
     {

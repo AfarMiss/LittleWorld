@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BehaviourTreeUtility
+namespace AI
 {
     public class ConditionLoop : Node
     {
         public delegate bool Tick();
         private Tick check;
 
-        public ConditionLoop(Tick check)
+        public ConditionLoop(string name, Tick check)
         {
+            this.name = name;
             this.check = check;
         }
 

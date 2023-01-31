@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace BehaviourTreeUtility
+namespace AI
 {
     public class Vector2IntLeaf : Node
     {
