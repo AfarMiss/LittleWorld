@@ -9,6 +9,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 using static UnityEngine.InputSystem.InputAction;
 using LittleWorld.MapUtility;
 using LittleWorld.Graphics;
+using UnityEngine.UI;
 
 public class InputController : MonoSingleton<InputController>
 {
@@ -52,7 +53,7 @@ public class InputController : MonoSingleton<InputController>
     }
     private MouseState mouseState = MouseState.Normal;
 
-    private RectTransform selectedArea;
+    private RectTransform selectedArea => UIManager.Instance.SelectionArea;
     private CameraController CamController => Camera.main.GetComponent<CameraController>();
 
     private Rect screenRealSelection;
@@ -72,12 +73,6 @@ public class InputController : MonoSingleton<InputController>
     public void Init()
     {
         selectedObjects = new List<WorldObject>();
-        RectTransform rectObject = Instantiate(selectedAreaPrefab);
-        rectObject.name = rectObject.name.Substring(0, rectObject.name.LastIndexOf("(Clone)"));
-        rectObject.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
-        rectObject.gameObject.SetActive(false);
-
-        selectedArea = rectObject.GetComponent<RectTransform>();
         screenRealSelection = new Rect();
 
         isInit = true;
@@ -283,13 +278,13 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.started)
         {
-            selectedArea.gameObject.SetActive(true);
+            selectedArea.GetComponent<Image>().enabled = true;
         }
         else if (callbackContext.canceled)
         {
             onClickLeftEndPosition = Current.MousePos;
             onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
-            selectedArea.gameObject.SetActive(false);
+            selectedArea.GetComponent<Image>().enabled = false;
 
             var floatMenu = FindObjectOfType<InteractionMenu>();
             //点击点不包含交互菜单则重新选择框选单位
@@ -423,7 +418,7 @@ public class InputController : MonoSingleton<InputController>
         var upperRight = new Vector2(Mathf.Max(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Max(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
 
         screenRealSelection.position = lowerLeft;
-        screenRealSelection.size = selectedArea.sizeDelta;
+        screenRealSelection.size = upperRight - lowerLeft;
 
         switch (mouseState)
         {

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoSingleton<UIManager>
 {
@@ -32,6 +33,8 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
+    public RectTransform SelectionArea => GameObject.FindGameObjectWithTag("SelectionArea")?.GetComponent<RectTransform>();
+
     public UIManager()
     {
         uiDic = new Dictionary<UIType, List<BaseUI>>();
@@ -50,7 +53,7 @@ public class UIManager : MonoSingleton<UIManager>
         //初始化画布
         UICanvas = GameObject.Instantiate(Resources.Load<GameObject>(UIPath.UICanvas));
         UICanvas.transform.SetParent(null);
-
+        SelectionArea.GetComponent<Image>().enabled = false;
         DontDestroyOnLoad(UICanvas);
     }
 
