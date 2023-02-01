@@ -10,7 +10,13 @@ namespace LittleWorld.Jobs
         public static int WorkIDSeed = 0;
 
         protected BehaviourTree tree;
-        Node.Status treeStatus = Node.Status.RUNNING;
+        protected int workID;
+        private Node.Status treeStatus = Node.Status.RUNNING;
+
+        public Work()
+        {
+            workID = WorkIDSeed++;
+        }
 
 
         public Node.Status Tick()
@@ -20,10 +26,18 @@ namespace LittleWorld.Jobs
                 if (tree.status != Node.Status.SUCCESS)
                 {
                     treeStatus = tree.Process();
+                    return treeStatus;
                 }
-                return tree.status;
+                else
+                {
+                    return tree.status;
+                }
             }
-            return Node.Status.FAILURE;
+            else
+            {
+                Debug.LogError("behaviour tree has not been initialized");
+                return Node.Status.FAILURE;
+            }
         }
 
     }

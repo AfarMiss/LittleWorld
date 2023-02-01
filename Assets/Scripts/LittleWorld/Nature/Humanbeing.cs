@@ -83,6 +83,7 @@ namespace LittleWorld.Item
                 case WorkTypeEnum.water:
                     break;
                 case WorkTypeEnum.gotoLoc:
+                    workTracer.AddWork(new GoToLocWork(this, targetPos.To2()));
                     break;
                 case WorkTypeEnum.cut:
                     break;

@@ -15,7 +15,9 @@ namespace LittleWorld.Jobs
         private int curCutAmount = 0;
         private int curSowAmount = 0;
         MapGridDetails[] gridsPos;
-        protected void CreateWorkSequence(int seedCode, MapGridDetails[] gridsPos, Humanbeing humanbeing)
+
+
+        protected BehaviourTree CreateWorkSequence(int seedCode, MapGridDetails[] gridsPos, Humanbeing humanbeing)
         {
             tree = new BehaviourTree();
             tree.SetVariable("seedCode", seedCode);
@@ -44,6 +46,8 @@ namespace LittleWorld.Jobs
 
             this.gridsPos = gridsPos;
             tree.PrintTree();
+
+            return tree;
         }
 
         private Node.Status DoSow(Vector2Int destination, Humanbeing human)
