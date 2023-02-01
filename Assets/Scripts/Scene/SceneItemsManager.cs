@@ -72,8 +72,8 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
         //测试代码
         var curHuman = new Humanbeing(Vector2Int.zero);
-        var brush1 = new Plant("灌木", 10027, 100, new Vector2Int(2, 3));
-        var brush2 = new Plant("灌木", 10027, 100, Vector2Int.one);
+        var brush1 = new Plant("灌木", 10027, 200, new Vector2Int(2, 3));
+        var brush2 = new Plant("灌木", 10027, 200, Vector2Int.one);
         RenderItem(brush1);
         RenderItem(brush2);
 

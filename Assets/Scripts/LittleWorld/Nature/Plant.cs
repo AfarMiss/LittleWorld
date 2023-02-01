@@ -10,7 +10,7 @@ namespace LittleWorld.Item
         ///修剪工作量
         /// </summary>
         public int cutWorkAmount;
-        public static int sowWorkAmount = 100;
+        public static int sowWorkAmount = 200;
 
         public int fruitCount = 5;
         public int woodCount;

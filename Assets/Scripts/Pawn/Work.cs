@@ -10,7 +10,7 @@ namespace LittleWorld.Jobs
         public static int WorkIDSeed = 0;
 
         protected BehaviourTree tree;
-        protected int workID;
+        public int workID;
         private Node.Status treeStatus = Node.Status.RUNNING;
 
         public Work()

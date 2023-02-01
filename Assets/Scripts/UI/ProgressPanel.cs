@@ -24,7 +24,7 @@ public class ProgressPanel : BaseUI
     {
         var poolItem = PoolManager.Instance.Find<GameObject>(x =>
         x.poolInstance.GetComponent<GeneralSlider>() != null &&
-        x.poolInstance.GetComponent<GeneralSlider>().uniqueID == message.worker.GetHashCode());
+        x.poolInstance.GetComponent<GeneralSlider>().uniqueID == message.workID.GetHashCode());
 
         if (message.showPercent)
         {
@@ -34,8 +34,17 @@ public class ProgressPanel : BaseUI
             {
                 go = PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
                 go.transform.position = screenPos;
-                go.GetComponent<GeneralSlider>().uniqueID = message.worker.GetHashCode();
+                go.GetComponent<GeneralSlider>().uniqueID = message.workID.GetHashCode();
                 go.GetComponent<GeneralSlider>().sliderFollowPos = message.workPos.To3();
+            }
+            else
+            {
+                if (!go.activeInHierarchy)
+                {
+                    go.SetActive(true);
+                    go.transform.position = screenPos;
+                    go.GetComponent<GeneralSlider>().sliderFollowPos = message.workPos.To3();
+                }
             }
             ChangeSlider(go, message);
         }
@@ -67,7 +76,7 @@ public class ProgressPanel : BaseUI
     private static void Putback(WorkMessage arg0)
     {
         var needPutbackSlider = FindObjectsOfType<GeneralSlider>().ToList()
-            .Find(x => x.uniqueID == arg0.worker.GetHashCode());
+            .Find(x => x.uniqueID == arg0.workID.GetHashCode());
         if (needPutbackSlider != null)
         {
             PoolManager.Instance.Putback(PoolEnum.Progress.ToString(), needPutbackSlider.gameObject);

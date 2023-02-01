@@ -61,15 +61,15 @@ namespace LittleWorld.Jobs
             }
             if (curSowAmount < totalAmount)
             {
-                EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(sliderValue, human, destination));
+                EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(this, sliderValue, human, destination));
                 curSowAmount += human.GetWorkSpeed(WorkTypeEnum.sow);
                 return Node.Status.RUNNING;
             }
             else
             {
-                EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(sliderValue, human, destination));
+                EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(this, sliderValue, human, destination));
                 curSowAmount = 0;
-                var plant = new Plant("小麦", 10001, 100, destination);
+                var plant = new Plant("小麦", 10001, 200, destination);
                 SceneItemsManager.Instance.RenderItem(plant);
                 return Node.Status.SUCCESS;
             }
@@ -121,13 +121,13 @@ namespace LittleWorld.Jobs
                 }
                 if (curCutAmount < totalAmount)
                 {
-                    EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(sliderValue, human, destination));
+                    EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(this, sliderValue, human, destination));
                     curCutAmount += human.GetWorkSpeed(WorkTypeEnum.cut);
                     return Node.Status.RUNNING;
                 }
                 else
                 {
-                    EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(sliderValue, human, destination));
+                    EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(this, sliderValue, human, destination));
                     curCutAmount = 0;
                     (curPlant as WorldObject).Destroy();
                     return Node.Status.SUCCESS;
