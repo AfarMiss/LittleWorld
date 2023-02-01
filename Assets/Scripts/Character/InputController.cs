@@ -414,6 +414,7 @@ public class InputController : MonoSingleton<InputController>
 
         onClickLeftEndPosition = Current.MousePos;
         onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
+        Debug.Log("Mouse Pos:" + Current.MousePos);
         var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Min(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
         var upperRight = new Vector2(Mathf.Max(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Max(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
 
@@ -452,7 +453,12 @@ public class InputController : MonoSingleton<InputController>
     private void RenderSelectionArea(Vector2 lowerLeft, Vector2 upperRight)
     {
         selectedArea.position = lowerLeft;
-        selectedArea.sizeDelta = upperRight - lowerLeft;
+        var originalVec2 = (upperRight - lowerLeft);
+        var uiCanvas = GameObject.FindObjectOfType<UICanvas>();
+        var sX = originalVec2.x / Screen.width * uiCanvas.Size.x;
+        var sY = originalVec2.y / Screen.height * uiCanvas.Size.y;
+        selectedArea.sizeDelta = new Vector2(sX, sY);
+        Debug.Log($"Screen Info:{Screen.width},{Screen.height}");
     }
 
     public MapGridDetails[] GetWorldGrids(Map map, Rect worldRect)
