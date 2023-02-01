@@ -1,11 +1,6 @@
 ﻿using LittleWorld.MeshUtility;
 using LittleWorld.UI;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEditor.Progress;
 
 namespace LittleWorld.Graphics
 {

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.U2D.Sprites;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace LittleWorld.TextureUtility

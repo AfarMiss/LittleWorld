@@ -1,15 +1,11 @@
 ﻿
 using LittleWorld.Item;
 using LittleWorld.Extension;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.PlayerSettings;
-using Littleworld.Extension;
 
 public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 {
