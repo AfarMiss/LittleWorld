@@ -85,6 +85,8 @@ namespace LittleWorld
             commandCenter = CommandCenter.Instance;
 
             uIManager.Initialize();
+
+            Xml.XmlUtility.ReadXml("ItemInfo");
         }
 
         private void FixedUpdate()

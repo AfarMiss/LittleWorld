@@ -1,6 +1,5 @@
-﻿using Littleworld.Extension;
+﻿using LittleWorld.Extension;
 using LittleWorld;
-using LittleWorld.Extension;
 using LittleWorld.Jobs;
 using LittleWorld.MapUtility;
 using LittleWorld.WorkUtility;

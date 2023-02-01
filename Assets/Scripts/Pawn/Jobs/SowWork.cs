@@ -52,8 +52,18 @@ namespace LittleWorld.Jobs
 
         private Node.Status DoSow(Vector2Int destination, Humanbeing human)
         {
-            //TODO:这里有问题，在完善种植系统的最后一部分时，应该通过XML读取各种Plant格子的种植工作量，这里先暂时使用统一的工作量代替。
-            var totalAmount = Plant.sowWorkAmount;
+            int seedCode = (int)tree.GetVariable("seedCode");
+            var objects = WorldUtility.GetWorldObjectsAt(destination);
+            if (objects == null)
+            {
+                return Node.Status.FAILURE;
+            }
+            var curPlant = objects.ToList().Find(x => x is Plant);
+            if (curPlant == null)
+            {
+                Debug.LogError("error:no plant need sow");
+            }
+            var totalAmount = PlantConfig.seedInfo[seedCode].sowWorkAmount;
             float sliderValue = 0;
             if (totalAmount != 0)
             {
@@ -69,7 +79,7 @@ namespace LittleWorld.Jobs
             {
                 EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(this, sliderValue, human, destination));
                 curSowAmount = 0;
-                var plant = new Plant("小麦", 10001, 200, destination);
+                var plant = new Plant(10001, destination);
                 SceneItemsManager.Instance.RenderItem(plant);
                 return Node.Status.SUCCESS;
             }
@@ -113,7 +123,7 @@ namespace LittleWorld.Jobs
             var curPlant = objects.ToList().Find(x => x is Plant);
             if (curPlant != null)
             {
-                var totalAmount = (curPlant as Plant).cutWorkAmount;
+                var totalAmount = (curPlant as Plant).PlantInfo.cutWorkAmount;
                 float sliderValue = 0;
                 if (totalAmount != 0)
                 {

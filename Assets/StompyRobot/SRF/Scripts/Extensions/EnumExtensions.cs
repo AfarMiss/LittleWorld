@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Littleworld.Extension
+namespace LittleWorld.Extension
 {
     public static class EnumExtensions
     {

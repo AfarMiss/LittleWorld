@@ -1,9 +1,4 @@
-﻿using LittleWorld;
-using LittleWorld.Item;
-using LittleWorld.Message;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using LittleWorld.Item;
 using UnityEngine;
 
 namespace AI

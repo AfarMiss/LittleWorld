@@ -9,6 +9,17 @@ namespace LittleWorld.Item
     {
         public int itemCode;
         public int instanceID;
+        protected float maxHealth;
+        protected string ItemName;
+        public float mass;
+
+        protected float curHealth;
+        public Map curMap;
+
+        protected Vector2Int gridPos;
+
+        public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
+
         public WorldObject(Vector2Int gridPos, Map map = null)
         {
             Debug.Log("WorldObject");
@@ -23,13 +34,6 @@ namespace LittleWorld.Item
             SceneItemsManager.Instance.UnregisterItem(this);
         }
 
-        protected float maxHealth;
-        protected float curHealth;
-
-        protected string ItemName;
-        public float mass;
-        protected Vector2Int gridPos;
-        public Map curMap;
         public Vector3 RenderPos
         {
             get
@@ -46,9 +50,6 @@ namespace LittleWorld.Item
                 }
             }
         }
-
-        public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
-
         public virtual void ShowBriefInfo()
         {
             var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);

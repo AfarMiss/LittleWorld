@@ -10,9 +10,4 @@ public class UICanvas : MonoSingleton<UICanvas>
         rectTransform = GetComponent<RectTransform>();
     }
     public Vector2 Size => rectTransform.rect.size;
-
-    private void Update()
-    {
-        Debug.Log($"rect Info:{rectTransform.sizeDelta}");
-    }
 }

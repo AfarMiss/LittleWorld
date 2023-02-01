@@ -6,22 +6,14 @@ namespace LittleWorld.Item
 {
     public class Plant : WorldObject
     {
-        /// <summary>
-        ///修剪工作量
-        /// </summary>
-        public int cutWorkAmount;
-        public static int sowWorkAmount = 200;
+        private PlantInfo plantInfo;
+        public PlantInfo PlantInfo => plantInfo;
 
-        public int fruitCount = 5;
-        public int woodCount;
-        public int fruitItemCode = 10024;
-        public float pickTime = 3;
-
-        public Plant(string name, int itemCode, int cutWorkAmount, Vector2Int gridPos) : base(gridPos)
+        public Plant(int itemCode, Vector2Int gridPos) : base(gridPos)
         {
-            ItemName = name;
+            plantInfo = PlantConfig.plantInfoDic[itemCode];
             this.itemCode = itemCode;
-            this.cutWorkAmount = cutWorkAmount;
+            ItemName = plantInfo.itemName;
         }
 
         public override List<FloatOption> AddFloatMenu()
