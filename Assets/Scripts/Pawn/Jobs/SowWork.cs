@@ -70,8 +70,7 @@ namespace LittleWorld.Jobs
             {
                 EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(this, sliderValue, human, destination));
                 curSowAmount = 0;
-                var plant = new Plant(ObjectCode.cornPlant.ToInt(), destination);
-                SceneItemsManager.Instance.RenderItem(plant);
+                new Plant(ObjectCode.cornPlant.ToInt(), destination);
                 return Node.Status.SUCCESS;
             }
 

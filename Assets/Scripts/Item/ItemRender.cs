@@ -10,7 +10,7 @@ public class ItemRender : MonoBehaviour
 
     public int ItemCode { get { return itemCode; } set { itemCode = value; } }
 
-    public void Init<T>(T worldObject) where T : WorldObject
+    public void Render<T>(T worldObject) where T : WorldObject
     {
         //this.gameObject.AddComponent<NudgeItem>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();

@@ -8,6 +8,7 @@ namespace LittleWorld.Item
     {
         private PlantInfo plantInfo;
         private float curGrowTime = 0;
+        private bool IsRipe => curGrowTime >= plantInfo.growingTime * 0.95f;
         public PlantInfo PlantInfo => plantInfo;
 
         public Plant(int itemCode, Vector2Int gridPos) : base(gridPos)
@@ -49,8 +50,15 @@ namespace LittleWorld.Item
             {
                 Debug.LogWarning("plant sprite is null");
             }
-            var spriteIndex = (int)curGrowTime / plantInfo.growingTime * plantInfo.itemSprites.Count;
+            var spriteIndex = (int)(curGrowTime / plantInfo.growingTime * plantInfo.itemSprites.Count);
+            spriteIndex = Mathf.Clamp(spriteIndex, 0, plantInfo.itemSprites.Count - 1);
             return plantInfo.itemSprites[spriteIndex];
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            curGrowTime += Time.deltaTime;
         }
     }
 }

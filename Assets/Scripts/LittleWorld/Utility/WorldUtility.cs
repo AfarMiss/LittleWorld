@@ -3,6 +3,7 @@ using LittleWorld.Item;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Unity.VisualScripting;
 
 namespace LittleWorld
 {
@@ -14,7 +15,11 @@ namespace LittleWorld
 
             var worldGridPos = pos.WorldToCell();
             var allItemsInfo = SceneItemsManager.Instance.worldItems;
-            itemsAtPos.AddRange(allItemsInfo.ToList().FindAll(x => x.GridPos == worldGridPos.To2()));
+            var objectsSet = allItemsInfo.ToList().FindAll(x => x.Value.GridPos == worldGridPos.To2());
+            foreach (var item in objectsSet)
+            {
+                itemsAtPos.Add(item.Value);
+            }
 
             var allSection = Current.CurMap.sectionDic.Values.ToList();
             MapSection atSection = allSection.Find(x => x.GridPosList.Contains(worldGridPos.To2()));
@@ -40,8 +45,13 @@ namespace LittleWorld
             {
                 poses.Add(item.pos);
             }
-            var itemsAtPos = allItemsInfo.ToList().FindAll(x => poses.Contains(x.GridPos));
-            return itemsAtPos.ToArray();
+            var itemsAtPos = allItemsInfo.ToList().FindAll(x => poses.Contains(x.Value.GridPos));
+            var result = new List<WorldObject>();
+            foreach (var item in itemsAtPos)
+            {
+                result.Add(item.Value);
+            }
+            return result.ToArray();
         }
 
         public static MapSection GetSectionsInRect(Rect worldRect)

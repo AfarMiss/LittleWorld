@@ -33,20 +33,21 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
             return sceneItemList;
         }
     }
-    public HashSet<WorldObject> worldItems = new HashSet<WorldObject>();
-    public Dictionary<LittleWorld.Item.Object, GameObject> worldItemsRenderer = new Dictionary<LittleWorld.Item.Object, GameObject>();
+    public Dictionary<int, WorldObject> worldItems = new Dictionary<int, WorldObject>();
+    public Dictionary<LittleWorld.Item.Object, ItemRender> worldItemsRenderer = new Dictionary<LittleWorld.Item.Object, ItemRender>();
 
     public void RegisterItem(WorldObject worldObject)
     {
-        worldItems.Add(worldObject);
+        worldItems.Add(worldObject.instanceID, worldObject);
+        RenderItem(worldObject);
     }
 
     public void UnregisterItem(WorldObject worldObject)
     {
-        if (worldItems.Contains(worldObject))
+        if (worldItems.Values.Contains(worldObject))
         {
             DisRenderItem(worldObject);
-            worldItems.Remove(worldObject);
+            worldItems.Remove(worldObject.instanceID);
         }
     }
 
@@ -70,8 +71,6 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         var curHuman = new Humanbeing(Vector2Int.zero);
         var brush1 = new Plant(10001, new Vector2Int(2, 3));
         var brush2 = new Plant(10001, Vector2Int.one);
-        RenderItem(brush1);
-        RenderItem(brush2);
 
         pawnManager.AddPawn(curHuman);
     }
@@ -133,12 +132,11 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         return itemGameObject;
     }
 
-    public void RenderItem(WorldObject wo)
+    private void RenderItem(WorldObject wo)
     {
         GameObject itemGameObject = Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, parentItem);
         ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
-        itemComponent.Init(wo);
-        worldItemsRenderer.Add(wo, itemGameObject);
+        worldItemsRenderer.Add(wo, itemComponent);
     }
 
     public void DisRenderItem(WorldObject wo)
@@ -178,11 +176,17 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
     public WorldObject GetWorldObjectById(int instanceID)
     {
-        return worldItems.ToList().Find(x => x.instanceID == instanceID);
+        worldItems.TryGetValue(instanceID, out var go);
+        return go;
     }
 
     private void Update()
     {
         pawnManager.Tick();
+        foreach (var item in worldItems.ToList())
+        {
+            item.Value.Tick();
+            worldItemsRenderer[item.Value].Render(item.Value);
+        }
     }
 }

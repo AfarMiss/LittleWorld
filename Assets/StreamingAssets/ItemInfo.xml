@@ -207,7 +207,7 @@
         <seedItem>11009</seedItem>
         <plantItem/>
         <nutrition>0.2</nutrition>
-        <growingTime>6</growingTime>
+        <growingTime>1</growingTime>
         <image0>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_0</image0>
         <image1>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_1</image1>
         <image2>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_2</image2>
