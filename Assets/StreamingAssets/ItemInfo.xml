@@ -16,7 +16,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_0</image0>
+        <image1>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_1</image1>
+        <image2>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_2</image2>
+        <image3>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_3</image3>
+        <image4>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_4</image4>
+        <image5>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_5</image5>
+        <image6>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_6</image6>
     </item>
     <item>
         <itemCode>10002</itemCode>
@@ -34,7 +40,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10003</itemCode>
@@ -52,7 +64,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10004</itemCode>
@@ -70,7 +88,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10005</itemCode>
@@ -88,7 +112,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10006</itemCode>
@@ -106,7 +136,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10007</itemCode>
@@ -124,7 +160,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10008</itemCode>
@@ -142,7 +184,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10009</itemCode>
@@ -160,7 +208,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath>Assets\Art\SmallBurg_farm_pack_v2.2\assets\farming\crops\ground\corn\corn_crop_lifecycle.png</growImagePath>
+        <image0>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_0</image0>
+        <image1>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_1</image1>
+        <image2>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_2</image2>
+        <image3>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_3</image3>
+        <image4>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_4</image4>
+        <image5>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_5</image5>
+        <image6>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_6</image6>
     </item>
     <item>
         <itemCode>10010</itemCode>
@@ -178,7 +232,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10011</itemCode>
@@ -196,7 +256,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10012</itemCode>
@@ -214,7 +280,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10013</itemCode>
@@ -232,7 +304,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10014</itemCode>
@@ -250,7 +328,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10015</itemCode>
@@ -268,7 +352,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10016</itemCode>
@@ -286,7 +376,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10017</itemCode>
@@ -304,7 +400,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10018</itemCode>
@@ -322,7 +424,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10019</itemCode>
@@ -340,7 +448,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10020</itemCode>
@@ -358,7 +472,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10021</itemCode>
@@ -376,7 +496,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10022</itemCode>
@@ -394,7 +520,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10023</itemCode>
@@ -412,7 +544,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10024</itemCode>
@@ -430,7 +568,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10025</itemCode>
@@ -448,7 +592,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>10026</itemCode>
@@ -466,7 +616,13 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11001</itemCode>
@@ -484,7 +640,13 @@
         <plantItem>10001</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11002</itemCode>
@@ -502,7 +664,13 @@
         <plantItem>10002</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11003</itemCode>
@@ -520,7 +688,13 @@
         <plantItem>10003</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11004</itemCode>
@@ -538,7 +712,13 @@
         <plantItem>10004</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11005</itemCode>
@@ -556,7 +736,13 @@
         <plantItem>10005</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11006</itemCode>
@@ -574,7 +760,13 @@
         <plantItem>10006</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11007</itemCode>
@@ -592,7 +784,13 @@
         <plantItem>10007</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11008</itemCode>
@@ -610,7 +808,13 @@
         <plantItem>10008</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11009</itemCode>
@@ -628,7 +832,13 @@
         <plantItem>10009</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11010</itemCode>
@@ -646,7 +856,13 @@
         <plantItem>10010</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11011</itemCode>
@@ -664,7 +880,13 @@
         <plantItem>10011</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11012</itemCode>
@@ -682,7 +904,13 @@
         <plantItem>10012</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11013</itemCode>
@@ -700,7 +928,13 @@
         <plantItem>10013</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11014</itemCode>
@@ -718,7 +952,13 @@
         <plantItem>10014</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11015</itemCode>
@@ -736,7 +976,13 @@
         <plantItem>10015</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11016</itemCode>
@@ -754,7 +1000,13 @@
         <plantItem>10016</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11017</itemCode>
@@ -772,7 +1024,13 @@
         <plantItem>10017</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11018</itemCode>
@@ -790,7 +1048,13 @@
         <plantItem>10018</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11019</itemCode>
@@ -808,7 +1072,13 @@
         <plantItem>10019</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11020</itemCode>
@@ -826,7 +1096,13 @@
         <plantItem>10020</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11021</itemCode>
@@ -844,7 +1120,13 @@
         <plantItem>10021</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11022</itemCode>
@@ -862,7 +1144,13 @@
         <plantItem>10022</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11023</itemCode>
@@ -880,7 +1168,13 @@
         <plantItem>10023</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11024</itemCode>
@@ -898,7 +1192,13 @@
         <plantItem>10024</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11025</itemCode>
@@ -916,7 +1216,13 @@
         <plantItem>10025</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>11026</itemCode>
@@ -934,7 +1240,13 @@
         <plantItem>10026</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12001</itemCode>
@@ -952,7 +1264,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12002</itemCode>
@@ -970,7 +1288,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12003</itemCode>
@@ -988,7 +1312,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12004</itemCode>
@@ -1006,7 +1336,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12005</itemCode>
@@ -1024,7 +1360,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12006</itemCode>
@@ -1042,7 +1384,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12007</itemCode>
@@ -1060,7 +1408,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12008</itemCode>
@@ -1078,7 +1432,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12009</itemCode>
@@ -1096,7 +1456,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12010</itemCode>
@@ -1114,7 +1480,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12011</itemCode>
@@ -1132,7 +1504,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12012</itemCode>
@@ -1150,7 +1528,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12013</itemCode>
@@ -1168,7 +1552,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12014</itemCode>
@@ -1186,7 +1576,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12015</itemCode>
@@ -1204,7 +1600,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12016</itemCode>
@@ -1222,7 +1624,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12017</itemCode>
@@ -1240,7 +1648,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12018</itemCode>
@@ -1258,7 +1672,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12019</itemCode>
@@ -1276,7 +1696,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12020</itemCode>
@@ -1294,7 +1720,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12021</itemCode>
@@ -1312,7 +1744,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12022</itemCode>
@@ -1330,7 +1768,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12023</itemCode>
@@ -1348,7 +1792,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12024</itemCode>
@@ -1366,7 +1816,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12025</itemCode>
@@ -1384,7 +1840,13 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
     <item>
         <itemCode>12026</itemCode>
@@ -1402,6 +1864,12 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <growImagePath/>
+        <image0/>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
     </item>
 </items>
