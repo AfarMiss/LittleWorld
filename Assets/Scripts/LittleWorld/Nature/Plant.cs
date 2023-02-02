@@ -58,7 +58,7 @@ namespace LittleWorld.Item
         public override void Tick()
         {
             base.Tick();
-            curGrowTime += Time.deltaTime;
+            curGrowTime += 1 / 86400.0f;
         }
     }
 }

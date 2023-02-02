@@ -6,6 +6,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using LittleWorld;
 
 public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 {
@@ -73,12 +74,18 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         var brush2 = new Plant(10001, Vector2Int.one);
 
         pawnManager.AddPawn(curHuman);
+
+    }
+
+    private void OnDestroy()
+    {
     }
 
     private void OnEnable()
     {
         ISaveableRegister();
         EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoad);
+        EventCenter.Instance.Register<GameTime>((nameof(EventEnum.GAME_TICK)), Tick);
     }
 
     private void OnDisable()
@@ -180,7 +187,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         return go;
     }
 
-    private void Update()
+    public void Tick(GameTime gameTime)
     {
         pawnManager.Tick();
         foreach (var item in worldItems.ToList())

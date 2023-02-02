@@ -29,5 +29,7 @@ namespace LittleWorld
         public static Rect ScreenSelectionArea => InputController.Instance.ScreenSelectionArea;
 
         public static Map CurMap => MapManager.Instance.curDisplayMap;
+
+        public static Game CurGame;
     }
 }
