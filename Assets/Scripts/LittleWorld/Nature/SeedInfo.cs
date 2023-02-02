@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class SeedInfo
+    public class SeedInfo : IObjectRender
     {
         public int itemCode;
         public string itemName;
@@ -13,5 +13,9 @@ namespace LittleWorld.Item
         public int maxHealth;
         public int plantItem;
         public float nutrition;
+
+        public Sprite GetSprite(int itemCode, string importerPath)
+        {
+        }
     }
 }

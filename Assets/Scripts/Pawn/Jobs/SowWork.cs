@@ -1,4 +1,5 @@
 ﻿using AI;
+using LittleWorld.Extension;
 using LittleWorld.Item;
 using LittleWorld.MapUtility;
 using LittleWorld.Message;
@@ -53,16 +54,6 @@ namespace LittleWorld.Jobs
         private Node.Status DoSow(Vector2Int destination, Humanbeing human)
         {
             int seedCode = (int)tree.GetVariable("seedCode");
-            var objects = WorldUtility.GetWorldObjectsAt(destination);
-            if (objects == null)
-            {
-                return Node.Status.FAILURE;
-            }
-            var curPlant = objects.ToList().Find(x => x is Plant);
-            if (curPlant == null)
-            {
-                Debug.LogError("error:no plant need sow");
-            }
             var totalAmount = PlantConfig.seedInfo[seedCode].sowWorkAmount;
             float sliderValue = 0;
             if (totalAmount != 0)
@@ -79,7 +70,7 @@ namespace LittleWorld.Jobs
             {
                 EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(this, sliderValue, human, destination));
                 curSowAmount = 0;
-                var plant = new Plant(10001, destination);
+                var plant = new Plant(ObjectCode.cornPlant.ToInt(), destination);
                 SceneItemsManager.Instance.RenderItem(plant);
                 return Node.Status.SUCCESS;
             }
@@ -89,7 +80,7 @@ namespace LittleWorld.Jobs
         private Node.Status CalculateNextSow()
         {
             int seedCode = (int)tree.GetVariable("seedCode");
-            var result = gridsPos.ToList().Find(x => x.PlantCode != seedCode);
+            var result = gridsPos.ToList().Find(x => x.PlantCode != PlantConfig.GetPlantCode(seedCode));
             if (result != null)
             {
                 tree.SetVariable("SowPoint", result);

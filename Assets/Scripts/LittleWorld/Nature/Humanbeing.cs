@@ -92,7 +92,7 @@ namespace LittleWorld.Item
                     var grids = WorldUtility.GetWorldObjectsAt(targetPos).OfType<MapSection>();
                     if (grids.Safe().Any())
                     {
-                        workTracer.AddWork(new SowWork(ObjectCode.wheatPlant.ToInt(), grids.ToList().First().grids, this));
+                        workTracer.AddWork(new SowWork(ObjectCode.cornSeed.ToInt(), grids.ToList().First().grids, this));
                     }
                     break;
                 default:

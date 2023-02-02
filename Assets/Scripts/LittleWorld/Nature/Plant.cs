@@ -11,9 +11,12 @@ namespace LittleWorld.Item
 
         public Plant(int itemCode, Vector2Int gridPos) : base(gridPos)
         {
-            plantInfo = PlantConfig.plantInfoDic[itemCode];
-            this.itemCode = itemCode;
-            ItemName = plantInfo.itemName;
+            if (PlantConfig.plantInfoDic.TryGetValue(itemCode, out plantInfo))
+            {
+                plantInfo = PlantConfig.plantInfoDic[itemCode];
+                this.itemCode = itemCode;
+                ItemName = plantInfo.itemName;
+            }
         }
 
         public override List<FloatOption> AddFloatMenu()

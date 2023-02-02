@@ -6,9 +6,10 @@ namespace LittleWorld.Item
 {
     public enum ObjectCode
     {
-        wheatSeed = 10000,
-        wheatPlant = 10001,
+        cornSeed = 11009,
         human = 10026,
         strawberry = 10027,
+        corn = 12009,
+        cornPlant = 10009,
     }
 }
