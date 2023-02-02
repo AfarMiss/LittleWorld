@@ -12,9 +12,10 @@ namespace LittleWorld.TextureUtility
         static void SaveSprite()
         {
             string resourcesPath = "Assets/Resources/";
-            foreach (Object obj in Selection.objects)
+            object[] textures = Selection.GetFiltered(typeof(Texture2D), SelectionMode.DeepAssets);
+            foreach (Texture2D texture in textures)
             {
-                string selectionPath = AssetDatabase.GetAssetPath(obj);
+                string selectionPath = AssetDatabase.GetAssetPath(texture);
 
                 // 必须最上级是"Assets/Resources/"
                 if (selectionPath.StartsWith(resourcesPath))
@@ -81,7 +82,7 @@ namespace LittleWorld.TextureUtility
                     ////修改Aniso Level
                     //texImporter.anisoLevel = 0;
                     ////修改Read/Write enabled 
-                    //texImporter.isReadable = false;
+                    texImporter.isReadable = true;
                     ////修改Generate Mip Maps
                     //texImporter.mipmapEnabled = false;
 
