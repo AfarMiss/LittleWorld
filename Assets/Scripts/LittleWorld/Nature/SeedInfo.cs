@@ -16,6 +16,7 @@ namespace LittleWorld.Item
 
         public Sprite GetSprite(int itemCode, string importerPath)
         {
+            return null;
         }
     }
 }
