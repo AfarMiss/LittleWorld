@@ -49,7 +49,7 @@ namespace LittleWorld.Graphics
 
         public static Texture2D GetTexture2D(string selectedPath)
         {
-            Debug.Log("streamingAssetsPath:" + Application.streamingAssetsPath);
+            //Debug.Log("streamingAssetsPath:" + Application.streamingAssetsPath);
             var rawData = System.IO.File.ReadAllBytes(Application.streamingAssetsPath + "\\" + selectedPath);
             Texture2D tex = new Texture2D(0, 0);
             tex.LoadImage(rawData);

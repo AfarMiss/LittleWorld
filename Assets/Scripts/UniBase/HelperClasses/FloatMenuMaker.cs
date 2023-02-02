@@ -30,9 +30,9 @@ namespace LittleWorld.Window
                     contentList.AddRange(plantOpts);
                 }
 
-                if (worldObject is MapSection curSection)
+                if (worldObject is PlantMapSection curSection)
                 {
-                    var plantOpts = AddSectionFloatMenu(human, mousePos.GetWorldPosition().ToCell(), curSection);
+                    var plantOpts = AddPlantSectionFloatMenu(human, mousePos.GetWorldPosition().ToCell(), curSection);
                     contentList.AddRange(plantOpts);
                 }
             }
@@ -46,27 +46,27 @@ namespace LittleWorld.Window
         public static List<FloatOption> AddPlantFloatMenu(Humanbeing worker, Vector3Int targetPos, Plant plant)
         {
             List<FloatOption> contentList = new List<FloatOption>();
-            contentList.Add(new FloatOption()
-            {
-                content = $"伐除{plant.GetType().Name}",
-                OnClickOption = () =>
-                {
-                    worker.AddWork(WorkTypeEnum.cut, targetPos);
-                }
-            });
-            contentList.Add(new FloatOption()
-            {
-                content = $"摘取{plant.GetType().Name}果实",
-                OnClickOption = () =>
-                {
-                    worker.AddWork(WorkTypeEnum.harvest, targetPos);
-                }
-            });
+            //contentList.Add(new FloatOption()
+            //{
+            //    content = $"伐除{plant.GetType().Name}",
+            //    OnClickOption = () =>
+            //    {
+            //        worker.AddWork(WorkTypeEnum.cut, targetPos);
+            //    }
+            //});
+            //contentList.Add(new FloatOption()
+            //{
+            //    content = $"摘取{plant.GetType().Name}果实",
+            //    OnClickOption = () =>
+            //    {
+            //        worker.AddWork(WorkTypeEnum.harvest, targetPos);
+            //    }
+            //});
 
             return contentList;
         }
 
-        public static List<FloatOption> AddSectionFloatMenu(Humanbeing worker, Vector3Int targetPos, MapSection section)
+        public static List<FloatOption> AddPlantSectionFloatMenu(Humanbeing worker, Vector3Int targetPos, PlantMapSection section)
         {
             List<FloatOption> contentList = new List<FloatOption>();
             contentList.Add(new FloatOption()
@@ -77,7 +77,17 @@ namespace LittleWorld.Window
                     worker.AddWork(WorkTypeEnum.sow, targetPos);
                 }
             });
-
+            if (section.CanHarvest)
+            {
+                contentList.Add(new FloatOption()
+                {
+                    content = $"收获{section.sectionName}",
+                    OnClickOption = () =>
+                    {
+                        worker.AddWork(WorkTypeEnum.harvest, targetPos);
+                    }
+                });
+            }
             return contentList;
         }
     }

@@ -69,9 +69,9 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         pawnManager = PawnManager.Instance;
 
         //测试代码
-        var curHuman = new Humanbeing(Vector2Int.zero);
-        var brush1 = new Plant(10001, new Vector2Int(2, 3));
-        var brush2 = new Plant(10001, Vector2Int.one);
+        var curHuman = new Humanbeing(ObjectCode.humanbeing.ToInt(), Vector2Int.zero);
+        new Plant(10001, new Vector2Int(2, 3));
+        new Plant(10001, Vector2Int.one);
 
         pawnManager.AddPawn(curHuman);
 
@@ -139,19 +139,36 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         return itemGameObject;
     }
 
+    private void RenderPawn(Humanbeing human)
+    {
+        var pawnRes = Resources.Load("Prefabs/Character/Pawn");
+        var curPawn = GameObject.Instantiate(pawnRes);
+        curPawn.GetComponent<Transform>().transform.position = human.GridPos.To3();
+        curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
+        human.SetNavi(curPawn.GetComponent<PathNavigation>());
+        worldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
+    }
+
     private void RenderItem(WorldObject wo)
     {
-        GameObject itemGameObject = Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, parentItem);
-        ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
-        worldItemsRenderer.Add(wo, itemComponent);
+        if (!(wo is Humanbeing))
+        {
+            GameObject itemGameObject = Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, parentItem);
+            ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
+            worldItemsRenderer.Add(wo, itemComponent);
+        }
+        else
+        {
+            RenderPawn(wo as Humanbeing);
+        }
     }
 
     public void DisRenderItem(WorldObject wo)
     {
-        worldItemsRenderer.TryGetValue(wo, out var go);
-        if (go != null)
+        worldItemsRenderer.TryGetValue(wo, out var renderer);
+        if (renderer != null)
         {
-            Destroy(go);
+            GameObject.Destroy(renderer.gameObject);
         }
         worldItemsRenderer.Remove(wo);
     }
@@ -193,7 +210,10 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         foreach (var item in worldItems.ToList())
         {
             item.Value.Tick();
-            worldItemsRenderer[item.Value].Render(item.Value);
+            if (worldItemsRenderer.TryGetValue(item.Value, out var renderer))
+            {
+                renderer.Render(item.Value);
+            }
         }
     }
 }

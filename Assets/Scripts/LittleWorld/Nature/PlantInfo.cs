@@ -16,7 +16,7 @@ namespace LittleWorld.Item
         public int maxHealth;
         public int seedItem;
         public float nutrition;
-        public int growingTime;
+        public float growingTime;
         public List<Sprite> itemSprites;
     }
 }

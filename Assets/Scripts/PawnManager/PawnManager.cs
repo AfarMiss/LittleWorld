@@ -21,21 +21,9 @@ public class PawnManager : Singleton<PawnManager>
         pawns = new List<Humanbeing>();
     }
 
-    private void RenderPawn(Vector3Int pos, Humanbeing human)
-    {
-        var pawnRes = Resources.Load("Prefabs/Character/Pawn");
-        var curPawn = GameObject.Instantiate(pawnRes);
-        curPawn.GetComponent<Transform>().transform.position = pos;
-        curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
-        curPawn.GetComponent<ItemRender>().Render(human);
-        human.SetNavi(curPawn.GetComponent<PathNavigation>());
-
-    }
-
     public void AddPawn(Humanbeing human)
     {
         pawns.Add(human);
-        RenderPawn(human.GridPos.To3(), human);
     }
 
     public override void Tick()

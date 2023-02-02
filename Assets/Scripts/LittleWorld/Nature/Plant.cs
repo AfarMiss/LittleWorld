@@ -7,11 +7,13 @@ namespace LittleWorld.Item
     public class Plant : WorldObject
     {
         private PlantInfo plantInfo;
+        public int PlantYieldCount => plantInfo.yieldCount;
+        public int FruitCode => plantInfo.fruitItemCode;
         private float curGrowTime = 0;
-        private bool IsRipe => curGrowTime >= plantInfo.growingTime * 0.95f;
+        public bool IsRipe => curGrowTime >= plantInfo.growingTime * 0.95f;
         public PlantInfo PlantInfo => plantInfo;
 
-        public Plant(int itemCode, Vector2Int gridPos) : base(gridPos)
+        public Plant(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
         {
             if (ObjectConfig.plantInfoDic.TryGetValue(itemCode, out plantInfo))
             {
@@ -24,22 +26,22 @@ namespace LittleWorld.Item
         public override List<FloatOption> AddFloatMenu()
         {
             List<FloatOption> contentList = new List<FloatOption>();
-            contentList.Add(new FloatOption()
-            {
-                content = "砍树",
-                OnClickOption = () =>
-                {
-                    Debug.Log("正在砍树！");
-                }
-            });
-            contentList.Add(new FloatOption()
-            {
-                content = "摘取果实",
-                OnClickOption = () =>
-                {
-                    Debug.Log("摘取果实！");
-                }
-            });
+            //contentList.Add(new FloatOption()
+            //{
+            //    content = "砍树",
+            //    OnClickOption = () =>
+            //    {
+            //        Debug.Log("正在砍树！");
+            //    }
+            //});
+            //contentList.Add(new FloatOption()
+            //{
+            //    content = "摘取果实",
+            //    OnClickOption = () =>
+            //    {
+            //        Debug.Log("摘取果实！");
+            //    }
+            //});
 
             return contentList;
         }

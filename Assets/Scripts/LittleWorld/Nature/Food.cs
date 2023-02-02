@@ -7,9 +7,14 @@ namespace LittleWorld.Item
     public class Food : WorldObject
     {
         public RawFoodInfo foodInfo;
-        public float nutrition;
-        public Food(Vector2Int gridPos) : base(gridPos)
+        public Food(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
         {
+            if (ObjectConfig.rawFoodInfo.TryGetValue(itemCode, out foodInfo))
+            {
+                foodInfo = ObjectConfig.rawFoodInfo[itemCode];
+                this.itemCode = itemCode;
+                ItemName = foodInfo.itemName;
+            }
         }
 
         public override Sprite GetSprite()

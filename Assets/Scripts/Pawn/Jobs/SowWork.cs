@@ -94,7 +94,7 @@ namespace LittleWorld.Jobs
         private bool HasSowAll()
         {
             int seedCode = (int)tree.GetVariable("seedCode");
-            var result = gridsPos.ToList().Find(x => x.PlantCode != seedCode);
+            var result = gridsPos.ToList().Find(x => x.PlantCode != ObjectConfig.GetPlantCode(seedCode));
             return result == null;
         }
 

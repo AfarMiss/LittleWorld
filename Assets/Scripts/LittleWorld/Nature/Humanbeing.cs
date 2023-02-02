@@ -60,10 +60,8 @@ namespace LittleWorld.Item
         public Queue<HumanAction> actionQueue;
         public MotionStatus motionStatus;
 
-        public Humanbeing(Vector2Int gridPos) : base(gridPos)
+        public Humanbeing(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
         {
-            itemCode = ObjectCode.humanbeing.ToInt();
-
             this.gridPos = gridPos;
             actionQueue = new Queue<HumanAction>();
             workTracer = new PawnWorkTracer(this);
@@ -73,6 +71,7 @@ namespace LittleWorld.Item
 
         public void AddWork(WorkTypeEnum workType, Vector3Int targetPos)
         {
+            var grids = WorldUtility.GetWorldObjectsAt(targetPos).OfType<MapSection>();
             switch (workType)
             {
                 case WorkTypeEnum.dug:
@@ -85,9 +84,12 @@ namespace LittleWorld.Item
                 case WorkTypeEnum.cut:
                     break;
                 case WorkTypeEnum.harvest:
+                    if (grids.Safe().Any())
+                    {
+                        workTracer.AddWork(new HarvestWork(ObjectCode.cornPlant.ToInt(), grids.ToList().First().grids, this));
+                    }
                     break;
                 case WorkTypeEnum.sow:
-                    var grids = WorldUtility.GetWorldObjectsAt(targetPos).OfType<MapSection>();
                     if (grids.Safe().Any())
                     {
                         workTracer.AddWork(new SowWork(ObjectCode.cornSeed.ToInt(), grids.ToList().First().grids, this));

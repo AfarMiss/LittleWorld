@@ -140,7 +140,7 @@ namespace LittleWorld.MapUtility
                 return false;
             }
             sectionColorSeed = (++sectionColorSeed) % MaterialDatabase.Instance.PlantZoomMaterials.Length;
-            var newSection = new MapSection(mapGridDetails, type, sectionColorSeed);
+            var newSection = new PlantMapSection(mapGridDetails, sectionColorSeed);
             sectionDic.Add(newSection.sectionID, newSection);
             ChangeCurrentSection(newSection);
             return true;

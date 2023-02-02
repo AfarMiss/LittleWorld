@@ -29,6 +29,20 @@ namespace LittleWorld.MapUtility
                 }
             }
         }
+
+        public Plant Plant
+        {
+            get
+            {
+                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                if (objects != null)
+                {
+                    var result = objects.ToList().Find(x => (x is Plant));
+                    return result as Plant;
+                }
+                return null;
+            }
+        }
         public int PlantCode
         {
             get

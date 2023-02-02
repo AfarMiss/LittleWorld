@@ -8,9 +8,9 @@ namespace LittleWorld.Item
     public class Animal : WorldObject
     {
         protected AnimalInfo animalInfo;
-        public float MoveSpeed => animalInfo.moveSpeed;
+        public float moveSpeed => animalInfo.moveSpeed;
 
-        public Animal(Vector2Int gridPos) : base(gridPos)
+        public Animal(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
         {
         }
 

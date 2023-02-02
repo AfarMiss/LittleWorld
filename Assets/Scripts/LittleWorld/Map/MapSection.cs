@@ -21,17 +21,14 @@ namespace LittleWorld.MapUtility
             }
         }
         public string sectionName;
-        public SectionType sectionType;
         public int sectionColorIndex;
         public int sectionID;
 
-        public MapSection(List<MapGridDetails> gridIndexs, SectionType sectionType, int sectionColorIndex)
+        public MapSection(List<MapGridDetails> gridIndexs, int sectionColorIndex)
         {
             this.grids = gridIndexs;
-            this.sectionType = sectionType;
             this.sectionColorIndex = sectionColorIndex;
             this.sectionID = SectionIDSeed++;
-            this.sectionName = $"{sectionType.ToString()}_{sectionID}";
         }
 
 

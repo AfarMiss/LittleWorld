@@ -22,10 +22,11 @@ namespace LittleWorld.Item
 
         public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
 
-        public WorldObject(Vector2Int gridPos, Map map = null)
+        public WorldObject(int itemCode, Vector2Int gridPos, Map map = null)
         {
             Debug.Log("WorldObject");
             this.gridPos = gridPos;
+            this.itemCode = itemCode;
             this.instanceID = SceneItemsManager.ItemInstanceID++;
             curMap = map ?? MapManager.Instance.ColonyMap;
             SceneItemsManager.Instance.RegisterItem(this);
