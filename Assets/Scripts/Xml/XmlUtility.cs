@@ -8,7 +8,11 @@ namespace Xml
 {
     public class XmlUtility
     {
-        public static void ReadXml(string path)
+        /// <summary>
+        /// itemType和itemCode一定要存在
+        /// </summary>
+        /// <param name="path"></param>
+        public static void ReadConfigXml(string path)
         {
             XmlDocument xml = new XmlDocument();
             xml.Load($"{Application.streamingAssetsPath}/{path}.xml");
@@ -32,7 +36,8 @@ namespace Xml
                     plant.seedItem = int.Parse(item.SelectSingleNode("seedItem").InnerText);
                     plant.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     plant.growingTime = int.Parse(item.SelectSingleNode("growingTime").InnerText);
-                    PlantConfig.plantInfoDic.Add(plant.itemCode, plant);
+                    plant.itemSprites = CreateItemSpritesList(item, 6);
+                    ObjectConfig.plantInfoDic.Add(plant.itemCode, plant);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Seed")
@@ -45,7 +50,8 @@ namespace Xml
                     seed.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
                     seed.plantItem = int.Parse(item.SelectSingleNode("plantItem").InnerText);
                     seed.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
-                    PlantConfig.seedInfo.Add(seed.itemCode, seed);
+                    seed.itemSprites = CreateItemSpritesList(item, 6);
+                    ObjectConfig.seedInfo.Add(seed.itemCode, seed);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Crop")
@@ -56,11 +62,39 @@ namespace Xml
                     food.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     food.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
                     food.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
-                    PlantConfig.rawFoodInfo.Add(food.itemCode, food);
+                    food.itemSprites = CreateItemSpritesList(item, 6);
+                    ObjectConfig.rawFoodInfo.Add(food.itemCode, food);
+                }
+
+
+                if (item.SelectSingleNode("itemType").InnerText == "Animal")
+                {
+                    var animal = new AnimalInfo();
+                    animal.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
+                    animal.itemName = item.SelectSingleNode("itemName").InnerText;
+                    animal.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    animal.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
+                    animal.moveSpeed = float.Parse(item.SelectSingleNode("moveSpeed").InnerText);
+                    animal.itemSprites = CreateItemSpritesList(item, 6);
+                    ObjectConfig.animalInfo.Add(animal.itemCode, animal);
                 }
             }
 
-            Debug.Log("plantInfoDic:" + PlantConfig.plantInfoDic);
+            Debug.Log("plantInfoDic:" + ObjectConfig.plantInfoDic);
+        }
+
+        private static List<Sprite> CreateItemSpritesList(XmlNode item, int spritesCount)
+        {
+            var sprites = new List<Sprite>();
+            for (int i = 0; i < spritesCount; i++)
+            {
+                if (!string.IsNullOrEmpty(item.SelectSingleNode($"image{i}")?.InnerText))
+                {
+                    var curSprite = Resources.Load<Sprite>(item.SelectSingleNode($"image{i}").InnerText);
+                    sprites.Add(curSprite);
+                }
+            }
+            return sprites;
         }
     }
 

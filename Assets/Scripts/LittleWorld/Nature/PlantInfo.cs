@@ -17,5 +17,6 @@ namespace LittleWorld.Item
         public int seedItem;
         public float nutrition;
         public int growingTime;
+        public List<Sprite> itemSprites;
     }
 }

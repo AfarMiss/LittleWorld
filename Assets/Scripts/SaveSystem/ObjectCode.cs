@@ -11,5 +11,6 @@ namespace LittleWorld.Item
         strawberry = 10027,
         corn = 12009,
         cornPlant = 10009,
+        humanbeing = 13001,
     }
 }

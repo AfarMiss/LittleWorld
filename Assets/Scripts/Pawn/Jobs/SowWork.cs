@@ -54,7 +54,7 @@ namespace LittleWorld.Jobs
         private Node.Status DoSow(Vector2Int destination, Humanbeing human)
         {
             int seedCode = (int)tree.GetVariable("seedCode");
-            var totalAmount = PlantConfig.seedInfo[seedCode].sowWorkAmount;
+            var totalAmount = ObjectConfig.seedInfo[seedCode].sowWorkAmount;
             float sliderValue = 0;
             if (totalAmount != 0)
             {
@@ -80,7 +80,7 @@ namespace LittleWorld.Jobs
         private Node.Status CalculateNextSow()
         {
             int seedCode = (int)tree.GetVariable("seedCode");
-            var result = gridsPos.ToList().Find(x => x.PlantCode != PlantConfig.GetPlantCode(seedCode));
+            var result = gridsPos.ToList().Find(x => x.PlantCode != ObjectConfig.GetPlantCode(seedCode));
             if (result != null)
             {
                 tree.SetVariable("SowPoint", result);

@@ -132,7 +132,7 @@ public class PathNavigation : MonoBehaviour
 
         if (walkLeftCost > 0)
         {
-            var speed = (human as Humanbeing).moveSpeed;
+            var speed = (human as Humanbeing).MoveSpeed;
             walkLeftCost -= speed;
             transform.position = new Vector3(curRenderPos.x, curRenderPos.y) + (1 - walkLeftCost / realTotalCost) * dir;
         }

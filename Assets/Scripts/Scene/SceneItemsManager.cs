@@ -68,8 +68,8 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
         //测试代码
         var curHuman = new Humanbeing(Vector2Int.zero);
-        var brush1 = new Plant(10023, new Vector2Int(2, 3));
-        var brush2 = new Plant(10023, Vector2Int.one);
+        var brush1 = new Plant(10001, new Vector2Int(2, 3));
+        var brush2 = new Plant(10001, Vector2Int.one);
         RenderItem(brush1);
         RenderItem(brush2);
 
@@ -133,18 +133,11 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         return itemGameObject;
     }
 
-    public void RenderItem(int itemCode, Vector3 itemPosition)
-    {
-        GameObject itemGameObject = Instantiate(itemPrefab, itemPosition, Quaternion.identity, parentItem);
-        ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
-        itemComponent.Init(itemCode);
-    }
-
     public void RenderItem(WorldObject wo)
     {
         GameObject itemGameObject = Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, parentItem);
         ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
-        itemComponent.Init(wo.itemCode);
+        itemComponent.Init(wo);
         worldItemsRenderer.Add(wo, itemGameObject);
     }
 

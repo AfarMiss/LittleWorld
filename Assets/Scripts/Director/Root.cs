@@ -86,7 +86,8 @@ namespace LittleWorld
 
             uIManager.Initialize();
 
-            Xml.XmlUtility.ReadXml("ItemInfo");
+            Xml.XmlUtility.ReadConfigXml("ItemInfo");
+            Xml.XmlUtility.ReadConfigXml("Animals");
         }
 
         private void FixedUpdate()

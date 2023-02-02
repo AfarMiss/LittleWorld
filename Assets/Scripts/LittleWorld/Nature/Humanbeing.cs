@@ -62,14 +62,12 @@ namespace LittleWorld.Item
 
         public Humanbeing(Vector2Int gridPos) : base(gridPos)
         {
-            Debug.Log("Humanbeing");
-            ItemName = "人类";
-            moveSpeed = 9;
-            itemCode = 10026;
+            itemCode = ObjectCode.humanbeing.ToInt();
 
             this.gridPos = gridPos;
             actionQueue = new Queue<HumanAction>();
             workTracer = new PawnWorkTracer(this);
+            animalInfo = ObjectConfig.animalInfo[itemCode];
 
         }
 

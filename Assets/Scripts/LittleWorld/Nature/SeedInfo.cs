@@ -13,6 +13,7 @@ namespace LittleWorld.Item
         public int maxHealth;
         public int plantItem;
         public float nutrition;
+        public List<Sprite> itemSprites;
 
         public Sprite GetSprite(int itemCode, string importerPath)
         {

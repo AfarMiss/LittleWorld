@@ -7,13 +7,14 @@ namespace LittleWorld.Item
     public class Plant : WorldObject
     {
         private PlantInfo plantInfo;
+        private float curGrowTime = 0;
         public PlantInfo PlantInfo => plantInfo;
 
         public Plant(int itemCode, Vector2Int gridPos) : base(gridPos)
         {
-            if (PlantConfig.plantInfoDic.TryGetValue(itemCode, out plantInfo))
+            if (ObjectConfig.plantInfoDic.TryGetValue(itemCode, out plantInfo))
             {
-                plantInfo = PlantConfig.plantInfoDic[itemCode];
+                plantInfo = ObjectConfig.plantInfoDic[itemCode];
                 this.itemCode = itemCode;
                 ItemName = plantInfo.itemName;
             }
@@ -40,6 +41,16 @@ namespace LittleWorld.Item
             });
 
             return contentList;
+        }
+
+        public override Sprite GetSprite()
+        {
+            if (plantInfo.itemSprites == null || plantInfo.itemSprites.Count == 0)
+            {
+                Debug.LogWarning("plant sprite is null");
+            }
+            var spriteIndex = (int)curGrowTime / plantInfo.growingTime * plantInfo.itemSprites.Count;
+            return plantInfo.itemSprites[spriteIndex];
         }
     }
 }

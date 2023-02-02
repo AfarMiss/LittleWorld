@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class WorldObject : Object
+    public abstract class WorldObject : Object
     {
         public int itemCode;
         public int instanceID;
@@ -17,6 +17,8 @@ namespace LittleWorld.Item
         public Map curMap;
 
         protected Vector2Int gridPos;
+
+        public abstract Sprite GetSprite();
 
         public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
 

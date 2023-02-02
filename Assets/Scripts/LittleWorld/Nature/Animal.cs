@@ -7,9 +7,16 @@ namespace LittleWorld.Item
 {
     public class Animal : WorldObject
     {
-        public float moveSpeed;
+        protected AnimalInfo animalInfo;
+        public float MoveSpeed => animalInfo.moveSpeed;
+
         public Animal(Vector2Int gridPos) : base(gridPos)
         {
+        }
+
+        public override Sprite GetSprite()
+        {
+            return animalInfo.itemSprites[0];
         }
     }
 }
