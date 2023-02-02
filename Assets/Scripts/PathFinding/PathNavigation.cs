@@ -35,7 +35,7 @@ public class PathNavigation : MonoBehaviour
     /// 代表的itemInstanceID
     /// </summary>
     public int humanID;
-    public Humanbeing human => SceneItemsManager.Instance.GetWorldObjectById(humanID) as Humanbeing;
+    public Humanbeing human => SceneObjectManager.Instance.GetWorldObjectById(humanID) as Humanbeing;
 
     public void Initialize(int instanceID)
     {
@@ -58,7 +58,7 @@ public class PathNavigation : MonoBehaviour
 
     private void DrawLine(Queue<Vector2Int> path)
     {
-        if (path == null) return;
+        if (path == null || path.Count == 0) return;
         var pathArray = path.ToArray();
         lineRenderer.positionCount = pathArray.Length + 2;
         lineRenderer.SetPosition(0, this.transform.position + imageOffset);
@@ -127,7 +127,7 @@ public class PathNavigation : MonoBehaviour
 
     private void SingleStep(Vector2Int target)
     {
-        var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
+        var human = SceneObjectManager.Instance.GetWorldObjectById(humanID);
         //Debug.Log("human.gridPos:" + human.GridPos);
 
         if (walkLeftCost > 0)
@@ -155,7 +155,7 @@ public class PathNavigation : MonoBehaviour
         {
             return;
         }
-        var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
+        var human = SceneObjectManager.Instance.GetWorldObjectById(humanID);
         curPath = MapManager.Instance.CreateNewPath(human.GridPos, work.WorkerPos.To2());
         curDestination = work.WorkerPos.ToWorldVector2Int();
         lastStampFrameCount = Time.frameCount;
@@ -164,7 +164,7 @@ public class PathNavigation : MonoBehaviour
 
     public void GoToLoc(Vector2Int target)
     {
-        var human = SceneItemsManager.Instance.GetWorldObjectById(humanID);
+        var human = SceneObjectManager.Instance.GetWorldObjectById(humanID);
         curPath = MapManager.Instance.CreateNewPath(human.GridPos, target);
         curDestination = target;
         lastStampFrameCount = Time.frameCount;

@@ -11,23 +11,19 @@ public class PawnManager : Singleton<PawnManager>
     {
     }
 
-    public List<Humanbeing> Pawns => pawns;
-    private List<Humanbeing> pawns;
-
-    public override void OnCreateInstance()
+    public List<Humanbeing> Pawns
     {
-        base.OnCreateInstance();
-
-        pawns = new List<Humanbeing>();
-    }
-
-    public void AddPawn(Humanbeing human)
-    {
-        pawns.Add(human);
-    }
-
-    public override void Tick()
-    {
-        base.Tick();
+        get
+        {
+            var result = new List<Humanbeing>();
+            foreach (var item in SceneObjectManager.Instance.WorldObjects)
+            {
+                if (item.Value is Humanbeing)
+                {
+                    result.Add(item.Value as Humanbeing);
+                }
+            }
+            return result;
+        }
     }
 }

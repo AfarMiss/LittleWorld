@@ -14,7 +14,7 @@ namespace LittleWorld
             List<Item.Object> itemsAtPos = new List<Item.Object>();
 
             var worldGridPos = pos.WorldToCell();
-            var allItemsInfo = SceneItemsManager.Instance.worldItems;
+            var allItemsInfo = SceneObjectManager.Instance.WorldObjects;
             var objectsSet = allItemsInfo.ToList().FindAll(x => x.Value.GridPos == worldGridPos.To2());
             foreach (var item in objectsSet)
             {
@@ -35,7 +35,7 @@ namespace LittleWorld
         public static WorldObject[] GetWorldObjectsInRect(Rect worldRect)
         {
             var mapGrids = Current.CurMap.mapGrids.ToList().FindAll(x => x.gridRect.Overlaps(worldRect));
-            var allItemsInfo = SceneItemsManager.Instance.worldItems;
+            var allItemsInfo = SceneObjectManager.Instance.WorldObjects;
             if (allItemsInfo == null)
             {
                 return null;

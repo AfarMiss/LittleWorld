@@ -27,14 +27,14 @@ namespace LittleWorld.Item
             Debug.Log("WorldObject");
             this.gridPos = gridPos;
             this.itemCode = itemCode;
-            this.instanceID = SceneItemsManager.ItemInstanceID++;
+            this.instanceID = SceneObjectManager.ItemInstanceID++;
             curMap = map ?? MapManager.Instance.ColonyMap;
-            SceneItemsManager.Instance.RegisterItem(this);
+            SceneObjectManager.Instance.RegisterItem(this);
         }
 
         public void Destroy()
         {
-            SceneItemsManager.Instance.UnregisterItem(this);
+            SceneObjectManager.Instance.UnregisterItem(this);
         }
 
         public Vector3 RenderPos

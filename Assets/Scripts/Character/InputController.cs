@@ -133,7 +133,7 @@ public class InputController : MonoSingleton<InputController>
                 //对多人进行操作
                 for (int i = 0; i < selectedObjects.Count; i++)
                 {
-                    var human = SceneItemsManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
+                    var human = SceneObjectManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
                     AddMoveWork(human, curPos);
                 }
             }
@@ -141,7 +141,7 @@ public class InputController : MonoSingleton<InputController>
             if (selectedObjects.SinglePawnSelected())
             {
                 //对单人进行操作
-                var human = SceneItemsManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
+                var human = SceneObjectManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
                 FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, Current.MousePos);
                 if (opts.Length == 0)
                 {

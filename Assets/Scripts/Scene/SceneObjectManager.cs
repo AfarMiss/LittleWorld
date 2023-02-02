@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using LittleWorld;
 
-public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
+public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
 {
     public static int ItemInstanceID;
     private Transform parentItem;
@@ -34,21 +34,21 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
             return sceneItemList;
         }
     }
-    public Dictionary<int, WorldObject> worldItems = new Dictionary<int, WorldObject>();
-    public Dictionary<LittleWorld.Item.Object, ItemRender> worldItemsRenderer = new Dictionary<LittleWorld.Item.Object, ItemRender>();
+    public Dictionary<int, WorldObject> WorldObjects = new Dictionary<int, WorldObject>();
+    public Dictionary<LittleWorld.Item.Object, ItemRender> WorldItemsRenderer = new Dictionary<LittleWorld.Item.Object, ItemRender>();
 
     public void RegisterItem(WorldObject worldObject)
     {
-        worldItems.Add(worldObject.instanceID, worldObject);
+        WorldObjects.Add(worldObject.instanceID, worldObject);
         RenderItem(worldObject);
     }
 
     public void UnregisterItem(WorldObject worldObject)
     {
-        if (worldItems.Values.Contains(worldObject))
+        if (WorldObjects.Values.Contains(worldObject))
         {
             DisRenderItem(worldObject);
-            worldItems.Remove(worldObject.instanceID);
+            WorldObjects.Remove(worldObject.instanceID);
         }
     }
 
@@ -69,12 +69,9 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         pawnManager = PawnManager.Instance;
 
         //测试代码
-        var curHuman = new Humanbeing(ObjectCode.humanbeing.ToInt(), Vector2Int.zero);
+        new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
         new Plant(10001, new Vector2Int(2, 3));
         new Plant(10001, Vector2Int.one);
-
-        pawnManager.AddPawn(curHuman);
-
     }
 
     private void OnDestroy()
@@ -146,7 +143,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         curPawn.GetComponent<Transform>().transform.position = human.GridPos.To3();
         curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
         human.SetNavi(curPawn.GetComponent<PathNavigation>());
-        worldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
+        WorldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
     }
 
     private void RenderItem(WorldObject wo)
@@ -155,7 +152,7 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
         {
             GameObject itemGameObject = Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, parentItem);
             ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
-            worldItemsRenderer.Add(wo, itemComponent);
+            WorldItemsRenderer.Add(wo, itemComponent);
         }
         else
         {
@@ -165,12 +162,12 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
     public void DisRenderItem(WorldObject wo)
     {
-        worldItemsRenderer.TryGetValue(wo, out var renderer);
+        WorldItemsRenderer.TryGetValue(wo, out var renderer);
         if (renderer != null)
         {
             GameObject.Destroy(renderer.gameObject);
         }
-        worldItemsRenderer.Remove(wo);
+        WorldItemsRenderer.Remove(wo);
     }
 
     public void ISaveableStoreScene(string sceneName)
@@ -200,17 +197,17 @@ public class SceneItemsManager : MonoSingleton<SceneItemsManager>, ISaveable
 
     public WorldObject GetWorldObjectById(int instanceID)
     {
-        worldItems.TryGetValue(instanceID, out var go);
+        WorldObjects.TryGetValue(instanceID, out var go);
         return go;
     }
 
     public void Tick(GameTime gameTime)
     {
         pawnManager.Tick();
-        foreach (var item in worldItems.ToList())
+        foreach (var item in WorldObjects.ToList())
         {
             item.Value.Tick();
-            if (worldItemsRenderer.TryGetValue(item.Value, out var renderer))
+            if (WorldItemsRenderer.TryGetValue(item.Value, out var renderer))
             {
                 renderer.Render(item.Value);
             }
