@@ -31,7 +31,7 @@ namespace AI
 
         public override Status Process()
         {
-            Debug.Log("[currentChild]:" + name);
+            //Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
                 return ProcessMethod(destination, human);
             return Status.FAILURE;

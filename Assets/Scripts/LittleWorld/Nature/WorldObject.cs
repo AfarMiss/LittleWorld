@@ -24,7 +24,6 @@ namespace LittleWorld.Item
 
         public WorldObject(int itemCode, Vector2Int gridPos, Map map = null)
         {
-            Debug.Log("WorldObject");
             this.gridPos = gridPos;
             this.itemCode = itemCode;
             this.instanceID = SceneObjectManager.ItemInstanceID++;

@@ -16,7 +16,6 @@ namespace Xml
         {
             XmlDocument xml = new XmlDocument();
             xml.Load($"{Application.streamingAssetsPath}/{path}.xml");
-            Debug.Log("xml.InnerText:" + xml.InnerText);
 
             XmlNode root = xml.SelectSingleNode("items");
             XmlNodeList itemsList = root.SelectNodes("item");
@@ -79,8 +78,6 @@ namespace Xml
                     ObjectConfig.animalInfo.Add(animal.itemCode, animal);
                 }
             }
-
-            Debug.Log("plantInfoDic:" + ObjectConfig.plantInfoDic);
         }
 
         private static List<Sprite> CreateItemSpritesList(XmlNode item, int spritesCount)

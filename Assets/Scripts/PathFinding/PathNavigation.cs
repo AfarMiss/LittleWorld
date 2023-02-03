@@ -58,7 +58,11 @@ public class PathNavigation : MonoBehaviour
 
     private void DrawLine(Queue<Vector2Int> path)
     {
-        if (path == null || path.Count == 0) return;
+        lineRenderer.enabled = !atDestination;
+        if (path == null)
+        {
+            return;
+        }
         var pathArray = path.ToArray();
         lineRenderer.positionCount = pathArray.Length + 2;
         lineRenderer.SetPosition(0, this.transform.position + imageOffset);
@@ -89,7 +93,6 @@ public class PathNavigation : MonoBehaviour
 
     private void MoveInPath()
     {
-        lineRenderer.enabled = true;
         if (!atDestination)
         {
             if (curTargetIsReached)
@@ -107,7 +110,6 @@ public class PathNavigation : MonoBehaviour
                 else
                 {
                     atDestination = true;
-                    lineRenderer.enabled = false;
                     //完成到达指定目的地后的工作
                     EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
                     Debug.Log($"Reached {curTarget}");
@@ -147,19 +149,6 @@ public class PathNavigation : MonoBehaviour
     {
         Tick();
         DrawLine(curPath);
-    }
-
-    private void OnGoToWorkPos(SingleWork work)
-    {
-        if (work.worker.instanceID != humanID)
-        {
-            return;
-        }
-        var human = SceneObjectManager.Instance.GetWorldObjectById(humanID);
-        curPath = MapManager.Instance.CreateNewPath(human.GridPos, work.WorkerPos.To2());
-        curDestination = work.WorkerPos.ToWorldVector2Int();
-        lastStampFrameCount = Time.frameCount;
-        atDestination = false;
     }
 
     public void GoToLoc(Vector2Int target)
