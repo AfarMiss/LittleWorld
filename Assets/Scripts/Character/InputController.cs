@@ -377,7 +377,7 @@ public class InputController : MonoSingleton<InputController>
 
         if (worldObject == null || worldObject.Count == 0)
         {
-            UIManager.Instance.Hide<BriefInfoElement>(UIType.PANEL);
+            UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
             return null;
         }
         if (worldObject.Count == 1)

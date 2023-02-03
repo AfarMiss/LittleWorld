@@ -6,7 +6,7 @@ using System.Linq;
 using UniBase;
 using UnityEngine;
 
-namespace LittleWorld.Window
+namespace LittleWorld.UI
 {
     public static class FloatMenuMaker
     {
