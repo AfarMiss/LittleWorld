@@ -1,5 +1,5 @@
 ﻿using LittleWorld;
-using LittleWorld.Window;
+using LittleWorld.UI;
 using LittleWorld.Item;
 using System.Collections.Generic;
 using System.Linq;
@@ -377,7 +377,7 @@ public class InputController : MonoSingleton<InputController>
 
         if (worldObject == null || worldObject.Count == 0)
         {
-            UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
+            UIManager.Instance.Hide<BriefInfoElement>(UIType.PANEL);
             return null;
         }
         if (worldObject.Count == 1)

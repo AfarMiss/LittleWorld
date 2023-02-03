@@ -1,18 +1,21 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class StartManager : MonoBehaviour
+namespace LittleWorld.UI
 {
-    PanelManager panelManager;
-
-    void Awake()
+    public class StartManager : MonoBehaviour
     {
-        panelManager = new PanelManager();
+        PanelManager panelManager;
+
+        void Awake()
+        {
+            panelManager = new PanelManager();
+        }
+
+        void Start()
+        {
+            panelManager.Push(new StartPanel());
+        }
     }
 
-    void Start()
-    {
-        panelManager.Push(new StartPanel());
-    }
 }

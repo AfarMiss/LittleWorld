@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingPanel : BaseUI
-{
-    public override string Path => UIPath.Panel_SettingPanel;
 
-    public override void OnClickClose()
+namespace LittleWorld.UI
+{
+    public class SettingPanel : BaseUI
     {
-        UIManager.Instance.Hide<SettingPanel>(UIType.PANEL);
+        public override string Path => UIPath.Panel_SettingPanel;
+
+        public override void OnClickClose()
+        {
+            UIManager.Instance.Hide<SettingPanel>(UIType.PANEL);
+        }
     }
+
 }
