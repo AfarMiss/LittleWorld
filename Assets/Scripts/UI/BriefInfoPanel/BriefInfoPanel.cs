@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using LittleWorld.Interface;
+using LittleWorld.MapUtility;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace LittleWorld.UI
@@ -8,37 +11,48 @@ namespace LittleWorld.UI
     public class BriefInfoPanel : BaseUI
     {
         public override string Path => UIPath.Panel_BriefInfoPanel;
-        [SerializeField] private GameObject briefItemObject;
+        [SerializeField] private BriefInfoItem briefItem1;
         [SerializeField] private Text InfoTitle;
         [SerializeField] private Transform briefItemParent;
+        [SerializeField] private GameObject itemCommandGameObject;
+        [SerializeField] private Transform commandParent;
 
         private List<BriefInfoItem> briefInfoItems;
-        public void BindBriefInfo(string infoTitle, List<BriefInfo> briefItems)
+        public void BindBriefInfo(LittleWorld.Item.Object[] objects)
         {
-            if (briefInfoItems == null)
+            if (objects.Length > 1)
             {
-                briefInfoItems = new List<BriefInfoItem>();
+                InfoTitle.text = "多种x" + objects.Length;
             }
-            if (briefInfoItems.Count != 0)
+            else if (objects.Length == 1)
             {
-                foreach (var item in briefInfoItems)
+                var wo = objects[0];
+                InfoTitle.text = wo.ItemName;
+
+                for (int i = 0; i < commandParent.childCount; i++)
                 {
-                    Destroy(item.gameObject);
+                    Destroy(commandParent.GetChild(0).gameObject);
                 }
-                briefInfoItems.Clear();
+
+                BindCommands(wo);
             }
-            this.InfoTitle.text = infoTitle;
-            if (briefItems == null)
+        }
+
+        private void BindCommands(Item.Object item)
+        {
+            if (item is PlantMapSection)
             {
-                return;
+                AddCommand("更改种植作物", () =>
+                {
+                    Debug.Log("更改种植作物");
+                });
             }
-            //这里如果briefItems==null会报空
-            foreach (var item in briefItems)
-            {
-                var briefItem = Instantiate(briefItemObject, briefItemParent);
-                briefInfoItems.Add(briefItem.GetComponent<BriefInfoItem>());
-                briefItem.GetComponent<BriefInfoItem>().bindData(item.title, item.content);
-            }
+        }
+
+        private void AddCommand(string commandName, UnityAction action)
+        {
+            var go = Instantiate(itemCommandGameObject, commandParent);
+            go.GetComponent<BriefCommandIcon>().BindData(commandName, action);
         }
     }
 }

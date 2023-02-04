@@ -15,7 +15,6 @@ namespace LittleWorld.Jobs
     public class HarvestWork : Work
     {
         private int curHarvestAmount = 0;
-        private int curSowAmount = 0;
         MapGridDetails[] gridsPos;
 
 

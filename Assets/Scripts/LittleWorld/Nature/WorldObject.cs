@@ -8,10 +8,7 @@ namespace LittleWorld.Item
 {
     public abstract class WorldObject : Object
     {
-        public int itemCode;
-        public int instanceID;
         protected float maxHealth;
-        protected string ItemName;
         public float mass;
 
         protected float curHealth;
@@ -53,23 +50,17 @@ namespace LittleWorld.Item
                 }
             }
         }
-        public virtual void ShowBriefInfo()
+
+        public static void ShowInfo(Object[] objects)
         {
             var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
-            briefPanel.BindBriefInfo(
-                ItemName,
-                new List<BriefInfo>()
-            {
-                new BriefInfo("生命值",$"{curHealth.ToString()}/{maxHealth.ToString()}")
-            });
+            briefPanel.BindBriefInfo(objects);
         }
 
-        public static void ShowMultiInfo(int multiCount)
+        public static void ShowInfo(Object objects)
         {
             var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
-            briefPanel.BindBriefInfo(
-                $"多种x{multiCount}",
-                null);
+            briefPanel.BindBriefInfo(new LittleWorld.Item.Object[] { objects });
         }
 
         public virtual void Tick()

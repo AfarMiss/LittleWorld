@@ -82,13 +82,13 @@ public class InputController : MonoSingleton<InputController>
 
     public void OnClickDouble(CallbackContext callbackContext)
     {
-        if (callbackContext.performed)
-        {
-            if (selectedObjects != null && selectedObjects.Count > 0)
-            {
-                TryClearSelectedUnits();
-            }
-        }
+        //if (callbackContext.performed)
+        //{
+        //    if (selectedObjects != null && selectedObjects.Count > 0)
+        //    {
+        //        TryClearSelectedUnits();
+        //    }
+        //}
     }
 
     /// <summary>
@@ -220,7 +220,7 @@ public class InputController : MonoSingleton<InputController>
             return;
         }
         //先响应UI，再响应游戏场景
-        if (needRespondToUI)
+        if (needRespondToUI && MouseState != MouseState.Normal)
         {
             return;
         }
@@ -291,15 +291,21 @@ public class InputController : MonoSingleton<InputController>
             if (floatMenu == null || !(floatMenu.transform as RectTransform).RectangleContainsScreenPoint(Current.MousePos))
             {
                 CleanInteraction();
-                TryClearSelectedUnits();
-                selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
-                if (selectedObjects == null)
-                {
-                    var section = SelectSectionObjects();
-                }
+                Reselect();
             }
 
             Debug.Log("Click.canceled -------");
+        }
+    }
+
+    private void Reselect()
+    {
+        if (needRespondToUI) { return; }
+        TryClearSelectedUnits();
+        selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
+        if (selectedObjects == null)
+        {
+            SelectSectionObjects();
         }
     }
 
@@ -360,6 +366,10 @@ public class InputController : MonoSingleton<InputController>
     {
         var section = WorldUtility.GetSectionsInRect(WorldRect);
         Current.CurMap.ChangeCurrentSection(section);
+        if (section != null)
+        {
+            WorldObject.ShowInfo(section);
+        }
         return section;
 
     }
@@ -380,14 +390,7 @@ public class InputController : MonoSingleton<InputController>
             UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
             return null;
         }
-        if (worldObject.Count == 1)
-        {
-            worldObject[0].ShowBriefInfo();
-        }
-        if (worldObject.Count > 1)
-        {
-            WorldObject.ShowMultiInfo(worldObject.Count);
-        }
+        WorldObject.ShowInfo(worldObject.ToArray());
         return worldObject.ToList();
     }
 
@@ -396,8 +399,7 @@ public class InputController : MonoSingleton<InputController>
         if (!isInit) return;
         needRespondToUI =
             //IsPointerOverGameObject在非update方法中调用会警告
-            UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()
-            && MouseState != MouseState.Normal;
+            UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
         if (InputManager.Instance.myController.actions["左击"].IsPressed())
         {
             UpdateSelectArea();
@@ -406,12 +408,6 @@ public class InputController : MonoSingleton<InputController>
 
     private void UpdateSelectArea()
     {
-        //优先响应UI
-        if (needRespondToUI)
-        {
-            return;
-        }
-
         onClickLeftEndPosition = Current.MousePos;
         onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
         //Debug.Log("Mouse Pos:" + Current.MousePos);

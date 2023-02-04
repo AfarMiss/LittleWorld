@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -9,13 +10,15 @@ public class InteractionOption : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Text content;
     [SerializeField] private Image bg;
+    [SerializeField] private Button btn;
     public Color focus;
     public Color unfocus;
-    private Action OnClickOption;
+    private UnityAction OnClickOption;
     public void BindData(FloatOption option)
     {
         this.content.text = option.content;
         this.name = option.content;
+        this.btn.onClick.AddListener(OnClickOption);
         this.OnClickOption = option.OnClickOption;
     }
 
@@ -39,5 +42,5 @@ public class InteractionOption : MonoBehaviour, IPointerClickHandler
 public class FloatOption
 {
     public string content;
-    public Action OnClickOption;
+    public UnityAction OnClickOption;
 }

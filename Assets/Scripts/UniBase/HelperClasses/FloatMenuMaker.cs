@@ -1,8 +1,6 @@
 ﻿using LittleWorld.Item;
 using LittleWorld.MapUtility;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UniBase;
 using UnityEngine;
 
@@ -46,22 +44,6 @@ namespace LittleWorld.UI
         public static List<FloatOption> AddPlantFloatMenu(Humanbeing worker, Vector3Int targetPos, Plant plant)
         {
             List<FloatOption> contentList = new List<FloatOption>();
-            //contentList.Add(new FloatOption()
-            //{
-            //    content = $"伐除{plant.GetType().Name}",
-            //    OnClickOption = () =>
-            //    {
-            //        worker.AddWork(WorkTypeEnum.cut, targetPos);
-            //    }
-            //});
-            //contentList.Add(new FloatOption()
-            //{
-            //    content = $"摘取{plant.GetType().Name}果实",
-            //    OnClickOption = () =>
-            //    {
-            //        worker.AddWork(WorkTypeEnum.harvest, targetPos);
-            //    }
-            //});
 
             return contentList;
         }
