@@ -52,9 +52,6 @@ struct相比class有更好的内存管理效率
 
 void ICanSayHello.SayHello(){}
 
-不要无序的引用模块，更不要循环引用模块，因为引用模块意味着当被引用的模块改动时，需要对当前模块做出相应的修改。
-
 参考资料
 
 1. Unity 游戏框架搭建 决定版 [https://learn.u3d.cn/tutorial/framework\_design?chapterId=63562b29edca72001f21d172#](https://learn.u3d.cn/tutorial/framework\_design?chapterId=63562b29edca72001f21d172)
-2. RPG开发 [https://www.udemy.com/course/unityrpg/learn/lecture/13845040#overview](https://www.udemy.com/course/unityrpg/learn/lecture/13845040#overview)
