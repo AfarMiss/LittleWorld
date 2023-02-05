@@ -95,6 +95,7 @@
   * [排序算法](suan-fa/pai-xu-suan-fa/README.md)
     * [快速排序](suan-fa/pai-xu-suan-fa/kuai-su-pai-xu.md)
   * [搜索算法](suan-fa/sou-suo-suan-fa.md)
+  * [查找算法](suan-fa/cha-zhao-suan-fa.md)
 * [C#](c/README.md)
   * [在Unity中使用C#自定义属性](c/zai-unity-zhong-shi-yongczi-ding-yi-shu-xing.md)
   * [程序集](c/cheng-xu-ji.md)
