@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using LittleWorld.Item;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LittleWorld.MapUtility
@@ -23,6 +25,8 @@ namespace LittleWorld.MapUtility
         }
         public PlantMapSection(List<MapGridDetails> gridIndexs, int sectionColorIndex) : base(gridIndexs, sectionColorIndex)
         {
+            ItemName = "种植区";
+            SeedCode = ObjectConfig.seedInfo.ElementAt(0).Value.itemCode;
         }
     }
 }

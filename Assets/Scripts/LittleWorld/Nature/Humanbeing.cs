@@ -67,7 +67,7 @@ namespace LittleWorld.Item
             actionQueue = new Queue<HumanAction>();
             workTracer = new PawnWorkTracer(this);
             animalInfo = ObjectConfig.animalInfo[itemCode];
-
+            ItemName = animalInfo.itemName;
         }
 
         public void AddHarvestWork(PlantMapSection section, int plantCode)
