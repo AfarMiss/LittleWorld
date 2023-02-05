@@ -50,7 +50,7 @@ namespace LittleWorld.UI
                     {
                         list.Add(new FloatOption(item.Value.itemName, null));
                     }
-                    UIManager.Instance.ShowFloatOptions(list);
+                    UIManager.Instance.ShowFloatOptions(list, RectTransformAnchor.BOTTOM_LEFT);
                 });
             }
         }

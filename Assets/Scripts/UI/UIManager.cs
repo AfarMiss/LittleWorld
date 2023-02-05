@@ -207,15 +207,39 @@ namespace LittleWorld.UI
             return false;
         }
 
-        public void ShowFloatOptions(List<FloatOption> options)
+        public void ShowFloatOptions(List<FloatOption> options, RectTransformAnchor anchor = RectTransformAnchor.TOP_LEFT)
         {
+            //clearOthers
+            var others = GameObject.FindObjectsOfType<InteractionMenu>();
+            foreach (var item in others)
+            {
+                Destroy(item.gameObject);
+            }
+
             var go = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/UI/InteractionMenu/InteractionMenu"));
             go.name = go.name.Substring(0, go.name.LastIndexOf("(Clone)"));
             var menu = go.GetComponent<InteractionMenu>();
             go.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
-            go.transform.position = Current.MousePos;
+
+            RectTransform rectTransform = go.GetComponent<RectTransform>();
 
             menu.BindData(options);
+
+            go.GetComponent<CustomContentSizeFitter>().OnRectChange += () =>
+            {
+                var rectReferencePos = Current.MousePos;
+                switch (anchor)
+                {
+                    case RectTransformAnchor.TOP_LEFT:
+                        break;
+                    case RectTransformAnchor.BOTTOM_LEFT:
+                        rectReferencePos += new Vector2(0, rectTransform.GetComponent<RectTransform>().sizeDelta.y);
+                        break;
+                    default:
+                        break;
+                }
+                go.transform.position = rectReferencePos;
+            };
         }
 
         private void OnGUI()
@@ -264,6 +288,12 @@ namespace LittleWorld.UI
         TIP,
         //转场面板，显示在最前方
         SCENE_CHANGE,
+    }
+
+    public enum RectTransformAnchor
+    {
+        TOP_LEFT,
+        BOTTOM_LEFT,
     }
 
 }

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InteractionOption : MonoBehaviour, IPointerClickHandler
+public class InteractionOption : MonoBehaviour
 {
     [SerializeField] private Text content;
     [SerializeField] private Image bg;
@@ -18,24 +18,17 @@ public class InteractionOption : MonoBehaviour, IPointerClickHandler
     {
         this.content.text = option.content;
         this.name = option.content;
-        this.btn.onClick.AddListener(OnClickOption);
         this.OnClickOption = option.OnClickOption;
+        this.btn.onClick.AddListener(() =>
+        {
+            OnClickOption?.Invoke();
+            InputController.Instance.CleanInteraction();
+        });
     }
 
     public void SetFocus(bool isFocus)
     {
         bg.color = isFocus ? focus : unfocus;
-    }
-
-    public void OnClick()
-    {
-        OnClickOption?.Invoke();
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        OnClick();
-        InputController.Instance.CleanInteraction();
     }
 }
 

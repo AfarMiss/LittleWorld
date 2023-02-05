@@ -1,9 +1,12 @@
 ﻿using LittleWorld;
+using LittleWorld.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InteractionMenu : MonoBehaviour
 {
@@ -24,16 +27,17 @@ public class InteractionMenu : MonoBehaviour
     private void Update()
     {
         //Debug.Log($"InputUtils.GetMousePosition():{InputUtils.GetMousePosition()}");
+        //Debug.Log($"rectSizeDelta:{GetComponent<RectTransform>().sizeDelta}");
         if (options == null) return;
         foreach (var item in options)
         {
             var rect = item.GetComponent<RectTransform>();
 
             var screenRect = new Rect(rect.position.x, rect.position.y, rect.rect.width, rect.rect.height);
-            Debug.Log($"{rect.name}:{screenRect}");
+            //Debug.Log($"{rect.name}:{screenRect}");
             if (screenRect.Contains(Current.MousePos))
             {
-                Debug.Log($"{item.name} is raycasting");
+                //Debug.Log($"{item.name} is raycasting");
                 item.SetFocus(true);
                 continue;
             }
