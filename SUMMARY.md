@@ -21,6 +21,7 @@
     * [Animation](unity/component/animation.md)
     * [Animator](unity/component/animator.md)
     * [AnimatorOverrideController](readme/component/animatoroverridecontroller.md)
+    * [自动布局组件](readme-1/component/zi-dong-bu-ju-zu-jian.md)
   * [插件(Package)](unity/cha-jian/README.md)
     * [DoTween](unity/cha-jian/dotween.md)
     * [TileMap](readme/cha-jian/tilemap/README.md)
