@@ -9,8 +9,6 @@ namespace LittleWorld.UI
 {
     public class UIManager : MonoSingleton<UIManager>
     {
-        public bool ReactMenu;
-
         [SerializeField]
         private GameObject sliderPrefab;
 
@@ -207,6 +205,17 @@ namespace LittleWorld.UI
                 }
             }
             return false;
+        }
+
+        public void ShowFloatOptions(List<FloatOption> options)
+        {
+            var go = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/UI/InteractionMenu/InteractionMenu"));
+            go.name = go.name.Substring(0, go.name.LastIndexOf("(Clone)"));
+            var menu = go.GetComponent<InteractionMenu>();
+            go.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
+            go.transform.position = Current.MousePos;
+
+            menu.BindData(options);
         }
 
         private void OnGUI()

@@ -43,4 +43,10 @@ public class FloatOption
 {
     public string content;
     public UnityAction OnClickOption;
+
+    public FloatOption(string content, UnityAction onClickOption)
+    {
+        this.content = content;
+        OnClickOption = onClickOption;
+    }
 }

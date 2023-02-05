@@ -1,4 +1,5 @@
 ﻿using LittleWorld.Interface;
+using LittleWorld.Item;
 using LittleWorld.MapUtility;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,7 +45,12 @@ namespace LittleWorld.UI
             {
                 AddCommand("更改种植作物", () =>
                 {
-                    Debug.Log("更改种植作物");
+                    List<FloatOption> list = new List<FloatOption>();
+                    foreach (var item in ObjectConfig.plantInfoDic)
+                    {
+                        list.Add(new FloatOption(item.Value.itemName, null));
+                    }
+                    UIManager.Instance.ShowFloatOptions(list);
                 });
             }
         }

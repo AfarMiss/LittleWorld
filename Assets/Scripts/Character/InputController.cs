@@ -346,7 +346,6 @@ public class InputController : MonoSingleton<InputController>
         {
             Destroy(item.gameObject);
         }
-        UIManager.Instance.ReactMenu = false;
     }
 
     private void TryClearSelectedUnits()
