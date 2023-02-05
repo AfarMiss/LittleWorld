@@ -6,6 +6,7 @@ namespace LittleWorld.MapUtility
 {
     public class PlantMapSection : MapSection
     {
+        public int SeedCode;
         public bool CanHarvest
         {
             get

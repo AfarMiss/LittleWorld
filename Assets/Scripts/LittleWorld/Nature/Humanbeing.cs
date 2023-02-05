@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEditor;
 
 namespace LittleWorld.Item
 {
@@ -69,6 +70,16 @@ namespace LittleWorld.Item
 
         }
 
+        public void AddHarvestWork(PlantMapSection section, int plantCode)
+        {
+            workTracer.AddWork(new HarvestWork(plantCode, section.grids, this));
+        }
+
+        public void AddSowWork(PlantMapSection section, int seedCode)
+        {
+            workTracer.AddWork(new SowWork(seedCode, section.grids, this));
+        }
+
         public void AddWork(WorkTypeEnum workType, Vector3Int targetPos)
         {
             var grids = WorldUtility.GetWorldObjectsAt(targetPos).OfType<MapSection>();
@@ -86,13 +97,11 @@ namespace LittleWorld.Item
                 case WorkTypeEnum.harvest:
                     if (grids.Safe().Any())
                     {
-                        workTracer.AddWork(new HarvestWork(ObjectCode.cornPlant.ToInt(), grids.ToList().First().grids, this));
                     }
                     break;
                 case WorkTypeEnum.sow:
                     if (grids.Safe().Any())
                     {
-                        workTracer.AddWork(new SowWork(ObjectCode.cornSeed.ToInt(), grids.ToList().First().grids, this));
                     }
                     break;
                 default:

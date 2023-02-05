@@ -41,14 +41,17 @@ namespace LittleWorld.UI
 
         private void BindCommands(Item.Object item)
         {
-            if (item is PlantMapSection)
+            if (item is PlantMapSection map)
             {
                 AddCommand("更改种植作物", () =>
                 {
                     List<FloatOption> list = new List<FloatOption>();
                     foreach (var item in ObjectConfig.plantInfoDic)
                     {
-                        list.Add(new FloatOption(item.Value.itemName, null));
+                        list.Add(new FloatOption(item.Value.itemName, () =>
+                        {
+                            map.SeedCode = item.Value.seedItem;
+                        }));
                     }
                     UIManager.Instance.ShowFloatOptions(list, RectTransformAnchor.BOTTOM_LEFT);
                 });

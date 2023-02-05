@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LittleWorld.Item
@@ -23,6 +24,19 @@ namespace LittleWorld.Item
                 return 0;
             }
 
+        }
+
+        public static string GetPlantName(int seedCode)
+        {
+            var plant = plantInfoDic.Values.ToList().Find(x => x.seedItem == seedCode);
+            if (plant != null)
+            {
+                return plant.itemName;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

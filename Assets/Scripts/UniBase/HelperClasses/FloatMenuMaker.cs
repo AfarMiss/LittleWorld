@@ -45,16 +45,16 @@ namespace LittleWorld.UI
         {
             List<FloatOption> contentList = new List<FloatOption>
             {
-                new FloatOption($"种植{section.sectionName}", () =>
+                new FloatOption($"种植{ObjectConfig.GetPlantName(section.SeedCode) }", () =>
             {
-                worker.AddWork(WorkTypeEnum.sow, targetPos);
+                worker.AddSowWork(section,section.SeedCode);
             })
             };
             if (section.CanHarvest)
             {
                 contentList.Add(new FloatOption($"收获{section.sectionName}", () =>
                 {
-                    worker.AddWork(WorkTypeEnum.harvest, targetPos);
+                    worker.AddHarvestWork(section, ObjectConfig.GetPlantCode(section.SeedCode));
                 }));
             }
             return contentList;
