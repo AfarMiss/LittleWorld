@@ -447,14 +447,14 @@
         <plantItem/>
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
-        <itemEngName>potatos_Plant</itemEngName>
-        <image0>FarmPack\singleAsset\crops\ground\potatos\potatos_all_frames\potatos_all_frames_0</image0>
-        <image1>FarmPack\singleAsset\crops\ground\potatos\potatos_all_frames\potatos_all_frames_1</image1>
-        <image2>FarmPack\singleAsset\crops\ground\potatos\potatos_all_frames\potatos_all_frames_2</image2>
-        <image3>FarmPack\singleAsset\crops\ground\potatos\potatos_all_frames\potatos_all_frames_3</image3>
-        <image4>FarmPack\singleAsset\crops\ground\potatos\potatos_all_frames\potatos_all_frames_4</image4>
-        <image5>FarmPack\singleAsset\crops\ground\potatos\potatos_all_frames\potatos_all_frames_5</image5>
-        <image6>FarmPack\singleAsset\crops\ground\potatos\potatos_all_frames\potatos_all_frames_6</image6>
+        <itemEngName>potato_Plant</itemEngName>
+        <image0>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_0</image0>
+        <image1>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_1</image1>
+        <image2>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_2</image2>
+        <image3>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_3</image3>
+        <image4>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_4</image4>
+        <image5>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_5</image5>
+        <image6>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_6</image6>
     </item>
     <item>
         <itemCode>10020</itemCode>
@@ -1071,7 +1071,7 @@
         <plantItem>10019</plantItem>
         <nutrition>0.1</nutrition>
         <growingTime/>
-        <itemEngName>potatos_Seed</itemEngName>
+        <itemEngName>potato_Seed</itemEngName>
         <image0/>
         <image1/>
         <image2/>
@@ -1695,8 +1695,8 @@
         <plantItem/>
         <nutrition>0.5</nutrition>
         <growingTime/>
-        <itemEngName>potatos_Crop</itemEngName>
-        <image0>FarmPack\singleAsset\crops\ground\potatos\potatos_all_frames\potatos_all_frames_7</image0>
+        <itemEngName>potato_Crop</itemEngName>
+        <image0>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_7</image0>
         <image1/>
         <image2/>
         <image3/>
