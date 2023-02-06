@@ -1,6 +1,7 @@
 ﻿using LittleWorld.Interface;
 using LittleWorld.Item;
 using LittleWorld.MapUtility;
+using SRF;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,8 +20,7 @@ namespace LittleWorld.UI
         [SerializeField] private GameObject itemCommandGameObject;
         [SerializeField] private Transform commandParent;
 
-        private List<BriefInfoItem> briefInfoItems;
-        public void BindBriefInfo(LittleWorld.Item.Object[] objects)
+        public void BindBriefInfo(Item.Object[] objects)
         {
             if (objects.Length > 1)
             {
@@ -30,12 +30,7 @@ namespace LittleWorld.UI
             {
                 var wo = objects[0];
                 InfoTitle.text = wo.ItemName;
-
-                for (int i = 0; i < commandParent.childCount; i++)
-                {
-                    Destroy(commandParent.GetChild(0).gameObject);
-                }
-
+                commandParent.DestroyChildren();
                 BindCommands(wo);
             }
         }
@@ -44,8 +39,8 @@ namespace LittleWorld.UI
         {
             if (item is PlantMapSection map)
             {
-                var command = AddCommand("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));
-                command.BindCommand(() =>
+                var command1 = AddCommand("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));
+                command1.BindCommand(() =>
                 {
                     List<FloatOption> list = new List<FloatOption>();
                     foreach (var item in ObjectConfig.plantInfoDic)
@@ -54,10 +49,28 @@ namespace LittleWorld.UI
                         {
                             map.SeedCode = item.Value.seedItem;
                             //可能的更新
-                            command.BindData("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));
+                            command1.BindData("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));
                         }));
                     }
                     UIManager.Instance.ShowFloatOptions(list, RectTransformAnchor.BOTTOM_LEFT);
+                });
+
+                var command2 = AddCommand("删除种植区", null);
+                command2.BindCommand(() =>
+                {
+                    Current.CurMap.DeleteSection(map);
+                });
+
+                var command3 = AddCommand("拓展种植区", null);
+                command3.BindCommand(() =>
+                {
+                    InputController.Instance.MouseState = MouseState.ExpandZone;
+                });
+
+                var command4 = AddCommand("缩小种植区", null);
+                command4.BindCommand(() =>
+                {
+                    InputController.Instance.MouseState = MouseState.ShrinkZone;
                 });
             }
         }

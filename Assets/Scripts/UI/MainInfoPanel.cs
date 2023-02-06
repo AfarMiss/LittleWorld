@@ -63,6 +63,26 @@ namespace LittleWorld.UI
         {
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.AddSection));
         }
+
+        public void ExpandStorageZone()
+        {
+            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ExpandStorageZone));
+        }
+
+        public void ShrinkStorageZone()
+        {
+            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ShrinkStorageZone));
+        }
+
+        public void DeleteStorageSection()
+        {
+            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.DeleteStorageSection));
+        }
+
+        public void AddStorageSection()
+        {
+            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.AddStorageSection));
+        }
     }
 
 }

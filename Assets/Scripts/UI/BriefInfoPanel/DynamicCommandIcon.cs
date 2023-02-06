@@ -35,7 +35,15 @@ namespace LittleWorld.UI
         public void BindData(string commandName, Sprite sprite)
         {
             this.commandNameString = commandName;
-            this.img.sprite = sprite;
+            if (sprite != null)
+            {
+                this.img.enabled = true;
+                this.img.sprite = sprite;
+            }
+            else
+            {
+                this.img.enabled = false;
+            }
         }
 
         public void BindCommand(UnityAction commandAction)

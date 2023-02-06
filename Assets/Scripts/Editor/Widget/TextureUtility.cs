@@ -126,7 +126,7 @@ namespace LittleWorld.TextureUtility
                     //修改Texture Type
                     texImporter.textureType = TextureImporterType.Sprite;
                     texImporter.spritePixelsPerUnit = 16;
-                    texImporter.spriteImportMode = SpriteImportMode.Single;
+                    texImporter.spriteImportMode = SpriteImportMode.Multiple;
                     texImporter.filterMode = FilterMode.Point;
 
                     ////修改Aniso Level

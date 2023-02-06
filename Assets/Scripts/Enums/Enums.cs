@@ -222,4 +222,8 @@ public enum MouseState
     ShrinkZone,
     AddSection,
     DeleteSection,
+    ExpandStorageZone,
+    ShrinkStorageZone,
+    AddStorageSection,
+    DeleteStorageSection,
 }

@@ -232,22 +232,25 @@ public class InputController : MonoSingleton<InputController>
             Debug.Log("Click.started -------");
         }
 
-        switch (MouseState)
+        switch (mouseState)
         {
             case MouseState.Normal:
                 Select(callbackContext);
                 break;
             case MouseState.AddSection:
-                AddSection(callbackContext);
-                break;
-            case MouseState.DeleteSection:
-                DeleteSection(callbackContext);
+                AddSection(callbackContext, SectionType.PLANT);
                 break;
             case MouseState.ShrinkZone:
                 ShrinkZone(callbackContext);
                 break;
             case MouseState.ExpandZone:
                 ExpandZone(callbackContext);
+                break;
+            case MouseState.ExpandStorageZone:
+                break;
+            case MouseState.ShrinkStorageZone:
+                break;
+            case MouseState.AddStorageSection:
                 break;
             default:
                 break;
@@ -309,21 +312,13 @@ public class InputController : MonoSingleton<InputController>
         }
     }
 
-    private void AddSection(CallbackContext callbackContext)
+    private void AddSection(CallbackContext callbackContext, SectionType type)
     {
         if (callbackContext.canceled)
         {
             var grids = GetWorldGrids(MapManager.Instance.ColonyMap,
                 InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition));
-            Current.CurMap.AddSection(grids, SectionType.PLANT);
-        }
-    }
-
-    private void DeleteSection(CallbackContext callbackContext)
-    {
-        if (callbackContext.canceled)
-        {
-            Current.CurMap.DeleteSection();
+            Current.CurMap.AddSection(grids, type);
         }
     }
 
@@ -425,6 +420,10 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.ShrinkZone:
             case MouseState.AddSection:
             case MouseState.DeleteSection:
+            case MouseState.ExpandStorageZone:
+            case MouseState.ShrinkStorageZone:
+            case MouseState.AddStorageSection:
+            case MouseState.DeleteStorageSection:
                 RenderPlantManager();
                 break;
             default:

@@ -94,6 +94,15 @@ namespace LittleWorld.MapUtility
             return true;
         }
 
+        public void DeleteSection(MapSection section)
+        {
+            foreach (var item in section.grids)
+            {
+                plantHash.Remove(item.pos);
+            }
+            sectionDic.Remove(section.sectionID);
+        }
+
         public bool DeleteSection()
         {
             try
@@ -104,11 +113,7 @@ namespace LittleWorld.MapUtility
                     return false;
                 }
                 var mapSection = sectionDic[SelectedSectionID];
-                foreach (var item in mapSection.grids)
-                {
-                    plantHash.Remove(item.pos);
-                }
-                sectionDic.Remove(SelectedSectionID);
+                DeleteSection(mapSection);
                 selectedSectionID = -1;
                 return true;
             }
@@ -140,9 +145,22 @@ namespace LittleWorld.MapUtility
                 return false;
             }
             sectionColorSeed = (++sectionColorSeed) % MaterialDatabase.Instance.PlantZoomMaterials.Length;
-            var newSection = new PlantMapSection(mapGridDetails, sectionColorSeed);
-            sectionDic.Add(newSection.sectionID, newSection);
-            ChangeCurrentSection(newSection);
+            MapSection newSection;
+            switch (type)
+            {
+                case SectionType.PLANT:
+                    newSection = new PlantMapSection(mapGridDetails, sectionColorSeed);
+                    sectionDic.Add(newSection.sectionID, newSection);
+                    ChangeCurrentSection(newSection);
+                    break;
+                case SectionType.STORE:
+                    newSection = new StorageMapSection(mapGridDetails, sectionColorSeed);
+                    sectionDic.Add(newSection.sectionID, newSection);
+                    ChangeCurrentSection(newSection);
+                    break;
+                default:
+                    break;
+            }
             return true;
         }
 

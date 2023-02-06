@@ -401,7 +401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4994752419709306333, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_Text
-      value: "\u5220\u9664\u79CD\u690D\u533A"
+      value: "\u6DFB\u52A0\u5B58\u50A8\u533A"
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -421,11 +421,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DeleteSection
+      value: AddStorageSection
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainInfoPanel, Assembly-CSharp
+      value: LittleWorld.UI.MainInfoPanel, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMin.x
@@ -466,11 +466,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_SizeDelta.y
@@ -506,11 +506,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -527,6 +527,10 @@ PrefabInstance:
     - target: {fileID: 4199587284363260623, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_Name
       value: Button (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199587284363260623, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4994752419709306333, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_Text
@@ -587,7 +591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMin.x
@@ -595,11 +599,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_SizeDelta.y
@@ -635,11 +639,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1680
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -656,6 +660,10 @@ PrefabInstance:
     - target: {fileID: 4199587284363260623, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_Name
       value: Button (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199587284363260623, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4994752419709306333, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_Text
