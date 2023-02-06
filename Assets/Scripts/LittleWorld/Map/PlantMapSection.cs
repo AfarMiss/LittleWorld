@@ -8,7 +8,19 @@ namespace LittleWorld.MapUtility
 {
     public class PlantMapSection : MapSection
     {
-        public int SeedCode;
+        public int SeedCode
+        {
+            get
+            {
+                return seedCode;
+            }
+            set
+            {
+                seedCode = value;
+                EventCenter.Instance.Trigger<int>(EventEnum.UI_UPDATE_PLANT_CODE.ToString(), seedCode);
+            }
+        }
+        private int seedCode;
         public bool CanHarvest
         {
             get

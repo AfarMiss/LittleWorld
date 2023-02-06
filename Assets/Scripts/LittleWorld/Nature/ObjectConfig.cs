@@ -38,5 +38,18 @@ namespace LittleWorld.Item
                 return null;
             }
         }
+
+        public static Sprite GetPlantSprite(int seedCode)
+        {
+            var plant = plantInfoDic.Values.ToList().Find(x => x.seedItem == seedCode);
+            if (plant != null)
+            {
+                return rawFoodInfo[plant.fruitItemCode].itemSprites[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

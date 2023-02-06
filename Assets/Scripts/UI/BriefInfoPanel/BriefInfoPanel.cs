@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static LittleWorld.UI.DynamicCommandIcon;
 
 namespace LittleWorld.UI
 {
@@ -43,7 +44,8 @@ namespace LittleWorld.UI
         {
             if (item is PlantMapSection map)
             {
-                AddCommand("更改种植作物", () =>
+                var command = AddCommand("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));
+                command.BindCommand(() =>
                 {
                     List<FloatOption> list = new List<FloatOption>();
                     foreach (var item in ObjectConfig.plantInfoDic)
@@ -51,6 +53,8 @@ namespace LittleWorld.UI
                         list.Add(new FloatOption(item.Value.itemName, () =>
                         {
                             map.SeedCode = item.Value.seedItem;
+                            //可能的更新
+                            command.BindData("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));
                         }));
                     }
                     UIManager.Instance.ShowFloatOptions(list, RectTransformAnchor.BOTTOM_LEFT);
@@ -58,10 +62,11 @@ namespace LittleWorld.UI
             }
         }
 
-        private void AddCommand(string commandName, UnityAction action)
+        private DynamicCommandIcon AddCommand(string commandName, Sprite sprite)
         {
             var go = Instantiate(itemCommandGameObject, commandParent);
-            go.GetComponent<BriefCommandIcon>().BindData(commandName, action);
+            go.GetComponent<DynamicCommandIcon>().BindData(commandName, sprite);
+            return go.GetComponent<DynamicCommandIcon>();
         }
     }
 }
