@@ -1,2 +1,5 @@
 # UI Component
 
+Outline
+
+Shadow
