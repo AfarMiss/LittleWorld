@@ -231,7 +231,15 @@ public class InputController : MonoSingleton<InputController>
             onClickLeftStartPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftStartPosition);
             Debug.Log("Click.started -------");
         }
+        else if (callbackContext.canceled)
+        {
+            onClickLeftEndPosition = Current.MousePos;
+            onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
+            Debug.Log("Click.canceled -------");
+        }
 
+        var grids = GetWorldGrids(MapManager.Instance.ColonyMap,
+      InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition));
         switch (mouseState)
         {
             case MouseState.Normal:
@@ -240,39 +248,34 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.AddSection:
                 AddSection(callbackContext, SectionType.PLANT);
                 break;
+            case MouseState.ShrinkStorageZone:
             case MouseState.ShrinkZone:
-                ShrinkZone(callbackContext);
+                ShrinkZone(callbackContext, grids);
                 break;
             case MouseState.ExpandZone:
-                ExpandZone(callbackContext);
-                break;
             case MouseState.ExpandStorageZone:
-                break;
-            case MouseState.ShrinkStorageZone:
+                ExpandZone(callbackContext, grids);
                 break;
             case MouseState.AddStorageSection:
+                AddSection(callbackContext, SectionType.STORE);
                 break;
             default:
                 break;
         }
     }
 
-    private void ExpandZone(CallbackContext callbackContext)
+    private void ExpandZone(CallbackContext callbackContext, MapGridDetails[] grids)
     {
         if (callbackContext.canceled)
         {
-            var grids = GetWorldGrids(MapManager.Instance.ColonyMap,
-                InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition));
             Current.CurMap.ExpandZone(grids);
         }
     }
 
-    private void ShrinkZone(CallbackContext callbackContext)
+    private void ShrinkZone(CallbackContext callbackContext, MapGridDetails[] grids)
     {
         if (callbackContext.canceled)
         {
-            var grids = GetWorldGrids(MapManager.Instance.ColonyMap,
-                InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition));
             Current.CurMap.ShrinkZone(grids);
         }
     }
@@ -285,8 +288,6 @@ public class InputController : MonoSingleton<InputController>
         }
         else if (callbackContext.canceled)
         {
-            onClickLeftEndPosition = Current.MousePos;
-            onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
             selectedArea.GetComponent<Image>().enabled = false;
 
             var floatMenu = FindObjectOfType<InteractionMenu>();

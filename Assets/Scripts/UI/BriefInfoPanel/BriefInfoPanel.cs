@@ -1,13 +1,9 @@
-﻿using LittleWorld.Interface;
-using LittleWorld.Item;
+﻿using LittleWorld.Item;
 using LittleWorld.MapUtility;
 using SRF;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
-using static LittleWorld.UI.DynamicCommandIcon;
 
 namespace LittleWorld.UI
 {
@@ -68,6 +64,26 @@ namespace LittleWorld.UI
                 });
 
                 var command4 = AddCommand("缩小种植区", null);
+                command4.BindCommand(() =>
+                {
+                    InputController.Instance.MouseState = MouseState.ShrinkZone;
+                });
+            }
+            if (item is StorageMapSection storage)
+            {
+                var command2 = AddCommand("删除存储区", null);
+                command2.BindCommand(() =>
+                {
+                    Current.CurMap.DeleteSection(storage);
+                });
+
+                var command3 = AddCommand("拓展存储区", null);
+                command3.BindCommand(() =>
+                {
+                    InputController.Instance.MouseState = MouseState.ExpandZone;
+                });
+
+                var command4 = AddCommand("缩小存储区", null);
                 command4.BindCommand(() =>
                 {
                     InputController.Instance.MouseState = MouseState.ShrinkZone;

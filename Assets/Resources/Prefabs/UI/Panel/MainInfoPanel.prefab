@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMin.x
@@ -466,11 +466,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 480
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_SizeDelta.y
@@ -506,11 +506,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -530,11 +530,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199587284363260623, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4994752419709306333, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_Text
-      value: "\u6269\u5C55\u79CD\u690D\u533A"
+      value: "\u5EFA\u9020\u7076\u53F0"
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -591,7 +591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMin.x
@@ -599,11 +599,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 480
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_SizeDelta.y
@@ -639,11 +639,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1680
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1156255025808373039, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -663,11 +663,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199587284363260623, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4994752419709306333, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_Text
-      value: "\u7F29\u5C0F\u79CD\u690D\u533A"
+      value: "\u5EFA\u9020\u94C1\u5320\u94FA"
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
