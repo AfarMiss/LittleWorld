@@ -14,7 +14,7 @@
         <seedItem>11001</seedItem>
         <plantItem/>
         <nutrition>0.2</nutrition>
-        <growingTime>6</growingTime>
+        <growingTime>0.05</growingTime>
         <itemEngName>artichoke_Plant</itemEngName>
         <image0>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_0</image0>
         <image1>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_1</image1>
@@ -206,7 +206,7 @@
         <seedItem>11009</seedItem>
         <plantItem/>
         <nutrition>0.2</nutrition>
-        <growingTime>6</growingTime>
+        <growingTime>0.05</growingTime>
         <itemEngName>corn_Plant</itemEngName>
         <image0>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_0</image0>
         <image1>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_1</image1>

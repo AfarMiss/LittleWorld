@@ -8,6 +8,8 @@ namespace LittleWorld.Item
 {
     public abstract class WorldObject : Object
     {
+        public bool isCarried = false;
+        public WorldObject carriedParent = null;
         protected float maxHealth;
         public float mass;
 
@@ -18,7 +20,7 @@ namespace LittleWorld.Item
 
         public abstract Sprite GetSprite();
 
-        public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
+        public Vector2Int GridPos { get => gridPos; set { gridPos = value; } }
 
         public WorldObject(int itemCode, Vector2Int gridPos, Map map = null)
         {
@@ -27,6 +29,18 @@ namespace LittleWorld.Item
             this.instanceID = SceneObjectManager.ItemInstanceID++;
             curMap = map ?? MapManager.Instance.ColonyMap;
             SceneObjectManager.Instance.RegisterItem(this);
+        }
+
+        public void OnBeCarried(WorldObject wo)
+        {
+            isCarried = true;
+            carriedParent = wo;
+        }
+
+        public void OnBeDropDown()
+        {
+            isCarried = false;
+            carriedParent = null;
         }
 
         public void Destroy()

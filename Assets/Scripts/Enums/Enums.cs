@@ -163,6 +163,7 @@ public enum WorkTypeEnum
     cut,
     harvest,
     sow,
+    carry,
 }
 
 public enum SoundName

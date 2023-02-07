@@ -14,6 +14,8 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
     private Transform parentItem;
     [SerializeField]
     private GameObject itemPrefab;
+
+    public GameObject ItemPrefab => itemPrefab;
     public List<SceneItem> sceneItemList
     {
         get
@@ -138,11 +140,12 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
 
     private void RenderPawn(Humanbeing human)
     {
-        var pawnRes = Resources.Load("Prefabs/Character/Pawn");
-        var curPawn = GameObject.Instantiate(pawnRes);
+        GameObject pawnRes = Resources.Load<GameObject>("Prefabs/Character/Pawn");
+        GameObject curPawn = GameObject.Instantiate<GameObject>(pawnRes);
         curPawn.GetComponent<Transform>().transform.position = human.GridPos.To3();
         curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
         human.SetNavi(curPawn.GetComponent<PathNavigation>());
+        human.rendererObject = curPawn;
         WorldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
     }
 
@@ -152,6 +155,7 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
         {
             GameObject itemGameObject = Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, parentItem);
             ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
+            wo.rendererObject = itemGameObject;
             WorldItemsRenderer.Add(wo, itemComponent);
         }
         else
@@ -165,7 +169,8 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
         WorldItemsRenderer.TryGetValue(wo, out var renderer);
         if (renderer != null)
         {
-            GameObject.Destroy(renderer.gameObject);
+            Destroy(renderer.gameObject);
+            wo.rendererObject = null;
         }
         WorldItemsRenderer.Remove(wo);
     }

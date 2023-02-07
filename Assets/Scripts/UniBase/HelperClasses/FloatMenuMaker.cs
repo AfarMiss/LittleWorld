@@ -1,8 +1,10 @@
 ﻿using LittleWorld.Item;
 using LittleWorld.MapUtility;
+using System;
 using System.Collections.Generic;
 using UniBase;
 using UnityEngine;
+using static System.Collections.Specialized.BitVector32;
 
 namespace LittleWorld.UI
 {
@@ -27,11 +29,28 @@ namespace LittleWorld.UI
                     var plantOpts = AddPlantSectionFloatMenu(human, mousePos.GetWorldPosition().ToCell(), curSection);
                     contentList.AddRange(plantOpts);
                 }
+                if (worldObject is Food)
+                {
+                    var plantOpts = AddCarryFloatMenu(human, worldObject as WorldObject);
+                    contentList.AddRange(plantOpts);
+                }
             }
 
             UIManager.Instance.ShowFloatOptions(contentList);
 
             return contentList.ToArray();
+        }
+
+        private static List<FloatOption> AddCarryFloatMenu(Humanbeing human, WorldObject worldObject)
+        {
+            List<FloatOption> contentList = new List<FloatOption>
+            {
+                new FloatOption($"搬运{worldObject.ItemName }", () =>
+                {
+                    human.AddCarryWork(worldObject);
+            })
+            };
+            return contentList;
         }
 
         public static List<FloatOption> AddPlantFloatMenu(Humanbeing worker, Vector3Int targetPos, Plant plant)

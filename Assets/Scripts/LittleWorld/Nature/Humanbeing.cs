@@ -23,6 +23,25 @@ namespace LittleWorld.Item
         private PawnWorkTracer workTracer;
         private PawnHealthTracer healthTracer;
         private PathNavigation pathTracer;
+        public List<WorldObject> Inventory = new List<WorldObject>();
+        public WorldObject CurrentTake;
+
+        public void Carry(WorldObject wo)
+        {
+            wo.OnBeCarried(this);
+            Inventory.Add(wo);
+            CurrentTake = this;
+        }
+
+        public void Dropdown(WorldObject wo)
+        {
+            wo.OnBeDropDown();
+            if (CurrentTake == wo)
+            {
+                CurrentTake = null;
+            }
+            Inventory.Remove(wo);
+        }
 
 
         public MotionStatus motion = MotionStatus.Idle;
@@ -47,6 +66,8 @@ namespace LittleWorld.Item
                 case WorkTypeEnum.harvest:
                     return 2;
                 case WorkTypeEnum.sow:
+                    return 2;
+                case WorkTypeEnum.carry:
                     return 2;
                 default:
                     return 2;
@@ -78,6 +99,11 @@ namespace LittleWorld.Item
         public void AddSowWork(PlantMapSection section, int seedCode)
         {
             workTracer.AddWork(new SowWork(seedCode, section.grids, this));
+        }
+
+        public void AddCarryWork(WorldObject wo)
+        {
+            workTracer.AddWork(new CarryWork(wo, this));
         }
 
         public void AddWork(WorkTypeEnum workType, Vector3Int targetPos)
