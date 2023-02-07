@@ -55,4 +55,8 @@ public enum EventEnum
     #region 游戏流程相关
     START_NEW_GAME,
     #endregion
+
+    #region UI相关
+    UI_UPDATE_PLANT_CODE,
+    #endregion
 }

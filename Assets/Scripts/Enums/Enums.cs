@@ -160,8 +160,10 @@ public enum WorkTypeEnum
     dug,
     water,
     gotoLoc,
-    chop,
+    cut,
     harvest,
+    sow,
+    carry,
 }
 
 public enum SoundName
@@ -212,4 +214,17 @@ public enum TerrainLayer
     Altitude,
     Terrain,
     Item
+}
+
+public enum MouseState
+{
+    Normal,
+    ExpandZone,
+    ShrinkZone,
+    AddSection,
+    DeleteSection,
+    ExpandStorageZone,
+    ShrinkStorageZone,
+    AddStorageSection,
+    DeleteStorageSection,
 }

@@ -2,21 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIAccountPanel : BaseInventory
+
+namespace LittleWorld.UI
 {
-    protected override void BindDataWith(List<InventoryItem> itemsList, int hightLightIndex)
+    public class UIAccountPanel : BaseInventory
     {
-        base.BindDataWith(itemsList, hightLightIndex);
-        for (int i = 0; i < FarmSetting.playerMaxRepositoryCapacity; i++)
+        protected override void BindDataWith(List<InventoryItem> itemsList, int hightLightIndex)
         {
-            if (i < itemsList.Count)
+            base.BindDataWith(itemsList, hightLightIndex);
+            for (int i = 0; i < FarmSetting.playerMaxRepositoryCapacity; i++)
             {
-                uIInventorySlots[i].BindData(itemsList[i], i, hightLightIndex);
-            }
-            else
-            {
-                uIInventorySlots[i].BindData(new InventoryItem(-1, -1), i, hightLightIndex);
+                if (i < itemsList.Count)
+                {
+                    uIInventorySlots[i].BindData(itemsList[i], i, hightLightIndex);
+                }
+                else
+                {
+                    uIInventorySlots[i].BindData(new InventoryItem(-1, -1), i, hightLightIndex);
+                }
             }
         }
     }
+
 }

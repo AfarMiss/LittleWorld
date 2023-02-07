@@ -1,4 +1,4 @@
-﻿using LittleWorld.Object;
+﻿using LittleWorld.Item;
 using SRF;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,36 +11,19 @@ public class PawnManager : Singleton<PawnManager>
     {
     }
 
-    public List<Humanbeing> Pawns => pawns;
-    private List<Humanbeing> pawns;
-
-    public override void OnCreateInstance()
+    public List<Humanbeing> Pawns
     {
-        base.OnCreateInstance();
-
-        pawns = new List<Humanbeing>();
-    }
-
-    private void RenderPawn(Vector3Int pos, Humanbeing human)
-    {
-        var pawnRes = Resources.Load("Prefabs/Character/Pawn");
-        var curPawn = GameObject.Instantiate(pawnRes);
-        curPawn.GetComponent<Transform>().transform.position = pos;
-        curPawn.GetComponent<PathNavigationOnly>().Initialize(human.instanceID);
-    }
-
-    public void AddPawn(Humanbeing human)
-    {
-        pawns.Add(human);
-        RenderPawn(human.GridPos, human);
-    }
-
-    public override void Tick()
-    {
-        base.Tick();
-        foreach (var pawn in pawns)
+        get
         {
-            pawn.Tick();
+            var result = new List<Humanbeing>();
+            foreach (var item in SceneObjectManager.Instance.WorldObjects)
+            {
+                if (item.Value is Humanbeing)
+                {
+                    result.Add(item.Value as Humanbeing);
+                }
+            }
+            return result;
         }
     }
 }

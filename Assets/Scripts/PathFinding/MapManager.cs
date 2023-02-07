@@ -14,7 +14,7 @@ public class MapManager : Singleton<MapManager>
     private MapManager()
     {
     }
-    public Queue<Vector2Int> CreateNewPath(Vector3 startPos, Vector3 endPos)
+    public Queue<Vector2Int> CreateNewPath(Vector2 startPos, Vector2 endPos)
     {
         return colonyMap.CalculatePath(startPos, endPos);
     }
@@ -37,16 +37,9 @@ public class MainMapInfo
     public string seed;
     public MapSize size;
 
-    public MainMapInfo(string seed, string size = "MEDIUM")
+    public MainMapInfo(string seed, MapSize size)
     {
         this.seed = seed;
-        if (Enum.TryParse(typeof(MapSize), size, out var result))
-        {
-            this.size = (MapSize)result;
-        }
-        else
-        {
-            this.size = MapSize.MEDIUM;
-        }
+        this.size = size;
     }
 }

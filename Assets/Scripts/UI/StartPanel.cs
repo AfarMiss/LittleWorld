@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartPanel : BaseUI
-{
-    public override string Path => "Prefabs/UI/Panel/StartPanel";
 
-    public override void OnClickClose()
+namespace LittleWorld.UI
+{
+    public class StartPanel : BaseUI
     {
-        throw new System.NotImplementedException();
+        public override string Path => "Prefabs/UI/Panel/StartPanel";
+
+        public override void OnClickClose()
+        {
+            throw new System.NotImplementedException();
+        }
     }
+
 }

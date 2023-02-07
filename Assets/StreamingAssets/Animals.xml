@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<items>
+    <item>
+        <itemCode>13001</itemCode>
+        <itemName>人类</itemName>
+        <itemType>Animal</itemType>
+        <itemEngName>HumanBeing</itemEngName>
+        <mass>75</mass>
+        <maxHealth>100</maxHealth>
+        <moveSpeed>9</moveSpeed>
+        <image0>FarmPack\singleAsset\animals\humanbeing\1 idle_0</image0>
+    </item>
+</items>

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using LittleWorld.Extension;
+using LittleWorld.Item;
+using UnityEngine;
 
 public class ItemRender : MonoBehaviour
 {
@@ -9,27 +11,27 @@ public class ItemRender : MonoBehaviour
 
     public int ItemCode { get { return itemCode; } set { itemCode = value; } }
 
-    private void Start()
+    public void Render<T>(T worldObject) where T : WorldObject
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        Init(ItemCode);
-        Debug.Log("itemcode:" + ItemCode);
+        spriteRenderer.enabled = !worldObject.isCarried;
+        if (worldObject.isCarried) { return; }
+        //this.gameObject.AddComponent<NudgeItem>();
+        spriteRenderer.sprite = worldObject.GetSprite();
+        Set(worldObject);
+
+        this.ItemCode = worldObject.itemCode;
     }
 
-    public void Init(int itemCode)
+    private void Set(WorldObject wo)
     {
-        var itemDetail = InventoryManager.Instance.GetItemDetail(itemCode);
-        if (itemDetail.itemType == ItemType.reapable_scenery)
-        {
-            this.gameObject.AddComponent<NudgeItem>();
-        }
-
-        spriteRenderer.sprite = itemDetail.itemSprite;
         spriteRenderer.transform.localScale = Vector3.one;
         var xOffset = spriteRenderer.sprite.pivot.x / spriteRenderer.sprite.pixelsPerUnit;
         var yOffset = spriteRenderer.sprite.pivot.y / spriteRenderer.sprite.pixelsPerUnit;
         spriteRenderer.transform.localPosition = new Vector3(xOffset, yOffset, 0);
-
-        this.ItemCode = itemCode;
+        if (!(wo is Animal))
+        {
+            this.transform.position = wo.GridPos.To3();
+        }
     }
 }

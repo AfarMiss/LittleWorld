@@ -1,15 +1,41 @@
-﻿using LittleWorld.UI;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using LittleWorld.MeshUtility;
+using LittleWorld.UI;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace LittleWorld.Graphics
 {
-    public static class GraphicsUtiliy
+    public class GraphicsUtiliy
     {
-        public static void DrawTexture(Rect rect, Texture2D texture2D, Rect sourceRect = default)
+        public static void DrawMesh(Material material, string layerName = "Default")
+        {
+
+            var mesh = MeshUtil.Quad(Vector3.zero);
+            UnityEngine.Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+        }
+
+        public static void DrawMesh(Material material, Mesh mesh, Vector3 pos, string layerName = "Default")
+        {
+            UnityEngine.Graphics.DrawMesh(mesh, pos, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+        }
+
+        public static void DrawMesh(Material material, Mesh mesh, float forwardDistance = 1, string layerName = "Default")
+        {
+            UnityEngine.Graphics.DrawMesh(mesh, -Vector3.forward * forwardDistance, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+        }
+
+        public static void DrawSelectedPlantZoom(Vector3 pos, Material material, int forwardDistance = 1, string layerName = "Default")
+        {
+            var mesh = MeshUtil.GreenZoom(pos - Vector3.forward * forwardDistance);
+            UnityEngine.Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+        }
+
+        public static void DrawColorQuadMesh(Vector3 pos, int materialIndex, int zoomLayer, string layerName = "Default")
+        {
+            var material = MaterialDatabase.Instance.PlantZoomMaterials[materialIndex];
+            UnityEngine.Graphics.DrawMesh(MeshUtil.Quad(pos - Vector3.forward * zoomLayer), Vector3.zero, Quaternion.identity, material, LayerMask.NameToLayer(layerName));
+        }
+
+        private static void DrawTextureInternal(Rect rect, Texture2D texture2D, Rect sourceRect = default)
         {
             if (sourceRect == default)
             {
@@ -23,7 +49,8 @@ namespace LittleWorld.Graphics
 
         public static Texture2D GetTexture2D(string selectedPath)
         {
-            var rawData = System.IO.File.ReadAllBytes(selectedPath);
+            //Debug.Log("streamingAssetsPath:" + Application.streamingAssetsPath);
+            var rawData = System.IO.File.ReadAllBytes(Application.streamingAssetsPath + "\\" + selectedPath);
             Texture2D tex = new Texture2D(0, 0);
             tex.LoadImage(rawData);
             return tex;
@@ -31,39 +58,70 @@ namespace LittleWorld.Graphics
 
         public static void DrawSelectedIcon(Vector2 bottomLeftPoint, float worldWidth, float worldHeight)
         {
-            var upperLeftPoint = (bottomLeftPoint + new Vector2(0, 1)).ToScreenPos();
-            var screenRect = new Vector2(upperLeftPoint.x, Screen.height - upperLeftPoint.y);
-            var textureWidthVector =
-                (bottomLeftPoint + new Vector2(worldWidth, 0)).ToScreenPos()
-                - bottomLeftPoint.ToScreenPos();
-            var textureWidth = (int)textureWidthVector.x;
-
-            var textureHeightVector =
-    (bottomLeftPoint + new Vector2(0, worldHeight)).ToScreenPos()
-    - bottomLeftPoint.ToScreenPos();
-            var textureHeight = (int)textureHeightVector.y;
-
+            Rect resultRect = GetScreenRect(bottomLeftPoint, worldWidth, worldHeight);
             Texture2D tex = GetTexture2D(UIPath.Image_Selected);
-            DrawTexture(new Rect(screenRect, new Vector2(textureWidth, textureHeight)), tex, new Rect(0f, 0f, 0.5f, 1f));
+            DrawTextureInternal(resultRect, tex, new Rect(0f, 0f, 0.5f, 1f));
         }
 
-        public static void DrawDestinationIcon(Vector2 bottomLeftPoint, float worldWidth, float worldHeight, float alpha)
+        public static void DrawDestinationIcon(Vector2 bottomLeftPoint, float worldWidth, float worldHeight)
         {
-            var upperLeftPoint = (bottomLeftPoint + new Vector2(0, 1)).ToScreenPos();
+            Rect resultRect = GetScreenRect(bottomLeftPoint, worldWidth, worldHeight);
+            Texture2D tex = TextureDatabase.Tex_Destination;
+            DrawTextureInternal(resultRect, tex);
+        }
+
+        /// <summary>
+        /// 绘制Texture
+        /// </summary>
+        /// <param name="bottomLeftPoint"></param>
+        /// <param name="worldWidth"></param>
+        /// <param name="worldHeight"></param>
+        /// <param name="texture2D"></param>
+        public static void DrawTexture(Vector2 bottomLeftPoint, float worldWidth, float worldHeight, Texture2D texture2D)
+        {
+            Rect resultRect = GetScreenRect(bottomLeftPoint, worldWidth, worldHeight);
+            DrawTextureInternal(resultRect, texture2D);
+        }
+
+        /// <summary>
+        /// 绘制子Texture
+        /// </summary>
+        /// <param name="bottomLeftPoint"></param>
+        /// <param name="worldWidth"></param>
+        /// <param name="worldHeight"></param>
+        /// <param name="texture2D"></param>
+        /// <param name="rect">(起始点x，起始点y，宽度占比（总值为1），高度占比（总值为1）)</param>
+        public static void DrawSubTexture(Vector2 bottomLeftPoint, float worldWidth, float worldHeight, Texture2D texture2D, Rect rect)
+        {
+            Rect resultRect = GetScreenRect(bottomLeftPoint, worldWidth, worldHeight);
+            DrawTextureInternal(resultRect, texture2D, rect);
+        }
+
+        private static Rect GetScreenRect(Vector2 worldBottomLeftPoint, float worldWidth, float worldHeight)
+        {
+            var upperLeftPoint = (worldBottomLeftPoint + new Vector2(0, 1)).ToScreenPos();
             var screenRect = new Vector2(upperLeftPoint.x, Screen.height - upperLeftPoint.y);
             var textureWidthVector =
-                (bottomLeftPoint + new Vector2(worldWidth, 0)).ToScreenPos()
-                - bottomLeftPoint.ToScreenPos();
+                (worldBottomLeftPoint + new Vector2(worldWidth, 0)).ToScreenPos()
+                - worldBottomLeftPoint.ToScreenPos();
             var textureWidth = (int)textureWidthVector.x;
 
             var textureHeightVector =
-    (bottomLeftPoint + new Vector2(0, worldHeight)).ToScreenPos()
-    - bottomLeftPoint.ToScreenPos();
+    (worldBottomLeftPoint + new Vector2(0, worldHeight)).ToScreenPos()
+    - worldBottomLeftPoint.ToScreenPos();
             var textureHeight = (int)textureHeightVector.y;
+            var resultRect = new Rect(screenRect, new Vector2(textureWidth, textureHeight));
+            return resultRect;
+        }
 
-            Texture2D tex = TextureDatabase.Image_Destination;
-
-            DrawTexture(new Rect(screenRect, new Vector2(textureWidth, textureHeight)), tex);
+        public static void DrawPlantZoom(Vector2Int[] poses, int colorIndex)
+        {
+            if (poses == null || poses.Length == 0)
+            {
+                return;
+            }
+            var mesh = MeshUtil.PlantZone(poses);
+            DrawMesh(MaterialDatabase.Instance.PlantZoomMaterials[colorIndex], mesh);
         }
 
         public static Texture2D SpriteToTexture(Sprite sprite)

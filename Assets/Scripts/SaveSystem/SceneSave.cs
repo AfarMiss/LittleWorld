@@ -14,5 +14,5 @@ public class SceneSave
     public Dictionary<string, int[]> intArrayDictionary;
 
     //人物
-    public PathNavigationOnly[] characters;
+    public PathNavigation[] characters;
 }

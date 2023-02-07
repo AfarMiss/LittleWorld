@@ -1,4 +1,5 @@
-﻿using UniBase;
+﻿using LittleWorld.MapUtility;
+using UniBase;
 using UnityEngine;
 
 namespace LittleWorld
@@ -8,6 +9,17 @@ namespace LittleWorld
     /// </summary>
     public static class Current
     {
+        public static MouseState MouseState
+        {
+            get
+            {
+                return InputController.Instance.MouseState;
+            }
+            set
+            {
+                InputController.Instance.MouseState = value;
+            }
+        }
         public static Vector2 MousePos => InputUtils.GetMousePosition();
 
         public static bool IsAdditionalMode => InputController.Instance.AdditionalAction;
@@ -15,5 +27,9 @@ namespace LittleWorld
         public static TileManager TileManager => TileManager.Instance;
 
         public static Rect ScreenSelectionArea => InputController.Instance.ScreenSelectionArea;
+
+        public static Map CurMap => MapManager.Instance.curDisplayMap;
+
+        public static Game CurGame;
     }
 }

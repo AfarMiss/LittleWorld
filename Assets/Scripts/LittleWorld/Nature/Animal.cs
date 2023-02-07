@@ -1,15 +1,22 @@
-﻿using LittleWorld.Object;
+﻿using LittleWorld.Item;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LittleWorld.Object
+namespace LittleWorld.Item
 {
     public class Animal : WorldObject
     {
-        public float moveSpeed;
-        public Animal(Vector3Int gridPos) : base(gridPos)
+        protected AnimalInfo animalInfo;
+        public float moveSpeed => animalInfo.moveSpeed;
+
+        public Animal(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
         {
+        }
+
+        public override Sprite GetSprite()
+        {
+            return animalInfo.itemSprites[0];
         }
     }
 }

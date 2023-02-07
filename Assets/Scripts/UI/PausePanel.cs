@@ -4,50 +4,55 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class PausePanel : BaseUI
+
+namespace LittleWorld.UI
 {
-    public override string Path => UIPath.Panel_PausePanel;
-    [SerializeField] private List<SettingPanelBtn> pausePagesBtns;
-
-    private void Start()
+    public class PausePanel : BaseUI
     {
-        foreach (var btn in pausePagesBtns)
+        public override string Path => UIPath.Panel_PausePanel;
+        [SerializeField] private List<SettingPanelBtn> pausePagesBtns;
+
+        private void Start()
         {
-            btn.PageBtn.onClick.AddListener(() =>
+            foreach (var btn in pausePagesBtns)
             {
-                SwitchTo(btn);
-            });
+                btn.PageBtn.onClick.AddListener(() =>
+                {
+                    SwitchTo(btn);
+                });
+            }
+
+            SwitchTo(pausePagesBtns[0]);
         }
 
-        SwitchTo(pausePagesBtns[0]);
-    }
-
-    private void SwitchTo(SettingPanelBtn btn)
-    {
-        foreach (var otherBtn in pausePagesBtns)
+        private void SwitchTo(SettingPanelBtn btn)
         {
-            otherBtn.SwitchToInactive();
+            foreach (var otherBtn in pausePagesBtns)
+            {
+                otherBtn.SwitchToInactive();
+            }
+            btn.SwitchToActive();
         }
-        btn.SwitchToActive();
+
+        public override void OnClickClose()
+        {
+            UIManager.Instance.Hide<PausePanel>(UIType.PANEL);
+        }
+
+        public void OnClickQuit()
+        {
+            Application.Quit();
+        }
+
+        public void LoadDataFromFile()
+        {
+            SaveLoadManager.Instance.LoadDataFromFile();
+        }
+
+        public void SaveDataToFile()
+        {
+            SaveLoadManager.Instance.SaveDataToFile();
+        }
     }
 
-    public override void OnClickClose()
-    {
-        UIManager.Instance.Hide<PausePanel>(UIType.PANEL);
-    }
-
-    public void OnClickQuit()
-    {
-        Application.Quit();
-    }
-
-    public void LoadDataFromFile()
-    {
-        SaveLoadManager.Instance.LoadDataFromFile();
-    }
-
-    public void SaveDataToFile()
-    {
-        SaveLoadManager.Instance.SaveDataToFile();
-    }
 }

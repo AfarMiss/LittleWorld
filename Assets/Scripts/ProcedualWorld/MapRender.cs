@@ -1,5 +1,8 @@
 ﻿using LittleWorld;
+using LittleWorld.Graphics;
 using LittleWorld.MapUtility;
+using LittleWorld.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -62,6 +65,16 @@ namespace ProcedualWorld
             else
             {
                 altitudeLayer.SetTile(new Vector3(x + bottomLeft.x, y + bottomLeft.y, 0).ToCell(), tileset[5]);
+            }
+        }
+
+        private void Update()
+        {
+            //绘制种植区，种植区现在绘制的Mesh在没有变化的情况下依然会每帧都重新计算
+            //应该存储种植区的mesh，没有变化时就使用旧的，减少运算量
+            foreach (var item in map.sectionDic)
+            {
+                GraphicsUtiliy.DrawPlantZoom(item.Value.GridPosList.ToArray(), item.Value.sectionColorIndex);
             }
         }
     }

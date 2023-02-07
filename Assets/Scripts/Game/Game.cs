@@ -1,6 +1,7 @@
 ﻿using LittleWorld.GameStateSpace;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LittleWorld
@@ -10,27 +11,44 @@ namespace LittleWorld
         public GameState state;
         public MapManager pathManager;
         public TimeManager timeManager;
+        private List<ITick> ticks;
+
+        public void RegisterTick(ITick tick)
+        {
+            ticks.Add(tick);
+        }
+
+        public void UnregisterTick(ITick tick)
+        {
+            if (ticks.Contains(tick))
+            {
+                ticks.Remove(tick);
+            }
+        }
+
 
         public Game()
         {
             pathManager = MapManager.Instance;
             timeManager = TimeManager.Instance;
+            ticks = new List<ITick>();
             state = GameState.PREPARING;
 
-            //gameStateFSM = new FiniteStateMachine();
-            //var preparingState = new PreparingState(GameState.PREPARING);
-            //var playingState = new PlayingState(GameState.PLAYING);
-            //gameStateFSM.AddState(preparingState);
-            //gameStateFSM.AddState(playingState);
-
-            //gameStateFSM.SetDefaultState(preparingState);
-            //gameStateFSM.Start();
+            Current.CurGame = this;
         }
 
         public void Tick()
         {
-            pathManager.Tick();
-            timeManager.Tick();
+            if (state == GameState.PLAYING)
+            {
+                pathManager.Tick();
+                timeManager.Tick();
+
+                foreach (var item in ticks.ToList())
+                {
+                    item.Tick();
+                }
+            }
         }
     }
 }

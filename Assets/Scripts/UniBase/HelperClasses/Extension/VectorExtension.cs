@@ -22,6 +22,16 @@ public static class VectorExtension
         return new Vector3Int(vector2.x, vector2.y, 0);
     }
 
+    public static Vector3 ToFloat(this Vector3Int vector3)
+    {
+        return new Vector3(vector3.x, vector3.y, vector3.z);
+    }
+
+    public static Vector3 To3(this Vector2 vector2)
+    {
+        return new Vector3(vector2.x, vector2.y, 0);
+    }
+
     public static Vector2Int To2(this Vector3Int vector3)
     {
         return new Vector2Int(vector3.x, vector3.y);

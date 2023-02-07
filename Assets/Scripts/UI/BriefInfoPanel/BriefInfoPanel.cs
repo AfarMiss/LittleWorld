@@ -1,41 +1,101 @@
-﻿using System.Collections;
+﻿using LittleWorld.Item;
+using LittleWorld.MapUtility;
+using SRF;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BriefInfoPanel : BaseUI
+namespace LittleWorld.UI
 {
-    public override string Path => UIPath.Panel_BriefInfoPanel;
-    [SerializeField] private GameObject briefItemObject;
-    [SerializeField] private Text InfoTitle;
-    [SerializeField] private Transform briefItemParent;
-
-    private List<BriefInfoItem> briefInfoItems;
-    public void BindBriefInfo(string infoTitle, List<BriefInfo> briefItems)
+    public class BriefInfoPanel : BaseUI
     {
-        if (briefInfoItems == null)
+        public override string Path => UIPath.Panel_BriefInfoPanel;
+        [SerializeField] private BriefInfoItem briefItem1;
+        [SerializeField] private Text InfoTitle;
+        [SerializeField] private Transform briefItemParent;
+        [SerializeField] private GameObject itemCommandGameObject;
+        [SerializeField] private Transform commandParent;
+
+        public void BindBriefInfo(Item.Object[] objects)
         {
-            briefInfoItems = new List<BriefInfoItem>();
-        }
-        if (briefInfoItems.Count != 0)
-        {
-            foreach (var item in briefInfoItems)
+            if (objects.Length > 1)
             {
-                Destroy(item.gameObject);
+                InfoTitle.text = "多种x" + objects.Length;
             }
-            briefInfoItems.Clear();
+            else if (objects.Length == 1)
+            {
+                var wo = objects[0];
+                InfoTitle.text = wo.ItemName;
+                commandParent.DestroyChildren();
+                BindCommands(wo);
+            }
         }
-        this.InfoTitle.text = infoTitle;
-        if (briefItems == null)
+
+        private void BindCommands(Item.Object item)
         {
-            return;
+            if (item is PlantMapSection map)
+            {
+                var command1 = AddCommand("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));
+                command1.BindCommand(() =>
+                {
+                    List<FloatOption> list = new List<FloatOption>();
+                    foreach (var item in ObjectConfig.plantInfoDic)
+                    {
+                        list.Add(new FloatOption(item.Value.itemName, () =>
+                        {
+                            map.SeedCode = item.Value.seedItem;
+                            //可能的更新
+                            command1.BindData("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));
+                        }));
+                    }
+                    UIManager.Instance.ShowFloatOptions(list, RectTransformAnchor.BOTTOM_LEFT);
+                });
+
+                var command2 = AddCommand("删除种植区", null);
+                command2.BindCommand(() =>
+                {
+                    Current.CurMap.DeleteSection(map);
+                });
+
+                var command3 = AddCommand("拓展种植区", null);
+                command3.BindCommand(() =>
+                {
+                    InputController.Instance.MouseState = MouseState.ExpandZone;
+                });
+
+                var command4 = AddCommand("缩小种植区", null);
+                command4.BindCommand(() =>
+                {
+                    InputController.Instance.MouseState = MouseState.ShrinkZone;
+                });
+            }
+            if (item is StorageMapSection storage)
+            {
+                var command2 = AddCommand("删除存储区", null);
+                command2.BindCommand(() =>
+                {
+                    Current.CurMap.DeleteSection(storage);
+                });
+
+                var command3 = AddCommand("拓展存储区", null);
+                command3.BindCommand(() =>
+                {
+                    InputController.Instance.MouseState = MouseState.ExpandZone;
+                });
+
+                var command4 = AddCommand("缩小存储区", null);
+                command4.BindCommand(() =>
+                {
+                    InputController.Instance.MouseState = MouseState.ShrinkZone;
+                });
+            }
         }
-        //这里如果briefItems==null会报空
-        foreach (var item in briefItems)
+
+        private DynamicCommandIcon AddCommand(string commandName, Sprite sprite)
         {
-            var briefItem = Instantiate(briefItemObject, briefItemParent);
-            briefInfoItems.Add(briefItem.GetComponent<BriefInfoItem>());
-            briefItem.GetComponent<BriefInfoItem>().bindData(item.title, item.content);
+            var go = Instantiate(itemCommandGameObject, commandParent);
+            go.GetComponent<DynamicCommandIcon>().BindData(commandName, sprite);
+            return go.GetComponent<DynamicCommandIcon>();
         }
     }
 }
