@@ -30,7 +30,7 @@ namespace LittleWorld.Item
         {
             wo.OnBeCarried(this);
             Inventory.Add(wo);
-            CurrentTake = this;
+            CurrentTake = wo;
         }
 
         public void Dropdown(WorldObject wo)
@@ -84,7 +84,6 @@ namespace LittleWorld.Item
 
         public Humanbeing(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
         {
-            this.gridPos = gridPos;
             actionQueue = new Queue<HumanAction>();
             workTracer = new PawnWorkTracer(this);
             animalInfo = ObjectConfig.animalInfo[itemCode];
@@ -139,6 +138,7 @@ namespace LittleWorld.Item
         {
             base.Tick();
             workTracer?.Tick();
+            Debug.Log("pos:" + GridPos);
         }
     }
 }

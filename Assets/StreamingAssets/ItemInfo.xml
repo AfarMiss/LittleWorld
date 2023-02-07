@@ -7,7 +7,7 @@
         <mass>0.3</mass>
         <cutWorkAmount>100</cutWorkAmount>
         <sowWorkAmount/>
-        <yieldCount>10</yieldCount>
+        <yieldCount>1</yieldCount>
         <woodCount>0</woodCount>
         <fruitItemCode>12001</fruitItemCode>
         <maxHealth>100</maxHealth>

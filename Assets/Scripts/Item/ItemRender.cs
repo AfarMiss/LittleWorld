@@ -13,27 +13,25 @@ public class ItemRender : MonoBehaviour
 
     public void Render<T>(T worldObject) where T : WorldObject
     {
-        //this.gameObject.AddComponent<NudgeItem>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.enabled = !worldObject.isCarried;
+        if (worldObject.isCarried) { return; }
+        //this.gameObject.AddComponent<NudgeItem>();
         spriteRenderer.sprite = worldObject.GetSprite();
-        DefaultSet();
-
-        if (worldObject is Humanbeing human && human.CurrentTake != null)
-        {
-            Transform itemTransform = SceneObjectManager.Instance.WorldItemsRenderer[human.CurrentTake].transform;
-            itemTransform.SetParent(transform);
-            itemTransform.localPosition = Vector3.zero;
-            itemTransform.localScale = Vector3.one;
-        }
+        Set(worldObject);
 
         this.ItemCode = worldObject.itemCode;
     }
 
-    private void DefaultSet()
+    private void Set(WorldObject wo)
     {
         spriteRenderer.transform.localScale = Vector3.one;
         var xOffset = spriteRenderer.sprite.pivot.x / spriteRenderer.sprite.pixelsPerUnit;
         var yOffset = spriteRenderer.sprite.pivot.y / spriteRenderer.sprite.pixelsPerUnit;
         spriteRenderer.transform.localPosition = new Vector3(xOffset, yOffset, 0);
+        if (!(wo is Animal))
+        {
+            this.transform.position = wo.GridPos.To3();
+        }
     }
 }

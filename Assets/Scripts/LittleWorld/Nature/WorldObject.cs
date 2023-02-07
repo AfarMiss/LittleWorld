@@ -39,6 +39,7 @@ namespace LittleWorld.Item
 
         public void OnBeDropDown()
         {
+            this.gridPos = carriedParent.GridPos;
             isCarried = false;
             carriedParent = null;
         }
@@ -52,7 +53,7 @@ namespace LittleWorld.Item
         {
             get
             {
-                if (this as Humanbeing != null)
+                if (this is Humanbeing)
                 {
                     var navis = GameObject.FindObjectsOfType<PathNavigation>();
                     var humanNavi = navis.ToList().Find(x => x.humanID == instanceID);
@@ -60,7 +61,7 @@ namespace LittleWorld.Item
                 }
                 else
                 {
-                    return gridPos.To3();
+                    return GridPos.To3();
                 }
             }
         }

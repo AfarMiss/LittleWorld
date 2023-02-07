@@ -15,7 +15,6 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
     [SerializeField]
     private GameObject itemPrefab;
 
-    public GameObject ItemPrefab => itemPrefab;
     public List<SceneItem> sceneItemList
     {
         get
@@ -114,7 +113,7 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
         {
             if (sceneSave.sceneItemList != null)
             {
-                InstantiateSceneItems(sceneSave.sceneItemList);
+                //InstantiateSceneItems(sceneSave.sceneItemList);
             }
         }
     }
@@ -125,17 +124,8 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
 
         foreach (var item in sceneItemList)
         {
-            itemGameObject = InstantiateSingleSceneItem(item);
+            //itemGameObject = InstantiateSingleSceneItem(item);
         }
-    }
-
-    private GameObject InstantiateSingleSceneItem(SceneItem item)
-    {
-        GameObject itemGameObject = Instantiate(itemPrefab, new Vector3(item.position.x, item.position.y, item.position.z), Quaternion.identity, parentItem);
-        ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
-        itemComponent.ItemCode = item.itemCode;
-        itemComponent.name = item.itemName;
-        return itemGameObject;
     }
 
     private void RenderPawn(Humanbeing human)

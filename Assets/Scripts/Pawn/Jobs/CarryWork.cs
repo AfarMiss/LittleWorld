@@ -17,7 +17,7 @@ namespace LittleWorld.Jobs
             Humanbeing humanbeing = tree.GetVariable("Humanbeing") as Humanbeing;
             //carry
             DynamicWalk walkLeaf = new DynamicWalk("Go To Object", humanbeing, Node.GoToLoc, GetOjectPos);
-            DynamicLongWorkLeaf carry = new DynamicLongWorkLeaf("Carry", humanbeing, DoCarry, GetOjectPos);
+            DynamicLongWorkLeaf carry = new DynamicLongWorkLeaf("Carry", humanbeing, DoCarry, GetOjectPos2);
             DynamicWalk moveToStorageSection = new DynamicWalk("Go To Storage Section", humanbeing, Node.GoToLoc, GetStoragePos);
             DynamicLongWorkLeaf dropDown = new DynamicLongWorkLeaf("Drop Down", humanbeing, DoDropDown, GetStoragePos);
             carrySequence.AddChild(walkLeaf);
@@ -53,6 +53,11 @@ namespace LittleWorld.Jobs
         }
 
         private Vector2Int GetOjectPos()
+        {
+            return (tree.GetVariable("WorldObject") as WorldObject).GridPos;
+        }
+
+        private Vector2Int GetOjectPos2()
         {
             return (tree.GetVariable("WorldObject") as WorldObject).GridPos;
         }
