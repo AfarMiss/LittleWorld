@@ -11,6 +11,7 @@ namespace LittleWorld.Item
         public static Dictionary<int, SeedInfo> seedInfo = new Dictionary<int, SeedInfo>();
         public static Dictionary<int, RawFoodInfo> rawFoodInfo = new Dictionary<int, RawFoodInfo>();
         public static Dictionary<int, AnimalInfo> animalInfo = new Dictionary<int, AnimalInfo>();
+        public static Dictionary<int, ThingInfo> thingInfo = new Dictionary<int, ThingInfo>();
 
         public static int GetPlantCode(int seedCode)
         {

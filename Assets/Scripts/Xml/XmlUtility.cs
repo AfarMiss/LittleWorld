@@ -1,6 +1,7 @@
 ﻿using LittleWorld.Item;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using UnityEngine;
 
@@ -77,6 +78,16 @@ namespace Xml
                     animal.itemSprites = CreateItemSpritesList(item, 6);
                     ObjectConfig.animalInfo.Add(animal.itemCode, animal);
                 }
+
+                if (item.SelectSingleNode("itemType").InnerText == "Thing")
+                {
+                    var thing = new ThingInfo();
+                    thing.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
+                    thing.itemName = item.SelectSingleNode("itemName").InnerText;
+                    thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    thing.itemSprites = CreateItemSpritesList(item, 3);
+                    ObjectConfig.thingInfo.Add(thing.itemCode, thing);
+                }
             }
         }
 
@@ -87,8 +98,30 @@ namespace Xml
             {
                 if (!string.IsNullOrEmpty(item.SelectSingleNode($"image{i}")?.InnerText))
                 {
-                    var curSprite = Resources.Load<Sprite>(item.SelectSingleNode($"image{i}").InnerText);
-                    sprites.Add(curSprite);
+                    var loadPath = item.SelectSingleNode($"image{i}").InnerText;
+                    if (string.IsNullOrEmpty(loadPath))
+                    {
+                        continue;
+                    }
+                    var prefix = "Assets/Resources/";
+                    if (loadPath.StartsWith(prefix))
+                    {
+                        loadPath = loadPath.Substring(prefix.Length);
+                    }
+                    string selectionExt = System.IO.Path.GetExtension(loadPath);
+                    if (selectionExt.Length != 0)
+                    {
+                        loadPath = loadPath.Remove(loadPath.Length - selectionExt.Length);
+                    }
+                    var curSprite = Resources.Load<Sprite>(loadPath);
+                    if (curSprite != null)
+                    {
+                        sprites.Add(curSprite);
+                    }
+                    else
+                    {
+                        Debug.LogError($"{loadPath} is null of sprite");
+                    }
                 }
             }
             return sprites;

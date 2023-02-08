@@ -89,6 +89,7 @@ namespace LittleWorld
 
             Xml.XmlUtility.ReadConfigXml("ItemInfo");
             Xml.XmlUtility.ReadConfigXml("Animals");
+            Xml.XmlUtility.ReadConfigXml("Things");
         }
 
         private void FixedUpdate()
