@@ -35,7 +35,7 @@ namespace LittleWorld.TextureUtility
                     if (sprites.Length > 0)
                     {
                         // 创建导出文件夹
-                        string outPath = Application.dataPath + "/outSprite/" + loadPath;
+                        string outPath = Application.dataPath + "/Resources/" + loadPath;
                         System.IO.Directory.CreateDirectory(outPath);
 
                         foreach (Sprite sprite in sprites)

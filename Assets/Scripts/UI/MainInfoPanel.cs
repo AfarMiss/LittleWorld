@@ -64,12 +64,12 @@ namespace LittleWorld.UI
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.AddSection));
         }
 
-        public void ExpandStorageZone()
+        public void BuildStove()
         {
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ExpandStorageZone));
         }
 
-        public void ShrinkStorageZone()
+        public void Build()
         {
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ShrinkStorageZone));
         }
