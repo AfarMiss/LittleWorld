@@ -75,6 +75,8 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
         new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
         new Plant(10001, new Vector2Int(2, 3));
         new Plant(10001, Vector2Int.one);
+        new Plant(10027, new Vector2Int(25, 25), 4);
+        new Plant(10027, new Vector2Int(24, 25), 8);
     }
 
     private void OnDestroy()

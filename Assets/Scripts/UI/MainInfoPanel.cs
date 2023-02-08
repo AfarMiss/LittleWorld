@@ -71,6 +71,26 @@ namespace LittleWorld.UI
         {
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.AddStorageSection));
         }
+
+        public void OnClickPause()
+        {
+            Time.timeScale = 0;
+        }
+
+        public void OnClickSpeed1()
+        {
+            Time.timeScale = 1;
+        }
+
+        public void OnClickSpeed2()
+        {
+            Time.timeScale = 2;
+        }
+
+        public void OnClickSpeed3()
+        {
+            Time.timeScale = 3;
+        }
     }
 
 }

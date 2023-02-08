@@ -34,7 +34,7 @@ namespace Xml
                     plant.woodCount = int.Parse(item.SelectSingleNode("woodCount").InnerText);
                     plant.fruitItemCode = int.Parse(item.SelectSingleNode("fruitItemCode").InnerText);
                     plant.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
-                    plant.seedItem = int.Parse(item.SelectSingleNode("seedItem").InnerText);
+                    int.TryParse(item.SelectSingleNode("seedItem").InnerText, out plant.seedItem);
                     plant.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     plant.growingTime = float.Parse(item.SelectSingleNode("growingTime").InnerText);
                     plant.itemSprites = CreateItemSpritesList(item, 6);

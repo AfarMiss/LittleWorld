@@ -13,13 +13,14 @@ namespace LittleWorld.Item
         public bool IsRipe => curGrowTime >= plantInfo.growingTime * 0.95f;
         public PlantInfo PlantInfo => plantInfo;
 
-        public Plant(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
+        public Plant(int itemCode, Vector2Int gridPos, float curGrowthTime = 0) : base(itemCode, gridPos)
         {
             if (ObjectConfig.plantInfoDic.TryGetValue(itemCode, out plantInfo))
             {
                 plantInfo = ObjectConfig.plantInfoDic[itemCode];
                 this.itemCode = itemCode;
                 ItemName = plantInfo.itemName;
+                this.curGrowTime = curGrowthTime;
             }
         }
 
