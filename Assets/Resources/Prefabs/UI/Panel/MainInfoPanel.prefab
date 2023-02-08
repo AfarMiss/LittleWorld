@@ -618,11 +618,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExpandZone
+      value: BuildStove
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainInfoPanel, Assembly-CSharp
+      value: LittleWorld.UI.MainInfoPanel, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -751,11 +751,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShrinkZone
+      value: BuildSmithy
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainInfoPanel, Assembly-CSharp
+      value: LittleWorld.UI.MainInfoPanel, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5133762528057094066, guid: b4a07299d2fc8b546a07e94982150fbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

@@ -67,5 +67,18 @@ namespace LittleWorld.Item
                 return null;
             }
         }
+
+        public static Sprite GetBuildingSprite(int buildingCode)
+        {
+            var buildingInfo = ObjectConfig.buildingInfo.Values.ToList().Find(x => x.itemCode == buildingCode);
+            if (buildingInfo != null)
+            {
+                return buildingInfo.itemSprites[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

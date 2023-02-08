@@ -10,6 +10,7 @@ using static UnityEngine.InputSystem.InputAction;
 using LittleWorld.MapUtility;
 using LittleWorld.Graphics;
 using UnityEngine.UI;
+using System;
 
 public class InputController : MonoSingleton<InputController>
 {
@@ -18,7 +19,10 @@ public class InputController : MonoSingleton<InputController>
     private Vector3 onClickLeftEndPosition;
     private OnPlantZoneChanged onPlantZoneChanged;
     private bool needRespondToUI;
-    private GameObject ghostBuilding = null;
+    private GameObject ghostBuilding;
+    [SerializeField]
+    private GameObject pfGhostBuilding;
+    public int CurSelectedBuildingCode;
 
 
     public void AddEventOnZoomChanged(OnPlantZoneChanged onChanged)
@@ -79,6 +83,8 @@ public class InputController : MonoSingleton<InputController>
         isInit = true;
         additionalAction = false;
         cameraDraging = false;
+        ghostBuilding = Instantiate(pfGhostBuilding, null);
+        ghostBuilding.GetComponent<GhostRender>().DisableRender();
     }
 
     public void OnClickDouble(CallbackContext callbackContext)
@@ -149,6 +155,10 @@ public class InputController : MonoSingleton<InputController>
                     AddMoveWork(human, curPos);
                 }
             }
+        }
+        if (callbackContext.canceled)
+        {
+            ghostBuilding.GetComponent<GhostRender>().DisableRender();
         }
     }
 
@@ -260,7 +270,9 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.AddStorageSection:
                 AddSection(callbackContext, SectionType.STORE);
                 break;
+
             case MouseState.BuildingGhost:
+                AddBuilding(callbackContext);
                 break;
             default:
                 break;
@@ -326,15 +338,11 @@ public class InputController : MonoSingleton<InputController>
         }
     }
 
-    private void AddBuilding(CallbackContext callbackContext, int buildingCode)
+    private void AddBuilding(CallbackContext callbackContext)
     {
         if (callbackContext.started)
         {
-            ghostBuilding = Instantiate(SceneObjectManager.Instance.ghostPrefab, null);
-        }
-        if (callbackContext.canceled)
-        {
-            SceneObjectManager.Instance.AddBuildingGhostToManager(buildingCode);
+            EnableRenderGhostBuilding();
         }
     }
 
@@ -414,6 +422,30 @@ public class InputController : MonoSingleton<InputController>
         {
             UpdateSelectArea();
         }
+        OnFloat();
+        Debug.Log("OnFloat");
+    }
+
+    private void OnFloat()
+    {
+        switch (mouseState)
+        {
+            case MouseState.Normal:
+            case MouseState.ExpandZone:
+            case MouseState.ShrinkZone:
+            case MouseState.AddSection:
+            case MouseState.DeleteSection:
+            case MouseState.ExpandStorageZone:
+            case MouseState.ShrinkStorageZone:
+            case MouseState.AddStorageSection:
+            case MouseState.DeleteStorageSection:
+                break;
+            case MouseState.BuildingGhost:
+                UpdateGhostPos(Camera.main.ScreenToWorldPoint(Current.MousePos));
+                break;
+            default:
+                break;
+        }
     }
 
     private void UpdateSelectArea()
@@ -421,6 +453,7 @@ public class InputController : MonoSingleton<InputController>
         onClickLeftEndPosition = Current.MousePos;
         onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
         //Debug.Log("Mouse Pos:" + Current.MousePos);
+        Debug.Log("mouseState:" + mouseState.ToString());
         var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Min(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
         var upperRight = new Vector2(Mathf.Max(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Max(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
 
@@ -442,9 +475,34 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.DeleteStorageSection:
                 RenderPlantManager();
                 break;
+            case MouseState.BuildingGhost:
+                break;
             default:
                 break;
         }
+    }
+
+    public void EnableRenderGhostBuilding()
+    {
+        GhostRender itemRender = ghostBuilding.GetComponent<GhostRender>();
+        itemRender.EnableRender();
+    }
+
+    public void DisableRenderGhostBuilding()
+    {
+        GhostRender itemRender = ghostBuilding.GetComponent<GhostRender>();
+        itemRender.DisableRender();
+    }
+
+    public void UpdateGhostBuilding(int buildingCode)
+    {
+        GhostRender itemRender = ghostBuilding.GetComponent<GhostRender>();
+        itemRender.UpdateRender(ObjectConfig.GetBuildingSprite(buildingCode));
+    }
+
+    private void UpdateGhostPos(Vector3 pos)
+    {
+        ghostBuilding.transform.position = new Vector3(pos.x, pos.y, 0);
     }
 
     private void RenderPlantManager()

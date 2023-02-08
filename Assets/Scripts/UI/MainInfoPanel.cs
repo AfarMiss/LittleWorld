@@ -1,5 +1,6 @@
 ﻿using LittleWorld;
 using LittleWorld.Command;
+using LittleWorld.Item;
 using LittleWorld.MapUtility;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,11 +58,13 @@ namespace LittleWorld.UI
         public void BuildStove()
         {
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.BuildingGhost));
+            CommandCenter.Instance.Enqueue(new ChangeGhostBuildingCommand(ObjectCode.stove.GetHashCode()));
         }
 
         public void BuildSmithy()
         {
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.BuildingGhost));
+            CommandCenter.Instance.Enqueue(new ChangeGhostBuildingCommand(ObjectCode.smithy.GetHashCode()));
         }
 
         public void AddStorageSection()
