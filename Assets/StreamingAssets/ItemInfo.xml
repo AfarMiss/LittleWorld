@@ -232,13 +232,13 @@
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
         <itemEngName>cotton_Plant</itemEngName>
-        <image0>FarmPack\singleAsset\crops\ground\cotton\cotton_crop_all_frames\cotton_all_frames_0</image0>
-        <image1>FarmPack\singleAsset\crops\ground\cotton\cotton_crop_all_frames\cotton_all_frames_1</image1>
-        <image2>FarmPack\singleAsset\crops\ground\cotton\cotton_crop_all_frames\cotton_all_frames_2</image2>
-        <image3>FarmPack\singleAsset\crops\ground\cotton\cotton_crop_all_frames\cotton_all_frames_3</image3>
-        <image4>FarmPack\singleAsset\crops\ground\cotton\cotton_crop_all_frames\cotton_all_frames_4</image4>
-        <image5>FarmPack\singleAsset\crops\ground\cotton\cotton_crop_all_frames\cotton_all_frames_5</image5>
-        <image6>FarmPack\singleAsset\crops\ground\cotton\cotton_crop_all_frames\cotton_all_frames_6</image6>
+        <image0>FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_0</image0>
+        <image1>FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_1</image1>
+        <image2>FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_2</image2>
+        <image3>FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_3</image3>
+        <image4>FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_4</image4>
+        <image5>FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_5</image5>
+        <image6>FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_6</image6>
     </item>
     <item>
         <itemCode>10011</itemCode>
@@ -592,13 +592,13 @@
         <nutrition>0.2</nutrition>
         <growingTime>6</growingTime>
         <itemEngName>tomato_Plant</itemEngName>
-        <image0>FarmPack\singleAsset\crops\ground</image0>
-        <image1>omato\tomato_all_frames\tomato_all_frames_0</image1>
-        <image2>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_1</image2>
-        <image3>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_2</image3>
-        <image4>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_3</image4>
-        <image5>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_4</image5>
-        <image6>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_5</image6>
+        <image0>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_0</image0>
+        <image1>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_1</image1>
+        <image2>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_2</image2>
+        <image3>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_3</image3>
+        <image4>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_4</image4>
+        <image5>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_5</image5>
+        <image6>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_6</image6>
     </item>
     <item>
         <itemCode>10026</itemCode>

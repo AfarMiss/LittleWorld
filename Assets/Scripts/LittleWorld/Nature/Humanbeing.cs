@@ -138,7 +138,7 @@ namespace LittleWorld.Item
         {
             base.Tick();
             workTracer?.Tick();
-            Debug.Log("pos:" + GridPos);
+            //Debug.Log("pos:" + GridPos);
         }
     }
 }
