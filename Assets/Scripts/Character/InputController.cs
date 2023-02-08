@@ -22,6 +22,7 @@ public class InputController : MonoSingleton<InputController>
     private GameObject ghostBuilding;
     [SerializeField]
     private GameObject pfGhostBuilding;
+    Camera mainCamera;
     public int CurSelectedBuildingCode;
 
 
@@ -59,7 +60,7 @@ public class InputController : MonoSingleton<InputController>
     private MouseState mouseState = MouseState.Normal;
 
     private RectTransform selectedArea => UIManager.Instance.SelectionArea;
-    private CameraController CamController => Camera.main.GetComponent<CameraController>();
+    private CameraController CamController => mainCamera.GetComponent<CameraController>();
 
     private Rect screenRealSelection;
 
@@ -85,6 +86,8 @@ public class InputController : MonoSingleton<InputController>
         cameraDraging = false;
         ghostBuilding = Instantiate(pfGhostBuilding, null);
         ghostBuilding.GetComponent<GhostRender>().DisableRender();
+
+        mainCamera = Camera.main;
     }
 
     public void OnClickDouble(CallbackContext callbackContext)
@@ -239,13 +242,13 @@ public class InputController : MonoSingleton<InputController>
         if (callbackContext.started)
         {
             onClickLeftStartPosition = Current.MousePos;
-            onClickLeftStartPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftStartPosition);
+            onClickLeftStartPositionWorldPosition = mainCamera.ScreenToWorldPoint(onClickLeftStartPosition);
             Debug.Log("Click.started -------");
         }
         else if (callbackContext.canceled)
         {
             onClickLeftEndPosition = Current.MousePos;
-            onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
+            onClickLeftEndPositionWorldPosition = mainCamera.ScreenToWorldPoint(onClickLeftEndPosition);
             Debug.Log("Click.canceled -------");
         }
 
@@ -441,7 +444,7 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.DeleteStorageSection:
                 break;
             case MouseState.BuildingGhost:
-                UpdateGhostPos(Camera.main.ScreenToWorldPoint(Current.MousePos));
+                UpdateGhostPos(mainCamera.ScreenToWorldPoint(Current.MousePos));
                 break;
             default:
                 break;
@@ -451,7 +454,7 @@ public class InputController : MonoSingleton<InputController>
     private void UpdateSelectArea()
     {
         onClickLeftEndPosition = Current.MousePos;
-        onClickLeftEndPositionWorldPosition = Camera.main.ScreenToWorldPoint(onClickLeftEndPosition);
+        onClickLeftEndPositionWorldPosition = mainCamera.ScreenToWorldPoint(onClickLeftEndPosition);
         //Debug.Log("Mouse Pos:" + Current.MousePos);
         Debug.Log("mouseState:" + mouseState.ToString());
         var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Min(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
