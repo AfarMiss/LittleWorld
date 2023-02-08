@@ -12,6 +12,11 @@ namespace LittleWorld.Item
 
         public Ore(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
+            if (ObjectConfig.oreInfo.TryGetValue(itemCode, out oreInfo))
+            {
+                oreInfo = ObjectConfig.oreInfo[itemCode];
+                ItemName = oreInfo.itemName;
+            }
         }
 
         public override Sprite GetSprite()

@@ -18,7 +18,6 @@ namespace LittleWorld.Item
             if (ObjectConfig.plantInfoDic.TryGetValue(itemCode, out plantInfo))
             {
                 plantInfo = ObjectConfig.plantInfoDic[itemCode];
-                this.itemCode = itemCode;
                 ItemName = plantInfo.itemName;
                 this.curGrowTime = curGrowthTime;
             }

@@ -13,6 +13,9 @@ namespace LittleWorld.MapUtility
         public Rect gridRect;
         public bool isPlantZone;
         public bool isLand => gridAltitudeLayer >= 30;
+
+        public bool isPlane => gridAltitudeLayer >= 30 && gridAltitudeLayer < 75;
+        public bool isMountain => gridAltitudeLayer >= 75 && gridAltitudeLayer <= 100;
         public bool HasPlant
         {
             get

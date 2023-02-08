@@ -28,4 +28,18 @@
         <image1/>
         <image2/>
     </item>
+    <item>
+        <itemCode>16003</itemCode>
+        <itemName>花岗岩</itemName>
+        <itemType>Ore</itemType>
+        <mass>15</mass>
+        <marketValue>10</marketValue>
+        <maxHitPoint>600</maxHitPoint>
+        <itemEngName>gran·ite _ore</itemEngName>
+        <productionCode>15005</productionCode>
+        <productionAmount>20</productionAmount>
+        <image0>Assets/Resources/FarmPack/assets/mining/ores/mining_ores_13.png</image0>
+        <image1/>
+        <image2/>
+    </item>
 </items>

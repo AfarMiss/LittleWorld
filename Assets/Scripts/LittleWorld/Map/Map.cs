@@ -168,7 +168,7 @@ namespace LittleWorld.MapUtility
         }
 
         /// <summary>
-        /// water-plain-mountain
+        /// 总海拔为0-100
         /// </summary>
         private int layerCount = 100;
 
@@ -228,12 +228,12 @@ namespace LittleWorld.MapUtility
 
         private void GenerateTrees(Vector2Int MapSize)
         {
-            //以20%的概率随机生成陆地中的树木
             for (int x = 0; x < MapSize.x; x++)
             {
                 for (int y = 0; y < MapSize.y; y++)
                 {
-                    if ((mapGrids[x * MapSize.y + y].isLand))
+                    //5%的概率随机生成陆地中的树木
+                    if (mapGrids[x * MapSize.y + y].isPlane)
                     {
                         if ((UnityEngine.Random.Range(0, 99) < 5))
                         {
@@ -244,8 +244,28 @@ namespace LittleWorld.MapUtility
                                    );
                         }
                     }
+                    if (mapGrids[x * MapSize.y + y].isMountain)
+                    {
+                        //以1%的概率随机生成高山中的矿石
+                        if ((UnityEngine.Random.Range(0, 99) < 5))
+                        {
+                            new Ore(
+                                   UnityEngine.Random.Range(0, 1f) < 0.5f ? 16001 : 16002,
+                                   new Vector2Int(x, y)
+                                   );
+                        }
+                        //剩余部分全部生成花岗岩石
+                        else
+                        {
+                            new Ore(
+                                    16003,
+                                    new Vector2Int(x, y)
+                                    );
+                        }
+                    }
                 }
             }
+
         }
 
         public bool GetGrid(int x, int y, out MapGridDetails result)

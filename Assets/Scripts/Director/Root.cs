@@ -94,6 +94,7 @@ namespace LittleWorld
             Xml.XmlUtility.ReadConfigXml("Animals");
             Xml.XmlUtility.ReadConfigXml("Things");
             Xml.XmlUtility.ReadConfigXml("Buildings");
+            Xml.XmlUtility.ReadConfigXml("Ores");
         }
 
         private void FixedUpdate()
