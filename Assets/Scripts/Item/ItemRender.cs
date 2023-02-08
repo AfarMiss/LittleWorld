@@ -34,4 +34,9 @@ public class ItemRender : MonoBehaviour
             this.transform.position = wo.GridPos.To3();
         }
     }
+
+    private void OnDestroy()
+    {
+        Debug.Log("???");
+    }
 }

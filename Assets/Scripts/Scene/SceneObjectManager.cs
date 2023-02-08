@@ -7,22 +7,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using LittleWorld;
+using static UnityEditor.Progress;
 
-public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
+public class SceneObjectManager : Singleton<SceneObjectManager>
 {
     public static int ItemInstanceID;
-    private Transform parentItem;
-    [SerializeField]
     private GameObject itemPrefab;
-    [SerializeField]
     public GameObject ghostPrefab;
+    private GameObject pawnRes;
+    private GameObject renderParent;
 
     public List<SceneItem> sceneItemList
     {
         get
         {
             List<SceneItem> sceneItemList = new List<SceneItem>();
-            ItemRender[] itemsInScene = FindObjectsOfType<ItemRender>();
+            ItemRender[] itemsInScene = GameObject.FindObjectsOfType<ItemRender>();
 
             foreach (var item in itemsInScene)
             {
@@ -43,7 +43,7 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
     public void RegisterItem(WorldObject worldObject)
     {
         WorldObjects.Add(worldObject.instanceID, worldObject);
-        RenderItem(worldObject);
+        AddRenderComponent(worldObject);
     }
 
     public void UnregisterItem(WorldObject worldObject)
@@ -57,75 +57,32 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
 
     public PawnManager pawnManager;
 
-    private string iSaveableUniqueID;
-    public string ISaveableUniqueID { get => iSaveableUniqueID; set => iSaveableUniqueID = value; }
-    private GameObjectSave gameObjectSave;
-    public GameObjectSave GameObjectSave { get => gameObjectSave; set => gameObjectSave = value; }
-
-    protected override void Awake()
+    public override void OnCreateInstance()
     {
-        base.Awake();
+        base.OnCreateInstance();
+        EventCenter.Instance.Register<GameTime>((nameof(EventEnum.GAME_TICK)), Tick);
 
         ItemInstanceID = 0;
-        ISaveableUniqueID = gameObject.GetOrAddComponent<GenerateGUID>().GUID;
-        GameObjectSave = new GameObjectSave();
         pawnManager = PawnManager.Instance;
+        itemPrefab = Resources.Load<GameObject>("Prefabs/Object/Item");
+        ghostPrefab = Resources.Load<GameObject>("Prefabs/Object/Ghost");
+        pawnRes = Resources.Load<GameObject>("Prefabs/Character/Pawn");
+
+        renderParent = new GameObject("RenderParent");
+        GameObject.DontDestroyOnLoad(renderParent);
 
         //测试代码
         new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
-        new Plant(10001, new Vector2Int(2, 3));
-        new Plant(10001, Vector2Int.one);
-        new Plant(10027, new Vector2Int(25, 25), 4);
-        new Plant(10027, new Vector2Int(24, 25), 8);
     }
 
-    private void OnDestroy()
+    private SceneObjectManager()
     {
-    }
 
-    private void OnEnable()
-    {
-        ISaveableRegister();
-        EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoad);
-        EventCenter.Instance.Register<GameTime>((nameof(EventEnum.GAME_TICK)), Tick);
-    }
-
-    private void OnDisable()
-    {
-        ISaveableDeregister();
-        EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoad);
-    }
-
-    private void AfterSceneLoad()
-    {
-        parentItem = GameObject.FindGameObjectWithTag(Tags.ItemsParentTransform.ToString())?.transform;
-    }
-
-    public void ISaveableDeregister()
-    {
-        SaveLoadManager.Instance?.iSaveableObjectList.Remove(this);
-    }
-
-    public void ISaveableRegister()
-    {
-        SaveLoadManager.Instance?.iSaveableObjectList.Add(this);
-    }
-
-    public void ISaveableRestoreScene(string sceneName)
-    {
-        if (GameObjectSave.sceneData.TryGetValue(sceneName, out SceneSave sceneSave))
-        {
-            if (sceneSave.sceneItemList != null)
-            {
-                //InstantiateSceneItems(sceneSave.sceneItemList);
-            }
-        }
     }
 
     private void RenderPawn(Humanbeing human)
     {
-        GameObject pawnRes = Resources.Load<GameObject>("Prefabs/Character/Pawn");
-        GameObject curPawn = GameObject.Instantiate<GameObject>(pawnRes);
+        GameObject curPawn = GameObject.Instantiate<GameObject>(pawnRes, renderParent.transform);
         curPawn.GetComponent<Transform>().transform.position = human.GridPos.To3();
         curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
         human.SetNavi(curPawn.GetComponent<PathNavigation>());
@@ -133,11 +90,11 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
         WorldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
     }
 
-    private void RenderItem(WorldObject wo)
+    private void AddRenderComponent(WorldObject wo)
     {
         if (!(wo is Humanbeing))
         {
-            GameObject itemGameObject = Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, parentItem);
+            GameObject itemGameObject = GameObject.Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
             ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
             wo.rendererObject = itemGameObject;
             WorldItemsRenderer.Add(wo, itemComponent);
@@ -153,35 +110,10 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
         WorldItemsRenderer.TryGetValue(wo, out var renderer);
         if (renderer != null)
         {
-            Destroy(renderer.gameObject);
+            GameObject.Destroy(renderer.gameObject);
             wo.rendererObject = null;
         }
         WorldItemsRenderer.Remove(wo);
-    }
-
-    public void ISaveableStoreScene(string sceneName)
-    {
-        //删除旧数据
-        GameObjectSave.sceneData.Remove(sceneName);
-
-        SceneSave sceneSave = new SceneSave();
-        sceneSave.sceneItemList = sceneItemList;
-
-        GameObjectSave.sceneData.Add(sceneName, sceneSave);
-    }
-    public GameObjectSave ISaveableSave()
-    {
-        ISaveableStoreScene(SceneManager.GetActiveScene().name);
-        return GameObjectSave;
-    }
-
-    public void ISaveableLoad(GameSave gameSave)
-    {
-        if (gameSave.gameObjectData.TryGetValue(ISaveableUniqueID, out GameObjectSave gameObjectSave))
-        {
-            GameObjectSave = gameObjectSave;
-            ISaveableRestoreScene(SceneManager.GetActiveScene().name);
-        }
     }
 
     public WorldObject GetWorldObjectById(int instanceID)

@@ -11,6 +11,7 @@ namespace LittleWorld
         public GameState state;
         public MapManager pathManager;
         public TimeManager timeManager;
+        public SceneObjectManager SceneObjectManager;
         private List<ITick> ticks;
 
         public void RegisterTick(ITick tick)
@@ -31,6 +32,7 @@ namespace LittleWorld
         {
             pathManager = MapManager.Instance;
             timeManager = TimeManager.Instance;
+            SceneObjectManager = SceneObjectManager.Instance;
             ticks = new List<ITick>();
             state = GameState.PREPARING;
 

@@ -1,7 +1,10 @@
 ﻿using AStarUtility;
+using LittleWorld.Item;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using static System.Collections.Specialized.BitVector32;
 
@@ -218,6 +221,31 @@ namespace LittleWorld.MapUtility
                 new Color(0.5f,0,0.5f,0.09f),
     };
             plantHash = new HashSet<Vector2Int>();
+
+            GenerateTrees(MapSize);
+
+        }
+
+        private void GenerateTrees(Vector2Int MapSize)
+        {
+            //以20%的概率随机生成陆地中的树木
+            for (int x = 0; x < MapSize.x; x++)
+            {
+                for (int y = 0; y < MapSize.y; y++)
+                {
+                    if ((mapGrids[x * MapSize.y + y].isLand))
+                    {
+                        if ((UnityEngine.Random.Range(0, 99) < 5))
+                        {
+                            new Plant(
+                                   UnityEngine.Random.Range(0, 1f) < 0.5f ? 10027 : 10028,
+                                   new Vector2Int(x, y),
+                                   UnityEngine.Random.Range(0, 16)
+                                   );
+                        }
+                    }
+                }
+            }
         }
 
         public bool GetGrid(int x, int y, out MapGridDetails result)
