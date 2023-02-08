@@ -21,5 +21,11 @@ namespace LittleWorld.Item
     {
         public int materialCode;
         public int materCount;
+
+        public BuildingCost(int materialCode, int materCount)
+        {
+            this.materialCode = materialCode;
+            this.materCount = materCount;
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace LittleWorld.Item
         public static Dictionary<int, RawFoodInfo> rawFoodInfo = new Dictionary<int, RawFoodInfo>();
         public static Dictionary<int, AnimalInfo> animalInfo = new Dictionary<int, AnimalInfo>();
         public static Dictionary<int, ThingInfo> thingInfo = new Dictionary<int, ThingInfo>();
+        public static Dictionary<int, BuildingInfo> buildingInfo = new Dictionary<int, BuildingInfo>();
 
         public static int GetPlantCode(int seedCode)
         {
@@ -25,6 +26,20 @@ namespace LittleWorld.Item
                 return 0;
             }
 
+        }
+
+        public static int GetRawMaterialCode(string materialName)
+        {
+            var result = thingInfo.Values.ToList().Find(x => x.itemName == materialName);
+            if (result != null)
+            {
+                return result.itemCode;
+            }
+            else
+            {
+                Debug.LogError($"No raw material for {materialName}");
+                return default;
+            }
         }
 
         public static string GetPlantName(int seedCode)

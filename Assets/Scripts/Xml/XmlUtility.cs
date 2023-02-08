@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Xml
@@ -88,6 +89,20 @@ namespace Xml
                     thing.itemSprites = CreateItemSpritesList(item, 3);
                     ObjectConfig.thingInfo.Add(thing.itemCode, thing);
                 }
+                if (item.SelectSingleNode("itemType").InnerText == "Building")
+                {
+                    var thing = new BuildingInfo();
+                    thing.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
+                    thing.itemName = item.SelectSingleNode("itemName").InnerText;
+                    thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    thing.buildingWorkAmount = int.Parse(item.SelectSingleNode("buildingWorkAmount").InnerText);
+                    thing.marketValue = float.Parse(item.SelectSingleNode("marketValue").InnerText);
+                    thing.maxHitPoint = int.Parse(item.SelectSingleNode("maxHitPoint").InnerText);
+                    thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    thing.buildingCost = GetBuildingCost(item);
+                    thing.itemSprites = CreateItemSpritesList(item, 1);
+                    ObjectConfig.buildingInfo.Add(thing.itemCode, thing);
+                }
             }
         }
 
@@ -125,6 +140,25 @@ namespace Xml
                 }
             }
             return sprites;
+        }
+        private static List<BuildingCost> GetBuildingCost(XmlNode item)
+        {
+            var buildingCost = new List<BuildingCost>();
+            var innerText = item.SelectSingleNode($"buildingCost")?.InnerText;
+            if (!string.IsNullOrEmpty(innerText))
+            {
+                string[] buildingMaterialsText = innerText.Split(",");
+                foreach (var text in buildingMaterialsText)
+                {
+                    string[] materialInfo = text.Split("x");
+                    string materialName = materialInfo[0];
+                    string materialCount = materialInfo[1];
+                    buildingCost.Add(new BuildingCost(
+                        ObjectConfig.GetRawMaterialCode(materialName),
+                        int.Parse(materialCount)));
+                }
+            }
+            return buildingCost;
         }
     }
 
