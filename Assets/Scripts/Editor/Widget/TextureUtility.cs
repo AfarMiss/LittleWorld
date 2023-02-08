@@ -51,6 +51,10 @@ namespace LittleWorld.TextureUtility
                         }
                         Debug.Log("SaveSprite to " + outPath);
                     }
+                    else
+                    {
+                        Debug.LogWarning($"No Sprites existed in {loadPath},do you forget to generate?");
+                    }
                 }
             }
             Debug.Log("SaveSprite Finished");
@@ -73,37 +77,42 @@ namespace LittleWorld.TextureUtility
                 //不处理类型为“Lightmap”的Texture
                 if ("Lightmap" != texImporter.textureType.ToString())
                 {
-                    //修改Texture Type
-                    texImporter.textureType = TextureImporterType.Sprite;
-                    texImporter.spritePixelsPerUnit = 16;
-                    texImporter.spriteImportMode = SpriteImportMode.Multiple;
-                    texImporter.filterMode = FilterMode.Point;
-
-                    ////修改Aniso Level
-                    //texImporter.anisoLevel = 0;
-                    ////修改Read/Write enabled 
-                    texImporter.isReadable = true;
-                    ////修改Generate Mip Maps
-                    //texImporter.mipmapEnabled = false;
-
-                    //string texName = texture.name;
-                    //int maxSize[2];
-                    //TextureImporterFormat texFormat;
-                    //texImporter.GetPlatformTextureSettings("Android", out maxSize[0], out texFormat);
-                    //texImporter.GetPlatformTextureSettings("iPhone", out maxSize[1], out texFormat);
-                    //if (texName.Contains("alpha"))
-                    //{
-                    //    texImporter.SetPlatformTextureSettings("Android", maxSize[0], TextureImporterFormat.ETC2_RGBA8);
-                    //    texImporter.SetPlatformTextureSettings("iPhone", maxSize[1], TextureImporterFormat.PVRTC_RGBA4);
-                    //}
-                    //else
-                    //{
-                    //    texImporter.SetPlatformTextureSettings("Android", maxSize[0], TextureImporterFormat.ETC2_RGB4);
-                    //    texImporter.SetPlatformTextureSettings("iPhone", maxSize[1], TextureImporterFormat.PVRTC_RGB4);
-                    //}
-                    AssetDatabase.ImportAsset(path);
+                    SetTextureProperty(path, texImporter);
                 }
             }
+        }
+
+        private static void SetTextureProperty(string path, TextureImporter texImporter)
+        {
+            //修改Texture Type
+            texImporter.textureType = TextureImporterType.Sprite;
+            texImporter.spritePixelsPerUnit = 16;
+            texImporter.spriteImportMode = SpriteImportMode.Multiple;
+            texImporter.filterMode = FilterMode.Point;
+
+            ////修改Aniso Level
+            //texImporter.anisoLevel = 0;
+            ////修改Read/Write enabled 
+            texImporter.isReadable = true;
+            ////修改Generate Mip Maps
+            //texImporter.mipmapEnabled = false;
+
+            //string texName = texture.name;
+            //int maxSize[2];
+            //TextureImporterFormat texFormat;
+            //texImporter.GetPlatformTextureSettings("Android", out maxSize[0], out texFormat);
+            //texImporter.GetPlatformTextureSettings("iPhone", out maxSize[1], out texFormat);
+            //if (texName.Contains("alpha"))
+            //{
+            //    texImporter.SetPlatformTextureSettings("Android", maxSize[0], TextureImporterFormat.ETC2_RGBA8);
+            //    texImporter.SetPlatformTextureSettings("iPhone", maxSize[1], TextureImporterFormat.PVRTC_RGBA4);
+            //}
+            //else
+            //{
+            //    texImporter.SetPlatformTextureSettings("Android", maxSize[0], TextureImporterFormat.ETC2_RGB4);
+            //    texImporter.SetPlatformTextureSettings("iPhone", maxSize[1], TextureImporterFormat.PVRTC_RGB4);
+            //}
+            AssetDatabase.ImportAsset(path);
         }
     }
 }

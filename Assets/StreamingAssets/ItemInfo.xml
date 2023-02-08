@@ -7,14 +7,14 @@
         <mass>0.3</mass>
         <cutWorkAmount>100</cutWorkAmount>
         <sowWorkAmount/>
-        <yieldCount>1</yieldCount>
+        <yieldCount>10</yieldCount>
         <woodCount>0</woodCount>
         <fruitItemCode>12001</fruitItemCode>
         <maxHealth>100</maxHealth>
         <seedItem>11001</seedItem>
         <plantItem/>
         <nutrition>0.2</nutrition>
-        <growingTime>0.05</growingTime>
+        <growingTime>6</growingTime>
         <itemEngName>artichoke_Plant</itemEngName>
         <image0>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_0</image0>
         <image1>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_1</image1>
@@ -206,7 +206,7 @@
         <seedItem>11009</seedItem>
         <plantItem/>
         <nutrition>0.2</nutrition>
-        <growingTime>0.05</growingTime>
+        <growingTime>6</growingTime>
         <itemEngName>corn_Plant</itemEngName>
         <image0>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_0</image0>
         <image1>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_1</image1>
@@ -623,6 +623,54 @@
         <image4>FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_6</image6>
+    </item>
+    <item>
+        <itemCode>10027</itemCode>
+        <itemName>苹果树</itemName>
+        <itemType>Plant</itemType>
+        <mass>50</mass>
+        <cutWorkAmount>250</cutWorkAmount>
+        <sowWorkAmount/>
+        <yieldCount>10</yieldCount>
+        <woodCount>30</woodCount>
+        <fruitItemCode>12027</fruitItemCode>
+        <maxHealth>300</maxHealth>
+        <seedItem/>
+        <plantItem/>
+        <nutrition>0</nutrition>
+        <growingTime>18</growingTime>
+        <itemEngName>apple_Plant</itemEngName>
+        <image0>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_0.png</image0>
+        <image1>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_1.png</image1>
+        <image2>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_2.png</image2>
+        <image3>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_3.png</image3>
+        <image4>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_4.png</image4>
+        <image5>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_5.png</image5>
+        <image6>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_6.png</image6>
+    </item>
+    <item>
+        <itemCode>10028</itemCode>
+        <itemName>柠檬树</itemName>
+        <itemType>Plant</itemType>
+        <mass>50</mass>
+        <cutWorkAmount>250</cutWorkAmount>
+        <sowWorkAmount/>
+        <yieldCount>10</yieldCount>
+        <woodCount>30</woodCount>
+        <fruitItemCode>12028</fruitItemCode>
+        <maxHealth>300</maxHealth>
+        <seedItem/>
+        <plantItem/>
+        <nutrition>0</nutrition>
+        <growingTime>18</growingTime>
+        <itemEngName>lemon_Plant</itemEngName>
+        <image0>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_0.png</image0>
+        <image1>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_1.png</image1>
+        <image2>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_2.png</image2>
+        <image3>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_3.png</image3>
+        <image4>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_4.png</image4>
+        <image5>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_5.png</image5>
+        <image6>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_6.png</image6>
     </item>
     <item>
         <itemCode>11001</itemCode>
@@ -1865,6 +1913,54 @@
         <growingTime/>
         <itemEngName>watermelon_Crop</itemEngName>
         <image0>FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_7</image0>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
+    </item>
+    <item>
+        <itemCode>12027</itemCode>
+        <itemName>苹果</itemName>
+        <itemType>Crop</itemType>
+        <mass>0.15</mass>
+        <cutWorkAmount/>
+        <sowWorkAmount/>
+        <yieldCount/>
+        <woodCount/>
+        <fruitItemCode/>
+        <maxHealth>50</maxHealth>
+        <seedItem/>
+        <plantItem/>
+        <nutrition>1</nutrition>
+        <growingTime/>
+        <itemEngName>apple</itemEngName>
+        <image0>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_13.png</image0>
+        <image1/>
+        <image2/>
+        <image3/>
+        <image4/>
+        <image5/>
+        <image6/>
+    </item>
+    <item>
+        <itemCode>12028</itemCode>
+        <itemName>柠檬</itemName>
+        <itemType>Crop</itemType>
+        <mass>0.15</mass>
+        <cutWorkAmount/>
+        <sowWorkAmount/>
+        <yieldCount/>
+        <woodCount/>
+        <fruitItemCode/>
+        <maxHealth>50</maxHealth>
+        <seedItem/>
+        <plantItem/>
+        <nutrition>0.8</nutrition>
+        <growingTime/>
+        <itemEngName>lemon</itemEngName>
+        <image0>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_13.png</image0>
         <image1/>
         <image2/>
         <image3/>
