@@ -12,6 +12,11 @@ public static class VectorExtension
         return new Vector3Int(Mathf.FloorToInt(vector.x), Mathf.FloorToInt(vector.y), Mathf.FloorToInt(vector.z));
     }
 
+    public static Vector3 ToCellCenter(this Vector3 vector)
+    {
+        return new Vector3(Mathf.FloorToInt(vector.x) + 0.5f, Mathf.FloorToInt(vector.y) + 0.5f, Mathf.FloorToInt(vector.z));
+    }
+
     public static Vector2Int ToCell(this Vector2 vector)
     {
         return new Vector2Int(Mathf.FloorToInt(vector.x), Mathf.FloorToInt(vector.y));

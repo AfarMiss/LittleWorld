@@ -426,7 +426,6 @@ public class InputController : MonoSingleton<InputController>
             UpdateSelectArea();
         }
         OnFloat();
-        Debug.Log("OnFloat");
     }
 
     private void OnFloat()
@@ -505,7 +504,8 @@ public class InputController : MonoSingleton<InputController>
 
     private void UpdateGhostPos(Vector3 pos)
     {
-        ghostBuilding.transform.position = new Vector3(pos.x, pos.y, 0);
+        var gridCell = pos.ToCellCenter();
+        ghostBuilding.transform.position = new Vector3(gridCell.x, gridCell.y, 0);
     }
 
     private void RenderPlantManager()
