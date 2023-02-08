@@ -227,4 +227,5 @@ public enum MouseState
     ShrinkStorageZone,
     AddStorageSection,
     DeleteStorageSection,
+    BuildingGhost,
 }

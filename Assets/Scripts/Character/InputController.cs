@@ -18,6 +18,7 @@ public class InputController : MonoSingleton<InputController>
     private Vector3 onClickLeftEndPosition;
     private OnPlantZoneChanged onPlantZoneChanged;
     private bool needRespondToUI;
+    private GameObject ghostBuilding = null;
 
 
     public void AddEventOnZoomChanged(OnPlantZoneChanged onChanged)
@@ -259,6 +260,8 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.AddStorageSection:
                 AddSection(callbackContext, SectionType.STORE);
                 break;
+            case MouseState.BuildingGhost:
+                break;
             default:
                 break;
         }
@@ -320,6 +323,18 @@ public class InputController : MonoSingleton<InputController>
             var grids = GetWorldGrids(MapManager.Instance.ColonyMap,
                 InputUtils.GetWorldRect(onClickLeftStartPositionWorldPosition, onClickLeftEndPositionWorldPosition));
             Current.CurMap.AddSection(grids, type);
+        }
+    }
+
+    private void AddBuilding(CallbackContext callbackContext, int buildingCode)
+    {
+        if (callbackContext.started)
+        {
+            ghostBuilding = Instantiate(SceneObjectManager.Instance.ghostPrefab, null);
+        }
+        if (callbackContext.canceled)
+        {
+            SceneObjectManager.Instance.AddBuildingGhostToManager(buildingCode);
         }
     }
 

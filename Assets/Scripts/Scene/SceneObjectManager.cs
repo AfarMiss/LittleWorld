@@ -14,6 +14,8 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
     private Transform parentItem;
     [SerializeField]
     private GameObject itemPrefab;
+    [SerializeField]
+    public GameObject ghostPrefab;
 
     public List<SceneItem> sceneItemList
     {
@@ -118,16 +120,6 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
         }
     }
 
-    private void InstantiateSceneItems(List<SceneItem> sceneItemList)
-    {
-        GameObject itemGameObject;
-
-        foreach (var item in sceneItemList)
-        {
-            //itemGameObject = InstantiateSingleSceneItem(item);
-        }
-    }
-
     private void RenderPawn(Humanbeing human)
     {
         GameObject pawnRes = Resources.Load<GameObject>("Prefabs/Character/Pawn");
@@ -194,6 +186,16 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
     {
         WorldObjects.TryGetValue(instanceID, out var go);
         return go;
+    }
+
+    public void InitBuildingGhost()
+    {
+
+    }
+
+    public void AddBuildingGhostToManager(int buildingCode)
+    {
+
     }
 
     public void Tick(GameTime gameTime)

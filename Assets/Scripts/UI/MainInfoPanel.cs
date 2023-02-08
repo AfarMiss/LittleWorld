@@ -49,16 +49,6 @@ namespace LittleWorld.UI
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ExpandZone));
         }
 
-        public void ShrinkZone()
-        {
-            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ShrinkZone));
-        }
-
-        public void DeleteSection()
-        {
-            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.DeleteSection));
-        }
-
         public void AddSection()
         {
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.AddSection));
@@ -66,17 +56,12 @@ namespace LittleWorld.UI
 
         public void BuildStove()
         {
-            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ExpandStorageZone));
+            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.BuildingGhost));
         }
 
-        public void Build()
+        public void BuildSmithy()
         {
-            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ShrinkStorageZone));
-        }
-
-        public void DeleteStorageSection()
-        {
-            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.DeleteStorageSection));
+            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.BuildingGhost));
         }
 
         public void AddStorageSection()
