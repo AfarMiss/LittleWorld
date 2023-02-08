@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<items>
+    <item>
+        <itemCode>16001</itemCode>
+        <itemName>铁矿石</itemName>
+        <itemType>Ore</itemType>
+        <mass>10</mass>
+        <marketValue>50</marketValue>
+        <maxHitPoint>500</maxHitPoint>
+        <itemEngName>iron_ore</itemEngName>
+        <productionCode>15003</productionCode>
+        <productionAmount>20</productionAmount>
+        <image0>Assets/Resources/FarmPack/assets/mining/ores/mining_ores_4.png</image0>
+        <image1/>
+        <image2/>
+    </item>
+    <item>
+        <itemCode>16002</itemCode>
+        <itemName>银矿石</itemName>
+        <itemType>Ore</itemType>
+        <mass>10</mass>
+        <marketValue>100</marketValue>
+        <maxHitPoint>400</maxHitPoint>
+        <itemEngName>silver_ore</itemEngName>
+        <productionCode>15004</productionCode>
+        <productionAmount>20</productionAmount>
+        <image0>Assets/Resources/FarmPack/assets/mining/ores/mining_ores_6.png</image0>
+        <image1/>
+        <image2/>
+    </item>
+</items>

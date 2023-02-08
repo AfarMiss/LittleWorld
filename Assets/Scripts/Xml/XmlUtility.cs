@@ -103,6 +103,20 @@ namespace Xml
                     thing.itemSprites = CreateItemSpritesList(item, 1);
                     ObjectConfig.buildingInfo.Add(thing.itemCode, thing);
                 }
+                if (item.SelectSingleNode("itemType").InnerText == "Ore")
+                {
+                    var ore = new OreInfo();
+                    ore.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
+                    ore.itemName = item.SelectSingleNode("itemName").InnerText;
+                    ore.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    ore.maxHitPoint = int.Parse(item.SelectSingleNode("maxHitPoint").InnerText);
+                    ore.marketValue = float.Parse(item.SelectSingleNode("marketValue").InnerText);
+                    ore.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    ore.productionCode = int.Parse(item.SelectSingleNode("productionCode").InnerText);
+                    ore.productionAmount = int.Parse(item.SelectSingleNode("productionAmount").InnerText);
+                    ore.itemSprites = CreateItemSpritesList(item, 1);
+                    ObjectConfig.oreInfo.Add(ore.itemCode, ore);
+                }
             }
         }
 
