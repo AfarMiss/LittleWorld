@@ -15,5 +15,7 @@ namespace LittleWorld.Item
 
         stove = 14001,
         smithy = 14002,
+
+        wood = 15002,
     }
 }

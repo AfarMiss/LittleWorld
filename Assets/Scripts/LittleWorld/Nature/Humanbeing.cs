@@ -100,38 +100,20 @@ namespace LittleWorld.Item
             workTracer.AddWork(new SowWork(seedCode, section.grids, this));
         }
 
+        public void AddCutWork(Plant plant)
+        {
+            workTracer.AddWork(new CutSingleWork(plant, this));
+        }
+
         public void AddCarryWork(WorldObject wo)
         {
             workTracer.AddWork(new CarryWork(wo, this));
         }
 
-        public void AddWork(WorkTypeEnum workType, Vector3Int targetPos)
+        public void AddMoveWork(Vector3Int targetPos)
         {
-            var grids = WorldUtility.GetWorldObjectsAt(targetPos).OfType<MapSection>();
-            switch (workType)
-            {
-                case WorkTypeEnum.dug:
-                    break;
-                case WorkTypeEnum.water:
-                    break;
-                case WorkTypeEnum.gotoLoc:
-                    workTracer.AddWork(new GoToLocWork(this, targetPos.To2()));
-                    break;
-                case WorkTypeEnum.cut:
-                    break;
-                case WorkTypeEnum.harvest:
-                    if (grids.Safe().Any())
-                    {
-                    }
-                    break;
-                case WorkTypeEnum.sow:
-                    if (grids.Safe().Any())
-                    {
-                    }
-                    break;
-                default:
-                    break;
-            }
+            workTracer.AddWork(new GoToLocWork(this, targetPos.To2()));
+
         }
 
         public override void Tick()

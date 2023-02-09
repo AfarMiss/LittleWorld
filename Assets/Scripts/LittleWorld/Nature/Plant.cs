@@ -9,6 +9,7 @@ namespace LittleWorld.Item
         private PlantInfo plantInfo;
         public int PlantYieldCount => plantInfo.yieldCount;
         public int FruitCode => plantInfo.fruitItemCode;
+        public int WoodCount => plantInfo.woodCount;
         private float curGrowTime = 0;
         public bool IsRipe => curGrowTime >= plantInfo.growingTime * 0.95f;
         public PlantInfo PlantInfo => plantInfo;

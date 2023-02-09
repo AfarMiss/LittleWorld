@@ -14,6 +14,10 @@ namespace LittleWorld.Jobs
         public Work()
         {
             workID = WorkIDSeed++;
+            if (tree == null)
+            {
+                tree = new BehaviourTree();
+            }
         }
 
 

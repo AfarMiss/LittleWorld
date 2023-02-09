@@ -20,7 +20,7 @@ namespace LittleWorld.UI
             {
                 if (worldObject is Plant curPlant)
                 {
-                    var plantOpts = AddPlantFloatMenu(human, mousePos.GetWorldPosition().ToCell(), curPlant);
+                    var plantOpts = AddPlantFloatMenu(human, curPlant);
                     contentList.AddRange(plantOpts);
                 }
 
@@ -53,9 +53,16 @@ namespace LittleWorld.UI
             return contentList;
         }
 
-        public static List<FloatOption> AddPlantFloatMenu(Humanbeing worker, Vector3Int targetPos, Plant plant)
+        public static List<FloatOption> AddPlantFloatMenu(Humanbeing worker, Plant plant)
         {
-            List<FloatOption> contentList = new List<FloatOption>();
+            List<FloatOption> contentList = new List<FloatOption>()
+            {
+                 new FloatOption($"割除{ObjectConfig.GetPlantName(plant.itemCode) }", () =>
+            {
+                    worker.AddCutWork(plant);
+            })
+
+            };
 
             return contentList;
         }

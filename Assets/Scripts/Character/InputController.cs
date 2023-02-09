@@ -173,7 +173,7 @@ public class InputController : MonoSingleton<InputController>
 
     private void AddMoveWork(WorldObject human, Vector3 targetPos)
     {
-        (human as Humanbeing).AddWork(WorkTypeEnum.gotoLoc, targetPos.ToCell());
+        (human as Humanbeing).AddMoveWork(targetPos.ToCell());
     }
 
     public void OnClickSetting(CallbackContext callbackContext)
