@@ -111,6 +111,10 @@ UnityEngine.Object 类重载了 `==`、`!=` 以及 `bool` 操作符，对于这�
 
 对于 MonoBehaviour 可序列化的域，在 Editor 模式下就算这些域没有真正的被“赋值”，Unity 默认也会为其 CLR 层所在的 GameObject 对象默认设置上 “fake null” object (底层原生对象不会被赋值)，通过这样的小 track Unity 能够为开发者调试提供更多的有用信息。
 
+## 二、关于属性
+
+例如，transform是GameObject对象的一个属性，如果要在update中调用，那么属性的计算会比本地缓存消耗更多的性能，所以在可能的情况下，应该使用缓存来提高性能，用空间换时间。
+
 ## 参考资料 <a href="#can-kao" id="can-kao"></a>
 
 * [Possible unintended bypass of lifetime check of underlying Unity engine object](https://github.com/JetBrains/resharper-unity/wiki/Possible-unintended-bypass-of-lifetime-check-of-underlying-Unity-engine-object)
