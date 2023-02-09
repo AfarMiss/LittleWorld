@@ -24,17 +24,15 @@
 
 当前 GameObject 已经被销毁仍然尝试读取其 transform，但是这里明明已经使用 `?.` 操作符判定了，为什么还会出现这个问题？下面尝试模拟这种情况。
 
-| <pre><code>1234
-</code></pre> | <pre><code>GameObject gameObject = new GameObject("go");DestroyImmediate(gameObject);Transform transform = gameObject?.transform;
+| <pre><code>GameObject gameObject = new GameObject("go");DestroyImmediate(gameObject);Transform transform = gameObject?.transform;
 </code></pre> |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- |
 
 运行上面的代码，确实抛出了一样的错误异常。难道是 `?.` 操作符的问题？下面我们换一种方式来 check null，如下:
 
-| <pre><code>12345678
-</code></pre> | <pre><code>GameObject gameObject = new GameObject("go");DestroyImmediate(gameObject);Transform transform;if (gameObject != null){    transform = gameObject.transform;}
+| <pre><code>GameObject gameObject = new GameObject("go");DestroyImmediate(gameObject);Transform transform;if (gameObject != null){    transform = gameObject.transform;}
 </code></pre> |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 运行这一段代码，没有错误异常抛出，说明 check null 成功。为什么 `?.` 操作符会检验失败？带着疑问来深入看一下编译器为我们生成的部分 CIL 代码。
 
@@ -117,3 +115,4 @@ UnityEngine.Object 类重载了 `==`、`!=` 以及 `bool` 操作符，对于这�
 
 * [Possible unintended bypass of lifetime check of underlying Unity engine object](https://github.com/JetBrains/resharper-unity/wiki/Possible-unintended-bypass-of-lifetime-check-of-underlying-Unity-engine-object)
 * [Custom == operator, should we keep it?](https://blogs.unity3d.com/2014/05/16/custom-operator-should-we-keep-it/)
+* [https://blog.lujun.co/2020/05/06/unity\_object\_operator/](https://blog.lujun.co/2020/05/06/unity\_object\_operator/)
