@@ -1,7 +1,9 @@
 ﻿using LittleWorld.Item;
 using LittleWorld.MapUtility;
 using SRF;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +22,26 @@ namespace LittleWorld.UI
         {
             if (objects.Length > 1)
             {
-                InfoTitle.text = "多种x" + objects.Length;
+                var objectDic = new Dictionary<Type, int>();
+                foreach (Item.Object obj in objects)
+                {
+                    if (objectDic.ContainsKey(obj.GetType()))
+                    {
+                        objectDic[obj.GetType()]++;
+                    }
+                    else
+                    {
+                        objectDic.Add(obj.GetType(), 1);
+                    }
+                }
+                if (objectDic.Count > 1)
+                {
+                    InfoTitle.text = "多种x" + objects.Length;
+                }
+                else if (objectDic.Count > 0)
+                {
+                    InfoTitle.text = $"{(objects[0] as WorldObject).ItemName}x{objects.Length}";
+                }
             }
             else if (objects.Length == 1)
             {
