@@ -11,7 +11,7 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
 {
     private bool isFading;
     [SerializeField] public float fadeDuration;
-    [SerializeField] private CanvasGroup faderCanvasGroup = null;
+    [SerializeField] private CanvasGroup faderCanvasGroup;
     [SerializeField] private Image faderImage;
     public SceneEnum startingSceneName;
 

@@ -52,7 +52,15 @@ namespace LittleWorld.UI
         {
             base.Awake();
             //初始化画布
-            UICanvas = GameObject.Instantiate(Resources.Load<GameObject>(UIPath.UICanvas));
+            var go = GameObject.FindGameObjectWithTag("UICanvas");
+            if (go != null)
+            {
+                UICanvas = go;
+            }
+            else
+            {
+                UICanvas = GameObject.Instantiate(Resources.Load<GameObject>(UIPath.UICanvas));
+            }
             UICanvas.transform.SetParent(null);
             SelectionArea.GetComponent<Image>().enabled = false;
             DontDestroyOnLoad(UICanvas);
