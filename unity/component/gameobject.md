@@ -113,7 +113,11 @@ UnityEngine.Object 类重载了 `==`、`!=` 以及 `bool` 操作符，对于这�
 
 ## 二、关于属性
 
-例如，transform是GameObject对象的一个属性，如果要在update中调用，那么属性的计算会比本地缓存消耗更多的性能，所以在可能的情况下，应该使用缓存来提高性能，用空间换时间。
+Update当中使用gameObect.transform要注意什么？
+
+~~例如，transform是GameObject对象的一个属性，如果要在update中调用，那么属性的计算会比本地缓存消耗更多的性能，所以在可能的情况下，应该使用缓存来提高性能，用空间换时间。~~
+
+transform缓存无作用，缓存后和gameObject.Transform指向的是两个变量，没有关联。
 
 ## 参考资料 <a href="#can-kao" id="can-kao"></a>
 
