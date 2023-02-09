@@ -164,6 +164,7 @@ public enum WorkTypeEnum
     harvest,
     sow,
     carry,
+    mining,
 }
 
 public enum SoundName

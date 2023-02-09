@@ -34,6 +34,11 @@ namespace LittleWorld.UI
                     var plantOpts = AddCarryFloatMenu(human, worldObject as WorldObject);
                     contentList.AddRange(plantOpts);
                 }
+                if (worldObject is Ore)
+                {
+                    var plantOpts = AddOreFloatMenu(human, worldObject as Ore);
+                    contentList.AddRange(plantOpts);
+                }
             }
 
             UIManager.Instance.ShowFloatOptions(contentList);
@@ -60,6 +65,20 @@ namespace LittleWorld.UI
                  new FloatOption($"割除{ObjectConfig.GetPlantName(plant.itemCode) }", () =>
             {
                     worker.AddCutWork(plant);
+            })
+
+            };
+
+            return contentList;
+        }
+
+        public static List<FloatOption> AddOreFloatMenu(Humanbeing worker, Ore ore)
+        {
+            List<FloatOption> contentList = new List<FloatOption>()
+            {
+                 new FloatOption($"开采{ObjectConfig.GetOreName(ore.itemCode) }", () =>
+            {
+                    worker.AddOreWork(ore);
             })
 
             };

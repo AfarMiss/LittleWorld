@@ -105,6 +105,11 @@ namespace LittleWorld.Item
             workTracer.AddWork(new CutSingleWork(plant, this));
         }
 
+        public void AddOreWork(Ore ore)
+        {
+            workTracer.AddWork(new MiningSingleWork(ore, this));
+        }
+
         public void AddCarryWork(WorldObject wo)
         {
             workTracer.AddWork(new CarryWork(wo, this));

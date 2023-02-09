@@ -7,21 +7,23 @@ namespace LittleWorld.Item
 {
     public class Ore : WorldObject
     {
-        public OreInfo oreInfo;
+        public OreInfo OreInfo;
         public int curHitPoint;
+        public int ProductionCode => OreInfo.productionCode;
+        public int ProductionAmount => OreInfo.productionAmount;
 
         public Ore(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
-            if (ObjectConfig.oreInfo.TryGetValue(itemCode, out oreInfo))
+            if (ObjectConfig.oreInfo.TryGetValue(itemCode, out OreInfo))
             {
-                oreInfo = ObjectConfig.oreInfo[itemCode];
-                ItemName = oreInfo.itemName;
+                OreInfo = ObjectConfig.oreInfo[itemCode];
+                ItemName = OreInfo.itemName;
             }
         }
 
         public override Sprite GetSprite()
         {
-            return oreInfo.itemSprites[0];
+            return OreInfo.itemSprites[0];
         }
     }
 }

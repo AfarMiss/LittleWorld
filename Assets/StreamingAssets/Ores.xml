@@ -13,6 +13,7 @@
         <image0>Assets/Resources/FarmPack/assets/mining/ores/mining_ores_4.png</image0>
         <image1/>
         <image2/>
+        <miningWorkAmount>500</miningWorkAmount>
     </item>
     <item>
         <itemCode>16002</itemCode>
@@ -27,6 +28,7 @@
         <image0>Assets/Resources/FarmPack/assets/mining/ores/mining_ores_6.png</image0>
         <image1/>
         <image2/>
+        <miningWorkAmount>500</miningWorkAmount>
     </item>
     <item>
         <itemCode>16003</itemCode>
@@ -41,5 +43,6 @@
         <image0>Assets/Resources/FarmPack/assets/mining/ores/mining_ores_13.png</image0>
         <image1/>
         <image2/>
+        <miningWorkAmount>500</miningWorkAmount>
     </item>
 </items>

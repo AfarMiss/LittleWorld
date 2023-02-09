@@ -114,6 +114,7 @@ namespace Xml
                     ore.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     ore.productionCode = int.Parse(item.SelectSingleNode("productionCode").InnerText);
                     ore.productionAmount = int.Parse(item.SelectSingleNode("productionAmount").InnerText);
+                    ore.MiningWorkAmount = int.Parse(item.SelectSingleNode("miningWorkAmount").InnerText);
                     ore.itemSprites = CreateItemSpritesList(item, 1);
                     ObjectConfig.oreInfo.Add(ore.itemCode, ore);
                 }

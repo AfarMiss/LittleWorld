@@ -56,6 +56,19 @@ namespace LittleWorld.Item
             }
         }
 
+        public static string GetOreName(int seedCode)
+        {
+            var ore = oreInfo.Values.ToList().Find(x => x.itemCode == seedCode);
+            if (ore != null)
+            {
+                return ore.itemName;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static Sprite GetPlantSprite(int seedCode)
         {
             var plant = plantInfoDic.Values.ToList().Find(x => x.seedItem == seedCode);
