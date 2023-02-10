@@ -33,6 +33,25 @@ namespace LittleWorld.MapUtility
             }
         }
 
+        public bool HasPiled
+        {
+            get
+            {
+                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                if (objects != null && objects.Length > 0)
+                {
+                    var result = objects.ToList().Find(x => (x is Plant));
+                    return result != null;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public int CurPiled = 0;
+
         public Plant Plant
         {
             get

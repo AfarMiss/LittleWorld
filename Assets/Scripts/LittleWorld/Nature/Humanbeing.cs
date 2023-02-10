@@ -86,7 +86,7 @@ namespace LittleWorld.Item
         {
             actionQueue = new Queue<HumanAction>();
             workTracer = new PawnWorkTracer(this);
-            animalInfo = ObjectConfig.animalInfo[itemCode];
+            animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
             ItemName = animalInfo.itemName;
         }
 

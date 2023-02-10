@@ -10,9 +10,9 @@ namespace LittleWorld.Item
         public ThingInfo ThingInfo;
         public Thing(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
-            if (ObjectConfig.thingInfo.TryGetValue(itemCode, out ThingInfo))
+            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var ThingInfo))
             {
-                ThingInfo = ObjectConfig.thingInfo[itemCode];
+                this.ThingInfo = ThingInfo as ThingInfo;
                 ItemName = ThingInfo.itemName;
             }
         }

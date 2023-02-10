@@ -7,19 +7,20 @@ namespace LittleWorld.Item
 {
     public class ObjectConfig
     {
-        public static Dictionary<int, PlantInfo> plantInfoDic = new Dictionary<int, PlantInfo>();
-        public static Dictionary<int, SeedInfo> seedInfo = new Dictionary<int, SeedInfo>();
-        public static Dictionary<int, RawFoodInfo> rawFoodInfo = new Dictionary<int, RawFoodInfo>();
-        public static Dictionary<int, AnimalInfo> animalInfo = new Dictionary<int, AnimalInfo>();
-        public static Dictionary<int, ThingInfo> thingInfo = new Dictionary<int, ThingInfo>();
-        public static Dictionary<int, BuildingInfo> buildingInfo = new Dictionary<int, BuildingInfo>();
-        public static Dictionary<int, OreInfo> oreInfo = new Dictionary<int, OreInfo>();
+        public static Dictionary<int, BaseInfo> ObjectInfoDic = new Dictionary<int, BaseInfo>();
 
         public static int GetPlantCode(int seedCode)
         {
-            if (seedInfo.TryGetValue(seedCode, out var seed))
+            if (ObjectInfoDic.TryGetValue(seedCode, out var seed))
             {
-                return seed.plantItem;
+                if (seed as SeedInfo != null)
+                {
+                    return (seed as SeedInfo).plantItem;
+                }
+                else
+                {
+                    return 0;
+                }
             }
             else
             {
@@ -31,7 +32,7 @@ namespace LittleWorld.Item
 
         public static int GetRawMaterialCode(string materialName)
         {
-            var result = thingInfo.Values.ToList().Find(x => x.itemName == materialName);
+            var result = ObjectInfoDic.Values.ToList().Find(x => x.itemName == materialName);
             if (result != null)
             {
                 return result.itemCode;
@@ -45,7 +46,7 @@ namespace LittleWorld.Item
 
         public static string GetPlantName(int seedCode)
         {
-            var plant = plantInfoDic.Values.ToList().Find(x => x.seedItem == seedCode);
+            var plant = ObjectInfoDic.Values.ToList().Find(x => x is PlantInfo curPlant && curPlant.seedItem == seedCode);
             if (plant != null)
             {
                 return plant.itemName;
@@ -58,7 +59,7 @@ namespace LittleWorld.Item
 
         public static string GetOreName(int seedCode)
         {
-            var ore = oreInfo.Values.ToList().Find(x => x.itemCode == seedCode);
+            var ore = ObjectInfoDic.Values.ToList().Find(x => x.itemCode == seedCode);
             if (ore != null)
             {
                 return ore.itemName;
@@ -71,10 +72,10 @@ namespace LittleWorld.Item
 
         public static Sprite GetPlantSprite(int seedCode)
         {
-            var plant = plantInfoDic.Values.ToList().Find(x => x.seedItem == seedCode);
+            var plant = ObjectInfoDic.Values.ToList().Find(x => x is PlantInfo curPlant && curPlant.seedItem == seedCode);
             if (plant != null)
             {
-                return rawFoodInfo[plant.fruitItemCode].itemSprites[0];
+                return (ObjectInfoDic[(plant as PlantInfo).fruitItemCode] as RawFoodInfo).itemSprites[0];
             }
             else
             {
@@ -84,10 +85,10 @@ namespace LittleWorld.Item
 
         public static Sprite GetBuildingSprite(int buildingCode)
         {
-            var buildingInfo = ObjectConfig.buildingInfo.Values.ToList().Find(x => x.itemCode == buildingCode);
-            if (buildingInfo != null)
+            var buildingInfo = ObjectConfig.ObjectInfoDic.Values.ToList().Find(x => x.itemCode == buildingCode);
+            if (buildingInfo != null && buildingInfo is BuildingInfo building)
             {
-                return buildingInfo.itemSprites[0];
+                return building.itemSprites[0];
             }
             else
             {

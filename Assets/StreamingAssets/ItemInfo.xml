@@ -23,7 +23,7 @@
         <image4>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10002</itemCode>
@@ -48,7 +48,7 @@
         <image4>FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10003</itemCode>
@@ -73,7 +73,7 @@
         <image4>FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10004</itemCode>
@@ -98,7 +98,7 @@
         <image4>FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10005</itemCode>
@@ -123,7 +123,7 @@
         <image4>FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10006</itemCode>
@@ -148,7 +148,7 @@
         <image4>FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10007</itemCode>
@@ -173,7 +173,7 @@
         <image4>FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10008</itemCode>
@@ -198,7 +198,7 @@
         <image4>FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10009</itemCode>
@@ -223,7 +223,7 @@
         <image4>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10010</itemCode>
@@ -248,7 +248,7 @@
         <image4>FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10011</itemCode>
@@ -273,7 +273,7 @@
         <image4>FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10012</itemCode>
@@ -298,7 +298,7 @@
         <image4>FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10013</itemCode>
@@ -323,7 +323,7 @@
         <image4>FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10014</itemCode>
@@ -348,7 +348,7 @@
         <image4>FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10015</itemCode>
@@ -373,7 +373,7 @@
         <image4>FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10016</itemCode>
@@ -398,7 +398,7 @@
         <image4>FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10017</itemCode>
@@ -423,7 +423,7 @@
         <image4>FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10018</itemCode>
@@ -448,7 +448,7 @@
         <image4>FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10019</itemCode>
@@ -473,7 +473,7 @@
         <image4>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10020</itemCode>
@@ -498,7 +498,7 @@
         <image4>FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10021</itemCode>
@@ -523,7 +523,7 @@
         <image4>FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10022</itemCode>
@@ -548,7 +548,7 @@
         <image4>FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10023</itemCode>
@@ -573,7 +573,7 @@
         <image4>FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10024</itemCode>
@@ -598,7 +598,7 @@
         <image4>FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10025</itemCode>
@@ -623,7 +623,7 @@
         <image4>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10026</itemCode>
@@ -648,7 +648,7 @@
         <image4>FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_4</image4>
         <image5>FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_5</image5>
         <image6>FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_6</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10027</itemCode>
@@ -673,7 +673,7 @@
         <image4>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_4.png</image4>
         <image5>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_5.png</image5>
         <image6>Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_6.png</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>10028</itemCode>
@@ -698,7 +698,7 @@
         <image4>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_4.png</image4>
         <image5>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_5.png</image5>
         <image6>Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_6.png</image6>
-        <MaxPileCount>1</MaxPileCount>
+        <maxPileCount>1</maxPileCount>
     </item>
     <item>
         <itemCode>11001</itemCode>
@@ -723,7 +723,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11002</itemCode>
@@ -748,7 +748,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11003</itemCode>
@@ -773,7 +773,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11004</itemCode>
@@ -798,7 +798,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11005</itemCode>
@@ -823,7 +823,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11006</itemCode>
@@ -848,7 +848,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11007</itemCode>
@@ -873,7 +873,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11008</itemCode>
@@ -898,7 +898,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11009</itemCode>
@@ -923,7 +923,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11010</itemCode>
@@ -948,7 +948,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11011</itemCode>
@@ -973,7 +973,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11012</itemCode>
@@ -998,7 +998,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11013</itemCode>
@@ -1023,7 +1023,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11014</itemCode>
@@ -1048,7 +1048,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11015</itemCode>
@@ -1073,7 +1073,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11016</itemCode>
@@ -1098,7 +1098,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11017</itemCode>
@@ -1123,7 +1123,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11018</itemCode>
@@ -1148,7 +1148,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11019</itemCode>
@@ -1173,7 +1173,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11020</itemCode>
@@ -1198,7 +1198,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11021</itemCode>
@@ -1223,7 +1223,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11022</itemCode>
@@ -1248,7 +1248,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11023</itemCode>
@@ -1273,7 +1273,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11024</itemCode>
@@ -1298,7 +1298,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11025</itemCode>
@@ -1323,7 +1323,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>11026</itemCode>
@@ -1348,7 +1348,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>50</MaxPileCount>
+        <maxPileCount>50</maxPileCount>
     </item>
     <item>
         <itemCode>12001</itemCode>
@@ -1373,7 +1373,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12002</itemCode>
@@ -1398,7 +1398,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12003</itemCode>
@@ -1423,7 +1423,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12004</itemCode>
@@ -1448,7 +1448,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12005</itemCode>
@@ -1473,7 +1473,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12006</itemCode>
@@ -1498,7 +1498,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12007</itemCode>
@@ -1523,7 +1523,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12008</itemCode>
@@ -1548,7 +1548,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12009</itemCode>
@@ -1573,7 +1573,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12010</itemCode>
@@ -1598,7 +1598,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12011</itemCode>
@@ -1623,7 +1623,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12012</itemCode>
@@ -1648,7 +1648,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12013</itemCode>
@@ -1673,7 +1673,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12014</itemCode>
@@ -1698,7 +1698,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12015</itemCode>
@@ -1723,7 +1723,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12016</itemCode>
@@ -1748,7 +1748,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12017</itemCode>
@@ -1773,7 +1773,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12018</itemCode>
@@ -1798,7 +1798,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12019</itemCode>
@@ -1823,7 +1823,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12020</itemCode>
@@ -1848,7 +1848,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12021</itemCode>
@@ -1873,7 +1873,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12022</itemCode>
@@ -1898,7 +1898,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12023</itemCode>
@@ -1923,7 +1923,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12024</itemCode>
@@ -1948,7 +1948,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12025</itemCode>
@@ -1973,7 +1973,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12026</itemCode>
@@ -1998,7 +1998,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12027</itemCode>
@@ -2023,7 +2023,7 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
     <item>
         <itemCode>12028</itemCode>
@@ -2048,6 +2048,6 @@
         <image4/>
         <image5/>
         <image6/>
-        <MaxPileCount>75</MaxPileCount>
+        <maxPileCount>75</maxPileCount>
     </item>
 </items>

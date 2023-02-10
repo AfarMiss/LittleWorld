@@ -14,9 +14,9 @@ namespace LittleWorld.Item
 
         public Ore(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
-            if (ObjectConfig.oreInfo.TryGetValue(itemCode, out OreInfo))
+            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var OreInfo))
             {
-                OreInfo = ObjectConfig.oreInfo[itemCode];
+                this.OreInfo = OreInfo as OreInfo;
                 ItemName = OreInfo.itemName;
             }
         }

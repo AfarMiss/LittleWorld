@@ -4,14 +4,11 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class AnimalInfo
+    public class RawFoodInfo : BaseInfo
     {
-        public int itemCode;
-        public string itemName;
-        public string itemType;
         public float mass;
         public int maxHealth;
-        public float moveSpeed;
+        public float nutrition;
         public List<Sprite> itemSprites;
     }
 }

@@ -54,7 +54,7 @@ namespace LittleWorld.Jobs
         private Node.Status DoSow(Vector2Int destination, Humanbeing human)
         {
             int seedCode = (int)tree.GetVariable("seedCode");
-            var totalAmount = ObjectConfig.seedInfo[seedCode].sowWorkAmount;
+            var totalAmount = (ObjectConfig.ObjectInfoDic[seedCode] as SeedInfo).sowWorkAmount;
             float sliderValue = 0;
             if (totalAmount != 0)
             {

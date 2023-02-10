@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class SeedInfo : IObjectRender
+    public class SeedInfo : BaseInfo, IObjectRender
     {
-        public int itemCode;
-        public string itemName;
         public float mass;
         public int sowWorkAmount;
         public int maxHealth;

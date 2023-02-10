@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class PlantInfo
+    public class PlantInfo : BaseInfo
     {
-        public int itemCode;
-        public string itemName;
         public float mass;
         public int cutWorkAmount;
         public int yieldCount;

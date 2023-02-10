@@ -4,17 +4,11 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class OreInfo
+    public class ThingInfo : BaseInfo
     {
-        public int itemCode;
-        public string itemName;
         public string itemType;
         public float mass;
         public float marketValue;
-        public int maxHitPoint;
-        public int productionCode;
-        public int productionAmount;
-        public int MiningWorkAmount;
         public List<Sprite> itemSprites;
     }
 }

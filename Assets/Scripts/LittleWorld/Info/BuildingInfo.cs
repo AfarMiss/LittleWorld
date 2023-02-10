@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class BuildingInfo
+    public class BuildingInfo : BaseInfo
     {
-        public int itemCode;
-        public string itemName;
         public string itemType;
         public float mass;
         public int buildingWorkAmount;

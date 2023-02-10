@@ -4,13 +4,11 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class ThingInfo
+    public class BaseInfo
     {
         public int itemCode;
         public string itemName;
-        public string itemType;
-        public float mass;
-        public float marketValue;
-        public List<Sprite> itemSprites;
+        public bool canPile;
+        public int maxPileCount;
     }
 }

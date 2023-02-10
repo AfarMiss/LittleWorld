@@ -38,7 +38,11 @@ namespace LittleWorld.MapUtility
         public PlantMapSection(List<MapGridDetails> gridIndexs, int sectionColorIndex) : base(gridIndexs, sectionColorIndex)
         {
             ItemName = "种植区";
-            SeedCode = ObjectConfig.seedInfo.ElementAt(0).Value.itemCode;
+            var seedInfo = ObjectConfig.ObjectInfoDic.Values.ToList().Find(x => x is SeedInfo);
+            if (seedInfo != null)
+            {
+                SeedCode = seedInfo.itemCode;
+            }
         }
     }
 }

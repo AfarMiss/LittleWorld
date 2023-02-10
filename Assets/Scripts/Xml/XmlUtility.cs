@@ -1,4 +1,5 @@
 ﻿using LittleWorld.Item;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,8 @@ namespace Xml
                     plant.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     plant.growingTime = float.Parse(item.SelectSingleNode("growingTime").InnerText);
                     plant.itemSprites = CreateItemSpritesList(item, 6);
-                    ObjectConfig.plantInfoDic.Add(plant.itemCode, plant);
+                    ObjectConfig.ObjectInfoDic.Add(plant.itemCode, plant);
+                    SetPileProperty(item, ref plant);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Seed")
@@ -52,7 +54,8 @@ namespace Xml
                     seed.plantItem = int.Parse(item.SelectSingleNode("plantItem").InnerText);
                     seed.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     seed.itemSprites = CreateItemSpritesList(item, 6);
-                    ObjectConfig.seedInfo.Add(seed.itemCode, seed);
+                    ObjectConfig.ObjectInfoDic.Add(seed.itemCode, seed);
+                    SetPileProperty(item, ref seed);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Crop")
@@ -64,7 +67,8 @@ namespace Xml
                     food.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
                     food.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     food.itemSprites = CreateItemSpritesList(item, 6);
-                    ObjectConfig.rawFoodInfo.Add(food.itemCode, food);
+                    ObjectConfig.ObjectInfoDic.Add(food.itemCode, food);
+                    SetPileProperty(item, ref food);
                 }
 
 
@@ -77,7 +81,8 @@ namespace Xml
                     animal.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
                     animal.moveSpeed = float.Parse(item.SelectSingleNode("moveSpeed").InnerText);
                     animal.itemSprites = CreateItemSpritesList(item, 6);
-                    ObjectConfig.animalInfo.Add(animal.itemCode, animal);
+                    ObjectConfig.ObjectInfoDic.Add(animal.itemCode, animal);
+                    SetPileProperty(item, ref animal);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Thing")
@@ -87,7 +92,8 @@ namespace Xml
                     thing.itemName = item.SelectSingleNode("itemName").InnerText;
                     thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     thing.itemSprites = CreateItemSpritesList(item, 3);
-                    ObjectConfig.thingInfo.Add(thing.itemCode, thing);
+                    ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
+                    SetPileProperty(item, ref thing);
                 }
                 if (item.SelectSingleNode("itemType").InnerText == "Building")
                 {
@@ -101,7 +107,8 @@ namespace Xml
                     thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     thing.buildingCost = GetBuildingCost(item);
                     thing.itemSprites = CreateItemSpritesList(item, 1);
-                    ObjectConfig.buildingInfo.Add(thing.itemCode, thing);
+                    ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
+                    SetPileProperty(item, ref thing);
                 }
                 if (item.SelectSingleNode("itemType").InnerText == "Ore")
                 {
@@ -116,9 +123,20 @@ namespace Xml
                     ore.productionAmount = int.Parse(item.SelectSingleNode("productionAmount").InnerText);
                     ore.MiningWorkAmount = int.Parse(item.SelectSingleNode("miningWorkAmount").InnerText);
                     ore.itemSprites = CreateItemSpritesList(item, 1);
-                    ObjectConfig.oreInfo.Add(ore.itemCode, ore);
+                    ObjectConfig.ObjectInfoDic.Add(ore.itemCode, ore);
+                    SetPileProperty(item, ref ore);
                 }
             }
+        }
+
+        private static void SetPileProperty<T>(XmlNode item, ref T info) where T : BaseInfo
+        {
+            if (item == null || item.SelectSingleNode("maxPileCount") == null
+                || string.IsNullOrEmpty(item.SelectSingleNode("maxPileCount").InnerText))
+            {
+                return;
+            }
+            info.canPile = int.TryParse(item.SelectSingleNode("maxPileCount").InnerText, out info.maxPileCount);
         }
 
         private static List<Sprite> CreateItemSpritesList(XmlNode item, int spritesCount)

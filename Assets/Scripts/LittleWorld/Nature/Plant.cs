@@ -16,9 +16,9 @@ namespace LittleWorld.Item
 
         public Plant(int itemCode, Vector2Int gridPos, float curGrowthTime = 0) : base(itemCode, gridPos)
         {
-            if (ObjectConfig.plantInfoDic.TryGetValue(itemCode, out plantInfo))
+            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var plantInfo))
             {
-                plantInfo = ObjectConfig.plantInfoDic[itemCode];
+                this.plantInfo = plantInfo as PlantInfo;
                 ItemName = plantInfo.itemName;
                 this.curGrowTime = curGrowthTime;
             }

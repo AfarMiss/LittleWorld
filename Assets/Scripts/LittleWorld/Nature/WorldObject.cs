@@ -9,12 +9,13 @@ namespace LittleWorld.Item
     public abstract class WorldObject : Object
     {
         public bool isCarried = false;
+        public bool canPile = false;
         public WorldObject carriedParent = null;
         protected float maxHealth;
         public float mass;
 
         protected float curHealth;
-        public Map curMap;
+        public Map mapBelongTo;
 
         protected Vector2Int gridPos;
 
@@ -27,7 +28,7 @@ namespace LittleWorld.Item
             this.gridPos = gridPos;
             this.itemCode = itemCode;
             this.instanceID = SceneObjectManager.ItemInstanceID++;
-            curMap = map ?? MapManager.Instance.ColonyMap;
+            mapBelongTo = map ?? MapManager.Instance.ColonyMap;
             SceneObjectManager.Instance.RegisterItem(this);
         }
 

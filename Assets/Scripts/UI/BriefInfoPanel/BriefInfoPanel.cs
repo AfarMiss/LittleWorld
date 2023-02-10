@@ -60,14 +60,17 @@ namespace LittleWorld.UI
                 command1.BindCommand(() =>
                 {
                     List<FloatOption> list = new List<FloatOption>();
-                    foreach (var item in ObjectConfig.plantInfoDic)
+                    foreach (var item in ObjectConfig.ObjectInfoDic)
                     {
-                        list.Add(new FloatOption(item.Value.itemName, () =>
+                        if (item.Value is PlantInfo)
                         {
-                            map.SeedCode = item.Value.seedItem;
-                            //可能的更新
-                            command1.BindData("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));
-                        }));
+                            list.Add(new FloatOption(item.Value.itemName, () =>
+                            {
+                                map.SeedCode = (item.Value as PlantInfo).seedItem;
+                                //可能的更新
+                                command1.BindData("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));
+                            }));
+                        }
                     }
                     UIManager.Instance.ShowFloatOptions(list, RectTransformAnchor.BOTTOM_LEFT);
                 });

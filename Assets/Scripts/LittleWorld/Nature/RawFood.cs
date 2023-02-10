@@ -1,4 +1,4 @@
-using LittleWorld.MapUtility;
+﻿using LittleWorld.MapUtility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +11,9 @@ namespace LittleWorld.Item
 
         public RawFood(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
-            if (ObjectConfig.rawFoodInfo.TryGetValue(itemCode, out foodInfo))
+            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var foodInfo))
             {
-                foodInfo = ObjectConfig.rawFoodInfo[itemCode];
+                this.foodInfo = foodInfo as RawFoodInfo;
                 ItemName = foodInfo.itemName;
             }
         }
