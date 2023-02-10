@@ -5,9 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using LittleWorld;
-using static UnityEditor.Progress;
 
 public class SceneObjectManager : Singleton<SceneObjectManager>
 {

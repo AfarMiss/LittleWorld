@@ -12,6 +12,7 @@
         <image0>Assets/Resources/FarmPack/assets/mining/ores/mining_ores_48.png</image0>
         <image1/>
         <image2/>
+        <MaxPileCount>75</MaxPileCount>
     </item>
     <item>
         <itemCode>15002</itemCode>
@@ -25,6 +26,7 @@
         <image0>Assets/Resources/FarmPack/assets/smelting/produce/WoodPlanks.png</image0>
         <image1/>
         <image2/>
+        <MaxPileCount>75</MaxPileCount>
     </item>
     <item>
         <itemCode>15003</itemCode>
@@ -38,6 +40,7 @@
         <image0>FarmPack\assets\smelting\produce\smelting_ore_produce\smelting_ore_produce_23</image0>
         <image1/>
         <image2/>
+        <MaxPileCount>75</MaxPileCount>
     </item>
     <item>
         <itemCode>15004</itemCode>
@@ -51,6 +54,7 @@
         <image0>Assets/Resources/FarmPack/assets/smelting/produce/smelting_ore_produce/smelting_ore_produce_3.png</image0>
         <image1/>
         <image2/>
+        <MaxPileCount>75</MaxPileCount>
     </item>
     <item>
         <itemCode>15005</itemCode>
@@ -64,5 +68,6 @@
         <image0>Assets/Resources/FarmPack/assets/smelting/produce/smelting_ore_produce/smelting_ore_produce_32.png</image0>
         <image1/>
         <image2/>
+        <MaxPileCount>75</MaxPileCount>
     </item>
 </items>
