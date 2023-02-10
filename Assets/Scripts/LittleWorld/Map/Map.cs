@@ -35,6 +35,15 @@ namespace LittleWorld.MapUtility
             }
         }
 
+        //public Vector2Int AddWorldObjectAt(Vector2Int posReferencee, List<WorldObject> worldObjects)
+        //{
+        //    var targetGrid = mapGrids.ToList().Find(x => x.pos == posReferencee);
+        //}
+        public Vector2Int AddWorldObjectAt(Vector2Int posReference, WorldObject wo)
+        {
+            var targetGrid = mapGrids.ToList().Find(x => x.pos == posReference);
+        }
+
         private AStar aStar;
         [SerializeField]
         private string seed;

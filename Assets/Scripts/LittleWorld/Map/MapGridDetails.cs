@@ -33,14 +33,16 @@ namespace LittleWorld.MapUtility
             }
         }
 
-        public bool HasPiled
+        public bool isFull
         {
             get
             {
                 var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
                 if (objects != null && objects.Length > 0)
                 {
-                    var result = objects.ToList().Find(x => (x is Plant));
+                    var result = objects.ToList().Find(x =>
+                    (ObjectConfig.ObjectInfoDic[x.itemCode].canPile
+                    && ObjectConfig.ObjectInfoDic[x.itemCode].maxPileCount <= CurPiled));
                     return result != null;
                 }
                 else
@@ -50,7 +52,63 @@ namespace LittleWorld.MapUtility
             }
         }
 
-        public int CurPiled = 0;
+        public bool HasPiledThing
+        {
+            get
+            {
+                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                if (objects != null && objects.Length > 0)
+                {
+                    var result = objects.ToList().Find(x =>
+                    (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
+                    return result != null;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public Item.Object PiledThing
+        {
+            get
+            {
+                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                if (objects != null && objects.Length > 0)
+                {
+                    var result = objects.ToList().Find(x =>
+                    (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public bool AddSingleWorldObject(WorldObject wo)
+        {
+            if (!isFull)
+            {
+                wo.GridPos = pos;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int CurPiled
+        {
+            get
+            {
+                var allPiledObjects = SceneObjectManager.Instance.WorldObjects.Values.ToList().FindAll(x => x.GridPos == pos && x.canPile);
+                return allPiledObjects == null ? 0 : allPiledObjects.Count;
+            }
+        }
 
         public Plant Plant
         {

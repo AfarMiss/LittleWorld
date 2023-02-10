@@ -25,10 +25,10 @@ namespace LittleWorld.Item
 
         public WorldObject(int itemCode, Vector2Int gridPos, Map map = null)
         {
-            this.gridPos = gridPos;
             this.itemCode = itemCode;
             this.instanceID = SceneObjectManager.ItemInstanceID++;
             mapBelongTo = map ?? MapManager.Instance.ColonyMap;
+            this.gridPos = gridPos;
             SceneObjectManager.Instance.RegisterItem(this);
         }
 
