@@ -28,7 +28,7 @@ namespace LittleWorld.Item
             this.itemCode = itemCode;
             this.instanceID = SceneObjectManager.ItemInstanceID++;
             mapBelongTo = map ?? MapManager.Instance.ColonyMap;
-            this.gridPos = gridPos;
+            mapBelongTo.AddWorldObjectAt(gridPos, this);
             SceneObjectManager.Instance.RegisterItem(this);
         }
 

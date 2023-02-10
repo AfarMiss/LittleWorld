@@ -35,13 +35,40 @@ namespace LittleWorld.MapUtility
             }
         }
 
-        //public Vector2Int AddWorldObjectAt(Vector2Int posReferencee, List<WorldObject> worldObjects)
-        //{
-        //    var targetGrid = mapGrids.ToList().Find(x => x.pos == posReferencee);
-        //}
-        public Vector2Int AddWorldObjectAt(Vector2Int posReference, WorldObject wo)
+        public bool AddWorldObjectAt(Vector2Int posReference, WorldObject wo)
         {
             var targetGrid = mapGrids.ToList().Find(x => x.pos == posReference);
+            if (!targetGrid.AddSingleWorldObject(wo))
+            {
+                GetGrid(new Vector2Int(posReference.x + 1, posReference.y), out var neighbour1);
+                if (neighbour1 != null && AddWorldObjectAt(new Vector2Int(posReference.x + 1, posReference.y), wo))
+                {
+                    return true;
+                }
+                GetGrid(new Vector2Int(posReference.x, posReference.y + 1), out var neighbour2);
+                if (neighbour2 != null && AddWorldObjectAt(new Vector2Int(posReference.x, posReference.y + 1), wo))
+                {
+                    return true;
+                }
+                GetGrid(new Vector2Int(posReference.x - 1, posReference.y), out var neighbour3);
+                if (neighbour3 != null && AddWorldObjectAt(new Vector2Int(posReference.x - 1, posReference.y), wo))
+                {
+                    return true;
+                }
+                GetGrid(new Vector2Int(posReference.x, posReference.y - 1), out var neighbour4);
+                if (neighbour4 != null && AddWorldObjectAt(new Vector2Int(posReference.x, posReference.y - 1), wo))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private AStar aStar;
@@ -280,6 +307,12 @@ namespace LittleWorld.MapUtility
         public bool GetGrid(int x, int y, out MapGridDetails result)
         {
             result = mapGrids.ToList().Find(grid => grid.pos.x == x && grid.pos.y == y);
+            return result != null;
+        }
+
+        public bool GetGrid(Vector2Int pos, out MapGridDetails result)
+        {
+            result = mapGrids.ToList().Find(grid => grid.pos == pos);
             return result != null;
         }
 

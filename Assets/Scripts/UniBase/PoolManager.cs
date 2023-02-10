@@ -137,6 +137,23 @@ public class PoolManager : Singleton<PoolManager>
 
     }
 
+    public void PutbackAll(string key)
+    {
+        if (poolInfo.ContainsKey(key))
+        {
+            var curPool = poolInfo[key];
+            if (poolQueue.ContainsKey(curPool.prefabId))
+            {
+                foreach (PoolItem<GameObject> item in poolQueue[curPool.prefabId])
+                {
+                    item.poolInstance.gameObject.SetActive(false);
+                    item.hasBeenUsed = false;
+                }
+            }
+        }
+
+    }
+
 
     public override void OnCreateInstance()
     {
