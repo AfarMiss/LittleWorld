@@ -52,23 +52,9 @@ namespace LittleWorld.MapUtility
             }
         }
 
-        public bool HasPiledThing
-        {
-            get
-            {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
-                if (objects != null && objects.Length > 0)
-                {
-                    var result = objects.ToList().Find(x =>
-                    (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
-                    return result != null;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
+        public bool HasPiledThing => hasPiledThing;
+
+        private bool hasPiledThing = false;
 
         public Item.Object PiledThing
         {
@@ -92,10 +78,9 @@ namespace LittleWorld.MapUtility
         {
             get
             {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
-                if (objects != null && objects.Length > 0)
+                if (WorldUtility.GetWorldObjectsAt(pos.To3()) != null && WorldUtility.GetWorldObjectsAt(pos.To3()).Length > 0)
                 {
-                    var result = objects.ToList().FindAll(x =>
+                    var result = WorldUtility.GetWorldObjectsAt(pos.To3()).ToList().FindAll(x =>
                     (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
                     return result.Count;
                 }
@@ -111,12 +96,33 @@ namespace LittleWorld.MapUtility
             if (!isFull)
             {
                 wo.GridPos = pos;
+                if (wo.canPile)
+                {
+                    hasPiledThing = true;
+                }
                 return true;
             }
             else
             {
                 return false;
             }
+        }
+
+        public bool RemoveSingleWorldObject(WorldObject wo)
+        {
+            wo.Destroy();
+            var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+            if (objects != null && objects.Length > 0)
+            {
+                var result = objects.ToList().Find(x =>
+                (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
+                hasPiledThing = result != null;
+            }
+            else
+            {
+                hasPiledThing = false;
+            }
+            return true;
         }
 
         public int CurPiled

@@ -28,8 +28,13 @@ namespace LittleWorld.Item
             this.itemCode = itemCode;
             this.instanceID = SceneObjectManager.ItemInstanceID++;
             mapBelongTo = map ?? MapManager.Instance.ColonyMap;
-            mapBelongTo.AddWorldObjectAt(gridPos, this);
+
+            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var plantInfo))
+            {
+                canPile = plantInfo.canPile;
+            }
             SceneObjectManager.Instance.RegisterItem(this);
+            mapBelongTo.AddWorldObjectAt(gridPos, this);
         }
 
         public void OnBeCarried(WorldObject wo)

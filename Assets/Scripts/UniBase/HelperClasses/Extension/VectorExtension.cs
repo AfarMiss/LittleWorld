@@ -34,7 +34,7 @@ public static class VectorExtension
 
     public static Vector2 ToScreenPos(this Vector2Int vector)
     {
-        return Camera.main.WorldToScreenPoint(vector.To3());
+        return InputController.Instance.MainCamera.WorldToScreenPoint(vector.To3());
     }
 
     public static Vector3Int To3(this Vector2Int vector2)
@@ -59,7 +59,7 @@ public static class VectorExtension
 
     public static Vector2 ToScreenPos(this Vector2 worldVector)
     {
-        return Camera.main.WorldToScreenPoint(worldVector);
+        return InputController.Instance.MainCamera.WorldToScreenPoint(worldVector);
     }
 
     public static Vector2 ToWorldVector2(this Vector3Int worldVector)

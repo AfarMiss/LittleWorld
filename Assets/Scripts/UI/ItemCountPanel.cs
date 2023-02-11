@@ -1,4 +1,5 @@
 ﻿using LittleWorld;
+using LittleWorld.MapUtility;
 using LittleWorld.Message;
 using System;
 using System.Collections;
@@ -28,48 +29,43 @@ namespace LittleWorld.UI
         {
         }
 
-        private static void Putback(WorkMessage arg0)
-        {
-            var needPutbackSlider = FindObjectsOfType<GeneralSlider>().ToList()
-                .Find(x => x.uniqueID == arg0.workID.GetHashCode());
-            if (needPutbackSlider != null)
-            {
-                PoolManager.Instance.Putback(PoolEnum.Progress.ToString(), needPutbackSlider.gameObject);
-            }
-        }
-
         private void LateUpdate()
         {
             foreach (var item in Current.CurMap.mapGrids)
             {
-                if (item.HasPiledThing)
-                {
-                    if (!itemCountDic.ContainsKey(item.pos))
-                    {
-                        var go = PoolManager.Instance.GetNextObject(PoolEnum.ItemCount.ToString());
-                        go.GetComponent<ItemCount>().BindData(item.PiledThingLength, item.pos.To3());
-                        go.transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
-                        itemCountDic.Add(item.pos, go);
-                    }
-                    else
-                    {
-                        var go = itemCountDic[item.pos];
-                        go.GetComponent<ItemCount>().BindData(item.PiledThingLength, item.pos.To3());
-                        go.transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
-                    }
+                SingleUpdate(item);
+            }
+            //Current.CurMap.GetGrid(new Vector2Int(25, 25), out var testItem);
+            //SingleUpdate(testItem);
+        }
 
+        private void SingleUpdate(MapGridDetails item)
+        {
+            if (item.HasPiledThing)
+            {
+                if (!itemCountDic.ContainsKey(item.pos))
+                {
+                    var go = PoolManager.Instance.GetNextObject(PoolEnum.ItemCount.ToString());
+                    go.GetComponent<ItemCount>().BindData(item.PiledThingLength);
+                    go.transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
+                    itemCountDic.Add(item.pos, go);
                 }
                 else
                 {
-                    if (itemCountDic.ContainsKey(item.pos))
-                    {
-                        PoolManager.Instance.Putback(PoolEnum.ItemCount.ToString(), itemCountDic[item.pos]);
-                    }
+                    itemCountDic[item.pos].GetComponent<ItemCount>().BindData(item.PiledThingLength);
+                    itemCountDic[item.pos].transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
+                    //Debug.Log($"screenPos:{item.pos.ToCellBottom().ToScreenPos()}");
+                }
+
+            }
+            else
+            {
+                if (itemCountDic.ContainsKey(item.pos))
+                {
+                    PoolManager.Instance.Putback(PoolEnum.ItemCount.ToString(), itemCountDic[item.pos]);
                 }
             }
         }
-
-
     }
 
 }

@@ -8,16 +8,11 @@ namespace LittleWorld.UI
 {
     public class ItemCount : MonoBehaviour
     {
-        public Text m_TextMeshPro;
-        public Vector3 pos;
+        public Text UIText;
 
-        public void BindData(int count, Vector3 followPos)
+        public void BindData(int count)
         {
-            m_TextMeshPro.text = count.ToString();
-        }
-
-        private void LateUpdate()
-        {
+            UIText.text = count.ToString();
         }
     }
 }
