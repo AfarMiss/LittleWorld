@@ -16,7 +16,7 @@ namespace LittleWorld.UI
         private GameObject itemCountPrefab;
         private void Start()
         {
-            PoolManager.Instance.CreatePool(10, itemCountPrefab, PoolEnum.Progress.ToString(), transform);
+            PoolManager.Instance.CreatePool(2500, itemCountPrefab, PoolEnum.ItemCount.ToString(), transform);
         }
         private void OnEnable()
         {
@@ -38,12 +38,15 @@ namespace LittleWorld.UI
 
         private void Update()
         {
-            PoolManager.Instance.PutbackAll(PoolEnum.Progress.ToString());
+            PoolManager.Instance.PutbackAll(PoolEnum.ItemCount.ToString());
             foreach (var item in Current.CurMap.mapGrids)
             {
                 if (item.HasPiledThing)
                 {
-                    PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
+                    var go = PoolManager.Instance.GetNextObject(PoolEnum.ItemCount.ToString());
+                    go.GetComponent<ItemCount>().BindData(item.PiledThingLength, item.pos.To3());
+                    go.transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
+                    Debug.Log($"{item.pos} has thing:{item.PiledThing.ItemName}x{item.PiledThingLength}");
                 }
             }
         }

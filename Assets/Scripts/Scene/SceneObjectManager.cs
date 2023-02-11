@@ -39,8 +39,17 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     public void RegisterItem(WorldObject worldObject)
     {
-        WorldObjects.Add(worldObject.instanceID, worldObject);
-        AddRenderComponent(worldObject);
+        try
+        {
+            WorldObjects.Add(worldObject.instanceID, worldObject);
+            AddRenderComponent(worldObject);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"{worldObject.ItemName}_{worldObject.itemCode}");
+            Debug.LogError(e);
+            throw;
+        }
     }
 
     public void UnregisterItem(WorldObject worldObject)
@@ -67,9 +76,6 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
         renderParent = new GameObject("RenderParent");
         GameObject.DontDestroyOnLoad(renderParent);
-
-        //测试代码
-        new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
     }
 
     private SceneObjectManager()
@@ -140,5 +146,10 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
                 renderer.Render(item.Value);
             }
         }
+    }
+
+    public void Init()
+    {
+        new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
     }
 }

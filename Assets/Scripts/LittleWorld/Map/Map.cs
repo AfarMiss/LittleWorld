@@ -257,12 +257,14 @@ namespace LittleWorld.MapUtility
                 new Color(0.5f,0,0.5f,0.09f),
     };
             plantHash = new HashSet<Vector2Int>();
-
-            GenerateTrees(MapSize);
-
         }
 
-        private void GenerateTrees(Vector2Int MapSize)
+        public void GenerateInitObjects()
+        {
+            GenerateInitObjects(this.MapSize);
+        }
+
+        private void GenerateInitObjects(Vector2Int MapSize)
         {
             for (int x = 0; x < MapSize.x; x++)
             {
@@ -280,9 +282,9 @@ namespace LittleWorld.MapUtility
                                    );
                         }
                     }
+                    //以1%的概率随机生成高山中的矿石
                     if (mapGrids[x * MapSize.y + y].isMountain)
                     {
-                        //以1%的概率随机生成高山中的矿石
                         if ((UnityEngine.Random.Range(0, 99) < 5))
                         {
                             new Ore(

@@ -88,6 +88,24 @@ namespace LittleWorld.MapUtility
             }
         }
 
+        public int PiledThingLength
+        {
+            get
+            {
+                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                if (objects != null && objects.Length > 0)
+                {
+                    var result = objects.ToList().FindAll(x =>
+                    (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
+                    return result.Count;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
         public bool AddSingleWorldObject(WorldObject wo)
         {
             if (!isFull)

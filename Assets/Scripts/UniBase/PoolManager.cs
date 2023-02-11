@@ -100,8 +100,22 @@ public class PoolManager : Singleton<PoolManager>
             if (poolQueue.ContainsKey(curPool.prefabId))
             {
                 var curGo = poolQueue[curPool.prefabId].Find(x => !x.hasBeenUsed);
-                curGo.poolInstance.SetActive(true);
-                return curGo.poolInstance;
+                if (curGo != null)
+                {
+                    curGo.poolInstance.SetActive(true);
+                    curGo.hasBeenUsed = true;
+                    return curGo.poolInstance;
+                }
+                else
+                {
+                    var go = GameObject.Instantiate(curPool.poolPrefab, defaultParent);
+                    var poolItem = new PoolItem<GameObject>(go);
+                    poolQueue[curPool.prefabId].Add(poolItem);
+                    poolItem.poolInstance.SetActive(true);
+                    poolItem.hasBeenUsed = true;
+
+                    return poolItem.poolInstance;
+                }
             }
             else
             {

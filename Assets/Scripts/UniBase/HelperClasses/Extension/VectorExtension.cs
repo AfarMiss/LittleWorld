@@ -17,9 +17,24 @@ public static class VectorExtension
         return new Vector3(Mathf.FloorToInt(vector.x) + 0.5f, Mathf.FloorToInt(vector.y) + 0.5f, Mathf.FloorToInt(vector.z));
     }
 
+    public static Vector3 ToCellBottom(this Vector3 vector)
+    {
+        return new Vector3(Mathf.FloorToInt(vector.x) + 0.5f, Mathf.FloorToInt(vector.y), Mathf.FloorToInt(vector.z));
+    }
+
+    public static Vector2 ToCellBottom(this Vector2Int vector)
+    {
+        return new Vector2(Mathf.FloorToInt(vector.x) + 0.5f, Mathf.FloorToInt(vector.y));
+    }
+
     public static Vector2Int ToCell(this Vector2 vector)
     {
         return new Vector2Int(Mathf.FloorToInt(vector.x), Mathf.FloorToInt(vector.y));
+    }
+
+    public static Vector2 ToScreenPos(this Vector2Int vector)
+    {
+        return Camera.main.WorldToScreenPoint(vector.To3());
     }
 
     public static Vector3Int To3(this Vector2Int vector2)

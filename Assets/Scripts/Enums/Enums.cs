@@ -196,6 +196,7 @@ public enum PoolEnum
 {
     Sounds,
     Progress,
+    ItemCount,
 }
 
 public enum ActionEnum

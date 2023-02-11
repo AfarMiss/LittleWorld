@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UniBase;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,11 +8,17 @@ namespace LittleWorld.UI
 {
     public class ItemCount : MonoBehaviour
     {
-        public TMPro.TextMeshPro m_TextMeshPro;
+        public Text m_TextMeshPro;
+        public Vector3 pos;
 
-        public void BindData(int count)
+        public void BindData(int count, Vector3 followPos)
         {
             m_TextMeshPro.text = count.ToString();
+        }
+
+        private void Update()
+        {
+            this.transform.position = InputUtils.GetScreenPosition(pos);
         }
     }
 }
