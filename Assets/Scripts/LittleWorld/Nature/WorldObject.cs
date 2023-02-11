@@ -33,8 +33,8 @@ namespace LittleWorld.Item
             {
                 canPile = plantInfo.canPile;
             }
-            SceneObjectManager.Instance.RegisterItem(this);
             mapBelongTo.AddWorldObjectAt(gridPos, this);
+            SceneObjectManager.Instance.RegisterItem(this);
         }
 
         public void OnBeCarried(WorldObject wo)
