@@ -273,7 +273,7 @@ namespace LittleWorld.MapUtility
                     //5%的概率随机生成陆地中的树木
                     if (mapGrids[x * MapSize.y + y].isPlane)
                     {
-                        if ((UnityEngine.Random.Range(0, 99) < 5))
+                        if ((UnityEngine.Random.Range(0, 99) < 1))
                         {
                             new Plant(
                                    UnityEngine.Random.Range(0, 1f) < 0.5f ? 10027 : 10028,

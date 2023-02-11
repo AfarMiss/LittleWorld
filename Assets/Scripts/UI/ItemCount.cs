@@ -16,9 +16,8 @@ namespace LittleWorld.UI
             m_TextMeshPro.text = count.ToString();
         }
 
-        private void Update()
+        private void LateUpdate()
         {
-            this.transform.position = InputUtils.GetScreenPosition(pos);
         }
     }
 }

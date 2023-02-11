@@ -14,9 +14,11 @@ namespace LittleWorld.UI
         public override string Path => UIPath.Panel_ProgressPanel;
         [SerializeField]
         private GameObject itemCountPrefab;
+        private Dictionary<Vector2Int, GameObject> itemCountDic;
         private void Start()
         {
-            PoolManager.Instance.CreatePool(2500, itemCountPrefab, PoolEnum.ItemCount.ToString(), transform);
+            itemCountDic = new Dictionary<Vector2Int, GameObject>();
+            PoolManager.Instance.CreatePool(50, itemCountPrefab, PoolEnum.ItemCount.ToString(), transform);
         }
         private void OnEnable()
         {
@@ -36,17 +38,33 @@ namespace LittleWorld.UI
             }
         }
 
-        private void Update()
+        private void LateUpdate()
         {
-            PoolManager.Instance.PutbackAll(PoolEnum.ItemCount.ToString());
             foreach (var item in Current.CurMap.mapGrids)
             {
                 if (item.HasPiledThing)
                 {
-                    var go = PoolManager.Instance.GetNextObject(PoolEnum.ItemCount.ToString());
-                    go.GetComponent<ItemCount>().BindData(item.PiledThingLength, item.pos.To3());
-                    go.transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
-                    Debug.Log($"{item.pos} has thing:{item.PiledThing.ItemName}x{item.PiledThingLength}");
+                    if (!itemCountDic.ContainsKey(item.pos))
+                    {
+                        var go = PoolManager.Instance.GetNextObject(PoolEnum.ItemCount.ToString());
+                        go.GetComponent<ItemCount>().BindData(item.PiledThingLength, item.pos.To3());
+                        go.transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
+                        itemCountDic.Add(item.pos, go);
+                    }
+                    else
+                    {
+                        var go = itemCountDic[item.pos];
+                        go.GetComponent<ItemCount>().BindData(item.PiledThingLength, item.pos.To3());
+                        go.transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
+                    }
+
+                }
+                else
+                {
+                    if (itemCountDic.ContainsKey(item.pos))
+                    {
+                        PoolManager.Instance.Putback(PoolEnum.ItemCount.ToString(), itemCountDic[item.pos]);
+                    }
                 }
             }
         }
