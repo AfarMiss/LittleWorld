@@ -54,6 +54,7 @@ namespace LittleWorld.UI
                 {
                     itemCountDic[item.pos].GetComponent<ItemCount>().BindData(item.PiledThingLength);
                     itemCountDic[item.pos].transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
+                    itemCountDic[item.pos].SetActive(true);
                     //Debug.Log($"screenPos:{item.pos.ToCellBottom().ToScreenPos()}");
                 }
 

@@ -2,7 +2,9 @@
 using LittleWorld.MapUtility;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UniBase;
+using Unity.VisualScripting;
 using UnityEngine;
 using static System.Collections.Specialized.BitVector32;
 
@@ -13,8 +15,9 @@ namespace LittleWorld.UI
         public static FloatOption[] MakeFloatMenuAt(Humanbeing human, Vector3 mousePos)
         {
             var contentList = new List<FloatOption>();
-
-            var objects = WorldUtility.GetWorldObjectsAt(mousePos.GetWorldPosition());
+            var cell = mousePos.GetWorldPosition();
+            var objects = WorldUtility.GetWorldObjectsAt(cell);
+            bool hasAddedHaul = false;
 
             foreach (var worldObject in objects)
             {
@@ -29,10 +32,11 @@ namespace LittleWorld.UI
                     var plantOpts = AddPlantSectionFloatMenu(human, mousePos.GetWorldPosition().ToCell(), curSection);
                     contentList.AddRange(plantOpts);
                 }
-                if (worldObject is Food)
+                if (worldObject is WorldObject && (worldObject as WorldObject).canPile && !hasAddedHaul)
                 {
-                    var plantOpts = AddCarryFloatMenu(human, worldObject as WorldObject);
+                    var plantOpts = AddHaulFloatMenu(human, objects);
                     contentList.AddRange(plantOpts);
+                    hasAddedHaul = true;
                 }
                 if (worldObject is Ore)
                 {
@@ -46,13 +50,19 @@ namespace LittleWorld.UI
             return contentList.ToArray();
         }
 
-        private static List<FloatOption> AddCarryFloatMenu(Humanbeing human, WorldObject worldObject)
+        private static List<FloatOption> AddHaulFloatMenu(Humanbeing human, Item.Object[] objects)
         {
+            var haulTargets = objects.ToList().FindAll(x => x is WorldObject wo && wo.canPile);
+            var results = new List<WorldObject>();
+            foreach (var item in haulTargets)
+            {
+                results.Add(item as WorldObject);
+            }
             List<FloatOption> contentList = new List<FloatOption>
             {
-                new FloatOption($"搬运{worldObject.ItemName }", () =>
-                {
-                    human.AddCarryWork(worldObject);
+            new FloatOption($"搬运{(haulTargets[0] as WorldObject).ItemName}x{haulTargets.Count}", () =>
+            {
+                human.AddCarryWork(results.ToArray() );
             })
             };
             return contentList;

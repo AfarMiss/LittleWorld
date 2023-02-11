@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 namespace LittleWorld.Item
 {
@@ -24,23 +25,32 @@ namespace LittleWorld.Item
         private PawnHealthTracer healthTracer;
         private PathNavigation pathTracer;
         public List<WorldObject> Inventory = new List<WorldObject>();
-        public WorldObject CurrentTake;
 
-        public void Carry(WorldObject wo)
+        public void CarrySingle(WorldObject wo, Vector2Int destination)
         {
-            wo.OnBeCarried(this);
-            Inventory.Add(wo);
-            CurrentTake = wo;
+            Current.CurMap.GetGrid(destination, out var result);
+            result.PickUp(wo, this);
         }
 
-        public void Dropdown(WorldObject wo)
+        public void Carry(WorldObject[] wo, Vector2Int destination)
+        {
+            foreach (var item in wo)
+            {
+                CarrySingle(item, destination);
+            }
+        }
+
+        private void Dropdown(WorldObject wo, Vector2Int destination)
         {
             wo.OnBeDropDown();
-            if (CurrentTake == wo)
+        }
+
+        public void Dropdown(WorldObject[] wo, Vector2Int destination)
+        {
+            foreach (var item in wo)
             {
-                CurrentTake = null;
+                Dropdown(item, destination);
             }
-            Inventory.Remove(wo);
         }
 
 
@@ -110,9 +120,9 @@ namespace LittleWorld.Item
             workTracer.AddWork(new MiningSingleWork(ore, this));
         }
 
-        public void AddCarryWork(WorldObject wo)
+        public void AddCarryWork(WorldObject[] wo)
         {
-            workTracer.AddWork(new CarryWork(wo, this));
+            workTracer.AddWork(new HaulingWork(wo, this));
         }
 
         public void AddMoveWork(Vector3Int targetPos)

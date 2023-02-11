@@ -4,12 +4,14 @@ using LittleWorld.MapUtility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.Experimental.Rendering;
 using UnityEngine;
 using static Cinemachine.AxisState;
 
 namespace LittleWorld.Jobs
 {
-    public class CarryWork : Work
+    public class HaulingWork : Work
     {
         public void CreateWorkSequence()
         {
@@ -17,7 +19,7 @@ namespace LittleWorld.Jobs
             Humanbeing humanbeing = tree.GetVariable("Humanbeing") as Humanbeing;
             //carry
             DynamicWalk walkLeaf = new DynamicWalk("Go To Object", humanbeing, Node.GoToLoc, GetOjectPos);
-            DynamicLongWorkLeaf carry = new DynamicLongWorkLeaf("Carry", humanbeing, DoCarry, GetOjectPos2);
+            DynamicLongWorkLeaf carry = new DynamicLongWorkLeaf("Carry", humanbeing, DoHaul, GetOjectPos);
             DynamicWalk moveToStorageSection = new DynamicWalk("Go To Storage Section", humanbeing, Node.GoToLoc, GetStoragePos);
             DynamicLongWorkLeaf dropDown = new DynamicLongWorkLeaf("Drop Down", humanbeing, DoDropDown, GetStoragePos);
             carrySequence.AddChild(walkLeaf);
@@ -29,43 +31,34 @@ namespace LittleWorld.Jobs
 
         private Node.Status DoDropDown(Vector2Int destination, Humanbeing human)
         {
-            human.Dropdown(tree.GetVariable("WorldObject") as WorldObject);
+            human.Dropdown(tree.GetVariable("WorldObjects") as WorldObject[], destination);
             return Node.Status.SUCCESS;
 
         }
 
         private Vector2Int GetStoragePos()
         {
-            foreach (var item in Current.CurMap.sectionDic)
-            {
-                if (item.Value is StorageMapSection)
-                {
-                    return item.Value.grids[0].pos;
-                }
-            }
-            return default;
+            var targetSection = Current.CurMap.sectionDic.Values.ToList().Find(x => x is StorageMapSection);
+            var targetGrid = targetSection.grids.Find(x => !x.isFull);
+            return targetGrid.pos;
         }
 
-        private Node.Status DoCarry(Vector2Int destination, Humanbeing human)
+        private Node.Status DoHaul(Vector2Int destination, Humanbeing human)
         {
-            human.Carry(tree.GetVariable("WorldObject") as WorldObject);
+            human.Carry(tree.GetVariable("WorldObjects") as WorldObject[], destination);
             return Node.Status.SUCCESS;
         }
 
         private Vector2Int GetOjectPos()
         {
-            return (tree.GetVariable("WorldObject") as WorldObject).GridPos;
+            var targets = tree.GetVariable("WorldObjects") as WorldObject[];
+            return targets[0].GridPos;
         }
 
-        private Vector2Int GetOjectPos2()
-        {
-            return (tree.GetVariable("WorldObject") as WorldObject).GridPos;
-        }
-
-        public CarryWork(WorldObject wo, Humanbeing humanbeing)
+        public HaulingWork(WorldObject[] wo, Humanbeing humanbeing)
         {
             tree = new BehaviourTree();
-            tree.SetVariable("WorldObject", wo);
+            tree.SetVariable("WorldObjects", wo);
             tree.SetVariable("Humanbeing", humanbeing);
             CreateWorkSequence();
         }

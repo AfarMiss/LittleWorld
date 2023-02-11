@@ -37,15 +37,10 @@ namespace LittleWorld.Item
             SceneObjectManager.Instance.RegisterItem(this);
         }
 
-        public void OnBeCarried(WorldObject wo)
-        {
-            isCarried = true;
-            carriedParent = wo;
-        }
-
         public void OnBeDropDown()
         {
-            this.gridPos = carriedParent.GridPos;
+            Current.CurMap.GetGrid(carriedParent.gridPos, out var grid);
+            grid.AddSingleWorldObject(this);
             isCarried = false;
             carriedParent = null;
         }

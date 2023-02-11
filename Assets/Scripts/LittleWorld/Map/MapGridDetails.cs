@@ -37,12 +37,11 @@ namespace LittleWorld.MapUtility
         {
             get
             {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
-                if (objects != null && objects.Length > 0)
+                var objects = WorldUtility.GetWorldObjectsAt(pos.To3()).ToList();
+                if (objects != null && objects.Count > 0)
                 {
-                    var result = objects.ToList().Find(x =>
-                    (ObjectConfig.ObjectInfoDic[x.itemCode].canPile
-                    && ObjectConfig.ObjectInfoDic[x.itemCode].maxPileCount <= CurPiled));
+                    var result = objects.Find(x => x is WorldObject && (x as WorldObject).canPile
+                    && ObjectConfig.ObjectInfoDic[x.itemCode].maxPileCount <= CurPiled);
                     return result != null;
                 }
                 else
@@ -52,6 +51,7 @@ namespace LittleWorld.MapUtility
             }
         }
 
+        public int PiledAmount = 0;
         public bool HasPiledThing => hasPiledThing;
 
         private bool hasPiledThing = false;
@@ -80,8 +80,8 @@ namespace LittleWorld.MapUtility
             {
                 if (WorldUtility.GetWorldObjectsAt(pos.To3()) != null && WorldUtility.GetWorldObjectsAt(pos.To3()).Length > 0)
                 {
-                    var result = WorldUtility.GetWorldObjectsAt(pos.To3()).ToList().FindAll(x =>
-                    (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
+                    var gridObjects = WorldUtility.GetWorldObjectsAt(pos.To3()).ToList();
+                    var result = gridObjects.FindAll(x => x is WorldObject wo && wo.canPile);
                     return result.Count;
                 }
                 else
@@ -99,16 +99,18 @@ namespace LittleWorld.MapUtility
                 if (wo.canPile)
                 {
                     hasPiledThing = true;
+                    PiledAmount++;
                 }
                 return true;
             }
             else
             {
+                PiledAmount = 0;
                 return false;
             }
         }
 
-        public bool RemoveSingleWorldObject(WorldObject wo)
+        public bool DeleteSingle(WorldObject wo)
         {
             wo.Destroy();
             var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
@@ -116,6 +118,26 @@ namespace LittleWorld.MapUtility
             {
                 var result = objects.ToList().Find(x =>
                 (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
+                hasPiledThing = result != null;
+            }
+            else
+            {
+                hasPiledThing = false;
+            }
+            return true;
+        }
+
+        public bool PickUp(WorldObject wo, WorldObject hauler)
+        {
+            wo.isCarried = true;
+            wo.carriedParent = hauler;
+            PiledAmount--;
+
+            var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+            if (objects != null && objects.Length > 0)
+            {
+                var result = objects.ToList().Find(x =>
+                 (x is WorldObject) && (x as WorldObject).canPile && !(x as WorldObject).isCarried);
                 hasPiledThing = result != null;
             }
             else
