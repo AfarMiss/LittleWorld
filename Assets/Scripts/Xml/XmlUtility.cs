@@ -40,7 +40,7 @@ namespace Xml
                     plant.growingTime = float.Parse(item.SelectSingleNode("growingTime").InnerText);
                     plant.itemSprites = CreateItemSpritesList(item, 6);
                     ObjectConfig.ObjectInfoDic.Add(plant.itemCode, plant);
-                    SetPileProperty(item, ref plant);
+                    SetCommonProperty(item, ref plant);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Seed")
@@ -55,7 +55,7 @@ namespace Xml
                     seed.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     seed.itemSprites = CreateItemSpritesList(item, 6);
                     ObjectConfig.ObjectInfoDic.Add(seed.itemCode, seed);
-                    SetPileProperty(item, ref seed);
+                    SetCommonProperty(item, ref seed);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Crop")
@@ -68,7 +68,7 @@ namespace Xml
                     food.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     food.itemSprites = CreateItemSpritesList(item, 6);
                     ObjectConfig.ObjectInfoDic.Add(food.itemCode, food);
-                    SetPileProperty(item, ref food);
+                    SetCommonProperty(item, ref food);
                 }
 
 
@@ -82,7 +82,7 @@ namespace Xml
                     animal.moveSpeed = float.Parse(item.SelectSingleNode("moveSpeed").InnerText);
                     animal.itemSprites = CreateItemSpritesList(item, 6);
                     ObjectConfig.ObjectInfoDic.Add(animal.itemCode, animal);
-                    SetPileProperty(item, ref animal);
+                    SetCommonProperty(item, ref animal);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Thing")
@@ -93,7 +93,7 @@ namespace Xml
                     thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     thing.itemSprites = CreateItemSpritesList(item, 3);
                     ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
-                    SetPileProperty(item, ref thing);
+                    SetCommonProperty(item, ref thing);
                 }
                 if (item.SelectSingleNode("itemType").InnerText == "Building")
                 {
@@ -108,7 +108,7 @@ namespace Xml
                     thing.buildingCost = GetBuildingCost(item);
                     thing.itemSprites = CreateItemSpritesList(item, 1);
                     ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
-                    SetPileProperty(item, ref thing);
+                    SetCommonProperty(item, ref thing);
                 }
                 if (item.SelectSingleNode("itemType").InnerText == "Ore")
                 {
@@ -124,12 +124,12 @@ namespace Xml
                     ore.MiningWorkAmount = int.Parse(item.SelectSingleNode("miningWorkAmount").InnerText);
                     ore.itemSprites = CreateItemSpritesList(item, 1);
                     ObjectConfig.ObjectInfoDic.Add(ore.itemCode, ore);
-                    SetPileProperty(item, ref ore);
+                    SetCommonProperty(item, ref ore);
                 }
             }
         }
 
-        private static void SetPileProperty<T>(XmlNode item, ref T info) where T : BaseInfo
+        private static void SetCommonProperty<T>(XmlNode item, ref T info) where T : BaseInfo
         {
             if (item == null || item.SelectSingleNode("maxPileCount") == null
                 || string.IsNullOrEmpty(item.SelectSingleNode("maxPileCount").InnerText))
@@ -137,6 +137,10 @@ namespace Xml
                 return;
             }
             info.canPile = int.TryParse(item.SelectSingleNode("maxPileCount").InnerText, out info.maxPileCount);
+            if (!bool.TryParse(item.SelectSingleNode("maxPileCount").InnerText, out info.isBlock))
+            {
+                info.isBlock = false;
+            }
         }
 
         private static List<Sprite> CreateItemSpritesList(XmlNode item, int spritesCount)

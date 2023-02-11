@@ -10,5 +10,6 @@ namespace LittleWorld.Item
         public string itemName;
         public bool canPile;
         public int maxPileCount;
+        public bool isBlock;
     }
 }
