@@ -89,7 +89,7 @@
   * [UI管理](unity/gong-neng-mo-kuai/ui-guan-li/README.md)
     * [概述](unity/gong-neng-mo-kuai/ui-guan-li/gai-shu.md)
     * [Canvas Group](unity/gong-neng-mo-kuai/ui-guan-li/canvas-group.md)
-    * [UI管理中的MVC思想](gong-neng-mo-kuai/ui-guan-li/ui-guan-li-zhong-de-mvc-si-xiang/README.md)
+    * [UI管理中的MVC思想](unity/gong-neng-mo-kuai/ui-guan-li/ui-guan-li-zhong-de-mvc-si-xiang.md)
       * [PureMVC](gong-neng-mo-kuai/ui-guan-li/ui-guan-li-zhong-de-mvc-si-xiang/puremvc.md)
   * [相机管理](unity/gong-neng-mo-kuai/xiang-ji-guan-li/README.md)
     * [镜头移动](unity/gong-neng-mo-kuai/xiang-ji-guan-li/jing-tou-yi-dong.md)
