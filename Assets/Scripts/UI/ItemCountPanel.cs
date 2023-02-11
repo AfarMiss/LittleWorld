@@ -46,13 +46,13 @@ namespace LittleWorld.UI
                 if (!itemCountDic.ContainsKey(item.pos))
                 {
                     var go = PoolManager.Instance.GetNextObject(PoolEnum.ItemCount.ToString());
-                    go.GetComponent<ItemCount>().BindData(item.PiledThingLength);
+                    go.GetComponent<ItemCount>().BindData(item.PiledThingLength, item.pos);
                     go.transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
                     itemCountDic.Add(item.pos, go);
                 }
                 else
                 {
-                    itemCountDic[item.pos].GetComponent<ItemCount>().BindData(item.PiledThingLength);
+                    itemCountDic[item.pos].GetComponent<ItemCount>().BindData(item.PiledThingLength, item.pos);
                     itemCountDic[item.pos].transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
                     itemCountDic[item.pos].SetActive(true);
                     //Debug.Log($"screenPos:{item.pos.ToCellBottom().ToScreenPos()}");
@@ -64,6 +64,7 @@ namespace LittleWorld.UI
                 if (itemCountDic.ContainsKey(item.pos))
                 {
                     PoolManager.Instance.Putback(PoolEnum.ItemCount.ToString(), itemCountDic[item.pos]);
+                    itemCountDic.Remove(item.pos);
                 }
             }
         }
