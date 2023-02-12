@@ -11,7 +11,7 @@
 | IList, IList\<T>             | You want to modify the collection and you care about the ordering and / or positioning of the elements in the collection.                                                                                                                                     |
 | List, List\<T>               | Since in object oriented design you want to [depend on abstractions instead of implementations](https://en.wikipedia.org/wiki/Dependency\_inversion\_principle), you should never have a member of your own implementations with the concrete type List/List. |
 
-简而言之，如果只需要读取数据，那么应该使用IEnumerable，如果需要修改数据，那么使用ICollection，如果需要排序或者知晓位置，那么使用IList。
+简而言之，如果只需要读取数据，那么应该使用IEnumerable，如果需要修改数据或是需要知晓集合长度，那么使用ICollection，如果需要排序或者知晓位置，那么使用IList。
 
 在面向对象的思想下，参数应避免使用具体实现来代替抽象接口。这样的代码具有更好的灵活性。
 
