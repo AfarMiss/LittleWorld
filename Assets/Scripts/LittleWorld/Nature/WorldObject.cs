@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using LittleWorld.UI;
+using LittleWorld.Message;
 
 namespace LittleWorld.Item
 {
@@ -21,7 +22,16 @@ namespace LittleWorld.Item
 
         public abstract Sprite GetSprite();
 
-        public Vector2Int GridPos { get => gridPos; set { gridPos = value; } }
+        public Vector2Int GridPos
+        {
+            get => gridPos;
+            set
+            {
+                var lastPos = gridPos;
+                gridPos = value;
+                EventCenter.Instance.Trigger(EventName.OBJECT_GRID_CHANGE, new ChangeGridMessage(lastPos, this));
+            }
+        }
 
         public WorldObject(int itemCode, Vector2Int gridPos, Map map = null)
         {
@@ -46,6 +56,11 @@ namespace LittleWorld.Item
 
         public void Destroy()
         {
+            if (this.canPile)
+            {
+                this.mapBelongTo.GetGrid(this.gridPos, out var result);
+                result.DeleteSinglePiledThing();
+            }
             SceneObjectManager.Instance.UnregisterItem(this);
         }
 

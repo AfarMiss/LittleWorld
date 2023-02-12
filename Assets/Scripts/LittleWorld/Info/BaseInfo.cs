@@ -12,5 +12,7 @@ namespace LittleWorld.Item
         public int maxPileCount;
         public bool isBlock;
         public List<Sprite> itemSprites;
+
+        public Sprite defaultSprite => itemSprites[0];
     }
 }

@@ -13,6 +13,5 @@ namespace LittleWorld.Item
         public int productionCode;
         public int productionAmount;
         public int MiningWorkAmount;
-        public List<Sprite> itemSprites;
     }
 }

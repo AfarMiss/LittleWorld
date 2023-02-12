@@ -88,9 +88,9 @@ namespace LittleWorld.MapUtility
             }
         }
 
-        public bool DeleteSingle(WorldObject wo)
+        public bool DeleteSinglePiledThing()
         {
-            wo.Destroy();
+            piledAmount--;
             var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
             if (objects != null && objects.Length > 0)
             {

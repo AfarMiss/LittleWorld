@@ -61,4 +61,13 @@ public class EventName
     public static string SECOND_CHANGE = "SECOND_CHANGE";
     public static string GAME_TICK = "GAME_TICK";
     #endregion
+
+    #region 物体注册
+    public static string WORLD_OBJECT_DROP = "WORLD_OBJECT_DROP";
+    public static string WORLD_OBJECT_DELETE = "WORLD_OBJECT_DELETE";
+    public static string WORLD_OBJECT_PICK = "WORLD_OBJECT_PICK";
+    #endregion
+
+    public static string OBJECT_GRID_CHANGE = "OBJECT_GRID_CHANGE";
+
 }

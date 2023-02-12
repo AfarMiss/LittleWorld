@@ -5,11 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
+using LittleWorld.MapUtility;
+using LittleWorld.Message;
 
 public class SceneObjectManager : Singleton<SceneObjectManager>
 {
     public static int ItemInstanceID;
     private GameObject itemPrefab;
+    private GameObject pilePrefab;
     public GameObject ghostPrefab;
     private GameObject pawnRes;
     private GameObject renderParent;
@@ -37,7 +41,8 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public Dictionary<int, WorldObject> WorldObjects = new Dictionary<int, WorldObject>();
     public List<WorldObject> RequestAdd = new List<WorldObject>();
     public List<WorldObject> RequestDelete = new List<WorldObject>();
-    public Dictionary<LittleWorld.Item.Object, ItemRender> WorldItemsRenderer = new Dictionary<LittleWorld.Item.Object, ItemRender>();
+    private Dictionary<WorldObject, ItemRender> WorldItemsRenderer = new Dictionary<WorldObject, ItemRender>();
+    private Dictionary<Vector2Int, PileInfo> WorldPileRenderer = new Dictionary<Vector2Int, PileInfo>();
 
     public void RegisterItem(WorldObject worldObject)
     {
@@ -69,10 +74,12 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     {
         base.OnCreateInstance();
         EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, Tick);
+        EventCenter.Instance.Register<ChangeGridMessage>(EventName.OBJECT_GRID_CHANGE, OnWorldObjectGridChange);
 
         ItemInstanceID = 0;
         pawnManager = PawnManager.Instance;
         itemPrefab = Resources.Load<GameObject>("Prefabs/Object/Item");
+        pilePrefab = Resources.Load<GameObject>("Prefabs/Object/Pile");
         ghostPrefab = Resources.Load<GameObject>("Prefabs/Object/Ghost");
         pawnRes = Resources.Load<GameObject>("Prefabs/Character/Pawn");
 
@@ -80,45 +87,74 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         GameObject.DontDestroyOnLoad(renderParent);
     }
 
+    private void OnWorldObjectGridChange(ChangeGridMessage message)
+    {
+        if (message.wo.canPile)
+        {
+            AddRenderComponent(message.wo);
+        }
+    }
+
     private SceneObjectManager()
     {
 
     }
 
-    private void RenderPawn(Humanbeing human)
-    {
-        GameObject curPawn = GameObject.Instantiate<GameObject>(pawnRes, renderParent.transform);
-        curPawn.GetComponent<Transform>().transform.position = human.GridPos.To3();
-        curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
-        human.SetNavi(curPawn.GetComponent<PathNavigation>());
-        human.rendererObject = curPawn;
-        WorldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
-    }
-
     private void AddRenderComponent(WorldObject wo)
     {
-        if (!(wo is Humanbeing))
+        if (wo is not Humanbeing)
         {
-            GameObject itemGameObject = GameObject.Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
-            ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
-            wo.rendererObject = itemGameObject;
-            WorldItemsRenderer.Add(wo, itemComponent);
+            if (!wo.canPile)
+            {
+                GameObject itemGameObject = GameObject.Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
+                ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
+                WorldItemsRenderer.Add(wo, itemComponent);
+            }
+            else
+            {
+                if (!WorldPileRenderer.ContainsKey(wo.GridPos))
+                {
+                    GameObject itemGameObject = GameObject.Instantiate(pilePrefab, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
+                    PileRenderer itemComponent = itemGameObject.GetComponent<PileRenderer>();
+                    WorldPileRenderer.Add(wo.GridPos, new PileInfo(wo.itemCode, itemComponent, wo.mapBelongTo));
+                }
+            }
         }
         else
         {
-            RenderPawn(wo as Humanbeing);
+            var human = wo as Humanbeing;
+            GameObject curPawn = GameObject.Instantiate<GameObject>(pawnRes, renderParent.transform);
+            curPawn.GetComponent<Transform>().transform.position = human.GridPos.To3();
+            curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
+            human.SetNavi(curPawn.GetComponent<PathNavigation>());
+            WorldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
         }
     }
 
     public void DisRenderItem(WorldObject wo)
     {
-        WorldItemsRenderer.TryGetValue(wo, out var renderer);
-        if (renderer != null)
+        if (wo.canPile)
         {
-            GameObject.Destroy(renderer.gameObject);
-            wo.rendererObject = null;
+            WorldPileRenderer.TryGetValue(wo.GridPos, out var renderer);
+            if (renderer != null)
+            {
+                if (wo.mapBelongTo.GetGrid(wo.GridPos, out var gridDetail)
+                    && !gridDetail.HasPiledThing)
+                {
+                    GameObject.Destroy(renderer.pileRenderer.gameObject);
+                    WorldPileRenderer.Remove(wo.GridPos);
+                }
+            }
         }
-        WorldItemsRenderer.Remove(wo);
+        else
+        {
+            WorldItemsRenderer.TryGetValue(wo, out var renderer);
+            if (renderer != null)
+            {
+                GameObject.Destroy(renderer.gameObject);
+            }
+            WorldItemsRenderer.Remove(wo);
+        }
     }
 
     public WorldObject GetWorldObjectById(int instanceID)
@@ -143,11 +179,19 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         foreach (var item in WorldObjects)
         {
             item.Value.Tick();
-            if (WorldItemsRenderer.TryGetValue(item.Value, out var renderer))
-            {
-                renderer.Render(item.Value);
-            }
         }
+
+        foreach (var item in WorldItemsRenderer)
+        {
+            item.Value.Render(item.Key);
+        }
+
+        foreach (var item in WorldPileRenderer)
+        {
+            item.Value.pileRenderer.Render(item.Value.pileCode, item.Key, item.Value.belongTo);
+        }
+
+
         foreach (var item in RequestDelete)
         {
             WorldObjects.Remove(item.instanceID);
@@ -164,5 +208,19 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public void Init()
     {
         new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
+    }
+}
+
+public class PileInfo
+{
+    public int pileCode;
+    public PileRenderer pileRenderer;
+    public Map belongTo;
+
+    public PileInfo(int pileCode, PileRenderer pileRenderer, Map belongTo)
+    {
+        this.pileCode = pileCode;
+        this.pileRenderer = pileRenderer;
+        this.belongTo = belongTo;
     }
 }
