@@ -25,17 +25,17 @@ public struct GameTime
     public void AddOneDay()
     {
         day++;
-        EventCenter.Instance.Trigger(EventEnum.DAY_CHANGE.ToString(), this);
+        EventCenter.Instance.Trigger(EventName.DAY_CHANGE, this);
         if (day >= 30)
         {
             day = 1;
             quad++;
-            EventCenter.Instance.Trigger(EventEnum.QUAD_CHANGE.ToString(), this);
+            EventCenter.Instance.Trigger(EventName.QUAD_CHANGE, this);
             if (quad >= 15)
             {
                 quad = 1;
                 year++;
-                EventCenter.Instance.Trigger(EventEnum.YEAR_CHANGE.ToString(), this);
+                EventCenter.Instance.Trigger(EventName.YEAR_CHANGE, this);
                 if (year >= 10000)
                 {
                     year = 0;
@@ -46,20 +46,20 @@ public struct GameTime
 
     public void AddTick()
     {
-        EventCenter.Instance.Trigger(nameof(EventEnum.GAME_TICK), this);
+        EventCenter.Instance.Trigger(nameof(EventName.GAME_TICK), this);
 
         second++;
-        EventCenter.Instance.Trigger(EventEnum.SECOND_CHANGE.ToString(), this);
+        EventCenter.Instance.Trigger(EventName.SECOND_CHANGE, this);
         if (second >= 60)
         {
             second = 0;
             minute++;
-            EventCenter.Instance.Trigger(EventEnum.MINUTE_CHANGE.ToString(), this);
+            EventCenter.Instance.Trigger(EventName.MINUTE_CHANGE, this);
             if (minute >= 60)
             {
                 minute = 0;
                 hour++;
-                EventCenter.Instance.Trigger(EventEnum.HOUR_CHANGE.ToString(), this);
+                EventCenter.Instance.Trigger(EventName.HOUR_CHANGE, this);
                 if (hour >= 24)
                 {
                     hour = 0;

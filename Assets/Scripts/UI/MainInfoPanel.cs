@@ -18,24 +18,24 @@ namespace LittleWorld.UI
 
         private void OnEnable()
         {
-            EventCenter.Instance.Register<GameTime>((nameof(EventEnum.YEAR_CHANGE)), BindData);
-            EventCenter.Instance.Register<GameTime>((nameof(EventEnum.QUAD_CHANGE)), BindData);
-            EventCenter.Instance.Register<GameTime>((nameof(EventEnum.DAY_CHANGE)), BindData);
-            EventCenter.Instance.Register<GameTime>((nameof(EventEnum.HOUR_CHANGE)), BindData);
-            EventCenter.Instance.Register<GameTime>((nameof(EventEnum.MINUTE_CHANGE)), BindData);
-            EventCenter.Instance.Register<GameTime>((nameof(EventEnum.SECOND_CHANGE)), BindData);
-            EventCenter.Instance.Register<GameTime>((nameof(EventEnum.GAME_TICK)), BindData);
+            EventCenter.Instance.Register<GameTime>(EventName.YEAR_CHANGE, BindData);
+            EventCenter.Instance.Register<GameTime>(EventName.QUAD_CHANGE, BindData);
+            EventCenter.Instance.Register<GameTime>(EventName.DAY_CHANGE, BindData);
+            EventCenter.Instance.Register<GameTime>(EventName.HOUR_CHANGE, BindData);
+            EventCenter.Instance.Register<GameTime>(EventName.MINUTE_CHANGE, BindData);
+            EventCenter.Instance.Register<GameTime>(EventName.SECOND_CHANGE, BindData);
+            EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, BindData);
         }
 
         private void OnDisable()
         {
-            EventCenter.Instance?.Unregister<GameTime>((nameof(EventEnum.YEAR_CHANGE)), BindData);
-            EventCenter.Instance?.Unregister<GameTime>((nameof(EventEnum.QUAD_CHANGE)), BindData);
-            EventCenter.Instance?.Unregister<GameTime>((nameof(EventEnum.DAY_CHANGE)), BindData);
-            EventCenter.Instance?.Unregister<GameTime>((nameof(EventEnum.HOUR_CHANGE)), BindData);
-            EventCenter.Instance?.Unregister<GameTime>((nameof(EventEnum.MINUTE_CHANGE)), BindData);
-            EventCenter.Instance?.Unregister<GameTime>((nameof(EventEnum.SECOND_CHANGE)), BindData);
-            EventCenter.Instance?.Unregister<GameTime>((nameof(EventEnum.GAME_TICK)), BindData);
+            EventCenter.Instance?.Unregister<GameTime>(EventName.YEAR_CHANGE, BindData);
+            EventCenter.Instance?.Unregister<GameTime>(EventName.QUAD_CHANGE, BindData);
+            EventCenter.Instance?.Unregister<GameTime>(EventName.DAY_CHANGE, BindData);
+            EventCenter.Instance?.Unregister<GameTime>(EventName.HOUR_CHANGE, BindData);
+            EventCenter.Instance?.Unregister<GameTime>(EventName.MINUTE_CHANGE, BindData);
+            EventCenter.Instance?.Unregister<GameTime>(EventName.SECOND_CHANGE, BindData);
+            EventCenter.Instance?.Unregister<GameTime>(EventName.GAME_TICK, BindData);
         }
 
         public void BindData(GameTime time)

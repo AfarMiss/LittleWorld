@@ -17,7 +17,7 @@ public class TimeManager : Singleton<TimeManager>
 
         curTickTime = 0;
         curGameTime = new GameTime(6000, 1, 1, 6, 0, 0);
-        EventCenter.Instance.Trigger(EventEnum.SECOND_CHANGE.ToString(), curGameTime);
+        EventCenter.Instance.Trigger(EventName.SECOND_CHANGE, curGameTime);
     }
 
     public override void Tick()

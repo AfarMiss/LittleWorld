@@ -17,17 +17,6 @@ public enum EventEnum
     /// </summary>
     DROP_SELECTED_ITEM,
 
-    #region 时间相关事件
-    YEAR_CHANGE,
-    QUAD_CHANGE,
-    DAY_CHANGE,
-    HOUR_CHANGE,
-    MINUTE_CHANGE,
-    SECOND_CHANGE,
-
-    GAME_TICK,
-    #endregion
-
     #region 场景相关事件
     BEFORE_FADE_OUT,
     BEFORE_SCENE_UNLOAD,
@@ -58,5 +47,18 @@ public enum EventEnum
 
     #region UI相关
     UI_UPDATE_PLANT_CODE,
+    #endregion
+}
+
+public class EventName
+{
+    #region 时间相关事件
+    public static string YEAR_CHANGE = "YEAR_CHANGE";
+    public static string QUAD_CHANGE = "QUAD_CHANGE";
+    public static string DAY_CHANGE = "DAY_CHANGE";
+    public static string HOUR_CHANGE = "HOUR_CHANGE";
+    public static string MINUTE_CHANGE = "MINUTE_CHANGE";
+    public static string SECOND_CHANGE = "SECOND_CHANGE";
+    public static string GAME_TICK = "GAME_TICK";
     #endregion
 }

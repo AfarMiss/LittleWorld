@@ -53,11 +53,6 @@ namespace LittleWorld
             {
                 mapManager.Tick();
                 timeManager.Tick();
-
-                foreach (var item in ticks.ToList())
-                {
-                    item.Tick();
-                }
             }
         }
     }

@@ -35,13 +35,15 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         }
     }
     public Dictionary<int, WorldObject> WorldObjects = new Dictionary<int, WorldObject>();
+    public List<WorldObject> RequestAdd = new List<WorldObject>();
+    public List<WorldObject> RequestDelete = new List<WorldObject>();
     public Dictionary<LittleWorld.Item.Object, ItemRender> WorldItemsRenderer = new Dictionary<LittleWorld.Item.Object, ItemRender>();
 
     public void RegisterItem(WorldObject worldObject)
     {
         try
         {
-            WorldObjects.Add(worldObject.instanceID, worldObject);
+            RequestAdd.Add(worldObject);
             AddRenderComponent(worldObject);
         }
         catch (System.Exception e)
@@ -57,7 +59,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         if (WorldObjects.Values.Contains(worldObject))
         {
             DisRenderItem(worldObject);
-            WorldObjects.Remove(worldObject.instanceID);
+            RequestDelete.Add(worldObject);
         }
     }
 
@@ -66,7 +68,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public override void OnCreateInstance()
     {
         base.OnCreateInstance();
-        EventCenter.Instance.Register<GameTime>((nameof(EventEnum.GAME_TICK)), Tick);
+        EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, Tick);
 
         ItemInstanceID = 0;
         pawnManager = PawnManager.Instance;
@@ -138,7 +140,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public void Tick(GameTime gameTime)
     {
         pawnManager.Tick();
-        foreach (var item in WorldObjects.ToList())
+        foreach (var item in WorldObjects)
         {
             item.Value.Tick();
             if (WorldItemsRenderer.TryGetValue(item.Value, out var renderer))
@@ -146,6 +148,17 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
                 renderer.Render(item.Value);
             }
         }
+        foreach (var item in RequestDelete)
+        {
+            WorldObjects.Remove(item.instanceID);
+        }
+        RequestDelete.Clear();
+
+        foreach (var item in RequestAdd)
+        {
+            WorldObjects.Add(item.instanceID, item);
+        }
+        RequestAdd.Clear();
     }
 
     public void Init()

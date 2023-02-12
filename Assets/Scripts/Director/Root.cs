@@ -101,6 +101,7 @@ namespace LittleWorld
         {
             CurGame?.Tick();
             commandCenter?.Tick();
+            //Debug.Log("FixedUpdate:" + this.GetHashCode());
         }
     }
 }
