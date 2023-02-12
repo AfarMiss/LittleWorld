@@ -35,28 +35,28 @@ namespace LittleWorld.MapUtility
             }
         }
 
-        public bool AddWorldObjectAt(Vector2Int posReference, WorldObject wo)
+        public bool DropdownWorldObjectAt(Vector2Int posReference, WorldObject wo)
         {
             var targetGrid = mapGrids.ToList().Find(x => x.pos == posReference);
             if (!targetGrid.AddSingleWorldObject(wo))
             {
                 GetGrid(new Vector2Int(posReference.x + 1, posReference.y), out var neighbour1);
-                if (neighbour1 != null && AddWorldObjectAt(new Vector2Int(posReference.x + 1, posReference.y), wo))
+                if (neighbour1 != null && DropdownWorldObjectAt(new Vector2Int(posReference.x + 1, posReference.y), wo))
                 {
                     return true;
                 }
                 GetGrid(new Vector2Int(posReference.x, posReference.y + 1), out var neighbour2);
-                if (neighbour2 != null && AddWorldObjectAt(new Vector2Int(posReference.x, posReference.y + 1), wo))
+                if (neighbour2 != null && DropdownWorldObjectAt(new Vector2Int(posReference.x, posReference.y + 1), wo))
                 {
                     return true;
                 }
                 GetGrid(new Vector2Int(posReference.x - 1, posReference.y), out var neighbour3);
-                if (neighbour3 != null && AddWorldObjectAt(new Vector2Int(posReference.x - 1, posReference.y), wo))
+                if (neighbour3 != null && DropdownWorldObjectAt(new Vector2Int(posReference.x - 1, posReference.y), wo))
                 {
                     return true;
                 }
                 GetGrid(new Vector2Int(posReference.x, posReference.y - 1), out var neighbour4);
-                if (neighbour4 != null && AddWorldObjectAt(new Vector2Int(posReference.x, posReference.y - 1), wo))
+                if (neighbour4 != null && DropdownWorldObjectAt(new Vector2Int(posReference.x, posReference.y - 1), wo))
                 {
                     return true;
                 }

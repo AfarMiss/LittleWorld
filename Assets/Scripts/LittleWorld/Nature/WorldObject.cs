@@ -33,14 +33,13 @@ namespace LittleWorld.Item
             {
                 canPile = plantInfo.canPile;
             }
-            mapBelongTo.AddWorldObjectAt(gridPos, this);
+            mapBelongTo.DropdownWorldObjectAt(gridPos, this);
             SceneObjectManager.Instance.RegisterItem(this);
         }
 
         public void OnBeDropDown()
         {
-            Current.CurMap.GetGrid(carriedParent.gridPos, out var grid);
-            grid.AddSingleWorldObject(this);
+            mapBelongTo.DropdownWorldObjectAt(carriedParent.gridPos, this);
             isCarried = false;
             carriedParent = null;
         }

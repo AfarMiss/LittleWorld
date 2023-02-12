@@ -7,6 +7,7 @@ using UnityEngine;
 
 public static class VectorExtension
 {
+    public static Vector2Int undefinedV2Int = new Vector2Int(-1, -1);
     public static Vector3Int ToCell(this Vector3 vector)
     {
         return new Vector3Int(Mathf.FloorToInt(vector.x), Mathf.FloorToInt(vector.y), Mathf.FloorToInt(vector.z));

@@ -40,7 +40,14 @@ namespace LittleWorld.Jobs
         {
             var targetSection = Current.CurMap.sectionDic.Values.ToList().Find(x => x is StorageMapSection);
             var targetGrid = targetSection.grids.Find(x => !x.isFull);
-            return targetGrid.pos;
+            if (targetGrid != null)
+            {
+                return targetGrid.pos;
+            }
+            else
+            {
+                return VectorExtension.undefinedV2Int;
+            }
         }
 
         private Node.Status DoHaul(Vector2Int destination, Humanbeing human)

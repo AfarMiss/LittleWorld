@@ -34,14 +34,14 @@ namespace LittleWorld.MapUtility
             }
         }
 
-        public bool isFull => piledThingCode != -1 && ObjectConfig.ObjectInfoDic[piledThingCode].canPile && ObjectConfig.ObjectInfoDic[piledThingCode].maxPileCount < PiledAmount;
+        public bool isFull => piledThingCode != -1 && ObjectConfig.ObjectInfoDic[piledThingCode].canPile && ObjectConfig.ObjectInfoDic[piledThingCode].maxPileCount <= piledAmount;
 
-        public int PiledAmount = 0;
+        private int piledAmount = 0;
         public bool HasPiledThing => hasPiledThing;
 
         private bool hasPiledThing = false;
 
-        public int PiledThingLength => PiledAmount;
+        public int PiledAmount => piledAmount;
 
         public bool AddSingleWorldObject(WorldObject wo)
         {
@@ -69,7 +69,7 @@ namespace LittleWorld.MapUtility
                     else
                     {
                         wo.GridPos = pos;
-                        PiledAmount++;
+                        piledAmount++;
                         return true;
                     }
                 }
@@ -77,6 +77,7 @@ namespace LittleWorld.MapUtility
                 {
                     hasPiledThing = true;
                     wo.GridPos = pos;
+                    piledAmount++;
                     piledThingCode = wo.itemCode;
                     return true;
                 }
@@ -108,7 +109,7 @@ namespace LittleWorld.MapUtility
         {
             wo.isCarried = true;
             wo.carriedParent = hauler;
-            PiledAmount--;
+            piledAmount--;
 
             var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
             if (objects != null && objects.Length > 0)
