@@ -125,15 +125,6 @@ namespace LittleWorld.MapUtility
             return true;
         }
 
-        public int CurPiled
-        {
-            get
-            {
-                var allPiledObjects = SceneObjectManager.Instance.WorldObjects.Values.ToList().FindAll(x => x.GridPos == pos && x.canPile);
-                return allPiledObjects == null ? 0 : allPiledObjects.Count;
-            }
-        }
-
         public Plant Plant
         {
             get

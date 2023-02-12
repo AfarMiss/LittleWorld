@@ -21,13 +21,6 @@ namespace LittleWorld.UI
             itemCountDic = new Dictionary<Vector2Int, GameObject>();
             PoolManager.Instance.CreatePool(50, itemCountPrefab, PoolEnum.ItemCount.ToString(), transform);
         }
-        private void OnEnable()
-        {
-        }
-
-        private void OnDisable()
-        {
-        }
 
         private void LateUpdate()
         {
@@ -35,8 +28,6 @@ namespace LittleWorld.UI
             {
                 SingleUpdate(item);
             }
-            //Current.CurMap.GetGrid(new Vector2Int(25, 25), out var testItem);
-            //SingleUpdate(testItem);
         }
 
         private void SingleUpdate(MapGridDetails item)
@@ -55,7 +46,6 @@ namespace LittleWorld.UI
                     itemCountDic[item.pos].GetComponent<ItemCount>().BindData(item.PiledAmount, item.pos);
                     itemCountDic[item.pos].transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
                     itemCountDic[item.pos].SetActive(true);
-                    //Debug.Log($"screenPos:{item.pos.ToCellBottom().ToScreenPos()}");
                 }
 
             }
