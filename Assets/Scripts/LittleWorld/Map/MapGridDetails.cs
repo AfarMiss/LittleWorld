@@ -12,6 +12,7 @@ namespace LittleWorld.MapUtility
         public int gridAltitudeLayer;
         public Rect gridRect;
         public bool isPlantZone;
+        private int piledThingCode = -1;
         public bool isLand => gridAltitudeLayer >= 30;
 
         public bool isPlane => gridAltitudeLayer >= 30 && gridAltitudeLayer < 75;
@@ -33,79 +34,55 @@ namespace LittleWorld.MapUtility
             }
         }
 
-        public bool isFull
-        {
-            get
-            {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3()).ToList();
-                if (objects != null && objects.Count > 0)
-                {
-                    var result = objects.Find(x => x is WorldObject && (x as WorldObject).canPile
-                    && ObjectConfig.ObjectInfoDic[x.itemCode].maxPileCount <= CurPiled);
-                    return result != null;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
+        public bool isFull => piledThingCode != -1 && ObjectConfig.ObjectInfoDic[piledThingCode].canPile && ObjectConfig.ObjectInfoDic[piledThingCode].maxPileCount < PiledAmount;
 
         public int PiledAmount = 0;
         public bool HasPiledThing => hasPiledThing;
 
         private bool hasPiledThing = false;
 
-        public Item.Object PiledThing
-        {
-            get
-            {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
-                if (objects != null && objects.Length > 0)
-                {
-                    var result = objects.ToList().Find(x =>
-                    (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
-                    return result;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        public int PiledThingLength
-        {
-            get
-            {
-                if (WorldUtility.GetWorldObjectsAt(pos.To3()) != null && WorldUtility.GetWorldObjectsAt(pos.To3()).Length > 0)
-                {
-                    var gridObjects = WorldUtility.GetWorldObjectsAt(pos.To3()).ToList();
-                    var result = gridObjects.FindAll(x => x is WorldObject wo && wo.canPile);
-                    return result.Count;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-        }
+        public int PiledThingLength => PiledAmount;
 
         public bool AddSingleWorldObject(WorldObject wo)
         {
-            if (!isFull)
+            if (!wo.canPile)
             {
                 wo.GridPos = pos;
-                if (wo.canPile)
-                {
-                    hasPiledThing = true;
-                    PiledAmount++;
-                }
                 return true;
             }
             else
             {
-                PiledAmount = 0;
+                return AddPileThing(wo);
+            }
+        }
+
+        private bool AddPileThing(WorldObject wo)
+        {
+            if (!isFull)
+            {
+                if (hasPiledThing)
+                {
+                    if (wo.itemCode != piledThingCode)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        wo.GridPos = pos;
+                        PiledAmount++;
+                        return true;
+                    }
+                }
+                else
+                {
+                    hasPiledThing = true;
+                    wo.GridPos = pos;
+                    piledThingCode = wo.itemCode;
+                    return true;
+                }
+            }
+            else
+            {
                 return false;
             }
         }
