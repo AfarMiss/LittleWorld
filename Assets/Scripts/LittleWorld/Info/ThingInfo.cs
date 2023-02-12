@@ -9,6 +9,5 @@ namespace LittleWorld.Item
         public string itemType;
         public float mass;
         public float marketValue;
-        public List<Sprite> itemSprites;
     }
 }

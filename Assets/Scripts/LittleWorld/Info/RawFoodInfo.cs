@@ -9,6 +9,5 @@ namespace LittleWorld.Item
         public float mass;
         public int maxHealth;
         public float nutrition;
-        public List<Sprite> itemSprites;
     }
 }

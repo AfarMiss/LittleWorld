@@ -11,7 +11,6 @@ namespace LittleWorld.Item
         public int buildingWorkAmount;
         public float marketValue;
         public int maxHitPoint;
-        public List<Sprite> itemSprites;
         public List<BuildingCost> buildingCost;
     }
 

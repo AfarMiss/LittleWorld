@@ -10,6 +10,5 @@ namespace LittleWorld.Item
         public float mass;
         public int maxHealth;
         public float moveSpeed;
-        public List<Sprite> itemSprites;
     }
 }
