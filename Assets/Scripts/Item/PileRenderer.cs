@@ -17,8 +17,7 @@ namespace LittleWorld.Item
         public void Render(int pileCode, Vector2Int destination, Map map)
         {
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            map.GetGrid(destination, out var gridResult);
-            spriteRenderer.enabled = gridResult.HasPiledThing;
+            spriteRenderer.enabled = map.GetGrid(destination).HasPiledThing;
             if (!spriteRenderer.enabled)
             {
                 return;

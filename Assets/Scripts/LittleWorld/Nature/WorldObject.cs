@@ -43,13 +43,13 @@ namespace LittleWorld.Item
             {
                 canPile = plantInfo.canPile;
             }
-            mapBelongTo.DropdownWorldObjectAt(gridPos, this);
+            mapBelongTo.DropDownWorldObjectAt(gridPos, this);
             SceneObjectManager.Instance.RegisterItem(this);
         }
 
         public void OnBeDropDown()
         {
-            mapBelongTo.DropdownWorldObjectAt(carriedParent.gridPos, this);
+            mapBelongTo.DropDownWorldObjectAt(carriedParent.gridPos, this);
             isCarried = false;
             carriedParent = null;
         }
@@ -58,7 +58,7 @@ namespace LittleWorld.Item
         {
             if (this.canPile)
             {
-                this.mapBelongTo.GetGrid(this.gridPos, out var result);
+                this.mapBelongTo.TryGetGrid(this.gridPos, out var result);
                 result.DeleteSinglePiledThing();
             }
             SceneObjectManager.Instance.UnregisterItem(this);

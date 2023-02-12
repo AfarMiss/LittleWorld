@@ -138,7 +138,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
             WorldPileRenderer.TryGetValue(wo.GridPos, out var renderer);
             if (renderer != null)
             {
-                if (wo.mapBelongTo.GetGrid(wo.GridPos, out var gridDetail)
+                if (wo.mapBelongTo.TryGetGrid(wo.GridPos, out var gridDetail)
                     && !gridDetail.HasPiledThing)
                 {
                     GameObject.Destroy(renderer.pileRenderer.gameObject);

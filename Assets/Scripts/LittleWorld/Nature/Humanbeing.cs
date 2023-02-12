@@ -28,7 +28,7 @@ namespace LittleWorld.Item
 
         public void CarrySingle(WorldObject wo, Vector2Int destination)
         {
-            Current.CurMap.GetGrid(destination, out var result);
+            Current.CurMap.TryGetGrid(destination, out var result);
             result.PickUp(wo, this);
         }
 

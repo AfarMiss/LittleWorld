@@ -10,6 +10,7 @@ public class MapManager : Singleton<MapManager>
     private Map colonyMap;
     public Map curDisplayMap;
     public Map ColonyMap => colonyMap;
+    public Vector2Int mapSize;
 
     private MapManager()
     {
