@@ -13,8 +13,14 @@ namespace LittleWorld.UI
     {
         public Text houtText;
         public Text YearQuadDayText;
+        public List<Image> speedBg;
 
         public override string Path => UIPath.Main_UI_Panel;
+
+        private void Start()
+        {
+            UpdateDisplay(Current.CurGame.timeSpeed);
+        }
 
         private void OnEnable()
         {
@@ -72,24 +78,38 @@ namespace LittleWorld.UI
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.AddStorageSection));
         }
 
+        private void UpdateDisplay(int index)
+        {
+            foreach (var item in speedBg)
+            {
+                item.enabled = false;
+            }
+            speedBg[index].enabled = true;
+        }
+
         public void OnClickPause()
         {
-            Time.timeScale = 0;
+            CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(0));
         }
 
         public void OnClickSpeed1()
         {
-            Time.timeScale = 1;
+            CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(1));
         }
 
         public void OnClickSpeed2()
         {
-            Time.timeScale = 2;
+            CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(2));
         }
 
         public void OnClickSpeed3()
         {
-            Time.timeScale = 3;
+            CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(3));
+        }
+
+        private void Update()
+        {
+            UpdateDisplay(Current.CurGame.timeSpeed);
         }
     }
 

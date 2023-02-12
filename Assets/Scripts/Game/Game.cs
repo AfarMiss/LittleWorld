@@ -14,6 +14,17 @@ namespace LittleWorld
         public TimeManager timeManager;
         public SceneObjectManager SceneObjectManager;
         private List<ITick> ticks;
+        public int timeSpeed
+        {
+            get
+            {
+                return (int)Time.timeScale;
+            }
+            set
+            {
+                Time.timeScale = value;
+            }
+        }
 
         public void RegisterTick(ITick tick)
         {

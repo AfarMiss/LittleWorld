@@ -100,8 +100,12 @@ namespace LittleWorld
         private void FixedUpdate()
         {
             CurGame?.Tick();
-            commandCenter?.Tick();
             //Debug.Log("FixedUpdate:" + this.GetHashCode());
+        }
+
+        private void Update()
+        {
+            commandCenter?.Tick();
         }
     }
 }

@@ -1,13 +1,8 @@
 ﻿using AI;
 using LittleWorld.Item;
 using LittleWorld.MapUtility;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.Rendering;
 using UnityEngine;
-using static Cinemachine.AxisState;
 
 namespace LittleWorld.Jobs
 {
