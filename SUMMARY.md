@@ -103,6 +103,8 @@
     * [快速排序](suan-fa/pai-xu-suan-fa/kuai-su-pai-xu.md)
   * [搜索算法](suan-fa/sou-suo-suan-fa.md)
   * [查找算法](suan-fa/cha-zhao-suan-fa.md)
+  * [寻路](suan-fa/xun-lu/README.md)
+    * [A\*](suan-fa/xun-lu/a.md)
 * [C#](c/README.md)
   * [在Unity中使用C#自定义属性](c/zai-unity-zhong-shi-yongczi-ding-yi-shu-xing.md)
   * [程序集](c/cheng-xu-ji.md)
