@@ -30,9 +30,23 @@ public class ItemRender : MonoBehaviour
             spriteRenderer.sprite.pivot.x / spriteRenderer.sprite.pixelsPerUnit,
             spriteRenderer.sprite.pivot.y / spriteRenderer.sprite.pixelsPerUnit,
             0);
-        if (!(wo is Animal))
+        if (wo is not Animal)
         {
             this.transform.position = wo.GridPos.To3();
+        }
+        if (wo is Building curBuilding)
+        {
+            switch (curBuilding.buildingStatus)
+            {
+                case BuildingStatus.Done:
+                    spriteRenderer.color = new Color(1, 1, 1, 1);
+                    break;
+                case BuildingStatus.BluePrint:
+                    spriteRenderer.color = new Color(1, 1, 1, 0.3f);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

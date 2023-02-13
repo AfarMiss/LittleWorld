@@ -511,7 +511,7 @@ public class InputController : MonoSingleton<InputController>
 
     private void UpdateGhostPos(Vector3 pos)
     {
-        var gridCell = pos.ToCellCenter();
+        var gridCell = pos.ToCell();
         ghostBuilding.transform.position = new Vector3(gridCell.x, gridCell.y, 0);
     }
 
