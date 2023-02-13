@@ -96,11 +96,11 @@ namespace LittleWorld.Item
             }
         }
 
-        public static BaseInfo GetInfo(int itemCode)
+        public static T GetInfo<T>(int itemCode) where T : BaseInfo
         {
             if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var info))
             {
-                return info;
+                return info as T;
             }
             else
             {

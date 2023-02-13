@@ -12,8 +12,6 @@ namespace LittleWorld.Item
         public bool isCarried = false;
         public bool canPile = false;
         public WorldObject carriedParent = null;
-        protected float maxHealth;
-        public float mass;
 
         protected float curHealth;
         public Map mapBelongTo;

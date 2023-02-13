@@ -10,9 +10,11 @@ namespace LittleWorld.Item
         public BuildingInfo buildingInfo;
         public BuildingStatus buildingStatus;
         public int curHitPoint;
+        public List<Vector2Int> buildingGrids;
 
         public Building(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
+            buildingInfo = ObjectConfig.GetInfo<BuildingInfo>(itemCode);
         }
 
         public override Sprite GetSprite()
