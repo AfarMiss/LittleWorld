@@ -180,9 +180,9 @@ namespace Xml
             }
             return sprites;
         }
-        private static List<BuildingCost> GetBuildingCost(XmlNode item)
+        private static Dictionary<int, int> GetBuildingCost(XmlNode item)
         {
-            var buildingCost = new List<BuildingCost>();
+            var buildingCost = new Dictionary<int, int>();
             var innerText = item.SelectSingleNode($"buildingCost")?.InnerText;
             if (!string.IsNullOrEmpty(innerText))
             {
@@ -192,9 +192,9 @@ namespace Xml
                     string[] materialInfo = text.Split("x");
                     string materialName = materialInfo[0];
                     string materialCount = materialInfo[1];
-                    buildingCost.Add(new BuildingCost(
+                    buildingCost.Add(
                         ObjectConfig.GetRawMaterialCode(materialName),
-                        int.Parse(materialCount)));
+                        int.Parse(materialCount));
                 }
             }
             return buildingCost;

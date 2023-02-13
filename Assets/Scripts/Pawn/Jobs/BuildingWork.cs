@@ -14,14 +14,17 @@ namespace LittleWorld.Jobs
         protected BehaviourTree CreateWorkSequence(Building building, Humanbeing humanbeing)
         {
             tree.SetVariable("Building", building);
-            Sequence MiningSequence = new Sequence("Sow Sequence");
-            //Mining
-            DynamicWalk walkLeaf = new DynamicWalk("Go To Mining", humanbeing, Node.GoToLoc, GetMiningPos);
-            DynamicLongWorkLeaf MiningLeaf = new DynamicLongWorkLeaf("Do Mining", humanbeing, DoMining, GetMiningPos);
-            MiningSequence.AddChild(walkLeaf);
-            MiningSequence.AddChild(MiningLeaf);
+            Sequence BuildingSequence = new Sequence("Building Sequence");
+            Sequence HaulRawMaterialSequence = new Sequence("HaulRawMaterialSequence Sequence");
+            //HaulRawMaterialSequence
 
-            tree.AddChild(MiningSequence);
+            //Building
+            DynamicWalk walkLeaf = new DynamicWalk("Go To Building", humanbeing, Node.GoToLoc, GetMiningPos);
+            DynamicLongWorkLeaf MiningLeaf = new DynamicLongWorkLeaf("Do Building", humanbeing, DoMining, GetMiningPos);
+            BuildingSequence.AddChild(walkLeaf);
+            BuildingSequence.AddChild(MiningLeaf);
+
+            tree.AddChild(BuildingSequence);
             return tree;
         }
 

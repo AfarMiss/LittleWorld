@@ -12,6 +12,7 @@ namespace LittleWorld.Item
         public BuildingStatus buildingStatus;
         public int curHitPoint;
         public HashSet<Vector2Int> buildingGrids;
+        public Dictionary<int, int> curBuildingContain;
 
         public Building(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
@@ -28,6 +29,25 @@ namespace LittleWorld.Item
             }
 
             SceneObjectManager.Instance.RegisterBuildingGrids(this);
+            curBuildingContain = new Dictionary<int, int>();
+        }
+
+        public Dictionary<int, int> GetRawMaterialNeedYet()
+        {
+            var all = buildingInfo.buildingCost;
+            Dictionary<int, int> result = new Dictionary<int, int>();
+            foreach (var item in all)
+            {
+                if (curBuildingContain.ContainsKey(item.Key) && item.Value - curBuildingContain[item.Key] <= 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    result.Add(item.Key, item.Value - curBuildingContain[item.Key]);
+                }
+            }
+            return result;
         }
 
         protected override void OnDestroy()

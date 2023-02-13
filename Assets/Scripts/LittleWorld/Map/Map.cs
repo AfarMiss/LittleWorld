@@ -323,10 +323,6 @@ namespace LittleWorld.MapUtility
             return mapGrids[pos.x * MapSize.y + pos.y];
         }
 
-
-
-
-
         private int GetIdUsingPerlin(int x, int y)
         {
             float rawPerlin = Mathf.PerlinNoise((float)x / MapSize.x * lacunarity + SeedToInt(), (float)y / MapSize.y * lacunarity + SeedToInt());

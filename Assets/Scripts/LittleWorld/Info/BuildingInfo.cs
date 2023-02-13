@@ -11,7 +11,7 @@ namespace LittleWorld.Item
         public int buildingWorkAmount;
         public float marketValue;
         public int maxHitPoint;
-        public List<BuildingCost> buildingCost;
+        public Dictionary<int, int> buildingCost;
         public int buildingWidth;
         public int buildingLength;
     }
@@ -19,12 +19,12 @@ namespace LittleWorld.Item
     public class BuildingCost
     {
         public int materialCode;
-        public int materCount;
+        public int materialAmount;
 
         public BuildingCost(int materialCode, int materCount)
         {
             this.materialCode = materialCode;
-            this.materCount = materCount;
+            this.materialAmount = materCount;
         }
     }
 }

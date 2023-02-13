@@ -244,6 +244,12 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     {
         new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
     }
+
+    public Vector2Int SearchForObject(int objectCode)
+    {
+        var result = WorldObjects.Values.ToList().Find(x => x.itemCode == objectCode);
+        return result.GridPos;
+    }
 }
 
 public class PileInfo
