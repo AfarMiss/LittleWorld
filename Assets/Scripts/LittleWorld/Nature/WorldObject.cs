@@ -34,6 +34,7 @@ namespace LittleWorld.Item
         public WorldObject(int itemCode, Vector2Int gridPos, Map map = null)
         {
             this.itemCode = itemCode;
+            this.ItemName = ObjectConfig.GetInfo(itemCode)?.itemName;
             this.instanceID = SceneObjectManager.ItemInstanceID++;
             mapBelongTo = map ?? MapManager.Instance.ColonyMap;
 

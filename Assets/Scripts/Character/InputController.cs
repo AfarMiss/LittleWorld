@@ -350,6 +350,10 @@ public class InputController : MonoSingleton<InputController>
         {
             EnableRenderGhostBuilding();
         }
+        if (callbackContext.canceled)
+        {
+            new Building(CurSelectedBuildingCode, onClickLeftEndPositionWorldPosition.ToCell().To2());
+        }
     }
 
     public void OnClickShift(CallbackContext callbackContext)

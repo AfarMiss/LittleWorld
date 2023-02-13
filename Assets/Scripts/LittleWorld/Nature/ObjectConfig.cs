@@ -107,5 +107,17 @@ namespace LittleWorld.Item
                 return null;
             }
         }
+
+        public static BaseInfo GetInfo(int itemCode)
+        {
+            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var info))
+            {
+                return info;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

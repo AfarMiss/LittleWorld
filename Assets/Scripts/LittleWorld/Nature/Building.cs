@@ -15,6 +15,8 @@ namespace LittleWorld.Item
         public Building(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
             buildingInfo = ObjectConfig.GetInfo<BuildingInfo>(itemCode);
+            buildingStatus = BuildingStatus.BluePrint;
+            ItemName = buildingInfo.itemName;
         }
 
         public override Sprite GetSprite()
@@ -26,6 +28,6 @@ namespace LittleWorld.Item
     public enum BuildingStatus
     {
         Done,
-        Unfinished,
+        BluePrint,
     }
 }
