@@ -125,6 +125,37 @@ namespace LittleWorld.MapUtility
             return true;
         }
 
+        public bool PickUp(int itemCode, WorldObject hauler, out WorldObject woPickUp)
+        {
+            var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+            var wo = objects.ToList().Find(x => x.itemCode == itemCode);
+            if (wo is not WorldObject realWo)
+            {
+                woPickUp = null;
+                return false;
+            }
+            else
+            {
+                realWo.isCarried = true;
+                realWo.carriedParent = hauler;
+                piledAmount--;
+
+                if (objects != null && objects.Length > 0)
+                {
+                    var result = objects.ToList().Find(x =>
+                     (x is WorldObject) && (x as WorldObject).canPile && !(x as WorldObject).isCarried);
+                    hasPiledThing = result != null;
+                }
+                else
+                {
+                    hasPiledThing = false;
+                }
+                woPickUp = wo as WorldObject;
+                return true;
+            }
+
+        }
+
         public Plant Plant
         {
             get

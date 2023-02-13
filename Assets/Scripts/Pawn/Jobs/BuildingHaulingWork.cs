@@ -27,7 +27,7 @@ namespace LittleWorld.Jobs
 
         private Node.Status DoDropDown(Vector2Int destination, Humanbeing human)
         {
-            human.Dropdown(tree.GetVariable("WorldObjects") as WorldObject[], destination);
+            human.Dropdown(tree.GetVariable("worldObjects") as WorldObject[], destination);
             return Node.Status.SUCCESS;
 
         }
@@ -48,7 +48,9 @@ namespace LittleWorld.Jobs
 
         private Node.Status DoHaul(Vector2Int destination, Humanbeing human)
         {
-            human.Carry(tree.GetVariable("WorldObjects") as WorldObject[], destination);
+            var buildingCost = tree.GetVariable("curBuildingCost") as BuildingCost;
+            var worldObjects = human.Carry(buildingCost.materialCode, buildingCost.materialAmount, destination);
+            tree.SetVariable("worldObjects", worldObjects);
             return Node.Status.SUCCESS;
         }
 
@@ -68,7 +70,7 @@ namespace LittleWorld.Jobs
             var currentRawMaterial = (building as Building).GetRawMaterialNeedYet();
             if (currentRawMaterial.Count > 0)
             {
-                var curBuildingCost = new BuildingCost(
+                BuildingCost curBuildingCost = new BuildingCost(
                     currentRawMaterial.ElementAt(0).Key,
                     currentRawMaterial.ElementAt(0).Value);
                 tree.SetVariable("curBuildingCost", curBuildingCost);

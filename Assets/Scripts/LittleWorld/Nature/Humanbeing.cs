@@ -26,10 +26,16 @@ namespace LittleWorld.Item
         private PathNavigation pathTracer;
         public List<WorldObject> Inventory = new List<WorldObject>();
 
-        public void CarrySingle(WorldObject wo, Vector2Int destination)
+        public bool CarrySingle(WorldObject wo, Vector2Int destination)
         {
             Current.CurMap.TryGetGrid(destination, out var result);
-            result.PickUp(wo, this);
+            return result.PickUp(wo, this);
+        }
+
+        public bool CarrySingle(int itemCode, Vector2Int destination, out WorldObject wo)
+        {
+            Current.CurMap.TryGetGrid(destination, out var result);
+            return result.PickUp(itemCode, this, out wo);
         }
 
         public void Carry(WorldObject[] wo, Vector2Int destination)
@@ -38,6 +44,17 @@ namespace LittleWorld.Item
             {
                 CarrySingle(item, destination);
             }
+        }
+
+        public WorldObject[] Carry(int itemCode, int amount, Vector2Int destination)
+        {
+            var result = new List<WorldObject>();
+            for (int i = 0; i < amount; i++)
+            {
+                CarrySingle(itemCode, destination, out var wo);
+                result.Add(wo);
+            }
+            return result.ToArray();
         }
 
         private void Dropdown(WorldObject wo, Vector2Int destination)
