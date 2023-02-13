@@ -137,5 +137,10 @@ namespace LittleWorld.Item
             workTracer?.Tick();
             //Debug.Log("pos:" + GridPos);
         }
+
+        internal void AddBuildingWork(Building building)
+        {
+            workTracer.AddWork(new BuildingWork(building, this));
+        }
     }
 }

@@ -43,11 +43,29 @@ namespace LittleWorld.UI
                     var plantOpts = AddOreFloatMenu(human, worldObject as Ore);
                     contentList.AddRange(plantOpts);
                 }
+
+                if (worldObject is Building building && building.buildingStatus == BuildingStatus.BluePrint)
+                {
+                    var plantOpts = AddBuildingFloatMenu(human, building);
+                    contentList.AddRange(plantOpts);
+                }
             }
 
             UIManager.Instance.ShowFloatOptions(contentList);
 
             return contentList.ToArray();
+        }
+
+        private static List<FloatOption> AddBuildingFloatMenu(Humanbeing human, Building building)
+        {
+            List<FloatOption> contentList = new List<FloatOption>
+            {
+            new FloatOption($"建造{building.ItemName}", () =>
+            {
+                human.AddBuildingWork(building);
+            })
+            };
+            return contentList;
         }
 
         private static List<FloatOption> AddHaulFloatMenu(Humanbeing human, Item.Object[] objects)

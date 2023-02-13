@@ -9,11 +9,13 @@
         <marketValue>200</marketValue>
         <maxHitPoint>100</maxHitPoint>
         <itemEngName>stove</itemEngName>
-        <material>mixed</material>
+        <material>混合</material>
         <image0>FarmPack\assets\smelting\smelting_furnaces_metal\smelting_furnaces_metal_0</image0>
         <image1/>
         <image2/>
         <buildingCost>木材x10,钢铁x10</buildingCost>
+        <buildingWidth>1</buildingWidth>
+        <buildingLength>1</buildingLength>
     </item>
     <item>
         <itemCode>14002</itemCode>
@@ -24,10 +26,12 @@
         <marketValue>250</marketValue>
         <maxHitPoint>150</maxHitPoint>
         <itemEngName>smithy</itemEngName>
-        <material>material</material>
+        <material>钢铁</material>
         <image0>FarmPack\assets\smelting\smelting_furnaces_metal\smelting_furnaces_metal_6</image0>
         <image1/>
         <image2/>
         <buildingCost>钢铁x20</buildingCost>
+        <buildingWidth>2</buildingWidth>
+        <buildingLength>1</buildingLength>
     </item>
 </items>

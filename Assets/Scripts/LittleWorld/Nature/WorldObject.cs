@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using LittleWorld.UI;
 using LittleWorld.Message;
+using Unity.VisualScripting;
 
 namespace LittleWorld.Item
 {
@@ -43,7 +44,7 @@ namespace LittleWorld.Item
                 canPile = plantInfo.canPile;
             }
             mapBelongTo.DropDownWorldObjectAt(gridPos, this);
-            SceneObjectManager.Instance.RegisterItem(this);
+            SceneObjectManager.Instance.RegisterObject(this);
         }
 
         public void OnBeDropDown()
@@ -55,12 +56,18 @@ namespace LittleWorld.Item
 
         public void Destroy()
         {
+            OnDestroy();
             if (this.canPile)
             {
                 this.mapBelongTo.TryGetGrid(this.gridPos, out var result);
                 result.DeleteSinglePiledThing();
             }
-            SceneObjectManager.Instance.UnregisterItem(this);
+            SceneObjectManager.Instance.UnregisterObject(this);
+        }
+
+        protected virtual void OnDestroy()
+        {
+
         }
 
         public Vector3 RenderPos

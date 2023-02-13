@@ -107,6 +107,8 @@ namespace Xml
                     thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     thing.buildingCost = GetBuildingCost(item);
                     thing.itemSprites = CreateItemSpritesList(item, 1);
+                    thing.buildingLength = int.Parse(item.SelectSingleNode("buildingLength").InnerText);
+                    thing.buildingWidth = int.Parse(item.SelectSingleNode("buildingWidth").InnerText);
                     ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
                     SetCommonProperty(item, ref thing);
                 }

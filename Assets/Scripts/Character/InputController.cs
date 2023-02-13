@@ -278,7 +278,7 @@ public class InputController : MonoSingleton<InputController>
                 break;
 
             case MouseState.BuildingGhost:
-                AddBuilding(callbackContext);
+                TryAddBuilding(callbackContext);
                 break;
             default:
                 break;
@@ -344,7 +344,7 @@ public class InputController : MonoSingleton<InputController>
         }
     }
 
-    private void AddBuilding(CallbackContext callbackContext)
+    private void TryAddBuilding(CallbackContext callbackContext)
     {
         if (callbackContext.started)
         {
@@ -352,7 +352,15 @@ public class InputController : MonoSingleton<InputController>
         }
         if (callbackContext.canceled)
         {
-            new Building(CurSelectedBuildingCode, onClickLeftEndPositionWorldPosition.ToCell().To2());
+            Vector2Int targetGrid = onClickLeftEndPositionWorldPosition.ToCell().To2();
+            if (SceneObjectManager.Instance.CanBuilding(targetGrid, ObjectConfig.GetInfo<BuildingInfo>(CurSelectedBuildingCode)))
+            {
+                new Building(CurSelectedBuildingCode, targetGrid);
+            }
+            else
+            {
+                Debug.LogWarning("该处已有建筑");
+            }
         }
     }
 

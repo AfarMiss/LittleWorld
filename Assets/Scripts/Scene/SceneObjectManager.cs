@@ -42,8 +42,24 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public List<WorldObject> RequestDelete = new List<WorldObject>();
     private Dictionary<WorldObject, ItemRender> WorldItemsRenderer = new Dictionary<WorldObject, ItemRender>();
     private Dictionary<Vector2Int, PileInfo> WorldPileRenderer = new Dictionary<Vector2Int, PileInfo>();
+    private HashSet<Vector2Int> buildingGrids = new HashSet<Vector2Int>();
 
-    public void RegisterItem(WorldObject worldObject)
+    public bool CanBuilding(Vector2Int targetGrid, BuildingInfo buildingInfo)
+    {
+        for (int i = 0; i < buildingInfo.buildingLength; i++)
+        {
+            for (int j = 0; j < buildingInfo.buildingWidth; j++)
+            {
+                if (buildingGrids.Contains(new Vector2Int(targetGrid.x + j, targetGrid.y + i)))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void RegisterObject(WorldObject worldObject)
     {
         try
         {
@@ -58,12 +74,32 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         }
     }
 
-    public void UnregisterItem(WorldObject worldObject)
+    public void RegisterBuildingGrids(WorldObject worldObject)
+    {
+        if (worldObject is Building building)
+        {
+            buildingGrids.AddRange(building.buildingGrids);
+        }
+    }
+
+    public void UnregisterObject(WorldObject worldObject)
     {
         if (WorldObjects.Values.Contains(worldObject))
         {
             DisRenderItem(worldObject);
             RequestDelete.Add(worldObject);
+            UnregisterBuildingGrids(worldObject);
+        }
+    }
+
+    public void UnregisterBuildingGrids(WorldObject worldObject)
+    {
+        if (worldObject is Building building)
+        {
+            foreach (var item in building.buildingGrids)
+            {
+                buildingGrids.Remove(item);
+            }
         }
     }
 
