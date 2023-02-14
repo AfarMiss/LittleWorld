@@ -248,7 +248,14 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public Vector2Int SearchForObject(int objectCode)
     {
         var result = WorldObjects.Values.ToList().Find(x => x.itemCode == objectCode);
-        return result.GridPos;
+        if (result != null)
+        {
+            return result.GridPos;
+        }
+        else
+        {
+            return VectorExtension.undefinedV2Int;
+        }
     }
 }
 

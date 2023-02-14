@@ -49,7 +49,8 @@ namespace LittleWorld.Item
 
         public void OnBeDropDown()
         {
-            mapBelongTo.DropDownWorldObjectAt(carriedParent.gridPos, this);
+            var referencePoint = carriedParent.gridPos;
+            mapBelongTo.DropDownWorldObjectAt(referencePoint, this);
             isCarried = false;
             carriedParent = null;
         }

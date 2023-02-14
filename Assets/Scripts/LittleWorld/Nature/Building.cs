@@ -13,6 +13,7 @@ namespace LittleWorld.Item
         public int curHitPoint;
         public HashSet<Vector2Int> buildingGrids;
         public Dictionary<int, int> curBuildingContain;
+        public bool canStartBuild => GetRawMaterialNeedYet()?.Count == 0;
 
         public Building(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
@@ -38,13 +39,20 @@ namespace LittleWorld.Item
             Dictionary<int, int> result = new Dictionary<int, int>();
             foreach (var item in all)
             {
-                if (curBuildingContain.ContainsKey(item.Key) && item.Value - curBuildingContain[item.Key] <= 0)
+                if (curBuildingContain.ContainsKey(item.Key))
                 {
-                    continue;
+                    if (item.Value - curBuildingContain[item.Key] <= 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        result.Add(item.Key, item.Value - curBuildingContain[item.Key]);
+                    }
                 }
                 else
                 {
-                    result.Add(item.Key, item.Value - curBuildingContain[item.Key]);
+                    result.Add(item.Key, item.Value);
                 }
             }
             return result;

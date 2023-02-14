@@ -157,6 +157,7 @@ namespace LittleWorld.Item
 
         internal void AddBuildingWork(Building building)
         {
+            workTracer.AddWork(new BuildingHaulingWork(building, this));
             workTracer.AddWork(new BuildingWork(building, this));
         }
     }

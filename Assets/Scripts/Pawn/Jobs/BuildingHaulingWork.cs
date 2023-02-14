@@ -34,16 +34,9 @@ namespace LittleWorld.Jobs
 
         private Vector2Int GetBuildingPos()
         {
-            var targetSection = Current.CurMap.sectionDic.Values.ToList().Find(x => x is StorageMapSection);
-            var targetGrid = targetSection.grids.Find(x => !x.isFull);
-            if (targetGrid != null)
-            {
-                return targetGrid.pos;
-            }
-            else
-            {
-                return VectorExtension.undefinedV2Int;
-            }
+            var building = tree.GetVariable("Building");
+            return (building as WorldObject).GridPos;
+
         }
 
         private Node.Status DoHaul(Vector2Int destination, Humanbeing human)
@@ -80,7 +73,7 @@ namespace LittleWorld.Jobs
         }
 
 
-        public BuildingHaulingWork(Humanbeing humanbeing, Building building)
+        public BuildingHaulingWork(Building building, Humanbeing humanbeing)
         {
             tree = new BehaviourTree();
             tree.SetVariable("Humanbeing", humanbeing);

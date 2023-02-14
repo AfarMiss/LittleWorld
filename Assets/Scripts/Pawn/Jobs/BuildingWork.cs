@@ -2,6 +2,7 @@
 using LittleWorld.Item;
 using LittleWorld.MapUtility;
 using LittleWorld.Message;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -15,12 +16,15 @@ namespace LittleWorld.Jobs
         {
             tree.SetVariable("Building", building);
             Sequence BuildingSequence = new Sequence("Building Sequence");
-            Sequence HaulRawMaterialSequence = new Sequence("HaulRawMaterialSequence Sequence");
             //HaulRawMaterialSequence
 
             //Building
+            CheckLeaf canBuilding = new CheckLeaf("CanBuilding?", CheckCanBuild,
+            () => { Debug.Log($"开始建造{building.ItemName}"); },
+            () => { Debug.LogWarning($"资源不足，无法建造{building.ItemName}"); });
             DynamicWalk walkLeaf = new DynamicWalk("Go To Building", humanbeing, Node.GoToLoc, GetMiningPos);
-            DynamicLongWorkLeaf MiningLeaf = new DynamicLongWorkLeaf("Do Building", humanbeing, DoMining, GetMiningPos);
+            DynamicLongWorkLeaf MiningLeaf = new DynamicLongWorkLeaf("Do Building", humanbeing, Building, GetMiningPos);
+            BuildingSequence.AddChild(canBuilding);
             BuildingSequence.AddChild(walkLeaf);
             BuildingSequence.AddChild(MiningLeaf);
 
@@ -28,7 +32,13 @@ namespace LittleWorld.Jobs
             return tree;
         }
 
-        public Node.Status DoMining(Vector2Int destination, Humanbeing human)
+        private bool CheckCanBuild()
+        {
+            var building = tree.GetVariable("Building");
+            return (building as Building).canStartBuild;
+        }
+
+        public Node.Status Building(Vector2Int destination, Humanbeing human)
         {
             var objects = WorldUtility.GetWorldObjectsAt(destination);
             if (objects == null)

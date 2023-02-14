@@ -128,14 +128,17 @@ namespace LittleWorld.MapUtility
         public bool PickUp(int itemCode, WorldObject hauler, out WorldObject woPickUp)
         {
             var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
-            var wo = objects.ToList().Find(x => x.itemCode == itemCode);
-            if (wo is not WorldObject realWo)
+            var wo = objects.ToList().Find(x => x.itemCode == itemCode
+            && x is WorldObject realWo
+            && !realWo.isCarried);
+            if (wo == null)
             {
                 woPickUp = null;
                 return false;
             }
             else
             {
+                var realWo = wo as WorldObject;
                 realWo.isCarried = true;
                 realWo.carriedParent = hauler;
                 piledAmount--;
