@@ -15,7 +15,7 @@ public class ItemRender : MonoBehaviour
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.enabled = !worldObject.isCarried;
-        if (worldObject.isCarried) { return; }
+        if (worldObject.isCarried || worldObject.inBuildingConstruction) { return; }
         //this.gameObject.AddComponent<NudgeItem>();
         spriteRenderer.sprite = worldObject.GetSprite();
         Set(worldObject);

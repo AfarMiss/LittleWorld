@@ -13,6 +13,8 @@ namespace LittleWorld.MapUtility
         public Rect gridRect;
         public bool isPlantZone;
         private int piledThingCode = -1;
+        public Dictionary<int, int> curBuildingContain;
+
         public bool isLand => gridAltitudeLayer >= 30;
 
         public bool isPlane => gridAltitudeLayer >= 30 && gridAltitudeLayer < 75;
@@ -34,6 +36,11 @@ namespace LittleWorld.MapUtility
             }
         }
 
+        public void ClearBuildingMaterials()
+        {
+            curBuildingContain.Clear();
+        }
+
         public bool isFull => piledThingCode != -1 && ObjectConfig.ObjectInfoDic[piledThingCode].canPile && ObjectConfig.ObjectInfoDic[piledThingCode].maxPileCount <= piledAmount;
 
         private int piledAmount = 0;
@@ -43,7 +50,7 @@ namespace LittleWorld.MapUtility
 
         public int PiledAmount => piledAmount;
 
-        public bool AddSingleWorldObject(WorldObject wo)
+        public bool AddSinglePiledWorldObject(WorldObject wo)
         {
             if (!wo.canPile)
             {
@@ -53,6 +60,19 @@ namespace LittleWorld.MapUtility
             else
             {
                 return AddPileThing(wo);
+            }
+        }
+
+        public bool AddSingleBlueprintWorldObject(WorldObject wo)
+        {
+            if (!wo.canPile)
+            {
+                wo.GridPos = pos;
+                return true;
+            }
+            else
+            {
+                return AddBlueprintThing(wo);
             }
         }
 
@@ -87,6 +107,21 @@ namespace LittleWorld.MapUtility
                 return false;
             }
         }
+
+        private bool AddBlueprintThing(WorldObject wo)
+        {
+            if (curBuildingContain.ContainsKey(wo.itemCode))
+            {
+                curBuildingContain[wo.itemCode]++;
+            }
+            else
+            {
+                curBuildingContain.Add(wo.itemCode, 1);
+            }
+            wo.GridPos = pos;
+            return true;
+        }
+
 
         public bool DeleteSinglePiledThing()
         {
@@ -198,6 +233,7 @@ namespace LittleWorld.MapUtility
             this.pos = pos;
             this.gridAltitudeLayer = gridAltitudeLayer;
             gridRect = new Rect(pos, Vector2.one);
+            curBuildingContain = new Dictionary<int, int>();
         }
     }
 }

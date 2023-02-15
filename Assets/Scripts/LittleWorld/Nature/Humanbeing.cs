@@ -52,12 +52,15 @@ namespace LittleWorld.Item
             for (int i = 0; i < amount; i++)
             {
                 CarrySingle(itemCode, destination, out var wo);
-                result.Add(wo);
+                if (wo != null)
+                {
+                    result.Add(wo);
+                }
             }
             return result.ToArray();
         }
 
-        private void Dropdown(WorldObject wo, Vector2Int destination)
+        private void Dropdown(WorldObject wo)
         {
             wo.OnBeDropDown();
         }
@@ -66,7 +69,7 @@ namespace LittleWorld.Item
         {
             foreach (var item in wo)
             {
-                Dropdown(item, destination);
+                Dropdown(item);
             }
         }
 

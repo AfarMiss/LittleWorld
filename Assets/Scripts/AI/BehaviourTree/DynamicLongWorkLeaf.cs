@@ -24,8 +24,8 @@ namespace AI
         {
             if (getPos != null)
             {
-                destination = getPos();
             }
+            destination = getPos();
             Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
                 return ProcessMethod(destination, human);

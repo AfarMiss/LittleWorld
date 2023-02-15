@@ -1,6 +1,7 @@
 ﻿using AI;
 using LittleWorld.Item;
 using LittleWorld.MapUtility;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -14,20 +15,31 @@ namespace LittleWorld.Jobs
             Humanbeing humanbeing = tree.GetVariable("Humanbeing") as Humanbeing;
             Building building = tree.GetVariable("Building") as Building;
             //carry
+            ConditionLoop checkAllRawMaterialContained = new ConditionLoop("Check All RawMaterial Contained", CheckAllRawMaterialContained);
+
             DynamicWalk walkLeaf = new DynamicWalk("Go To Object", humanbeing, Node.GoToLoc, GetRawMaterialPos);
             DynamicLongWorkLeaf carry = new DynamicLongWorkLeaf("Carry", humanbeing, DoHaul, GetRawMaterialPos);
             WalkLeaf moveToStorageSection = new WalkLeaf("Go To Storage Section", building.GridPos, humanbeing);
             DynamicLongWorkLeaf dropDown = new DynamicLongWorkLeaf("Drop Down", humanbeing, DoDropDown, GetBuildingPos);
-            carrySequence.AddChild(walkLeaf);
-            carrySequence.AddChild(carry);
-            carrySequence.AddChild(moveToStorageSection);
-            carrySequence.AddChild(dropDown);
-            tree.AddChild(carrySequence);
+
+            checkAllRawMaterialContained.AddChild(walkLeaf);
+            checkAllRawMaterialContained.AddChild(carry);
+            checkAllRawMaterialContained.AddChild(moveToStorageSection);
+            checkAllRawMaterialContained.AddChild(dropDown);
+
+            tree.AddChild(checkAllRawMaterialContained);
+        }
+
+        private bool CheckAllRawMaterialContained()
+        {
+            Building building = tree.GetVariable("Building") as Building;
+            return building.GetRawMaterialNeedYet().Count <= 0;
         }
 
         private Node.Status DoDropDown(Vector2Int destination, Humanbeing human)
         {
-            human.Dropdown(tree.GetVariable("worldObjects") as WorldObject[], destination);
+            Building building = tree.GetVariable("Building") as Building;
+            building.AddBuildingRawMaterials(tree.GetVariable("worldObjects") as WorldObject[]);
             return Node.Status.SUCCESS;
 
         }
@@ -52,7 +64,7 @@ namespace LittleWorld.Jobs
             var currentCost = GetCurrentBuildingCost();
             if (currentCost != null)
             {
-                return SceneObjectManager.Instance.SearchForObject(currentCost.materialCode);
+                return SceneObjectManager.Instance.SearchForRawMaterials(currentCost.materialCode);
             }
             return VectorExtension.undefinedV2Int;
         }

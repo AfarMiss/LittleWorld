@@ -245,9 +245,9 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
     }
 
-    public Vector2Int SearchForObject(int objectCode)
+    public Vector2Int SearchForRawMaterials(int objectCode)
     {
-        var result = WorldObjects.Values.ToList().Find(x => x.itemCode == objectCode);
+        var result = WorldObjects.Values.ToList().Find(x => x.itemCode == objectCode && !x.inBuildingConstruction);
         if (result != null)
         {
             return result.GridPos;

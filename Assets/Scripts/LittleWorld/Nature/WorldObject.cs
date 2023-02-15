@@ -13,6 +13,7 @@ namespace LittleWorld.Item
         public bool isCarried = false;
         public bool canPile = false;
         public WorldObject carriedParent = null;
+        public bool inBuildingConstruction = false;
 
         protected float curHealth;
         public Map mapBelongTo;
@@ -55,10 +56,19 @@ namespace LittleWorld.Item
             carriedParent = null;
         }
 
+        public void OnBeBluePrint()
+        {
+            var referencePoint = carriedParent.gridPos;
+            mapBelongTo.AddBlueprintObjectAt(referencePoint, this);
+            isCarried = false;
+            inBuildingConstruction = true;
+            carriedParent = null;
+        }
+
         public void Destroy()
         {
             OnDestroy();
-            if (this.canPile)
+            if (this.canPile && !inBuildingConstruction)
             {
                 this.mapBelongTo.TryGetGrid(this.gridPos, out var result);
                 result.DeleteSinglePiledThing();

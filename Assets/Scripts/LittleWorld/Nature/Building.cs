@@ -15,6 +15,35 @@ namespace LittleWorld.Item
         public Dictionary<int, int> curBuildingContain;
         public bool canStartBuild => GetRawMaterialNeedYet()?.Count == 0;
 
+        public void AddBuildingRawMaterials(WorldObject[] rawMaterials)
+        {
+            for (int i = 0; i < rawMaterials.Length; i++)
+            {
+                rawMaterials[i].OnBeBluePrint();
+                if (LackRawMaterial(rawMaterials[i].itemCode))
+                {
+                    if (curBuildingContain.ContainsKey(rawMaterials[i].itemCode))
+                    {
+                        curBuildingContain[rawMaterials[i].itemCode]++;
+                    }
+                    else
+                    {
+                        curBuildingContain.Add(rawMaterials[i].itemCode, 1);
+                    }
+                }
+            }
+        }
+
+        public bool LackRawMaterial(int itemCode)
+        {
+            return GetRawMaterialNeedYet().ContainsKey(itemCode);
+        }
+
+        public bool RemoveBuildingRawMaterials()
+        {
+            return true;
+        }
+
         public Building(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
             buildingInfo = ObjectConfig.GetInfo<BuildingInfo>(itemCode);
@@ -72,6 +101,16 @@ namespace LittleWorld.Item
         public void Finish()
         {
             this.buildingStatus = BuildingStatus.Done;
+            this.mapBelongTo.TryGetGrid(gridPos, out var grid);
+            grid.ClearBuildingMaterials();
+            var objects = WorldUtility.GetWorldObjectsAt(gridPos);
+            for (int i = objects.Length - 1; i >= 0; i--)
+            {
+                if (objects[i] is WorldObject wo && wo.inBuildingConstruction)
+                {
+                    wo.Destroy();
+                }
+            }
         }
     }
 

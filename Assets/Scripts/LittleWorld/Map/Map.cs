@@ -37,8 +37,8 @@ namespace LittleWorld.MapUtility
 
         public bool DropDownWorldObjectAt(Vector2Int posReference, WorldObject wo)
         {
-            var targetGrid = mapGrids.ToList().Find(x => x.pos == posReference);
-            if (!targetGrid.AddSingleWorldObject(wo))
+            var targetGrid = GetGrid(posReference);
+            if (!targetGrid.AddSinglePiledWorldObject(wo))
             {
                 TryGetGrid(new Vector2Int(posReference.x + 1, posReference.y), out var neighbour1);
                 if (neighbour1 != null && DropDownWorldObjectAt(new Vector2Int(posReference.x + 1, posReference.y), wo))
@@ -69,6 +69,12 @@ namespace LittleWorld.MapUtility
             {
                 return true;
             }
+        }
+
+        public bool AddBlueprintObjectAt(Vector2Int pos, WorldObject wo)
+        {
+            var targetGrid = GetGrid(pos);
+            return targetGrid.AddSingleBlueprintWorldObject(wo);
         }
 
         private AStar aStar;
@@ -285,7 +291,7 @@ namespace LittleWorld.MapUtility
                     //以1%的概率随机生成高山中的矿石
                     if (mapGrids[x * MapSize.y + y].isMountain)
                     {
-                        if ((UnityEngine.Random.Range(0, 99) < 5))
+                        if ((UnityEngine.Random.Range(0, 99) < 20))
                         {
                             new Ore(
                                    UnityEngine.Random.Range(0, 1f) < 0.5f ? 16001 : 16002,
