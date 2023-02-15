@@ -29,9 +29,15 @@ namespace AI
             {
                 destination = getPos();
             }
-            Debug.Log("[currentChild]:" + name);
+            if (destination == VectorExtension.undefinedV2Int)
+            {
+                return Status.FAILURE;
+            }
+            //Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
+            {
                 return ProcessMethod(destination, human);
+            }
             return Status.FAILURE;
         }
     }

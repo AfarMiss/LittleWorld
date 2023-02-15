@@ -1,7 +1,10 @@
 ﻿using LittleWorld.Item;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Xml
@@ -32,11 +35,12 @@ namespace Xml
                     plant.woodCount = int.Parse(item.SelectSingleNode("woodCount").InnerText);
                     plant.fruitItemCode = int.Parse(item.SelectSingleNode("fruitItemCode").InnerText);
                     plant.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
-                    plant.seedItem = int.Parse(item.SelectSingleNode("seedItem").InnerText);
+                    int.TryParse(item.SelectSingleNode("seedItem").InnerText, out plant.seedItem);
                     plant.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     plant.growingTime = float.Parse(item.SelectSingleNode("growingTime").InnerText);
                     plant.itemSprites = CreateItemSpritesList(item, 6);
-                    ObjectConfig.plantInfoDic.Add(plant.itemCode, plant);
+                    ObjectConfig.ObjectInfoDic.Add(plant.itemCode, plant);
+                    SetCommonProperty(item, ref plant);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Seed")
@@ -50,7 +54,8 @@ namespace Xml
                     seed.plantItem = int.Parse(item.SelectSingleNode("plantItem").InnerText);
                     seed.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     seed.itemSprites = CreateItemSpritesList(item, 6);
-                    ObjectConfig.seedInfo.Add(seed.itemCode, seed);
+                    ObjectConfig.ObjectInfoDic.Add(seed.itemCode, seed);
+                    SetCommonProperty(item, ref seed);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Crop")
@@ -62,7 +67,8 @@ namespace Xml
                     food.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
                     food.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     food.itemSprites = CreateItemSpritesList(item, 6);
-                    ObjectConfig.rawFoodInfo.Add(food.itemCode, food);
+                    ObjectConfig.ObjectInfoDic.Add(food.itemCode, food);
+                    SetCommonProperty(item, ref food);
                 }
 
 
@@ -75,8 +81,67 @@ namespace Xml
                     animal.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
                     animal.moveSpeed = float.Parse(item.SelectSingleNode("moveSpeed").InnerText);
                     animal.itemSprites = CreateItemSpritesList(item, 6);
-                    ObjectConfig.animalInfo.Add(animal.itemCode, animal);
+                    ObjectConfig.ObjectInfoDic.Add(animal.itemCode, animal);
+                    SetCommonProperty(item, ref animal);
                 }
+
+                if (item.SelectSingleNode("itemType").InnerText == "Thing")
+                {
+                    var thing = new ThingInfo();
+                    thing.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
+                    thing.itemName = item.SelectSingleNode("itemName").InnerText;
+                    thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    thing.itemSprites = CreateItemSpritesList(item, 3);
+                    ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
+                    SetCommonProperty(item, ref thing);
+                }
+                if (item.SelectSingleNode("itemType").InnerText == "Building")
+                {
+                    var thing = new BuildingInfo();
+                    thing.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
+                    thing.itemName = item.SelectSingleNode("itemName").InnerText;
+                    thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    thing.buildingWorkAmount = int.Parse(item.SelectSingleNode("buildingWorkAmount").InnerText);
+                    thing.marketValue = float.Parse(item.SelectSingleNode("marketValue").InnerText);
+                    thing.maxHitPoint = int.Parse(item.SelectSingleNode("maxHitPoint").InnerText);
+                    thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    thing.buildingCost = GetBuildingCost(item);
+                    thing.itemSprites = CreateItemSpritesList(item, 1);
+                    thing.buildingLength = int.Parse(item.SelectSingleNode("buildingLength").InnerText);
+                    thing.buildingWidth = int.Parse(item.SelectSingleNode("buildingWidth").InnerText);
+                    ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
+                    SetCommonProperty(item, ref thing);
+                }
+                if (item.SelectSingleNode("itemType").InnerText == "Ore")
+                {
+                    var ore = new OreInfo();
+                    ore.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
+                    ore.itemName = item.SelectSingleNode("itemName").InnerText;
+                    ore.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    ore.maxHitPoint = int.Parse(item.SelectSingleNode("maxHitPoint").InnerText);
+                    ore.marketValue = float.Parse(item.SelectSingleNode("marketValue").InnerText);
+                    ore.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    ore.productionCode = int.Parse(item.SelectSingleNode("productionCode").InnerText);
+                    ore.productionAmount = int.Parse(item.SelectSingleNode("productionAmount").InnerText);
+                    ore.MiningWorkAmount = int.Parse(item.SelectSingleNode("miningWorkAmount").InnerText);
+                    ore.itemSprites = CreateItemSpritesList(item, 1);
+                    ObjectConfig.ObjectInfoDic.Add(ore.itemCode, ore);
+                    SetCommonProperty(item, ref ore);
+                }
+            }
+        }
+
+        private static void SetCommonProperty<T>(XmlNode item, ref T info) where T : BaseInfo
+        {
+            if (item == null || item.SelectSingleNode("maxPileCount") == null
+                || string.IsNullOrEmpty(item.SelectSingleNode("maxPileCount").InnerText))
+            {
+                return;
+            }
+            info.canPile = int.TryParse(item.SelectSingleNode("maxPileCount").InnerText, out info.maxPileCount);
+            if (!bool.TryParse(item.SelectSingleNode("maxPileCount").InnerText, out info.isBlock))
+            {
+                info.isBlock = false;
             }
         }
 
@@ -87,11 +152,52 @@ namespace Xml
             {
                 if (!string.IsNullOrEmpty(item.SelectSingleNode($"image{i}")?.InnerText))
                 {
-                    var curSprite = Resources.Load<Sprite>(item.SelectSingleNode($"image{i}").InnerText);
-                    sprites.Add(curSprite);
+                    var loadPath = item.SelectSingleNode($"image{i}").InnerText;
+                    if (string.IsNullOrEmpty(loadPath))
+                    {
+                        continue;
+                    }
+                    var prefix = "Assets/Resources/";
+                    if (loadPath.StartsWith(prefix))
+                    {
+                        loadPath = loadPath.Substring(prefix.Length);
+                    }
+                    string selectionExt = System.IO.Path.GetExtension(loadPath);
+                    if (selectionExt.Length != 0)
+                    {
+                        loadPath = loadPath.Remove(loadPath.Length - selectionExt.Length);
+                    }
+                    var curSprite = Resources.Load<Sprite>(loadPath);
+                    if (curSprite != null)
+                    {
+                        sprites.Add(curSprite);
+                    }
+                    else
+                    {
+                        Debug.LogError($"{loadPath} is null of sprite");
+                    }
                 }
             }
             return sprites;
+        }
+        private static Dictionary<int, int> GetBuildingCost(XmlNode item)
+        {
+            var buildingCost = new Dictionary<int, int>();
+            var innerText = item.SelectSingleNode($"buildingCost")?.InnerText;
+            if (!string.IsNullOrEmpty(innerText))
+            {
+                string[] buildingMaterialsText = innerText.Split(",");
+                foreach (var text in buildingMaterialsText)
+                {
+                    string[] materialInfo = text.Split("x");
+                    string materialName = materialInfo[0];
+                    string materialCount = materialInfo[1];
+                    buildingCost.Add(
+                        ObjectConfig.GetRawMaterialCode(materialName),
+                        int.Parse(materialCount));
+                }
+            }
+            return buildingCost;
         }
     }
 

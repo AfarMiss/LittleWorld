@@ -1,4 +1,5 @@
 ﻿using LittleWorld.GameStateSpace;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,21 @@ namespace LittleWorld
     public class Game
     {
         public GameState state;
-        public MapManager pathManager;
+        public MapManager mapManager;
         public TimeManager timeManager;
+        public SceneObjectManager SceneObjectManager;
         private List<ITick> ticks;
+        public int timeSpeed
+        {
+            get
+            {
+                return (int)Time.timeScale;
+            }
+            set
+            {
+                Time.timeScale = value;
+            }
+        }
 
         public void RegisterTick(ITick tick)
         {
@@ -29,25 +42,28 @@ namespace LittleWorld
 
         public Game()
         {
-            pathManager = MapManager.Instance;
-            timeManager = TimeManager.Instance;
-            ticks = new List<ITick>();
+            EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitGame);
             state = GameState.PREPARING;
-
             Current.CurGame = this;
+        }
+
+        private void InitGame(MainMapInfo mapInfo)
+        {
+            mapManager = MapManager.Instance;
+            timeManager = TimeManager.Instance;
+            SceneObjectManager = SceneObjectManager.Instance;
+            ticks = new List<ITick>();
+
+            mapManager.InitMainMaps(mapInfo);
+            SceneObjectManager.Instance.Init();
         }
 
         public void Tick()
         {
             if (state == GameState.PLAYING)
             {
-                pathManager.Tick();
+                mapManager.Tick();
                 timeManager.Tick();
-
-                foreach (var item in ticks.ToList())
-                {
-                    item.Tick();
-                }
             }
         }
     }

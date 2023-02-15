@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class MapManager : Singleton<MapManager>
 {
-    public List<Map> maps;
+    private List<Map> maps;
     private Map colonyMap;
     public Map curDisplayMap;
     public Map ColonyMap => colonyMap;
+    public Vector2Int mapSize;
 
     private MapManager()
     {
@@ -18,17 +19,14 @@ public class MapManager : Singleton<MapManager>
     {
         return colonyMap.CalculatePath(startPos, endPos);
     }
-    public override void OnCreateInstance()
-    {
-        base.OnCreateInstance();
-        EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitMainMaps);
-    }
 
-    private void InitMainMaps(MainMapInfo mainMapInfo)
+    public void InitMainMaps(MainMapInfo mainMapInfo)
     {
         colonyMap = new Map(Map.GetMapSize(mainMapInfo.size), mainMapInfo.seed);
-        MapRenderManager.Instance.RenderMap(colonyMap);
         curDisplayMap = colonyMap;
+
+        colonyMap.GenerateInitObjects();
+        MapRenderManager.Instance.RenderMap(colonyMap);
     }
 }
 

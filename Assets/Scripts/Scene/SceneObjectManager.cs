@@ -5,22 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using LittleWorld;
+using LittleWorld.MapUtility;
+using LittleWorld.Message;
 
-public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
+public class SceneObjectManager : Singleton<SceneObjectManager>
 {
     public static int ItemInstanceID;
-    private Transform parentItem;
-    [SerializeField]
     private GameObject itemPrefab;
+    private GameObject pilePrefab;
+    public GameObject ghostPrefab;
+    private GameObject pawnRes;
+    private GameObject renderParent;
 
     public List<SceneItem> sceneItemList
     {
         get
         {
             List<SceneItem> sceneItemList = new List<SceneItem>();
-            ItemRender[] itemsInScene = FindObjectsOfType<ItemRender>();
+            ItemRender[] itemsInScene = GameObject.FindObjectsOfType<ItemRender>();
 
             foreach (var item in itemsInScene)
             {
@@ -36,157 +38,157 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
         }
     }
     public Dictionary<int, WorldObject> WorldObjects = new Dictionary<int, WorldObject>();
-    public Dictionary<LittleWorld.Item.Object, ItemRender> WorldItemsRenderer = new Dictionary<LittleWorld.Item.Object, ItemRender>();
+    public List<WorldObject> RequestAdd = new List<WorldObject>();
+    public List<WorldObject> RequestDelete = new List<WorldObject>();
+    private Dictionary<WorldObject, ItemRender> WorldItemsRenderer = new Dictionary<WorldObject, ItemRender>();
+    private Dictionary<Vector2Int, PileInfo> WorldPileRenderer = new Dictionary<Vector2Int, PileInfo>();
+    private HashSet<Vector2Int> buildingGrids = new HashSet<Vector2Int>();
 
-    public void RegisterItem(WorldObject worldObject)
+    public bool CanBuilding(Vector2Int targetGrid, BuildingInfo buildingInfo)
     {
-        WorldObjects.Add(worldObject.instanceID, worldObject);
-        RenderItem(worldObject);
+        for (int i = 0; i < buildingInfo.buildingLength; i++)
+        {
+            for (int j = 0; j < buildingInfo.buildingWidth; j++)
+            {
+                if (buildingGrids.Contains(new Vector2Int(targetGrid.x + j, targetGrid.y + i)))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
-    public void UnregisterItem(WorldObject worldObject)
+    public void RegisterObject(WorldObject worldObject)
+    {
+        try
+        {
+            RequestAdd.Add(worldObject);
+            AddRenderComponent(worldObject);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"{worldObject.ItemName}_{worldObject.itemCode}");
+            Debug.LogError(e);
+            throw;
+        }
+    }
+
+    public void RegisterBuildingGrids(WorldObject worldObject)
+    {
+        if (worldObject is Building building)
+        {
+            buildingGrids.AddRange(building.buildingGrids);
+        }
+    }
+
+    public void UnregisterObject(WorldObject worldObject)
     {
         if (WorldObjects.Values.Contains(worldObject))
         {
             DisRenderItem(worldObject);
-            WorldObjects.Remove(worldObject.instanceID);
+            RequestDelete.Add(worldObject);
+            UnregisterBuildingGrids(worldObject);
+        }
+    }
+
+    public void UnregisterBuildingGrids(WorldObject worldObject)
+    {
+        if (worldObject is Building building)
+        {
+            foreach (var item in building.buildingGrids)
+            {
+                buildingGrids.Remove(item);
+            }
         }
     }
 
     public PawnManager pawnManager;
 
-    private string iSaveableUniqueID;
-    public string ISaveableUniqueID { get => iSaveableUniqueID; set => iSaveableUniqueID = value; }
-    private GameObjectSave gameObjectSave;
-    public GameObjectSave GameObjectSave { get => gameObjectSave; set => gameObjectSave = value; }
-
-    protected override void Awake()
+    public override void OnCreateInstance()
     {
-        base.Awake();
+        base.OnCreateInstance();
+        EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, Tick);
+        EventCenter.Instance.Register<ChangeGridMessage>(EventName.OBJECT_GRID_CHANGE, OnWorldObjectGridChange);
 
         ItemInstanceID = 0;
-        ISaveableUniqueID = gameObject.GetOrAddComponent<GenerateGUID>().GUID;
-        GameObjectSave = new GameObjectSave();
         pawnManager = PawnManager.Instance;
+        itemPrefab = Resources.Load<GameObject>("Prefabs/Object/Item");
+        pilePrefab = Resources.Load<GameObject>("Prefabs/Object/Pile");
+        ghostPrefab = Resources.Load<GameObject>("Prefabs/Object/Ghost");
+        pawnRes = Resources.Load<GameObject>("Prefabs/Character/Pawn");
 
-        //测试代码
-        new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
-        new Plant(10001, new Vector2Int(2, 3));
-        new Plant(10001, Vector2Int.one);
+        renderParent = new GameObject("RenderParent");
+        GameObject.DontDestroyOnLoad(renderParent);
     }
 
-    private void OnDestroy()
+    private void OnWorldObjectGridChange(ChangeGridMessage message)
     {
-    }
-
-    private void OnEnable()
-    {
-        ISaveableRegister();
-        EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoad);
-        EventCenter.Instance.Register<GameTime>((nameof(EventEnum.GAME_TICK)), Tick);
-    }
-
-    private void OnDisable()
-    {
-        ISaveableDeregister();
-        EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoad);
-    }
-
-    private void AfterSceneLoad()
-    {
-        parentItem = GameObject.FindGameObjectWithTag(Tags.ItemsParentTransform.ToString())?.transform;
-    }
-
-    public void ISaveableDeregister()
-    {
-        SaveLoadManager.Instance?.iSaveableObjectList.Remove(this);
-    }
-
-    public void ISaveableRegister()
-    {
-        SaveLoadManager.Instance?.iSaveableObjectList.Add(this);
-    }
-
-    public void ISaveableRestoreScene(string sceneName)
-    {
-        if (GameObjectSave.sceneData.TryGetValue(sceneName, out SceneSave sceneSave))
+        if (message.wo.canPile)
         {
-            if (sceneSave.sceneItemList != null)
+            AddRenderComponent(message.wo);
+        }
+    }
+
+    private SceneObjectManager()
+    {
+
+    }
+
+    private void AddRenderComponent(WorldObject wo)
+    {
+        if (wo is not Humanbeing)
+        {
+            if (!wo.canPile)
             {
-                //InstantiateSceneItems(sceneSave.sceneItemList);
+                GameObject itemGameObject = GameObject.Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
+                ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
+                WorldItemsRenderer.Add(wo, itemComponent);
             }
-        }
-    }
-
-    private void InstantiateSceneItems(List<SceneItem> sceneItemList)
-    {
-        GameObject itemGameObject;
-
-        foreach (var item in sceneItemList)
-        {
-            //itemGameObject = InstantiateSingleSceneItem(item);
-        }
-    }
-
-    private void RenderPawn(Humanbeing human)
-    {
-        GameObject pawnRes = Resources.Load<GameObject>("Prefabs/Character/Pawn");
-        GameObject curPawn = GameObject.Instantiate<GameObject>(pawnRes);
-        curPawn.GetComponent<Transform>().transform.position = human.GridPos.To3();
-        curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
-        human.SetNavi(curPawn.GetComponent<PathNavigation>());
-        human.rendererObject = curPawn;
-        WorldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
-    }
-
-    private void RenderItem(WorldObject wo)
-    {
-        if (!(wo is Humanbeing))
-        {
-            GameObject itemGameObject = Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, parentItem);
-            ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
-            wo.rendererObject = itemGameObject;
-            WorldItemsRenderer.Add(wo, itemComponent);
+            else
+            {
+                if (!WorldPileRenderer.ContainsKey(wo.GridPos))
+                {
+                    GameObject itemGameObject = GameObject.Instantiate(pilePrefab, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
+                    PileRenderer itemComponent = itemGameObject.GetComponent<PileRenderer>();
+                    WorldPileRenderer.Add(wo.GridPos, new PileInfo(wo.itemCode, itemComponent, wo.mapBelongTo));
+                }
+            }
         }
         else
         {
-            RenderPawn(wo as Humanbeing);
+            var human = wo as Humanbeing;
+            GameObject curPawn = GameObject.Instantiate<GameObject>(pawnRes, renderParent.transform);
+            curPawn.GetComponent<Transform>().transform.position = human.GridPos.To3();
+            curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
+            human.SetNavi(curPawn.GetComponent<PathNavigation>());
+            WorldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
         }
     }
 
     public void DisRenderItem(WorldObject wo)
     {
-        WorldItemsRenderer.TryGetValue(wo, out var renderer);
-        if (renderer != null)
+        if (wo.canPile)
         {
-            Destroy(renderer.gameObject);
-            wo.rendererObject = null;
+            WorldPileRenderer.TryGetValue(wo.GridPos, out var renderer);
+            if (renderer != null)
+            {
+                if (wo.mapBelongTo.TryGetGrid(wo.GridPos, out var gridDetail)
+                    && !gridDetail.HasPiledThing)
+                {
+                    GameObject.Destroy(renderer.pileRenderer.gameObject);
+                    WorldPileRenderer.Remove(wo.GridPos);
+                }
+            }
         }
-        WorldItemsRenderer.Remove(wo);
-    }
-
-    public void ISaveableStoreScene(string sceneName)
-    {
-        //删除旧数据
-        GameObjectSave.sceneData.Remove(sceneName);
-
-        SceneSave sceneSave = new SceneSave();
-        sceneSave.sceneItemList = sceneItemList;
-
-        GameObjectSave.sceneData.Add(sceneName, sceneSave);
-    }
-    public GameObjectSave ISaveableSave()
-    {
-        ISaveableStoreScene(SceneManager.GetActiveScene().name);
-        return GameObjectSave;
-    }
-
-    public void ISaveableLoad(GameSave gameSave)
-    {
-        if (gameSave.gameObjectData.TryGetValue(ISaveableUniqueID, out GameObjectSave gameObjectSave))
+        else
         {
-            GameObjectSave = gameObjectSave;
-            ISaveableRestoreScene(SceneManager.GetActiveScene().name);
+            WorldItemsRenderer.TryGetValue(wo, out var renderer);
+            if (renderer != null)
+            {
+                GameObject.Destroy(renderer.gameObject);
+            }
+            WorldItemsRenderer.Remove(wo);
         }
     }
 
@@ -196,16 +198,77 @@ public class SceneObjectManager : MonoSingleton<SceneObjectManager>, ISaveable
         return go;
     }
 
+    public void InitBuildingGhost()
+    {
+
+    }
+
+    public void AddBuildingGhostToManager(int buildingCode)
+    {
+
+    }
+
     public void Tick(GameTime gameTime)
     {
         pawnManager.Tick();
-        foreach (var item in WorldObjects.ToList())
+        foreach (var item in WorldObjects)
         {
             item.Value.Tick();
-            if (WorldItemsRenderer.TryGetValue(item.Value, out var renderer))
-            {
-                renderer.Render(item.Value);
-            }
         }
+
+        foreach (var item in WorldItemsRenderer)
+        {
+            item.Value.Render(item.Key);
+        }
+
+        foreach (var item in WorldPileRenderer)
+        {
+            item.Value.pileRenderer.Render(item.Value.pileCode, item.Key, item.Value.belongTo);
+        }
+
+
+        foreach (var item in RequestDelete)
+        {
+            WorldObjects.Remove(item.instanceID);
+        }
+        RequestDelete.Clear();
+
+        foreach (var item in RequestAdd)
+        {
+            WorldObjects.Add(item.instanceID, item);
+        }
+        RequestAdd.Clear();
+    }
+
+    public void Init()
+    {
+        new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
+    }
+
+    public Vector2Int SearchForRawMaterials(int objectCode)
+    {
+        var result = WorldObjects.Values.ToList().Find(x => x.itemCode == objectCode && !x.inBuildingConstruction);
+        if (result != null)
+        {
+            return result.GridPos;
+        }
+        else
+        {
+            return VectorExtension.undefinedV2Int;
+        }
+    }
+}
+
+public class PileInfo
+{
+    public int pileCode;
+    public PileRenderer pileRenderer;
+    public Map belongTo;
+
+    public PileInfo(int pileCode, PileRenderer pileRenderer, Map belongTo)
+    {
+        this.pileCode = pileCode;
+        this.pileRenderer = pileRenderer;
+        this.belongTo = belongTo;
     }
 }

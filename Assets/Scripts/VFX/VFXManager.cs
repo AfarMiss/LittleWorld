@@ -16,11 +16,6 @@ public class VFXManager : MonoSingleton<VFXManager>
 
     private void Start()
     {
-        PoolManager.Instance.CreatePool(5, reapingEffect, HarvestActionEffect.reaping.ToString());
-        PoolManager.Instance.CreatePool(5, deciduousEffect, HarvestActionEffect.deciduousLeavesFalling.ToString());
-        PoolManager.Instance.CreatePool(5, choppingStump, HarvestActionEffect.choppingTreeTrunk.ToString());
-        PoolManager.Instance.CreatePool(5, pinecone, HarvestActionEffect.pineConesFalling.ToString());
-        PoolManager.Instance.CreatePool(5, breakingStone, HarvestActionEffect.breakingStone.ToString());
     }
 
     private void OnHarvestActionEffect(Vector3 arg0, HarvestActionEffect arg1)

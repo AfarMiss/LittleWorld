@@ -9,17 +9,18 @@ namespace LittleWorld.Item
         private PlantInfo plantInfo;
         public int PlantYieldCount => plantInfo.yieldCount;
         public int FruitCode => plantInfo.fruitItemCode;
+        public int WoodCount => plantInfo.woodCount;
         private float curGrowTime = 0;
         public bool IsRipe => curGrowTime >= plantInfo.growingTime * 0.95f;
         public PlantInfo PlantInfo => plantInfo;
 
-        public Plant(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
+        public Plant(int itemCode, Vector2Int gridPos, float curGrowthTime = 0) : base(itemCode, gridPos)
         {
-            if (ObjectConfig.plantInfoDic.TryGetValue(itemCode, out plantInfo))
+            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var plantInfo))
             {
-                plantInfo = ObjectConfig.plantInfoDic[itemCode];
-                this.itemCode = itemCode;
+                this.plantInfo = plantInfo as PlantInfo;
                 ItemName = plantInfo.itemName;
+                this.curGrowTime = curGrowthTime;
             }
         }
 

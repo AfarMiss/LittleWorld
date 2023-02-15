@@ -58,7 +58,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     {
         ISaveableRegister();
         EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
-        EventCenter.Instance?.Register<GameTime>(EventEnum.DAY_CHANGE.ToString(), OnAdvanceDay);
+        EventCenter.Instance?.Register<GameTime>(EventName.DAY_CHANGE, OnAdvanceDay);
         EventCenter.Instance?.Register<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify);
 
     }
@@ -67,7 +67,7 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     {
         ISaveableDeregister();
         EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
-        EventCenter.Instance?.Unregister<GameTime>(EventEnum.DAY_CHANGE.ToString(), OnAdvanceDay);
+        EventCenter.Instance?.Unregister<GameTime>(EventName.DAY_CHANGE, OnAdvanceDay);
         EventCenter.Instance?.Unregister<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify);
     }
 

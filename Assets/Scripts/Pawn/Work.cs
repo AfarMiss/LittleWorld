@@ -14,6 +14,10 @@ namespace LittleWorld.Jobs
         public Work()
         {
             workID = WorkIDSeed++;
+            if (tree == null)
+            {
+                tree = new BehaviourTree();
+            }
         }
 
 
@@ -21,15 +25,11 @@ namespace LittleWorld.Jobs
         {
             if (tree != null)
             {
-                if (tree.status != Node.Status.SUCCESS)
+                if (tree.status == Node.Status.RUNNING)
                 {
                     treeStatus = tree.Process();
-                    return treeStatus;
                 }
-                else
-                {
-                    return tree.status;
-                }
+                return treeStatus;
             }
             else
             {

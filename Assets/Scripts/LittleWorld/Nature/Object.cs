@@ -9,7 +9,5 @@ namespace LittleWorld.Item
         public int itemCode;
         public int instanceID;
         public string ItemName;
-
-        public GameObject rendererObject;
     }
 }

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 namespace LittleWorld.Item
 {
@@ -24,23 +25,52 @@ namespace LittleWorld.Item
         private PawnHealthTracer healthTracer;
         private PathNavigation pathTracer;
         public List<WorldObject> Inventory = new List<WorldObject>();
-        public WorldObject CurrentTake;
 
-        public void Carry(WorldObject wo)
+        public bool CarrySingle(WorldObject wo, Vector2Int destination)
         {
-            wo.OnBeCarried(this);
-            Inventory.Add(wo);
-            CurrentTake = wo;
+            Current.CurMap.TryGetGrid(destination, out var result);
+            return result.PickUp(wo, this);
         }
 
-        public void Dropdown(WorldObject wo)
+        public bool CarrySingle(int itemCode, Vector2Int destination, out WorldObject wo)
+        {
+            Current.CurMap.TryGetGrid(destination, out var result);
+            return result.PickUp(itemCode, this, out wo);
+        }
+
+        public void Carry(WorldObject[] wo, Vector2Int destination)
+        {
+            foreach (var item in wo)
+            {
+                CarrySingle(item, destination);
+            }
+        }
+
+        public WorldObject[] Carry(int itemCode, int amount, Vector2Int destination)
+        {
+            var result = new List<WorldObject>();
+            for (int i = 0; i < amount; i++)
+            {
+                CarrySingle(itemCode, destination, out var wo);
+                if (wo != null)
+                {
+                    result.Add(wo);
+                }
+            }
+            return result.ToArray();
+        }
+
+        private void Dropdown(WorldObject wo)
         {
             wo.OnBeDropDown();
-            if (CurrentTake == wo)
+        }
+
+        public void Dropdown(WorldObject[] wo, Vector2Int destination)
+        {
+            foreach (var item in wo)
             {
-                CurrentTake = null;
+                Dropdown(item);
             }
-            Inventory.Remove(wo);
         }
 
 
@@ -86,7 +116,7 @@ namespace LittleWorld.Item
         {
             actionQueue = new Queue<HumanAction>();
             workTracer = new PawnWorkTracer(this);
-            animalInfo = ObjectConfig.animalInfo[itemCode];
+            animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
             ItemName = animalInfo.itemName;
         }
 
@@ -100,45 +130,38 @@ namespace LittleWorld.Item
             workTracer.AddWork(new SowWork(seedCode, section.grids, this));
         }
 
-        public void AddCarryWork(WorldObject wo)
+        public void AddCutWork(Plant plant)
         {
-            workTracer.AddWork(new CarryWork(wo, this));
+            workTracer.AddWork(new CutSingleWork(plant, this));
         }
 
-        public void AddWork(WorkTypeEnum workType, Vector3Int targetPos)
+        public void AddOreWork(Ore ore)
         {
-            var grids = WorldUtility.GetWorldObjectsAt(targetPos).OfType<MapSection>();
-            switch (workType)
-            {
-                case WorkTypeEnum.dug:
-                    break;
-                case WorkTypeEnum.water:
-                    break;
-                case WorkTypeEnum.gotoLoc:
-                    workTracer.AddWork(new GoToLocWork(this, targetPos.To2()));
-                    break;
-                case WorkTypeEnum.cut:
-                    break;
-                case WorkTypeEnum.harvest:
-                    if (grids.Safe().Any())
-                    {
-                    }
-                    break;
-                case WorkTypeEnum.sow:
-                    if (grids.Safe().Any())
-                    {
-                    }
-                    break;
-                default:
-                    break;
-            }
+            workTracer.AddWork(new MiningSingleWork(ore, this));
+        }
+
+        public void AddCarryWork(WorldObject[] wo)
+        {
+            workTracer.AddWork(new HaulingWork(wo, this));
+        }
+
+        public void AddMoveWork(Vector3Int targetPos)
+        {
+            workTracer.AddWork(new GoToLocWork(this, targetPos.To2()));
+
         }
 
         public override void Tick()
         {
             base.Tick();
             workTracer?.Tick();
-            Debug.Log("pos:" + GridPos);
+            //Debug.Log("pos:" + GridPos);
+        }
+
+        internal void AddBuildingWork(Building building)
+        {
+            workTracer.AddWork(new BuildingHaulingWork(building, this));
+            workTracer.AddWork(new BuildingWork(building, this));
         }
     }
 }

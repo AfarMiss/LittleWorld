@@ -19,6 +19,7 @@ namespace LittleWorld
         private TileManager tileManager;
         private CommandCenter commandCenter;
         private Game curGame;
+        private EventCenter eventCenter;
         public GameState GameState
         {
             get
@@ -84,16 +85,26 @@ namespace LittleWorld
             poolManager = PoolManager.Instance;
             tileManager = TileManager.Instance;
             commandCenter = CommandCenter.Instance;
+            eventCenter = EventCenter.Instance;
 
             uIManager.Initialize();
 
+            //读取配置文件
             Xml.XmlUtility.ReadConfigXml("ItemInfo");
             Xml.XmlUtility.ReadConfigXml("Animals");
+            Xml.XmlUtility.ReadConfigXml("Things");
+            Xml.XmlUtility.ReadConfigXml("Buildings");
+            Xml.XmlUtility.ReadConfigXml("Ores");
         }
 
         private void FixedUpdate()
         {
             CurGame?.Tick();
+            //Debug.Log("FixedUpdate:" + this.GetHashCode());
+        }
+
+        private void Update()
+        {
             commandCenter?.Tick();
         }
     }

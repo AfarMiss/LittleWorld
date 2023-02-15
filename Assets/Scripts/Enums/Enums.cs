@@ -164,6 +164,7 @@ public enum WorkTypeEnum
     harvest,
     sow,
     carry,
+    mining,
 }
 
 public enum SoundName
@@ -195,6 +196,7 @@ public enum PoolEnum
 {
     Sounds,
     Progress,
+    ItemCount,
 }
 
 public enum ActionEnum
@@ -227,4 +229,5 @@ public enum MouseState
     ShrinkStorageZone,
     AddStorageSection,
     DeleteStorageSection,
+    BuildingGhost,
 }

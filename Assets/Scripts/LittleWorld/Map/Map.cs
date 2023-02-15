@@ -1,7 +1,10 @@
 ﻿using AStarUtility;
+using LittleWorld.Item;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using static System.Collections.Specialized.BitVector32;
 
@@ -30,6 +33,48 @@ namespace LittleWorld.MapUtility
                 Debug.Log("selectedSectionID:" + Current.CurMap.SelectedSectionID);
                 Debug.Log("sectionCount:" + Current.CurMap.sectionDic.Count);
             }
+        }
+
+        public bool DropDownWorldObjectAt(Vector2Int posReference, WorldObject wo)
+        {
+            var targetGrid = GetGrid(posReference);
+            if (!targetGrid.AddSinglePiledWorldObject(wo))
+            {
+                TryGetGrid(new Vector2Int(posReference.x + 1, posReference.y), out var neighbour1);
+                if (neighbour1 != null && DropDownWorldObjectAt(new Vector2Int(posReference.x + 1, posReference.y), wo))
+                {
+                    return true;
+                }
+                TryGetGrid(new Vector2Int(posReference.x, posReference.y + 1), out var neighbour2);
+                if (neighbour2 != null && DropDownWorldObjectAt(new Vector2Int(posReference.x, posReference.y + 1), wo))
+                {
+                    return true;
+                }
+                TryGetGrid(new Vector2Int(posReference.x - 1, posReference.y), out var neighbour3);
+                if (neighbour3 != null && DropDownWorldObjectAt(new Vector2Int(posReference.x - 1, posReference.y), wo))
+                {
+                    return true;
+                }
+                TryGetGrid(new Vector2Int(posReference.x, posReference.y - 1), out var neighbour4);
+                if (neighbour4 != null && DropDownWorldObjectAt(new Vector2Int(posReference.x, posReference.y - 1), wo))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool AddBlueprintObjectAt(Vector2Int pos, WorldObject wo)
+        {
+            var targetGrid = GetGrid(pos);
+            return targetGrid.AddSingleBlueprintWorldObject(wo);
         }
 
         private AStar aStar;
@@ -165,7 +210,7 @@ namespace LittleWorld.MapUtility
         }
 
         /// <summary>
-        /// water-plain-mountain
+        /// 总海拔为0-100
         /// </summary>
         private int layerCount = 100;
 
@@ -220,10 +265,68 @@ namespace LittleWorld.MapUtility
             plantHash = new HashSet<Vector2Int>();
         }
 
+        public void GenerateInitObjects()
+        {
+            GenerateInitObjects(this.MapSize);
+        }
+
+        private void GenerateInitObjects(Vector2Int MapSize)
+        {
+            for (int x = 0; x < MapSize.x; x++)
+            {
+                for (int y = 0; y < MapSize.y; y++)
+                {
+                    //5%的概率随机生成陆地中的树木
+                    if (mapGrids[x * MapSize.y + y].isPlane)
+                    {
+                        if ((UnityEngine.Random.Range(0, 99) < 5))
+                        {
+                            new Plant(
+                                   UnityEngine.Random.Range(0, 1f) < 0.5f ? 10027 : 10028,
+                                   new Vector2Int(x, y),
+                                   UnityEngine.Random.Range(0, 16)
+                                   );
+                        }
+                    }
+                    //以1%的概率随机生成高山中的矿石
+                    if (mapGrids[x * MapSize.y + y].isMountain)
+                    {
+                        if ((UnityEngine.Random.Range(0, 99) < 20))
+                        {
+                            new Ore(
+                                   UnityEngine.Random.Range(0, 1f) < 0.5f ? 16001 : 16002,
+                                   new Vector2Int(x, y)
+                                   );
+                        }
+                        //剩余部分全部生成花岗岩石
+                        else
+                        {
+                            new Ore(
+                                    16003,
+                                    new Vector2Int(x, y)
+                                    );
+                        }
+                    }
+                }
+            }
+
+        }
+
         public bool GetGrid(int x, int y, out MapGridDetails result)
         {
             result = mapGrids.ToList().Find(grid => grid.pos.x == x && grid.pos.y == y);
             return result != null;
+        }
+
+        public bool TryGetGrid(Vector2Int pos, out MapGridDetails result)
+        {
+            result = mapGrids.ToList().Find(grid => grid.pos == pos);
+            return result != null;
+        }
+
+        public MapGridDetails GetGrid(Vector2Int pos)
+        {
+            return mapGrids[pos.x * MapSize.y + pos.y];
         }
 
         private int GetIdUsingPerlin(int x, int y)

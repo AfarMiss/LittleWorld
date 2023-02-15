@@ -12,5 +12,10 @@ namespace LittleWorld.Item
         corn = 12009,
         cornPlant = 10009,
         humanbeing = 13001,
+
+        stove = 14001,
+        smithy = 14002,
+
+        wood = 15002,
     }
 }

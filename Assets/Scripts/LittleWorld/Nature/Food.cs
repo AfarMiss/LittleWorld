@@ -9,9 +9,9 @@ namespace LittleWorld.Item
         public RawFoodInfo foodInfo;
         public Food(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
         {
-            if (ObjectConfig.rawFoodInfo.TryGetValue(itemCode, out foodInfo))
+            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var foodInfo))
             {
-                foodInfo = ObjectConfig.rawFoodInfo[itemCode];
+                this.foodInfo = foodInfo as RawFoodInfo;
                 this.itemCode = itemCode;
                 ItemName = foodInfo.itemName;
             }

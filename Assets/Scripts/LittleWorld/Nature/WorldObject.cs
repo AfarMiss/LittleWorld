@@ -3,50 +3,82 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using LittleWorld.UI;
+using LittleWorld.Message;
+using Unity.VisualScripting;
 
 namespace LittleWorld.Item
 {
     public abstract class WorldObject : Object
     {
         public bool isCarried = false;
+        public bool canPile = false;
         public WorldObject carriedParent = null;
-        protected float maxHealth;
-        public float mass;
+        public bool inBuildingConstruction = false;
 
         protected float curHealth;
-        public Map curMap;
+        public Map mapBelongTo;
 
         protected Vector2Int gridPos;
 
         public abstract Sprite GetSprite();
 
-        public Vector2Int GridPos { get => gridPos; set { gridPos = value; } }
+        public Vector2Int GridPos
+        {
+            get => gridPos;
+            set
+            {
+                var lastPos = gridPos;
+                gridPos = value;
+                EventCenter.Instance.Trigger(EventName.OBJECT_GRID_CHANGE, new ChangeGridMessage(lastPos, this));
+            }
+        }
 
         public WorldObject(int itemCode, Vector2Int gridPos, Map map = null)
         {
-            this.gridPos = gridPos;
             this.itemCode = itemCode;
+            this.ItemName = ObjectConfig.GetInfo(itemCode)?.itemName;
             this.instanceID = SceneObjectManager.ItemInstanceID++;
-            curMap = map ?? MapManager.Instance.ColonyMap;
-            SceneObjectManager.Instance.RegisterItem(this);
-        }
+            mapBelongTo = map ?? MapManager.Instance.ColonyMap;
 
-        public void OnBeCarried(WorldObject wo)
-        {
-            isCarried = true;
-            carriedParent = wo;
+            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var plantInfo))
+            {
+                canPile = plantInfo.canPile;
+            }
+            mapBelongTo.DropDownWorldObjectAt(gridPos, this);
+            SceneObjectManager.Instance.RegisterObject(this);
         }
 
         public void OnBeDropDown()
         {
-            this.gridPos = carriedParent.GridPos;
+            var referencePoint = carriedParent.gridPos;
+            mapBelongTo.DropDownWorldObjectAt(referencePoint, this);
             isCarried = false;
+            carriedParent = null;
+        }
+
+        public void OnBeBluePrint()
+        {
+            var referencePoint = carriedParent.gridPos;
+            mapBelongTo.AddBlueprintObjectAt(referencePoint, this);
+            isCarried = false;
+            inBuildingConstruction = true;
             carriedParent = null;
         }
 
         public void Destroy()
         {
-            SceneObjectManager.Instance.UnregisterItem(this);
+            OnDestroy();
+            if (this.canPile && !inBuildingConstruction)
+            {
+                this.mapBelongTo.TryGetGrid(this.gridPos, out var result);
+                result.DeleteSinglePiledThing();
+            }
+            SceneObjectManager.Instance.UnregisterObject(this);
+        }
+
+        protected virtual void OnDestroy()
+        {
+
         }
 
         public Vector3 RenderPos

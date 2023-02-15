@@ -9,9 +9,9 @@ namespace LittleWorld
     {
         private void Start()
         {
-            //暂时注释
             UIManager.Instance.ShowPanel<ProgressPanel>();
             UIManager.Instance.ShowPanel<MainInfoPanel>();
+            UIManager.Instance.ShowPanel<ItemCountPanel>();
         }
     }
 }
