@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,6 +40,6 @@ public class TestMovement : MonoBehaviour
    isPickingRight, isPickingLeft, isPickingUp, isPickingDown,
    isSwingingToolRight, isSwingingToolLeft, isSwingingToolUp, isSwingingToolDown,
    idleRight, idleLeft, idleUp, idleDown);
-        Debug.Log($"inputX, inputY, isWalking, isRunning, isIdle:{inputX},{inputY},{isWalking},{isRunning},{ isIdle}");
+        Debug.Log($"inputX, inputY, isWalking, isRunning, isIdle:{inputX},{inputY},{isWalking},{isRunning},{isIdle}");
     }
 }
