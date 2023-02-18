@@ -24,7 +24,17 @@ public class PathNavigation : MonoBehaviour
 
     private bool curTargetIsReached = true;
     public bool atDestination = true;
-    public Vector2 renderPos => transform.position;
+    public Vector2 RenderPos
+    {
+        get
+        {
+            return transform.position;
+        }
+        set
+        {
+            transform.position = value;
+        }
+    }
     public Vector2 curRenderPos;
     private Vector3 dir;
 
@@ -101,10 +111,10 @@ public class PathNavigation : MonoBehaviour
                 if (curPath.Count > 0)
                 {
                     curTarget = curPath.Dequeue();
-                    dir = curTarget - renderPos;
-                    realTotalCost = Vector2.Distance(renderPos, curTarget) * walkBaseTotalCost;
-                    walkLeftCost += Vector2.Distance(renderPos, curTarget) * walkBaseTotalCost;
-                    curRenderPos = renderPos;
+                    dir = curTarget - RenderPos;
+                    realTotalCost = Vector2.Distance(RenderPos, curTarget) * walkBaseTotalCost;
+                    walkLeftCost += Vector2.Distance(RenderPos, curTarget) * walkBaseTotalCost;
+                    curRenderPos = RenderPos;
                     curTargetIsReached = false;
                     return;
                 }
@@ -135,6 +145,7 @@ public class PathNavigation : MonoBehaviour
 
         if (walkLeftCost > 0)
         {
+            animalFace = DirectionHelper.JudgeDirFace(RenderPos, curTarget.To3());
             var speed = (human as Animal).moveSpeed;
             walkLeftCost -= speed;
             transform.position = new Vector3(curRenderPos.x, curRenderPos.y) + (1 - walkLeftCost / realTotalCost) * dir;
@@ -144,7 +155,6 @@ public class PathNavigation : MonoBehaviour
             curTargetIsReached = true;
             human.GridPos = target;
         }
-        animalFace = DirectionHelper.JudgeDirFace(renderPos, curTarget.To3());
         Debug.Log("animalFace:" + animalFace);
     }
 
