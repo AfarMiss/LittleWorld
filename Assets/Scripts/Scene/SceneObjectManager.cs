@@ -16,6 +16,8 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public GameObject ghostPrefab;
     private GameObject pawnRes;
     private GameObject renderParent;
+    private GameObject pfBullet;
+    private GameObject pfBulletEffect;
 
     public List<SceneItem> sceneItemList
     {
@@ -117,8 +119,13 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         pilePrefab = Resources.Load<GameObject>("Prefabs/Object/Pile");
         ghostPrefab = Resources.Load<GameObject>("Prefabs/Object/Ghost");
         pawnRes = Resources.Load<GameObject>("Prefabs/Character/Pawn");
+        pfBullet = Resources.Load<GameObject>("Prefabs/Weapon/Bullet");
+        pfBulletEffect = Resources.Load<GameObject>("Prefabs/Weapon/WeaponShootEffectSmokePuff");
 
         renderParent = new GameObject("RenderParent");
+        PoolManager.Instance.CreatePool(30, pfBullet, PoolEnum.Bullet.ToString(), renderParent.transform);
+        PoolManager.Instance.CreatePool(30, pfBulletEffect, PoolEnum.BulletBoomEffect.ToString(), renderParent.transform);
+
         GameObject.DontDestroyOnLoad(renderParent);
     }
 
@@ -243,6 +250,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public void Init()
     {
         new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
+        new Weapon(17001, new Vector2Int(24, 25));
     }
 
     public Vector2Int SearchForRawMaterials(int objectCode)

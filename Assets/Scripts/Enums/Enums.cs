@@ -197,6 +197,8 @@ public enum PoolEnum
     Sounds,
     Progress,
     ItemCount,
+    Bullet,
+    BulletBoomEffect,
 }
 
 public enum ActionEnum

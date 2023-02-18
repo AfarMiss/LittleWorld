@@ -1,6 +1,7 @@
 ﻿using AI;
 using LittleWorld.Item;
 using LittleWorld.MapUtility;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -13,15 +14,28 @@ namespace LittleWorld.Jobs
             Sequence carrySequence = new Sequence("Sow Sequence");
             Humanbeing humanbeing = tree.GetVariable("Humanbeing") as Humanbeing;
             //carry
+            CheckLeaf checkLeaf = new CheckLeaf("check whether has storage zone", CheckStorage, null, OnCheckStorageFail);
             DynamicWalk walkLeaf = new DynamicWalk("Go To Object", humanbeing, Node.GoToLoc, GetOjectPos);
             DynamicLongWorkLeaf carry = new DynamicLongWorkLeaf("Carry", humanbeing, DoHaul, GetOjectPos);
             DynamicWalk moveToStorageSection = new DynamicWalk("Go To Storage Section", humanbeing, Node.GoToLoc, GetStoragePos);
             DynamicLongWorkLeaf dropDown = new DynamicLongWorkLeaf("Drop Down", humanbeing, DoDropDown, GetStoragePos);
+            carrySequence.AddChild(checkLeaf);
             carrySequence.AddChild(walkLeaf);
             carrySequence.AddChild(carry);
             carrySequence.AddChild(moveToStorageSection);
             carrySequence.AddChild(dropDown);
             tree.AddChild(carrySequence);
+        }
+
+        private void OnCheckStorageFail()
+        {
+            Debug.LogWarning("不存在符合条件的存储区");
+        }
+
+        private bool CheckStorage()
+        {
+            var targetSection = Current.CurMap.sectionDic.Values.ToList().Find(x => x is StorageMapSection);
+            return targetSection != null;
         }
 
         private Node.Status DoDropDown(Vector2Int destination, Humanbeing human)

@@ -1,12 +1,7 @@
 ﻿using LittleWorld.Item;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Xml;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 namespace Xml
@@ -225,25 +220,6 @@ namespace Xml
                 }
             }
             return sprites;
-        }
-        public static Dictionary<int, int> GetBuildingCost(XmlNode item)
-        {
-            var buildingCost = new Dictionary<int, int>();
-            var innerText = item.SelectSingleNode($"buildingCost")?.InnerText;
-            if (!string.IsNullOrEmpty(innerText))
-            {
-                string[] buildingMaterialsText = innerText.Split(",");
-                foreach (var text in buildingMaterialsText)
-                {
-                    string[] materialInfo = text.Split("x");
-                    string materialName = materialInfo[0];
-                    string materialCount = materialInfo[1];
-                    buildingCost.Add(
-                        ObjectConfig.GetRawMaterialCode(materialName),
-                        int.Parse(materialCount));
-                }
-            }
-            return buildingCost;
         }
 
         public static Dictionary<int, int> GetBuildingCost(string item)
