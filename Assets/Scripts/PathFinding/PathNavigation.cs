@@ -10,6 +10,7 @@ using UnityEngine.Events;
 
 public class PathNavigation : MonoBehaviour
 {
+    public Face animalFace;
     public int lastStampFrameCount = -1;
     private Queue<Vector2Int> curPath;
     public Vector2Int curDestination;
@@ -143,6 +144,8 @@ public class PathNavigation : MonoBehaviour
             curTargetIsReached = true;
             human.GridPos = target;
         }
+        animalFace = DirectionHelper.JudgeDirFace(renderPos, curTarget.To3());
+        Debug.Log("animalFace:" + animalFace);
     }
 
     private void FixedUpdate()
@@ -158,5 +161,10 @@ public class PathNavigation : MonoBehaviour
         curDestination = target;
         lastStampFrameCount = Time.frameCount;
         atDestination = false;
+    }
+
+    public PathNavigation()
+    {
+        animalFace = Face.Front;
     }
 }

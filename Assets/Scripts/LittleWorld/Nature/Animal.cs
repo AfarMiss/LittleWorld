@@ -13,6 +13,8 @@ namespace LittleWorld.Item
         protected AnimalInfo animalInfo;
         protected PawnHealthTracer healthTracer;
         protected WorkTracer workTracer;
+
+        public Face faceTo => pathTracer.animalFace;
         public float moveSpeed => animalInfo.moveSpeed;
 
         public Animal(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
@@ -27,6 +29,28 @@ namespace LittleWorld.Item
         public override Sprite GetSprite()
         {
             return animalInfo.itemSprites[0];
+        }
+
+        public Sprite GetFaceSprite()
+        {
+            return GetSprite(faceTo);
+        }
+
+        protected virtual Sprite GetSprite(Face face)
+        {
+            switch (face)
+            {
+                case Face.Front:
+                    return animalInfo.itemSprites[1];
+                case Face.Back:
+                    return animalInfo.itemSprites[0];
+                case Face.Left:
+                    return animalInfo.itemSprites[2];
+                case Face.Right:
+                    return animalInfo.itemSprites[2];
+                default:
+                    return animalInfo.itemSprites[1];
+            }
         }
 
         public void AddWanderWork()
@@ -50,6 +74,14 @@ namespace LittleWorld.Item
     {
         Idle,
         Running,
+    }
+
+    public enum Face
+    {
+        Front = 0,
+        Back = 1,
+        Left = 2,
+        Right = 3,
     }
 }
 

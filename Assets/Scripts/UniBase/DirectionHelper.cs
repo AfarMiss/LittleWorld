@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using LittleWorld.Item;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +29,32 @@ namespace UniBase
             else
             {
                 return Vector3Int.zero;
+            }
+        }
+
+        public static Face JudgeDirFace(Vector3 origin, Vector3 lookto)
+        {
+            var offset = lookto - origin;
+            if ((offset.y >= offset.x && offset.x >= 0) || (offset.y >= -offset.x && offset.x <= 0))
+            {
+                return Face.Front;
+            }
+            else if ((offset.y <= offset.x && offset.x <= 0) || (offset.y <= -offset.x && offset.x >= 0))
+            {
+                return Face.Back;
+            }
+            else if ((offset.y < offset.x && offset.y >= 0) || (offset.y > -offset.x && offset.y <= 0))
+            {
+                return Face.Right;
+            }
+            else if ((offset.y > offset.x && offset.y <= 0) || (offset.y < -offset.x && offset.y >= 0))
+            {
+                return Face.Left;
+            }
+            else
+            {
+                Debug.LogError($"unconsidered case:offset.x:{offset.x},offset.y:{offset.y}");
+                return Face.Front;
             }
         }
     }

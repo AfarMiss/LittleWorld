@@ -54,13 +54,18 @@ public class ItemRender : MonoBehaviour
             spriteRenderer.sprite.pivot.x / spriteRenderer.sprite.pixelsPerUnit,
             spriteRenderer.sprite.pivot.y / spriteRenderer.sprite.pixelsPerUnit,
             0);
-        if (wo is not Animal)
+        if (wo is Animal animal)
+        {
+            spriteRenderer.sprite = animal.GetFaceSprite();
+            spriteRenderer.flipX = animal.faceTo == Face.Left;
+            if (wo is Humanbeing human && human.gearTracer.curWeapon != null)
+            {
+                weapon.sprite = human.gearTracer.curWeapon.GetSprite();
+            }
+        }
+        else
         {
             this.transform.position = wo.GridPos.To3();
-        }
-        else if (wo is Humanbeing human && human.gearTracer.curWeapon != null)
-        {
-            weapon.sprite = human.gearTracer.curWeapon.GetSprite();
         }
         if (wo is Building curBuilding)
         {
