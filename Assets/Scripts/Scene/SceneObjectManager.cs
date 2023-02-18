@@ -144,7 +144,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     private void AddRenderComponent(WorldObject wo)
     {
-        if (wo is not Humanbeing)
+        if (wo is not Animal)
         {
             if (!wo.canPile)
             {
@@ -164,12 +164,12 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         }
         else
         {
-            var human = wo as Humanbeing;
+            var animal = wo as Animal;
             GameObject curPawn = GameObject.Instantiate<GameObject>(pawnRes, renderParent.transform);
-            curPawn.GetComponent<Transform>().transform.position = human.GridPos.To3();
-            curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
-            human.SetNavi(curPawn.GetComponent<PathNavigation>());
-            WorldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
+            curPawn.GetComponent<Transform>().transform.position = animal.GridPos.To3();
+            curPawn.GetComponent<PathNavigation>().Initialize(animal.instanceID);
+            animal.SetNavi(curPawn.GetComponent<PathNavigation>());
+            WorldItemsRenderer.Add(animal, curPawn.GetComponent<ItemRender>());
         }
     }
 
@@ -250,6 +250,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public void Init()
     {
         new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
+        new Animal(13002, new Vector2Int(23, 25));
         new Weapon(17001, new Vector2Int(24, 25));
     }
 

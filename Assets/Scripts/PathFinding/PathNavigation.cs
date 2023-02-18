@@ -35,7 +35,7 @@ public class PathNavigation : MonoBehaviour
     /// 代表的itemInstanceID
     /// </summary>
     public int humanID;
-    public Humanbeing human => SceneObjectManager.Instance.GetWorldObjectById(humanID) as Humanbeing;
+    public Animal human => SceneObjectManager.Instance.GetWorldObjectById(humanID) as Animal;
 
     public void Initialize(int instanceID)
     {

@@ -24,7 +24,6 @@ namespace LittleWorld.Item
 
         private PawnWorkTracer workTracer;
         private PawnHealthTracer healthTracer;
-        private PathNavigation pathTracer;
         public List<WorldObject> Inventory = new List<WorldObject>();
         public GearTracer gearTracer;
 
@@ -79,11 +78,6 @@ namespace LittleWorld.Item
 
         public MotionStatus motion = MotionStatus.Idle;
 
-        public void SetNavi(PathNavigation PawnPathTracer)
-        {
-            this.pathTracer = PawnPathTracer;
-        }
-
         public int GetWorkSpeed(WorkTypeEnum type)
         {
             switch (type)
@@ -119,8 +113,6 @@ namespace LittleWorld.Item
         {
             actionQueue = new Queue<HumanAction>();
             workTracer = new PawnWorkTracer(this);
-            animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
-            ItemName = animalInfo.itemName;
             gearTracer = new GearTracer(this);
         }
 
