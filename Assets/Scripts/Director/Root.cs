@@ -90,11 +90,7 @@ namespace LittleWorld
             uIManager.Initialize();
 
             //读取配置文件
-            Xml.XmlUtility.ReadConfigXml("ItemInfo");
-            Xml.XmlUtility.ReadConfigXml("Animals");
-            Xml.XmlUtility.ReadConfigXml("Things");
-            Xml.XmlUtility.ReadConfigXml("Buildings");
-            Xml.XmlUtility.ReadConfigXml("Ores");
+            Xml.XmlUtility.ReadAllConfigXmlIn(Application.streamingAssetsPath);
         }
 
         private void FixedUpdate()

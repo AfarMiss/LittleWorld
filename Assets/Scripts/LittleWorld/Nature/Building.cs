@@ -64,7 +64,7 @@ namespace LittleWorld.Item
 
         public Dictionary<int, int> GetRawMaterialNeedYet()
         {
-            var all = buildingInfo.buildingCost;
+            var all = buildingInfo.BuildingCost;
             Dictionary<int, int> result = new Dictionary<int, int>();
             foreach (var item in all)
             {
