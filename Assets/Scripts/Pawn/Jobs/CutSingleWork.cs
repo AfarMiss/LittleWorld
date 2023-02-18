@@ -17,7 +17,7 @@ namespace LittleWorld.Jobs
             Sequence cutSequence = new Sequence("Sow Sequence");
             //cut
             DynamicWalk walkLeaf = new DynamicWalk("Go To Cut", humanbeing, Node.GoToLoc, GetCutPos);
-            DynamicLongWorkLeaf cutLeaf = new DynamicLongWorkLeaf("Do Cut", humanbeing, DoCut, GetCutPos);
+            DynamicLongJobLeaf cutLeaf = new DynamicLongJobLeaf("Do Cut", humanbeing, DoCut, GetCutPos);
             cutSequence.AddChild(walkLeaf);
             cutSequence.AddChild(cutLeaf);
 

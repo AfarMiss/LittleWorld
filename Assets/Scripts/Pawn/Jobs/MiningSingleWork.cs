@@ -17,7 +17,7 @@ namespace LittleWorld.Jobs
             Sequence MiningSequence = new Sequence("Sow Sequence");
             //Mining
             DynamicWalk walkLeaf = new DynamicWalk("Go To Mining", humanbeing, Node.GoToLoc, GetMiningPos);
-            DynamicLongWorkLeaf MiningLeaf = new DynamicLongWorkLeaf("Do Mining", humanbeing, DoMining, GetMiningPos);
+            DynamicLongJobLeaf MiningLeaf = new DynamicLongJobLeaf("Do Mining", humanbeing, DoMining, GetMiningPos);
             MiningSequence.AddChild(walkLeaf);
             MiningSequence.AddChild(MiningLeaf);
 

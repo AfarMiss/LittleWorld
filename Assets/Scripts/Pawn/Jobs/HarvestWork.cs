@@ -20,14 +20,13 @@ namespace LittleWorld.Jobs
 
         protected BehaviourTree CreateWorkSequence(int plantCode, MapGridDetails[] gridsPos, Humanbeing humanbeing)
         {
-            tree = new BehaviourTree();
             tree.SetVariable("plantCode", plantCode);
             AI.Sequence sowSequence = new AI.Sequence("Sow Sequence");
             //harvest
             ConditionLoop harvestArea = new ConditionLoop("Harvest Area", HarvestedAll);
             Leaf calculateNextHarvest = new Leaf("Calculate Next Harvest", CalculateNextHarvest);
             DynamicWalk walkLeaf = new DynamicWalk("Go To Harvest", humanbeing, Node.GoToLoc, GetHarvestPos);
-            DynamicLongWorkLeaf harvestLeaf = new DynamicLongWorkLeaf("Do Harvest", humanbeing, DoHarvest, GetHarvestPos);
+            DynamicLongJobLeaf harvestLeaf = new DynamicLongJobLeaf("Do Harvest", humanbeing, DoHarvest, GetHarvestPos);
             harvestArea.AddChild(calculateNextHarvest);
             harvestArea.AddChild(walkLeaf);
             harvestArea.AddChild(harvestLeaf);

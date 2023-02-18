@@ -23,7 +23,7 @@ namespace LittleWorld.Jobs
             () => { Debug.Log($"开始建造{building.ItemName}"); },
             () => { Debug.LogWarning($"资源不足，无法建造{building.ItemName}"); });
             DynamicWalk walkLeaf = new DynamicWalk("Go To Building", humanbeing, Node.GoToLoc, GetMiningPos);
-            DynamicLongWorkLeaf MiningLeaf = new DynamicLongWorkLeaf("Do Building", humanbeing, Building, GetMiningPos);
+            DynamicLongJobLeaf MiningLeaf = new DynamicLongJobLeaf("Do Building", humanbeing, Building, GetMiningPos);
             BuildingSequence.AddChild(canBuilding);
             BuildingSequence.AddChild(walkLeaf);
             BuildingSequence.AddChild(MiningLeaf);

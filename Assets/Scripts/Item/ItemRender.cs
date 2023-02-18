@@ -8,12 +8,36 @@ public class ItemRender : MonoBehaviour
     private int itemCode;
 
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer weapon;
+    private SpriteRenderer hualThing;
+
+    private void Start()
+    {
+        var spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var item in spriteRenderers)
+        {
+            switch (item.tag)
+            {
+                case "avatar":
+                    spriteRenderer = item;
+                    break;
+                case "haulThing":
+                    hualThing = item;
+                    break;
+                case "playerWeapon":
+                    weapon = item;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     public int ItemCode { get { return itemCode; } set { itemCode = value; } }
 
     public void Render<T>(T worldObject) where T : WorldObject
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer == null) return;
         spriteRenderer.enabled = !worldObject.isCarried;
         if (worldObject.isCarried || worldObject.inBuildingConstruction) { return; }
         //this.gameObject.AddComponent<NudgeItem>();
@@ -33,6 +57,10 @@ public class ItemRender : MonoBehaviour
         if (wo is not Animal)
         {
             this.transform.position = wo.GridPos.To3();
+        }
+        else if (wo is Humanbeing human && human.gearTracer.curWeapon != null)
+        {
+            weapon.sprite = human.gearTracer.curWeapon.GetSprite();
         }
         if (wo is Building curBuilding)
         {

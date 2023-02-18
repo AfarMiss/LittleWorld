@@ -20,14 +20,13 @@ namespace LittleWorld.Jobs
 
         protected BehaviourTree CreateWorkSequence(int seedCode, MapGridDetails[] gridsPos, Humanbeing humanbeing)
         {
-            tree = new BehaviourTree();
             tree.SetVariable("seedCode", seedCode);
             AI.Sequence sowSequence = new AI.Sequence("Sow Sequence");
             //cut
             ConditionLoop cutArea = new ConditionLoop("cut Area", HasCutAllExceptSeedCode);
             Leaf calculateNextCut = new Leaf("Calculate Next Cut", CalculateNextCut);
             DynamicWalk walkLeaf = new DynamicWalk("Go To Cut", humanbeing, Node.GoToLoc, GetCutPos);
-            DynamicLongWorkLeaf cutLeaf = new DynamicLongWorkLeaf("Do Cut", humanbeing, DoCut, GetCutPos);
+            DynamicLongJobLeaf cutLeaf = new DynamicLongJobLeaf("Do Cut", humanbeing, DoCut, GetCutPos);
             cutArea.AddChild(calculateNextCut);
             cutArea.AddChild(walkLeaf);
             cutArea.AddChild(cutLeaf);
@@ -37,7 +36,7 @@ namespace LittleWorld.Jobs
             ConditionLoop sowArea = new ConditionLoop("sowArea", HasSowAll);
             Leaf calculateNextSow = new Leaf("Calculate Next Sow", CalculateNextSow);
             DynamicWalk walkSowLeaf = new DynamicWalk("Go To Sow", humanbeing, Node.GoToLoc, GetSowPos);
-            DynamicLongWorkLeaf sowLeaf = new DynamicLongWorkLeaf("Do Sow", humanbeing, DoSow, GetSowPos);
+            DynamicLongJobLeaf sowLeaf = new DynamicLongJobLeaf("Do Sow", humanbeing, DoSow, GetSowPos);
             sowArea.AddChild(calculateNextSow);
             sowArea.AddChild(walkSowLeaf);
             sowArea.AddChild(sowLeaf);

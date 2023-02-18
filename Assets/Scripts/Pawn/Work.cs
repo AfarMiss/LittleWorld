@@ -18,6 +18,7 @@ namespace LittleWorld.Jobs
             {
                 tree = new BehaviourTree();
             }
+            tree = new BehaviourTree();
         }
 
 
@@ -37,6 +38,11 @@ namespace LittleWorld.Jobs
                 return Node.Status.FAILURE;
             }
         }
+
+        //public virtual BehaviourTree CreateWorkSequence()
+        //{
+        //    return new BehaviourTree();
+        //}
 
     }
 }

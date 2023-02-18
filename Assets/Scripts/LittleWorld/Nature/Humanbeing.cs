@@ -10,6 +10,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using AI;
 
 namespace LittleWorld.Item
 {
@@ -25,6 +26,7 @@ namespace LittleWorld.Item
         private PawnHealthTracer healthTracer;
         private PathNavigation pathTracer;
         public List<WorldObject> Inventory = new List<WorldObject>();
+        public GearTracer gearTracer;
 
         public bool CarrySingle(WorldObject wo, Vector2Int destination)
         {
@@ -45,6 +47,7 @@ namespace LittleWorld.Item
                 CarrySingle(item, destination);
             }
         }
+
 
         public WorldObject[] Carry(int itemCode, int amount, Vector2Int destination)
         {
@@ -118,6 +121,7 @@ namespace LittleWorld.Item
             workTracer = new PawnWorkTracer(this);
             animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
             ItemName = animalInfo.itemName;
+            gearTracer = new GearTracer(this);
         }
 
         public void AddHarvestWork(PlantMapSection section, int plantCode)
@@ -149,6 +153,17 @@ namespace LittleWorld.Item
         {
             workTracer.AddWork(new GoToLocWork(this, targetPos.To2()));
 
+        }
+
+        public void AddEquipWork(Weapon weapon)
+        {
+            workTracer.AddWork(new EquipWork(weapon, this));
+        }
+
+        public void AddEquip(Weapon weapon, Vector2Int destination)
+        {
+            CarrySingle(weapon, destination);
+            gearTracer.AddEquip(weapon);
         }
 
         public override void Tick()

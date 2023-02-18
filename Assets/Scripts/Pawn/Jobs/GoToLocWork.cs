@@ -11,7 +11,6 @@ namespace LittleWorld.Jobs
     {
         public GoToLocWork(Humanbeing humanbeing, Vector2Int destination)
         {
-            tree = new BehaviourTree();
             WalkLeaf dynamicWalk = new WalkLeaf("Go To Loc", destination, humanbeing);
             tree.AddChild(dynamicWalk);
         }

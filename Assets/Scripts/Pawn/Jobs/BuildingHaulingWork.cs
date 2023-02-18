@@ -9,7 +9,7 @@ namespace LittleWorld.Jobs
 {
     public class BuildingHaulingWork : Work
     {
-        public void CreateWorkSequence()
+        public BehaviourTree CreateWorkSequence()
         {
             Sequence carrySequence = new Sequence("Sow Sequence");
             Humanbeing humanbeing = tree.GetVariable("Humanbeing") as Humanbeing;
@@ -18,9 +18,9 @@ namespace LittleWorld.Jobs
             ConditionLoop checkAllRawMaterialContained = new ConditionLoop("Check All RawMaterial Contained", CheckAllRawMaterialContained);
 
             DynamicWalk walkLeaf = new DynamicWalk("Go To Object", humanbeing, Node.GoToLoc, GetRawMaterialPos);
-            DynamicLongWorkLeaf carry = new DynamicLongWorkLeaf("Carry", humanbeing, DoHaul, GetRawMaterialPos);
+            DynamicLongJobLeaf carry = new DynamicLongJobLeaf("Carry", humanbeing, DoHaul, GetRawMaterialPos);
             WalkLeaf moveToStorageSection = new WalkLeaf("Go To Storage Section", building.GridPos, humanbeing);
-            DynamicLongWorkLeaf dropDown = new DynamicLongWorkLeaf("Drop Down", humanbeing, DoDropDown, GetBuildingPos);
+            DynamicLongJobLeaf dropDown = new DynamicLongJobLeaf("Drop Down", humanbeing, DoDropDown, GetBuildingPos);
 
             checkAllRawMaterialContained.AddChild(walkLeaf);
             checkAllRawMaterialContained.AddChild(carry);
@@ -28,6 +28,7 @@ namespace LittleWorld.Jobs
             checkAllRawMaterialContained.AddChild(dropDown);
 
             tree.AddChild(checkAllRawMaterialContained);
+            return tree;
         }
 
         private bool CheckAllRawMaterialContained()
@@ -87,7 +88,6 @@ namespace LittleWorld.Jobs
 
         public BuildingHaulingWork(Building building, Humanbeing humanbeing)
         {
-            tree = new BehaviourTree();
             tree.SetVariable("Humanbeing", humanbeing);
             tree.SetVariable("Building", building);
             CreateWorkSequence();

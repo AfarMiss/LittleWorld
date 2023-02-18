@@ -16,9 +16,9 @@ namespace LittleWorld.Jobs
             //carry
             CheckLeaf checkLeaf = new CheckLeaf("check whether has storage zone", CheckStorage, null, OnCheckStorageFail);
             DynamicWalk walkLeaf = new DynamicWalk("Go To Object", humanbeing, Node.GoToLoc, GetOjectPos);
-            DynamicLongWorkLeaf carry = new DynamicLongWorkLeaf("Carry", humanbeing, DoHaul, GetOjectPos);
+            DynamicLongJobLeaf carry = new DynamicLongJobLeaf("Carry", humanbeing, DoHaul, GetOjectPos);
             DynamicWalk moveToStorageSection = new DynamicWalk("Go To Storage Section", humanbeing, Node.GoToLoc, GetStoragePos);
-            DynamicLongWorkLeaf dropDown = new DynamicLongWorkLeaf("Drop Down", humanbeing, DoDropDown, GetStoragePos);
+            DynamicLongJobLeaf dropDown = new DynamicLongJobLeaf("Drop Down", humanbeing, DoDropDown, GetStoragePos);
             carrySequence.AddChild(checkLeaf);
             carrySequence.AddChild(walkLeaf);
             carrySequence.AddChild(carry);
@@ -73,7 +73,6 @@ namespace LittleWorld.Jobs
 
         public HaulingWork(WorldObject[] wo, Humanbeing humanbeing)
         {
-            tree = new BehaviourTree();
             tree.SetVariable("WorldObjects", wo);
             tree.SetVariable("Humanbeing", humanbeing);
             CreateWorkSequence();

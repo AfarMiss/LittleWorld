@@ -1,12 +1,9 @@
 ﻿using LittleWorld.Item;
 using LittleWorld.MapUtility;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniBase;
-using Unity.VisualScripting;
 using UnityEngine;
-using static System.Collections.Specialized.BitVector32;
 
 namespace LittleWorld.UI
 {
@@ -21,15 +18,15 @@ namespace LittleWorld.UI
 
             foreach (var worldObject in objects)
             {
-                if (worldObject is Plant curPlant)
+                if (worldObject is Plant plant)
                 {
-                    var plantOpts = AddPlantFloatMenu(human, curPlant);
+                    var plantOpts = AddPlantFloatMenu(human, plant);
                     contentList.AddRange(plantOpts);
                 }
 
-                if (worldObject is PlantMapSection curSection)
+                if (worldObject is PlantMapSection section)
                 {
-                    var plantOpts = AddPlantSectionFloatMenu(human, mousePos.GetWorldPosition().ToCell(), curSection);
+                    var plantOpts = AddPlantSectionFloatMenu(human, mousePos.GetWorldPosition().ToCell(), section);
                     contentList.AddRange(plantOpts);
                 }
                 if (worldObject is WorldObject && (worldObject as WorldObject).canPile && !hasAddedHaul)
@@ -38,15 +35,21 @@ namespace LittleWorld.UI
                     contentList.AddRange(plantOpts);
                     hasAddedHaul = true;
                 }
-                if (worldObject is Ore)
+                if (worldObject is Ore ore)
                 {
-                    var plantOpts = AddOreFloatMenu(human, worldObject as Ore);
+                    var plantOpts = AddOreFloatMenu(human, ore);
                     contentList.AddRange(plantOpts);
                 }
 
-                if (worldObject is Building building && building.buildingStatus == BuildingStatus.BluePrint)
+                if (worldObject is Building building)
                 {
                     var plantOpts = AddBuildingFloatMenu(human, building);
+                    contentList.AddRange(plantOpts);
+                }
+
+                if (worldObject is Weapon weapon)
+                {
+                    var plantOpts = AddWeaponFloatMenu(human, weapon);
                     contentList.AddRange(plantOpts);
                 }
             }
@@ -58,6 +61,10 @@ namespace LittleWorld.UI
 
         private static List<FloatOption> AddBuildingFloatMenu(Humanbeing human, Building building)
         {
+            if (building.buildingStatus != BuildingStatus.BluePrint)
+            {
+                return null;
+            }
             List<FloatOption> contentList = new List<FloatOption>
             {
             new FloatOption($"建造{building.ItemName}", () =>
@@ -66,6 +73,20 @@ namespace LittleWorld.UI
             })
             };
             return contentList;
+
+        }
+
+        private static List<FloatOption> AddWeaponFloatMenu(Humanbeing human, Weapon weapon)
+        {
+            List<FloatOption> contentList = new List<FloatOption>
+            {
+            new FloatOption($"装备{weapon.ItemName}", () =>
+            {
+                human.AddEquipWork(weapon);
+            })
+            };
+            return contentList;
+
         }
 
         private static List<FloatOption> AddHaulFloatMenu(Humanbeing human, Item.Object[] objects)

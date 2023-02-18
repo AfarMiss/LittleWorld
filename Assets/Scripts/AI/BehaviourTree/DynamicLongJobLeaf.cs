@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AI
 {
-    public class DynamicLongWorkLeaf : Node
+    public class DynamicLongJobLeaf : Node
     {
         public Vector2Int destination;
         public Humanbeing human;
@@ -13,7 +13,7 @@ namespace AI
         public delegate Vector2Int GetPos();
         public GetPos getPos;
 
-        public DynamicLongWorkLeaf(string name, Humanbeing human, Tick tick, GetPos getPos) : base(name)
+        public DynamicLongJobLeaf(string name, Humanbeing human, Tick tick, GetPos getPos) : base(name)
         {
             this.human = human;
             this.ProcessMethod = tick;
@@ -22,9 +22,6 @@ namespace AI
 
         public override Status Process()
         {
-            if (getPos != null)
-            {
-            }
             destination = getPos();
             Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
