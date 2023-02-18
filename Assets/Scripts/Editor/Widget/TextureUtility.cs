@@ -5,6 +5,7 @@ namespace LittleWorld.TextureUtility
 {
     using UnityEngine;
     using UnityEditor;
+    using NUnit.Framework.Constraints;
 
     public class TestSaveSprite
     {
@@ -55,6 +56,10 @@ namespace LittleWorld.TextureUtility
                     {
                         Debug.LogWarning($"No Sprites existed in {loadPath},do you forget to generate?");
                     }
+                }
+                else
+                {
+                    Debug.LogWarning($"Don't start with {resourcesPath}");
                 }
             }
             Debug.Log("SaveSprite Finished");
