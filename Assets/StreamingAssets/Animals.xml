@@ -20,7 +20,7 @@
         <itemEngName>Cow</itemEngName>
         <mass>100</mass>
         <maxHealth>150</maxHealth>
-        <moveSpeed>9</moveSpeed>
+        <moveSpeed>4</moveSpeed>
         <carryWeight>50</carryWeight>
         <image0>Assets/Resources/FarmPack/assets/farming/animals/cow/cow_all_frames/cow_all_frames_17.png</image0>
         <image1>Assets/Resources/FarmPack/assets/farming/animals/cow/cow_all_frames/cow_all_frames_20.png</image1>

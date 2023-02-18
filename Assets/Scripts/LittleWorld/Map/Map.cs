@@ -318,10 +318,46 @@ namespace LittleWorld.MapUtility
             return result != null;
         }
 
+        public MapGridDetails TryGetGrid(int x, int y)
+        {
+            var result = mapGrids.ToList().Find(grid => grid.pos.x == x && grid.pos.y == y);
+            return result;
+        }
+
         public bool TryGetGrid(Vector2Int pos, out MapGridDetails result)
         {
             result = mapGrids.ToList().Find(grid => grid.pos == pos);
             return result != null;
+        }
+
+        public IEnumerable<Vector2Int> GetLandGridsAroundSquareIEnumerable(Vector2Int center, int radius)
+        {
+            for (int i = center.x - radius; i < center.x + radius; i++)
+            {
+                for (int j = center.y; j < center.y + radius; j++)
+                {
+                    if (GetGrid(i, j, out MapGridDetails result))
+                    {
+                        yield return result.pos;
+                    }
+                }
+            }
+        }
+
+        public List<Vector2Int> GetLandGridsAroundSquare(Vector2Int center, int radius)
+        {
+            var list = new List<Vector2Int>();
+            for (int i = center.x - radius; i < center.x + radius; i++)
+            {
+                for (int j = center.y; j < center.y + radius; j++)
+                {
+                    if (GetGrid(i, j, out MapGridDetails result) && result.isLand)
+                    {
+                        list.Add(result.pos);
+                    }
+                }
+            }
+            return list;
         }
 
         public MapGridDetails GetGrid(Vector2Int pos)

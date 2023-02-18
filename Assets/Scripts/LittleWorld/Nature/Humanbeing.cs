@@ -16,14 +16,6 @@ namespace LittleWorld.Item
 {
     public class Humanbeing : Animal
     {
-        public enum MotionStatus
-        {
-            Idle,
-            Running,
-        }
-
-        private PawnWorkTracer workTracer;
-        private PawnHealthTracer healthTracer;
         public List<WorldObject> Inventory = new List<WorldObject>();
         public GearTracer gearTracer;
 
@@ -75,9 +67,6 @@ namespace LittleWorld.Item
             }
         }
 
-
-        public MotionStatus motion = MotionStatus.Idle;
-
         public int GetWorkSpeed(WorkTypeEnum type)
         {
             switch (type)
@@ -101,17 +90,10 @@ namespace LittleWorld.Item
             }
         }
 
-        public void GoToLoc(Vector2Int target)
-        {
-            pathTracer.GoToLoc(target);
-        }
-
-        public Queue<HumanAction> actionQueue;
         public MotionStatus motionStatus;
 
         public Humanbeing(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
         {
-            actionQueue = new Queue<HumanAction>();
             workTracer = new PawnWorkTracer(this);
             gearTracer = new GearTracer(this);
         }
@@ -156,13 +138,6 @@ namespace LittleWorld.Item
         {
             CarrySingle(weapon, destination);
             gearTracer.AddEquip(weapon);
-        }
-
-        public override void Tick()
-        {
-            base.Tick();
-            workTracer?.Tick();
-            //Debug.Log("pos:" + GridPos);
         }
 
         internal void AddBuildingWork(Building building)

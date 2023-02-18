@@ -143,6 +143,7 @@ namespace LittleWorld.MapUtility
         public bool PickUp(WorldObject wo, WorldObject hauler)
         {
             wo.isCarried = true;
+            wo.GridPos = VectorExtension.undefinedV2Int;
             wo.carriedParent = hauler;
             piledAmount--;
 

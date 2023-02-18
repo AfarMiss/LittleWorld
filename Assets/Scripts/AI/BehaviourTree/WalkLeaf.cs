@@ -8,12 +8,12 @@ namespace AI
     public class WalkLeaf : Node
     {
         public Vector2Int destination;
-        public Humanbeing human;
+        public Animal human;
         public bool surround = true;
-        public delegate Status Tick(Vector2Int destination, Humanbeing human);
+        public delegate Status Tick(Vector2Int destination, Animal human);
         public Tick ProcessMethod;
 
-        public WalkLeaf(string name, Vector2Int destination, Humanbeing human)
+        public WalkLeaf(string name, Vector2Int destination, Animal human)
         {
             this.destination = destination;
             this.human = human;

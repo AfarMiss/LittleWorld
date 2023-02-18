@@ -14,6 +14,10 @@ namespace AI
 
         public override Status Process()
         {
+            if (children.Count == 0)
+            {
+                return Status.FAILURE;
+            }
             Status childStatus = children[currentChild].Process();
             if (childStatus == Status.RUNNING || childStatus == Status.FAILURE)
             {

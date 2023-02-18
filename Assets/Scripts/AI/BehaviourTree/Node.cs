@@ -41,16 +41,16 @@ namespace AI
             return children[currentChild].Process();
         }
 
-        public static Node.Status GoToLoc(Vector2Int destination, Humanbeing human)
+        public static Node.Status GoToLoc(Vector2Int destination, Animal human)
         {
-            if (human.motion == Humanbeing.MotionStatus.Idle)
+            if (human.motion == MotionStatus.Idle)
             {
                 human.GoToLoc(destination);
-                human.motion = Humanbeing.MotionStatus.Running;
+                human.motion = MotionStatus.Running;
             }
             if (human.GridPos == destination)
             {
-                human.motion = Humanbeing.MotionStatus.Idle;
+                human.motion = MotionStatus.Idle;
                 return Node.Status.SUCCESS;
             }
             return Node.Status.RUNNING;

@@ -14,9 +14,22 @@ namespace LittleWorld.Item
 
         public int ItemCode { get { return itemCode; } set { itemCode = value; } }
 
-        public void Render(int pileCode, Vector2Int destination, Map map)
+        private void Start()
         {
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
+
+        public void Render(int pileCode, Vector2Int destination, Map map)
+        {
+            if (spriteRenderer == null)
+            {
+                return;
+            }
+            if (destination == VectorExtension.undefinedV2Int)
+            {
+                spriteRenderer.enabled = false;
+                return;
+            }
             spriteRenderer.enabled = map.GetGrid(destination).HasPiledThing;
             if (!spriteRenderer.enabled)
             {
