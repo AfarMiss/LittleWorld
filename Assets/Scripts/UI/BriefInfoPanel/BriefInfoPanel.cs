@@ -1,4 +1,5 @@
-﻿using LittleWorld.Item;
+﻿using LittleWorld.Command;
+using LittleWorld.Item;
 using LittleWorld.MapUtility;
 using SRF;
 using System;
@@ -111,6 +112,14 @@ namespace LittleWorld.UI
                 command4.BindCommand(() =>
                 {
                     InputController.Instance.MouseState = MouseState.ShrinkZone;
+                });
+            }
+            if (item is Weapon weapon)
+            {
+                var command2 = AddCommand("开火", null);
+                command2.BindCommand(() =>
+                {
+                    CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ReadyToFire));
                 });
             }
         }

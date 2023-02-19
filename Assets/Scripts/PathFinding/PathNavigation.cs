@@ -136,6 +136,7 @@ public class PathNavigation : MonoBehaviour
                     atDestination = true;
                     //完成到达指定目的地后的工作
                     EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
+                    animalFace = Face.Down;
                     Debug.Log($"Reached {curTarget}");
                 }
             }

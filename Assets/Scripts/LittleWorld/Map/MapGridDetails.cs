@@ -127,7 +127,7 @@ namespace LittleWorld.MapUtility
         {
             piledAmount--;
             var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
-            if (objects != null && objects.Length > 0)
+            if (objects != null)
             {
                 var result = objects.ToList().Find(x =>
                 (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
@@ -148,7 +148,7 @@ namespace LittleWorld.MapUtility
             piledAmount--;
 
             var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
-            if (objects != null && objects.Length > 0)
+            if (objects != null)
             {
                 var result = objects.ToList().Find(x =>
                  (x is WorldObject) && (x as WorldObject).canPile && !(x as WorldObject).isCarried);
@@ -179,7 +179,7 @@ namespace LittleWorld.MapUtility
                 realWo.carriedParent = hauler;
                 piledAmount--;
 
-                if (objects != null && objects.Length > 0)
+                if (objects != null)
                 {
                     var result = objects.ToList().Find(x =>
                      (x is WorldObject) && (x as WorldObject).canPile && !(x as WorldObject).isCarried);

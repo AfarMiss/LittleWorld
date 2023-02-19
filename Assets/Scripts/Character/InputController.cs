@@ -280,8 +280,19 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.BuildingGhost:
                 TryAddBuilding(callbackContext);
                 break;
+            case MouseState.ReadyToFire:
+                TryKill(callbackContext);
+                break;
             default:
                 break;
+        }
+    }
+
+    private void TryKill(CallbackContext callbackContext)
+    {
+        if (callbackContext.canceled)
+        {
+            var objects = WorldUtility.GetWorldObjectsAt(Current.MousePos);
         }
     }
 
@@ -477,6 +488,7 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.ShrinkStorageZone:
             case MouseState.AddStorageSection:
             case MouseState.DeleteStorageSection:
+            case MouseState.ReadyToFire:
                 break;
             case MouseState.BuildingGhost:
                 UpdateGhostPos(MainCamera.ScreenToWorldPoint(Current.MousePos));
@@ -514,6 +526,7 @@ public class InputController : MonoSingleton<InputController>
                 RenderPlantManager();
                 break;
             case MouseState.BuildingGhost:
+            case MouseState.ReadyToFire:
                 break;
             default:
                 break;

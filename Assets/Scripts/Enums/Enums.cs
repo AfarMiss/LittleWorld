@@ -232,4 +232,5 @@ public enum MouseState
     AddStorageSection,
     DeleteStorageSection,
     BuildingGhost,
+    ReadyToFire,
 }

@@ -1,6 +1,7 @@
 ﻿using LittleWorld.MapUtility;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -104,12 +105,10 @@ namespace LittleWorld.Item
             this.mapBelongTo.TryGetGrid(gridPos, out var grid);
             grid.ClearBuildingMaterials();
             var objects = WorldUtility.GetWorldObjectsAt(gridPos);
-            for (int i = objects.Length - 1; i >= 0; i--)
+            var buildingMaterials = objects.ToList().FindAll(x => x is WorldObject wo && wo.inBuildingConstruction);
+            for (int i = buildingMaterials.Count - 1; i >= 0; i--)
             {
-                if (objects[i] is WorldObject wo && wo.inBuildingConstruction)
-                {
-                    wo.Destroy();
-                }
+                (buildingMaterials[i] as WorldObject).Destroy();
             }
         }
     }

@@ -49,7 +49,11 @@ namespace LittleWorld.Command
                 case MouseState.BuildingGhost:
                     InputController.Instance.EnableRenderGhostBuilding();
                     break;
+                case MouseState.ReadyToFire:
+                    InputController.Instance.DisableRenderGhostBuilding();
+                    break;
                 default:
+                    InputController.Instance.DisableRenderGhostBuilding();
                     break;
             }
         }

@@ -9,27 +9,25 @@ namespace LittleWorld
 {
     public static class WorldUtility
     {
-        public static Item.Object[] GetWorldObjectsAt(Vector3 pos)
+        public static IEnumerable<Item.Object> GetWorldObjectsAt(Vector3 pos)
         {
-            List<Item.Object> itemsAtPos = new List<Item.Object>();
-
             var worldGridPos = pos.ToCell();
             var allItemsInfo = SceneObjectManager.Instance.WorldObjects;
             var objectsSet = allItemsInfo.ToList().FindAll(x => x.Value.GridPos == worldGridPos.To2());
             foreach (var item in objectsSet)
             {
-                itemsAtPos.Add(item.Value);
+                yield return item.Value;
             }
 
             var allSection = Current.CurMap.sectionDic.Values.ToList();
             if (allSection.Count > 0)
             {
                 MapSection atSection = allSection.Find(x => x.GridPosList.Contains(worldGridPos.To2()));
-                itemsAtPos.Add(atSection);
+                yield return atSection;
             }
-            return itemsAtPos.ToArray();
         }
-        public static Item.Object[] GetWorldObjectsAt(Vector2Int pos)
+
+        public static IEnumerable<Item.Object> GetWorldObjectsAt(Vector2Int pos)
         {
             return GetWorldObjectsAt(pos.To3());
         }
