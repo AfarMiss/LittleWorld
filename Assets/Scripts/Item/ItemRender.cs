@@ -60,9 +60,9 @@ public class ItemRender : MonoBehaviour
         //    spriteRenderer.sprite.pivot.x / spriteRenderer.sprite.pixelsPerUnit,
         //    spriteRenderer.sprite.pivot.y / spriteRenderer.sprite.pixelsPerUnit,
         //    0);
-        spriteRenderer.transform.localPosition = new Vector3(0.5f, 0.5f, 0);
         if (wo is Animal animal)
         {
+            spriteRenderer.transform.localPosition = new Vector3(0.5f, 0.5f, 0);
             weapon.enabled = false;
             spriteRenderer.sprite = animal.GetFaceSprite();
             spriteRenderer.flipX = animal.faceTo == Face.Left;
@@ -79,6 +79,7 @@ public class ItemRender : MonoBehaviour
         }
         else
         {
+            spriteRenderer.transform.localPosition = Vector3.zero;
             this.transform.position = wo.GridPos.To3();
         }
         if (wo is Building curBuilding)
