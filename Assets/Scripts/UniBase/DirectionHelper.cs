@@ -37,11 +37,11 @@ namespace UniBase
             var offset = lookto - origin;
             if ((offset.y >= offset.x && offset.x >= 0) || (offset.y >= -offset.x && offset.x <= 0))
             {
-                return Face.Front;
+                return Face.Up;
             }
             else if ((offset.y <= offset.x && offset.x <= 0) || (offset.y <= -offset.x && offset.x >= 0))
             {
-                return Face.Back;
+                return Face.Down;
             }
             else if ((offset.y < offset.x && offset.y >= 0) || (offset.y > -offset.x && offset.y <= 0))
             {
@@ -54,7 +54,7 @@ namespace UniBase
             else
             {
                 Debug.LogError($"unconsidered case:offset.x:{offset.x},offset.y:{offset.y}");
-                return Face.Front;
+                return Face.Up;
             }
         }
     }

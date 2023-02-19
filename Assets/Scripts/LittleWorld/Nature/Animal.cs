@@ -40,9 +40,9 @@ namespace LittleWorld.Item
         {
             switch (face)
             {
-                case Face.Front:
+                case Face.Up:
                     return animalInfo.itemSprites[1];
-                case Face.Back:
+                case Face.Down:
                     return animalInfo.itemSprites[0];
                 case Face.Left:
                     return animalInfo.itemSprites[2];
@@ -78,8 +78,8 @@ namespace LittleWorld.Item
 
     public enum Face
     {
-        Front = 0,
-        Back = 1,
+        Up = 0,
+        Down = 1,
         Left = 2,
         Right = 3,
     }

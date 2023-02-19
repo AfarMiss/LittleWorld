@@ -11,6 +11,8 @@ public class ItemRender : MonoBehaviour
     private SpriteRenderer weapon;
     private SpriteRenderer hualThing;
 
+    private Vector3 initEulerAngle;
+
     private void Start()
     {
         var spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
@@ -30,6 +32,10 @@ public class ItemRender : MonoBehaviour
                 default:
                     break;
             }
+        }
+        if (weapon != null)
+        {
+            initEulerAngle = weapon.transform.eulerAngles;
         }
     }
 
@@ -57,11 +63,18 @@ public class ItemRender : MonoBehaviour
         spriteRenderer.transform.localPosition = new Vector3(0.5f, 0.5f, 0);
         if (wo is Animal animal)
         {
+            weapon.enabled = false;
             spriteRenderer.sprite = animal.GetFaceSprite();
             spriteRenderer.flipX = animal.faceTo == Face.Left;
-            if (wo is Humanbeing human && human.gearTracer.curWeapon != null)
+            if (wo is Humanbeing human)
             {
-                weapon.sprite = human.gearTracer.curWeapon.GetSprite();
+                weapon.enabled = human.gearTracer.curWeapon != null;
+                if (human.gearTracer.curWeapon != null)
+                {
+                    weapon.sprite = human.gearTracer.curWeapon.GetSprite();
+                    weapon.transform.eulerAngles = animal.faceTo == Face.Left ? initEulerAngle + 180f * Vector3.up : initEulerAngle;
+                }
+                weapon.sortingOrder = animal.faceTo == Face.Up ? -1 : 2;
             }
         }
         else

@@ -175,6 +175,6 @@ public class PathNavigation : MonoBehaviour
 
     public PathNavigation()
     {
-        animalFace = Face.Front;
+        animalFace = Face.Up;
     }
 }
