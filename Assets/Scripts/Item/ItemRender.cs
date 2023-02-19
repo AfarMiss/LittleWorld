@@ -50,10 +50,11 @@ public class ItemRender : MonoBehaviour
     private void Set(WorldObject wo)
     {
         spriteRenderer.transform.localScale = Vector3.one;
-        spriteRenderer.transform.localPosition = new Vector3(
-            spriteRenderer.sprite.pivot.x / spriteRenderer.sprite.pixelsPerUnit,
-            spriteRenderer.sprite.pivot.y / spriteRenderer.sprite.pixelsPerUnit,
-            0);
+        //spriteRenderer.transform.localPosition = new Vector3(
+        //    spriteRenderer.sprite.pivot.x / spriteRenderer.sprite.pixelsPerUnit,
+        //    spriteRenderer.sprite.pivot.y / spriteRenderer.sprite.pixelsPerUnit,
+        //    0);
+        spriteRenderer.transform.localPosition = new Vector3(0.5f, 0.5f, 0);
         if (wo is Animal animal)
         {
             spriteRenderer.sprite = animal.GetFaceSprite();

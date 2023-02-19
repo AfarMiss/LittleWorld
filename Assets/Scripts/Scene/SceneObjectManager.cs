@@ -11,13 +11,16 @@ using LittleWorld.Message;
 public class SceneObjectManager : Singleton<SceneObjectManager>
 {
     public static int ItemInstanceID;
-    private GameObject itemPrefab;
-    private GameObject pilePrefab;
-    public GameObject ghostPrefab;
-    private GameObject pawnRes;
     private GameObject renderParent;
+
+    #region 预设
+    private GameObject pfItem;
+    private GameObject pfPile;
+    public GameObject pfGhost;
+    private GameObject pfAnimal;
     private GameObject pfBullet;
     private GameObject pfBulletEffect;
+    #endregion
 
     public List<SceneItem> sceneItemList
     {
@@ -115,10 +118,10 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
         ItemInstanceID = 0;
         pawnManager = PawnManager.Instance;
-        itemPrefab = Resources.Load<GameObject>("Prefabs/Object/Item");
-        pilePrefab = Resources.Load<GameObject>("Prefabs/Object/Pile");
-        ghostPrefab = Resources.Load<GameObject>("Prefabs/Object/Ghost");
-        pawnRes = Resources.Load<GameObject>("Prefabs/Character/Pawn");
+        pfItem = Resources.Load<GameObject>("Prefabs/Object/Item");
+        pfPile = Resources.Load<GameObject>("Prefabs/Object/Pile");
+        pfGhost = Resources.Load<GameObject>("Prefabs/Object/Ghost");
+        pfAnimal = Resources.Load<GameObject>("Prefabs/Character/Animal");
         pfBullet = Resources.Load<GameObject>("Prefabs/Weapon/Bullet");
         pfBulletEffect = Resources.Load<GameObject>("Prefabs/Weapon/WeaponShootEffectSmokePuff");
 
@@ -148,7 +151,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         {
             if (!wo.canPile)
             {
-                GameObject itemGameObject = GameObject.Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
+                GameObject itemGameObject = GameObject.Instantiate(pfItem, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
                 ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
                 WorldItemsRenderer.Add(wo, itemComponent);
             }
@@ -156,7 +159,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
             {
                 if (!WorldPileRenderer.ContainsKey(wo.GridPos))
                 {
-                    GameObject itemGameObject = GameObject.Instantiate(pilePrefab, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
+                    GameObject itemGameObject = GameObject.Instantiate(pfPile, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
                     PileRenderer itemComponent = itemGameObject.GetComponent<PileRenderer>();
                     WorldPileRenderer.Add(wo.GridPos, new PileInfo(wo.itemCode, itemComponent, wo.mapBelongTo));
                 }
@@ -165,7 +168,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         else
         {
             var animal = wo as Animal;
-            GameObject curPawn = GameObject.Instantiate<GameObject>(pawnRes, renderParent.transform);
+            GameObject curPawn = GameObject.Instantiate<GameObject>(pfAnimal, renderParent.transform);
             curPawn.GetComponent<Transform>().transform.position = animal.GridPos.To3();
             curPawn.GetComponent<PathNavigation>().Initialize(animal.instanceID);
             animal.SetNavi(curPawn.GetComponent<PathNavigation>());
