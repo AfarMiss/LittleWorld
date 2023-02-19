@@ -1,11 +1,6 @@
-﻿using AStarUtility;
-using LittleWorld.Item;
+﻿using LittleWorld.Item;
 using LittleWorld.Jobs;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
 
 namespace LittleWorld
 {
@@ -43,9 +38,9 @@ namespace LittleWorld
             return true;
         }
 
-        public bool ClearAndAddWork(SingleWork singleWork)
+        public bool ClearAndAddWork(Work singleWork)
         {
-            return false;
+            return true;
         }
 
         public void Tick()
