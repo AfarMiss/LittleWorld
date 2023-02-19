@@ -1,4 +1,5 @@
 ﻿using LittleWorld.Item;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,11 @@ namespace LittleWorld
         public void AddEquip(Weapon weapon)
         {
             curWeapon = weapon;
+        }
+
+        internal void TryFireAt(Animal animal)
+        {
+            curWeapon.Attack(animal);
         }
 
         public GearTracer(Humanbeing humanbeing)

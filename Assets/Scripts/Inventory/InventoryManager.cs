@@ -243,22 +243,22 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
             //case ItemType.commodity:
             //    break;
             case ItemType.hoeing_tool:
-                itemTypeDescription = FarmSetting.HoeingTool;
+                itemTypeDescription = GameSetting.HoeingTool;
                 break;
             case ItemType.chopping_tool:
-                itemTypeDescription = FarmSetting.ChoppingTool;
+                itemTypeDescription = GameSetting.ChoppingTool;
                 break;
             case ItemType.breaking_tool:
-                itemTypeDescription = FarmSetting.BreakingTool;
+                itemTypeDescription = GameSetting.BreakingTool;
                 break;
             case ItemType.collection_tool:
-                itemTypeDescription = FarmSetting.CollectingTool;
+                itemTypeDescription = GameSetting.CollectingTool;
                 break;
             case ItemType.watering_tool:
-                itemTypeDescription = FarmSetting.WateringTool;
+                itemTypeDescription = GameSetting.WateringTool;
                 break;
             case ItemType.reaping_tool:
-                itemTypeDescription = FarmSetting.ReapingTool;
+                itemTypeDescription = GameSetting.ReapingTool;
                 break;
             //case ItemType.none:
             //    break;
@@ -347,14 +347,14 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
     public GameObjectSave ISaveableSave()
     {
         SceneSave sceneSave = new SceneSave();
-        GameObjectSave.sceneData.Remove(FarmSetting.PersistentScene);
+        GameObjectSave.sceneData.Remove(GameSetting.PersistentScene);
         sceneSave.listInvItemArray = inventoryItemsList;
         sceneSave.intArrayDictionary = new Dictionary<string, int[]>
         {
             { "inventoryListCapacityArray", inventoryListCapacityIntArray }
         };
 
-        GameObjectSave.sceneData.Add(FarmSetting.PersistentScene, sceneSave);
+        GameObjectSave.sceneData.Add(GameSetting.PersistentScene, sceneSave);
         return GameObjectSave;
     }
 
@@ -363,7 +363,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
         if (gameSave.gameObjectData.TryGetValue(ISaveableUniqueID, out GameObjectSave gameObjectSave))
         {
             GameObjectSave = gameObjectSave;
-            if (gameObjectSave.sceneData.TryGetValue(FarmSetting.PersistentScene, out SceneSave sceneSave))
+            if (gameObjectSave.sceneData.TryGetValue(GameSetting.PersistentScene, out SceneSave sceneSave))
             {
                 if (sceneSave.listInvItemArray != null)
                 {

@@ -23,9 +23,9 @@ public class TimeManager : Singleton<TimeManager>
     public override void Tick()
     {
         curTickTime += Time.fixedDeltaTime;
-        while (curTickTime - FarmSetting.gameTick > FarmSetting.gameTick)
+        while (curTickTime - GameSetting.TickTime > GameSetting.TickTime)
         {
-            curTickTime -= FarmSetting.gameTick;
+            curTickTime -= GameSetting.TickTime;
             curGameTime.AddTick();
         }
     }

@@ -114,13 +114,16 @@ namespace LittleWorld.UI
                     InputController.Instance.MouseState = MouseState.ShrinkZone;
                 });
             }
-            if (item is Weapon weapon)
+            if (item is Humanbeing humanbeing)
             {
-                var command2 = AddCommand("开火", null);
-                command2.BindCommand(() =>
+                if (humanbeing.gearTracer.curWeapon != null)
                 {
-                    CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ReadyToFire));
-                });
+                    var command2 = AddCommand("开火", null);
+                    command2.BindCommand(() =>
+                    {
+                        CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ReadyToFire));
+                    });
+                }
             }
         }
 

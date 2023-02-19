@@ -11,8 +11,10 @@ namespace LittleWorld.Item
         public MotionStatus motion = MotionStatus.Idle;
         protected PathNavigation pathTracer;
         protected AnimalInfo animalInfo;
-        protected PawnHealthTracer healthTracer;
+        protected HealthTracer healthTracer;
         protected WorkTracer workTracer;
+
+        public bool isDead => healthTracer.isDead;
 
         public Face faceTo => pathTracer.animalFace;
         public float moveSpeed => animalInfo.moveSpeed;
@@ -21,6 +23,7 @@ namespace LittleWorld.Item
         {
             animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
             workTracer = new NonAggressiveWorkTracer(this);
+            healthTracer = new HealthTracer(100);
         }
         public void SetNavi(PathNavigation PawnPathTracer)
         {

@@ -40,6 +40,7 @@ public class InputController : MonoSingleton<InputController>
     public List<WorldObject> SelectedObjects => selectedObjects;
     private List<WorldObject> selectedObjects;
     public bool AdditionalAction => additionalAction;
+    private Humanbeing selectedSingleHuman;
     public Rect ScreenSelectionArea => screenRealSelection;
     /// <summary>
     /// 是否为附加模式
@@ -151,11 +152,11 @@ public class InputController : MonoSingleton<InputController>
             if (selectedObjects.SinglePawnSelected())
             {
                 //对单人进行操作
-                var human = SceneObjectManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
-                FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, Current.MousePos);
+                selectedSingleHuman = SceneObjectManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID) as Humanbeing;
+                FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(selectedSingleHuman as Humanbeing, Current.MousePos);
                 if (opts.Length == 0)
                 {
-                    AddMoveWork(human, curPos);
+                    AddMoveWork(selectedSingleHuman, curPos);
                 }
             }
         }
@@ -292,7 +293,13 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.canceled)
         {
-            var objects = WorldUtility.GetWorldObjectsAt(Current.MousePos);
+            foreach (var item in WorldUtility.GetWorldObjectsAt(onClickLeftEndPositionWorldPosition.ToCell()))
+            {
+                if (item is Animal animal)
+                {
+                    selectedSingleHuman.AddFireWork(animal);
+                }
+            }
         }
     }
 

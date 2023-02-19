@@ -24,5 +24,6 @@ namespace LittleWorld.Item
         public float rangedCooldown;
         public float aimingTime;
         public float buildingDamageFactor;
+        public bool isMelee;
     }
 }

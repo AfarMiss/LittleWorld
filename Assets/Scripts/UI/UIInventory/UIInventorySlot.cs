@@ -163,7 +163,7 @@ namespace LittleWorld.UI
                 if (GridCursor.Instance.CursorPositionIsValid)
                 {
                     Vector3 worldPosition = UniBase.InputUtils.GetMousePositionToWorldWithSpecificZ(-mainCamera.transform.position.z);
-                    GameObject itemGameObject = Instantiate(itemPrefab, new Vector3(worldPosition.x, worldPosition.y - FarmSetting.gridCellSize * 0.5f, worldPosition.z), Quaternion.identity, parentItem);
+                    GameObject itemGameObject = Instantiate(itemPrefab, new Vector3(worldPosition.x, worldPosition.y - GameSetting.gridCellSize * 0.5f, worldPosition.z), Quaternion.identity, parentItem);
                     ItemRender item = itemGameObject.GetComponent<ItemRender>();
                     item.ItemCode = itemDetails.itemCode;
 

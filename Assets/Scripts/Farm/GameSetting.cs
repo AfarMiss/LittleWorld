@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public static class FarmSetting
+public static class GameSetting
 {
     public const string PersistentScene = "PersistentScene";
 
@@ -31,7 +31,7 @@ public static class FarmSetting
     /// <summary>
     /// 游戏中的一秒时长
     /// </summary>
-    public const float gameTick = 0.001f;
+    public const float TickTime = 0.001f;
 
     private static string inputXString = "xInput";
     private static string inputYString = "yInput";
@@ -96,7 +96,7 @@ public static class FarmSetting
     public static int idleUpIndex;
     public static int idleDownIndex;
 
-    static FarmSetting()
+    static GameSetting()
     {
         inputXIndex = Animator.StringToHash(inputXString);
         inputYIndex = Animator.StringToHash(inputYString);

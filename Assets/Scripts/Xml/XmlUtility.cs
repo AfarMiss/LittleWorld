@@ -149,6 +149,7 @@ namespace Xml
                     weapon.aimingTime = float.Parse(item.SelectSingleNode("aimingTime").InnerText);
                     weapon.buildingDamageFactor = float.Parse(item.SelectSingleNode("buildingDamageFactor").InnerText);
                     weapon.itemSprites = CreateItemSpritesList(item, 1);
+                    weapon.isMelee = item.SelectSingleNode("isMelee").InnerText == "True";
                     ObjectConfig.ObjectInfoDic.Add(weapon.itemCode, weapon);
                 }
             }

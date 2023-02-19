@@ -135,10 +135,10 @@ false, false, false, false, false, false, false, false, true);
         equippedItemSpriteRenderer = localPlayer.EquipRenderer;
         animationOverrides = localPlayer.GetComponent<AnimationOverrides>();
 
-        useToolAnimationPause = new WaitForSeconds(FarmSetting.useToolAnimationPause);
-        afterUseToolAnimationPause = new WaitForSeconds(FarmSetting.afterUseToolAnimationPause);
-        liftToolAnimationPause = new WaitForSeconds(FarmSetting.liftToolAnimationPause);
-        afterLiftToolAnimationPause = new WaitForSeconds(FarmSetting.afterLiftToolAnimationPause);
+        useToolAnimationPause = new WaitForSeconds(GameSetting.useToolAnimationPause);
+        afterUseToolAnimationPause = new WaitForSeconds(GameSetting.afterUseToolAnimationPause);
+        liftToolAnimationPause = new WaitForSeconds(GameSetting.liftToolAnimationPause);
+        afterLiftToolAnimationPause = new WaitForSeconds(GameSetting.afterLiftToolAnimationPause);
 
         gridCursor = GameObject.FindObjectOfType<GridCursor>();
         cursor = GameObject.FindObjectOfType<Cursor>();
@@ -493,10 +493,10 @@ false, false, false, false, false, false, false, false, true);
         //对场景的修改
         Vector3 worldPos = cursorPosition.GetWorldPosition();
         Debug.Log($"dirReal:{dir},cursorGridPosition:{cursorPosition},worldPos:{worldPos}");
-        var detectResult = OverlapHelper.GetComponentsAtBoxLocationNonAlloc<ItemRender>(FarmSetting.reapDetectCount,
+        var detectResult = OverlapHelper.GetComponentsAtBoxLocationNonAlloc<ItemRender>(GameSetting.reapDetectCount,
             playerCentre + (new Vector3(dir.x * itemDetails.itemUseRadius / 2, dir.y * itemDetails.itemUseRadius / 2)),
             itemDetails.itemUseRadius * Vector2.one, 0);
-        var targetDestroyNum = Math.Min(detectResult.Length, FarmSetting.multipleReap);
+        var targetDestroyNum = Math.Min(detectResult.Length, GameSetting.multipleReap);
         var curDestroyNum = 0;
         for (int i = detectResult.Length - 1; i >= 0; i--)
         {
@@ -722,11 +722,11 @@ false, false, false, false, false, false, false, false, true);
 
         if (isWalking)
         {
-            rigidgBody.MovePosition(rigidgBody.position + FarmSetting.walkSpeed * Time.fixedDeltaTime * input);
+            rigidgBody.MovePosition(rigidgBody.position + GameSetting.walkSpeed * Time.fixedDeltaTime * input);
         }
         if (isRunning)
         {
-            rigidgBody.MovePosition(rigidgBody.position + FarmSetting.runSpeed * Time.fixedDeltaTime * input);
+            rigidgBody.MovePosition(rigidgBody.position + GameSetting.runSpeed * Time.fixedDeltaTime * input);
         }
         if (isIdle)
         {

@@ -134,6 +134,16 @@ namespace LittleWorld.Item
             workTracer.AddWork(new EquipWork(weapon, this));
         }
 
+        public void AddFireWork(Animal animal)
+        {
+            workTracer.AddWork(new ShootWork(this, animal));
+        }
+
+        public void FireAt(Animal animal)
+        {
+            gearTracer.TryFireAt(animal);
+        }
+
         public void AddEquip(Weapon weapon, Vector2Int destination)
         {
             CarrySingle(weapon, destination);

@@ -16,7 +16,7 @@
         <workToMake>20000</workToMake>
         <burstShotCount>1</burstShotCount>
         <caliber>4.6x30</caliber>
-        <fireRate>10</fireRate>
+        <fireRate>20</fireRate>
         <magazineCapacity>30</magazineCapacity>
         <reloadTime>4</reloadTime>
         <spread>0.02</spread>
@@ -26,5 +26,6 @@
         <rangedCooldown>1</rangedCooldown>
         <aimingTime>1</aimingTime>
         <buildingDamageFactor>0.25</buildingDamageFactor>
+        <isMelee>False</isMelee>
     </item>
 </items>
