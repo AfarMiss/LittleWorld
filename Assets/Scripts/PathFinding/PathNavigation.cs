@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(LineRenderer))]
 public class PathNavigation : MonoBehaviour
 {
     public Face animalFace;
@@ -17,6 +18,8 @@ public class PathNavigation : MonoBehaviour
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
     private Vector2Int curTarget;
     [SerializeField] private LineRenderer lineRenderer;
+    private bool showPath = false;
+    public bool PathIsShow => showPath;
 
     private float walkLeftCost = 0;
     private float realTotalCost = 0;
@@ -41,6 +44,16 @@ public class PathNavigation : MonoBehaviour
     public bool isMoving => curPath.Safe().Any() || curTarget != null;
     private bool isMovingDiagonally => isMoving && curTarget.InStraightLine(human.GridPos);
     private float diagonalRate = 1.41f;
+
+    public void ShowPath()
+    {
+        showPath = true;
+    }
+
+    public void HidePath()
+    {
+        showPath = false;
+    }
 
     /// <summary>
     /// 代表的itemInstanceID
@@ -69,8 +82,8 @@ public class PathNavigation : MonoBehaviour
 
     private void DrawLine(Queue<Vector2Int> path)
     {
-        lineRenderer.enabled = !atDestination;
-        if (path == null)
+        lineRenderer.enabled = !atDestination && showPath;
+        if (path == null || !showPath)
         {
             return;
         }

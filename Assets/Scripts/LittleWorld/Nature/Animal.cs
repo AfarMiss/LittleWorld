@@ -36,6 +36,16 @@ namespace LittleWorld.Item
             return GetSprite(faceTo);
         }
 
+        public void ShowPath()
+        {
+            pathTracer.ShowPath();
+        }
+
+        public void HidePath()
+        {
+            pathTracer.HidePath();
+        }
+
         protected virtual Sprite GetSprite(Face face)
         {
             switch (face)

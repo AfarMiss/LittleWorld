@@ -328,9 +328,20 @@ public class InputController : MonoSingleton<InputController>
         if (needRespondToUI) { return; }
         TryClearSelectedUnits();
         selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
+
         if (selectedObjects == null)
         {
             SelectSectionObjects();
+        }
+        else
+        {
+            foreach (var item in selectedObjects)
+            {
+                if (item is Animal animal)
+                {
+                    animal.ShowPath();
+                }
+            }
         }
     }
 
@@ -395,7 +406,17 @@ public class InputController : MonoSingleton<InputController>
 
     private void ClearSelectedUnits()
     {
-        selectedObjects?.Clear();
+        if (selectedObjects != null)
+        {
+            foreach (var item in selectedObjects)
+            {
+                if (item is Animal animal)
+                {
+                    animal.HidePath();
+                }
+            }
+            selectedObjects.Clear();
+        }
     }
 
     public MapSection SelectSectionObjects()

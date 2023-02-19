@@ -272,7 +272,7 @@ namespace LittleWorld.UI
                 var allNavis = GameObject.FindObjectsOfType<PathNavigation>();
                 foreach (var item in allNavis)
                 {
-                    if (!item.atDestination && item.lastStampFrameCount > 0 && Time.frameCount - item.lastStampFrameCount <= 50)
+                    if (!item.atDestination && item.lastStampFrameCount > 0 && Time.frameCount - item.lastStampFrameCount <= 50 && item.PathIsShow)
                     {
                         GraphicsUtiliy.DrawDestinationIcon(item.curDestination, 1, 1);
                     }
