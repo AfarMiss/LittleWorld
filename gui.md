@@ -271,7 +271,7 @@ float LabelSlider(Rect screenRect, float sliderValue, float sliderMaxValue, stri
 }
 ```
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption><p>复合控件</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption><p>复合控件</p></figcaption></figure>
 
 通过使用\_\_静态\_\_函数，可以创建自成一体的完整复合控件集合。这样，就不必在需要使用函数的同一脚本中声明该函数。
 
