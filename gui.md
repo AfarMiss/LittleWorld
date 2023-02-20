@@ -245,7 +245,7 @@ void OnGUI()
 }
 ```
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2) (2).png" alt=""><figcaption><p>示例图片</p></figcaption></figure>
 
 ### 复合控件
 

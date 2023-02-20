@@ -1,6 +1,6 @@
 # 柏林噪声
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>两种缓动图对比</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>两种缓动图对比</p></figcaption></figure>
 
 ## 柏林噪声的重要参数
 
