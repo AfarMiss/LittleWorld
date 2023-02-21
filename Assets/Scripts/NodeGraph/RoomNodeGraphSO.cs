@@ -8,7 +8,7 @@ namespace UniBase.NodeEditor
     public class RoomNodeGraphSO : ScriptableObject
     {
         [HideInInspector] public RoomNodeTypeListSO roomNodeTypeList;
-        [HideInInspector] public List<RoomNodeSO> roomNodeList;
+        [HideInInspector] public List<RoomNodeSO> roomNodeList = new List<RoomNodeSO>();
         [HideInInspector] public Dictionary<string, RoomNodeSO> roomNodeDictionary;
     }
 }
