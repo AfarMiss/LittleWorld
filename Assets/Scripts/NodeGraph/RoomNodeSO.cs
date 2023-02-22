@@ -19,6 +19,8 @@ namespace UniBase.NodeEditor
         #region EditorCode
 #if UNITY_EDITOR
         [HideInInspector] public Rect rect;
+        [HideInInspector] public bool isLeftClickDragging = false;
+        [HideInInspector] public bool isSelected = false;
 
         public void Initialise(Rect rect, RoomNodeGraphSO currentRoomNodeGraph, RoomNodeTypeSO roomNodeTypeSO)
         {
@@ -59,6 +61,72 @@ namespace UniBase.NodeEditor
             }
 
             return roomArray;
+        }
+
+        public void ProcessEvents(Event current)
+        {
+            switch (current.type)
+            {
+                case EventType.MouseDown:
+                    ProcessMouseDownEvent(current);
+                    break;
+                case EventType.MouseUp:
+                    ProcessMouseUpEvent(current);
+                    break;
+                case EventType.MouseDrag:
+                    ProcessMouseDragEvent(current);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ProcessMouseDragEvent(Event current)
+        {
+            if (current.button == 0)
+            {
+                ProcessLeftClickDragEvent(current);
+            }
+        }
+
+        private void ProcessLeftClickDragEvent(Event current)
+        {
+            isLeftClickDragging = true;
+            DragNode(current.delta);
+            GUI.changed = true;
+        }
+
+        private void DragNode(Vector2 delta)
+        {
+            rect.position += delta;
+            EditorUtility.SetDirty(this);
+        }
+
+        private void ProcessMouseUpEvent(Event current)
+        {
+            if (current.button == 0)
+            {
+                ProcessLeftClickUpEvent(current);
+            }
+        }
+
+        private void ProcessLeftClickUpEvent(Event current)
+        {
+            isLeftClickDragging = false;
+        }
+
+        private void ProcessMouseDownEvent(Event current)
+        {
+            if (current.button == 0)
+            {
+                ProcessLeftClickDownEvent(current);
+            }
+        }
+
+        private void ProcessLeftClickDownEvent(Event current)
+        {
+            Selection.activeObject = this;
+            isSelected = !isSelected;
         }
 
 #endif

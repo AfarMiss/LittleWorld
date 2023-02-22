@@ -13,6 +13,7 @@ namespace UniBase.Editor.NodeEditor
     {
         private GUIStyle roomNodeStyle;
         private static RoomNodeGraphSO currentRoomNodeGraph;
+        private RoomNodeSO currentRoomNode = null;
         private RoomNodeTypeListSO roomNodeTypeList;
 
         private const float nodeWidth = 160f;
@@ -72,9 +73,33 @@ namespace UniBase.Editor.NodeEditor
             //GUILayout.EndArea();
         }
 
+        private RoomNodeSO IsMouseOverRoomNode(Event currentEvent)
+        {
+            for (int i = currentRoomNodeGraph.roomNodeList.Count - 1; i >= 0; i--)
+            {
+                if (currentRoomNodeGraph.roomNodeList[i].rect.Contains(currentEvent.mousePosition))
+                {
+                    return currentRoomNodeGraph.roomNodeList[i];
+                }
+            }
+
+            return null;
+        }
+
         private void ProcessEvents(Event current)
         {
-            ProcessRoomNodeGraphEvents(current);
+            if (currentRoomNode == null || currentRoomNode.isLeftClickDragging == false)
+            {
+                currentRoomNode = IsMouseOverRoomNode(current);
+            }
+            if (currentRoomNode == null)
+            {
+                ProcessRoomNodeGraphEvents(current);
+            }
+            else
+            {
+                currentRoomNode.ProcessEvents(current);
+            }
         }
 
         private void ProcessRoomNodeGraphEvents(Event current)
