@@ -47,7 +47,7 @@ namespace LittleWorld.Jobs
 
         private bool CheckTargetIsAlive()
         {
-            return !target.isDead;
+            return !target.IsDead;
         }
 
         public ShootWork(Humanbeing hunter, Animal target)

@@ -21,14 +21,6 @@ namespace AI
             this.ProcessMethod = GoToLoc;
         }
 
-        public WalkLeaf(string name, Vector2Int destination, Humanbeing human, Tick ProcessMethod)
-        {
-            this.destination = destination;
-            this.human = human;
-            this.name = name;
-            this.ProcessMethod = ProcessMethod;
-        }
-
         public override Status Process()
         {
             //Debug.Log("[currentChild]:" + name);

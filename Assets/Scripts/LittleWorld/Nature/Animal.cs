@@ -8,16 +8,16 @@ namespace LittleWorld.Item
 {
     public class Animal : WorldObject
     {
-        public MotionStatus motion = MotionStatus.Idle;
         protected PathNavigation pathTracer;
         protected AnimalInfo animalInfo;
         protected HealthTracer healthTracer;
         protected WorkTracer workTracer;
 
-        public bool isDead => healthTracer.isDead;
+        public bool IsDead => healthTracer.isDead;
 
-        public Face faceTo => pathTracer.animalFace;
-        public float moveSpeed => animalInfo.moveSpeed;
+        public Face FaceTo => pathTracer.animalFace;
+        public float MoveSpeed => animalInfo.moveSpeed;
+        public bool IsMoving => pathTracer.IsMoving;
 
         public Animal(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
         {
@@ -36,7 +36,7 @@ namespace LittleWorld.Item
 
         public Sprite GetFaceSprite()
         {
-            return GetSprite(faceTo);
+            return GetSprite(FaceTo);
         }
 
         public void ShowPath()

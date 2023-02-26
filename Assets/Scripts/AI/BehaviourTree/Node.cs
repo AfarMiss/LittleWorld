@@ -43,14 +43,12 @@ namespace AI
 
         public static Node.Status GoToLoc(Vector2Int destination, Animal human)
         {
-            if (human.motion == MotionStatus.Idle)
+            if (!human.IsMoving)
             {
                 human.GoToLoc(destination);
-                human.motion = MotionStatus.Running;
             }
             if (human.GridPos == destination)
             {
-                human.motion = MotionStatus.Idle;
                 return Node.Status.SUCCESS;
             }
             return Node.Status.RUNNING;

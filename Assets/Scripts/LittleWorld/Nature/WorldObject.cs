@@ -88,7 +88,7 @@ namespace LittleWorld.Item
                 if (this is Humanbeing)
                 {
                     var navis = GameObject.FindObjectsOfType<PathNavigation>();
-                    var humanNavi = navis.ToList().Find(x => x.humanID == instanceID);
+                    var humanNavi = navis.ToList().Find(x => x.animalID == instanceID);
                     return humanNavi != null ? humanNavi.RenderPos : gridPos;
                 }
                 else

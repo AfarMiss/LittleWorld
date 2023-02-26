@@ -16,7 +16,7 @@ public class PathNavigation : MonoBehaviour
     private Queue<Vector2Int> curPath;
     public Vector2Int curDestination;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
-    private Vector2Int curTarget;
+    private Vector2Int? curTarget = null;
     [SerializeField] private LineRenderer lineRenderer;
     private bool showPath = false;
     public bool PathIsShow => showPath;
@@ -41,8 +41,8 @@ public class PathNavigation : MonoBehaviour
     public Vector2 curRenderPos;
     private Vector3 dir;
 
-    public bool isMoving => curPath.Safe().Any() || curTarget != null;
-    private bool isMovingDiagonally => isMoving && curTarget.InStraightLine(human.GridPos);
+    public bool IsMoving => curPath.Safe().Any() || curTarget != null;
+    //private bool isMovingDiagonally => IsMoving && curTarget.InStraightLine(human.GridPos);
     private float diagonalRate = 1.41f;
 
     public void ShowPath()
@@ -58,12 +58,12 @@ public class PathNavigation : MonoBehaviour
     /// <summary>
     /// 代表的itemInstanceID
     /// </summary>
-    public int humanID;
-    public Animal human => SceneObjectManager.Instance.GetWorldObjectById(humanID) as Animal;
+    public int animalID;
+    public Animal human => SceneObjectManager.Instance.GetWorldObjectById(animalID) as Animal;
 
     public void Initialize(int instanceID)
     {
-        this.humanID = instanceID;
+        this.animalID = instanceID;
     }
     private void Start()
     {
@@ -92,7 +92,7 @@ public class PathNavigation : MonoBehaviour
         lineRenderer.SetPosition(0, this.transform.position + imageOffset);
         if (curTarget != null)
         {
-            lineRenderer.SetPosition(1, new Vector3(curTarget.x, curTarget.y, 0) + imageOffset);
+            lineRenderer.SetPosition(1, new Vector3(curTarget.Value.x, curTarget.Value.y, 0) + imageOffset);
             for (int i = 0; i < path.Count; i++)
             {
                 lineRenderer.SetPosition(i + 2, new Vector3(pathArray[i].x, pathArray[i].y, 0) + imageOffset);
@@ -121,12 +121,13 @@ public class PathNavigation : MonoBehaviour
         {
             if (curTargetIsReached)
             {
+                curTarget = null;
                 if (curPath.Count > 0)
                 {
                     curTarget = curPath.Dequeue();
-                    dir = curTarget - RenderPos;
-                    realTotalCost = Vector2.Distance(RenderPos, curTarget) * walkBaseTotalCost;
-                    walkLeftCost += Vector2.Distance(RenderPos, curTarget) * walkBaseTotalCost;
+                    dir = curTarget.Value - RenderPos;
+                    realTotalCost = Vector2.Distance(RenderPos, curTarget.Value) * walkBaseTotalCost;
+                    walkLeftCost += Vector2.Distance(RenderPos, curTarget.Value) * walkBaseTotalCost;
                     curRenderPos = RenderPos;
                     curTargetIsReached = false;
                     return;
@@ -135,14 +136,14 @@ public class PathNavigation : MonoBehaviour
                 {
                     atDestination = true;
                     //完成到达指定目的地后的工作
-                    EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), humanID);
+                    EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), animalID);
                     animalFace = Face.Down;
                     Debug.Log($"Reached {curTarget}");
                 }
             }
             else
             {
-                MoveTo(curTarget);
+                MoveTo(curTarget.Value);
             }
         }
     }
@@ -154,13 +155,13 @@ public class PathNavigation : MonoBehaviour
 
     private void SingleStep(Vector2Int target)
     {
-        var human = SceneObjectManager.Instance.GetWorldObjectById(humanID);
+        var human = SceneObjectManager.Instance.GetWorldObjectById(animalID);
         //Debug.Log("human.gridPos:" + human.GridPos);
 
         if (walkLeftCost > 0)
         {
-            animalFace = DirectionHelper.JudgeDirFace(RenderPos, curTarget.To3());
-            var speed = (human as Animal).moveSpeed;
+            animalFace = DirectionHelper.JudgeDirFace(RenderPos, curTarget.Value.To3());
+            var speed = (human as Animal).MoveSpeed;
             walkLeftCost -= speed;
             transform.position = new Vector3(curRenderPos.x, curRenderPos.y) + (1 - walkLeftCost / realTotalCost) * dir;
         }
@@ -180,7 +181,7 @@ public class PathNavigation : MonoBehaviour
 
     public void GoToLoc(Vector2Int target)
     {
-        var human = SceneObjectManager.Instance.GetWorldObjectById(humanID);
+        var human = SceneObjectManager.Instance.GetWorldObjectById(animalID);
         curPath = MapManager.Instance.CreateNewPath(human.GridPos, target);
         curDestination = target;
         lastStampFrameCount = Time.frameCount;
