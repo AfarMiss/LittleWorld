@@ -70,4 +70,8 @@ public class EventName
 
     public static string OBJECT_GRID_CHANGE = "OBJECT_GRID_CHANGE";
 
+    #region 显示更新
+    public static string UPDATE_WEAPON = "UPDATE_WEAPON";
+    #endregion
+
 }

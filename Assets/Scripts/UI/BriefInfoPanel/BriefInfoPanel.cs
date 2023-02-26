@@ -19,6 +19,24 @@ namespace LittleWorld.UI
         [SerializeField] private GameObject itemCommandGameObject;
         [SerializeField] private Transform commandParent;
 
+        private void OnEnable()
+        {
+            EventCenter.Instance.Register<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
+        }
+
+        private void OnDisable()
+        {
+            EventCenter.Instance?.Register<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
+        }
+
+        private void OnWeaponChanged(Weapon arg0)
+        {
+            if (arg0.Owner.IsSelectedOnly)
+            {
+                BindBriefInfo(arg0.Owner);
+            }
+        }
+
         public void BindBriefInfo(Item.Object[] objects)
         {
             if (objects.Length > 1)
@@ -44,13 +62,22 @@ namespace LittleWorld.UI
                     InfoTitle.text = $"{(objects[0] as WorldObject).ItemName}x{objects.Length}";
                 }
             }
-            else if (objects.Length == 1)
+            if (objects.Length == 1)
             {
-                var wo = objects[0];
-                InfoTitle.text = wo.ItemName;
-                commandParent.DestroyChildren();
-                BindCommands(wo);
+                ShowCommand(objects[0]);
             }
+        }
+
+        public void BindBriefInfo(Item.Object o)
+        {
+            ShowCommand(o);
+        }
+
+        private void ShowCommand(Item.Object wo)
+        {
+            InfoTitle.text = wo.ItemName;
+            commandParent.DestroyChildren();
+            BindCommands(wo);
         }
 
         private void BindCommands(Item.Object item)

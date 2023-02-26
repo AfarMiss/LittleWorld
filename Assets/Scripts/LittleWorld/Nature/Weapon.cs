@@ -12,6 +12,7 @@ namespace LittleWorld.Item
         public float curCooldown;
         public bool isAiming = false;
         public WorldObject target;
+        public Humanbeing Owner;
         public Weapon(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
             if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var weaponInfo))
@@ -20,6 +21,16 @@ namespace LittleWorld.Item
                 ItemName = weaponInfo.itemName;
                 curCooldown = this.WeaponInfo.rangedCooldown;
             }
+        }
+
+        public void OnEquip(Humanbeing owner)
+        {
+            this.Owner = owner;
+        }
+
+        public void OnDispose()
+        {
+            this.Owner = null;
         }
 
         public override Sprite GetSprite()

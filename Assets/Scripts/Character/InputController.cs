@@ -433,6 +433,7 @@ public class InputController : MonoSingleton<InputController>
                     animal.HidePath();
                 }
             }
+            SelectedObjects.Unselect();
             selectedObjects.Clear();
         }
     }
@@ -456,17 +457,17 @@ public class InputController : MonoSingleton<InputController>
         {
             return null;
         }
-        var worldObject = worldObjectArray.ToList().GetSelected(selectType);
+        var selectObjects = worldObjectArray.ToList().GetSelected(selectType);
 
 
 
-        if (worldObject == null || worldObject.Count == 0)
+        if (selectObjects == null || selectObjects.Count == 0)
         {
             UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
             return null;
         }
-        WorldObject.ShowInfo(worldObject.ToArray());
-        return worldObject.ToList();
+        WorldObject.ShowInfo(selectObjects.ToArray());
+        return selectObjects.ToList();
     }
 
     private void Update()

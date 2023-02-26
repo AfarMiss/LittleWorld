@@ -15,6 +15,9 @@ namespace LittleWorld
         public void AddEquip(Weapon weapon)
         {
             curWeapon = weapon;
+            weapon.OnEquip(Humanbeing);
+            //更新显示
+            EventCenter.Instance.Trigger(EventName.UPDATE_WEAPON, weapon);
         }
 
         internal void TryFireAt(Animal animal)
