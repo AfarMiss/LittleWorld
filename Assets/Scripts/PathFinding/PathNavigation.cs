@@ -14,10 +14,11 @@ public class PathNavigation : MonoBehaviour
     public Face animalFace;
     public int lastStampFrameCount = -1;
     private Queue<Vector2Int> curPath;
-    public Vector2Int curDestination;
+    public Vector2Int? curDestination;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
-    public Vector2Int? CurTarget => curTarget;
-    private Vector2Int? curTarget = null;
+    public Vector2Int? CurStepTarget => curStepTarget;
+    public Vector2Int? CurDestination => curDestination;
+    private Vector2Int? curStepTarget = null;
     [SerializeField] private LineRenderer lineRenderer;
     private bool showPath = false;
     public bool PathIsShow => showPath;
@@ -42,7 +43,7 @@ public class PathNavigation : MonoBehaviour
     public Vector2 curRenderPos;
     private Vector3 dir;
 
-    public bool IsMoving => curPath.Safe().Any() || curTarget != null;
+    public bool IsMoving => curPath.Safe().Any() || curStepTarget != null;
     //private bool isMovingDiagonally => IsMoving && curTarget.InStraightLine(human.GridPos);
     private float diagonalRate = 1.41f;
 
@@ -76,7 +77,7 @@ public class PathNavigation : MonoBehaviour
         curTargetIsReached = true;
         atDestination = true;
         curPath?.Clear();
-        curTarget = default;
+        curStepTarget = default;
         curDestination = default;
         curRenderPos = default;
     }
@@ -91,9 +92,9 @@ public class PathNavigation : MonoBehaviour
         var pathArray = path.ToArray();
         lineRenderer.positionCount = pathArray.Length + 2;
         lineRenderer.SetPosition(0, this.transform.position + imageOffset);
-        if (curTarget != null)
+        if (curStepTarget != null)
         {
-            lineRenderer.SetPosition(1, new Vector3(curTarget.Value.x, curTarget.Value.y, 0) + imageOffset);
+            lineRenderer.SetPosition(1, new Vector3(curStepTarget.Value.x, curStepTarget.Value.y, 0) + imageOffset);
             for (int i = 0; i < path.Count; i++)
             {
                 lineRenderer.SetPosition(i + 2, new Vector3(pathArray[i].x, pathArray[i].y, 0) + imageOffset);
@@ -122,13 +123,13 @@ public class PathNavigation : MonoBehaviour
         {
             if (curTargetIsReached)
             {
-                curTarget = null;
+                curStepTarget = null;
                 if (curPath.Count > 0)
                 {
-                    curTarget = curPath.Dequeue();
-                    dir = curTarget.Value - RenderPos;
-                    realTotalCost = Vector2.Distance(RenderPos, curTarget.Value) * walkBaseTotalCost;
-                    walkLeftCost += Vector2.Distance(RenderPos, curTarget.Value) * walkBaseTotalCost;
+                    curStepTarget = curPath.Dequeue();
+                    dir = curStepTarget.Value - RenderPos;
+                    realTotalCost = Vector2.Distance(RenderPos, curStepTarget.Value) * walkBaseTotalCost;
+                    walkLeftCost += Vector2.Distance(RenderPos, curStepTarget.Value) * walkBaseTotalCost;
                     curRenderPos = RenderPos;
                     curTargetIsReached = false;
                     return;
@@ -139,12 +140,12 @@ public class PathNavigation : MonoBehaviour
                     //完成到达指定目的地后的工作
                     EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), animalID);
                     animalFace = Face.Down;
-                    Debug.Log($"Reached {curTarget}");
+                    Debug.Log($"Reached {curStepTarget}");
                 }
             }
             else
             {
-                MoveTo(curTarget.Value);
+                MoveTo(curStepTarget.Value);
             }
         }
     }
@@ -161,7 +162,7 @@ public class PathNavigation : MonoBehaviour
 
         if (walkLeftCost > 0)
         {
-            animalFace = DirectionHelper.JudgeDirFace(RenderPos, curTarget.Value.To3());
+            animalFace = DirectionHelper.JudgeDirFace(RenderPos, curStepTarget.Value.To3());
             var speed = (human as Animal).MoveSpeed;
             walkLeftCost -= speed;
             transform.position = new Vector3(curRenderPos.x, curRenderPos.y) + (1 - walkLeftCost / realTotalCost) * dir;

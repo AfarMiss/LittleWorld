@@ -43,9 +43,10 @@ namespace AI
 
         public static Node.Status GoToLoc(Vector2Int destination, Animal human)
         {
-            if (!human.IsMoving || (human.IsMoving && human.CurTargetPos.HasValue && human.CurTargetPos.Value != destination))
+            if (!human.IsMoving || (human.IsMoving && human.CurDestination.HasValue && human.CurDestination.Value != destination))
             {
                 human.GoToLoc(destination);
+                Debug.Log("重新计算路径for" + destination);
             }
             if (human.GridPos == destination)
             {

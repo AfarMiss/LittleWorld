@@ -274,7 +274,7 @@ namespace LittleWorld.UI
                 {
                     if (!item.atDestination && item.lastStampFrameCount > 0 && Time.frameCount - item.lastStampFrameCount <= 50 && item.PathIsShow)
                     {
-                        GraphicsUtiliy.DrawDestinationIcon(item.curDestination, 1, 1);
+                        GraphicsUtiliy.DrawDestinationIcon(item.curDestination.Value, 1, 1);
                     }
                 }
                 #endregion

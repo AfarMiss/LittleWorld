@@ -18,7 +18,7 @@ namespace LittleWorld.Item
         public Face FaceTo => pathTracer.animalFace;
         public float MoveSpeed => animalInfo.moveSpeed;
         public bool IsMoving => pathTracer.IsMoving;
-        public Vector2Int? CurTargetPos => pathTracer.CurTarget;
+        public Vector2Int? CurDestination => pathTracer.CurDestination;
 
         public Animal(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
         {
