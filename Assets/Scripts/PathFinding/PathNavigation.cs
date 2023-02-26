@@ -16,6 +16,7 @@ public class PathNavigation : MonoBehaviour
     private Queue<Vector2Int> curPath;
     public Vector2Int curDestination;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
+    public Vector2Int? CurTarget => curTarget;
     private Vector2Int? curTarget = null;
     [SerializeField] private LineRenderer lineRenderer;
     private bool showPath = false;

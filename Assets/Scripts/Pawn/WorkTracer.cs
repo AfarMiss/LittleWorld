@@ -34,6 +34,25 @@ namespace LittleWorld
 
         public bool AddWork(Work singleWork)
         {
+            if (Current.IsAdditionalMode)
+            {
+                return AddWorkUnforced(singleWork);
+            }
+            else
+            {
+                return AddWorkForce(singleWork);
+            }
+        }
+
+        private bool AddWorkUnforced(Work singleWork)
+        {
+            workQueue.Enqueue(singleWork);
+            return true;
+        }
+
+        public bool AddWorkForce(Work singleWork)
+        {
+            curWork?.OnAbort();
             workQueue.Enqueue(singleWork);
             return true;
         }
