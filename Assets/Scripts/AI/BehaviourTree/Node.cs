@@ -1,7 +1,9 @@
-﻿using LittleWorld.Item;
+﻿using FlowCanvas.Nodes;
+using LittleWorld.Item;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AI.WalkLeaf;
 
 namespace AI
 {
@@ -41,14 +43,14 @@ namespace AI
             return children[currentChild].Process();
         }
 
-        public static Node.Status GoToLoc(Vector2Int destination, Animal human)
+        public static Node.Status GoToLoc(Vector2Int destination, Animal animal, MoveType moveType)
         {
-            if (!human.IsMoving || (human.IsMoving && human.CurDestination.HasValue && human.CurDestination.Value != destination))
+            if (!animal.IsMoving || (animal.IsMoving && animal.CurDestination.HasValue && animal.CurDestination.Value != destination))
             {
-                human.GoToLoc(destination);
+                animal.GoToLoc(destination, moveType);
                 Debug.Log("重新计算路径for" + destination);
             }
-            if (human.GridPos == destination)
+            if (animal.GridPos == destination)
             {
                 return Node.Status.SUCCESS;
             }

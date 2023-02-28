@@ -85,6 +85,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "暂停/继续",
+                    "type": "Button",
+                    "id": "0039c565-0e0e-45d7-b26e-268a25d441fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "1倍速",
+                    "type": "Button",
+                    "id": "9993b819-3201-48ca-afc8-e9e15ed30037",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "2倍速",
+                    "type": "Button",
+                    "id": "c21e330c-961c-47a6-8242-2ddd11783fe2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "3倍速",
+                    "type": "Button",
+                    "id": "741ebc49-578e-4428-a71c-93d5a21dd857",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -228,6 +264,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "镜头拖拽",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73c3ad7f-4ca2-41c6-beef-700db8512c52",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "暂停/继续",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cebf7374-8889-40d7-8026-f1df47363e2a",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "1倍速",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc8d1469-a4bc-4b89-94b8-7e23883e81fe",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "2倍速",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d79b3b42-a53b-46ea-a53c-1c710f3fbcef",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "3倍速",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Cursor : MonoSingleton<Cursor>
+public class CursorX : MonoSingleton<CursorX>
 {
     private Canvas canvas;
     private Camera mainCamera;

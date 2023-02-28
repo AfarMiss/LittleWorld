@@ -1,13 +1,14 @@
 ﻿using AI;
 using LittleWorld.Item;
 using UnityEngine;
+using static AI.WalkLeaf;
 
 namespace LittleWorld.Jobs
 {
     public class WanderWork : Work
     {
         public Vector2Int curWanderPos;
-        public Animal humanbeing;
+        public Animal animal;
         private void CreateWorkSequence()
         {
             Sequence wanderSequence = new Sequence("wander Sequence");
@@ -19,7 +20,7 @@ namespace LittleWorld.Jobs
                 curWanderPos.y = Mathf.Clamp(curWanderPos.y, 0, Current.CurMap.MapSize.y);
                 if (Current.CurMap.GetGrid(curWanderPos).isLand)
                 {
-                    WalkLeaf walkLeaf = new WalkLeaf("Go To Object", curWanderPos, humanbeing);
+                    WalkLeaf walkLeaf = new WalkLeaf("Go To Object", curWanderPos, animal, MoveType.wander);
                     wanderSequence.AddChild(walkLeaf);
                 }
             }
@@ -29,7 +30,7 @@ namespace LittleWorld.Jobs
         public WanderWork(Animal animal)
         {
             this.curWanderPos = animal.GridPos;
-            this.humanbeing = animal;
+            this.animal = animal;
             CreateWorkSequence();
         }
     }

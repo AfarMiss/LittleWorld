@@ -8,25 +8,35 @@ namespace AI
     public class WalkLeaf : Node
     {
         public Vector2Int destination;
-        public Animal human;
+        public Animal animal;
         public bool surround = true;
-        public delegate Status Tick(Vector2Int destination, Animal human);
+        public delegate Status Tick(Vector2Int destination, Animal animal, MoveType moveType);
         public Tick ProcessMethod;
+        private MoveType moveType;
 
-        public WalkLeaf(string name, Vector2Int destination, Animal human)
+        public WalkLeaf(string name, Vector2Int destination, Animal animal, MoveType moveType = MoveType.walk)
         {
             this.destination = destination;
-            this.human = human;
+            this.animal = animal;
             this.name = name;
             this.ProcessMethod = GoToLoc;
+            this.moveType = moveType;
         }
 
         public override Status Process()
         {
             //Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
-                return ProcessMethod(destination, human);
+                return ProcessMethod(destination, animal, moveType);
             return Status.FAILURE;
+        }
+
+        public enum MoveType
+        {
+            wander,
+            walk,
+            dash,
+            idle
         }
     }
 }

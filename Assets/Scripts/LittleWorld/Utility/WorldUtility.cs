@@ -27,6 +27,25 @@ namespace LittleWorld
             }
         }
 
+        public static IEnumerable<Item.Object> GetWorldObjectsAtMouse()
+        {
+            var currentWorldPos = Camera.main.ScreenToWorldPoint(Current.MousePos);
+            var worldGridPos = currentWorldPos.ToCell();
+            var allItemsInfo = SceneObjectManager.Instance.WorldObjects;
+            var objectsSet = allItemsInfo.ToList().FindAll(x => x.Value.GridPos == worldGridPos.To2());
+            foreach (var item in objectsSet)
+            {
+                yield return item.Value;
+            }
+
+            var allSection = Current.CurMap.sectionDic.Values.ToList();
+            if (allSection.Count > 0)
+            {
+                MapSection atSection = allSection.Find(x => x.GridPosList.Contains(worldGridPos.To2()));
+                yield return atSection;
+            }
+        }
+
         public static IEnumerable<Item.Object> GetWorldObjectsAt(Vector2Int pos)
         {
             return GetWorldObjectsAt(pos.To3());

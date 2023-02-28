@@ -3,6 +3,7 @@ using LittleWorld.Jobs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AI.WalkLeaf;
 
 namespace LittleWorld.Item
 {
@@ -72,9 +73,9 @@ namespace LittleWorld.Item
             workTracer.AddWork(new WanderWork(this));
         }
 
-        public void GoToLoc(Vector2Int target)
+        public void GoToLoc(Vector2Int target, MoveType moveType)
         {
-            pathTracer.GoToLoc(target);
+            pathTracer.GoToLoc(target, moveType);
         }
 
         public override void Tick()

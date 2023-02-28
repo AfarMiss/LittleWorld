@@ -11,6 +11,7 @@ using LittleWorld.MapUtility;
 using LittleWorld.Graphics;
 using UnityEngine.UI;
 using System;
+using LittleWorld.Command;
 
 public class InputController : MonoSingleton<InputController>
 {
@@ -24,6 +25,9 @@ public class InputController : MonoSingleton<InputController>
     private GameObject pfGhostBuilding;
     public Camera MainCamera;
     public int CurSelectedBuildingCode;
+
+    public Texture2D fireCursor;
+    public Texture2D defaultCursor;
 
 
     public void AddEventOnZoomChanged(OnPlantZoneChanged onChanged)
@@ -229,6 +233,45 @@ public class InputController : MonoSingleton<InputController>
     public void OnClickLeft(CallbackContext callbackContext)
     {
         OnPlayingGameProgress(callbackContext);
+    }
+
+    public void PauseOrResume(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            if (Current.CurGame.timeSpeed == 0)
+            {
+                CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(1));
+            }
+            else
+            {
+                CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(0));
+            }
+        }
+    }
+
+    public void Speed1(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(1));
+        }
+    }
+
+    public void Speed2(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(2));
+        }
+    }
+
+    public void Speed3(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(3));
+        }
     }
 
     private void OnPlayingGameProgress(CallbackContext callbackContext)
@@ -496,12 +539,27 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.ShrinkStorageZone:
             case MouseState.AddStorageSection:
             case MouseState.DeleteStorageSection:
+                Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
+                break;
             case MouseState.ReadyToFire:
+                //检测是否在开火预备下悬停到了某一目标上
+                foreach (var item in WorldUtility.GetWorldObjectsAtMouse())
+                {
+                    if (item is Animal)
+                    {
+                        //更改鼠标样式
+                        Cursor.SetCursor(fireCursor, Vector2.zero, CursorMode.Auto);
+                        break;
+                    }
+                }
+                Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
                 break;
             case MouseState.BuildingGhost:
+                Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
                 UpdateGhostPos(MainCamera.ScreenToWorldPoint(Current.MousePos));
                 break;
             default:
+                Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
                 break;
         }
     }

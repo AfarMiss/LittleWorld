@@ -1,24 +1,27 @@
 ﻿using LittleWorld;
 using LittleWorld.Extension;
 using LittleWorld.Item;
+using LittleWorld.Path;
 using System.Collections.Generic;
 using System.Linq;
 using UniBase;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using static AI.WalkLeaf;
 
 [RequireComponent(typeof(LineRenderer))]
 public class PathNavigation : MonoBehaviour
 {
     public Face animalFace;
     public int lastStampFrameCount = -1;
-    private Queue<Vector2Int> curPath;
+    private PathInfo curPathInfo;
     public Vector2Int? curDestination;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
     public Vector2Int? CurStepTarget => curStepTarget;
     public Vector2Int? CurDestination => curDestination;
     private Vector2Int? curStepTarget = null;
+    private MoveType? curMoveType => curPathInfo?.moveType;
     [SerializeField] private LineRenderer lineRenderer;
     private bool showPath = false;
     public bool PathIsShow => showPath;
@@ -43,7 +46,7 @@ public class PathNavigation : MonoBehaviour
     public Vector2 curRenderPos;
     private Vector3 dir;
 
-    public bool IsMoving => curPath.Safe().Any() || curStepTarget != null;
+    public bool IsMoving => curPathInfo.curPath.Safe().Any() || curStepTarget != null;
     //private bool isMovingDiagonally => IsMoving && curTarget.InStraightLine(human.GridPos);
     private float diagonalRate = 1.41f;
 
@@ -69,14 +72,14 @@ public class PathNavigation : MonoBehaviour
     }
     private void Start()
     {
-        curPath = new Queue<Vector2Int>();
+        curPathInfo = new PathInfo();
     }
 
     public void ResetPath()
     {
         curTargetIsReached = true;
         atDestination = true;
-        curPath?.Clear();
+        curPathInfo.curPath?.Clear();
         curStepTarget = default;
         curDestination = default;
         curRenderPos = default;
@@ -124,9 +127,9 @@ public class PathNavigation : MonoBehaviour
             if (curTargetIsReached)
             {
                 curStepTarget = null;
-                if (curPath.Count > 0)
+                if (curPathInfo.curPath.Count > 0)
                 {
-                    curStepTarget = curPath.Dequeue();
+                    curStepTarget = curPathInfo.curPath.Dequeue();
                     dir = curStepTarget.Value - RenderPos;
                     realTotalCost = Vector2.Distance(RenderPos, curStepTarget.Value) * walkBaseTotalCost;
                     walkLeftCost += Vector2.Distance(RenderPos, curStepTarget.Value) * walkBaseTotalCost;
@@ -163,7 +166,7 @@ public class PathNavigation : MonoBehaviour
         if (walkLeftCost > 0)
         {
             animalFace = DirectionHelper.JudgeDirFace(RenderPos, curStepTarget.Value.To3());
-            var speed = (human as Animal).MoveSpeed;
+            var speed = (human as Animal).MoveSpeed * PathInfo.GetSpeedRatio(curMoveType);
             walkLeftCost -= speed;
             transform.position = new Vector3(curRenderPos.x, curRenderPos.y) + (1 - walkLeftCost / realTotalCost) * dir;
         }
@@ -178,13 +181,14 @@ public class PathNavigation : MonoBehaviour
     private void FixedUpdate()
     {
         Tick();
-        DrawLine(curPath);
+        DrawLine(curPathInfo.curPath);
     }
 
-    public void GoToLoc(Vector2Int target)
+    public void GoToLoc(Vector2Int target, MoveType moveType)
     {
         var human = SceneObjectManager.Instance.GetWorldObjectById(animalID);
-        curPath = MapManager.Instance.CreateNewPath(human.GridPos, target);
+        curPathInfo.curPath = MapManager.Instance.CreateNewPath(human.GridPos, target);
+        curPathInfo.moveType = moveType;
         curDestination = target;
         lastStampFrameCount = Time.frameCount;
         atDestination = false;

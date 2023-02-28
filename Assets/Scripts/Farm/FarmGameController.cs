@@ -108,7 +108,7 @@ false, false, false, false, false, false, false, false, true);
 
     //后期剥离出来，最后用事件
     private GridCursor gridCursor;
-    private Cursor cursor;
+    private CursorX cursor;
 
     private Vector2 input;
 
@@ -141,7 +141,7 @@ false, false, false, false, false, false, false, false, true);
         afterLiftToolAnimationPause = new WaitForSeconds(GameSetting.afterLiftToolAnimationPause);
 
         gridCursor = GameObject.FindObjectOfType<GridCursor>();
-        cursor = GameObject.FindObjectOfType<Cursor>();
+        cursor = GameObject.FindObjectOfType<CursorX>();
     }
 
     public void DisablePlayerInputAndResetMovement()

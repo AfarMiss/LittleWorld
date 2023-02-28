@@ -31,7 +31,16 @@ namespace LittleWorld.Jobs
 
         private bool CheckWhetherCanHunt()
         {
-            return Vector2.Distance(hunter.GridPos, target.GridPos) <= hunter.gearTracer.curWeapon.WeaponInfo.range;
+            var canHunt = Vector2.Distance(hunter.GridPos, target.GridPos) <= hunter.gearTracer.curWeapon.WeaponInfo.range;
+            if (canHunt)
+            {
+                Debug.LogWarning("可以狩猎!");
+            }
+            else
+            {
+                Debug.LogWarning("不可以狩猎!超出射程");
+            }
+            return canHunt;
         }
 
         private Node.Status Fire(Vector2Int destination, Humanbeing human)
