@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static AI.WalkLeaf;
+using static AI.MoveLeaf;
 
 namespace LittleWorld.Path
 {
@@ -27,7 +27,7 @@ namespace LittleWorld.Path
             switch (moveType)
             {
                 case MoveType.wander:
-                    return 0.3f;
+                    return 0.6f;
                 case MoveType.walk:
                     return 1f;
                 case MoveType.dash:

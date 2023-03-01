@@ -64,7 +64,7 @@ public class PathNavigation : MonoBehaviour
     /// 代表的itemInstanceID
     /// </summary>
     public int animalID;
-    public Animal human => SceneObjectManager.Instance.GetWorldObjectById(animalID) as Animal;
+    public Animal animal => SceneObjectManager.Instance.GetWorldObjectById(animalID) as Animal;
 
     public void Initialize(int instanceID)
     {
@@ -142,7 +142,10 @@ public class PathNavigation : MonoBehaviour
                     atDestination = true;
                     //完成到达指定目的地后的工作
                     EventCenter.Instance.Trigger(EventEnum.REACH_WORK_POINT.ToString(), animalID);
-                    animalFace = Face.Down;
+                    if (this.animal is Humanbeing)
+                    {
+                        animalFace = Face.Down;
+                    }
                     Debug.Log($"Reached {curStepTarget}");
                 }
             }
