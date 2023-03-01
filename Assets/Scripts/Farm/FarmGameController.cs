@@ -13,8 +13,8 @@ public class FarmGameController : MonoSingleton<FarmGameController>
     private WaitForSeconds afterLiftToolAnimationPause;
     private WaitForSeconds liftToolAnimationPause;
 
-    private Vector3Int playerDirection;
-    public Vector3Int PlayerDirection
+    private Vector2Int playerDirection;
+    public Vector2Int PlayerDirection
     {
         get { return playerDirection; }
         set
@@ -26,25 +26,25 @@ public class FarmGameController : MonoSingleton<FarmGameController>
 
     private void SetPlayerDirection()
     {
-        if (playerDirection == Vector3Int.up)
+        if (playerDirection == Vector2Int.up)
         {
             EventHandler.CallMovementEvent(0f, 0f, false, false, false, false, ToolEffect.none,
                 false, false, false, false, false, false, false, false, false, false, false,
                 false, false, false, false, false, false, false, true, false);
         }
-        else if (playerDirection == Vector3Int.down)
+        else if (playerDirection == Vector2Int.down)
         {
             EventHandler.CallMovementEvent(0f, 0f, false, false, false, false, ToolEffect.none,
     false, false, false, false, false, false, false, false, false, false, false,
     false, false, false, false, false, false, false, false, true);
         }
-        else if (playerDirection == Vector3Int.right)
+        else if (playerDirection == Vector2Int.right)
         {
             EventHandler.CallMovementEvent(0f, 0f, false, false, false, false, ToolEffect.none,
     false, false, false, false, false, false, false, false, false, false, false,
     false, false, false, false, false, true, false, false, false);
         }
-        else if (playerDirection == Vector3Int.left)
+        else if (playerDirection == Vector2Int.left)
         {
             EventHandler.CallMovementEvent(0f, 0f, false, false, false, false, ToolEffect.none,
     false, false, false, false, false, false, false, false, false, false, false,
@@ -240,7 +240,7 @@ false, false, false, false, false, false, false, false, true);
                 case ItemType.collection_tool:
                 case ItemType.chopping_tool:
                 case ItemType.breaking_tool:
-                    ProcessPlayerClickInputTool(gridPropertyDetails, itemDetails, playerDirection);
+                    //ProcessPlayerClickInputTool(gridPropertyDetails, itemDetails, playerDirection);
                     break;
                 case ItemType.reaping_tool:
                     ReapGrooundAtCursor(cursorGridPosition, itemDetails);
@@ -470,47 +470,47 @@ false, false, false, false, false, false, false, false, true);
 
         var playerCentre = Vector3.zero;
 
-        var dir = UniBase.DirectionHelper.JudgeDir(playerCentre, cursorPosition);
-        if (dir == Vector3.right)
-        {
-            isSwingingToolRight = true;
-        }
-        else if (dir == Vector3.left)
-        {
-            isSwingingToolLeft = true;
-        }
-        else if (dir == Vector3.up)
-        {
-            isSwingingToolUp = true;
-        }
-        else
-        {
-            isSwingingToolDown = true;
-        }
+        //var dir = UniBase.DirectionHelper.JudgeDir(playerCentre, cursorPosition);
+        //if (dir == Vector2.right)
+        //{
+        //    isSwingingToolRight = true;
+        //}
+        //else if (dir == Vector2.left)
+        //{
+        //    isSwingingToolLeft = true;
+        //}
+        //else if (dir == Vector2.up)
+        //{
+        //    isSwingingToolUp = true;
+        //}
+        //else
+        //{
+        //    isSwingingToolDown = true;
+        //}
 
         yield return useToolAnimationPause;
 
-        //对场景的修改
-        Vector3 worldPos = cursorPosition.GetWorldPosition();
-        Debug.Log($"dirReal:{dir},cursorGridPosition:{cursorPosition},worldPos:{worldPos}");
-        var detectResult = OverlapHelper.GetComponentsAtBoxLocationNonAlloc<ItemRender>(GameSetting.reapDetectCount,
-            playerCentre + (new Vector3(dir.x * itemDetails.itemUseRadius / 2, dir.y * itemDetails.itemUseRadius / 2)),
-            itemDetails.itemUseRadius * Vector2.one, 0);
-        var targetDestroyNum = Math.Min(detectResult.Length, GameSetting.multipleReap);
-        var curDestroyNum = 0;
-        for (int i = detectResult.Length - 1; i >= 0; i--)
-        {
-            if (detectResult[i] != null)
-            {
-                EventCenter.Instance.Trigger(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), detectResult[i].transform.position, HarvestActionEffect.reaping);
-                Destroy(detectResult[i].gameObject);
-                curDestroyNum++;
-                if (targetDestroyNum == curDestroyNum)
-                {
-                    break;
-                }
-            }
-        }
+        ////对场景的修改
+        //Vector3 worldPos = cursorPosition.GetWorldPosition();
+        //Debug.Log($"dirReal:{dir},cursorGridPosition:{cursorPosition},worldPos:{worldPos}");
+        //var detectResult = OverlapHelper.GetComponentsAtBoxLocationNonAlloc<ItemRender>(GameSetting.reapDetectCount,
+        //    playerCentre + (new Vector3(dir.x * itemDetails.itemUseRadius / 2, dir.y * itemDetails.itemUseRadius / 2)),
+        //    itemDetails.itemUseRadius * Vector2.one, 0);
+        //var targetDestroyNum = Math.Min(detectResult.Length, GameSetting.multipleReap);
+        //var curDestroyNum = 0;
+        //for (int i = detectResult.Length - 1; i >= 0; i--)
+        //{
+        //    if (detectResult[i] != null)
+        //    {
+        //        EventCenter.Instance.Trigger(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), detectResult[i].transform.position, HarvestActionEffect.reaping);
+        //        Destroy(detectResult[i].gameObject);
+        //        curDestroyNum++;
+        //        if (targetDestroyNum == curDestroyNum)
+        //        {
+        //            break;
+        //        }
+        //    }
+        //}
 
         yield return afterUseToolAnimationPause;
 
@@ -703,9 +703,9 @@ false, false, false, false, false, false, false, false, true);
         playerToolUseDisabled = false;
     }
 
-    private Vector3Int GetPlayerClickDirection(Vector3Int cursorGridPosition, Vector3Int playerGridPosition)
+    private Vector2Int GetPlayerClickDirection(Vector3Int cursorGridPosition, Vector3Int playerGridPosition)
     {
-        return UniBase.DirectionHelper.JudgeDir(playerGridPosition, cursorGridPosition);
+        return DirectionHelper.JudgeDir(playerGridPosition.To2(), cursorGridPosition.To2());
     }
 
     private void FixedUpdate()

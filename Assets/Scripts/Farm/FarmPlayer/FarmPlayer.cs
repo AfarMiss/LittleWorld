@@ -56,19 +56,19 @@ public class FarmPlayer : MonoSingleton<FarmPlayer>, ISaveable
         sceneSave.stringDictionary.Add("currentScene", SceneManager.GetActiveScene().name);
 
         var dirString = Direction.none;
-        if (FarmGameController.Instance.PlayerDirection == Vector3Int.up)
+        if (FarmGameController.Instance.PlayerDirection == Vector2Int.up)
         {
             dirString = Direction.up;
         }
-        if (FarmGameController.Instance.PlayerDirection == Vector3Int.down)
+        if (FarmGameController.Instance.PlayerDirection == Vector2Int.down)
         {
             dirString = Direction.down;
         }
-        if (FarmGameController.Instance.PlayerDirection == Vector3Int.left)
+        if (FarmGameController.Instance.PlayerDirection == Vector2Int.left)
         {
             dirString = Direction.left;
         }
-        if (FarmGameController.Instance.PlayerDirection == Vector3Int.right)
+        if (FarmGameController.Instance.PlayerDirection == Vector2Int.right)
         {
             dirString = Direction.right;
         }
@@ -120,7 +120,7 @@ public class FarmPlayer : MonoSingleton<FarmPlayer>, ISaveable
                             {
                                 dirEnum = Vector3Int.left;
                             }
-                            FarmGameController.Instance.PlayerDirection = dirEnum;
+                            //FarmGameController.Instance.PlayerDirection = dirEnum;
                         }
                     }
                 }
