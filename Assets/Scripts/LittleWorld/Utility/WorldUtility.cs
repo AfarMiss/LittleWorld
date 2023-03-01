@@ -46,6 +46,21 @@ namespace LittleWorld
             }
         }
 
+        public static bool CheckOtherAnimalsAtMouse()
+        {
+            //检测是否在开火预备下悬停到了某一目标上
+            var currentWorldPos = Camera.main.ScreenToWorldPoint(Current.MousePos);
+            var worldGridPos = currentWorldPos.ToCell();
+            foreach (var item in WorldUtility.GetWorldObjectsAtMouse())
+            {
+                if (item is Animal)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static IEnumerable<Item.Object> GetWorldObjectsAt(Vector2Int pos)
         {
             return GetWorldObjectsAt(pos.To3());

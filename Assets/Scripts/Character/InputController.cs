@@ -542,17 +542,14 @@ public class InputController : MonoSingleton<InputController>
                 Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
                 break;
             case MouseState.ReadyToFire:
-                //检测是否在开火预备下悬停到了某一目标上
-                foreach (var item in WorldUtility.GetWorldObjectsAtMouse())
+                if (WorldUtility.CheckOtherAnimalsAtMouse())
                 {
-                    if (item is Animal)
-                    {
-                        //更改鼠标样式
-                        Cursor.SetCursor(fireCursor, Vector2.zero, CursorMode.Auto);
-                        break;
-                    }
+                    Cursor.SetCursor(fireCursor, Vector2.zero, CursorMode.Auto);
                 }
-                Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
+                else
+                {
+                    Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
+                }
                 break;
             case MouseState.BuildingGhost:
                 Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
