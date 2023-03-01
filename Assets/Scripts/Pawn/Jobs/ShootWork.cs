@@ -18,7 +18,7 @@ namespace LittleWorld.Jobs
         {
             Sequence wanderSequence = new Sequence("hunter Sequence");
             CheckLeaf checkLeaf = new CheckLeaf("Check target is Alive", CheckTargetIsAlive);
-            WalkLeaf walkLeaf = new WalkLeaf("Go To hunt target", GetHuntPoint(), hunter);
+            MoveLeaf walkLeaf = new MoveLeaf("Go To hunt target", GetHuntPoint(), hunter);
             CheckLeaf checkCanHuntLeaf = new CheckLeaf("Check whether can hunt", CheckWhetherCanHunt);
             DynamicLongJobLeaf shoot = new DynamicLongJobLeaf("shoot", hunter, Fire, GetHuntPoint);
 

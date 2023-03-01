@@ -8,7 +8,7 @@ using UniBase;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using static AI.WalkLeaf;
+using static AI.MoveLeaf;
 
 [RequireComponent(typeof(LineRenderer))]
 public class PathNavigation : MonoBehaviour
@@ -175,7 +175,7 @@ public class PathNavigation : MonoBehaviour
             curTargetIsReached = true;
             human.GridPos = target;
         }
-        Debug.Log("animalFace:" + animalFace);
+        //Debug.Log("animalFace:" + animalFace);
     }
 
     private void FixedUpdate()

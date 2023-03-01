@@ -1,7 +1,7 @@
 ﻿using AI;
 using LittleWorld.Item;
 using UnityEngine;
-using static AI.WalkLeaf;
+using static AI.MoveLeaf;
 
 namespace LittleWorld.Jobs
 {
@@ -20,8 +20,12 @@ namespace LittleWorld.Jobs
                 curWanderPos.y = Mathf.Clamp(curWanderPos.y, 0, Current.CurMap.MapSize.y);
                 if (Current.CurMap.GetGrid(curWanderPos).isLand)
                 {
-                    WalkLeaf walkLeaf = new WalkLeaf("Go To Object", curWanderPos, animal, MoveType.wander);
+                    MoveLeaf walkLeaf = new MoveLeaf("Go To Object", curWanderPos, animal, MoveType.wander);
                     wanderSequence.AddChild(walkLeaf);
+                }
+                if (Random.Range(0, 1f) < 0.5f)
+                {
+                    wanderSequence.AddChild(new ThinkLeaf(animal));
                 }
             }
             tree.AddChild(wanderSequence);

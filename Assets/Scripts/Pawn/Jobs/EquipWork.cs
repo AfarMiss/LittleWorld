@@ -25,7 +25,7 @@ namespace AI
         {
             Sequence carrySequence = new Sequence("equip Sequence");
             //carry
-            WalkLeaf walkLeaf = new WalkLeaf("Go To Object", weapon.GridPos, human);
+            MoveLeaf walkLeaf = new MoveLeaf("Go To Object", weapon.GridPos, human);
             DynamicLongJobLeaf equip = new DynamicLongJobLeaf("Equip", human, DoEquip, GetWeaponPos);
             carrySequence.AddChild(walkLeaf);
             carrySequence.AddChild(equip);

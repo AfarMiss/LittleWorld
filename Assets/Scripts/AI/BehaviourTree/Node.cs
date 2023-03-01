@@ -3,7 +3,7 @@ using LittleWorld.Item;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static AI.WalkLeaf;
+using static AI.MoveLeaf;
 
 namespace AI
 {

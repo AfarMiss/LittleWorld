@@ -3,7 +3,7 @@ using LittleWorld.Jobs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static AI.WalkLeaf;
+using static AI.MoveLeaf;
 
 namespace LittleWorld.Item
 {
@@ -13,6 +13,10 @@ namespace LittleWorld.Item
         protected AnimalInfo animalInfo;
         protected HealthTracer healthTracer;
         protected WorkTracer workTracer;
+        /// <summary>
+        /// 是否处于被征召状态
+        /// </summary>
+        protected bool isDrafted = false;
 
         public bool IsDead => healthTracer.isDead;
 

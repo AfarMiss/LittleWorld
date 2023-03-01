@@ -19,7 +19,7 @@ namespace LittleWorld.Jobs
 
             DynamicWalk walkLeaf = new DynamicWalk("Go To Object", humanbeing, Node.GoToLoc, GetRawMaterialPos);
             DynamicLongJobLeaf carry = new DynamicLongJobLeaf("Carry", humanbeing, DoHaul, GetRawMaterialPos);
-            WalkLeaf moveToStorageSection = new WalkLeaf("Go To Storage Section", building.GridPos, humanbeing);
+            MoveLeaf moveToStorageSection = new MoveLeaf("Go To Storage Section", building.GridPos, humanbeing);
             DynamicLongJobLeaf dropDown = new DynamicLongJobLeaf("Drop Down", humanbeing, DoDropDown, GetBuildingPos);
 
             checkAllRawMaterialContained.AddChild(walkLeaf);

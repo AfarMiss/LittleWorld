@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AI
 {
-    public class WalkLeaf : Node
+    public class MoveLeaf : Node
     {
         public Vector2Int destination;
         public Animal animal;
@@ -14,7 +14,7 @@ namespace AI
         public Tick ProcessMethod;
         private MoveType moveType;
 
-        public WalkLeaf(string name, Vector2Int destination, Animal animal, MoveType moveType = MoveType.walk)
+        public MoveLeaf(string name, Vector2Int destination, Animal animal, MoveType moveType = MoveType.walk)
         {
             this.destination = destination;
             this.animal = animal;
@@ -36,7 +36,8 @@ namespace AI
             wander,
             walk,
             dash,
-            idle
+            idle,
+            order
         }
     }
 }

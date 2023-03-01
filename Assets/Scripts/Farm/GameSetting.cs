@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public static class GameSetting
 {
@@ -126,5 +127,9 @@ public static class GameSetting
         idleDownIndex = Animator.StringToHash(idleDownString);
     }
 
+    public static float ToGameTime(this float realTimeSeconds)
+    {
+        return realTimeSeconds / TickTime;
+    }
 
 }
