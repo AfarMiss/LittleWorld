@@ -867,17 +867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56491de81855ffe40b023ec8cc94e94f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  mainCamera: {fileID: 0}
-  cursorImage: {fileID: 579020407}
-  cursorRectTransform: {fileID: 579020406}
-  greenCursorSprite: {fileID: 21300000, guid: 898d91cb190da4b479714f63ae8519e0, type: 3}
-  transparentCursorSprite: {fileID: 21300000, guid: 89c46045b5f23d840b62099f6f1f6344, type: 3}
-  gridCursor: {fileID: 484414246}
-  _cursorIsEnabled: 0
-  _cursorPositionIsValid: 0
-  _selectedItemType: 0
-  _itemUseRadius: 0
 --- !u!1 &518258364
 GameObject:
   m_ObjectHideFlags: 0
