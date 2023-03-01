@@ -132,6 +132,14 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         GameObject.DontDestroyOnLoad(renderParent);
     }
 
+    private void RealTimeTick(GameTime gameTime)
+    {
+        foreach (var item in WorldObjects)
+        {
+            item.Value.RealTimeTick();
+        }
+    }
+
     private void OnWorldObjectGridChange(ChangeGridMessage message)
     {
         if (message.wo.canPile)

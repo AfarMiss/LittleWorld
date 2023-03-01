@@ -115,6 +115,11 @@ namespace LittleWorld.Item
 
         }
 
+        public virtual void RealTimeTick()
+        {
+
+        }
+
         public virtual List<FloatOption> AddFloatMenu()
         {
             return null;

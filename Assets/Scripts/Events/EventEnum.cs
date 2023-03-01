@@ -60,6 +60,7 @@ public class EventName
     public static string MINUTE_CHANGE = "MINUTE_CHANGE";
     public static string SECOND_CHANGE = "SECOND_CHANGE";
     public static string GAME_TICK = "GAME_TICK";
+    public static string REAL_TIME_TICK = "REAL_TIME_TICK";
     #endregion
 
     #region 物体注册

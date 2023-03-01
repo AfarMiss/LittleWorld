@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public struct GameTime
@@ -21,6 +23,28 @@ public struct GameTime
         this.minute = minute;
         this.second = second;
     }
+
+    public static bool operator ==(GameTime t1, GameTime t2)
+    {
+        return t1.year == t2.year &&
+              t1.quad == t2.quad &&
+              t1.day == t2.day &&
+              t1.hour == t2.hour &&
+               t1.minute == t2.minute &&
+                t1.second == t2.second;
+    }
+
+    public static bool operator !=(GameTime t1, GameTime t2)
+    {
+        return t1.year != t2.year ||
+              t1.quad != t2.quad ||
+              t1.day != t2.day ||
+              t1.hour != t2.hour ||
+               t1.minute != t2.minute ||
+                t1.second != t2.second;
+    }
+
+
 
     public void AddOneDay()
     {
@@ -67,5 +91,16 @@ public struct GameTime
                 }
             }
         }
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is GameTime time &&
+               year == time.year &&
+               quad == time.quad &&
+               day == time.day &&
+               hour == time.hour &&
+               minute == time.minute &&
+               second == time.second;
     }
 }
