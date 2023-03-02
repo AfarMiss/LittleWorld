@@ -13,18 +13,17 @@ namespace LittleWorld.UI
     public class BriefInfoPanel : BaseUI
     {
         public override string Path => UIPath.Panel_BriefInfoPanel;
-        [SerializeField] private BriefInfoItem briefItem1;
-        [SerializeField] private Text InfoTitle;
-        [SerializeField] private Transform briefItemParent;
-        [SerializeField] private GameObject itemCommandGameObject;
-        [SerializeField] private Transform commandParent;
+        [SerializeField] protected Text InfoTitle;
+        [SerializeField] protected Transform briefItemParent;
+        [SerializeField] protected GameObject itemCommandGameObject;
+        [SerializeField] protected Transform commandParent;
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             EventCenter.Instance.Register<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
             EventCenter.Instance?.Register<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
         }
@@ -64,23 +63,18 @@ namespace LittleWorld.UI
             }
             if (objects.Length == 1)
             {
-                ShowCommand(objects[0]);
+                BindBriefInfo(objects[0]);
             }
         }
 
-        public void BindBriefInfo(Item.Object o)
+        public virtual void BindBriefInfo(Item.Object o)
         {
-            ShowCommand(o);
-        }
-
-        private void ShowCommand(Item.Object wo)
-        {
-            InfoTitle.text = wo.ItemName;
+            InfoTitle.text = o.ItemName;
             commandParent.DestroyChildren();
-            BindCommands(wo);
+            BindCommands(o);
         }
 
-        private void BindCommands(Item.Object item)
+        protected void BindCommands(Item.Object item)
         {
             if (item is PlantMapSection map)
             {
@@ -154,7 +148,7 @@ namespace LittleWorld.UI
             }
         }
 
-        private DynamicCommandIcon AddCommand(string commandName, Sprite sprite)
+        protected DynamicCommandIcon AddCommand(string commandName, Sprite sprite)
         {
             var go = Instantiate(itemCommandGameObject, commandParent);
             go.GetComponent<DynamicCommandIcon>().BindData(commandName, sprite);

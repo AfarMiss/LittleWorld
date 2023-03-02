@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static AI.MoveLeaf;
+using static LittleWorld.HealthTracer;
 
 namespace LittleWorld.Item
 {
@@ -25,11 +26,17 @@ namespace LittleWorld.Item
         public bool IsMoving => pathTracer.IsMoving;
         public Vector2Int? CurDestination => pathTracer.CurDestination;
 
-        public Animal(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
+        public float Hp => healthTracer.curHealth;
+        public float CurHunger => healthTracer.curHealth;
+        public float HpPercent => healthTracer.curHealth / healthTracer.maxHealth;
+        public float HungerPercent => healthTracer.curHunger / healthTracer.maxHunger;
+        public Age Age => healthTracer.age;
+
+        public Animal(int itemCode, Age age, Vector2Int gridPos) : base(itemCode, gridPos)
         {
             animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
             workTracer = new NonAggressiveWorkTracer(this);
-            healthTracer = new HealthTracer(100);
+            healthTracer = new HealthTracer(100, 0.9f, 1f, age);
         }
         public void SetNavi(PathNavigation PawnPathTracer)
         {

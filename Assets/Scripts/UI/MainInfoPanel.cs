@@ -29,7 +29,6 @@ namespace LittleWorld.UI
             EventCenter.Instance.Register<GameTime>(EventName.DAY_CHANGE, BindData);
             EventCenter.Instance.Register<GameTime>(EventName.HOUR_CHANGE, BindData);
             EventCenter.Instance.Register<GameTime>(EventName.MINUTE_CHANGE, BindData);
-            EventCenter.Instance.Register<GameTime>(EventName.SECOND_CHANGE, BindData);
             EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, BindData);
         }
 
@@ -40,7 +39,6 @@ namespace LittleWorld.UI
             EventCenter.Instance?.Unregister<GameTime>(EventName.DAY_CHANGE, BindData);
             EventCenter.Instance?.Unregister<GameTime>(EventName.HOUR_CHANGE, BindData);
             EventCenter.Instance?.Unregister<GameTime>(EventName.MINUTE_CHANGE, BindData);
-            EventCenter.Instance?.Unregister<GameTime>(EventName.SECOND_CHANGE, BindData);
             EventCenter.Instance?.Unregister<GameTime>(EventName.GAME_TICK, BindData);
         }
 

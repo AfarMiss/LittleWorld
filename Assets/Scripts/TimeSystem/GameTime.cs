@@ -12,7 +12,6 @@ public struct GameTime
     public int day;
     public int hour;
     public int minute;
-    public int second;
 
     public GameTime(int year, int quad, int day, int hour, int minute, int second)
     {
@@ -21,7 +20,6 @@ public struct GameTime
         this.day = day;
         this.hour = hour;
         this.minute = minute;
-        this.second = second;
     }
 
     public static bool operator ==(GameTime t1, GameTime t2)
@@ -30,8 +28,7 @@ public struct GameTime
               t1.quad == t2.quad &&
               t1.day == t2.day &&
               t1.hour == t2.hour &&
-               t1.minute == t2.minute &&
-                t1.second == t2.second;
+               t1.minute == t2.minute;
     }
 
     public static bool operator !=(GameTime t1, GameTime t2)
@@ -40,8 +37,7 @@ public struct GameTime
               t1.quad != t2.quad ||
               t1.day != t2.day ||
               t1.hour != t2.hour ||
-               t1.minute != t2.minute ||
-                t1.second != t2.second;
+               t1.minute != t2.minute;
     }
 
 
@@ -71,24 +67,17 @@ public struct GameTime
     public void AddTick()
     {
         EventCenter.Instance.Trigger(nameof(EventName.GAME_TICK), this);
-
-        second++;
-        EventCenter.Instance.Trigger(EventName.SECOND_CHANGE, this);
-        if (second >= 60)
+        minute++;
+        EventCenter.Instance.Trigger(EventName.MINUTE_CHANGE, this);
+        if (minute >= 60)
         {
-            second = 0;
-            minute++;
-            EventCenter.Instance.Trigger(EventName.MINUTE_CHANGE, this);
-            if (minute >= 60)
+            minute = 0;
+            hour++;
+            EventCenter.Instance.Trigger(EventName.HOUR_CHANGE, this);
+            if (hour >= 24)
             {
-                minute = 0;
-                hour++;
-                EventCenter.Instance.Trigger(EventName.HOUR_CHANGE, this);
-                if (hour >= 24)
-                {
-                    hour = 0;
-                    AddOneDay();
-                }
+                hour = 0;
+                AddOneDay();
             }
         }
     }
@@ -100,7 +89,16 @@ public struct GameTime
                quad == time.quad &&
                day == time.day &&
                hour == time.hour &&
-               minute == time.minute &&
-               second == time.second;
+               minute == time.minute;
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return base.ToString();
     }
 }

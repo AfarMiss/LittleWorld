@@ -100,14 +100,35 @@ namespace LittleWorld.Item
 
         public static void ShowInfo(Object[] objects)
         {
-            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
-            briefPanel.BindBriefInfo(objects);
+            UIManager.Instance.HideAllInfoPanel();
+            if (objects.Length <= 0)
+            {
+                return;
+            }
+            if (objects.Length > 1)
+            {
+                var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
+                briefPanel.BindBriefInfo(objects);
+            }
+            else if (objects.Length == 1)
+            {
+                ShowInfo(objects[0]);
+            }
         }
 
-        public static void ShowInfo(Object objects)
+        public static void ShowInfo(Object o)
         {
-            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
-            briefPanel.BindBriefInfo(new LittleWorld.Item.Object[] { objects });
+            BriefInfoPanel briefInfoPanel;
+            if (o is Animal)
+            {
+                briefInfoPanel = UIManager.Instance.Show<BriefInfoAnimalPanel>(UIType.PANEL, UIPath.Panel_BriefInfoAnimalPanel);
+                briefInfoPanel.BindBriefInfo(o);
+            }
+            else
+            {
+                briefInfoPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
+                briefInfoPanel.BindBriefInfo(o);
+            }
         }
 
         public virtual void Tick()

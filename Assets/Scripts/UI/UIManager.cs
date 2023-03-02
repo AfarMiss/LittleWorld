@@ -72,6 +72,13 @@ namespace LittleWorld.UI
             return Show<T>(UIType.PANEL, realPath);
         }
 
+        public void HideAllInfoPanel()
+        {
+            UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
+            UIManager.Instance.Hide<BriefInfoAnimalPanel>(UIType.PANEL);
+
+        }
+
         public T Show<T>(UIType uiType, string path) where T : BaseUI, new()
         {
             GameObject parent = GameObject.FindGameObjectWithTag("UICanvas");

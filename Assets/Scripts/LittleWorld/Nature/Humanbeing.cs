@@ -11,6 +11,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using AI;
+using System.Net.Cache;
+using static LittleWorld.HealthTracer;
 
 namespace LittleWorld.Item
 {
@@ -92,7 +94,7 @@ namespace LittleWorld.Item
 
         public MotionStatus motionStatus;
 
-        public Humanbeing(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
+        public Humanbeing(int itemCode, Age age, Vector2Int gridPos) : base(itemCode, age, gridPos)
         {
             workTracer = new PawnWorkTracer(this);
             gearTracer = new GearTracer(this);

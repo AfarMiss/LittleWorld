@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using LittleWorld.MapUtility;
 using LittleWorld.Message;
+using static LittleWorld.HealthTracer;
 
 public class SceneObjectManager : Singleton<SceneObjectManager>
 {
@@ -260,9 +261,9 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     public void Init()
     {
-        new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
-        new Animal(13002, new Vector2Int(23, 25));
-        new Animal(13002, new Vector2Int(22, 25));
+        new Humanbeing(ObjectCode.humanbeing.ToInt(), new Age(25), new Vector2Int(25, 25));
+        new Animal(13002, new Age(4), new Vector2Int(23, 25));
+        new Animal(13002, new Age(4), new Vector2Int(22, 25));
         new Weapon(17001, new Vector2Int(24, 25));
     }
 
