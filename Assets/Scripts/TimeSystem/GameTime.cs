@@ -51,7 +51,7 @@ public struct GameTime
             day = 1;
             quad++;
             EventCenter.Instance.Trigger(EventName.QUAD_CHANGE, this);
-            if (quad >= 15)
+            if (quad >= 4)
             {
                 quad = 1;
                 year++;

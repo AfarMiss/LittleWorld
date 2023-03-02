@@ -18,23 +18,15 @@ namespace LittleWorld.UI
         [SerializeField] protected GameObject itemCommandGameObject;
         [SerializeField] protected Transform commandParent;
 
-        protected void OnEnable()
+        protected virtual void OnEnable()
         {
-            EventCenter.Instance.Register<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
         }
 
-        protected void OnDisable()
+        protected virtual void OnDisable()
         {
-            EventCenter.Instance?.Register<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
         }
 
-        private void OnWeaponChanged(Weapon arg0)
-        {
-            if (arg0.Owner.IsSelectedOnly)
-            {
-                BindBriefInfo(arg0.Owner);
-            }
-        }
+
 
         public void BindBriefInfo(Item.Object[] objects)
         {

@@ -8,29 +8,22 @@ using static LittleWorld.HealthTracer;
 
 namespace LittleWorld.Item
 {
-    public class Animal : WorldObject
+    public class Animal : Living
     {
         protected PathNavigation pathTracer;
         protected AnimalInfo animalInfo;
-        protected HealthTracer healthTracer;
         protected WorkTracer workTracer;
         /// <summary>
         /// 是否处于被征召状态
         /// </summary>
         protected bool isDrafted = false;
-
-        public bool IsDead => healthTracer.isDead;
-
         public Face FaceTo => pathTracer.animalFace;
         public float MoveSpeed => animalInfo.moveSpeed;
         public bool IsMoving => pathTracer.IsMoving;
         public Vector2Int? CurDestination => pathTracer.CurDestination;
 
-        public float Hp => healthTracer.curHealth;
         public float CurHunger => healthTracer.curHealth;
-        public float HpPercent => healthTracer.curHealth / healthTracer.maxHealth;
         public float HungerPercent => healthTracer.curHunger / healthTracer.maxHunger;
-        public Age Age => healthTracer.age;
 
         public Animal(int itemCode, Age age, Vector2Int gridPos) : base(itemCode, gridPos)
         {

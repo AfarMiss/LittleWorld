@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using ProcedualWorld;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace LittleWorld
@@ -28,22 +29,52 @@ namespace LittleWorld
 
         public struct Age
         {
-            public int yearAge;
-            public int dayAge;
-            public int hourAge;
-            public int minAge;
+            public int year;
+            public int day;
+            public int hour;
+            public int min;
 
             public Age(int yearAge, int dayAge = 0, int hourAge = 0, int minAge = 0)
             {
-                this.yearAge = yearAge;
-                this.dayAge = dayAge;
-                this.hourAge = hourAge;
-                this.minAge = minAge;
+                this.year = yearAge;
+                this.day = dayAge;
+                this.hour = hourAge;
+                this.min = minAge;
             }
 
             public override string ToString()
             {
-                return $"{yearAge}年{dayAge}天";
+                return $"{year}年{day}天";
+            }
+
+            public void AddSingleDay()
+            {
+                day++;
+                EventCenter.Instance.Trigger(EventName.LIVING_AGE_DAY_CHANGE, this);
+                if (day >= 30)
+                {
+                    day = 1;
+                    if (day >= 120)
+                    {
+                        year++;
+                        EventCenter.Instance.Trigger(EventName.LIVING_AGE_YEAR_CHANGE, this);
+                    }
+                }
+            }
+
+            public void AddTick()
+            {
+                min++;
+                if (min >= 60)
+                {
+                    min = 0;
+                    hour++;
+                    if (hour >= 24)
+                    {
+                        hour = 0;
+                        AddSingleDay();
+                    }
+                }
             }
         }
 
