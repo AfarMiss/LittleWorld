@@ -23,12 +23,12 @@ namespace LittleWorld.Item
 
         private void OnGameTick(GameTime arg0)
         {
-            throw new NotImplementedException();
+
         }
 
         public override Sprite GetSprite()
         {
-            throw new System.NotImplementedException();
+            return null;
         }
 
         protected override void OnDestroy()

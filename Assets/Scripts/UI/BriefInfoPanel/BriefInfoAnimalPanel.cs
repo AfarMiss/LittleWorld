@@ -50,7 +50,7 @@ namespace LittleWorld.UI
 
         private void OnDayChanged(Age arg0)
         {
-            throw new NotImplementedException();
+            UpdateAge(arg0);
         }
 
         protected override void OnDisable()

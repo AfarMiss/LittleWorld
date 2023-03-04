@@ -86,6 +86,7 @@ namespace LittleWorld.Item
         {
             base.Tick();
             workTracer?.Tick();
+            healthTracer?.Tick();
         }
     }
 

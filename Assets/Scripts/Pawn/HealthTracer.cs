@@ -1,4 +1,5 @@
-﻿using ProcedualWorld;
+﻿using JetBrains.Annotations;
+using ProcedualWorld;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,11 @@ namespace LittleWorld
             this.maxSleep = maxSleep;
             this.curSleep = maxSleep;
             this.age = age;
+        }
+
+        public void Tick()
+        {
+            this.age.Tick();
         }
 
         public bool isDead => curHealth <= 0;
@@ -62,7 +68,7 @@ namespace LittleWorld
                 }
             }
 
-            public void AddTick()
+            public void Tick()
             {
                 min++;
                 if (min >= 60)
