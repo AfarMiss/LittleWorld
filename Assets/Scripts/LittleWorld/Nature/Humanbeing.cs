@@ -128,7 +128,6 @@ namespace LittleWorld.Item
         public void AddMoveWork(Vector3Int targetPos)
         {
             workTracer.AddWork(new GoToLocWork(this, targetPos.To2()));
-
         }
 
         public void AddEquipWork(Weapon weapon)
@@ -138,7 +137,7 @@ namespace LittleWorld.Item
 
         public void AddFireWork(Animal animal)
         {
-            workTracer.AddWork(new ShootWork(this, animal));
+            workTracer.AddWork(new HuntWork(this, animal));
         }
 
         public void FireAt(Animal animal)

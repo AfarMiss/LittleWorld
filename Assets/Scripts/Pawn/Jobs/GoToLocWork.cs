@@ -11,8 +11,12 @@ namespace LittleWorld.Jobs
     {
         public GoToLocWork(Humanbeing humanbeing, Vector2Int destination)
         {
-            MoveLeaf dynamicWalk = new MoveLeaf("Go To Loc", destination, humanbeing);
-            tree.AddChild(dynamicWalk);
+            if (!Current.CurMap.GetGrid(destination).isLand)
+            {
+                return;
+            }
+            MoveLeaf moveLeaf = new MoveLeaf("Go To Loc", destination, humanbeing);
+            tree.AddChild(moveLeaf);
         }
     }
 }

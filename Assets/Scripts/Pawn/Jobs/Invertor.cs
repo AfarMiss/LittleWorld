@@ -13,7 +13,7 @@ namespace AI
 
         public override Status Process()
         {
-            var s = children[currentChild].Process();
+            var s = children[currentChildIndex].Process();
             switch (s)
             {
                 case Status.SUCCESS:

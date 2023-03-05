@@ -9,7 +9,7 @@ namespace AI
     {
         public BehaviourTree()
         {
-            name = "Tree";
+            name = "BehaviourTree";
         }
 
         private Dictionary<string, object> dataContext = new Dictionary<string, object>();
@@ -18,6 +18,9 @@ namespace AI
         {
             dataContext[key] = value;
         }
+
+        public bool HasChildren => children.Count > 0;
+
 
         public object GetVariable(string key)
         {
@@ -36,9 +39,28 @@ namespace AI
             name = n;
         }
 
+        public override void AddChild(Node n)
+        {
+            base.AddChild(n);
+            if (currentChildIndex == -1)
+            {
+                currentChildIndex = 0;
+            }
+        }
+
         public override Status Process()
         {
-            return children[currentChild].Process();
+            if (currentChildIndex >= children.Count)
+            {
+                Debug.LogError("状态越界:" + this.name);
+                return Status.FAILURE;
+            }
+            if (currentChildIndex < 0)
+            {
+                Debug.LogWarning("空树:" + this.name);
+                return Status.FAILURE;
+            }
+            return children[currentChildIndex].Process();
         }
 
         struct NodeLevel

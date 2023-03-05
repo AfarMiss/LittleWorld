@@ -12,25 +12,34 @@ namespace AI
 
         }
 
+        public override void AddChild(Node n)
+        {
+            base.AddChild(n);
+            if (currentChildIndex == -1)
+            {
+                currentChildIndex = 0;
+            }
+        }
+
         public override Status Process()
         {
             if (children.Count == 0)
             {
                 return Status.FAILURE;
             }
-            Status childStatus = children[currentChild].Process();
+            Status childStatus = children[currentChildIndex].Process();
             if (childStatus == Status.RUNNING || childStatus == Status.FAILURE)
             {
                 return childStatus;
             }
             else
             {
-                currentChild++;
+                currentChildIndex++;
             }
 
-            if (currentChild >= children.Count)
+            if (currentChildIndex >= children.Count)
             {
-                currentChild = 0;
+                currentChildIndex = 0;
                 return Status.SUCCESS;
             }
             else

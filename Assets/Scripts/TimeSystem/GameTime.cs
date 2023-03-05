@@ -66,7 +66,7 @@ public struct GameTime
 
     public void AddTick()
     {
-        EventCenter.Instance.Trigger(nameof(EventName.GAME_TICK), this);
+        EventCenter.Instance.Trigger(EventName.GAME_TICK, this);
         minute++;
         EventCenter.Instance.Trigger(EventName.MINUTE_CHANGE, this);
         if (minute >= 60)

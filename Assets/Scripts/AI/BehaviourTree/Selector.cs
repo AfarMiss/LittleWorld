@@ -11,22 +11,22 @@ namespace AI
 
         public override Status Process()
         {
-            Status childStatus = children[currentChild].Process();
+            Status childStatus = children[currentChildIndex].Process();
 
             switch (childStatus)
             {
                 case Status.SUCCESS:
                     {
-                        currentChild = 0;
+                        currentChildIndex = 0;
                         return Status.SUCCESS;
                     }
                 case Status.RUNNING:
                     return Status.RUNNING;
                 case Status.FAILURE:
-                    currentChild++;
-                    if (currentChild >= children.Count)
+                    currentChildIndex++;
+                    if (currentChildIndex >= children.Count)
                     {
-                        currentChild = 0;
+                        currentChildIndex = 0;
                         return Status.FAILURE;
                     }
                     else

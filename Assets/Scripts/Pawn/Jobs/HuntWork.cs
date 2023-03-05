@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class ShootWork : Work
+    public class HuntWork : Work
     {
         public Humanbeing hunter;
         public Animal target;
@@ -59,7 +59,7 @@ namespace LittleWorld.Jobs
             return !target.IsDead;
         }
 
-        public ShootWork(Humanbeing hunter, Animal target)
+        public HuntWork(Humanbeing hunter, Animal target)
         {
             this.hunter = hunter;
             this.target = target;

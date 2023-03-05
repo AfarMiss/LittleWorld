@@ -26,19 +26,19 @@ namespace AI
                 }
                 else
                 {
-                    Status childStatus = children[currentChild].Process();
+                    Status childStatus = children[currentChildIndex].Process();
                     if (childStatus == Status.RUNNING || childStatus == Status.FAILURE)
                     {
                         return childStatus;
                     }
                     else
                     {
-                        currentChild++;
+                        currentChildIndex++;
                     }
 
-                    if (currentChild >= children.Count)
+                    if (currentChildIndex >= children.Count)
                     {
-                        currentChild = 0;
+                        currentChildIndex = 0;
                     }
 
                     return Status.RUNNING;
