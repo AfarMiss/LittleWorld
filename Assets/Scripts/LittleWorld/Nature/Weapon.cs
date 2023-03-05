@@ -68,9 +68,9 @@ namespace LittleWorld.Item
             {
                 if (isAiming && finishCooldown)
                 {
-                    var bullet = PoolManager.Instance.GetNextObject(PoolEnum.Bullet.ToString());
+                    var bullet = ObjectPoolManager.Instance.GetNextObject(PoolEnum.Bullet.ToString());
                     bullet.transform.position = carriedParent.GridPos.To3();
-                    bullet.GetComponent<Bullet>().Init((target.GridPos - carriedParent.GridPos).To3(), WeaponInfo.fireRate);
+                    bullet.GetComponent<Bullet>().Init(target.GridPos.To3(), carriedParent.GridPos.To3(), WeaponInfo.fireRate);
                     curCooldown = this.WeaponInfo.rangedCooldown;
                     isAiming = false;
                     target = null;

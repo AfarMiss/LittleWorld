@@ -8,13 +8,15 @@ namespace LittleWorld.Item
     {
         private Vector3 dir;
         private float speed;
+        private Vector3 targetPos;
         private void FixedUpdate()
         {
             transform.position += Time.fixedDeltaTime * dir * speed;
         }
 
-        public void Init(Vector3 dir, float speed)
+        public void Init(Vector3 targetPos, Vector3 originalPos, float speed)
         {
+            var dir = targetPos - originalPos;
             this.speed = speed;
             this.dir = dir.normalized;
         }
@@ -26,8 +28,11 @@ namespace LittleWorld.Item
 
         IEnumerator DestroySelf()
         {
-            yield return new WaitForSeconds(3);
-            Destroy(gameObject);
+            if (Vector3.Distance(this.transform.position, targetPos) > 0.05f)
+            {
+                yield return null;
+            }
+            ObjectPoolManager.Instance.Putback(PoolEnum.Bullet.ToString(), this.gameObject);
         }
     }
 }

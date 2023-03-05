@@ -137,14 +137,14 @@ public class AudioManager : MonoSingleton<AudioManager>
 
     void Start()
     {
-        PoolManager.Instance.CreatePool(5, soundPrefab, PoolEnum.Sounds.ToString());
+        ObjectPoolManager.Instance.CreatePool(5, soundPrefab, PoolEnum.Sounds.ToString());
     }
 
     public void PlaySound(SoundName soundName)
     {
         if (soundDictionary.TryGetValue(soundName, out SoundItem soundItem) && soundPrefab != null)
         {
-            GameObject soundGameObject = PoolManager.Instance.GetNextObject(PoolEnum.Sounds.ToString());
+            GameObject soundGameObject = ObjectPoolManager.Instance.GetNextObject(PoolEnum.Sounds.ToString());
             Sound sound = soundGameObject.AddComponent<Sound>();
             sound.SetSound(soundItem);
             soundGameObject.SetActive(true);
@@ -155,6 +155,6 @@ public class AudioManager : MonoSingleton<AudioManager>
     private IEnumerator DisableSound(GameObject soundGameObject, float length)
     {
         yield return new WaitForSeconds(length);
-        PoolManager.Instance.Putback(PoolEnum.Sounds.ToString(), soundGameObject);
+        ObjectPoolManager.Instance.Putback(PoolEnum.Sounds.ToString(), soundGameObject);
     }
 }

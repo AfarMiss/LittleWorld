@@ -127,8 +127,8 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         pfBulletEffect = Resources.Load<GameObject>("Prefabs/Weapon/WeaponShootEffectSmokePuff");
 
         renderParent = new GameObject("RenderParent");
-        PoolManager.Instance.CreatePool(30, pfBullet, PoolEnum.Bullet.ToString(), renderParent.transform);
-        PoolManager.Instance.CreatePool(30, pfBulletEffect, PoolEnum.BulletBoomEffect.ToString(), renderParent.transform);
+        ObjectPoolManager.Instance.CreatePool(30, pfBullet, PoolEnum.Bullet.ToString(), renderParent.transform);
+        ObjectPoolManager.Instance.CreatePool(30, pfBulletEffect, PoolEnum.BulletBoomEffect.ToString(), renderParent.transform);
 
         GameObject.DontDestroyOnLoad(renderParent);
     }

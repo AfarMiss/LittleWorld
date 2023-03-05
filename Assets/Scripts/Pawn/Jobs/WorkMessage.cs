@@ -23,4 +23,14 @@ namespace LittleWorld.Message
             this.workID = work.workID;
         }
     }
+
+    public class WorkAbortMessage
+    {
+        public Work work;
+
+        public WorkAbortMessage(Work work)
+        {
+            this.work = work;
+        }
+    }
 }

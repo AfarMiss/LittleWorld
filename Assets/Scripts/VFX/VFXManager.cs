@@ -25,7 +25,7 @@ public class VFXManager : MonoSingleton<VFXManager>
 
     private void CreateVFX(HarvestActionEffect effect, Vector3 arg0)
     {
-        var reap = PoolManager.Instance.GetNextObject(effect.ToString());
+        var reap = ObjectPoolManager.Instance.GetNextObject(effect.ToString());
         reap.transform.position = arg0;
         StartCoroutine(StartReapVFX(reap, effect));
     }
@@ -38,6 +38,6 @@ public class VFXManager : MonoSingleton<VFXManager>
     private IEnumerator StartReapVFX(GameObject obj, HarvestActionEffect effectType)
     {
         yield return new WaitForSeconds(2f);
-        PoolManager.Instance.Putback(effectType.ToString(), obj);
+        ObjectPoolManager.Instance.Putback(effectType.ToString(), obj);
     }
 }

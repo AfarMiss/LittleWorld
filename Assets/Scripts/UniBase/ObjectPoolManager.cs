@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PoolManager : Singleton<PoolManager>
+public class ObjectPoolManager : Singleton<ObjectPoolManager>
 {
     /// <summary>
     /// 对象池配置信息
@@ -20,7 +20,7 @@ public class PoolManager : Singleton<PoolManager>
     /// </summary>
     private Transform defaultParent;
 
-    private PoolManager() { }
+    private ObjectPoolManager() { }
 
     public void CreatePool(int poolSize, GameObject poolPrefab, string poolName = null, Transform parent = null)
     {

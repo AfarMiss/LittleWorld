@@ -15,7 +15,7 @@ namespace LittleWorld
     public class Root : MonoSingleton<Root>
     {
         private UIManager uIManager;
-        private PoolManager poolManager;
+        private ObjectPoolManager poolManager;
         private TileManager tileManager;
         private CommandCenter commandCenter;
         private Game curGame;
@@ -82,7 +82,7 @@ namespace LittleWorld
             ObserveSceneChanges = new List<IObserveSceneChange>();
 
             uIManager = UIManager.Instance;
-            poolManager = PoolManager.Instance;
+            poolManager = ObjectPoolManager.Instance;
             tileManager = TileManager.Instance;
             commandCenter = CommandCenter.Instance;
             eventCenter = EventCenter.Instance;
@@ -96,7 +96,6 @@ namespace LittleWorld
         private void FixedUpdate()
         {
             CurGame?.Tick();
-            //Debug.Log("FixedUpdate:" + this.GetHashCode());
         }
 
         private void Update()

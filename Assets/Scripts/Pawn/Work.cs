@@ -1,4 +1,5 @@
 ﻿using AI;
+using LittleWorld.Message;
 using UnityEngine;
 
 namespace LittleWorld.Jobs
@@ -22,6 +23,7 @@ namespace LittleWorld.Jobs
         public void OnAbort()
         {
             isAborted = true;
+            EventCenter.Instance.Trigger(EventEnum.FORCE_ABORT.ToString(), new WorkAbortMessage(this));
         }
 
         public void OnResume()
