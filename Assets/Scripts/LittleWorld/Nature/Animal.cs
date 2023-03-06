@@ -36,7 +36,7 @@ namespace LittleWorld.Item
         {
             animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
             workTracer = new NonAggressiveWorkTracer(this);
-            healthTracer = new HealthTracer(100, 0.9f, 1f, age);
+            healthTracer = new HealthTracer(100, 0.9f, 1f, age, this);
         }
         public void SetNavi(PathNavigation PawnPathTracer)
         {

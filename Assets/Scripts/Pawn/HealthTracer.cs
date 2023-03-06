@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using LittleWorld.Item;
 using ProcedualWorld;
 using System;
 using System.Collections;
@@ -14,9 +15,10 @@ namespace LittleWorld
         public float maxHunger;
         public float curSleep;
         public float maxSleep;
+        private Animal animal;
         public Age age;
 
-        public HealthTracer(float maxHealth, float maxHunger, float maxSleep, Age age)
+        public HealthTracer(float maxHealth, float maxHunger, float maxSleep, Age age, Animal animal)
         {
             this.maxHealth = maxHealth;
             this.curHealth = maxHealth;
@@ -24,6 +26,7 @@ namespace LittleWorld
             this.curHunger = maxHunger;
             this.maxSleep = maxSleep;
             this.curSleep = maxSleep;
+            this.animal = animal;
             this.age = age;
         }
 
@@ -37,7 +40,7 @@ namespace LittleWorld
             var lastHealth = curHealth;
             var expectHealth = curHealth - damage;
             curHealth = Mathf.Max(0, expectHealth);
-            Debug.Log($"受到伤害，curHealth:{lastHealth}->{curHealth} ");
+            Debug.Log($"受到伤害，{this.animal.ItemName}_{this.animal.instanceID} curHealth:{lastHealth}->{curHealth} ");
         }
 
         public bool isDead => curHealth <= 0;
