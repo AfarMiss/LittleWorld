@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using ProcedualWorld;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +30,14 @@ namespace LittleWorld
         public void Tick()
         {
             this.age.Tick();
+        }
+
+        internal void GetDamage(float damage)
+        {
+            var lastHealth = curHealth;
+            var expectHealth = curHealth - damage;
+            curHealth = Mathf.Max(0, expectHealth);
+            Debug.Log($"受到伤害，curHealth:{lastHealth}->{curHealth} ");
         }
 
         public bool isDead => curHealth <= 0;

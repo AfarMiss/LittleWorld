@@ -1,5 +1,7 @@
-﻿using LittleWorld.Extension;
+﻿using DG.Tweening;
+using LittleWorld.Extension;
 using LittleWorld.Item;
+using System.Collections;
 using UnityEngine;
 
 public class ItemRender : MonoBehaviour
@@ -10,6 +12,8 @@ public class ItemRender : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer weapon;
     private SpriteRenderer hualThing;
+    private WorldObject wo;
+    private float lastHit = -1;
 
     private Vector3 initEulerAngle;
 
@@ -41,7 +45,14 @@ public class ItemRender : MonoBehaviour
 
     public int ItemCode { get { return itemCode; } set { itemCode = value; } }
 
-    public void Render<T>(T worldObject) where T : WorldObject
+    public void OnBeHurt()
+    {
+        spriteRenderer.color = Color.red;
+        spriteRenderer.DOColor(Color.white, 3f);
+        //Color.Lerp(spriteRenderer.color,Color.white,)
+    }
+
+    public void OnRender<T>(T worldObject) where T : WorldObject
     {
         if (spriteRenderer == null) return;
         spriteRenderer.enabled = !worldObject.isCarried;
@@ -51,6 +62,19 @@ public class ItemRender : MonoBehaviour
         Set(worldObject);
 
         this.ItemCode = worldObject.itemCode;
+        this.wo = worldObject;
+        if (wo is Animal animal)
+        {
+            animal.OnBeHurt += OnBeHurt;
+        }
+    }
+
+    public void OnDisRender()
+    {
+        if (wo != null && wo is Animal animal)
+        {
+            animal.OnBeHurt -= OnBeHurt;
+        }
     }
 
     private void Set(WorldObject wo)

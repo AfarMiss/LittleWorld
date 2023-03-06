@@ -41,6 +41,15 @@ namespace LittleWorld.UI
             EventCenter.Instance.Register<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
             EventCenter.Instance.Register<Age>(EventName.LIVING_AGE_DAY_CHANGE, OnDayChanged);
             EventCenter.Instance.Register<Age>(EventName.LIVING_AGE_YEAR_CHANGE, OnYearChanged);
+            EventCenter.Instance.Register<Animal>(EventName.LIVING_BE_HURT, OnLivingBeHurt);
+        }
+
+        private void OnLivingBeHurt(Animal arg0)
+        {
+            if (animalWatching == arg0)
+            {
+                this.hpSlider.value = arg0.HpPercent;
+            }
         }
 
         private void OnYearChanged(Age arg0)
@@ -58,6 +67,7 @@ namespace LittleWorld.UI
             EventCenter.Instance?.Unregister<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
             EventCenter.Instance?.Unregister<Age>(EventName.LIVING_AGE_DAY_CHANGE, OnDayChanged);
             EventCenter.Instance?.Unregister<Age>(EventName.LIVING_AGE_YEAR_CHANGE, OnYearChanged);
+            EventCenter.Instance?.Unregister<Animal>(EventName.LIVING_BE_HURT, OnLivingBeHurt);
             animalWatching = null;
         }
 

@@ -1,7 +1,9 @@
 ﻿using LittleWorld.Item;
 using LittleWorld.Jobs;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using static AI.MoveLeaf;
 using static LittleWorld.HealthTracer;
@@ -25,6 +27,11 @@ namespace LittleWorld.Item
         public float CurHunger => healthTracer.curHealth;
         public float HungerPercent => healthTracer.curHunger / healthTracer.maxHunger;
 
+        /// <summary>
+        /// 注册被伤害时事件
+        /// </summary>
+        public Action OnBeHurt;
+
         public Animal(int itemCode, Age age, Vector2Int gridPos) : base(itemCode, gridPos)
         {
             animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
@@ -38,6 +45,13 @@ namespace LittleWorld.Item
         public override Sprite GetSprite()
         {
             return animalInfo.itemSprites[0];
+        }
+
+        public virtual void BeHurt(float damage)
+        {
+            healthTracer.GetDamage(damage);
+            OnBeHurt?.Invoke();
+            EventCenter.Instance.Trigger(EventName.LIVING_BE_HURT, this);
         }
 
         public Sprite GetFaceSprite()

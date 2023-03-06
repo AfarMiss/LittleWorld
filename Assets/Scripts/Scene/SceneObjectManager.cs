@@ -202,9 +202,10 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         }
         else
         {
-            WorldItemsRenderer.TryGetValue(wo, out var renderer);
+            WorldItemsRenderer.TryGetValue(wo, out ItemRender renderer);
             if (renderer != null)
             {
+                renderer.OnDisRender();
                 GameObject.Destroy(renderer.gameObject);
             }
             WorldItemsRenderer.Remove(wo);
@@ -237,7 +238,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
         foreach (var item in WorldItemsRenderer)
         {
-            item.Value.Render(item.Key);
+            item.Value.OnRender(item.Key);
         }
 
         foreach (var item in WorldPileRenderer)

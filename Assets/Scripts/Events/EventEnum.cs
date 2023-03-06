@@ -63,6 +63,7 @@ public class EventName
 
     public static string LIVING_AGE_YEAR_CHANGE = "ANIMAL_AGE_YEAR_CHANGE";
     public static string LIVING_AGE_DAY_CHANGE = "ANIMAL_AGE_DAY_CHANGE";
+    public static string LIVING_BE_HURT = "LIVING_BE_HURT";
     #endregion
 
     #region 物体注册

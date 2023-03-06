@@ -230,11 +230,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalFace: 0
   lastStampFrameCount: -1
-  curDestination: {x: 0, y: 0}
   lineRenderer: {fileID: 1675277764}
   atDestination: 1
   curRenderPos: {x: 0, y: 0}
-  humanID: 0
+  animalID: 0
 --- !u!114 &6286444439015531861
 MonoBehaviour:
   m_ObjectHideFlags: 0

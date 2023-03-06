@@ -11,12 +11,22 @@ namespace LittleWorld.Item
         private Vector3 targetPos;
         private float runtime = -1;
         private float curRuntime = 0;
+        private float damage;
         private void FixedUpdate()
         {
             curRuntime += Time.fixedDeltaTime;
             transform.position += Time.fixedDeltaTime * dir * speed;
             if (curRuntime >= runtime)
             {
+                //伤害判定
+                foreach (var item in WorldUtility.GetWorldObjectsAt(targetPos.ToCell()))
+                {
+                    if (item is Animal animal)
+                    {
+                        animal.BeHurt(damage);
+                    }
+                }
+
                 curRuntime = 0;
                 runtime = -1;
                 ObjectPoolManager.Instance.Putback(PoolEnum.Bullet.ToString(), this.gameObject);
@@ -24,13 +34,14 @@ namespace LittleWorld.Item
             }
         }
 
-        public void Init(Vector3 targetPos, Vector3 originalPos, float speed)
+        public void Init(Vector3 targetPos, Vector3 originalPos, float speed, float damage)
         {
             this.targetPos = targetPos;
             var disatance = targetPos - originalPos;
             this.speed = speed;
             this.dir = disatance.normalized;
             this.runtime = disatance.magnitude / speed;
+            this.damage = damage;
             Debug.Log($"生成子弹{GetHashCode()}:speed:{speed},targetPos:{targetPos},originalPos:{originalPos},pos:{this.transform.position}");
         }
     }
