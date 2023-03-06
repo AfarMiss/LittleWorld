@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using LittleWorld.Extension;
 using LittleWorld.Item;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -49,7 +50,15 @@ public class ItemRender : MonoBehaviour
     {
         spriteRenderer.color = Color.red;
         spriteRenderer.DOColor(Color.white, 3f);
+        StartCoroutine(LogColor());
         //Color.Lerp(spriteRenderer.color,Color.white,)
+    }
+
+    private IEnumerator LogColor()
+    {
+        Debug.Log($"{wo.ItemName}_{wo.instanceID} spriteRenderer.color before hurt:{spriteRenderer.color}");
+        yield return new WaitForSeconds(3f);
+        Debug.Log($"{wo.ItemName}_{wo.instanceID} spriteRenderer.color after hurt:{spriteRenderer.color}");
     }
 
     public void OnRender<T>(T worldObject) where T : WorldObject

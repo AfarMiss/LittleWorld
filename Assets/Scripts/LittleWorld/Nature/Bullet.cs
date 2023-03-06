@@ -16,6 +16,7 @@ namespace LittleWorld.Item
         {
             curRuntime += Time.fixedDeltaTime;
             transform.position += Time.fixedDeltaTime * dir * speed;
+            Debug.Log($"curRuntime:{curRuntime},runtime:{runtime}");
             if (curRuntime >= runtime)
             {
                 //伤害判定
