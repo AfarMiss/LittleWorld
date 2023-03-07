@@ -18,6 +18,8 @@ namespace LittleWorld
         private Animal animal;
         public Age age;
 
+        private bool deadFlag = false;
+
         public HealthTracer(float maxHealth, float maxHunger, float maxSleep, Age age, Animal animal)
         {
             this.maxHealth = maxHealth;
@@ -40,7 +42,13 @@ namespace LittleWorld
             var lastHealth = curHealth;
             var expectHealth = curHealth - damage;
             curHealth = Mathf.Max(0, expectHealth);
-            Debug.Log($"受到伤害，{this.animal.ItemName}_{this.animal.instanceID} curHealth:{lastHealth}->{curHealth} ");
+            Debug.Log($"{this.animal.ItemName}_{this.animal.instanceID}受到伤害,curHealth:{lastHealth}->{curHealth} ");
+
+            if (isDead && !deadFlag)
+            {
+                this.animal.Destroy();
+                deadFlag = true;
+            }
         }
 
         public bool isDead => curHealth <= 0;

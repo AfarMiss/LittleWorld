@@ -39,15 +39,6 @@ namespace AI
             name = n;
         }
 
-        public override void AddChild(Node n)
-        {
-            base.AddChild(n);
-            if (currentChildIndex == -1)
-            {
-                currentChildIndex = 0;
-            }
-        }
-
         public override Status Process()
         {
             if (currentChildIndex >= children.Count)

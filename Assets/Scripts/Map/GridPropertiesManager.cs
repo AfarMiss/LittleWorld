@@ -490,34 +490,34 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
 
     private void OnAdvanceDay(GameTime time)
     {
-        foreach (SO_GridProperties so_gridProperties in so_gridPropertiesArray)
-        {
-            if (GameObjectSave.sceneData.TryGetValue(so_gridProperties.sceneName.ToString(), out SceneSave sceneSave))
-            {
-                if (sceneSave.gridPropertyDetailsDictionary != null)
-                {
-                    for (int i = sceneSave.gridPropertyDetailsDictionary.Count - 1; i >= 0; i--)
-                    {
-                        KeyValuePair<string, GridPropertyDetails> item = sceneSave.gridPropertyDetailsDictionary.ElementAt(i);
+        //foreach (SO_GridProperties so_gridProperties in so_gridPropertiesArray)
+        //{
+        //    if (GameObjectSave.sceneData.TryGetValue(so_gridProperties.sceneName.ToString(), out SceneSave sceneSave))
+        //    {
+        //        if (sceneSave.gridPropertyDetailsDictionary != null)
+        //        {
+        //            for (int i = sceneSave.gridPropertyDetailsDictionary.Count - 1; i >= 0; i--)
+        //            {
+        //                KeyValuePair<string, GridPropertyDetails> item = sceneSave.gridPropertyDetailsDictionary.ElementAt(i);
 
-                        GridPropertyDetails gridPropertyDetails = item.Value;
+        //                GridPropertyDetails gridPropertyDetails = item.Value;
 
-                        if (gridPropertyDetails.growthDays > -1)
-                        {
-                            gridPropertyDetails.growthDays += 1;
-                        }
+        //                if (gridPropertyDetails.growthDays > -1)
+        //                {
+        //                    gridPropertyDetails.growthDays += 1;
+        //                }
 
-                        if (gridPropertyDetails.daysSinceWatered > -1)
-                        {
-                            gridPropertyDetails.daysSinceWatered = -1;
-                        }
+        //                if (gridPropertyDetails.daysSinceWatered > -1)
+        //                {
+        //                    gridPropertyDetails.daysSinceWatered = -1;
+        //                }
 
-                        SetGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY, gridPropertyDetails, sceneSave.gridPropertyDetailsDictionary);
-                    }
-                }
-            }
-            UpdateAllDetails();
-        }
+        //                SetGridPropertyDetails(gridPropertyDetails.gridX, gridPropertyDetails.gridY, gridPropertyDetails, sceneSave.gridPropertyDetailsDictionary);
+        //            }
+        //        }
+        //    }
+        //    UpdateAllDetails();
+        //}
     }
 
     public GameObjectSave ISaveableSave()

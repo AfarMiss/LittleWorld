@@ -55,7 +55,7 @@ public class ItemRender : MonoBehaviour
     {
         spriteRenderer.color = Color.red;
         spriteRenderer.DOColor(Color.white, 0.5f);
-        StartCoroutine(LogColor());
+        //StartCoroutine(LogColor());
     }
 
     private IEnumerator LogColor()

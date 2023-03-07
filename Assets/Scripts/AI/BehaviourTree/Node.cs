@@ -30,6 +30,10 @@ namespace AI
 
         public virtual void AddChild(Node n)
         {
+            if (currentChildIndex == -1)
+            {
+                currentChildIndex = 0;
+            }
             children.Add(n);
         }
 

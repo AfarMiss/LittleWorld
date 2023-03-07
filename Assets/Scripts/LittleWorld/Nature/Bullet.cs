@@ -24,7 +24,7 @@ namespace LittleWorld.Item
                 {
                     if (item is Animal animal)
                     {
-                        animal.BeHurt(damage);
+                        animal.BeHurt(damage * 3);
                     }
                 }
 

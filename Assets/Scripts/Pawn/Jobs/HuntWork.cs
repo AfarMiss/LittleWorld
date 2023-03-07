@@ -16,17 +16,27 @@ namespace LittleWorld.Jobs
 
         public void CreateWorkSequence()
         {
-            Sequence wanderSequence = new Sequence("hunter Sequence");
+            ConditionLoop huntLoop = new ConditionLoop("Hunt Loop", HuntLoop);
+
+            Sequence singleHuntSequence = new Sequence("hunter Sequence");
             CheckLeaf checkLeaf = new CheckLeaf("Check target is Alive", CheckTargetIsAlive);
             MoveLeaf walkLeaf = new MoveLeaf("Go To hunt target", GetHuntPoint(), hunter);
             CheckLeaf checkCanHuntLeaf = new CheckLeaf("Check whether can hunt", CheckWhetherCanHunt);
             DynamicLongJobLeaf shoot = new DynamicLongJobLeaf("shoot", hunter, Fire, GetHuntPoint);
 
-            wanderSequence.AddChild(checkLeaf);
-            wanderSequence.AddChild(walkLeaf);
-            wanderSequence.AddChild(checkCanHuntLeaf);
-            wanderSequence.AddChild(shoot);
-            tree.AddChild(wanderSequence);
+            singleHuntSequence.AddChild(checkLeaf);
+            singleHuntSequence.AddChild(walkLeaf);
+            singleHuntSequence.AddChild(checkCanHuntLeaf);
+            singleHuntSequence.AddChild(shoot);
+
+            huntLoop.AddChild(singleHuntSequence);
+
+            tree.AddChild(huntLoop);
+        }
+
+        private bool HuntLoop()
+        {
+            return target.IsDead;
         }
 
         private bool CheckWhetherCanHunt()

@@ -4,8 +4,15 @@ using UnityEngine;
 
 namespace AI
 {
+    /// <summary>
+    /// 直到条件成立，返回成功
+    /// </summary>
     public class ConditionLoop : Node
     {
+        /// <summary>
+        /// 条件
+        /// </summary>
+        /// <returns></returns>
         public delegate bool Tick();
         private Tick check;
 

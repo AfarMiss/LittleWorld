@@ -99,8 +99,9 @@ namespace LittleWorld.Item
         public override void Tick()
         {
             base.Tick();
-            workTracer?.Tick();
+            if (IsDead) return;
             healthTracer?.Tick();
+            workTracer?.Tick();
         }
     }
 
