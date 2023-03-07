@@ -18,8 +18,13 @@ public class ItemRender : MonoBehaviour
 
     private Vector3 initEulerAngle;
 
-    private void Start()
+    public void Init(WorldObject wo)
     {
+        this.wo = wo;
+        if (wo is Animal animal)
+        {
+            animal.OnBeHurt += OnBeHurt;
+        }
         var spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         foreach (var item in spriteRenderers)
         {
@@ -49,15 +54,14 @@ public class ItemRender : MonoBehaviour
     public void OnBeHurt()
     {
         spriteRenderer.color = Color.red;
-        spriteRenderer.DOColor(Color.white, 3f);
+        spriteRenderer.DOColor(Color.white, 0.5f);
         StartCoroutine(LogColor());
-        //Color.Lerp(spriteRenderer.color,Color.white,)
     }
 
     private IEnumerator LogColor()
     {
         Debug.Log($"{wo.ItemName}_{wo.instanceID} spriteRenderer.color before hurt:{spriteRenderer.color}");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.5f);
         Debug.Log($"{wo.ItemName}_{wo.instanceID} spriteRenderer.color after hurt:{spriteRenderer.color}");
     }
 
@@ -68,14 +72,10 @@ public class ItemRender : MonoBehaviour
         if (worldObject.isCarried || worldObject.inBuildingConstruction) { return; }
         //this.gameObject.AddComponent<NudgeItem>();
         spriteRenderer.sprite = worldObject.GetSprite();
-        Set(worldObject);
+        OnUpdate(worldObject);
 
         this.ItemCode = worldObject.itemCode;
-        this.wo = worldObject;
-        if (wo is Animal animal)
-        {
-            animal.OnBeHurt += OnBeHurt;
-        }
+
     }
 
     public void OnDisRender()
@@ -86,7 +86,12 @@ public class ItemRender : MonoBehaviour
         }
     }
 
-    private void Set(WorldObject wo)
+    private void SetPropertyOnce()
+    {
+
+    }
+
+    private void OnUpdate(WorldObject wo)
     {
         spriteRenderer.transform.localScale = Vector3.one;
         //spriteRenderer.transform.localPosition = new Vector3(

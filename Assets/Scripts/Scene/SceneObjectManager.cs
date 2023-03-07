@@ -156,13 +156,23 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     private void AddRenderComponent(WorldObject wo)
     {
-        if (wo is not Animal)
+        if (wo is Animal animal)
+        {
+            GameObject curPawn = GameObject.Instantiate<GameObject>(pfAnimal, renderParent.transform);
+            curPawn.GetComponent<Transform>().transform.position = animal.GridPos.To3();
+            curPawn.GetComponent<PathNavigation>().Initialize(animal.instanceID);
+            animal.SetNavi(curPawn.GetComponent<PathNavigation>());
+            WorldItemsRenderer.Add(animal, curPawn.GetComponent<ItemRender>());
+            curPawn.GetComponent<ItemRender>().Init(animal);
+        }
+        else
         {
             if (!wo.canPile)
             {
                 GameObject itemGameObject = GameObject.Instantiate(pfItem, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
                 ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
                 WorldItemsRenderer.Add(wo, itemComponent);
+                itemComponent.GetComponent<ItemRender>().Init(wo);
             }
             else
             {
@@ -173,15 +183,6 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
                     WorldPileRenderer.Add(wo.GridPos, new PileInfo(wo.itemCode, itemComponent, wo.mapBelongTo));
                 }
             }
-        }
-        else
-        {
-            var animal = wo as Animal;
-            GameObject curPawn = GameObject.Instantiate<GameObject>(pfAnimal, renderParent.transform);
-            curPawn.GetComponent<Transform>().transform.position = animal.GridPos.To3();
-            curPawn.GetComponent<PathNavigation>().Initialize(animal.instanceID);
-            animal.SetNavi(curPawn.GetComponent<PathNavigation>());
-            WorldItemsRenderer.Add(animal, curPawn.GetComponent<ItemRender>());
         }
     }
 
