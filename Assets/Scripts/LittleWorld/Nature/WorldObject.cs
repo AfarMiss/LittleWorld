@@ -85,16 +85,25 @@ namespace LittleWorld.Item
         {
             get
             {
-                if (this is Humanbeing)
+                if (this is Animal animal)
                 {
-                    var navis = GameObject.FindObjectsOfType<PathNavigation>();
-                    var humanNavi = navis.ToList().Find(x => x.animalID == instanceID);
-                    return humanNavi != null ? humanNavi.RenderPos : gridPos;
+                    return animal.PathTracer.RenderPos;
                 }
                 else
                 {
                     return GridPos.To3();
                 }
+            }
+        }
+
+        /// <summary>
+        /// 以渲染锚点为中心，边长为1的正方形
+        /// </summary>
+        public Rect EntityRect
+        {
+            get
+            {
+                return new Rect(RenderPos.To2(), Vector2.one);
             }
         }
 

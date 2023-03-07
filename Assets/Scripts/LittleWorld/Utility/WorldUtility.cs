@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Unity.VisualScripting;
+using UniBase;
 
 namespace LittleWorld
 {
     public static class WorldUtility
     {
-        public static IEnumerable<Item.Object> GetWorldObjectsAt(Vector3 pos)
+        public static IEnumerable<Item.Object> GetObjectsAtCell(Vector3 worldPos)
         {
-            var worldGridPos = pos.ToCell();
-            var allItemsInfo = SceneObjectManager.Instance.WorldObjects;
-            var objectsSet = allItemsInfo.ToList().FindAll(x => x.Value.GridPos == worldGridPos.To2());
+            var worldGridPos = worldPos.ToCell();
+            var objectsSet = SceneObjectManager.Instance.WorldObjects.ToList().FindAll(x => x.Value.GridPos == worldPos.ToCell().To2());
             foreach (var item in objectsSet)
             {
                 yield return item.Value;
@@ -24,6 +24,23 @@ namespace LittleWorld
             {
                 MapSection atSection = allSection.Find(x => x.GridPosList.Contains(worldGridPos.To2()));
                 yield return atSection;
+            }
+        }
+
+        /// <summary>
+        /// 获取当前世界位置的物体(以渲染Rect为基准)
+        /// </summary>
+        /// <param name="worldPos"></param>
+        /// <returns></returns>
+        public static IEnumerable<Item.WorldObject> GetWorldObjectRenderersAt(Vector3 worldPos)
+        {
+            foreach (var item in SceneObjectManager.Instance.WorldObjects)
+            {
+                if (item.Value.EntityRect.Contains(worldPos))
+                {
+                    Debug.Log($"MousePos:{worldPos},WorldObjectRect{item.Value.EntityRect},WorldPos:{item.Value.GridPos}");
+                    yield return item.Value;
+                }
             }
         }
 
@@ -50,8 +67,7 @@ namespace LittleWorld
         {
             //检测是否在开火预备下悬停到了某一目标上
             var currentWorldPos = Camera.main.ScreenToWorldPoint(Current.MousePos);
-            var worldGridPos = currentWorldPos.ToCell();
-            foreach (var item in WorldUtility.GetWorldObjectsAtMouse())
+            foreach (var item in GetWorldObjectRenderersAt(currentWorldPos))
             {
                 if (item is Animal)
                 {
@@ -63,7 +79,7 @@ namespace LittleWorld
 
         public static IEnumerable<Item.Object> GetWorldObjectsAt(Vector2Int pos)
         {
-            return GetWorldObjectsAt(pos.To3());
+            return GetObjectsAtCell(pos.To3());
         }
 
         public static WorldObject[] GetWorldObjectsInRect(Rect worldRect)

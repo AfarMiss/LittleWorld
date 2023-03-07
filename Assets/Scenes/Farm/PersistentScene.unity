@@ -183,7 +183,7 @@ MonoBehaviour:
   pfGhostBuilding: {fileID: 5466280542741998534, guid: 3d23f2a06e9be404c8f05e1239f13f81, type: 3}
   MainCamera: {fileID: 0}
   CurSelectedBuildingCode: 0
-  fireCursor: {fileID: 2800000, guid: 88540b2c8e3d3004592f56f61aa04d61, type: 3}
+  fireCursor: {fileID: 2800000, guid: ecc4039128791f44f80a196b05da5c81, type: 3}
   defaultCursor: {fileID: 2800000, guid: 4ae00905112e8b049b601340dce4e271, type: 3}
   selectedAreaPrefab: {fileID: 8264267579888564747, guid: 2206aee96f6a4ec48a4668c88d05759b, type: 3}
 --- !u!1 &270520721

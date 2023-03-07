@@ -32,6 +32,9 @@ public class PathNavigation : MonoBehaviour
 
     private bool curTargetIsReached = true;
     public bool atDestination = true;
+    /// <summary>
+    /// 实际指向偏离渲染锚点(-0.5,-0.5)的位置
+    /// </summary>
     public Vector2 RenderPos
     {
         get

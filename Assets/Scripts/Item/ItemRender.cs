@@ -100,6 +100,7 @@ public class ItemRender : MonoBehaviour
         //    0);
         if (wo is Animal animal)
         {
+            //渲染组件和物体实际位置偏差为vector2.one/2
             spriteRenderer.transform.localPosition = new Vector3(0.5f, 0.5f, 0);
             weapon.enabled = false;
             spriteRenderer.sprite = animal.GetFaceSprite();

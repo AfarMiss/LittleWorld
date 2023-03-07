@@ -270,7 +270,7 @@ namespace LittleWorld.UI
                 {
                     foreach (var item in InputController.Instance.SelectedObjects)
                     {
-                        GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.ToWorldVector2(), 1, 1);
+                        GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.To2(), 1, 1);
                     }
                 }
                 #endregion

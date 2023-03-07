@@ -20,7 +20,7 @@ namespace LittleWorld.Item
             if (curRuntime >= runtime)
             {
                 //伤害判定
-                foreach (var item in WorldUtility.GetWorldObjectsAt(targetPos.ToCell()))
+                foreach (var item in WorldUtility.GetObjectsAtCell(targetPos.ToCell()))
                 {
                     if (item is Animal animal)
                     {

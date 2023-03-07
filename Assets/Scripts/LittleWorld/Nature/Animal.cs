@@ -12,7 +12,7 @@ namespace LittleWorld.Item
 {
     public class Animal : Living
     {
-        protected PathNavigation pathTracer;
+        private PathNavigation pathTracer;
         protected AnimalInfo animalInfo;
         protected WorkTracer workTracer;
         /// <summary>
@@ -26,6 +26,8 @@ namespace LittleWorld.Item
 
         public float CurHunger => healthTracer.curHealth;
         public float HungerPercent => healthTracer.curHunger / healthTracer.maxHunger;
+
+        public PathNavigation PathTracer { get => pathTracer; }
 
         /// <summary>
         /// 注册被伤害时事件

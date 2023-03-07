@@ -14,7 +14,7 @@ namespace LittleWorld.UI
             var contentList = new List<FloatOption>();
             var cell = mousePos.GetWorldPosition();
 
-            foreach (var worldObject in WorldUtility.GetWorldObjectsAt(cell))
+            foreach (var worldObject in WorldUtility.GetObjectsAtCell(cell))
             {
                 if (worldObject is Plant plant)
                 {
@@ -95,7 +95,7 @@ namespace LittleWorld.UI
         private static List<FloatOption> AddHaulFloatMenu(Humanbeing human, Vector3 pos)
         {
             var results = new List<WorldObject>();
-            foreach (var item in WorldUtility.GetWorldObjectsAt(pos))
+            foreach (var item in WorldUtility.GetObjectsAtCell(pos))
             {
                 if (item is WorldObject wo && wo.canPile)
                 {

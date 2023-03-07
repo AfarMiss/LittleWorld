@@ -23,7 +23,7 @@ namespace LittleWorld.MapUtility
         {
             get
             {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                var objects = WorldUtility.GetObjectsAtCell(pos.To3());
                 if (objects != null)
                 {
                     var result = objects.ToList().Find(x => (x is Plant));
@@ -126,7 +126,7 @@ namespace LittleWorld.MapUtility
         public bool DeleteSinglePiledThing()
         {
             piledAmount--;
-            var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+            var objects = WorldUtility.GetObjectsAtCell(pos.To3());
             if (objects != null)
             {
                 var result = objects.ToList().Find(x =>
@@ -147,7 +147,7 @@ namespace LittleWorld.MapUtility
             wo.carriedParent = hauler;
             piledAmount--;
 
-            var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+            var objects = WorldUtility.GetObjectsAtCell(pos.To3());
             if (objects != null)
             {
                 var result = objects.ToList().Find(x =>
@@ -163,7 +163,7 @@ namespace LittleWorld.MapUtility
 
         public bool PickUp(int itemCode, WorldObject hauler, out WorldObject woPickUp)
         {
-            var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+            var objects = WorldUtility.GetObjectsAtCell(pos.To3());
             var wo = objects.ToList().Find(x => x.itemCode == itemCode
             && x is WorldObject realWo
             && !realWo.isCarried);
@@ -199,7 +199,7 @@ namespace LittleWorld.MapUtility
         {
             get
             {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                var objects = WorldUtility.GetObjectsAtCell(pos.To3());
                 if (objects != null)
                 {
                     var result = objects.ToList().Find(x => (x is Plant));
@@ -212,7 +212,7 @@ namespace LittleWorld.MapUtility
         {
             get
             {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                var objects = WorldUtility.GetObjectsAtCell(pos.To3());
                 if (objects != null)
                 {
                     var result = objects.ToList().Find(x => x is Plant);

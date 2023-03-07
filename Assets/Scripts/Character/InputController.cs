@@ -336,7 +336,7 @@ public class InputController : MonoSingleton<InputController>
     {
         if (callbackContext.canceled)
         {
-            foreach (var item in WorldUtility.GetWorldObjectsAt(onClickLeftEndPositionWorldPosition.ToCell()))
+            foreach (var item in WorldUtility.GetWorldObjectRenderersAt(onClickLeftEndPositionWorldPosition))
             {
                 if (item is Animal animal)
                 {
@@ -544,7 +544,7 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.ReadyToFire:
                 if (WorldUtility.CheckOtherAnimalsAtMouse())
                 {
-                    Cursor.SetCursor(fireCursor, Vector2.zero, CursorMode.Auto);
+                    Cursor.SetCursor(fireCursor, new Vector2(64, 64), CursorMode.Auto);
                 }
                 else
                 {
