@@ -20,18 +20,27 @@ namespace LittleWorld.Jobs
 
             Sequence singleHuntSequence = new Sequence("hunter Sequence");
             CheckLeaf checkLeaf = new CheckLeaf("Check target is Alive", CheckTargetIsAlive);
-            MoveLeaf walkLeaf = new MoveLeaf("Go To hunt target", GetHuntPoint(), hunter);
+
+            LoopUntilSuccess moveLoop = new LoopUntilSuccess("Move Loop");
+            MoveUntilSuccessLeaf walkLeaf = new MoveUntilSuccessLeaf("Go To hunt target", GetHuntPoint(), hunter, GetHuntPoint);
+            moveLoop.AddChild(walkLeaf);
+
             CheckLeaf checkCanHuntLeaf = new CheckLeaf("Check whether can hunt", CheckWhetherCanHunt);
             DynamicLongJobLeaf shoot = new DynamicLongJobLeaf("shoot", hunter, Fire, GetHuntPoint);
 
             singleHuntSequence.AddChild(checkLeaf);
-            singleHuntSequence.AddChild(walkLeaf);
+            singleHuntSequence.AddChild(moveLoop);
             singleHuntSequence.AddChild(checkCanHuntLeaf);
             singleHuntSequence.AddChild(shoot);
 
             huntLoop.AddChild(singleHuntSequence);
 
             tree.AddChild(huntLoop);
+        }
+
+        private bool MoveLoop()
+        {
+            throw new NotImplementedException();
         }
 
         private bool HuntLoop()

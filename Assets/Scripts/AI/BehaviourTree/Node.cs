@@ -23,7 +23,7 @@ namespace AI
 
         }
 
-        public Node(string n)
+        protected Node(string n)
         {
             name = n;
         }

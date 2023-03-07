@@ -131,7 +131,7 @@ namespace LittleWorld.UI
             {
                 if (humanbeing.gearTracer.curWeapon != null)
                 {
-                    var command2 = AddCommand("开火", null);
+                    var command2 = AddCommand("狩猎", null);
                     command2.BindCommand(() =>
                     {
                         CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ReadyToFire));
