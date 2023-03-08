@@ -84,6 +84,12 @@ namespace LittleWorld.Jobs
             this.target = target;
             CreateWorkSequence();
         }
+
+        public override void OnAbort()
+        {
+            base.OnAbort();
+            this.hunter.StopFire();
+        }
     }
 
 }

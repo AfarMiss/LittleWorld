@@ -15,7 +15,7 @@ namespace LittleWorld.MapUtility
         private int piledThingCode = -1;
         public Dictionary<int, int> curBuildingContain;
 
-        public bool isLand => gridAltitudeLayer >= 30;
+        public bool isLand => gridAltitudeLayer >= 20;
 
         public bool isPlane => gridAltitudeLayer >= 30 && gridAltitudeLayer < 75;
         public bool isMountain => gridAltitudeLayer >= 75 && gridAltitudeLayer <= 100;

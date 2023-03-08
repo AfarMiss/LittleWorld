@@ -69,26 +69,31 @@ namespace LittleWorld.Item
             }
         }
 
+        public void StopFire()
+        {
+            gearTracer.curWeapon.StopFire();
+        }
+
         public int GetWorkSpeed(WorkTypeEnum type)
         {
             switch (type)
             {
                 case WorkTypeEnum.dug:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.water:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.gotoLoc:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.cut:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.harvest:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.sow:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.carry:
-                    return 2;
+                    return 6;
                 default:
-                    return 2;
+                    return 6;
             }
         }
 

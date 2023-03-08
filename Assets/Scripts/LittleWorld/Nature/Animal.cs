@@ -40,13 +40,23 @@ namespace LittleWorld.Item
             workTracer = new NonAggressiveWorkTracer(this);
             healthTracer = new HealthTracer(100, 0.9f, 1f, age, this);
         }
+
         public void SetNavi(PathNavigation PawnPathTracer)
         {
             this.pathTracer = PawnPathTracer;
         }
+
         public override Sprite GetSprite()
         {
             return animalInfo.itemSprites[0];
+        }
+
+        public void StopAllAction()
+        {
+            if (this is Humanbeing humanbeing)
+            {
+                humanbeing.gearTracer.curWeapon?.StopFire();
+            }
         }
 
         public virtual void BeHurt(float damage)

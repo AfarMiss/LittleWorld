@@ -1,6 +1,4 @@
 ﻿using LittleWorld.MapUtility;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace LittleWorld.Item
@@ -40,9 +38,13 @@ namespace LittleWorld.Item
 
         public void Attack(WorldObject target)
         {
-            Debug.LogWarning("开始攻击!");
-            isAiming = true;
-            this.target = target;
+            if (!isAiming)
+            {
+                Debug.LogWarning("开始攻击!");
+                curCooldown = this.WeaponInfo.rangedCooldown;
+                isAiming = true;
+                this.target = target;
+            }
         }
 
         public override void Tick()
@@ -57,9 +59,7 @@ namespace LittleWorld.Item
                 curCooldown = this.WeaponInfo.rangedCooldown;
             }
             finishCooldown = curCooldown <= 0;
-
             TryFire();
-            //Debug.Log($"curCooldown:{curCooldown},use hashCode:{GetHashCode()}");
         }
 
         private void TryFire()
@@ -70,11 +70,21 @@ namespace LittleWorld.Item
                 {
                     var bullet = ObjectPoolManager.Instance.GetNextObject(PoolEnum.Bullet.ToString());
                     bullet.transform.position = carriedParent.GridPos.To3();
-                    bullet.GetComponent<Bullet>().Init(target.GridPos.To3(), carriedParent.GridPos.To3(), WeaponInfo.fireRate,WeaponInfo.meleeDamage);
+                    bullet.GetComponent<Bullet>().Init(target.GridPos.To3(), carriedParent.GridPos.To3(), WeaponInfo.fireRate, WeaponInfo.meleeDamage);
                     curCooldown = this.WeaponInfo.rangedCooldown;
                     isAiming = false;
                     target = null;
                 }
+            }
+        }
+
+        public void StopFire()
+        {
+            if (isAiming)
+            {
+                isAiming = false;
+                curCooldown = this.WeaponInfo.rangedCooldown;
+                this.target = null;
             }
         }
     }

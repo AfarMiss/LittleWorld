@@ -20,7 +20,7 @@ namespace LittleWorld.Jobs
             isSuspended = true;
         }
 
-        public void OnAbort()
+        public virtual void OnAbort()
         {
             isAborted = true;
             EventCenter.Instance.Trigger(EventEnum.FORCE_ABORT.ToString(), new WorkAbortMessage(this));
@@ -68,11 +68,6 @@ namespace LittleWorld.Jobs
         //{
         //    return new BehaviourTree();
         //}
-
-        public virtual void OnForceDiscard()
-        {
-
-        }
 
     }
 }
