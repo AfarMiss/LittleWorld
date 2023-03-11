@@ -10,6 +10,7 @@ namespace LittleWorld.Item
 {
     public abstract class WorldObject : Object
     {
+        public bool isDestroyed = false;
         public bool isCarried = false;
         public bool canPile = false;
         public WorldObject carriedParent = null;
@@ -67,6 +68,7 @@ namespace LittleWorld.Item
 
         public void Destroy()
         {
+            isDestroyed = true;
             OnDestroy();
             if (this.canPile && !inBuildingConstruction)
             {

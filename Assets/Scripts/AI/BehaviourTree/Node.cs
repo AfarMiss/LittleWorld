@@ -44,6 +44,21 @@ namespace AI
 
         }
 
+        /// <summary>
+        /// 运行时重置
+        /// </summary>
+        protected virtual void RunningReset()
+        {
+            if (currentChildIndex != -1)
+            {
+                currentChildIndex = 0;
+            }
+            foreach (var item in children)
+            {
+                item.RunningReset();
+            }
+        }
+
         public virtual Status Process()
         {
             return children[currentChildIndex].Process();
@@ -59,7 +74,7 @@ namespace AI
             if (!animal.IsMoving || (animal.IsMoving && animal.CurDestination.HasValue && animal.CurDestination.Value != destination))
             {
                 animal.GoToLoc(destination, moveType);
-                Debug.Log("重新计算路径for" + destination);
+                Debug.Log($"{animal.ItemName}_{animal.instanceID}重新计算路径for{destination}");
             }
             if (animal.GridPos == destination)
             {

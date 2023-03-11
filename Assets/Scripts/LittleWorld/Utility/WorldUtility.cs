@@ -36,9 +36,9 @@ namespace LittleWorld
         {
             foreach (var item in SceneObjectManager.Instance.WorldObjects)
             {
-                if (item.Value.EntityRect.Contains(worldPos))
+                if (!item.Value.isDestroyed && item.Value.EntityRect.Contains(worldPos))
                 {
-                    Debug.Log($"MousePos:{worldPos},WorldObjectRect{item.Value.EntityRect},WorldPos:{item.Value.GridPos}");
+                    //Debug.Log($"MousePos:{worldPos},WorldObjectRect{item.Value.EntityRect},WorldPos:{item.Value.GridPos}");
                     yield return item.Value;
                 }
             }

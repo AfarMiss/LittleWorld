@@ -17,10 +17,16 @@ namespace AI
         public Tick ProcessMethod;
         private MoveType moveType;
         public delegate Vector2Int CalculatePath();
+        private CalculatePath calculateFunc;
 
-        public MoveUntilSuccessLeaf(string name, Vector2Int destination, Animal animal, CalculatePath calculateFunc, MoveType moveType = MoveType.walk)
+        public MoveUntilSuccessLeaf(string name, Animal animal, CalculatePath calculateFunc, MoveType moveType = MoveType.walk)
         {
-            var curDestination = destination;
+            Init(name, animal, calculateFunc, moveType);
+        }
+
+        private void Init(string name, Animal animal, CalculatePath calculateFunc, MoveType moveType)
+        {
+            var curDestination = calculateFunc();
             while (!Current.CurMap.GetGrid(curDestination).isLand)
             {
                 Debug.LogWarning($"重新计算目的地 for MoveUntilSuccessLeaf,旧:{curDestination}");
@@ -32,6 +38,19 @@ namespace AI
             this.name = name;
             this.ProcessMethod = GoToLoc;
             this.moveType = moveType;
+            this.calculateFunc = calculateFunc;
+        }
+
+        protected override void RunningReset()
+        {
+            var curDestination = calculateFunc();
+            while (!Current.CurMap.GetGrid(curDestination).isLand)
+            {
+                Debug.LogWarning($"重新计算目的地 for MoveUntilSuccessLeaf,旧:{curDestination}");
+                curDestination = calculateFunc();
+                Debug.LogWarning($"重新计算目的地 for MoveUntilSuccessLeaf,新:{curDestination}");
+            }
+            this.destination = curDestination;
         }
 
         public override Status Process()

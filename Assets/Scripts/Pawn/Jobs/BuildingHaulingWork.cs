@@ -15,7 +15,7 @@ namespace LittleWorld.Jobs
             Humanbeing humanbeing = tree.GetVariable("Humanbeing") as Humanbeing;
             Building building = tree.GetVariable("Building") as Building;
             //carry
-            ConditionLoop checkAllRawMaterialContained = new ConditionLoop("Check All RawMaterial Contained", CheckAllRawMaterialContained);
+            LoopUnitlConditionSuccess checkAllRawMaterialContained = new LoopUnitlConditionSuccess("Check All RawMaterial Contained", CheckAllRawMaterialContained);
 
             DynamicWalk walkLeaf = new DynamicWalk("Go To Object", humanbeing, Node.GoToLoc, GetRawMaterialPos);
             DynamicLongJobLeaf carry = new DynamicLongJobLeaf("Carry", humanbeing, DoHaul, GetRawMaterialPos);

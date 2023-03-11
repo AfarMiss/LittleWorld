@@ -23,7 +23,7 @@ namespace LittleWorld.Jobs
             tree.SetVariable("plantCode", plantCode);
             AI.Sequence sowSequence = new AI.Sequence("Sow Sequence");
             //harvest
-            ConditionLoop harvestArea = new ConditionLoop("Harvest Area", HarvestedAll);
+            LoopUnitlConditionSuccess harvestArea = new LoopUnitlConditionSuccess("Harvest Area", HarvestedAll);
             Leaf calculateNextHarvest = new Leaf("Calculate Next Harvest", CalculateNextHarvest);
             DynamicWalk walkLeaf = new DynamicWalk("Go To Harvest", humanbeing, Node.GoToLoc, GetHarvestPos);
             DynamicLongJobLeaf harvestLeaf = new DynamicLongJobLeaf("Do Harvest", humanbeing, DoHarvest, GetHarvestPos);

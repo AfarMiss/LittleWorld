@@ -16,13 +16,13 @@ namespace LittleWorld.Jobs
 
         public void CreateWorkSequence()
         {
-            ConditionLoop huntLoop = new ConditionLoop("Hunt Loop", HuntLoop);
+            LoopUnitlConditionSuccess huntLoop = new LoopUnitlConditionSuccess("Hunt Loop", HuntLoop);
 
             Sequence singleHuntSequence = new Sequence("hunter Sequence");
             CheckLeaf checkLeaf = new CheckLeaf("Check target is Alive", CheckTargetIsAlive);
 
             LoopUntilSuccess moveLoop = new LoopUntilSuccess("Move Loop");
-            MoveUntilSuccessLeaf walkLeaf = new MoveUntilSuccessLeaf("Go To hunt target", GetHuntPoint(), hunter, GetHuntPoint);
+            MoveUntilSuccessLeaf walkLeaf = new MoveUntilSuccessLeaf("Go To hunt target", hunter, GetHuntPoint);
             moveLoop.AddChild(walkLeaf);
 
             CheckLeaf checkCanHuntLeaf = new CheckLeaf("Check whether can hunt", CheckWhetherCanHunt);

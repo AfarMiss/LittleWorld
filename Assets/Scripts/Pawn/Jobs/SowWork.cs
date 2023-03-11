@@ -23,7 +23,7 @@ namespace LittleWorld.Jobs
             tree.SetVariable("seedCode", seedCode);
             AI.Sequence sowSequence = new AI.Sequence("Sow Sequence");
             //cut
-            ConditionLoop cutArea = new ConditionLoop("cut Area", HasCutAllExceptSeedCode);
+            LoopUnitlConditionSuccess cutArea = new LoopUnitlConditionSuccess("cut Area", HasCutAllExceptSeedCode);
             Leaf calculateNextCut = new Leaf("Calculate Next Cut", CalculateNextCut);
             DynamicWalk walkLeaf = new DynamicWalk("Go To Cut", humanbeing, Node.GoToLoc, GetCutPos);
             DynamicLongJobLeaf cutLeaf = new DynamicLongJobLeaf("Do Cut", humanbeing, DoCut, GetCutPos);
@@ -33,7 +33,7 @@ namespace LittleWorld.Jobs
             sowSequence.AddChild(cutArea);
             //dig
             //sow
-            ConditionLoop sowArea = new ConditionLoop("sowArea", HasSowAll);
+            LoopUnitlConditionSuccess sowArea = new LoopUnitlConditionSuccess("sowArea", HasSowAll);
             Leaf calculateNextSow = new Leaf("Calculate Next Sow", CalculateNextSow);
             DynamicWalk walkSowLeaf = new DynamicWalk("Go To Sow", humanbeing, Node.GoToLoc, GetSowPos);
             DynamicLongJobLeaf sowLeaf = new DynamicLongJobLeaf("Do Sow", humanbeing, DoSow, GetSowPos);
