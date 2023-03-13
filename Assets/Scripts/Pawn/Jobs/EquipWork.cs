@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace AI
 {
-    internal class EquipWork : Work
+    internal class EquipWork : WorkBT
     {
         public Weapon weapon;
         public Humanbeing human;

@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace AI
 {
+    /// <summary>
+    /// 思考行为节点，目前的表现即是目标停顿在原地不动
+    /// </summary>
     public class ThinkLeaf : Node
     {
         private float thinkingMaxTime;

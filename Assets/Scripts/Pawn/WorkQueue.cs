@@ -6,6 +6,6 @@ namespace LittleWorld.Jobs
 {
     public class WorkQueue
     {
-        public Queue<Work> queue;
+        public Queue<WorkBT> queue;
     }
 }

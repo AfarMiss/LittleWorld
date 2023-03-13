@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class CutSingleWork : Work
+    public class CutSingleWork : WorkBT
     {
         private int curCutAmount = 0;
 

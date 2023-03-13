@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class MiningSingleWork : Work
+    public class MiningSingleWork : WorkBT
     {
         private int curMiningAmount = 0;
 

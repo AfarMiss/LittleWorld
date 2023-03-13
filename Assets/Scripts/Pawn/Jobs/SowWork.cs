@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class SowWork : Work
+    public class SowWork : WorkBT
     {
         private int curCutAmount = 0;
         private int curSowAmount = 0;

@@ -23,13 +23,13 @@ namespace LittleWorld.Item
 
         public bool CarrySingle(WorldObject wo, Vector2Int destination)
         {
-            Current.CurMap.TryGetGrid(destination, out var result);
+            Current.CurMap.GetGrid(destination, out var result);
             return result.PickUp(wo, this);
         }
 
         public bool CarrySingle(int itemCode, Vector2Int destination, out WorldObject wo)
         {
-            Current.CurMap.TryGetGrid(destination, out var result);
+            Current.CurMap.GetGrid(destination, out var result);
             return result.PickUp(itemCode, this, out wo);
         }
 

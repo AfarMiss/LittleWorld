@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class HaulingWork : Work
+    public class HaulingWork : WorkBT
     {
         public void CreateWorkSequence()
         {

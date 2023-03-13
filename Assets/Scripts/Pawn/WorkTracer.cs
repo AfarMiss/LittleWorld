@@ -7,11 +7,11 @@ namespace LittleWorld
     public class WorkTracer
     {
         public static int workID = 0;
-        public Queue<Work> workQueue;
+        public Queue<WorkBT> workQueue;
         public WorkTracer(Animal pawn)
         {
             this.animal = pawn;
-            workQueue = new Queue<Work>();
+            workQueue = new Queue<WorkBT>();
         }
         public WorkStatus CurStatus = WorkStatus.NoWork;
         public int curFinishedAmount;
@@ -29,10 +29,10 @@ namespace LittleWorld
         }
 
         public Animal animal;
-        private Work curWork;
+        private WorkBT curWork;
         public AI.Node.Status curTreeStatus;
 
-        public bool AddWork(Work singleWork)
+        public bool AddWork(WorkBT singleWork)
         {
             if (Current.IsAdditionalMode)
             {
@@ -44,20 +44,20 @@ namespace LittleWorld
             }
         }
 
-        private bool AddWorkUnforced(Work singleWork)
+        private bool AddWorkUnforced(WorkBT singleWork)
         {
             workQueue.Enqueue(singleWork);
             return true;
         }
 
-        public bool AddWorkForce(Work singleWork)
+        public bool AddWorkForce(WorkBT singleWork)
         {
             curWork?.OnAbort();
             workQueue.Enqueue(singleWork);
             return true;
         }
 
-        public bool ClearAndAddWork(Work singleWork)
+        public bool ClearAndAddWork(WorkBT singleWork)
         {
             return true;
         }

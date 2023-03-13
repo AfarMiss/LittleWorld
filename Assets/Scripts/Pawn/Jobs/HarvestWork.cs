@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class HarvestWork : Work
+    public class HarvestWork : WorkBT
     {
         private int curHarvestAmount = 0;
         MapGridDetails[] gridsPos;

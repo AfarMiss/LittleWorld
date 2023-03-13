@@ -1,10 +1,14 @@
 ﻿using AI;
 using LittleWorld.Message;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public abstract class Work
+    /// <summary>
+    /// 封装工作行为树的类
+    /// </summary>
+    public abstract class WorkBT
     {
 
         public bool isSuspended = false;
@@ -32,7 +36,7 @@ namespace LittleWorld.Jobs
         }
 
 
-        public Work()
+        public WorkBT()
         {
             workID = WorkIDSeed++;
             if (tree == null)
@@ -68,6 +72,11 @@ namespace LittleWorld.Jobs
         //{
         //    return new BehaviourTree();
         //}
+
+        protected virtual void OnDestroy()
+        {
+
+        }
 
     }
 }

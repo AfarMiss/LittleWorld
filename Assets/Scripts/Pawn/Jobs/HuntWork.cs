@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class HuntWork : Work
+    public class HuntWork : WorkBT
     {
         public Humanbeing hunter;
         public Animal target;

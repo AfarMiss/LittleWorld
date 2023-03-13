@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class GoToLocWork : Work
+    public class GoToLocWork : WorkBT
     {
         public GoToLocWork(Humanbeing humanbeing, Vector2Int destination)
         {

@@ -102,7 +102,7 @@ namespace LittleWorld.Item
         public void Finish()
         {
             this.buildingStatus = BuildingStatus.Done;
-            this.mapBelongTo.TryGetGrid(gridPos, out var grid);
+            this.mapBelongTo.GetGrid(gridPos, out var grid);
             grid.ClearBuildingMaterials();
             var objects = WorldUtility.GetWorldObjectsAt(gridPos);
             var buildingMaterials = objects.ToList().FindAll(x => x is WorldObject wo && wo.inBuildingConstruction);

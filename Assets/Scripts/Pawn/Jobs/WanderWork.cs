@@ -5,7 +5,7 @@ using static AI.MoveLeaf;
 
 namespace LittleWorld.Jobs
 {
-    public class WanderWork : Work
+    public class WanderWork : WorkBT
     {
         public Vector2Int curWanderPos;
         public Animal animal;

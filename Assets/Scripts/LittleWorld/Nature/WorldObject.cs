@@ -72,7 +72,7 @@ namespace LittleWorld.Item
             OnDestroy();
             if (this.canPile && !inBuildingConstruction)
             {
-                this.mapBelongTo.TryGetGrid(this.gridPos, out var result);
+                this.mapBelongTo.GetGrid(this.gridPos, out var result);
                 result.DeleteSinglePiledThing();
             }
             SceneObjectManager.Instance.UnregisterObject(this);

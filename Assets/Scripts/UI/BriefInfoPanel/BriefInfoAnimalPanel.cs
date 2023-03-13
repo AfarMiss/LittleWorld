@@ -1,10 +1,8 @@
 ﻿using LittleWorld.Item;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static LittleWorld.HealthTracer;
+using static LittleWorld.Item.Bullet;
 
 namespace LittleWorld.UI
 {
@@ -41,14 +39,14 @@ namespace LittleWorld.UI
             EventCenter.Instance.Register<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
             EventCenter.Instance.Register<Age>(EventName.LIVING_AGE_DAY_CHANGE, OnDayChanged);
             EventCenter.Instance.Register<Age>(EventName.LIVING_AGE_YEAR_CHANGE, OnYearChanged);
-            EventCenter.Instance.Register<Animal>(EventName.LIVING_BE_HURT, OnLivingBeHurt);
+            EventCenter.Instance.Register<DamageInfo>(EventName.LIVING_BE_HURT, OnLivingBeHurt);
         }
 
-        private void OnLivingBeHurt(Animal arg0)
+        private void OnLivingBeHurt(DamageInfo arg0)
         {
-            if (animalWatching == arg0)
+            if (animalWatching == arg0.animal)
             {
-                this.hpSlider.value = arg0.HpPercent;
+                this.hpSlider.value = arg0.animal.HpPercent;
             }
         }
 
@@ -67,7 +65,7 @@ namespace LittleWorld.UI
             EventCenter.Instance?.Unregister<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
             EventCenter.Instance?.Unregister<Age>(EventName.LIVING_AGE_DAY_CHANGE, OnDayChanged);
             EventCenter.Instance?.Unregister<Age>(EventName.LIVING_AGE_YEAR_CHANGE, OnYearChanged);
-            EventCenter.Instance?.Unregister<Animal>(EventName.LIVING_BE_HURT, OnLivingBeHurt);
+            EventCenter.Instance?.Unregister<DamageInfo>(EventName.LIVING_BE_HURT, OnLivingBeHurt);
             animalWatching = null;
         }
 

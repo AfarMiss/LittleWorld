@@ -7,6 +7,7 @@ using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using static AI.MoveLeaf;
 using static LittleWorld.HealthTracer;
+using static LittleWorld.Item.Bullet;
 
 namespace LittleWorld.Item
 {
@@ -59,11 +60,20 @@ namespace LittleWorld.Item
             }
         }
 
-        public virtual void BeHurt(float damage)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="damage"></param>
+        /// <param name="damageSource">伤害来源</param>
+        public virtual void BeHurt(float damage, WorldObject damageSource)
         {
             healthTracer.GetDamage(damage);
             OnBeHurt?.Invoke();
-            EventCenter.Instance.Trigger(EventName.LIVING_BE_HURT, this);
+            EventCenter.Instance.Trigger(EventName.LIVING_BE_HURT, new DamageInfo
+            {
+                animal = this,
+                humanbeing = damageSource as Humanbeing,
+            });
         }
 
         public Sprite GetFaceSprite()

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class BuildingWork : Work
+    public class BuildingWork : WorkBT
     {
         private int curBuildingAmount = 0;
 
