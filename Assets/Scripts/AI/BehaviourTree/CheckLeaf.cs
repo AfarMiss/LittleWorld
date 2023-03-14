@@ -28,18 +28,18 @@ namespace AI
                 if (check())
                 {
                     OnSuccess?.Invoke();
-                    return Status.SUCCESS;
+                    return Status.Success;
                 }
                 else
                 {
                     OnFail?.Invoke();
-                    return Status.FAILURE;
+                    return Status.Failure;
                 }
 
             }
             else
             {
-                return Status.FAILURE;
+                return Status.Failure;
             }
 
 

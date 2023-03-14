@@ -29,34 +29,34 @@ namespace AI
             {
                 if (check())
                 {
-                    return Status.SUCCESS;
+                    return Status.Success;
                 }
                 else
                 {
                     Status childStatus = children[currentChildIndex].Process();
                     switch (childStatus)
                     {
-                        case Status.SUCCESS:
+                        case Status.Success:
                             currentChildIndex++;
                             if (currentChildIndex >= children.Count)
                             {
                                 currentChildIndex = 0;
                             }
-                            return Status.RUNNING;
-                        case Status.RUNNING:
-                            return Status.RUNNING;
-                        case Status.FAILURE:
-                            this.RunningReset();
+                            return Status.Running;
+                        case Status.Running:
+                            return Status.Running;
+                        case Status.Failure:
+                            this.Reset();
                             Debug.LogWarning($"LoopUnitlConditionSuccess节点:{this.name}当前循环失败,重置!");
-                            return Status.RUNNING;
+                            return Status.Running;
                         default:
-                            return Status.RUNNING;
+                            return Status.Running;
                     }
                 }
             }
             else
             {
-                return Status.FAILURE;
+                return Status.Failure;
             }
         }
     }

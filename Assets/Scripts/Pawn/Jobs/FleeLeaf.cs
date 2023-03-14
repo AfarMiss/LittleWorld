@@ -24,7 +24,7 @@ namespace AI
             }
             else
             {
-                return Status.FAILURE;
+                return Status.Failure;
             }
         }
 

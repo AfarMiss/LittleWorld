@@ -41,7 +41,7 @@ namespace LittleWorld.Jobs
         {
             Building building = tree.GetVariable("Building") as Building;
             building.AddBuildingRawMaterials(tree.GetVariable("worldObjects") as WorldObject[]);
-            return Node.Status.SUCCESS;
+            return Node.Status.Success;
 
         }
 
@@ -57,7 +57,7 @@ namespace LittleWorld.Jobs
             var buildingCost = tree.GetVariable("curBuildingCost") as BuildingCost;
             var worldObjects = human.Carry(buildingCost.materialCode, buildingCost.materialAmount, destination);
             tree.SetVariable("worldObjects", worldObjects);
-            return Node.Status.SUCCESS;
+            return Node.Status.Success;
         }
 
         private Vector2Int GetRawMaterialPos()

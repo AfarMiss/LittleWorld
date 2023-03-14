@@ -11,23 +11,43 @@ namespace AI
 {
     public class Node
     {
-        public enum Status { SUCCESS, RUNNING, FAILURE }
-        public Status status = Status.RUNNING;
+        public enum Status
+        {
+            ///<summary>The operation has failed.</summary>
+            Failure = 0,
+            ///<summary>The operation has succeeded.</summary>
+            Success = 1,
+            ///<summary>The operation is still running.</summary>
+            Running = 2,
+            ///<summary>Indicates a "ready" state. No operation is performed yet.</summary>
+            Resting = 3,
+            ///<summary>The operation encountered an error. Usually execution error. This status is unhandled and is neither considered Success nor Failure.</summary>
+            Error = 4,
+            ///<summary>The operation is considered optional and is neither Success nor Failure.</summary>
+            Optional = 5,
+        }
+        public Status status = Status.Running;
         public List<Node> children = new List<Node>();
         public int currentChildIndex = -1;
         public string name;
-        public Node root;
-        public int priortiy;
+        public Node parent;
+        protected int priority;
+
+        public int Priority
+        {
+            get { return priority; }
+            set { priority = value; }
+        }
 
         public Node()
         {
 
         }
 
-        protected Node(string n, int priortiy = 0)
+        public Node(string n, int priortiy = 0)
         {
             name = n;
-            this.priortiy = priortiy;
+            this.Priority = priortiy;
         }
 
         public virtual void AddChild(Node n)
@@ -37,27 +57,33 @@ namespace AI
                 currentChildIndex = 0;
             }
             children.Add(n);
+            n.parent = this;
         }
 
-        struct NodeLevel
+        public virtual void RemoveChild(Node n)
         {
-            public int level;
-            public Node node;
-
+            var nodeIndex = children.IndexOf(n);
+            children.Remove(n);
+            if (currentChildIndex == nodeIndex)
+            {
+                currentChildIndex = -1;
+                Reset();
+            }
+            n.parent = null;
         }
 
         /// <summary>
         /// 运行时重置
         /// </summary>
-        protected virtual void RunningReset()
+        protected virtual void Reset()
         {
-            if (currentChildIndex != -1)
+            if (children.Count > 0)
             {
                 currentChildIndex = 0;
             }
             foreach (var item in children)
             {
-                item.RunningReset();
+                item.Reset();
             }
         }
 
@@ -71,7 +97,7 @@ namespace AI
             if (!Current.CurMap.GetGrid(destination).isLand)
             {
                 Debug.LogWarning("目标点不是陆地，无法到达！");
-                return Status.FAILURE;
+                return Status.Failure;
             }
             if (!animal.IsMoving || (animal.IsMoving && animal.CurDestination.HasValue && animal.CurDestination.Value != destination))
             {
@@ -80,9 +106,9 @@ namespace AI
             }
             if (animal.GridPos == destination)
             {
-                return Node.Status.SUCCESS;
+                return Node.Status.Success;
             }
-            return Node.Status.RUNNING;
+            return Node.Status.Running;
         }
     }
 }

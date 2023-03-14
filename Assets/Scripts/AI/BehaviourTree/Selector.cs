@@ -15,26 +15,26 @@ namespace AI
 
             switch (childStatus)
             {
-                case Status.SUCCESS:
+                case Status.Success:
                     {
                         currentChildIndex = 0;
-                        return Status.SUCCESS;
+                        return Status.Success;
                     }
-                case Status.RUNNING:
-                    return Status.RUNNING;
-                case Status.FAILURE:
+                case Status.Running:
+                    return Status.Running;
+                case Status.Failure:
                     currentChildIndex++;
                     if (currentChildIndex >= children.Count)
                     {
                         currentChildIndex = 0;
-                        return Status.FAILURE;
+                        return Status.Failure;
                     }
                     else
                     {
-                        return Status.RUNNING;
+                        return Status.Running;
                     }
                 default:
-                    return Status.FAILURE;
+                    return Status.Failure;
             }
         }
     }

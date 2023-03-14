@@ -16,10 +16,10 @@ namespace AI
             if (children.Count == 0)
             {
                 Debug.LogWarning("空循环");
-                return Status.FAILURE;
+                return Status.Failure;
             }
             Status childStatus = children[currentChildIndex].Process();
-            if (childStatus == Status.SUCCESS)
+            if (childStatus == Status.Success)
             {
                 currentChildIndex++;
                 if (currentChildIndex >= children.Count)
@@ -30,7 +30,7 @@ namespace AI
             }
             else
             {
-                return Status.RUNNING;
+                return Status.Running;
             }
         }
     }

@@ -41,7 +41,7 @@ namespace AI
             this.calculateFunc = calculateFunc;
         }
 
-        protected override void RunningReset()
+        protected override void Reset()
         {
             var curDestination = calculateFunc();
             while (!Current.CurMap.GetGrid(curDestination).isLand)
@@ -58,7 +58,7 @@ namespace AI
             //Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
                 return ProcessMethod(destination, animal, moveType);
-            return Status.FAILURE;
+            return Status.Failure;
         }
 
     }

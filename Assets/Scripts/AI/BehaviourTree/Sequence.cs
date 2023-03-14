@@ -16,10 +16,10 @@ namespace AI
         {
             if (children.Count == 0)
             {
-                return Status.FAILURE;
+                return Status.Failure;
             }
             Status childStatus = children[currentChildIndex].Process();
-            if (childStatus == Status.RUNNING || childStatus == Status.FAILURE)
+            if (childStatus == Status.Running || childStatus == Status.Failure)
             {
                 return childStatus;
             }
@@ -31,11 +31,11 @@ namespace AI
             if (currentChildIndex >= children.Count)
             {
                 currentChildIndex = 0;
-                return Status.SUCCESS;
+                return Status.Success;
             }
             else
             {
-                return Status.RUNNING;
+                return Status.Running;
             }
         }
     }

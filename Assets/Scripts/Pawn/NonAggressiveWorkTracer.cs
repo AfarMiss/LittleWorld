@@ -1,4 +1,5 @@
-﻿using LittleWorld.Item;
+﻿using AI;
+using LittleWorld.Item;
 using LittleWorld.Jobs;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,12 +11,7 @@ namespace LittleWorld
     {
         public NonAggressiveWorkTracer(Animal animal) : base(animal)
         {
-        }
-
-        protected override void OnNoWork()
-        {
-            base.OnNoWork();
-            AddWork(new WanderWork(animal));
+            AddWork(new NonAggressiveBT(this.animal));
         }
     }
 }

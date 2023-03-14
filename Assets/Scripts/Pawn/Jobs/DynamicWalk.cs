@@ -34,14 +34,14 @@ namespace AI
             }
             if (destination == VectorExtension.undefinedV2Int)
             {
-                return Status.FAILURE;
+                return Status.Failure;
             }
             //Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
             {
                 return ProcessMethod(destination, human, moveType);
             }
-            return Status.FAILURE;
+            return Status.Failure;
         }
     }
 }

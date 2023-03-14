@@ -34,11 +34,11 @@ namespace AI
             curThinkingTime -= GameSetting.TickTime;
             if (curThinkingTime <= 0)
             {
-                return Status.SUCCESS;
+                return Status.Success;
             }
             else
             {
-                return Status.RUNNING;
+                return Status.Running;
             }
         }
     }

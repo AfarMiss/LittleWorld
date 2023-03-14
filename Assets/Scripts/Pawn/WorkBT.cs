@@ -17,7 +17,7 @@ namespace LittleWorld.Jobs
 
         protected BehaviourTree tree;
         public int workID;
-        private Node.Status treeStatus = Node.Status.RUNNING;
+        private Node.Status treeStatus = Node.Status.Running;
 
         public void OnSuspend()
         {
@@ -51,11 +51,11 @@ namespace LittleWorld.Jobs
         {
             if (isAborted)
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
             if (tree != null)
             {
-                if (tree.status == Node.Status.RUNNING)
+                if (tree.status == Node.Status.Running)
                 {
                     treeStatus = tree.Process();
                 }
@@ -64,7 +64,7 @@ namespace LittleWorld.Jobs
             else
             {
                 Debug.LogError("behaviour tree has not been initialized");
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
         }
 

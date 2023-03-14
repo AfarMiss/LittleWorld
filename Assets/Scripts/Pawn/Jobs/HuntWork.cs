@@ -65,7 +65,7 @@ namespace LittleWorld.Jobs
         private Node.Status Fire(Vector2Int destination, Humanbeing human)
         {
             human.FireAt(target);
-            return Node.Status.SUCCESS;
+            return Node.Status.Success;
         }
 
         private Vector2Int GetHuntPoint()

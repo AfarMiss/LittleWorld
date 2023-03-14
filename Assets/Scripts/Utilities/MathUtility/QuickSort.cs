@@ -52,14 +52,14 @@ namespace Sort
         static int Partition(Node[] array, int low, int high)
         {
             //1. Select a pivot point.
-            int pivot = array[high].priortiy;
+            int pivot = array[high].Priority;
 
             int lowIndex = (low - 1);
 
             //2. Reorder the collection.
             for (int j = low; j < high; j++)
             {
-                if (array[j].priortiy <= pivot)
+                if (array[j].Priority <= pivot)
                 {
                     lowIndex++;
 

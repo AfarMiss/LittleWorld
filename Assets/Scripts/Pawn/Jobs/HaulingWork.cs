@@ -41,7 +41,7 @@ namespace LittleWorld.Jobs
         private Node.Status DoDropDown(Vector2Int destination, Humanbeing human)
         {
             human.Dropdown(tree.GetVariable("WorldObjects") as WorldObject[], destination);
-            return Node.Status.SUCCESS;
+            return Node.Status.Success;
 
         }
 
@@ -62,7 +62,7 @@ namespace LittleWorld.Jobs
         private Node.Status DoHaul(Vector2Int destination, Humanbeing human)
         {
             human.Carry(tree.GetVariable("WorldObjects") as WorldObject[], destination);
-            return Node.Status.SUCCESS;
+            return Node.Status.Success;
         }
 
         private Vector2Int GetOjectPos()

@@ -26,7 +26,7 @@ namespace AI
             Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
                 return ProcessMethod(destination, human);
-            return Status.FAILURE;
+            return Status.Failure;
         }
 
     }

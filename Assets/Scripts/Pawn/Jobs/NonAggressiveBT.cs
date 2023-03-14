@@ -13,10 +13,13 @@ namespace AI
         private Vector2Int? damageSource;
         public Animal animal;
         public bool isHurt = false;
+
+        Sequence wanderSequence;
+        Sequence fleeSequence;
         private void CreateWorkSequence()
         {
             //wander
-            Sequence wanderSequence = new Sequence("wander Sequence");
+            wanderSequence = new Sequence("wander Sequence");
             for (int i = 0; i < 5; i++)
             {
                 var randomPoint = (Random.insideUnitCircle * 5).ToCell();
@@ -34,13 +37,16 @@ namespace AI
                 }
             }
             //flee
-            Sequence fleeSequence = new Sequence("flee Sequence");
+            fleeSequence = new Sequence("flee Sequence");
+            fleeSequence.Priority = -1;
             CheckLeaf beHurt = new CheckLeaf("be hurt?", BeHurt);
             FleeLeaf fleeLeaf = new FleeLeaf(animal, damageSource.Value);
+            SetPriorityLeaf setParentPriority = new SetPriorityLeaf(fleeSequence, -1);
             fleeSequence.AddChild(beHurt);
             fleeSequence.AddChild(fleeLeaf);
+            fleeSequence.AddChild(setParentPriority);
 
-            Selector actionSelector = new Selector();
+            PSelector actionSelector = new PSelector("NonAggressiveBT");
             actionSelector.AddChild(fleeSequence);
             actionSelector.AddChild(wanderSequence);
             tree.AddChild(actionSelector);
@@ -71,8 +77,10 @@ namespace AI
         {
             if (arg0.animal == animal)
             {
+                this.tree.SetVariable("damageSource", arg0.humanbeing.GridPos)
                 damageSource = arg0.humanbeing.GridPos;
                 isHurt = true;
+                fleeSequence.Priority = 1;
             }
         }
     }

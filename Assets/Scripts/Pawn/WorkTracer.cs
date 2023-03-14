@@ -77,7 +77,7 @@ namespace LittleWorld
                 }
             }
             var status = curWork.Tick();
-            if (status != AI.Node.Status.RUNNING)
+            if (status != AI.Node.Status.Running)
             {
                 curWork = null;
             }

@@ -16,14 +16,14 @@ namespace AI
             var s = children[currentChildIndex].Process();
             switch (s)
             {
-                case Status.SUCCESS:
-                    return Status.FAILURE;
-                case Status.RUNNING:
-                    return Status.RUNNING;
-                case Status.FAILURE:
-                    return Status.SUCCESS;
+                case Status.Success:
+                    return Status.Failure;
+                case Status.Running:
+                    return Status.Running;
+                case Status.Failure:
+                    return Status.Success;
                 default:
-                    return Status.FAILURE;
+                    return Status.Failure;
             }
 
         }

@@ -44,12 +44,12 @@ namespace AI
             if (currentChildIndex >= children.Count)
             {
                 Debug.LogError("状态越界:" + this.name);
-                return Status.FAILURE;
+                return Status.Failure;
             }
             if (currentChildIndex < 0)
             {
                 Debug.LogWarning("空树:" + this.name);
-                return Status.FAILURE;
+                return Status.Failure;
             }
             return children[currentChildIndex].Process();
         }

@@ -35,7 +35,7 @@ namespace AI
         private Node.Status DoEquip(Vector2Int destination, Humanbeing human)
         {
             human.AddEquip(weapon, destination);
-            return Node.Status.SUCCESS;
+            return Node.Status.Success;
         }
 
         private Vector2Int GetWeaponPos()

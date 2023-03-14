@@ -28,7 +28,7 @@ namespace AI
             //Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
                 return ProcessMethod(destination, animal, moveType);
-            return Status.FAILURE;
+            return Status.Failure;
         }
 
         public enum MoveType
