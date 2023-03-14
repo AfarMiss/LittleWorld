@@ -17,15 +17,17 @@ namespace AI
         public int currentChildIndex = -1;
         public string name;
         public Node root;
+        public int priortiy;
 
         public Node()
         {
 
         }
 
-        protected Node(string n)
+        protected Node(string n, int priortiy = 0)
         {
             name = n;
+            this.priortiy = priortiy;
         }
 
         public virtual void AddChild(Node n)
