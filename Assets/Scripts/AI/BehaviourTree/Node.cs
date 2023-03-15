@@ -30,7 +30,7 @@ namespace AI
         public Node parent;
         protected int priority;
         protected NodeGraph graph;
-        protected bool isDirty;
+        public bool IsDirty;
         public Blackboard Blackboard => graph?.blackboard;
 
         //所有没有指定容器和黑板的节点都会被放在默认容器和黑板中。
@@ -45,7 +45,11 @@ namespace AI
             }
             set
             {
-                isDirty = true;
+                //先这么写，以后改
+                if (parent is PSelector)
+                {
+                    parent.IsDirty = true;
+                }
                 priority = value;
             }
         }

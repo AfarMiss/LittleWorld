@@ -27,12 +27,12 @@ namespace AI
 
         public PSelector()
         {
-            isDirty = true;
+            IsDirty = true;
         }
 
         public override Status Process()
         {
-            if (isDirty)
+            if (IsDirty)
             {
                 //上一次执行的节点当前的优先级
                 var lastPriority = children[currentChildIndex].Priority;
@@ -51,7 +51,7 @@ namespace AI
 
                         currentChildIndex = children.IndexOf(lastNode);
                     }
-                    isDirty = false;
+                    IsDirty = false;
                 }
                 else
                 {
