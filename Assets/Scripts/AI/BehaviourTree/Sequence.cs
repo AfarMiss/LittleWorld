@@ -7,7 +7,7 @@ namespace AI
     public class Sequence : Node
     {
         public Sequence() { }
-        public Sequence(string name) : base(name)
+        public Sequence(string name, NodeGraph graph = null) : base(name, graph)
         {
 
         }

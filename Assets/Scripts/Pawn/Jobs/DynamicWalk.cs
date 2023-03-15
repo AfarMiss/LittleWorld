@@ -17,7 +17,7 @@ namespace AI
         public MoveType moveType;
         public GetPos getPos;
 
-        public DynamicWalk(string name, Humanbeing human, Tick tick, GetPos getPos, MoveType moveType = MoveType.walk)
+        public DynamicWalk(string name, Humanbeing human, Tick tick, GetPos getPos, NodeGraph graph = null, MoveType moveType = MoveType.walk) : base(name, graph)
         {
             this.human = human;
             this.name = name;

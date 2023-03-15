@@ -28,7 +28,7 @@ namespace AI
         private void Start()
         {
             agent = GetComponent<NavMeshAgent>();
-            tree = new BehaviourTree();
+            //tree = new BehaviourTree();
 
             Sequence steal = new Sequence("Steal Something");
             Selector gotoDoor = new Selector("Go To Door");

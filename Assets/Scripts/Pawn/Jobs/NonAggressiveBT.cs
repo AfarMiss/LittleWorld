@@ -40,7 +40,7 @@ namespace AI
             fleeSequence = new Sequence("flee Sequence");
             fleeSequence.Priority = -1;
             CheckLeaf beHurt = new CheckLeaf("be hurt?", BeHurt);
-            FleeLeaf fleeLeaf = new FleeLeaf(animal, damageSource.Value);
+            FleeLeaf fleeLeaf = new FleeLeaf(animal, "damageSource");
             SetPriorityLeaf setParentPriority = new SetPriorityLeaf(fleeSequence, -1);
             fleeSequence.AddChild(beHurt);
             fleeSequence.AddChild(fleeLeaf);
@@ -77,7 +77,7 @@ namespace AI
         {
             if (arg0.animal == animal)
             {
-                this.tree.SetVariable("damageSource", arg0.humanbeing.GridPos)
+                tree.Blackboard.SetVariable("damageSource", arg0.humanbeing.GridPos);
                 damageSource = arg0.humanbeing.GridPos;
                 isHurt = true;
                 fleeSequence.Priority = 1;

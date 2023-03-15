@@ -1,10 +1,7 @@
-﻿using FlowCanvas.Nodes;
-using LittleWorld;
+﻿using LittleWorld;
 using LittleWorld.Item;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using static AI.MoveLeaf;
 
 namespace AI
@@ -32,6 +29,12 @@ namespace AI
         public string name;
         public Node parent;
         protected int priority;
+        protected NodeGraph graph;
+        public Blackboard Blackboard => graph?.blackboard;
+
+        //所有没有指定容器和黑板的节点都会被放在默认容器和黑板中。
+        public static Blackboard deafaultBlackboard = new Blackboard();
+        public static NodeGraph defaultGraph = new NodeGraph(deafaultBlackboard);
 
         public int Priority
         {
@@ -41,13 +44,23 @@ namespace AI
 
         public Node()
         {
-
+            this.name = "NonNameNode";
+            this.priority = 0;
+            this.graph = defaultGraph;
         }
 
-        public Node(string n, int priortiy = 0)
+        public Node(string n, NodeGraph graph = null, int priortiy = 0)
         {
-            name = n;
+            this.name = n;
             this.Priority = priortiy;
+            if (graph != null)
+            {
+                this.graph = graph;
+            }
+            else
+            {
+                this.graph = defaultGraph;
+            }
         }
 
         public virtual void AddChild(Node n)
@@ -55,6 +68,10 @@ namespace AI
             if (currentChildIndex == -1)
             {
                 currentChildIndex = 0;
+            }
+            if (n.graph != this.graph)
+            {
+                n.graph = this.graph;
             }
             children.Add(n);
             n.parent = this;

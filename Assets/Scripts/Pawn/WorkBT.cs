@@ -36,14 +36,13 @@ namespace LittleWorld.Jobs
         }
 
 
-        public WorkBT()
+        public WorkBT(NodeGraph graph = null)
         {
             workID = WorkIDSeed++;
-            if (tree == null)
+            if (graph == null)
             {
                 tree = new BehaviourTree();
             }
-            tree = new BehaviourTree();
         }
 
 

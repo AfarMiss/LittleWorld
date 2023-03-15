@@ -28,11 +28,11 @@ namespace AI
             }
         }
 
-        public FleeLeaf(Animal animal, Vector2Int fleeFrom)
+        public FleeLeaf(Animal animal, string fleeFromName)
         {
             this.curWanderPos = animal.GridPos;
             this.animal = animal;
-            this.fleeFrom = fleeFrom;
+            this.fleeFrom = (Vector2Int)Blackboard.GetVariable(fleeFromName);
             fleeTo = SelectFleeDestination(fleeFrom, animal.GridPos);
         }
 

@@ -13,7 +13,7 @@ namespace AI
         public delegate Vector2Int GetPos();
         public GetPos getPos;
 
-        public DynamicLongJobLeaf(string name, Humanbeing human, Tick tick, GetPos getPos) : base(name)
+        public DynamicLongJobLeaf(string name, Humanbeing human, Tick tick, GetPos getPos, NodeGraph graph = null) : base(name, graph)
         {
             this.human = human;
             this.ProcessMethod = tick;

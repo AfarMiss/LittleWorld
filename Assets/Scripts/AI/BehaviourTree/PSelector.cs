@@ -20,7 +20,7 @@ namespace AI
         /// </summary>
         private bool isDirty = true;
         public bool dynamic = false;
-        public PSelector(string name, bool dynamic = false) : base(name)
+        public PSelector(string name, NodeGraph graph = null, bool dynamic = false) : base(name, graph)
         {
             this.dynamic = dynamic;
         }

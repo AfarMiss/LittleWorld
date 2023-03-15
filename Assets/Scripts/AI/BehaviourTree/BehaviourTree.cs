@@ -7,9 +7,10 @@ namespace AI
 {
     public class BehaviourTree : Node
     {
-        public BehaviourTree()
+        public BehaviourTree(string name = "BehaviourTree", NodeGraph graph = null) : base(name, graph)
         {
-            name = "BehaviourTree";
+            this.name = name;
+            this.graph = graph;
         }
 
         private Dictionary<string, object> dataContext = new Dictionary<string, object>();

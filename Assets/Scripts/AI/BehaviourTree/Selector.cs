@@ -7,7 +7,7 @@ namespace AI
     public class Selector : Node
     {
         public Selector() { }
-        public Selector(string name) : base(name) { }
+        public Selector(string name, NodeGraph graph = null) : base(name, graph) { }
 
         public override Status Process()
         {

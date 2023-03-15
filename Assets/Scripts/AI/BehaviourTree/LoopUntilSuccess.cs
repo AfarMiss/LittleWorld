@@ -6,7 +6,7 @@ namespace AI
 {
     public class LoopUntilSuccess : Node
     {
-        public LoopUntilSuccess(string nodeName) : base(nodeName)
+        public LoopUntilSuccess(string nodeName, NodeGraph graph = null) : base(nodeName, graph)
         {
 
         }

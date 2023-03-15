@@ -11,7 +11,6 @@ namespace LittleWorld.Jobs
     {
         public BehaviourTree CreateWorkSequence()
         {
-            Sequence carrySequence = new Sequence("Sow Sequence");
             Humanbeing humanbeing = tree.GetVariable("Humanbeing") as Humanbeing;
             Building building = tree.GetVariable("Building") as Building;
             //carry
