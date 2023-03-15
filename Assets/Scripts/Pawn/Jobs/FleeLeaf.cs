@@ -1,11 +1,7 @@
 ﻿using LittleWorld.Item;
 using LittleWorld;
-using LittleWorld.Jobs;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static AI.MoveLeaf;
-using NodeCanvas.Tasks.Actions;
 
 namespace AI
 {
@@ -13,8 +9,9 @@ namespace AI
     {
         private Animal animal;
         public Vector2Int curWanderPos;
-        private Vector2Int fleeFrom;
+        private Vector2Int? fleeFrom;
         private Vector2Int? fleeTo;
+        private string fleeFromName;
 
         public override Status Process()
         {
@@ -32,13 +29,18 @@ namespace AI
         {
             this.curWanderPos = animal.GridPos;
             this.animal = animal;
-            this.fleeFrom = (Vector2Int)Blackboard.GetVariable(fleeFromName);
-            fleeTo = SelectFleeDestination(fleeFrom, animal.GridPos);
+            fleeTo = SelectFleeDestination();
+            this.fleeFromName = fleeFromName;
         }
 
-        private Vector2Int? SelectFleeDestination(Vector2Int fleeFrom, Vector2Int curPos)
+        /// <summary>
+        /// 选择逃离点
+        /// </summary>
+        /// <returns></returns>
+        private Vector2Int? SelectFleeDestination()
         {
-            var targetPos = curPos;
+            var targetPos = animal.GridPos;
+            this.fleeFrom = (Vector2Int)Blackboard.GetVariable(fleeFromName);
             for (int i = 0; i < 50; i++)
             {
                 var randomPoint = (Random.insideUnitCircle * 5).ToCell();
@@ -51,7 +53,7 @@ namespace AI
                 }
                 else
                 {
-                    targetPos = curPos;
+                    targetPos = animal.GridPos;
                     continue;
                 }
             }
