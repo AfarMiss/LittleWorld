@@ -19,7 +19,7 @@ namespace AI
 
         public object GetVariable(string key)
         {
-            if (dataContext.TryGetValue(key, out var value))
+            if (dataContext.TryGetValue(key, out object value))
             {
                 return value;
             }

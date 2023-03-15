@@ -1,6 +1,7 @@
 ﻿using LittleWorld.Item;
 using LittleWorld.Jobs;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace LittleWorld
 {
@@ -79,6 +80,10 @@ namespace LittleWorld
             var status = curWork.Tick();
             if (status != AI.Node.Status.Running)
             {
+                if (status == AI.Node.Status.Failure)
+                {
+                    Debug.LogWarning($"{curWork.GetType()}_{curWork.workID}失败");
+                }
                 curWork = null;
             }
         }

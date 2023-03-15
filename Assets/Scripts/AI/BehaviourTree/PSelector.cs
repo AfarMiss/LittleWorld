@@ -3,6 +3,7 @@ using Sort;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace AI
@@ -18,14 +19,13 @@ namespace AI
         /// <summary>
         /// 元素变动，优先级变动时
         /// </summary>
-        private bool isDirty = true;
         public bool dynamic = false;
         public PSelector(string name, NodeGraph graph = null, bool dynamic = false) : base(name, graph)
         {
             this.dynamic = dynamic;
         }
 
-        public void SetDirty()
+        public PSelector()
         {
             isDirty = true;
         }

@@ -30,16 +30,24 @@ namespace AI
         public Node parent;
         protected int priority;
         protected NodeGraph graph;
+        protected bool isDirty;
         public Blackboard Blackboard => graph?.blackboard;
 
         //所有没有指定容器和黑板的节点都会被放在默认容器和黑板中。
         public static Blackboard deafaultBlackboard = new Blackboard();
         public static NodeGraph defaultGraph = new NodeGraph(deafaultBlackboard);
 
-        public int Priority
+        public virtual int Priority
         {
-            get { return priority; }
-            set { priority = value; }
+            get
+            {
+                return priority;
+            }
+            set
+            {
+                isDirty = true;
+                priority = value;
+            }
         }
 
         public Node()

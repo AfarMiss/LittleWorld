@@ -15,6 +15,10 @@ namespace AI
 
         public override Status Process()
         {
+            if (fleeFrom == null)
+            {
+                fleeTo = SelectFleeDestination();
+            }
             if (fleeTo != null)
             {
                 return Node.GoToLoc(fleeTo.Value, animal, MoveType.dash);
@@ -29,7 +33,6 @@ namespace AI
         {
             this.curWanderPos = animal.GridPos;
             this.animal = animal;
-            fleeTo = SelectFleeDestination();
             this.fleeFromName = fleeFromName;
         }
 
@@ -39,6 +42,7 @@ namespace AI
         /// <returns></returns>
         private Vector2Int? SelectFleeDestination()
         {
+            Debug.LogWarning("选择逃离点！");
             var targetPos = animal.GridPos;
             this.fleeFrom = (Vector2Int)Blackboard.GetVariable(fleeFromName);
             for (int i = 0; i < 50; i++)
@@ -49,6 +53,7 @@ namespace AI
                 targetPos.y = Mathf.Clamp(targetPos.y, 0, Current.CurMap.MapSize.y);
                 if (Current.CurMap.GetGrid(targetPos).isLand)
                 {
+                    Debug.LogWarning("逃离点->" + targetPos);
                     return targetPos;
                 }
                 else
