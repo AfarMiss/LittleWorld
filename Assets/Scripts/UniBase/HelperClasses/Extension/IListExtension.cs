@@ -12,7 +12,7 @@ namespace LittleWorld.Extension
             {
                 return false;
             }
-            return list.Count > index && index <= 0;
+            return list.Count > index && index >= 0;
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using LittleWorld;
 using LittleWorld.Item;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Analytics;
 using static AI.MoveLeaf;
 
 namespace AI
@@ -46,11 +49,47 @@ namespace AI
             set
             {
                 //先这么写，以后改
-                if (parent is PSelector)
-                {
-                    parent.IsDirty = true;
-                }
+                IsDirty = true;
                 priority = value;
+            }
+        }
+
+        /// <summary>
+        /// 当前节点及其子节点是否有脏数据
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <returns></returns>
+        public static bool CheckAnyDirty(Node parent)
+        {
+            if (parent.children == null || parent.children.Count == 0)
+            {
+                return parent.IsDirty;
+            }
+            if (parent.IsDirty)
+            {
+                return true;
+            }
+            foreach (var item in parent.children)
+            {
+                if (CheckAnyDirty(item))
+                {
+                    return true;
+                }
+                continue;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 清除所有脏标记
+        /// </summary>
+        /// <param name="parent"></param>
+        public static void SetAllClean(Node parent)
+        {
+            parent.IsDirty = false;
+            foreach (var item in parent.children)
+            {
+                SetAllClean(item);
             }
         }
 
@@ -89,6 +128,14 @@ namespace AI
             n.parent = this;
         }
 
+        public virtual void AddChildren(IEnumerable<Node> nodes)
+        {
+            foreach (var item in nodes)
+            {
+                AddChild(item);
+            }
+        }
+
         public virtual void RemoveChild(Node n)
         {
             var nodeIndex = children.IndexOf(n);
@@ -99,6 +146,15 @@ namespace AI
                 Reset();
             }
             n.parent = null;
+        }
+
+        public virtual void RemoveAllChildren()
+        {
+            for (int i = children.Count - 1; i >= 0; i--)
+            {
+                Node item = children[i];
+                RemoveChild(item);
+            }
         }
 
         /// <summary>

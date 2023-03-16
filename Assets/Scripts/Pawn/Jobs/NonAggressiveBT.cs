@@ -4,6 +4,7 @@ using LittleWorld.Jobs;
 using UnityEngine;
 using static AI.MoveLeaf;
 using static LittleWorld.Item.Bullet;
+using System.Collections.Generic;
 
 namespace AI
 {
@@ -14,12 +15,31 @@ namespace AI
         public Animal animal;
         public bool isHurt = false;
 
-        Sequence wanderSequence;
+        DynamicLoopSequence wanderSequence;
         Sequence fleeSequence;
         private void CreateWorkSequence()
         {
             //wander
-            wanderSequence = new Sequence("wander Sequence");
+            wanderSequence = new DynamicLoopSequence("wander", AddWander);
+            //flee
+            fleeSequence = new Sequence("flee Sequence");
+            fleeSequence.Priority = -1;
+            CheckLeaf beHurt = new CheckLeaf("be hurt?", BeHurt);
+            FleeLeaf fleeLeaf = new FleeLeaf(animal, "damageSource");
+            SetPriorityLeaf setParentPriority = new SetPriorityLeaf(fleeSequence, -1);
+            fleeSequence.AddChild(beHurt);
+            fleeSequence.AddChild(fleeLeaf);
+            //fleeSequence.AddChild(setParentPriority);
+
+            PSelector actionSelector = new PSelector("NonAggressiveBT");
+            actionSelector.AddChild(fleeSequence);
+            actionSelector.AddChild(wanderSequence);
+            tree.AddChild(actionSelector);
+        }
+
+        private List<Node> AddWander()
+        {
+            var nodes = new List<Node>();
             for (int i = 0; i < 5; i++)
             {
                 var randomPoint = (Random.insideUnitCircle * 5).ToCell();
@@ -29,27 +49,14 @@ namespace AI
                 if (Current.CurMap.GetGrid(curWanderPos).isLand)
                 {
                     MoveLeaf walkLeaf = new MoveLeaf("Go To Object", curWanderPos, animal, MoveType.wander);
-                    wanderSequence.AddChild(walkLeaf);
+                    nodes.Add(walkLeaf);
                 }
                 if (Random.Range(0, 1f) < 0.5f)
                 {
-                    wanderSequence.AddChild(new ThinkLeaf(animal));
+                    nodes.Add(new ThinkLeaf(animal));
                 }
             }
-            //flee
-            fleeSequence = new Sequence("flee Sequence");
-            fleeSequence.Priority = -1;
-            CheckLeaf beHurt = new CheckLeaf("be hurt?", BeHurt);
-            FleeLeaf fleeLeaf = new FleeLeaf(animal, "damageSource");
-            SetPriorityLeaf setParentPriority = new SetPriorityLeaf(fleeSequence, -1);
-            fleeSequence.AddChild(beHurt);
-            fleeSequence.AddChild(fleeLeaf);
-            fleeSequence.AddChild(setParentPriority);
-
-            PSelector actionSelector = new PSelector("NonAggressiveBT");
-            actionSelector.AddChild(fleeSequence);
-            actionSelector.AddChild(wanderSequence);
-            tree.AddChild(actionSelector);
+            return nodes;
         }
 
         private bool BeHurt()

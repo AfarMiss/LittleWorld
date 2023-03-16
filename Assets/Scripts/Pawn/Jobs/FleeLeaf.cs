@@ -21,7 +21,17 @@ namespace AI
             }
             if (fleeTo != null)
             {
-                return Node.GoToLoc(fleeTo.Value, animal, MoveType.dash);
+                var fleeProcess = Node.GoToLoc(fleeTo.Value, animal, MoveType.dash);
+                switch (fleeProcess)
+                {
+                    case Status.Success:
+                        parent.Priority = -1;
+                        return Status.Running;
+                    case Status.Running:
+                        return Status.Running;
+                    default:
+                        return Status.Failure;
+                }
             }
             else
             {

@@ -32,7 +32,7 @@ namespace AI
 
         public override Status Process()
         {
-            if (IsDirty)
+            if (CheckAnyDirty(this))
             {
                 //上一次执行的节点当前的优先级
                 var lastPriority = children[currentChildIndex].Priority;
@@ -51,7 +51,7 @@ namespace AI
 
                         currentChildIndex = children.IndexOf(lastNode);
                     }
-                    IsDirty = false;
+                    SetAllClean(this);
                 }
                 else
                 {
