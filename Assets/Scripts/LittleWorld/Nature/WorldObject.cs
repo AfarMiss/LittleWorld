@@ -89,7 +89,7 @@ namespace LittleWorld.Item
             {
                 if (this is Animal animal)
                 {
-                    return animal.PathTracer.RenderPos;
+                    return animal.RenderTracer.RenderPos;
                 }
                 else
                 {

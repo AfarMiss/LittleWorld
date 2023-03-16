@@ -1,4 +1,5 @@
 ﻿using LittleWorld.Graphics;
+using LittleWorld.Item;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -276,12 +277,11 @@ namespace LittleWorld.UI
                 #endregion
 
                 #region 绘制路径终点
-                var allNavis = GameObject.FindObjectsOfType<PathNavigation>();
-                foreach (var item in allNavis)
+                foreach (var animal in SceneObjectManager.Instance.FindObjectsOfType<Animal>())
                 {
-                    if (!item.atDestination && item.lastStampFrameCount > 0 && Time.frameCount - item.lastStampFrameCount <= 50 && item.PathIsShow)
+                    if (!animal.PathTracer.atDestination && animal.PathTracer.lastStampFrameCount > 0 && Time.frameCount - animal.PathTracer.lastStampFrameCount <= 50 && animal.PathTracer.PathIsShow)
                     {
-                        GraphicsUtiliy.DrawDestinationIcon(item.curDestination.Value, 1, 1);
+                        GraphicsUtiliy.DrawDestinationIcon(animal.PathTracer.curDestination.Value, 1, 1);
                     }
                 }
                 #endregion

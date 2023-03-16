@@ -6,23 +6,23 @@ using System.Collections.Generic;
 using System.Linq;
 using UniBase;
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Events;
 using static AI.MoveLeaf;
 
-[RequireComponent(typeof(LineRenderer))]
-public class PathNavigation : MonoBehaviour
+public class PathTracer : TracerBase
 {
     public Face animalFace;
     public int lastStampFrameCount = -1;
-    private PathInfo curPathInfo;
+    private PathInfo curPathInfo = new PathInfo();
     public Vector2Int? curDestination;
-    private Vector3 imageOffset = new Vector3(0.5f, 0.5f, 0);
+    private Vector3 imageOffset = new Vector3(0.5f, 0.5f);
     public Vector2Int? CurStepTarget => curStepTarget;
     public Vector2Int? CurDestination => curDestination;
     private Vector2Int? curStepTarget = null;
     private MoveType? curMoveType => curPathInfo?.moveType;
-    [SerializeField] private LineRenderer lineRenderer;
+    private LineRenderer pathRender => animal.RenderTracer.pathRender;
     private bool showPath = false;
     public bool PathIsShow => showPath;
 
@@ -32,22 +32,21 @@ public class PathNavigation : MonoBehaviour
 
     private bool curTargetIsReached = true;
     public bool atDestination = true;
-    /// <summary>
-    /// 实际指向偏离渲染锚点(-0.5,-0.5)的位置
-    /// </summary>
+
+    public Vector2 curRenderPos;
+    private Vector3 dir;
+
     public Vector2 RenderPos
     {
         get
         {
-            return transform.position;
+            return animal.RenderTracer.RenderPos;
         }
         set
         {
-            transform.position = value;
+            animal.RenderTracer.RenderPos = value;
         }
     }
-    public Vector2 curRenderPos;
-    private Vector3 dir;
 
     public bool IsMoving => curPathInfo.curPath.Safe().Any() || curStepTarget != null;
     //private bool isMovingDiagonally => IsMoving && curTarget.InStraightLine(human.GridPos);
@@ -73,10 +72,6 @@ public class PathNavigation : MonoBehaviour
     {
         this.animalID = instanceID;
     }
-    private void Start()
-    {
-        curPathInfo = new PathInfo();
-    }
 
     public void ResetPath()
     {
@@ -90,37 +85,38 @@ public class PathNavigation : MonoBehaviour
 
     private void DrawLine(Queue<Vector2Int> path)
     {
-        lineRenderer.enabled = !atDestination && showPath;
+        pathRender.enabled = !atDestination && showPath;
         if (path == null || !showPath)
         {
             return;
         }
         var pathArray = path.ToArray();
-        lineRenderer.positionCount = pathArray.Length + 2;
-        lineRenderer.SetPosition(0, this.transform.position + imageOffset);
+        pathRender.positionCount = pathArray.Length + 2;
+        pathRender.SetPosition(0, RenderPos.To3() + imageOffset);
         if (curStepTarget != null)
         {
-            lineRenderer.SetPosition(1, new Vector3(curStepTarget.Value.x, curStepTarget.Value.y, 0) + imageOffset);
+            pathRender.SetPosition(1, new Vector3(curStepTarget.Value.x, curStepTarget.Value.y, 0) + imageOffset);
             for (int i = 0; i < path.Count; i++)
             {
-                lineRenderer.SetPosition(i + 2, new Vector3(pathArray[i].x, pathArray[i].y, 0) + imageOffset);
+                pathRender.SetPosition(i + 2, new Vector3(pathArray[i].x, pathArray[i].y, 0) + imageOffset);
             }
         }
         else
         {
             for (int i = 0; i < path.Count; i++)
             {
-                lineRenderer.SetPosition(i + 1, new Vector3(pathArray[i].x, pathArray[i].y, 0) + imageOffset);
+                pathRender.SetPosition(i + 1, new Vector3(pathArray[i].x, pathArray[i].y, 0) + imageOffset);
             }
         }
 
-        lineRenderer.startColor = new Color(1, 1, 1, 0.3f);
-        lineRenderer.endColor = new Color(1, 1, 1, 0.3f);
+        pathRender.startColor = new Color(1, 1, 1, 0.3f);
+        pathRender.endColor = new Color(1, 1, 1, 0.3f);
     }
 
-    private void Tick()
+    public override void Tick()
     {
         MoveInPath();
+        DrawLine(curPathInfo.curPath);
     }
 
     private void MoveInPath()
@@ -174,7 +170,7 @@ public class PathNavigation : MonoBehaviour
             animalFace = DirectionHelper.JudgeDirFace(RenderPos, curStepTarget.Value.To3());
             var speed = (human as Animal).MoveSpeed * PathInfo.GetSpeedRatio(curMoveType);
             walkLeftCost -= speed;
-            transform.position = new Vector3(curRenderPos.x, curRenderPos.y) + (1 - walkLeftCost / realTotalCost) * dir;
+            RenderPos = new Vector3(curRenderPos.x, curRenderPos.y) + (1 - walkLeftCost / realTotalCost) * dir;
         }
         else
         {
@@ -182,12 +178,6 @@ public class PathNavigation : MonoBehaviour
             human.GridPos = target;
         }
         //Debug.Log("animalFace:" + animalFace);
-    }
-
-    private void FixedUpdate()
-    {
-        Tick();
-        DrawLine(curPathInfo.curPath);
     }
 
     public void GoToLoc(Vector2Int target, MoveType moveType)
@@ -200,7 +190,7 @@ public class PathNavigation : MonoBehaviour
         atDestination = false;
     }
 
-    public PathNavigation()
+    public PathTracer()
     {
         animalFace = Face.Up;
     }

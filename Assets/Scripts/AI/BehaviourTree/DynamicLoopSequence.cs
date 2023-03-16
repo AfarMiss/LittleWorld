@@ -24,7 +24,7 @@ namespace AI
                 UpdateChildren();
             }
             Status childStatus = children[currentChildIndex].Process();
-            Debug.Log("childStatus:" + childStatus);
+            //Debug.Log("childStatus:" + childStatus);
             if (childStatus == Status.Success)
             {
                 currentChildIndex++;
@@ -42,7 +42,7 @@ namespace AI
         {
             this.RemoveAllChildren();
             this.AddChildren(update());
-            Debug.Log("更新子节点");
+            //Debug.Log("更新子节点");
         }
     }
 }

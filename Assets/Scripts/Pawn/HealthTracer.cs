@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace LittleWorld
 {
-    public class HealthTracer
+    public class HealthTracer : TracerBase
     {
         public float curHealth;
         public float maxHealth;
@@ -32,7 +32,7 @@ namespace LittleWorld
             this.age = age;
         }
 
-        public void Tick()
+        public override void Tick()
         {
             this.age.Tick();
         }

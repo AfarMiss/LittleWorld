@@ -13,7 +13,7 @@ namespace LittleWorld.Item
 {
     public class Animal : Living
     {
-        private PathNavigation pathTracer;
+        private PathTracer pathTracer;
         protected AnimalInfo animalInfo;
         protected WorkTracer workTracer;
         /// <summary>
@@ -28,7 +28,8 @@ namespace LittleWorld.Item
         public float CurHunger => healthTracer.curHealth;
         public float HungerPercent => healthTracer.curHunger / healthTracer.maxHunger;
 
-        public PathNavigation PathTracer { get => pathTracer; }
+        public PathTracer PathTracer { get => pathTracer; }
+        public RenderTracer RenderTracer;
 
         /// <summary>
         /// 注册被伤害时事件
@@ -42,7 +43,7 @@ namespace LittleWorld.Item
             healthTracer = new HealthTracer(100, 0.9f, 1f, age, this);
         }
 
-        public void SetNavi(PathNavigation PawnPathTracer)
+        public void SetNavi(PathTracer PawnPathTracer)
         {
             this.pathTracer = PawnPathTracer;
         }
@@ -50,6 +51,13 @@ namespace LittleWorld.Item
         public override Sprite GetSprite()
         {
             return animalInfo.itemSprites[0];
+        }
+
+        public virtual void OnBeDead()
+        {
+            this.workTracer.OnDisable();
+            this.healthTracer.OnDisable();
+            this.pathTracer.OnDisable();
         }
 
         public void StopAllAction()
@@ -61,7 +69,7 @@ namespace LittleWorld.Item
         }
 
         /// <summary>
-        /// 
+        /// 受到伤害
         /// </summary>
         /// <param name="damage"></param>
         /// <param name="damageSource">伤害来源</param>
@@ -124,6 +132,7 @@ namespace LittleWorld.Item
             if (IsDead) return;
             healthTracer?.Tick();
             workTracer?.Tick();
+            pathTracer?.Tick();
         }
     }
 

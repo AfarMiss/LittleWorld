@@ -8,6 +8,7 @@ using UnityEngine;
 using LittleWorld.MapUtility;
 using LittleWorld.Message;
 using static LittleWorld.HealthTracer;
+using NodeCanvas.Tasks.Actions;
 
 public class SceneObjectManager : Singleton<SceneObjectManager>
 {
@@ -49,6 +50,17 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     private Dictionary<WorldObject, ItemRender> WorldItemsRenderer = new Dictionary<WorldObject, ItemRender>();
     private Dictionary<Vector2Int, PileInfo> WorldPileRenderer = new Dictionary<Vector2Int, PileInfo>();
     private HashSet<Vector2Int> buildingGrids = new HashSet<Vector2Int>();
+
+    public IEnumerable<T> FindObjectsOfType<T>() where T : WorldObject
+    {
+        foreach (var item in WorldObjects)
+        {
+            if (item.Value is T)
+            {
+                yield return item.Value as T;
+            }
+        }
+    }
 
     public bool CanBuilding(Vector2Int targetGrid, BuildingInfo buildingInfo)
     {
@@ -160,8 +172,8 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         {
             GameObject curPawn = GameObject.Instantiate<GameObject>(pfAnimal, renderParent.transform);
             curPawn.GetComponent<Transform>().transform.position = animal.GridPos.To3();
-            curPawn.GetComponent<PathNavigation>().Initialize(animal.instanceID);
-            animal.SetNavi(curPawn.GetComponent<PathNavigation>());
+            curPawn.GetComponent<PathTracer>().Initialize(animal.instanceID);
+            animal.SetNavi(curPawn.GetComponent<PathTracer>());
             WorldItemsRenderer.Add(animal, curPawn.GetComponent<ItemRender>());
             curPawn.GetComponent<ItemRender>().Init(animal);
         }

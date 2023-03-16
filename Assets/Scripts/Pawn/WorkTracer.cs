@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace LittleWorld
 {
-    public class WorkTracer
+    public class WorkTracer : TracerBase
     {
         public static int workID = 0;
         public Queue<WorkBT> workQueue;
@@ -63,7 +63,7 @@ namespace LittleWorld
             return true;
         }
 
-        public void Tick()
+        public override void Tick()
         {
             if (curWork == null)
             {
