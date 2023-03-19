@@ -398,7 +398,7 @@ public class InputController : MonoSingleton<InputController>
         {
             foreach (var item in selectedObjects)
             {
-                if (item is Animal animal)
+                if (item is Animal animal && !animal.IsDead)
                 {
                     animal.ShowPath();
                 }

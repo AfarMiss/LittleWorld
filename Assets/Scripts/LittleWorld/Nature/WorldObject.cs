@@ -14,6 +14,9 @@ namespace LittleWorld.Item
         public bool isCarried = false;
         public bool canPile = false;
         public WorldObject carriedParent = null;
+        /// <summary>
+        /// 处于建造蓝图中
+        /// </summary>
         public bool inBuildingConstruction = false;
 
         protected float curHealth;

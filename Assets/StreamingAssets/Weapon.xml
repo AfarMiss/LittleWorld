@@ -21,7 +21,7 @@
 		<reloadTime>4</reloadTime>
 		<spread>0.02</spread>
 		<weaponSway>1</weaponSway>
-		<meleeDamage>1</meleeDamage>
+		<meleeDamage>5</meleeDamage>
 		<range>10</range>
 		<rangedCooldown>1</rangedCooldown>
 		<aimingTime>1</aimingTime>

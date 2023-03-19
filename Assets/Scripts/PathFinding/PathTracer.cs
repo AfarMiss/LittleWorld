@@ -63,6 +63,12 @@ public class PathTracer : TracerBase
         showPath = false;
     }
 
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        this.HidePath();
+    }
+
     /// <summary>
     /// 代表的itemInstanceID
     /// </summary>

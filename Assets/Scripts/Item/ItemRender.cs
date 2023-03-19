@@ -1,11 +1,12 @@
 ﻿using DG.Tweening;
+using LittleWorld;
 using LittleWorld.Extension;
 using LittleWorld.Item;
 using System;
 using System.Collections;
 using UnityEngine;
 
-public class ItemRender : MonoBehaviour
+public class ItemRender : MonoBehaviour, IRenderer
 {
     [SerializeField, ItemCodeDescription]
     private int itemCode;
@@ -13,14 +14,14 @@ public class ItemRender : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer weapon;
     private SpriteRenderer hualThing;
-    private WorldObject wo;
+    private WorldObject worldObject;
     private float lastHit = -1;
 
     private Vector3 initEulerAngle;
 
     public void Init(WorldObject wo)
     {
-        this.wo = wo;
+        this.worldObject = wo;
         if (wo is Animal animal)
         {
             animal.OnBeHurt += OnBeHurt;
@@ -60,12 +61,12 @@ public class ItemRender : MonoBehaviour
 
     private IEnumerator LogColor()
     {
-        Debug.Log($"{wo.ItemName}_{wo.instanceID} spriteRenderer.color before hurt:{spriteRenderer.color}");
+        Debug.Log($"{worldObject.ItemName}_{worldObject.instanceID} spriteRenderer.color before hurt:{spriteRenderer.color}");
         yield return new WaitForSeconds(0.5f);
-        Debug.Log($"{wo.ItemName}_{wo.instanceID} spriteRenderer.color after hurt:{spriteRenderer.color}");
+        Debug.Log($"{worldObject.ItemName}_{worldObject.instanceID} spriteRenderer.color after hurt:{spriteRenderer.color}");
     }
 
-    public void OnRender<T>(T worldObject) where T : WorldObject
+    public void OnRender()
     {
         if (spriteRenderer == null) return;
         spriteRenderer.enabled = !worldObject.isCarried;
@@ -80,10 +81,15 @@ public class ItemRender : MonoBehaviour
 
     public void OnDisRender()
     {
-        if (wo != null && wo is Animal animal)
+        if (worldObject != null && worldObject is Animal animal)
         {
             animal.OnBeHurt -= OnBeHurt;
         }
+    }
+
+    public void OnDie()
+    {
+        this.spriteRenderer.transform.SetPositionAndRotation(this.transform.position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360)));
     }
 
     private void SetPropertyOnce()

@@ -46,7 +46,7 @@ namespace LittleWorld
 
             if (isDead && !deadFlag)
             {
-                this.animal.Destroy();
+                this.animal.Die();
                 deadFlag = true;
             }
         }

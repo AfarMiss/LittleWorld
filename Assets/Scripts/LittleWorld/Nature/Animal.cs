@@ -18,6 +18,7 @@ namespace LittleWorld.Item
         protected WorkTracer workTracer;
 
         public PathTracerRender RenderTracer;
+        public ItemRender ItemRender => SceneObjectManager.Instance.GetRenderer(instanceID);
         /// <summary>
         /// 是否处于被征召状态
         /// </summary>
@@ -43,6 +44,10 @@ namespace LittleWorld.Item
             workTracer = new NonAggressiveWorkTracer(this);
             healthTracer = new HealthTracer(100, 0.9f, 1f, age, this);
             pathTracer = new PathTracer(this);
+
+            this.workTracer.OnEnable();
+            this.healthTracer.OnEnable();
+            this.pathTracer.OnEnable();
         }
 
         public override Sprite GetSprite()
@@ -50,11 +55,12 @@ namespace LittleWorld.Item
             return animalInfo.itemSprites[0];
         }
 
-        public virtual void OnBeDead()
+        public virtual void Die()
         {
             this.workTracer.OnDisable();
             this.healthTracer.OnDisable();
             this.pathTracer.OnDisable();
+            this.ItemRender.OnDie();
         }
 
         public void StopAllAction()

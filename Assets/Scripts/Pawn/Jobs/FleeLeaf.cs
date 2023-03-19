@@ -63,7 +63,7 @@ namespace AI
             this.fleeFrom = (Vector2Int)Blackboard.GetVariable(fleeFromName);
             for (int i = 0; i < 50; i++)
             {
-                var randomPoint = (Random.insideUnitCircle * 5).ToCell();
+                var randomPoint = (Random.insideUnitCircle * 10).ToCell();
                 targetPos += randomPoint;
                 targetPos.x = Mathf.Clamp(targetPos.x, 0, Current.CurMap.MapSize.x);
                 targetPos.y = Mathf.Clamp(targetPos.y, 0, Current.CurMap.MapSize.y);

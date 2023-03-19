@@ -10,6 +10,7 @@ using LittleWorld.Message;
 using static LittleWorld.HealthTracer;
 using NodeCanvas.Tasks.Actions;
 using LittleWorld;
+using FlowCanvas.Nodes;
 
 public class SceneObjectManager : Singleton<SceneObjectManager>
 {
@@ -48,8 +49,8 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public Dictionary<int, WorldObject> WorldObjects = new Dictionary<int, WorldObject>();
     public List<WorldObject> RequestAdd = new List<WorldObject>();
     public List<WorldObject> RequestDelete = new List<WorldObject>();
-    private Dictionary<WorldObject, ItemRender> WorldItemsRenderer = new Dictionary<WorldObject, ItemRender>();
-    private Dictionary<Vector2Int, PileInfo> WorldPileRenderer = new Dictionary<Vector2Int, PileInfo>();
+    private Dictionary<WorldObject, IRenderer> WorldItemsRenderer = new Dictionary<WorldObject, IRenderer>();
+    private Dictionary<Vector2Int, PileRenderer> WorldPileRenderer = new Dictionary<Vector2Int, PileRenderer>();
     private HashSet<Vector2Int> buildingGrids = new HashSet<Vector2Int>();
 
     public IEnumerable<T> FindObjectsOfType<T>() where T : WorldObject
@@ -193,7 +194,8 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
                 {
                     GameObject itemGameObject = GameObject.Instantiate(pfPile, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
                     PileRenderer itemComponent = itemGameObject.GetComponent<PileRenderer>();
-                    WorldPileRenderer.Add(wo.GridPos, new PileInfo(wo.itemCode, itemComponent, wo.mapBelongTo));
+                    itemGameObject.GetComponent<PileRenderer>().Init(wo.itemCode, wo.mapBelongTo);
+                    WorldPileRenderer.Add(wo.GridPos, itemComponent);
                 }
             }
         }
@@ -209,18 +211,18 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
                 if (wo.mapBelongTo.GetGrid(wo.GridPos, out var gridDetail)
                     && !gridDetail.HasPiledThing)
                 {
-                    GameObject.Destroy(renderer.pileRenderer.gameObject);
+                    GameObject.Destroy(renderer.gameObject);
                     WorldPileRenderer.Remove(wo.GridPos);
                 }
             }
         }
         else
         {
-            WorldItemsRenderer.TryGetValue(wo, out ItemRender renderer);
+            WorldItemsRenderer.TryGetValue(wo, out IRenderer renderer);
             if (renderer != null)
             {
-                renderer.OnDisRender();
-                GameObject.Destroy(renderer.gameObject);
+                (renderer as ItemRender).OnDisRender();
+                GameObject.Destroy((renderer as ItemRender).gameObject);
             }
             WorldItemsRenderer.Remove(wo);
         }
@@ -242,6 +244,12 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     }
 
+    public ItemRender GetRenderer(int instanceID)
+    {
+        WorldItemsRenderer.TryGetValue(GetWorldObjectById(instanceID), out var renderer);
+        return renderer as ItemRender;
+    }
+
     public void Tick(GameTime gameTime)
     {
         pawnManager.Tick();
@@ -252,12 +260,12 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
         foreach (var item in WorldItemsRenderer)
         {
-            item.Value.OnRender(item.Key);
+            item.Value.OnRender();
         }
 
         foreach (var item in WorldPileRenderer)
         {
-            item.Value.pileRenderer.Render(item.Value.pileCode, item.Key, item.Value.belongTo);
+            item.Value.Render(item.Value.pileCode, item.Key, item.Value.belongTo);
         }
 
 

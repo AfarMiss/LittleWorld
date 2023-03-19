@@ -365,6 +365,11 @@ namespace LittleWorld.MapUtility
             return mapGrids[pos.x * MapSize.y + pos.y];
         }
 
+        public Vector2Int ValidateGridPos(Vector2Int pos)
+        {
+            return new Vector2Int(math.clamp(pos.x, 0, MapSize.x), math.clamp(pos.y, 0, MapSize.y));
+        }
+
         private int GetIdUsingPerlin(int x, int y)
         {
             float rawPerlin = Mathf.PerlinNoise((float)x / MapSize.x * lacunarity + SeedToInt(), (float)y / MapSize.y * lacunarity + SeedToInt());

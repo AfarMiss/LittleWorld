@@ -27,7 +27,7 @@ namespace AI
         private void Init(string name, Animal animal, CalculatePath calculateFunc, MoveType moveType)
         {
             var curDestination = calculateFunc();
-            while (!Current.CurMap.GetGrid(curDestination).isLand)
+            while (!Current.CurMap.GetGrid(Current.CurMap.ValidateGridPos(calculateFunc())).isLand)
             {
                 Debug.LogWarning($"重新计算目的地 for MoveUntilSuccessLeaf,旧:{curDestination}");
                 curDestination = calculateFunc();
