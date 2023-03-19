@@ -12,12 +12,17 @@ namespace AI
         private Vector2Int? fleeFrom;
         private Vector2Int? fleeTo;
         private string fleeFromName;
+        /// <summary>
+        /// 可以重新选择逃离点
+        /// </summary>
+        private bool fleeResting = true;
 
         public override Status Process()
         {
-            if (fleeFrom == null)
+            if (fleeResting)
             {
                 fleeTo = SelectFleeDestination();
+                fleeResting = false;
             }
             if (fleeTo != null)
             {
@@ -26,6 +31,7 @@ namespace AI
                 {
                     case Status.Success:
                         parent.Priority = -1;
+                        fleeResting = true;
                         return Status.Running;
                     case Status.Running:
                         return Status.Running;

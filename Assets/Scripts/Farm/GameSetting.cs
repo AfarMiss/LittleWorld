@@ -32,7 +32,7 @@ public static class GameSetting
     /// <summary>
     /// 游戏中的一秒时长
     /// </summary>
-    public const float TickTime = 0.06f;
+    public const float TickTime = 0.02f;
 
     private static string inputXString = "xInput";
     private static string inputYString = "yInput";

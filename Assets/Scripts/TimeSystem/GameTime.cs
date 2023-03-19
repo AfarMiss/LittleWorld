@@ -69,7 +69,8 @@ public struct GameTime
         EventCenter.Instance.Trigger(EventName.GAME_TICK, this);
         minute++;
         EventCenter.Instance.Trigger(EventName.MINUTE_CHANGE, this);
-        if (minute >= 60)
+        //目前人物的位置渲染是根据Tick来的，之前的Tick间隔是0.06，每小时60分钟，为了配合渲染的帧率，目前将每小时调成180分钟，以达到0.02s渲染一次人物位置的目的
+        if (minute >= 180)
         {
             minute = 0;
             hour++;
