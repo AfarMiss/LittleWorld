@@ -15,6 +15,7 @@ public class PathTracer : TracerBase
 {
     public Face animalFace;
     public int lastStampFrameCount = -1;
+    public PathInfo CurPathInfo => curPathInfo;
     private PathInfo curPathInfo = new PathInfo();
     public Vector2Int? curDestination;
     private Vector3 imageOffset = new Vector3(0.5f, 0.5f);
@@ -23,7 +24,7 @@ public class PathTracer : TracerBase
     private Vector2Int? curStepTarget = null;
     private MoveType? curMoveType => curPathInfo?.moveType;
     private LineRenderer pathRender => animal.RenderTracer.pathRender;
-    private bool showPath = false;
+    public bool showPath = false;
     public bool PathIsShow => showPath;
 
     private float walkLeftCost = 0;
@@ -36,7 +37,7 @@ public class PathTracer : TracerBase
     public Vector2 curRenderPos;
     private Vector3 dir;
 
-    public Vector2 RenderPos
+    private Vector2 RenderPos
     {
         get
         {
@@ -65,13 +66,8 @@ public class PathTracer : TracerBase
     /// <summary>
     /// 代表的itemInstanceID
     /// </summary>
-    public int animalID;
-    public Animal animal => SceneObjectManager.Instance.GetWorldObjectById(animalID) as Animal;
-
-    public void Initialize(int instanceID)
-    {
-        this.animalID = instanceID;
-    }
+    public int animalID => animal.instanceID;
+    public Animal animal;
 
     public void ResetPath()
     {
@@ -83,40 +79,9 @@ public class PathTracer : TracerBase
         curRenderPos = default;
     }
 
-    private void DrawLine(Queue<Vector2Int> path)
-    {
-        pathRender.enabled = !atDestination && showPath;
-        if (path == null || !showPath)
-        {
-            return;
-        }
-        var pathArray = path.ToArray();
-        pathRender.positionCount = pathArray.Length + 2;
-        pathRender.SetPosition(0, RenderPos.To3() + imageOffset);
-        if (curStepTarget != null)
-        {
-            pathRender.SetPosition(1, new Vector3(curStepTarget.Value.x, curStepTarget.Value.y, 0) + imageOffset);
-            for (int i = 0; i < path.Count; i++)
-            {
-                pathRender.SetPosition(i + 2, new Vector3(pathArray[i].x, pathArray[i].y, 0) + imageOffset);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < path.Count; i++)
-            {
-                pathRender.SetPosition(i + 1, new Vector3(pathArray[i].x, pathArray[i].y, 0) + imageOffset);
-            }
-        }
-
-        pathRender.startColor = new Color(1, 1, 1, 0.3f);
-        pathRender.endColor = new Color(1, 1, 1, 0.3f);
-    }
-
     public override void Tick()
     {
         MoveInPath();
-        DrawLine(curPathInfo.curPath);
     }
 
     private void MoveInPath()
@@ -190,8 +155,9 @@ public class PathTracer : TracerBase
         atDestination = false;
     }
 
-    public PathTracer()
+    public PathTracer(Animal animal)
     {
         animalFace = Face.Up;
+        this.animal = animal;
     }
 }

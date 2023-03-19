@@ -13,9 +13,11 @@ namespace LittleWorld.Item
 {
     public class Animal : Living
     {
-        private PathTracer pathTracer;
+        protected PathTracer pathTracer;
         protected AnimalInfo animalInfo;
         protected WorkTracer workTracer;
+
+        public PathTracerRender RenderTracer;
         /// <summary>
         /// 是否处于被征召状态
         /// </summary>
@@ -29,7 +31,6 @@ namespace LittleWorld.Item
         public float HungerPercent => healthTracer.curHunger / healthTracer.maxHunger;
 
         public PathTracer PathTracer { get => pathTracer; }
-        public RenderTracer RenderTracer;
 
         /// <summary>
         /// 注册被伤害时事件
@@ -41,11 +42,7 @@ namespace LittleWorld.Item
             animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
             workTracer = new NonAggressiveWorkTracer(this);
             healthTracer = new HealthTracer(100, 0.9f, 1f, age, this);
-        }
-
-        public void SetNavi(PathTracer PawnPathTracer)
-        {
-            this.pathTracer = PawnPathTracer;
+            pathTracer = new PathTracer(this);
         }
 
         public override Sprite GetSprite()

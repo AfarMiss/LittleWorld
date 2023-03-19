@@ -9,6 +9,7 @@ using LittleWorld.MapUtility;
 using LittleWorld.Message;
 using static LittleWorld.HealthTracer;
 using NodeCanvas.Tasks.Actions;
+using LittleWorld;
 
 public class SceneObjectManager : Singleton<SceneObjectManager>
 {
@@ -86,7 +87,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"{worldObject.ItemName}_{worldObject.itemCode}");
+            Debug.LogError($"{worldObject.ItemName}_{worldObject.itemCode}注册错误");
             Debug.LogError(e);
             throw;
         }
@@ -170,12 +171,12 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     {
         if (wo is Animal animal)
         {
-            GameObject curPawn = GameObject.Instantiate<GameObject>(pfAnimal, renderParent.transform);
+            GameObject curPawn = UnityEngine.Object.Instantiate(pfAnimal, renderParent.transform);
             curPawn.GetComponent<Transform>().transform.position = animal.GridPos.To3();
-            curPawn.GetComponent<PathTracer>().Initialize(animal.instanceID);
-            animal.SetNavi(curPawn.GetComponent<PathTracer>());
             WorldItemsRenderer.Add(animal, curPawn.GetComponent<ItemRender>());
             curPawn.GetComponent<ItemRender>().Init(animal);
+            curPawn.GetComponent<PathTracerRender>().Init(animal);
+            animal.RenderTracer = curPawn.GetComponent<PathTracerRender>();
         }
         else
         {
