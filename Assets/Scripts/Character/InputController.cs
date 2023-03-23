@@ -11,6 +11,7 @@ using LittleWorld.MapUtility;
 using LittleWorld.Graphics;
 using UnityEngine.UI;
 using System;
+using LittleWorld.Command;
 
 public class InputController : MonoSingleton<InputController>
 {
@@ -24,6 +25,9 @@ public class InputController : MonoSingleton<InputController>
     private GameObject pfGhostBuilding;
     public Camera MainCamera;
     public int CurSelectedBuildingCode;
+
+    public Texture2D fireCursor;
+    public Texture2D defaultCursor;
 
 
     public void AddEventOnZoomChanged(OnPlantZoneChanged onChanged)
@@ -40,6 +44,7 @@ public class InputController : MonoSingleton<InputController>
     public List<WorldObject> SelectedObjects => selectedObjects;
     private List<WorldObject> selectedObjects;
     public bool AdditionalAction => additionalAction;
+    private Humanbeing selectedSingleHuman;
     public Rect ScreenSelectionArea => screenRealSelection;
     /// <summary>
     /// 是否为附加模式
@@ -151,11 +156,11 @@ public class InputController : MonoSingleton<InputController>
             if (selectedObjects.SinglePawnSelected())
             {
                 //对单人进行操作
-                var human = SceneObjectManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
-                FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(human as Humanbeing, Current.MousePos);
+                selectedSingleHuman = SceneObjectManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID) as Humanbeing;
+                FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(selectedSingleHuman as Humanbeing, Current.MousePos);
                 if (opts.Length == 0)
                 {
-                    AddMoveWork(human, curPos);
+                    AddMoveWork(selectedSingleHuman, curPos);
                 }
             }
         }
@@ -230,6 +235,45 @@ public class InputController : MonoSingleton<InputController>
         OnPlayingGameProgress(callbackContext);
     }
 
+    public void PauseOrResume(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            if (Current.CurGame.timeSpeed == 0)
+            {
+                CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(1));
+            }
+            else
+            {
+                CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(0));
+            }
+        }
+    }
+
+    public void Speed1(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(1));
+        }
+    }
+
+    public void Speed2(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(2));
+        }
+    }
+
+    public void Speed3(CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            CommandCenter.Instance.Enqueue(new ChangeGameSpeedCommand(3));
+        }
+    }
+
     private void OnPlayingGameProgress(CallbackContext callbackContext)
     {
         if (Root.Instance.GameState != GameState.PLAYING)
@@ -280,8 +324,25 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.BuildingGhost:
                 TryAddBuilding(callbackContext);
                 break;
+            case MouseState.ReadyToFire:
+                TryKill(callbackContext);
+                break;
             default:
                 break;
+        }
+    }
+
+    private void TryKill(CallbackContext callbackContext)
+    {
+        if (callbackContext.canceled)
+        {
+            foreach (var item in WorldUtility.GetWorldObjectRenderersAt(onClickLeftEndPositionWorldPosition))
+            {
+                if (item is Animal animal)
+                {
+                    selectedSingleHuman.AddFireWork(animal);
+                }
+            }
         }
     }
 
@@ -328,9 +389,20 @@ public class InputController : MonoSingleton<InputController>
         if (needRespondToUI) { return; }
         TryClearSelectedUnits();
         selectedObjects = SelectWorldObjects(SelectType.REGION_TOP);
+
         if (selectedObjects == null)
         {
             SelectSectionObjects();
+        }
+        else
+        {
+            foreach (var item in selectedObjects)
+            {
+                if (item is Animal animal && !animal.IsDead)
+                {
+                    animal.ShowPath();
+                }
+            }
         }
     }
 
@@ -395,7 +467,18 @@ public class InputController : MonoSingleton<InputController>
 
     private void ClearSelectedUnits()
     {
-        selectedObjects?.Clear();
+        if (selectedObjects != null)
+        {
+            foreach (var item in selectedObjects)
+            {
+                if (item is Animal animal)
+                {
+                    animal.HidePath();
+                }
+            }
+            SelectedObjects.Unselect();
+            selectedObjects.Clear();
+        }
     }
 
     public MapSection SelectSectionObjects()
@@ -417,17 +500,17 @@ public class InputController : MonoSingleton<InputController>
         {
             return null;
         }
-        var worldObject = worldObjectArray.ToList().GetSelected(selectType);
+        var selectObjects = worldObjectArray.ToList().GetSelected(selectType);
 
 
 
-        if (worldObject == null || worldObject.Count == 0)
+        if (selectObjects == null || selectObjects.Count == 0)
         {
             UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
             return null;
         }
-        WorldObject.ShowInfo(worldObject.ToArray());
-        return worldObject.ToList();
+        WorldObject.ShowInfo(selectObjects.ToArray());
+        return selectObjects.ToList();
     }
 
     private void Update()
@@ -456,11 +539,24 @@ public class InputController : MonoSingleton<InputController>
             case MouseState.ShrinkStorageZone:
             case MouseState.AddStorageSection:
             case MouseState.DeleteStorageSection:
+                Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
+                break;
+            case MouseState.ReadyToFire:
+                if (WorldUtility.CheckOtherAnimalsAtMouse())
+                {
+                    Cursor.SetCursor(fireCursor, new Vector2(64, 64), CursorMode.Auto);
+                }
+                else
+                {
+                    Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
+                }
                 break;
             case MouseState.BuildingGhost:
+                Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
                 UpdateGhostPos(MainCamera.ScreenToWorldPoint(Current.MousePos));
                 break;
             default:
+                Cursor.SetCursor(defaultCursor, new Vector2(64, 64), CursorMode.Auto);
                 break;
         }
     }
@@ -493,6 +589,7 @@ public class InputController : MonoSingleton<InputController>
                 RenderPlantManager();
                 break;
             case MouseState.BuildingGhost:
+            case MouseState.ReadyToFire:
                 break;
             default:
                 break;

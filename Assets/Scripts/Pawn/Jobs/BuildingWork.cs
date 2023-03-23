@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class BuildingWork : Work
+    public class BuildingWork : WorkBT
     {
         private int curBuildingAmount = 0;
 
@@ -23,7 +23,7 @@ namespace LittleWorld.Jobs
             () => { Debug.Log($"开始建造{building.ItemName}"); },
             () => { Debug.LogWarning($"资源不足，无法建造{building.ItemName}"); });
             DynamicWalk walkLeaf = new DynamicWalk("Go To Building", humanbeing, Node.GoToLoc, GetMiningPos);
-            DynamicLongWorkLeaf MiningLeaf = new DynamicLongWorkLeaf("Do Building", humanbeing, Building, GetMiningPos);
+            DynamicLongJobLeaf MiningLeaf = new DynamicLongJobLeaf("Do Building", humanbeing, Building, GetMiningPos);
             BuildingSequence.AddChild(canBuilding);
             BuildingSequence.AddChild(walkLeaf);
             BuildingSequence.AddChild(MiningLeaf);
@@ -43,7 +43,7 @@ namespace LittleWorld.Jobs
             var objects = WorldUtility.GetWorldObjectsAt(destination);
             if (objects == null)
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
             var curBuilding = objects.ToList().Find(x => x is Building);
             if (curBuilding != null)
@@ -58,19 +58,19 @@ namespace LittleWorld.Jobs
                 {
                     EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(this, sliderValue, human, destination));
                     curBuildingAmount += human.GetWorkSpeed(WorkTypeEnum.mining);
-                    return Node.Status.RUNNING;
+                    return Node.Status.Running;
                 }
                 else
                 {
                     EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(this, sliderValue, human, destination));
                     curBuildingAmount = 0;
                     (curBuilding as Building).Finish();
-                    return Node.Status.SUCCESS;
+                    return Node.Status.Success;
                 }
             }
             else
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
         }
 

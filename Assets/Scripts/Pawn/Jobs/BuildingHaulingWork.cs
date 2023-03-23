@@ -7,20 +7,19 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class BuildingHaulingWork : Work
+    public class BuildingHaulingWork : WorkBT
     {
-        public void CreateWorkSequence()
+        public BehaviourTree CreateWorkSequence()
         {
-            Sequence carrySequence = new Sequence("Sow Sequence");
             Humanbeing humanbeing = tree.GetVariable("Humanbeing") as Humanbeing;
             Building building = tree.GetVariable("Building") as Building;
             //carry
-            ConditionLoop checkAllRawMaterialContained = new ConditionLoop("Check All RawMaterial Contained", CheckAllRawMaterialContained);
+            LoopUnitlConditionSuccess checkAllRawMaterialContained = new LoopUnitlConditionSuccess("Check All RawMaterial Contained", CheckAllRawMaterialContained);
 
             DynamicWalk walkLeaf = new DynamicWalk("Go To Object", humanbeing, Node.GoToLoc, GetRawMaterialPos);
-            DynamicLongWorkLeaf carry = new DynamicLongWorkLeaf("Carry", humanbeing, DoHaul, GetRawMaterialPos);
-            WalkLeaf moveToStorageSection = new WalkLeaf("Go To Storage Section", building.GridPos, humanbeing);
-            DynamicLongWorkLeaf dropDown = new DynamicLongWorkLeaf("Drop Down", humanbeing, DoDropDown, GetBuildingPos);
+            DynamicLongJobLeaf carry = new DynamicLongJobLeaf("Carry", humanbeing, DoHaul, GetRawMaterialPos);
+            MoveLeaf moveToStorageSection = new MoveLeaf("Go To Storage Section", building.GridPos, humanbeing);
+            DynamicLongJobLeaf dropDown = new DynamicLongJobLeaf("Drop Down", humanbeing, DoDropDown, GetBuildingPos);
 
             checkAllRawMaterialContained.AddChild(walkLeaf);
             checkAllRawMaterialContained.AddChild(carry);
@@ -28,6 +27,7 @@ namespace LittleWorld.Jobs
             checkAllRawMaterialContained.AddChild(dropDown);
 
             tree.AddChild(checkAllRawMaterialContained);
+            return tree;
         }
 
         private bool CheckAllRawMaterialContained()
@@ -40,7 +40,7 @@ namespace LittleWorld.Jobs
         {
             Building building = tree.GetVariable("Building") as Building;
             building.AddBuildingRawMaterials(tree.GetVariable("worldObjects") as WorldObject[]);
-            return Node.Status.SUCCESS;
+            return Node.Status.Success;
 
         }
 
@@ -56,7 +56,7 @@ namespace LittleWorld.Jobs
             var buildingCost = tree.GetVariable("curBuildingCost") as BuildingCost;
             var worldObjects = human.Carry(buildingCost.materialCode, buildingCost.materialAmount, destination);
             tree.SetVariable("worldObjects", worldObjects);
-            return Node.Status.SUCCESS;
+            return Node.Status.Success;
         }
 
         private Vector2Int GetRawMaterialPos()
@@ -87,7 +87,6 @@ namespace LittleWorld.Jobs
 
         public BuildingHaulingWork(Building building, Humanbeing humanbeing)
         {
-            tree = new BehaviourTree();
             tree.SetVariable("Humanbeing", humanbeing);
             tree.SetVariable("Building", building);
             CreateWorkSequence();

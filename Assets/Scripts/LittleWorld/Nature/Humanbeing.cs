@@ -10,31 +10,26 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using AI;
+using System.Net.Cache;
+using static LittleWorld.HealthTracer;
 
 namespace LittleWorld.Item
 {
     public class Humanbeing : Animal
     {
-        public enum MotionStatus
-        {
-            Idle,
-            Running,
-        }
-
-        private PawnWorkTracer workTracer;
-        private PawnHealthTracer healthTracer;
-        private PathNavigation pathTracer;
         public List<WorldObject> Inventory = new List<WorldObject>();
+        public GearTracer gearTracer;
 
         public bool CarrySingle(WorldObject wo, Vector2Int destination)
         {
-            Current.CurMap.TryGetGrid(destination, out var result);
+            Current.CurMap.GetGrid(destination, out var result);
             return result.PickUp(wo, this);
         }
 
         public bool CarrySingle(int itemCode, Vector2Int destination, out WorldObject wo)
         {
-            Current.CurMap.TryGetGrid(destination, out var result);
+            Current.CurMap.GetGrid(destination, out var result);
             return result.PickUp(itemCode, this, out wo);
         }
 
@@ -45,6 +40,7 @@ namespace LittleWorld.Item
                 CarrySingle(item, destination);
             }
         }
+
 
         public WorldObject[] Carry(int itemCode, int amount, Vector2Int destination)
         {
@@ -73,12 +69,9 @@ namespace LittleWorld.Item
             }
         }
 
-
-        public MotionStatus motion = MotionStatus.Idle;
-
-        public void SetNavi(PathNavigation PawnPathTracer)
+        public void StopFire()
         {
-            this.pathTracer = PawnPathTracer;
+            gearTracer.curWeapon.StopFire();
         }
 
         public int GetWorkSpeed(WorkTypeEnum type)
@@ -86,38 +79,30 @@ namespace LittleWorld.Item
             switch (type)
             {
                 case WorkTypeEnum.dug:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.water:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.gotoLoc:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.cut:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.harvest:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.sow:
-                    return 2;
+                    return 6;
                 case WorkTypeEnum.carry:
-                    return 2;
+                    return 6;
                 default:
-                    return 2;
+                    return 6;
             }
         }
 
-        public void GoToLoc(Vector2Int target)
-        {
-            pathTracer.GoToLoc(target);
-        }
-
-        public Queue<HumanAction> actionQueue;
         public MotionStatus motionStatus;
 
-        public Humanbeing(int itemCode, Vector2Int gridPos) : base(itemCode, gridPos)
+        public Humanbeing(int itemCode, Age age, Vector2Int gridPos) : base(itemCode, age, gridPos)
         {
-            actionQueue = new Queue<HumanAction>();
             workTracer = new PawnWorkTracer(this);
-            animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
-            ItemName = animalInfo.itemName;
+            gearTracer = new GearTracer(this);
         }
 
         public void AddHarvestWork(PlantMapSection section, int plantCode)
@@ -148,14 +133,27 @@ namespace LittleWorld.Item
         public void AddMoveWork(Vector3Int targetPos)
         {
             workTracer.AddWork(new GoToLocWork(this, targetPos.To2()));
-
         }
 
-        public override void Tick()
+        public void AddEquipWork(Weapon weapon)
         {
-            base.Tick();
-            workTracer?.Tick();
-            //Debug.Log("pos:" + GridPos);
+            workTracer.AddWork(new EquipWork(weapon, this));
+        }
+
+        public void AddFireWork(Animal animal)
+        {
+            workTracer.AddWork(new HuntWork(this, animal));
+        }
+
+        public void FireAt(Animal animal)
+        {
+            gearTracer.TryFireAt(animal);
+        }
+
+        public void AddEquip(Weapon weapon, Vector2Int destination)
+        {
+            CarrySingle(weapon, destination);
+            gearTracer.AddEquip(weapon);
         }
 
         internal void AddBuildingWork(Building building)

@@ -7,13 +7,16 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class GoToLocWork : Work
+    public class GoToLocWork : WorkBT
     {
         public GoToLocWork(Humanbeing humanbeing, Vector2Int destination)
         {
-            tree = new BehaviourTree();
-            WalkLeaf dynamicWalk = new WalkLeaf("Go To Loc", destination, humanbeing);
-            tree.AddChild(dynamicWalk);
+            if (!Current.CurMap.GetGrid(destination).isLand)
+            {
+                return;
+            }
+            MoveLeaf moveLeaf = new MoveLeaf("Go To Loc", destination, humanbeing);
+            tree.AddChild(moveLeaf);
         }
     }
 }

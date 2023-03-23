@@ -95,7 +95,7 @@ public static class VectorExtension
         return curPos.ToCell() == refPos;
     }
 
-    public static Vector2 ToWorldVector2(this Vector3 worldVector)
+    public static Vector2 To2(this Vector3 worldVector)
     {
         return new Vector2(worldVector.x, worldVector.y);
     }

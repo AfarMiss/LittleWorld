@@ -1,22 +1,25 @@
 ﻿using AI;
 using LittleWorld.Item;
 using LittleWorld.MapUtility;
+using System;
 using System.Linq;
 using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class HaulingWork : Work
+    public class HaulingWork : WorkBT
     {
         public void CreateWorkSequence()
         {
             Sequence carrySequence = new Sequence("Sow Sequence");
             Humanbeing humanbeing = tree.GetVariable("Humanbeing") as Humanbeing;
             //carry
+            CheckLeaf checkLeaf = new CheckLeaf("check whether has storage zone", CheckStorage, null, OnCheckStorageFail);
             DynamicWalk walkLeaf = new DynamicWalk("Go To Object", humanbeing, Node.GoToLoc, GetOjectPos);
-            DynamicLongWorkLeaf carry = new DynamicLongWorkLeaf("Carry", humanbeing, DoHaul, GetOjectPos);
+            DynamicLongJobLeaf carry = new DynamicLongJobLeaf("Carry", humanbeing, DoHaul, GetOjectPos);
             DynamicWalk moveToStorageSection = new DynamicWalk("Go To Storage Section", humanbeing, Node.GoToLoc, GetStoragePos);
-            DynamicLongWorkLeaf dropDown = new DynamicLongWorkLeaf("Drop Down", humanbeing, DoDropDown, GetStoragePos);
+            DynamicLongJobLeaf dropDown = new DynamicLongJobLeaf("Drop Down", humanbeing, DoDropDown, GetStoragePos);
+            carrySequence.AddChild(checkLeaf);
             carrySequence.AddChild(walkLeaf);
             carrySequence.AddChild(carry);
             carrySequence.AddChild(moveToStorageSection);
@@ -24,10 +27,21 @@ namespace LittleWorld.Jobs
             tree.AddChild(carrySequence);
         }
 
+        private void OnCheckStorageFail()
+        {
+            Debug.LogWarning("不存在符合条件的存储区");
+        }
+
+        private bool CheckStorage()
+        {
+            var targetSection = Current.CurMap.sectionDic.Values.ToList().Find(x => x is StorageMapSection);
+            return targetSection != null;
+        }
+
         private Node.Status DoDropDown(Vector2Int destination, Humanbeing human)
         {
             human.Dropdown(tree.GetVariable("WorldObjects") as WorldObject[], destination);
-            return Node.Status.SUCCESS;
+            return Node.Status.Success;
 
         }
 
@@ -48,7 +62,7 @@ namespace LittleWorld.Jobs
         private Node.Status DoHaul(Vector2Int destination, Humanbeing human)
         {
             human.Carry(tree.GetVariable("WorldObjects") as WorldObject[], destination);
-            return Node.Status.SUCCESS;
+            return Node.Status.Success;
         }
 
         private Vector2Int GetOjectPos()
@@ -59,7 +73,6 @@ namespace LittleWorld.Jobs
 
         public HaulingWork(WorldObject[] wo, Humanbeing humanbeing)
         {
-            tree = new BehaviourTree();
             tree.SetVariable("WorldObjects", wo);
             tree.SetVariable("Humanbeing", humanbeing);
             CreateWorkSequence();

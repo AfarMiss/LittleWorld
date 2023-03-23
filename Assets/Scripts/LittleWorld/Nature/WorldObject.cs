@@ -10,9 +10,13 @@ namespace LittleWorld.Item
 {
     public abstract class WorldObject : Object
     {
+        public bool isDestroyed = false;
         public bool isCarried = false;
         public bool canPile = false;
         public WorldObject carriedParent = null;
+        /// <summary>
+        /// 处于建造蓝图中
+        /// </summary>
         public bool inBuildingConstruction = false;
 
         protected float curHealth;
@@ -67,10 +71,11 @@ namespace LittleWorld.Item
 
         public void Destroy()
         {
+            isDestroyed = true;
             OnDestroy();
             if (this.canPile && !inBuildingConstruction)
             {
-                this.mapBelongTo.TryGetGrid(this.gridPos, out var result);
+                this.mapBelongTo.GetGrid(this.gridPos, out var result);
                 result.DeleteSinglePiledThing();
             }
             SceneObjectManager.Instance.UnregisterObject(this);
@@ -85,11 +90,9 @@ namespace LittleWorld.Item
         {
             get
             {
-                if (this is Humanbeing)
+                if (this is Animal animal)
                 {
-                    var navis = GameObject.FindObjectsOfType<PathNavigation>();
-                    var humanNavi = navis.ToList().Find(x => x.humanID == instanceID);
-                    return humanNavi != null ? humanNavi.renderPos : gridPos;
+                    return animal.RenderTracer.RenderPos;
                 }
                 else
                 {
@@ -98,19 +101,56 @@ namespace LittleWorld.Item
             }
         }
 
-        public static void ShowInfo(Object[] objects)
+        /// <summary>
+        /// 以渲染锚点为中心，边长为1的正方形
+        /// </summary>
+        public Rect EntityRect
         {
-            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
-            briefPanel.BindBriefInfo(objects);
+            get
+            {
+                return new Rect(RenderPos.To2(), Vector2.one);
+            }
         }
 
-        public static void ShowInfo(Object objects)
+        public static void ShowInfo(Object[] objects)
         {
-            var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
-            briefPanel.BindBriefInfo(new LittleWorld.Item.Object[] { objects });
+            UIManager.Instance.HideAllInfoPanel();
+            if (objects.Length <= 0)
+            {
+                return;
+            }
+            if (objects.Length > 1)
+            {
+                var briefPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
+                briefPanel.BindBriefInfo(objects);
+            }
+            else if (objects.Length == 1)
+            {
+                ShowInfo(objects[0]);
+            }
+        }
+
+        public static void ShowInfo(Object o)
+        {
+            BriefInfoPanel briefInfoPanel;
+            if (o is Animal)
+            {
+                briefInfoPanel = UIManager.Instance.Show<BriefInfoAnimalPanel>(UIType.PANEL, UIPath.Panel_BriefInfoAnimalPanel);
+                briefInfoPanel.BindBriefInfo(o);
+            }
+            else
+            {
+                briefInfoPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
+                briefInfoPanel.BindBriefInfo(o);
+            }
         }
 
         public virtual void Tick()
+        {
+
+        }
+
+        public virtual void RealTimeTick()
         {
 
         }

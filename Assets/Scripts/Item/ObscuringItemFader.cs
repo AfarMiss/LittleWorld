@@ -36,20 +36,20 @@ public class ObscuringItemFader : MonoBehaviour
     private IEnumerator FadeOutRoutine(SpriteRenderer spriteRenderer)
     {
         var curAlpha = spriteRenderer.color.a;
-        var fadeOutVelocity = (1 - FarmSetting.targetAlpha) / FarmSetting.fadeOutSeconds;
-        while (curAlpha - FarmSetting.targetAlpha > 0.01f)
+        var fadeOutVelocity = (1 - GameSetting.targetAlpha) / GameSetting.fadeOutSeconds;
+        while (curAlpha - GameSetting.targetAlpha > 0.01f)
         {
             curAlpha -= fadeOutVelocity;
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, curAlpha);
             yield return null;
         }
-        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, FarmSetting.targetAlpha);
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, GameSetting.targetAlpha);
     }
 
     private IEnumerator FadeInRoutine(SpriteRenderer spriteRenderer)
     {
         var curAlpha = spriteRenderer.color.a;
-        var fadeInVelocity = (1 - FarmSetting.targetAlpha) / FarmSetting.fadeInSeconds;
+        var fadeInVelocity = (1 - GameSetting.targetAlpha) / GameSetting.fadeInSeconds;
         while (1 - curAlpha > 0.01f)
         {
             curAlpha += fadeInVelocity;

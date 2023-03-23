@@ -16,7 +16,7 @@ namespace AI
             Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
                 return ProcessMethod(out result);
-            return Status.FAILURE;
+            return Status.Failure;
         }
 
         public Vector2IntLeaf() { }

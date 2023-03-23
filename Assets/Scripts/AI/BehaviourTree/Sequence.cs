@@ -7,31 +7,35 @@ namespace AI
     public class Sequence : Node
     {
         public Sequence() { }
-        public Sequence(string name) : base(name)
+        public Sequence(string name, NodeGraph graph = null) : base(name, graph)
         {
 
         }
 
         public override Status Process()
         {
-            Status childStatus = children[currentChild].Process();
-            if (childStatus == Status.RUNNING || childStatus == Status.FAILURE)
+            if (children.Count == 0)
+            {
+                return Status.Failure;
+            }
+            Status childStatus = children[currentChildIndex].Process();
+            if (childStatus == Status.Running || childStatus == Status.Failure)
             {
                 return childStatus;
             }
             else
             {
-                currentChild++;
+                currentChildIndex++;
             }
 
-            if (currentChild >= children.Count)
+            if (currentChildIndex >= children.Count)
             {
-                currentChild = 0;
-                return Status.SUCCESS;
+                currentChildIndex = 0;
+                return Status.Success;
             }
             else
             {
-                return Status.RUNNING;
+                return Status.Running;
             }
         }
     }

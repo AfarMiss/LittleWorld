@@ -181,7 +181,7 @@ public class GridCursor : MonoSingleton<GridCursor>
                     Vector3 cursorWorldPos = new Vector3(GetWorldPositionForCursor().x + 0.5f, GetWorldPositionForCursor().y + 0.5f, 0f);
                     List<ItemRender> itemList = new List<ItemRender>();
 
-                    UniBase.OverlapHelper.GetComponentsAtBoxLocation(out itemList, cursorWorldPos, FarmSetting.cursorSize, 0f);
+                    UniBase.OverlapHelper.GetComponentsAtBoxLocation(out itemList, cursorWorldPos, GameSetting.cursorSize, 0f);
 
                     bool foundReapable = false;
 

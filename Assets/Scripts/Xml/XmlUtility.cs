@@ -1,16 +1,31 @@
 ﻿using LittleWorld.Item;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Xml;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Xml
 {
     public class XmlUtility
     {
+        public static void ReadAllConfigXmlIn(string path)
+        {
+            DirectoryInfo directory = new DirectoryInfo(path);
+            FileInfo[] files = directory.GetFiles("*", SearchOption.TopDirectoryOnly);
+            DirectoryInfo[] folders = directory.GetDirectories("*", SearchOption.TopDirectoryOnly);
+            foreach (var item in files)
+            {
+                if (item.Name.EndsWith(".xml"))
+                {
+                    ReadConfigXml(TrimXmlName(item.Name));
+                }
+            }
+        }
+
+        public static string TrimXmlName(string fullPath)
+        {
+            return fullPath.Substring(fullPath.LastIndexOf("\\") + 1, (fullPath.LastIndexOf(".") - fullPath.LastIndexOf("\\") - 1));
+        }
         /// <summary>
         /// itemType和itemCode一定要存在
         /// </summary>
@@ -27,8 +42,7 @@ namespace Xml
                 if (item.SelectSingleNode("itemType").InnerText == "Plant")
                 {
                     var plant = new PlantInfo();
-                    plant.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
-                    plant.itemName = item.SelectSingleNode("itemName").InnerText;
+                    SetCommonProperty(item, ref plant);
                     plant.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     plant.cutWorkAmount = int.Parse(item.SelectSingleNode("cutWorkAmount").InnerText);
                     plant.yieldCount = int.Parse(item.SelectSingleNode("yieldCount").InnerText);
@@ -40,14 +54,12 @@ namespace Xml
                     plant.growingTime = float.Parse(item.SelectSingleNode("growingTime").InnerText);
                     plant.itemSprites = CreateItemSpritesList(item, 6);
                     ObjectConfig.ObjectInfoDic.Add(plant.itemCode, plant);
-                    SetCommonProperty(item, ref plant);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Seed")
                 {
                     var seed = new SeedInfo();
-                    seed.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
-                    seed.itemName = item.SelectSingleNode("itemName").InnerText;
+                    SetCommonProperty(item, ref seed);
                     seed.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     seed.sowWorkAmount = int.Parse(item.SelectSingleNode("sowWorkAmount").InnerText);
                     seed.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
@@ -55,94 +67,124 @@ namespace Xml
                     seed.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     seed.itemSprites = CreateItemSpritesList(item, 6);
                     ObjectConfig.ObjectInfoDic.Add(seed.itemCode, seed);
-                    SetCommonProperty(item, ref seed);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Crop")
                 {
                     var food = new RawFoodInfo();
-                    food.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
-                    food.itemName = item.SelectSingleNode("itemName").InnerText;
+                    SetCommonProperty(item, ref food);
                     food.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     food.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
                     food.nutrition = float.Parse(item.SelectSingleNode("nutrition").InnerText);
                     food.itemSprites = CreateItemSpritesList(item, 6);
                     ObjectConfig.ObjectInfoDic.Add(food.itemCode, food);
-                    SetCommonProperty(item, ref food);
                 }
 
 
                 if (item.SelectSingleNode("itemType").InnerText == "Animal")
                 {
                     var animal = new AnimalInfo();
-                    animal.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
-                    animal.itemName = item.SelectSingleNode("itemName").InnerText;
+                    SetCommonProperty(item, ref animal);
                     animal.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     animal.maxHealth = int.Parse(item.SelectSingleNode("maxHealth").InnerText);
                     animal.moveSpeed = float.Parse(item.SelectSingleNode("moveSpeed").InnerText);
                     animal.itemSprites = CreateItemSpritesList(item, 6);
                     ObjectConfig.ObjectInfoDic.Add(animal.itemCode, animal);
-                    SetCommonProperty(item, ref animal);
                 }
 
                 if (item.SelectSingleNode("itemType").InnerText == "Thing")
                 {
                     var thing = new ThingInfo();
-                    thing.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
-                    thing.itemName = item.SelectSingleNode("itemName").InnerText;
+                    SetCommonProperty(item, ref thing);
                     thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     thing.itemSprites = CreateItemSpritesList(item, 3);
                     ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
-                    SetCommonProperty(item, ref thing);
                 }
                 if (item.SelectSingleNode("itemType").InnerText == "Building")
                 {
                     var thing = new BuildingInfo();
-                    thing.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
-                    thing.itemName = item.SelectSingleNode("itemName").InnerText;
+                    SetCommonProperty(item, ref thing);
                     thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     thing.buildingWorkAmount = int.Parse(item.SelectSingleNode("buildingWorkAmount").InnerText);
                     thing.marketValue = float.Parse(item.SelectSingleNode("marketValue").InnerText);
                     thing.maxHitPoint = int.Parse(item.SelectSingleNode("maxHitPoint").InnerText);
-                    thing.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
-                    thing.buildingCost = GetBuildingCost(item);
+                    thing.buildingCost = item.SelectSingleNode("buildingCost").InnerText;
                     thing.itemSprites = CreateItemSpritesList(item, 1);
                     thing.buildingLength = int.Parse(item.SelectSingleNode("buildingLength").InnerText);
                     thing.buildingWidth = int.Parse(item.SelectSingleNode("buildingWidth").InnerText);
                     ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
-                    SetCommonProperty(item, ref thing);
                 }
                 if (item.SelectSingleNode("itemType").InnerText == "Ore")
                 {
                     var ore = new OreInfo();
-                    ore.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
-                    ore.itemName = item.SelectSingleNode("itemName").InnerText;
+                    SetCommonProperty(item, ref ore);
                     ore.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     ore.maxHitPoint = int.Parse(item.SelectSingleNode("maxHitPoint").InnerText);
                     ore.marketValue = float.Parse(item.SelectSingleNode("marketValue").InnerText);
-                    ore.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
                     ore.productionCode = int.Parse(item.SelectSingleNode("productionCode").InnerText);
                     ore.productionAmount = int.Parse(item.SelectSingleNode("productionAmount").InnerText);
                     ore.MiningWorkAmount = int.Parse(item.SelectSingleNode("miningWorkAmount").InnerText);
                     ore.itemSprites = CreateItemSpritesList(item, 1);
                     ObjectConfig.ObjectInfoDic.Add(ore.itemCode, ore);
-                    SetCommonProperty(item, ref ore);
+                }
+                if (item.SelectSingleNode("itemType").InnerText == "Weapon")
+                {
+                    var weapon = new WeaponInfo();
+                    SetCommonProperty(item, ref weapon);
+                    weapon.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+                    weapon.maxHitPoint = int.Parse(item.SelectSingleNode("maxHitPoint").InnerText);
+                    weapon.marketValue = float.Parse(item.SelectSingleNode("marketValue").InnerText);
+                    weapon.createAt = int.Parse(item.SelectSingleNode("createAt").InnerText);
+                    weapon.workToMake = int.Parse(item.SelectSingleNode("workToMake").InnerText);
+                    weapon.burstShotCount = int.Parse(item.SelectSingleNode("burstShotCount").InnerText);
+                    weapon.caliber = item.SelectSingleNode("caliber").InnerText;
+                    weapon.fireRate = float.Parse(item.SelectSingleNode("fireRate").InnerText);
+                    weapon.magazineCapacity = int.Parse(item.SelectSingleNode("magazineCapacity").InnerText);
+                    weapon.reloadTime = float.Parse(item.SelectSingleNode("reloadTime").InnerText);
+                    weapon.spread = float.Parse(item.SelectSingleNode("spread").InnerText);
+                    weapon.weaponSway = float.Parse(item.SelectSingleNode("weaponSway").InnerText);
+                    weapon.meleeDamage = float.Parse(item.SelectSingleNode("meleeDamage").InnerText);
+                    weapon.range = float.Parse(item.SelectSingleNode("range").InnerText);
+                    weapon.rangedCooldown = float.Parse(item.SelectSingleNode("rangedCooldown").InnerText);
+                    weapon.aimingTime = float.Parse(item.SelectSingleNode("aimingTime").InnerText);
+                    weapon.buildingDamageFactor = float.Parse(item.SelectSingleNode("buildingDamageFactor").InnerText);
+                    weapon.itemSprites = CreateItemSpritesList(item, 1);
+                    weapon.isMelee = item.SelectSingleNode("isMelee").InnerText == "True";
+                    ObjectConfig.ObjectInfoDic.Add(weapon.itemCode, weapon);
                 }
             }
         }
 
         private static void SetCommonProperty<T>(XmlNode item, ref T info) where T : BaseInfo
         {
-            if (item == null || item.SelectSingleNode("maxPileCount") == null
-                || string.IsNullOrEmpty(item.SelectSingleNode("maxPileCount").InnerText))
+            if (item == null)
             {
                 return;
             }
-            info.canPile = int.TryParse(item.SelectSingleNode("maxPileCount").InnerText, out info.maxPileCount);
-            if (!bool.TryParse(item.SelectSingleNode("maxPileCount").InnerText, out info.isBlock))
+            if (item.SelectSingleNode("maxPileCount") == null
+                || string.IsNullOrEmpty(item.SelectSingleNode("maxPileCount").InnerText))
+            {
+                info.canPile = false;
+                info.maxPileCount = 0;
+            }
+            else
+            {
+                info.canPile = int.TryParse(item.SelectSingleNode("maxPileCount").InnerText, out info.maxPileCount);
+            }
+            if (item.SelectSingleNode("isBlock") == null)
             {
                 info.isBlock = false;
             }
+            else
+            {
+                if (!bool.TryParse(item.SelectSingleNode("isBlock").InnerText, out info.isBlock))
+                {
+                    info.isBlock = false;
+                }
+            }
+
+            info.itemCode = int.Parse(item.SelectSingleNode("itemCode").InnerText);
+            info.itemName = item.SelectSingleNode("itemName").InnerText;
         }
 
         private static List<Sprite> CreateItemSpritesList(XmlNode item, int spritesCount)
@@ -180,10 +222,11 @@ namespace Xml
             }
             return sprites;
         }
-        private static Dictionary<int, int> GetBuildingCost(XmlNode item)
+
+        public static Dictionary<int, int> GetBuildingCost(string item)
         {
             var buildingCost = new Dictionary<int, int>();
-            var innerText = item.SelectSingleNode($"buildingCost")?.InnerText;
+            var innerText = item;
             if (!string.IsNullOrEmpty(innerText))
             {
                 string[] buildingMaterialsText = innerText.Split(",");

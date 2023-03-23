@@ -1,4 +1,5 @@
 ﻿using LittleWorld.Extension;
+using LittleWorld.Interface;
 using LittleWorld.Item;
 using System;
 using System.Collections;
@@ -11,7 +12,7 @@ namespace LittleWorld
     public enum SelectType
     {
         /// <summary>
-        /// 最上层
+        /// 按物体优先级选择
         /// </summary>
         REGION_TOP,
         /// <summary>
@@ -89,6 +90,28 @@ namespace LittleWorld
             return typeHashSet.Count > 1;
         }
 
+        public static void Select(this IEnumerable<Item.Object> objects)
+        {
+            foreach (var item in objects)
+            {
+                if (item is ISelectable selectable)
+                {
+                    selectable.OnSelect();
+                }
+            }
+        }
+
+        public static void Unselect(this IEnumerable<Item.Object> objects)
+        {
+            foreach (var item in objects)
+            {
+                if (item is ISelectable selectable)
+                {
+                    selectable.OnUnselect();
+                }
+            }
+        }
+
         public static List<WorldObject> GetSelected(this List<WorldObject> selectedObjects,
             SelectType selectType = SelectType.REGION_TOP, WorldObject objectRef = null)
         {
@@ -105,18 +128,22 @@ namespace LittleWorld
                 case SelectType.REGION_TOP:
                     if (humans.Safe().Any())
                     {
+                        Select(humans);
                         return humans;
                     }
                     if (animals.Safe().Any())
                     {
+                        Select(animals);
                         return animals;
                     }
                     if (plants.Safe().Any())
                     {
+                        Select(plants);
                         return plants;
                     }
                     if (others.Safe().Any())
                     {
+                        Select(others);
                         return others;
                     }
                     break;
@@ -125,7 +152,9 @@ namespace LittleWorld
                     {
                         return null;
                     }
-                    return selectedObjects.FindAll(x => x.GetType() == objectRef.GetType());
+                    var sameTypes = selectedObjects.FindAll(x => x.GetType() == objectRef.GetType());
+                    Select(sameTypes);
+                    return sameTypes;
                 default:
                     return null;
             }

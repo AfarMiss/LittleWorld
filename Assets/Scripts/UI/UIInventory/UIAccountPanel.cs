@@ -10,7 +10,7 @@ namespace LittleWorld.UI
         protected override void BindDataWith(List<InventoryItem> itemsList, int hightLightIndex)
         {
             base.BindDataWith(itemsList, hightLightIndex);
-            for (int i = 0; i < FarmSetting.playerMaxRepositoryCapacity; i++)
+            for (int i = 0; i < GameSetting.playerMaxRepositoryCapacity; i++)
             {
                 if (i < itemsList.Count)
                 {

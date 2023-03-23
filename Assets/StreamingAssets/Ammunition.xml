@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<items>
+    <item>
+        <itemCode>18001</itemCode>
+        <itemName>4.6x30弹夹</itemName>
+        <itemType>Ammunition</itemType>
+        <mass>0.1</mass>
+        <marketValue>20</marketValue>
+        <maxHitPoint>50</maxHitPoint>
+        <itemEngName>4.6x30 cartridge</itemEngName>
+        <image0>Assets/Resources/Weapons/Ammo/BulletIcon.png</image0>
+        <image1/>
+        <image2/>
+        <maxPileCount>100</maxPileCount>
+        <caliber>4.6x30</caliber>
+        <createAt>14002</createAt>
+        <workToMake>5</workToMake>
+        <damage>20</damage>
+    </item>
+</items>

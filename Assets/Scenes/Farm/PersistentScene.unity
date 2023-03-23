@@ -181,7 +181,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfGhostBuilding: {fileID: 5466280542741998534, guid: 3d23f2a06e9be404c8f05e1239f13f81, type: 3}
+  MainCamera: {fileID: 0}
   CurSelectedBuildingCode: 0
+  fireCursor: {fileID: 2800000, guid: ecc4039128791f44f80a196b05da5c81, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 4ae00905112e8b049b601340dce4e271, type: 3}
   selectedAreaPrefab: {fileID: 8264267579888564747, guid: 2206aee96f6a4ec48a4668c88d05759b, type: 3}
 --- !u!1 &270520721
 GameObject:
@@ -864,11 +867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56491de81855ffe40b023ec8cc94e94f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorImage: {fileID: 579020407}
-  cursorRectTransform: {fileID: 579020406}
-  greenCursorSprite: {fileID: 21300000, guid: 898d91cb190da4b479714f63ae8519e0, type: 3}
-  transparentCursorSprite: {fileID: 21300000, guid: 89c46045b5f23d840b62099f6f1f6344, type: 3}
-  gridCursor: {fileID: 484414246}
 --- !u!1 &518258364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,6 +1329,70 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ce9d1bf2-cdf0-4cee-8b4b-99ee6e2ba03a
     m_ActionName: "\u6E38\u620F/\u955C\u5934\u62D6\u62FD[/Mouse/middleButton]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 14552455}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: PauseOrResume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0039c565-0e0e-45d7-b26e-268a25d441fd
+    m_ActionName: "\u6E38\u620F/\u6682\u505C/\u7EE7\u7EED[/Keyboard/space]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 14552455}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: Speed1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9993b819-3201-48ca-afc8-e9e15ed30037
+    m_ActionName: "\u6E38\u620F/1\u500D\u901F[/Keyboard/1]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 14552455}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: Speed2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c21e330c-961c-47a6-8242-2ddd11783fe2
+    m_ActionName: "\u6E38\u620F/2\u500D\u901F[/Keyboard/2]"
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 14552455}
+        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
+        m_MethodName: Speed3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 741ebc49-578e-4428-a71c-93d5a21dd857
+    m_ActionName: "\u6E38\u620F/3\u500D\u901F[/Keyboard/3]"
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: "\u6E38\u620F"

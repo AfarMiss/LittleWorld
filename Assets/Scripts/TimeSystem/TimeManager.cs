@@ -17,15 +17,15 @@ public class TimeManager : Singleton<TimeManager>
 
         curTickTime = 0;
         curGameTime = new GameTime(6000, 1, 1, 6, 0, 0);
-        EventCenter.Instance.Trigger(EventName.SECOND_CHANGE, curGameTime);
+        EventCenter.Instance.Trigger(EventName.MINUTE_CHANGE, curGameTime);
     }
 
     public override void Tick()
     {
         curTickTime += Time.fixedDeltaTime;
-        while (curTickTime - FarmSetting.gameTick > FarmSetting.gameTick)
+        while (curTickTime - GameSetting.TickTime > GameSetting.TickTime)
         {
-            curTickTime -= FarmSetting.gameTick;
+            curTickTime -= GameSetting.TickTime;
             curGameTime.AddTick();
         }
     }

@@ -18,4 +18,5 @@ public class CubeTest : MonoBehaviour
     {
         this.OnFinish = OnFinish;
     }
+
 }

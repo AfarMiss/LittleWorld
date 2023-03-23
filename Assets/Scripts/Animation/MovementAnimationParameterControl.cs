@@ -55,32 +55,32 @@ public class MovementAnimationParameterControl : MonoBehaviour
     bool isSwingingToolRight, bool isSwingingToolLeft, bool isSwingingToolUp, bool isSwingingToolDown,
     bool idleRight, bool idleLeft, bool idleUp, bool idleDown)
     {
-        animator.SetFloat(FarmSetting.inputXIndex, inputX);
-        animator.SetFloat(FarmSetting.inputYIndex, inputY);
-        animator.SetBool(FarmSetting.isWalkingIndex, isWalking);
-        animator.SetBool(FarmSetting.isRunningIndex, isRunning);
+        animator.SetFloat(GameSetting.inputXIndex, inputX);
+        animator.SetFloat(GameSetting.inputYIndex, inputY);
+        animator.SetBool(GameSetting.isWalkingIndex, isWalking);
+        animator.SetBool(GameSetting.isRunningIndex, isRunning);
 
-        animator.SetInteger(FarmSetting.toolEffectIndex, (int)toolEffect);
-        animator.SetBool(FarmSetting.isUsingToolRightIndex, isUsingToolRight);
-        animator.SetBool(FarmSetting.isUsingToolLeftIndex, isUsingToolLeft);
-        animator.SetBool(FarmSetting.isUsingToolUpIndex, isUsingToolUp);
-        animator.SetBool(FarmSetting.isUsingToolDownIndex, isUsingToolDown);
-        animator.SetBool(FarmSetting.isLiftingToolRightIndex, isLiftingToolRight);
-        animator.SetBool(FarmSetting.isLiftingToolLeftIndex, isLiftingToolLeft);
-        animator.SetBool(FarmSetting.isLiftingToolUpIndex, isLiftingToolUp);
-        animator.SetBool(FarmSetting.isLiftingToolDownIndex, isLiftingToolDown);
-        animator.SetBool(FarmSetting.isPickingRightIndex, isPickingRight);
-        animator.SetBool(FarmSetting.isPickingLeftIndex, isPickingLeft);
-        animator.SetBool(FarmSetting.isPickingUpIndex, isPickingUp);
-        animator.SetBool(FarmSetting.isPickingDownIndex, isPickingDown);
-        animator.SetBool(FarmSetting.isSwingingToolRightIndex, isSwingingToolRight);
-        animator.SetBool(FarmSetting.isSwingingToolLeftIndex, isSwingingToolLeft);
-        animator.SetBool(FarmSetting.isSwingingToolUpIndex, isSwingingToolUp);
-        animator.SetBool(FarmSetting.isSwingingToolDownIndex, isSwingingToolDown);
-        animator.SetBool(FarmSetting.idleRightIndex, idleRight);
-        animator.SetBool(FarmSetting.idleLeftIndex, idleLeft);
-        animator.SetBool(FarmSetting.idleUpIndex, idleUp);
-        animator.SetBool(FarmSetting.idleDownIndex, idleDown);
+        animator.SetInteger(GameSetting.toolEffectIndex, (int)toolEffect);
+        animator.SetBool(GameSetting.isUsingToolRightIndex, isUsingToolRight);
+        animator.SetBool(GameSetting.isUsingToolLeftIndex, isUsingToolLeft);
+        animator.SetBool(GameSetting.isUsingToolUpIndex, isUsingToolUp);
+        animator.SetBool(GameSetting.isUsingToolDownIndex, isUsingToolDown);
+        animator.SetBool(GameSetting.isLiftingToolRightIndex, isLiftingToolRight);
+        animator.SetBool(GameSetting.isLiftingToolLeftIndex, isLiftingToolLeft);
+        animator.SetBool(GameSetting.isLiftingToolUpIndex, isLiftingToolUp);
+        animator.SetBool(GameSetting.isLiftingToolDownIndex, isLiftingToolDown);
+        animator.SetBool(GameSetting.isPickingRightIndex, isPickingRight);
+        animator.SetBool(GameSetting.isPickingLeftIndex, isPickingLeft);
+        animator.SetBool(GameSetting.isPickingUpIndex, isPickingUp);
+        animator.SetBool(GameSetting.isPickingDownIndex, isPickingDown);
+        animator.SetBool(GameSetting.isSwingingToolRightIndex, isSwingingToolRight);
+        animator.SetBool(GameSetting.isSwingingToolLeftIndex, isSwingingToolLeft);
+        animator.SetBool(GameSetting.isSwingingToolUpIndex, isSwingingToolUp);
+        animator.SetBool(GameSetting.isSwingingToolDownIndex, isSwingingToolDown);
+        animator.SetBool(GameSetting.idleRightIndex, idleRight);
+        animator.SetBool(GameSetting.idleLeftIndex, idleLeft);
+        animator.SetBool(GameSetting.idleUpIndex, idleUp);
+        animator.SetBool(GameSetting.idleDownIndex, idleDown);
     }
 
     private void Start()

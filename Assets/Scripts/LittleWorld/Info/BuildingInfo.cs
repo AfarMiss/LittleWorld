@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Xml;
 
 namespace LittleWorld.Item
 {
@@ -11,7 +11,19 @@ namespace LittleWorld.Item
         public int buildingWorkAmount;
         public float marketValue;
         public int maxHitPoint;
-        public Dictionary<int, int> buildingCost;
+        public Dictionary<int, int> BuildingCost
+        {
+            get
+            {
+                if (realBuildingCost == null)
+                {
+                    realBuildingCost = XmlUtility.GetBuildingCost(buildingCost);
+                }
+                return realBuildingCost;
+            }
+        }
+        public Dictionary<int, int> realBuildingCost;
+        public string buildingCost;
         public int buildingWidth;
         public int buildingLength;
     }

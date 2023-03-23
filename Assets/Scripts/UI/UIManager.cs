@@ -1,4 +1,5 @@
 ﻿using LittleWorld.Graphics;
+using LittleWorld.Item;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,6 +71,13 @@ namespace LittleWorld.UI
         {
             string realPath = path != null ? path : $"Prefabs/UI/Panel/{typeof(T).Name}";
             return Show<T>(UIType.PANEL, realPath);
+        }
+
+        public void HideAllInfoPanel()
+        {
+            UIManager.Instance.Hide<BriefInfoPanel>(UIType.PANEL);
+            UIManager.Instance.Hide<BriefInfoAnimalPanel>(UIType.PANEL);
+
         }
 
         public T Show<T>(UIType uiType, string path) where T : BaseUI, new()
@@ -263,18 +271,17 @@ namespace LittleWorld.UI
                 {
                     foreach (var item in InputController.Instance.SelectedObjects)
                     {
-                        GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.ToWorldVector2(), 1, 1);
+                        GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.To2(), 1, 1);
                     }
                 }
                 #endregion
 
                 #region 绘制路径终点
-                var allNavis = GameObject.FindObjectsOfType<PathNavigation>();
-                foreach (var item in allNavis)
+                foreach (var animal in SceneObjectManager.Instance.FindObjectsOfType<Animal>())
                 {
-                    if (!item.atDestination && item.lastStampFrameCount > 0 && Time.frameCount - item.lastStampFrameCount <= 50)
+                    if (!animal.PathTracer.atDestination && animal.PathTracer.lastStampFrameCount > 0 && Time.frameCount - animal.PathTracer.lastStampFrameCount <= 50 && animal.PathTracer.PathIsShow)
                     {
-                        GraphicsUtiliy.DrawDestinationIcon(item.curDestination, 1, 1);
+                        GraphicsUtiliy.DrawDestinationIcon(animal.PathTracer.curDestination.Value, 1, 1);
                     }
                 }
                 #endregion

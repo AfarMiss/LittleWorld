@@ -7,15 +7,24 @@ using Unity.VisualScripting;
 using UnityEngine;
 using LittleWorld.MapUtility;
 using LittleWorld.Message;
+using static LittleWorld.HealthTracer;
+using NodeCanvas.Tasks.Actions;
+using LittleWorld;
+using FlowCanvas.Nodes;
 
 public class SceneObjectManager : Singleton<SceneObjectManager>
 {
     public static int ItemInstanceID;
-    private GameObject itemPrefab;
-    private GameObject pilePrefab;
-    public GameObject ghostPrefab;
-    private GameObject pawnRes;
     private GameObject renderParent;
+
+    #region 预设
+    private GameObject pfItem;
+    private GameObject pfPile;
+    public GameObject pfGhost;
+    private GameObject pfAnimal;
+    private GameObject pfBullet;
+    private GameObject pfBulletEffect;
+    #endregion
 
     public List<SceneItem> sceneItemList
     {
@@ -40,9 +49,20 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public Dictionary<int, WorldObject> WorldObjects = new Dictionary<int, WorldObject>();
     public List<WorldObject> RequestAdd = new List<WorldObject>();
     public List<WorldObject> RequestDelete = new List<WorldObject>();
-    private Dictionary<WorldObject, ItemRender> WorldItemsRenderer = new Dictionary<WorldObject, ItemRender>();
-    private Dictionary<Vector2Int, PileInfo> WorldPileRenderer = new Dictionary<Vector2Int, PileInfo>();
+    private Dictionary<WorldObject, IRenderer> WorldItemsRenderer = new Dictionary<WorldObject, IRenderer>();
+    private Dictionary<Vector2Int, PileRenderer> WorldPileRenderer = new Dictionary<Vector2Int, PileRenderer>();
     private HashSet<Vector2Int> buildingGrids = new HashSet<Vector2Int>();
+
+    public IEnumerable<T> FindObjectsOfType<T>() where T : WorldObject
+    {
+        foreach (var item in WorldObjects)
+        {
+            if (item.Value is T)
+            {
+                yield return item.Value as T;
+            }
+        }
+    }
 
     public bool CanBuilding(Vector2Int targetGrid, BuildingInfo buildingInfo)
     {
@@ -68,7 +88,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"{worldObject.ItemName}_{worldObject.itemCode}");
+            Debug.LogError($"{worldObject.ItemName}_{worldObject.itemCode}注册错误");
             Debug.LogError(e);
             throw;
         }
@@ -113,13 +133,26 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
         ItemInstanceID = 0;
         pawnManager = PawnManager.Instance;
-        itemPrefab = Resources.Load<GameObject>("Prefabs/Object/Item");
-        pilePrefab = Resources.Load<GameObject>("Prefabs/Object/Pile");
-        ghostPrefab = Resources.Load<GameObject>("Prefabs/Object/Ghost");
-        pawnRes = Resources.Load<GameObject>("Prefabs/Character/Pawn");
+        pfItem = Resources.Load<GameObject>("Prefabs/Object/Item");
+        pfPile = Resources.Load<GameObject>("Prefabs/Object/Pile");
+        pfGhost = Resources.Load<GameObject>("Prefabs/Object/Ghost");
+        pfAnimal = Resources.Load<GameObject>("Prefabs/Character/Animal");
+        pfBullet = Resources.Load<GameObject>("Prefabs/Weapon/Bullet");
+        pfBulletEffect = Resources.Load<GameObject>("Prefabs/Weapon/WeaponShootEffectSmokePuff");
 
         renderParent = new GameObject("RenderParent");
+        ObjectPoolManager.Instance.CreatePool(30, pfBullet, PoolEnum.Bullet.ToString(), renderParent.transform);
+        ObjectPoolManager.Instance.CreatePool(30, pfBulletEffect, PoolEnum.BulletBoomEffect.ToString(), renderParent.transform);
+
         GameObject.DontDestroyOnLoad(renderParent);
+    }
+
+    private void RealTimeTick(GameTime gameTime)
+    {
+        foreach (var item in WorldObjects)
+        {
+            item.Value.RealTimeTick();
+        }
     }
 
     private void OnWorldObjectGridChange(ChangeGridMessage message)
@@ -137,32 +170,34 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     private void AddRenderComponent(WorldObject wo)
     {
-        if (wo is not Humanbeing)
+        if (wo is Animal animal)
+        {
+            GameObject curPawn = UnityEngine.Object.Instantiate(pfAnimal, renderParent.transform);
+            curPawn.GetComponent<Transform>().transform.position = animal.GridPos.To3();
+            WorldItemsRenderer.Add(animal, curPawn.GetComponent<ItemRender>());
+            curPawn.GetComponent<ItemRender>().Init(animal);
+            curPawn.GetComponent<PathTracerRender>().Init(animal);
+            animal.RenderTracer = curPawn.GetComponent<PathTracerRender>();
+        }
+        else
         {
             if (!wo.canPile)
             {
-                GameObject itemGameObject = GameObject.Instantiate(itemPrefab, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
+                GameObject itemGameObject = GameObject.Instantiate(pfItem, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
                 ItemRender itemComponent = itemGameObject.GetComponent<ItemRender>();
                 WorldItemsRenderer.Add(wo, itemComponent);
+                itemComponent.GetComponent<ItemRender>().Init(wo);
             }
             else
             {
                 if (!WorldPileRenderer.ContainsKey(wo.GridPos))
                 {
-                    GameObject itemGameObject = GameObject.Instantiate(pilePrefab, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
+                    GameObject itemGameObject = GameObject.Instantiate(pfPile, wo.GridPos.To3(), Quaternion.identity, renderParent.transform);
                     PileRenderer itemComponent = itemGameObject.GetComponent<PileRenderer>();
-                    WorldPileRenderer.Add(wo.GridPos, new PileInfo(wo.itemCode, itemComponent, wo.mapBelongTo));
+                    itemGameObject.GetComponent<PileRenderer>().Init(wo.itemCode, wo.mapBelongTo);
+                    WorldPileRenderer.Add(wo.GridPos, itemComponent);
                 }
             }
-        }
-        else
-        {
-            var human = wo as Humanbeing;
-            GameObject curPawn = GameObject.Instantiate<GameObject>(pawnRes, renderParent.transform);
-            curPawn.GetComponent<Transform>().transform.position = human.GridPos.To3();
-            curPawn.GetComponent<PathNavigation>().Initialize(human.instanceID);
-            human.SetNavi(curPawn.GetComponent<PathNavigation>());
-            WorldItemsRenderer.Add(human, curPawn.GetComponent<ItemRender>());
         }
     }
 
@@ -173,20 +208,21 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
             WorldPileRenderer.TryGetValue(wo.GridPos, out var renderer);
             if (renderer != null)
             {
-                if (wo.mapBelongTo.TryGetGrid(wo.GridPos, out var gridDetail)
+                if (wo.mapBelongTo.GetGrid(wo.GridPos, out var gridDetail)
                     && !gridDetail.HasPiledThing)
                 {
-                    GameObject.Destroy(renderer.pileRenderer.gameObject);
+                    GameObject.Destroy(renderer.gameObject);
                     WorldPileRenderer.Remove(wo.GridPos);
                 }
             }
         }
         else
         {
-            WorldItemsRenderer.TryGetValue(wo, out var renderer);
+            WorldItemsRenderer.TryGetValue(wo, out IRenderer renderer);
             if (renderer != null)
             {
-                GameObject.Destroy(renderer.gameObject);
+                (renderer as ItemRender).OnDisRender();
+                GameObject.Destroy((renderer as ItemRender).gameObject);
             }
             WorldItemsRenderer.Remove(wo);
         }
@@ -208,6 +244,12 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     }
 
+    public ItemRender GetRenderer(int instanceID)
+    {
+        WorldItemsRenderer.TryGetValue(GetWorldObjectById(instanceID), out var renderer);
+        return renderer as ItemRender;
+    }
+
     public void Tick(GameTime gameTime)
     {
         pawnManager.Tick();
@@ -218,12 +260,12 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
         foreach (var item in WorldItemsRenderer)
         {
-            item.Value.Render(item.Key);
+            item.Value.OnRender();
         }
 
         foreach (var item in WorldPileRenderer)
         {
-            item.Value.pileRenderer.Render(item.Value.pileCode, item.Key, item.Value.belongTo);
+            item.Value.Render(item.Value.pileCode, item.Key, item.Value.belongTo);
         }
 
 
@@ -242,7 +284,10 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     public void Init()
     {
-        new Humanbeing(ObjectCode.humanbeing.ToInt(), new Vector2Int(25, 25));
+        new Humanbeing(ObjectCode.humanbeing.ToInt(), new Age(25), new Vector2Int(25, 25));
+        new Animal(13002, new Age(4), new Vector2Int(23, 25));
+        new Animal(13002, new Age(4), new Vector2Int(22, 25));
+        new Weapon(17001, new Vector2Int(24, 25));
     }
 
     public Vector2Int SearchForRawMaterials(int objectCode)

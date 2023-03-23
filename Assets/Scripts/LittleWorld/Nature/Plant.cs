@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class Plant : WorldObject
+    public class Plant : Living
     {
         private PlantInfo plantInfo;
         public int PlantYieldCount => plantInfo.yieldCount;

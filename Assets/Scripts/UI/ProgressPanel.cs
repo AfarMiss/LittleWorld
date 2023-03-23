@@ -13,18 +13,18 @@ namespace LittleWorld.UI
     {
         private void Start()
         {
-            PoolManager.Instance.CreatePool(10, progressPrefab, PoolEnum.Progress.ToString(), transform);
+            ObjectPoolManager.Instance.CreatePool(10, progressPrefab, PoolEnum.Progress.ToString(), transform);
         }
         private void OnEnable()
         {
             EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_WORKING.ToString(), OnWorking);
             EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
-            EventCenter.Instance.Register<WorkMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
+            EventCenter.Instance.Register<WorkAbortMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
         }
 
         private void OnWorking(WorkMessage message)
         {
-            var poolItem = PoolManager.Instance.Find<GameObject>(x =>
+            var poolItem = ObjectPoolManager.Instance.Find<GameObject>(x =>
             x.poolInstance.GetComponent<GeneralSlider>() != null &&
             x.poolInstance.GetComponent<GeneralSlider>().uniqueID == message.workID.GetHashCode());
 
@@ -34,7 +34,7 @@ namespace LittleWorld.UI
                 var screenPos = InputUtils.GetScreenPosition(message.workPos.To3());
                 if (go == null)
                 {
-                    go = PoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
+                    go = ObjectPoolManager.Instance.GetNextObject(PoolEnum.Progress.ToString());
                     go.transform.position = screenPos;
                     go.GetComponent<GeneralSlider>().uniqueID = message.workID.GetHashCode();
                     go.GetComponent<GeneralSlider>().sliderFollowPos = message.workPos.To3();
@@ -62,7 +62,7 @@ namespace LittleWorld.UI
         {
             EventCenter.Instance?.Unregister<WorkMessage>(EventEnum.WORK_WORKING.ToString(), OnWorking);
             EventCenter.Instance?.Unregister<WorkMessage>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
-            EventCenter.Instance?.Unregister<WorkMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
+            EventCenter.Instance?.Unregister<WorkAbortMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
         }
 
         private void OnWorkDone(WorkMessage arg0)
@@ -70,7 +70,7 @@ namespace LittleWorld.UI
             Putback(arg0);
         }
 
-        private void OnWorkForceAbort(WorkMessage arg0)
+        private void OnWorkForceAbort(WorkAbortMessage arg0)
         {
             Putback(arg0);
         }
@@ -81,7 +81,17 @@ namespace LittleWorld.UI
                 .Find(x => x.uniqueID == arg0.workID.GetHashCode());
             if (needPutbackSlider != null)
             {
-                PoolManager.Instance.Putback(PoolEnum.Progress.ToString(), needPutbackSlider.gameObject);
+                ObjectPoolManager.Instance.Putback(PoolEnum.Progress.ToString(), needPutbackSlider.gameObject);
+            }
+        }
+
+        private static void Putback(WorkAbortMessage arg0)
+        {
+            var needPutbackSlider = FindObjectsOfType<GeneralSlider>().ToList()
+                .Find(x => x.uniqueID == arg0.work.workID.GetHashCode());
+            if (needPutbackSlider != null)
+            {
+                ObjectPoolManager.Instance.Putback(PoolEnum.Progress.ToString(), needPutbackSlider.gameObject);
             }
         }
 

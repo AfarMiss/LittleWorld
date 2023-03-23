@@ -15,7 +15,7 @@ namespace LittleWorld.MapUtility
         private int piledThingCode = -1;
         public Dictionary<int, int> curBuildingContain;
 
-        public bool isLand => gridAltitudeLayer >= 30;
+        public bool isLand => gridAltitudeLayer >= 20;
 
         public bool isPlane => gridAltitudeLayer >= 30 && gridAltitudeLayer < 75;
         public bool isMountain => gridAltitudeLayer >= 75 && gridAltitudeLayer <= 100;
@@ -23,7 +23,7 @@ namespace LittleWorld.MapUtility
         {
             get
             {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                var objects = WorldUtility.GetObjectsAtCell(pos.To3());
                 if (objects != null)
                 {
                     var result = objects.ToList().Find(x => (x is Plant));
@@ -126,8 +126,8 @@ namespace LittleWorld.MapUtility
         public bool DeleteSinglePiledThing()
         {
             piledAmount--;
-            var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
-            if (objects != null && objects.Length > 0)
+            var objects = WorldUtility.GetObjectsAtCell(pos.To3());
+            if (objects != null)
             {
                 var result = objects.ToList().Find(x =>
                 (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
@@ -143,11 +143,12 @@ namespace LittleWorld.MapUtility
         public bool PickUp(WorldObject wo, WorldObject hauler)
         {
             wo.isCarried = true;
+            wo.GridPos = VectorExtension.undefinedV2Int;
             wo.carriedParent = hauler;
             piledAmount--;
 
-            var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
-            if (objects != null && objects.Length > 0)
+            var objects = WorldUtility.GetObjectsAtCell(pos.To3());
+            if (objects != null)
             {
                 var result = objects.ToList().Find(x =>
                  (x is WorldObject) && (x as WorldObject).canPile && !(x as WorldObject).isCarried);
@@ -162,7 +163,7 @@ namespace LittleWorld.MapUtility
 
         public bool PickUp(int itemCode, WorldObject hauler, out WorldObject woPickUp)
         {
-            var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+            var objects = WorldUtility.GetObjectsAtCell(pos.To3());
             var wo = objects.ToList().Find(x => x.itemCode == itemCode
             && x is WorldObject realWo
             && !realWo.isCarried);
@@ -178,7 +179,7 @@ namespace LittleWorld.MapUtility
                 realWo.carriedParent = hauler;
                 piledAmount--;
 
-                if (objects != null && objects.Length > 0)
+                if (objects != null)
                 {
                     var result = objects.ToList().Find(x =>
                      (x is WorldObject) && (x as WorldObject).canPile && !(x as WorldObject).isCarried);
@@ -198,7 +199,7 @@ namespace LittleWorld.MapUtility
         {
             get
             {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                var objects = WorldUtility.GetObjectsAtCell(pos.To3());
                 if (objects != null)
                 {
                     var result = objects.ToList().Find(x => (x is Plant));
@@ -211,7 +212,7 @@ namespace LittleWorld.MapUtility
         {
             get
             {
-                var objects = WorldUtility.GetWorldObjectsAt(pos.To3());
+                var objects = WorldUtility.GetObjectsAtCell(pos.To3());
                 if (objects != null)
                 {
                     var result = objects.ToList().Find(x => x is Plant);

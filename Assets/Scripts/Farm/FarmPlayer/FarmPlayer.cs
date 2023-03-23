@@ -23,7 +23,7 @@ public class FarmPlayer : MonoSingleton<FarmPlayer>, ISaveable
 
     public Vector3 GetPlayrCentrePosition()
     {
-        return new Vector3(transform.position.x, transform.position.y + FarmSetting.playerCentreYOffset, transform.position.z);
+        return new Vector3(transform.position.x, transform.position.y + GameSetting.playerCentreYOffset, transform.position.z);
     }
 
     public void ISaveableRegister()
@@ -46,7 +46,7 @@ public class FarmPlayer : MonoSingleton<FarmPlayer>, ISaveable
 
     public GameObjectSave ISaveableSave()
     {
-        GameObjectSave.sceneData.Remove(FarmSetting.PersistentScene);
+        GameObjectSave.sceneData.Remove(GameSetting.PersistentScene);
 
         SceneSave sceneSave = new SceneSave();
         sceneSave.vector3Dictionary = new Dictionary<string, Vector3Serializable>();
@@ -56,25 +56,25 @@ public class FarmPlayer : MonoSingleton<FarmPlayer>, ISaveable
         sceneSave.stringDictionary.Add("currentScene", SceneManager.GetActiveScene().name);
 
         var dirString = Direction.none;
-        if (FarmGameController.Instance.PlayerDirection == Vector3Int.up)
+        if (FarmGameController.Instance.PlayerDirection == Vector2Int.up)
         {
             dirString = Direction.up;
         }
-        if (FarmGameController.Instance.PlayerDirection == Vector3Int.down)
+        if (FarmGameController.Instance.PlayerDirection == Vector2Int.down)
         {
             dirString = Direction.down;
         }
-        if (FarmGameController.Instance.PlayerDirection == Vector3Int.left)
+        if (FarmGameController.Instance.PlayerDirection == Vector2Int.left)
         {
             dirString = Direction.left;
         }
-        if (FarmGameController.Instance.PlayerDirection == Vector3Int.right)
+        if (FarmGameController.Instance.PlayerDirection == Vector2Int.right)
         {
             dirString = Direction.right;
         }
         sceneSave.stringDictionary.Add("playerDirection", dirString.ToString());
 
-        GameObjectSave.sceneData.Add(FarmSetting.PersistentScene, sceneSave);
+        GameObjectSave.sceneData.Add(GameSetting.PersistentScene, sceneSave);
 
         return GameObjectSave;
     }
@@ -83,7 +83,7 @@ public class FarmPlayer : MonoSingleton<FarmPlayer>, ISaveable
     {
         if (gameSave.gameObjectData.TryGetValue(ISaveableUniqueID, out GameObjectSave gameObjectSave))
         {
-            if (gameObjectSave.sceneData.TryGetValue(FarmSetting.PersistentScene, out SceneSave sceneSave))
+            if (gameObjectSave.sceneData.TryGetValue(GameSetting.PersistentScene, out SceneSave sceneSave))
             {
                 if (sceneSave.vector3Dictionary != null && sceneSave.vector3Dictionary.TryGetValue("playerPosition", out Vector3Serializable playerPosition))
                 {
@@ -120,7 +120,7 @@ public class FarmPlayer : MonoSingleton<FarmPlayer>, ISaveable
                             {
                                 dirEnum = Vector3Int.left;
                             }
-                            FarmGameController.Instance.PlayerDirection = dirEnum;
+                            //FarmGameController.Instance.PlayerDirection = dirEnum;
                         }
                     }
                 }

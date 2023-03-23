@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class MiningSingleWork : Work
+    public class MiningSingleWork : WorkBT
     {
         private int curMiningAmount = 0;
 
@@ -17,7 +17,7 @@ namespace LittleWorld.Jobs
             Sequence MiningSequence = new Sequence("Sow Sequence");
             //Mining
             DynamicWalk walkLeaf = new DynamicWalk("Go To Mining", humanbeing, Node.GoToLoc, GetMiningPos);
-            DynamicLongWorkLeaf MiningLeaf = new DynamicLongWorkLeaf("Do Mining", humanbeing, DoMining, GetMiningPos);
+            DynamicLongJobLeaf MiningLeaf = new DynamicLongJobLeaf("Do Mining", humanbeing, DoMining, GetMiningPos);
             MiningSequence.AddChild(walkLeaf);
             MiningSequence.AddChild(MiningLeaf);
 
@@ -30,7 +30,7 @@ namespace LittleWorld.Jobs
             var objects = WorldUtility.GetWorldObjectsAt(destination);
             if (objects == null)
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
             var curOre = objects.ToList().Find(x => x is Ore);
             if (curOre != null)
@@ -45,7 +45,7 @@ namespace LittleWorld.Jobs
                 {
                     EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(this, sliderValue, human, destination));
                     curMiningAmount += human.GetWorkSpeed(WorkTypeEnum.mining);
-                    return Node.Status.RUNNING;
+                    return Node.Status.Running;
                 }
                 else
                 {
@@ -58,12 +58,12 @@ namespace LittleWorld.Jobs
                     }
                     (curOre as WorldObject).Destroy();
 
-                    return Node.Status.SUCCESS;
+                    return Node.Status.Success;
                 }
             }
             else
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
         }
 

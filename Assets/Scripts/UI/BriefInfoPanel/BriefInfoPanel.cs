@@ -1,4 +1,5 @@
-﻿using LittleWorld.Item;
+﻿using LittleWorld.Command;
+using LittleWorld.Item;
 using LittleWorld.MapUtility;
 using SRF;
 using System;
@@ -12,11 +13,20 @@ namespace LittleWorld.UI
     public class BriefInfoPanel : BaseUI
     {
         public override string Path => UIPath.Panel_BriefInfoPanel;
-        [SerializeField] private BriefInfoItem briefItem1;
-        [SerializeField] private Text InfoTitle;
-        [SerializeField] private Transform briefItemParent;
-        [SerializeField] private GameObject itemCommandGameObject;
-        [SerializeField] private Transform commandParent;
+        [SerializeField] protected Text InfoTitle;
+        [SerializeField] protected Transform briefItemParent;
+        [SerializeField] protected GameObject itemCommandGameObject;
+        [SerializeField] protected Transform commandParent;
+
+        protected virtual void OnEnable()
+        {
+        }
+
+        protected virtual void OnDisable()
+        {
+        }
+
+
 
         public void BindBriefInfo(Item.Object[] objects)
         {
@@ -43,16 +53,20 @@ namespace LittleWorld.UI
                     InfoTitle.text = $"{(objects[0] as WorldObject).ItemName}x{objects.Length}";
                 }
             }
-            else if (objects.Length == 1)
+            if (objects.Length == 1)
             {
-                var wo = objects[0];
-                InfoTitle.text = wo.ItemName;
-                commandParent.DestroyChildren();
-                BindCommands(wo);
+                BindBriefInfo(objects[0]);
             }
         }
 
-        private void BindCommands(Item.Object item)
+        public virtual void BindBriefInfo(Item.Object o)
+        {
+            InfoTitle.text = o.ItemName;
+            commandParent.DestroyChildren();
+            BindCommands(o);
+        }
+
+        protected void BindCommands(Item.Object item)
         {
             if (item is PlantMapSection map)
             {
@@ -113,9 +127,20 @@ namespace LittleWorld.UI
                     InputController.Instance.MouseState = MouseState.ShrinkZone;
                 });
             }
+            if (item is Humanbeing humanbeing)
+            {
+                if (humanbeing.gearTracer.curWeapon != null)
+                {
+                    var command2 = AddCommand("狩猎", null);
+                    command2.BindCommand(() =>
+                    {
+                        CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ReadyToFire));
+                    });
+                }
+            }
         }
 
-        private DynamicCommandIcon AddCommand(string commandName, Sprite sprite)
+        protected DynamicCommandIcon AddCommand(string commandName, Sprite sprite)
         {
             var go = Instantiate(itemCommandGameObject, commandParent);
             go.GetComponent<DynamicCommandIcon>().BindData(commandName, sprite);

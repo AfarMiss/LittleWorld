@@ -3,6 +3,7 @@
     public static string Panel_SettingPanel = "Prefabs/UI/Panel/SettingPanel/SettingPanel";
     public static string Panel_PausePanel = "Prefabs/UI/Panel/SettingPanel/PausePanel";
     public static string Panel_BriefInfoPanel = "Prefabs/UI/Panel/BriefInfoPanel/BriefInfoPanel";
+    public static string Panel_BriefInfoAnimalPanel = "Prefabs/UI/Panel/BriefInfoPanel/BriefInfoPanel_Animal";
     public static string Panel_ProgressPanel = "Prefabs/UI/Panel/ProgressPanel";
     public static string Panel_ItemCountPanel = "Prefabs/UI/Panel/ItemCountPanel";
     public static string UICanvas = "Prefabs/UI/UICanvas";

@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class SowWork : Work
+    public class SowWork : WorkBT
     {
         private int curCutAmount = 0;
         private int curSowAmount = 0;
@@ -20,24 +20,23 @@ namespace LittleWorld.Jobs
 
         protected BehaviourTree CreateWorkSequence(int seedCode, MapGridDetails[] gridsPos, Humanbeing humanbeing)
         {
-            tree = new BehaviourTree();
             tree.SetVariable("seedCode", seedCode);
             AI.Sequence sowSequence = new AI.Sequence("Sow Sequence");
             //cut
-            ConditionLoop cutArea = new ConditionLoop("cut Area", HasCutAllExceptSeedCode);
+            LoopUnitlConditionSuccess cutArea = new LoopUnitlConditionSuccess("cut Area", HasCutAllExceptSeedCode);
             Leaf calculateNextCut = new Leaf("Calculate Next Cut", CalculateNextCut);
             DynamicWalk walkLeaf = new DynamicWalk("Go To Cut", humanbeing, Node.GoToLoc, GetCutPos);
-            DynamicLongWorkLeaf cutLeaf = new DynamicLongWorkLeaf("Do Cut", humanbeing, DoCut, GetCutPos);
+            DynamicLongJobLeaf cutLeaf = new DynamicLongJobLeaf("Do Cut", humanbeing, DoCut, GetCutPos);
             cutArea.AddChild(calculateNextCut);
             cutArea.AddChild(walkLeaf);
             cutArea.AddChild(cutLeaf);
             sowSequence.AddChild(cutArea);
             //dig
             //sow
-            ConditionLoop sowArea = new ConditionLoop("sowArea", HasSowAll);
+            LoopUnitlConditionSuccess sowArea = new LoopUnitlConditionSuccess("sowArea", HasSowAll);
             Leaf calculateNextSow = new Leaf("Calculate Next Sow", CalculateNextSow);
             DynamicWalk walkSowLeaf = new DynamicWalk("Go To Sow", humanbeing, Node.GoToLoc, GetSowPos);
-            DynamicLongWorkLeaf sowLeaf = new DynamicLongWorkLeaf("Do Sow", humanbeing, DoSow, GetSowPos);
+            DynamicLongJobLeaf sowLeaf = new DynamicLongJobLeaf("Do Sow", humanbeing, DoSow, GetSowPos);
             sowArea.AddChild(calculateNextSow);
             sowArea.AddChild(walkSowLeaf);
             sowArea.AddChild(sowLeaf);
@@ -64,14 +63,14 @@ namespace LittleWorld.Jobs
             {
                 EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(this, sliderValue, human, destination));
                 curSowAmount += human.GetWorkSpeed(WorkTypeEnum.sow);
-                return Node.Status.RUNNING;
+                return Node.Status.Running;
             }
             else
             {
                 EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(this, sliderValue, human, destination));
                 curSowAmount = 0;
                 new Plant(ObjectConfig.GetPlantCode(seedCode), destination);
-                return Node.Status.SUCCESS;
+                return Node.Status.Success;
             }
 
         }
@@ -83,11 +82,11 @@ namespace LittleWorld.Jobs
             if (result != null)
             {
                 tree.SetVariable("SowPoint", result);
-                return Node.Status.SUCCESS;
+                return Node.Status.Success;
             }
             else
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
         }
 
@@ -108,7 +107,7 @@ namespace LittleWorld.Jobs
             var objects = WorldUtility.GetWorldObjectsAt(destination);
             if (objects == null)
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
             var curPlant = objects.ToList().Find(x => x is Plant);
             if (curPlant != null)
@@ -123,19 +122,19 @@ namespace LittleWorld.Jobs
                 {
                     EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(this, sliderValue, human, destination));
                     curCutAmount += human.GetWorkSpeed(WorkTypeEnum.cut);
-                    return Node.Status.RUNNING;
+                    return Node.Status.Running;
                 }
                 else
                 {
                     EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(this, sliderValue, human, destination));
                     curCutAmount = 0;
                     (curPlant as WorldObject).Destroy();
-                    return Node.Status.SUCCESS;
+                    return Node.Status.Success;
                 }
             }
             else
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
         }
 
@@ -150,11 +149,11 @@ namespace LittleWorld.Jobs
             if (pos != null)
             {
                 tree.SetVariable("CutPoint", pos);
-                return Node.Status.SUCCESS;
+                return Node.Status.Success;
             }
             else
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
         }
 

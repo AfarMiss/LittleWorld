@@ -5,18 +5,39 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class PileRenderer : MonoBehaviour
+    public class PileRenderer : MonoBehaviour, IRenderer
     {
+        public int pileCode;
+        public Map belongTo;
         [SerializeField, ItemCodeDescription]
         private int itemCode;
 
         private SpriteRenderer spriteRenderer;
 
+        public void Init(int pileCode, Map belongTo)
+        {
+            this.pileCode = pileCode;
+            this.belongTo = belongTo;
+        }
+
         public int ItemCode { get { return itemCode; } set { itemCode = value; } }
+
+        private void Start()
+        {
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
 
         public void Render(int pileCode, Vector2Int destination, Map map)
         {
-            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            if (spriteRenderer == null)
+            {
+                return;
+            }
+            if (destination == VectorExtension.undefinedV2Int)
+            {
+                spriteRenderer.enabled = false;
+                return;
+            }
             spriteRenderer.enabled = map.GetGrid(destination).HasPiledThing;
             if (!spriteRenderer.enabled)
             {
@@ -36,6 +57,11 @@ namespace LittleWorld.Item
                 spriteRenderer.sprite.pivot.y / spriteRenderer.sprite.pixelsPerUnit,
                 0);
             this.transform.position = destination.To3();
+        }
+
+        public void OnRender()
+        {
+            throw new System.NotImplementedException();
         }
     }
 

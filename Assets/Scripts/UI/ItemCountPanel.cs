@@ -19,7 +19,7 @@ namespace LittleWorld.UI
         private void Start()
         {
             itemCountDic = new Dictionary<Vector2Int, GameObject>();
-            PoolManager.Instance.CreatePool(50, itemCountPrefab, PoolEnum.ItemCount.ToString(), transform);
+            ObjectPoolManager.Instance.CreatePool(50, itemCountPrefab, PoolEnum.ItemCount.ToString(), transform);
         }
 
         private void LateUpdate()
@@ -36,7 +36,7 @@ namespace LittleWorld.UI
             {
                 if (!itemCountDic.ContainsKey(item.pos))
                 {
-                    var go = PoolManager.Instance.GetNextObject(PoolEnum.ItemCount.ToString());
+                    var go = ObjectPoolManager.Instance.GetNextObject(PoolEnum.ItemCount.ToString());
                     go.GetComponent<ItemCount>().BindData(item.PiledAmount, item.pos);
                     go.transform.SetPositionAndRotation(item.pos.ToCellBottom().ToScreenPos(), transform.rotation);
                     itemCountDic.Add(item.pos, go);
@@ -53,7 +53,7 @@ namespace LittleWorld.UI
             {
                 if (itemCountDic.ContainsKey(item.pos))
                 {
-                    PoolManager.Instance.Putback(PoolEnum.ItemCount.ToString(), itemCountDic[item.pos]);
+                    ObjectPoolManager.Instance.Putback(PoolEnum.ItemCount.ToString(), itemCountDic[item.pos]);
                     itemCountDic.Remove(item.pos);
                 }
             }

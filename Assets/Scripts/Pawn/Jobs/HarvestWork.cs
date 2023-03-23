@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class HarvestWork : Work
+    public class HarvestWork : WorkBT
     {
         private int curHarvestAmount = 0;
         MapGridDetails[] gridsPos;
@@ -20,14 +20,13 @@ namespace LittleWorld.Jobs
 
         protected BehaviourTree CreateWorkSequence(int plantCode, MapGridDetails[] gridsPos, Humanbeing humanbeing)
         {
-            tree = new BehaviourTree();
             tree.SetVariable("plantCode", plantCode);
             AI.Sequence sowSequence = new AI.Sequence("Sow Sequence");
             //harvest
-            ConditionLoop harvestArea = new ConditionLoop("Harvest Area", HarvestedAll);
+            LoopUnitlConditionSuccess harvestArea = new LoopUnitlConditionSuccess("Harvest Area", HarvestedAll);
             Leaf calculateNextHarvest = new Leaf("Calculate Next Harvest", CalculateNextHarvest);
             DynamicWalk walkLeaf = new DynamicWalk("Go To Harvest", humanbeing, Node.GoToLoc, GetHarvestPos);
-            DynamicLongWorkLeaf harvestLeaf = new DynamicLongWorkLeaf("Do Harvest", humanbeing, DoHarvest, GetHarvestPos);
+            DynamicLongJobLeaf harvestLeaf = new DynamicLongJobLeaf("Do Harvest", humanbeing, DoHarvest, GetHarvestPos);
             harvestArea.AddChild(calculateNextHarvest);
             harvestArea.AddChild(walkLeaf);
             harvestArea.AddChild(harvestLeaf);
@@ -46,7 +45,7 @@ namespace LittleWorld.Jobs
             var objects = WorldUtility.GetWorldObjectsAt(destination);
             if (objects == null)
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
             var curPlant = objects.ToList().Find(x => x is Plant);
             if (curPlant != null)
@@ -61,7 +60,7 @@ namespace LittleWorld.Jobs
                 {
                     EventCenter.Instance.Trigger(EventEnum.WORK_WORKING.ToString(), new WorkMessage(this, sliderValue, human, destination));
                     curHarvestAmount += human.GetWorkSpeed(WorkTypeEnum.harvest);
-                    return Node.Status.RUNNING;
+                    return Node.Status.Running;
                 }
                 else
                 {
@@ -72,12 +71,12 @@ namespace LittleWorld.Jobs
                         new Food((curPlant as Plant).FruitCode, (curPlant as Plant).GridPos);
                     }
                     (curPlant as WorldObject).Destroy();
-                    return Node.Status.SUCCESS;
+                    return Node.Status.Success;
                 }
             }
             else
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
         }
 
@@ -92,11 +91,11 @@ namespace LittleWorld.Jobs
             if (pos != null)
             {
                 tree.SetVariable("HarvestPoint", pos);
-                return Node.Status.SUCCESS;
+                return Node.Status.Success;
             }
             else
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
         }
 

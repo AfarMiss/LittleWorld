@@ -1,9 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using AI;
 
 namespace Sort
 {
@@ -42,6 +37,46 @@ namespace Sort
         //Sort(array, 0, length - 1);
 
         public static void Sort(int[] array, int low, int high)
+        {
+            if (low < high)
+            {
+                int partitionIndex = Partition(array, low, high);
+
+                //3. Recursively continue sorting the array
+                Sort(array, low, partitionIndex - 1);
+                Sort(array, partitionIndex + 1, high);
+            }
+        }
+
+
+        static int Partition(Node[] array, int low, int high)
+        {
+            //1. Select a pivot point.
+            int pivot = array[high].Priority;
+
+            int lowIndex = (low - 1);
+
+            //2. Reorder the collection.
+            for (int j = low; j < high; j++)
+            {
+                if (array[j].Priority <= pivot)
+                {
+                    lowIndex++;
+
+                    Node temp = array[lowIndex];
+                    array[lowIndex] = array[j];
+                    array[j] = temp;
+                }
+            }
+
+            Node temp1 = array[lowIndex + 1];
+            array[lowIndex + 1] = array[high];
+            array[high] = temp1;
+
+            return lowIndex + 1;
+        }
+
+        public static void Sort(Node[] array, int low, int high)
         {
             if (low < high)
             {

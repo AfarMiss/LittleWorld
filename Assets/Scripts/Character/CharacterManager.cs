@@ -53,7 +53,7 @@ public class CharacterManager : MonoSingleton<CharacterManager>, ISaveable
         }
     }
 
-    private void InstantiateSceneItems(PathNavigation[] characters)
+    private void InstantiateSceneItems(PathTracer[] characters)
     {
         foreach (var character in characters)
         {
@@ -64,19 +64,11 @@ public class CharacterManager : MonoSingleton<CharacterManager>, ISaveable
 
     public void ISaveableStoreScene(string sceneName)
     {
-        GameObjectSave.sceneData.Remove(sceneName);
 
-        SceneSave sceneSave = new SceneSave();
-        sceneSave.characters = FindObjectsOfType<PathNavigation>();
-        GameObjectSave.sceneData.Add(sceneName, sceneSave);
     }
 
     private void DestroySceneItems()
     {
-        PathNavigation[] itemsInScene = GameObject.FindObjectsOfType<PathNavigation>();
-        for (int i = itemsInScene.Length - 1; i >= 0; i--)
-        {
-            Destroy(itemsInScene[i].gameObject);
-        }
+
     }
 }

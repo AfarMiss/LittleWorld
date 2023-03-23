@@ -7,34 +7,34 @@ namespace AI
     public class Selector : Node
     {
         public Selector() { }
-        public Selector(string name) : base(name) { }
+        public Selector(string name, NodeGraph graph = null) : base(name, graph) { }
 
         public override Status Process()
         {
-            Status childStatus = children[currentChild].Process();
+            Status childStatus = children[currentChildIndex].Process();
 
             switch (childStatus)
             {
-                case Status.SUCCESS:
+                case Status.Success:
                     {
-                        currentChild = 0;
-                        return Status.SUCCESS;
+                        currentChildIndex = 0;
+                        return Status.Success;
                     }
-                case Status.RUNNING:
-                    return Status.RUNNING;
-                case Status.FAILURE:
-                    currentChild++;
-                    if (currentChild >= children.Count)
+                case Status.Running:
+                    return Status.Running;
+                case Status.Failure:
+                    currentChildIndex++;
+                    if (currentChildIndex >= children.Count)
                     {
-                        currentChild = 0;
-                        return Status.FAILURE;
+                        currentChildIndex = 0;
+                        return Status.Failure;
                     }
                     else
                     {
-                        return Status.RUNNING;
+                        return Status.Running;
                     }
                 default:
-                    return Status.FAILURE;
+                    return Status.Failure;
             }
         }
     }

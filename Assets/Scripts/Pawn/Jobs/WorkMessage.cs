@@ -14,13 +14,23 @@ namespace LittleWorld.Message
         public int workID;
         public bool showPercent = true;
 
-        public WorkMessage(Work work, float workPercent, Humanbeing worker, Vector2Int workPos, bool showPercent = true)
+        public WorkMessage(WorkBT work, float workPercent, Humanbeing worker, Vector2Int workPos, bool showPercent = true)
         {
             this.workPercent = workPercent;
             this.worker = worker;
             this.showPercent = showPercent;
             this.workPos = workPos;
             this.workID = work.workID;
+        }
+    }
+
+    public class WorkAbortMessage
+    {
+        public WorkBT work;
+
+        public WorkAbortMessage(WorkBT work)
+        {
+            this.work = work;
         }
     }
 }

@@ -58,8 +58,12 @@ public class EventName
     public static string DAY_CHANGE = "DAY_CHANGE";
     public static string HOUR_CHANGE = "HOUR_CHANGE";
     public static string MINUTE_CHANGE = "MINUTE_CHANGE";
-    public static string SECOND_CHANGE = "SECOND_CHANGE";
     public static string GAME_TICK = "GAME_TICK";
+    public static string REAL_TIME_TICK = "REAL_TIME_TICK";
+
+    public static string LIVING_AGE_YEAR_CHANGE = "ANIMAL_AGE_YEAR_CHANGE";
+    public static string LIVING_AGE_DAY_CHANGE = "ANIMAL_AGE_DAY_CHANGE";
+    public static string LIVING_BE_HURT = "LIVING_BE_HURT";
     #endregion
 
     #region 物体注册
@@ -69,5 +73,9 @@ public class EventName
     #endregion
 
     public static string OBJECT_GRID_CHANGE = "OBJECT_GRID_CHANGE";
+
+    #region 显示更新
+    public static string UPDATE_WEAPON = "UPDATE_WEAPON";
+    #endregion
 
 }

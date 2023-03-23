@@ -14,7 +14,7 @@ namespace AI
             Debug.Log("[currentChild]:" + name);
             if (ProcessMethod != null)
                 return ProcessMethod();
-            return Status.FAILURE;
+            return Status.Failure;
         }
 
         public Leaf() { }

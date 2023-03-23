@@ -1,12 +1,9 @@
 ﻿using LittleWorld.Item;
 using LittleWorld.MapUtility;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniBase;
-using Unity.VisualScripting;
 using UnityEngine;
-using static System.Collections.Specialized.BitVector32;
 
 namespace LittleWorld.UI
 {
@@ -16,48 +13,61 @@ namespace LittleWorld.UI
         {
             var contentList = new List<FloatOption>();
             var cell = mousePos.GetWorldPosition();
-            var objects = WorldUtility.GetWorldObjectsAt(cell);
-            bool hasAddedHaul = false;
 
-            foreach (var worldObject in objects)
+            foreach (var worldObject in WorldUtility.GetObjectsAtCell(cell))
             {
-                if (worldObject is Plant curPlant)
+                if (worldObject is Plant plant)
                 {
-                    var plantOpts = AddPlantFloatMenu(human, curPlant);
-                    contentList.AddRange(plantOpts);
+                    var plantOpts = AddPlantFloatMenu(human, plant);
+                    AddOption(contentList, plantOpts);
                 }
 
-                if (worldObject is PlantMapSection curSection)
+                if (worldObject is PlantMapSection section)
                 {
-                    var plantOpts = AddPlantSectionFloatMenu(human, mousePos.GetWorldPosition().ToCell(), curSection);
-                    contentList.AddRange(plantOpts);
+                    var plantOpts = AddPlantSectionFloatMenu(human, mousePos.GetWorldPosition().ToCell(), section);
+                    AddOption(contentList, plantOpts);
                 }
-                if (worldObject is WorldObject && (worldObject as WorldObject).canPile && !hasAddedHaul)
+                if (worldObject is Ore ore)
                 {
-                    var plantOpts = AddHaulFloatMenu(human, objects);
-                    contentList.AddRange(plantOpts);
-                    hasAddedHaul = true;
-                }
-                if (worldObject is Ore)
-                {
-                    var plantOpts = AddOreFloatMenu(human, worldObject as Ore);
-                    contentList.AddRange(plantOpts);
+                    var plantOpts = AddOreFloatMenu(human, ore);
+                    AddOption(contentList, plantOpts);
                 }
 
-                if (worldObject is Building building && building.buildingStatus == BuildingStatus.BluePrint)
+                if (worldObject is Building building)
                 {
                     var plantOpts = AddBuildingFloatMenu(human, building);
-                    contentList.AddRange(plantOpts);
+                    AddOption(contentList, plantOpts);
+                }
+
+                if (worldObject is Weapon weapon)
+                {
+                    var plantOpts = AddWeaponFloatMenu(human, weapon);
+                    AddOption(contentList, plantOpts);
                 }
             }
+
+            var haulOpts = AddHaulFloatMenu(human, cell);
+            AddOption(contentList, haulOpts);
 
             UIManager.Instance.ShowFloatOptions(contentList);
 
             return contentList.ToArray();
         }
 
+        private static void AddOption(List<FloatOption> contentList, List<FloatOption> haulOpts)
+        {
+            if (haulOpts != null)
+            {
+                contentList.AddRange(haulOpts);
+            }
+        }
+
         private static List<FloatOption> AddBuildingFloatMenu(Humanbeing human, Building building)
         {
+            if (building.buildingStatus != BuildingStatus.BluePrint)
+            {
+                return null;
+            }
             List<FloatOption> contentList = new List<FloatOption>
             {
             new FloatOption($"建造{building.ItemName}", () =>
@@ -66,19 +76,39 @@ namespace LittleWorld.UI
             })
             };
             return contentList;
+
         }
 
-        private static List<FloatOption> AddHaulFloatMenu(Humanbeing human, Item.Object[] objects)
+        private static List<FloatOption> AddWeaponFloatMenu(Humanbeing human, Weapon weapon)
         {
-            var haulTargets = objects.ToList().FindAll(x => x is WorldObject wo && wo.canPile);
-            var results = new List<WorldObject>();
-            foreach (var item in haulTargets)
+            List<FloatOption> contentList = new List<FloatOption>
             {
-                results.Add(item as WorldObject);
+            new FloatOption($"装备{weapon.ItemName}", () =>
+            {
+                human.AddEquipWork(weapon);
+            })
+            };
+            return contentList;
+
+        }
+
+        private static List<FloatOption> AddHaulFloatMenu(Humanbeing human, Vector3 pos)
+        {
+            var results = new List<WorldObject>();
+            foreach (var item in WorldUtility.GetObjectsAtCell(pos))
+            {
+                if (item is WorldObject wo && wo.canPile)
+                {
+                    results.Add(item as WorldObject);
+                }
+            }
+            if (results.Count <= 0)
+            {
+                return null;
             }
             List<FloatOption> contentList = new List<FloatOption>
             {
-            new FloatOption($"搬运{(haulTargets[0] as WorldObject).ItemName}x{haulTargets.Count}", () =>
+            new FloatOption($"搬运{(results[0] ).ItemName}x{results.Count}", () =>
             {
                 human.AddCarryWork(results.ToArray() );
             })

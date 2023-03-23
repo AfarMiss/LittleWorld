@@ -23,12 +23,12 @@ namespace AI
         }
 
         public ActionState state = ActionState.IDLE;
-        Node.Status treeStatus = Node.Status.RUNNING;
+        Node.Status treeStatus = Node.Status.Running;
 
         private void Start()
         {
             agent = GetComponent<NavMeshAgent>();
-            tree = new BehaviourTree();
+            //tree = new BehaviourTree();
 
             Sequence steal = new Sequence("Steal Something");
             Selector gotoDoor = new Selector("Go To Door");
@@ -63,11 +63,11 @@ namespace AI
         {
             if (money > 500)
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
             else
             {
-                return Node.Status.SUCCESS;
+                return Node.Status.Success;
             }
         }
 
@@ -81,11 +81,11 @@ namespace AI
             if (diamondPlinth.GetComponentInChildren<Holder>().hasDiamond)
             {
                 diamondPlinth.GetComponentInChildren<Diamond>().transform.SetParent(transform);
-                return Node.Status.SUCCESS;
+                return Node.Status.Success;
             }
             else
             {
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
         }
 
@@ -97,11 +97,11 @@ namespace AI
         public Node.Status GoToVan()
         {
             var s = GoToLocation(van.transform.position);
-            if (s == Node.Status.SUCCESS)
+            if (s == Node.Status.Success)
             {
                 money += 50;
                 Destroy(GetComponentInChildren<Diamond>().gameObject);
-                return Node.Status.SUCCESS;
+                return Node.Status.Success;
             }
             else
             {
@@ -112,16 +112,16 @@ namespace AI
         public Node.Status GoToDoor(GameObject door)
         {
             Node.Status s = GoToLocation(door.transform.position);
-            if (s == Node.Status.SUCCESS)
+            if (s == Node.Status.Success)
             {
                 if (!door.GetComponent<Lock>().isLocked)
                 {
                     door.SetActive(false);
-                    return Node.Status.SUCCESS;
+                    return Node.Status.Success;
                 }
                 else
                 {
-                    return Node.Status.FAILURE;
+                    return Node.Status.Failure;
                 }
             }
             else
@@ -143,14 +143,14 @@ namespace AI
             else if (Vector3.Distance(agent.pathEndPosition, destination) >= 2)
             {
                 state = ActionState.IDLE;
-                return Node.Status.FAILURE;
+                return Node.Status.Failure;
             }
             else if (distanceToTarget < 2)
             {
                 state = ActionState.IDLE;
-                return Node.Status.SUCCESS;
+                return Node.Status.Success;
             }
-            return Node.Status.RUNNING;
+            return Node.Status.Running;
         }
 
         private void Update()

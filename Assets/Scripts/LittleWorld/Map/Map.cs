@@ -40,22 +40,22 @@ namespace LittleWorld.MapUtility
             var targetGrid = GetGrid(posReference);
             if (!targetGrid.AddSinglePiledWorldObject(wo))
             {
-                TryGetGrid(new Vector2Int(posReference.x + 1, posReference.y), out var neighbour1);
+                GetGrid(new Vector2Int(posReference.x + 1, posReference.y), out var neighbour1);
                 if (neighbour1 != null && DropDownWorldObjectAt(new Vector2Int(posReference.x + 1, posReference.y), wo))
                 {
                     return true;
                 }
-                TryGetGrid(new Vector2Int(posReference.x, posReference.y + 1), out var neighbour2);
+                GetGrid(new Vector2Int(posReference.x, posReference.y + 1), out var neighbour2);
                 if (neighbour2 != null && DropDownWorldObjectAt(new Vector2Int(posReference.x, posReference.y + 1), wo))
                 {
                     return true;
                 }
-                TryGetGrid(new Vector2Int(posReference.x - 1, posReference.y), out var neighbour3);
+                GetGrid(new Vector2Int(posReference.x - 1, posReference.y), out var neighbour3);
                 if (neighbour3 != null && DropDownWorldObjectAt(new Vector2Int(posReference.x - 1, posReference.y), wo))
                 {
                     return true;
                 }
-                TryGetGrid(new Vector2Int(posReference.x, posReference.y - 1), out var neighbour4);
+                GetGrid(new Vector2Int(posReference.x, posReference.y - 1), out var neighbour4);
                 if (neighbour4 != null && DropDownWorldObjectAt(new Vector2Int(posReference.x, posReference.y - 1), wo))
                 {
                     return true;
@@ -318,15 +318,56 @@ namespace LittleWorld.MapUtility
             return result != null;
         }
 
-        public bool TryGetGrid(Vector2Int pos, out MapGridDetails result)
+        public MapGridDetails GetGrid(int x, int y)
+        {
+            var result = mapGrids.ToList().Find(grid => grid.pos.x == x && grid.pos.y == y);
+            return result;
+        }
+
+        public bool GetGrid(Vector2Int pos, out MapGridDetails result)
         {
             result = mapGrids.ToList().Find(grid => grid.pos == pos);
             return result != null;
         }
 
+        public IEnumerable<Vector2Int> GetLandGridsAroundSquareIEnumerable(Vector2Int center, int radius)
+        {
+            for (int i = center.x - radius; i < center.x + radius; i++)
+            {
+                for (int j = center.y; j < center.y + radius; j++)
+                {
+                    if (GetGrid(i, j, out MapGridDetails result))
+                    {
+                        yield return result.pos;
+                    }
+                }
+            }
+        }
+
+        public List<Vector2Int> GetLandGridsAroundSquare(Vector2Int center, int radius)
+        {
+            var list = new List<Vector2Int>();
+            for (int i = center.x - radius; i < center.x + radius; i++)
+            {
+                for (int j = center.y; j < center.y + radius; j++)
+                {
+                    if (GetGrid(i, j, out MapGridDetails result) && result.isLand)
+                    {
+                        list.Add(result.pos);
+                    }
+                }
+            }
+            return list;
+        }
+
         public MapGridDetails GetGrid(Vector2Int pos)
         {
             return mapGrids[pos.x * MapSize.y + pos.y];
+        }
+
+        public Vector2Int ValidateGridPos(Vector2Int pos)
+        {
+            return new Vector2Int(math.clamp(pos.x, 0, MapSize.x), math.clamp(pos.y, 0, MapSize.y));
         }
 
         private int GetIdUsingPerlin(int x, int y)
