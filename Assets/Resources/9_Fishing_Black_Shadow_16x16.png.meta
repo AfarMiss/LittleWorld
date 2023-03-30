@@ -1,0 +1,1706 @@
+fileFormatVersion: 2
+guid: 9d3f1cc0df379f545b0a503791668d1f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 409
+        width: 32
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ae090b7085d09d49abc032f1ae4a599
+      internalID: 448524780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 409
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee5f7aa2a9bd3dd4d8c33c4d2acba4bb
+      internalID: 523880063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 392
+        width: 64
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82381df64c194cf4b915717e7098ff1e
+      internalID: 2053732508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_3
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 375
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fac6b890af8f05b42a01e877074bb594
+      internalID: 1773674059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_4
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 375
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab5e6384074dd4244ab6f1ce07311112
+      internalID: -1673131306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 375
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e11496f575003343909fe22b564a6c9
+      internalID: -1672145319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_6
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 381
+        width: 32
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22022485e6248a54bb361452ad70dfe9
+      internalID: -638516695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_7
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 393
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f97681236744aa54399d6c6f603abdfe
+      internalID: 758324748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 377
+        width: 48
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 022e54ec74f69074185ac7b07c7fabec
+      internalID: 953771189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 352
+        width: 32
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36dc75d1b6c3e014984d8db0c3255df7
+      internalID: 1109459533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 342
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4afe9afd0a32bd40a9946acd7104215
+      internalID: -180501574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_11
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 341
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6ec02b1aac47e0438fb4016ec130f78
+      internalID: 43858445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 32
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c08ad976fb9fd2744932c676c146eb7d
+      internalID: -1362548437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_13
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 336
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7b792322107e54bbbbed5865cb9a38
+      internalID: -2023116120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_14
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 331
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cfc3a4d1fa46914f94159250857270d
+      internalID: 763568368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_15
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 331
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59c2ffc969d3d1a4d92026950a641d03
+      internalID: 1100890798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_16
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 331
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b557d0a12659f4438a2ca5ef9e63f1d
+      internalID: 1949594024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_17
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 346
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2da2eb10c893ea44789ded8eecd55f51
+      internalID: -826115557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_18
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 346
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a047b890a78960429bb451fc6bf687e
+      internalID: -2041881607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_19
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 310
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f87a43b937f7334dac71f978000fb0f
+      internalID: -50474171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_20
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 310
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7491d878d29597a4b95e8523ade5f373
+      internalID: 458627003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_21
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 297
+        width: 30
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 902e35a5e8bafa74383db7b6e0cb244a
+      internalID: 1852460546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_22
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 292
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a1f56ea54537564c90abde139e2536b
+      internalID: -344972067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_23
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 306
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a7ffa59e0e2c284b9603c62d04431fe
+      internalID: -734770696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_24
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 278
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 025fc45ce99a60540b5bd8e4cb910b46
+      internalID: 1592550178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_25
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 278
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37d1ef1393b95b242bf4e0f6ae278d85
+      internalID: -40404418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_26
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 289
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6548d60d7dc913749b7f051cbac78259
+      internalID: -679548169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_27
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 295
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db12013e01e3cd441a1839307130f6c0
+      internalID: -20453037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_28
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 295
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81cf8fe421971374884b7764641afdf4
+      internalID: -778165788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_29
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 292
+        width: 31
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d82d941c5d626d345a0bee8fcd584ffa
+      internalID: -1696420215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_30
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 293
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1496b72bf9e4204a87d75896696aa97
+      internalID: -229713098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_31
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 289
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fffedadc4d75e4c4ca2054a5cd1e762f
+      internalID: 1002014263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_32
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 294
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eb8100dbf0a84c48980a269eed4aff4
+      internalID: 966605088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_33
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 269
+        width: 24
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665e1d1f2f8ae564a95790db8fb05dc0
+      internalID: -647659322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_34
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 269
+        width: 23
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48465e91a0a4f774bb4dc9ab2748ce68
+      internalID: -940696437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_35
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 273
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e8be56ab0d0b3f49bb19a8888077701
+      internalID: 1549022192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_36
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 274
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb98a075fb1450e4ca8203fbacafd055
+      internalID: -12314827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_37
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 257
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72c5bc87efc0f344ba524c6c2b353be9
+      internalID: 412407376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_38
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 261
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 196c340f9ccf6e040ab0fc7c7cffe4a4
+      internalID: -768481389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_39
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 256
+        width: 30
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94652415cb1dd604f8916d87cc5b5e62
+      internalID: -1125523586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_40
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 246
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53d704e98edea8a4cb3f0e7991213c9e
+      internalID: 1729868668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_41
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 240
+        width: 30
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b917557378f2241bd9dbdd08a91f6f
+      internalID: 1912625656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_42
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 227
+        width: 46
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 201d4de0ea4f4ad4dadd513cff50149a
+      internalID: -6609014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_43
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 237
+        width: 24
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b333fb40590eb41b723d6f0f097a94
+      internalID: 1240968123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_44
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 224
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbd724fc6cff0204294345a3d5947e0e
+      internalID: -2074082986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_45
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 224
+        width: 18
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fdff9a9e7ace4a4eb4ba8d9bfacb2b2
+      internalID: 2045734100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_46
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 224
+        width: 30
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d3cba667f67a664caee1f8d0dafe63a
+      internalID: -138985840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_47
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 197
+        width: 24
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 660f3dd2bf8105c4ba5c5bf672b55591
+      internalID: -259827819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_48
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 197
+        width: 34
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae2f44c0143fc9c4c85f012873fee191
+      internalID: 2076115320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 195
+        width: 16
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 676f89be64cda3e4e8b5bb8a4807a680
+      internalID: -1892646566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_50
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 195
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e30d816d218eb24b8f7cdfd2ed02f76
+      internalID: 1974843891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_51
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 195
+        width: 29
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4c6a3c64cf7f844aa502e22af200445
+      internalID: -1428608003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_52
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 181
+        width: 16
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80ea02b5f002e74fb0a1c6fe992eaf4
+      internalID: -1515124378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_53
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 181
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6db56b31f802584c8b2b3758dc7f64d
+      internalID: -1913616586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_54
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 179
+        width: 20
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 155e79a26274aa1458ed44366aea7e45
+      internalID: -1044350060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_55
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 179
+        width: 19
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c41b329f841444aafbf2c2f0fc878c
+      internalID: 27740818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_56
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 128
+        width: 35
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7ba03d957d0494cb5bf0bfe4ea9f91
+      internalID: -1150672533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_57
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 128
+        width: 35
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2618c208a6116a40ab9eb2f8c50bb7e
+      internalID: -175938532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_58
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 128
+        width: 35
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9271ce9550fc7545abd4b484bc5c713
+      internalID: 1952841204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_59
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 149
+        width: 34
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c93323dce2bf4243a853ca631e68651
+      internalID: -421841027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_60
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 128
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9ec82734403aed41beb97352fac3daa
+      internalID: 453343249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_61
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 80
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20fdf625fc846a54da3d817abb847b82
+      internalID: 1126950263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_62
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 80
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 516057ffa38b19a419ed890dfa3b10fe
+      internalID: -291424247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_63
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 80
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f0129207540ea4bb6913386e372622
+      internalID: 1132131882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_64
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 80
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01409ccaaf4c196448812dd9f379a5e8
+      internalID: -778213039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_65
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 32
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f94504a2ac4b397429b21bea9ccdd873
+      internalID: 506168802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_66
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 32
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64541d35495fc2e4e9587b6905f61296
+      internalID: -1465601524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_67
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 32
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5526bd1f2f263984c89978dc702522f8
+      internalID: -188180280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_68
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 32
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bb5871066d82e54eb438bc1136cf49d
+      internalID: 910956523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_69
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 2
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 168075fffb795be448bc4ab9c4bb1033
+      internalID: 500686618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_70
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 9
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 504e138785129cb4aad358cc3574fdec
+      internalID: 798043120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9_Fishing_Black_Shadow_16x16_71
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 9
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b8aa5ed59858494c9dc64f1cacadf30
+      internalID: -1523909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      9_Fishing_Black_Shadow_16x16_40: 1729868668
+      9_Fishing_Black_Shadow_16x16_32: 966605088
+      9_Fishing_Black_Shadow_16x16_6: -638516695
+      9_Fishing_Black_Shadow_16x16_57: -175938532
+      9_Fishing_Black_Shadow_16x16_18: -2041881607
+      9_Fishing_Black_Shadow_16x16_3: 1773674059
+      9_Fishing_Black_Shadow_16x16_19: -50474171
+      9_Fishing_Black_Shadow_16x16_48: 2076115320
+      9_Fishing_Black_Shadow_16x16_26: -679548169
+      9_Fishing_Black_Shadow_16x16_44: -2074082986
+      9_Fishing_Black_Shadow_16x16_68: 910956523
+      9_Fishing_Black_Shadow_16x16_5: -1672145319
+      9_Fishing_Black_Shadow_16x16_15: 1100890798
+      9_Fishing_Black_Shadow_16x16_11: 43858445
+      9_Fishing_Black_Shadow_16x16_33: -647659322
+      9_Fishing_Black_Shadow_16x16_43: 1240968123
+      9_Fishing_Black_Shadow_16x16_60: 453343249
+      9_Fishing_Black_Shadow_16x16_55: 27740818
+      9_Fishing_Black_Shadow_16x16_69: 500686618
+      9_Fishing_Black_Shadow_16x16_25: -40404418
+      9_Fishing_Black_Shadow_16x16_29: -1696420215
+      9_Fishing_Black_Shadow_16x16_50: 1974843891
+      9_Fishing_Black_Shadow_16x16_66: -1465601524
+      9_Fishing_Black_Shadow_16x16_51: -1428608003
+      9_Fishing_Black_Shadow_16x16_58: 1952841204
+      9_Fishing_Black_Shadow_16x16_14: 763568368
+      9_Fishing_Black_Shadow_16x16_49: -1892646566
+      9_Fishing_Black_Shadow_16x16_62: -291424247
+      9_Fishing_Black_Shadow_16x16_36: -12314827
+      9_Fishing_Black_Shadow_16x16_17: -826115557
+      9_Fishing_Black_Shadow_16x16_63: 1132131882
+      9_Fishing_Black_Shadow_16x16_21: 1852460546
+      9_Fishing_Black_Shadow_16x16_64: -778213039
+      9_Fishing_Black_Shadow_16x16_1: 523880063
+      9_Fishing_Black_Shadow_16x16_45: 2045734100
+      9_Fishing_Black_Shadow_16x16_34: -940696437
+      9_Fishing_Black_Shadow_16x16_31: 1002014263
+      9_Fishing_Black_Shadow_16x16_38: -768481389
+      9_Fishing_Black_Shadow_16x16_8: 953771189
+      9_Fishing_Black_Shadow_16x16_9: 1109459533
+      9_Fishing_Black_Shadow_16x16_54: -1044350060
+      9_Fishing_Black_Shadow_16x16_30: -229713098
+      9_Fishing_Black_Shadow_16x16_13: -2023116120
+      9_Fishing_Black_Shadow_16x16_70: 798043120
+      9_Fishing_Black_Shadow_16x16_28: -778165788
+      9_Fishing_Black_Shadow_16x16_41: 1912625656
+      9_Fishing_Black_Shadow_16x16_53: -1913616586
+      9_Fishing_Black_Shadow_16x16_20: 458627003
+      9_Fishing_Black_Shadow_16x16_39: -1125523586
+      9_Fishing_Black_Shadow_16x16_59: -421841027
+      9_Fishing_Black_Shadow_16x16_65: 506168802
+      9_Fishing_Black_Shadow_16x16_22: -344972067
+      9_Fishing_Black_Shadow_16x16_27: -20453037
+      9_Fishing_Black_Shadow_16x16_67: -188180280
+      9_Fishing_Black_Shadow_16x16_24: 1592550178
+      9_Fishing_Black_Shadow_16x16_4: -1673131306
+      9_Fishing_Black_Shadow_16x16_2: 2053732508
+      9_Fishing_Black_Shadow_16x16_16: 1949594024
+      9_Fishing_Black_Shadow_16x16_71: -1523909
+      9_Fishing_Black_Shadow_16x16_12: -1362548437
+      9_Fishing_Black_Shadow_16x16_37: 412407376
+      9_Fishing_Black_Shadow_16x16_56: -1150672533
+      9_Fishing_Black_Shadow_16x16_35: 1549022192
+      9_Fishing_Black_Shadow_16x16_0: 448524780
+      9_Fishing_Black_Shadow_16x16_10: -180501574
+      9_Fishing_Black_Shadow_16x16_42: -6609014
+      9_Fishing_Black_Shadow_16x16_46: -138985840
+      9_Fishing_Black_Shadow_16x16_61: 1126950263
+      9_Fishing_Black_Shadow_16x16_7: 758324748
+      9_Fishing_Black_Shadow_16x16_47: -259827819
+      9_Fishing_Black_Shadow_16x16_23: -734770696
+      9_Fishing_Black_Shadow_16x16_52: -1515124378
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

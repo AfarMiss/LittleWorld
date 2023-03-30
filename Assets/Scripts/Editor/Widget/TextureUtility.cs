@@ -59,7 +59,7 @@ namespace LittleWorld.TextureUtility
                 }
                 else
                 {
-                    Debug.LogWarning($"Don't start with {resourcesPath}");
+                    Debug.LogWarning($"根目录不是{resourcesPath}，无法解析");
                 }
             }
             Debug.Log("SaveSprite Finished");
