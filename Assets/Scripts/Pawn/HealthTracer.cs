@@ -91,7 +91,7 @@ namespace LittleWorld
             public void Tick()
             {
                 min++;
-                if (min >= 60)
+                if (min >= 180)
                 {
                     min = 0;
                     hour++;
