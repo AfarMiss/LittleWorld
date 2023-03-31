@@ -76,6 +76,24 @@ namespace LittleWorld.UI
             CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.AddStorageSection));
         }
 
+        public void BuildWall()
+        {
+            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.BuildingGhost));
+            CommandCenter.Instance.Enqueue(new ChangeGhostBuildingCommand(ObjectCode.wall.GetHashCode()));
+        }
+
+        public void BuildDoor()
+        {
+            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.BuildingGhost));
+            CommandCenter.Instance.Enqueue(new ChangeGhostBuildingCommand(ObjectCode.door.GetHashCode()));
+        }
+
+        public void BuildFloor()
+        {
+            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.BuildingGhost));
+            CommandCenter.Instance.Enqueue(new ChangeGhostBuildingCommand(ObjectCode.floor.GetHashCode()));
+        }
+
         private void UpdateDisplay(int index)
         {
             foreach (var item in speedBg)
