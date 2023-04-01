@@ -1,4 +1,5 @@
 ﻿using LittleWorld.GameStateSpace;
+using LittleWorld.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace LittleWorld
         public TimeManager timeManager;
         public SceneObjectManager SceneObjectManager;
         private List<ITick> ticks;
+        public event Action<string> OnHint;
         public int timeSpeed
         {
             get
@@ -37,6 +39,11 @@ namespace LittleWorld
             {
                 ticks.Remove(tick);
             }
+        }
+
+        public void Hint(string hintContent)
+        {
+            OnHint?.Invoke(hintContent);
         }
 
 

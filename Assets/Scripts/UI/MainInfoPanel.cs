@@ -1,4 +1,5 @@
-﻿using LittleWorld;
+﻿using DG.Tweening;
+using LittleWorld;
 using LittleWorld.Command;
 using LittleWorld.Item;
 using LittleWorld.MapUtility;
@@ -14,12 +15,14 @@ namespace LittleWorld.UI
         public Text houtText;
         public Text YearQuadDayText;
         public List<Image> speedBg;
+        public Text hint;
 
         public override string Path => UIPath.Main_UI_Panel;
 
         private void Start()
         {
             UpdateDisplay(Current.CurGame.timeSpeed);
+            Current.CurGame.Hint("第一条提示!!!");
         }
 
         private void OnEnable()
@@ -30,6 +33,8 @@ namespace LittleWorld.UI
             EventCenter.Instance.Register<GameTime>(EventName.HOUR_CHANGE, BindData);
             EventCenter.Instance.Register<GameTime>(EventName.MINUTE_CHANGE, BindData);
             EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, BindData);
+
+            Current.CurGame.OnHint += OnHint;
         }
 
         private void OnDisable()
@@ -40,6 +45,8 @@ namespace LittleWorld.UI
             EventCenter.Instance?.Unregister<GameTime>(EventName.HOUR_CHANGE, BindData);
             EventCenter.Instance?.Unregister<GameTime>(EventName.MINUTE_CHANGE, BindData);
             EventCenter.Instance?.Unregister<GameTime>(EventName.GAME_TICK, BindData);
+
+            Current.CurGame.OnHint -= OnHint;
         }
 
         public void BindData(GameTime time)
@@ -126,6 +133,22 @@ namespace LittleWorld.UI
         private void Update()
         {
             UpdateDisplay(Current.CurGame.timeSpeed);
+        }
+
+        public void OnHint(string content)
+        {
+            StartCoroutine(HintCoroutine(content));
+        }
+
+        IEnumerator HintCoroutine(string content)
+        {
+            hint.GetComponent<Text>().enabled = true;
+            hint.text = content;
+            yield return new WaitForSeconds(5);
+            hint.GetComponent<Text>().DOColor(new Color(1, 1, 1, 0), 1);
+            yield return new WaitForSeconds(1);
+            hint.GetComponent<Text>().enabled = false;
+            hint.GetComponent<Text>().color = Color.white;
         }
     }
 
