@@ -119,4 +119,16 @@ namespace LittleWorld.Item
         BluePrint,
     }
 
+    public enum BuildingLayer
+    {
+        /// <summary>
+        /// 地板
+        /// </summary>
+        Floor = 0,
+        /// <summary>
+        /// 普通，会形成阻挡
+        /// </summary>
+        Normal_Block = 1,
+    }
+
 }

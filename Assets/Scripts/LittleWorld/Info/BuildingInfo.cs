@@ -11,6 +11,7 @@ namespace LittleWorld.Item
         public int buildingWorkAmount;
         public float marketValue;
         public int maxHitPoint;
+        public int layer;
         public Dictionary<int, int> BuildingCost
         {
             get

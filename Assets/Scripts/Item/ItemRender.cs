@@ -140,6 +140,18 @@ public class ItemRender : MonoBehaviour, IRenderer
                 default:
                     break;
             }
+
+            switch (curBuilding.buildingInfo.layer)
+            {
+                case 0:
+                    spriteRenderer.sortingOrder = 0;
+                    break;
+                case 1:
+                    spriteRenderer.sortingOrder = 1;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

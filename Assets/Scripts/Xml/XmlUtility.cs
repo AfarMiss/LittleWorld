@@ -112,6 +112,7 @@ namespace Xml
                     thing.itemSprites = CreateItemSpritesList(item, 1);
                     thing.buildingLength = int.Parse(item.SelectSingleNode("buildingLength").InnerText);
                     thing.buildingWidth = int.Parse(item.SelectSingleNode("buildingWidth").InnerText);
+                    thing.layer = int.Parse(item.SelectSingleNode("layer").InnerText);
                     ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
                 }
                 if (item.SelectSingleNode("itemType").InnerText == "Ore")

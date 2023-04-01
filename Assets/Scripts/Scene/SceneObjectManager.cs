@@ -51,7 +51,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public List<WorldObject> RequestDelete = new List<WorldObject>();
     private Dictionary<WorldObject, IRenderer> WorldItemsRenderer = new Dictionary<WorldObject, IRenderer>();
     private Dictionary<Vector2Int, PileRenderer> WorldPileRenderer = new Dictionary<Vector2Int, PileRenderer>();
-    private HashSet<Vector2Int> buildingGrids = new HashSet<Vector2Int>();
+    private Dictionary<Vector2Int, HashSet<int>> buildingGrids = new Dictionary<Vector2Int, HashSet<int>>();
 
     public IEnumerable<T> FindObjectsOfType<T>() where T : WorldObject
     {
@@ -70,7 +70,8 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         {
             for (int j = 0; j < buildingInfo.buildingWidth; j++)
             {
-                if (buildingGrids.Contains(new Vector2Int(targetGrid.x + j, targetGrid.y + i)))
+                if (buildingGrids.ContainsKey(new Vector2Int(targetGrid.x + j, targetGrid.y + i))
+                    && buildingGrids[new Vector2Int(targetGrid.x + j, targetGrid.y + i)].Contains(buildingInfo.layer))
                 {
                     return false;
                 }
@@ -98,7 +99,13 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     {
         if (worldObject is Building building)
         {
-            buildingGrids.AddRange(building.buildingGrids);
+            foreach (var item in building.buildingGrids)
+            {
+                if (buildingGrids.ContainsKey(item))
+                {
+                    buildingGrids[item].Add(building.buildingInfo.layer);
+                }
+            }
         }
     }
 
@@ -118,7 +125,10 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         {
             foreach (var item in building.buildingGrids)
             {
-                buildingGrids.Remove(item);
+                if (buildingGrids.ContainsKey(item))
+                {
+                    buildingGrids[item].Remove(building.buildingInfo.layer);
+                }
             }
         }
     }

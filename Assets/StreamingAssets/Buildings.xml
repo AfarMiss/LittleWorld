@@ -16,6 +16,7 @@
 		<buildingCost>木材x10,钢铁x10</buildingCost>
 		<buildingWidth>1</buildingWidth>
 		<buildingLength>1</buildingLength>
+		<layer>1</layer>
 	</item>
 	<item>
 		<itemCode>14002</itemCode>
@@ -33,6 +34,7 @@
 		<buildingCost>钢铁x20</buildingCost>
 		<buildingWidth>2</buildingWidth>
 		<buildingLength>1</buildingLength>
+		<layer>1</layer>
 	</item>
 	<item>
 		<itemCode>14003</itemCode>
@@ -50,6 +52,7 @@
 		<buildingCost>钢铁x5</buildingCost>
 		<buildingWidth>1</buildingWidth>
 		<buildingLength>1</buildingLength>
+		<layer>1</layer>
 	</item>
 	<item>
 		<itemCode>14004</itemCode>
@@ -67,6 +70,7 @@
 		<buildingCost>木材x25</buildingCost>
 		<buildingWidth>1</buildingWidth>
 		<buildingLength>1</buildingLength>
+		<layer>1</layer>
 	</item>
 	<item>
 		<itemCode>14005</itemCode>
@@ -84,5 +88,6 @@
 		<buildingCost>木材x3</buildingCost>
 		<buildingWidth>1</buildingWidth>
 		<buildingLength>1</buildingLength>
+		<layer>0</layer>
 	</item>
 </items>
