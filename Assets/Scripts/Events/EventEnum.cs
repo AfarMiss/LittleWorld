@@ -76,6 +76,7 @@ public class EventName
 
     #region 显示更新
     public static string UPDATE_WEAPON = "UPDATE_WEAPON";
+    public static string UPDATE_LIVING_STATE = "UPDATE_LIVING_STATE";
     #endregion
 
 }

@@ -22,7 +22,7 @@ namespace LittleWorld.UI
         private void Start()
         {
             UpdateDisplay(Current.CurGame.timeSpeed);
-            Current.CurGame.Hint("第一条提示!!!");
+            //Current.CurGame.Hint("第一条提示!!!");
         }
 
         private void OnEnable()

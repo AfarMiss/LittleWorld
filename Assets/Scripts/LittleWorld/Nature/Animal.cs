@@ -30,6 +30,7 @@ namespace LittleWorld.Item
 
         public float CurHunger => healthTracer.curHealth;
         public float HungerPercent => healthTracer.curHunger / healthTracer.maxHunger;
+        public float SleepPercent => healthTracer.curSleep / healthTracer.maxSleep;
 
         public PathTracer PathTracer { get => pathTracer; }
 

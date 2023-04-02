@@ -4,6 +4,7 @@ using ProcedualWorld;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 namespace LittleWorld
 {
@@ -35,14 +36,10 @@ namespace LittleWorld
         public override void Tick()
         {
             this.age.Tick();
-        }
+            this.curHunger -= 0.0002f;
+            this.curSleep -= 0.0002f;
 
-        internal void GetDamage(float damage)
-        {
-            var lastHealth = curHealth;
-            var expectHealth = curHealth - damage;
-            curHealth = Mathf.Max(0, expectHealth);
-            Debug.Log($"{this.animal.ItemName}_{this.animal.instanceID}受到伤害,curHealth:{lastHealth}->{curHealth} ");
+            EventCenter.Instance.Trigger<Animal>(EventName.UPDATE_LIVING_STATE, this.animal);
 
             if (isDead && !deadFlag)
             {
@@ -51,7 +48,15 @@ namespace LittleWorld
             }
         }
 
-        public bool isDead => curHealth <= 0;
+        internal void GetDamage(float damage)
+        {
+            var lastHealth = curHealth;
+            var expectHealth = curHealth - damage;
+            curHealth = Mathf.Max(0, expectHealth);
+            Debug.Log($"{this.animal.ItemName}_{this.animal.instanceID}受到伤害,curHealth:{lastHealth}->{curHealth} ");
+        }
+
+        public bool isDead => curHealth <= 0 || curHunger <= 0 || curSleep <= 0;
 
         public struct Age
         {
