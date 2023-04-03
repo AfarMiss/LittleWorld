@@ -290,6 +290,13 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
             WorldObjects.Add(item.instanceID, item);
         }
         RequestAdd.Clear();
+
+        if (pawnManager.AlivePawnsCount == 0)
+        {
+            Current.CurGame.Hint("没有存活的殖民者，这个故事暂时结束了。");
+            Current.CurGame.state = GameState.NOPAWN;
+            Debug.LogWarning("没有存活的殖民者，这个故事暂时结束了。");
+        }
     }
 
     public void Init()

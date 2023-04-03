@@ -16,6 +16,7 @@ namespace LittleWorld
         public SceneObjectManager SceneObjectManager;
         private List<ITick> ticks;
         public event Action<string> OnHint;
+        private bool noPawn = false;
         public int timeSpeed
         {
             get

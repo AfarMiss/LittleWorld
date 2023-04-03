@@ -19,6 +19,11 @@ namespace LittleWorld.UI
 
         public override string Path => UIPath.Main_UI_Panel;
 
+        private void Awake()
+        {
+            hint.text = "";
+        }
+
         private void Start()
         {
             UpdateDisplay(Current.CurGame.timeSpeed);
