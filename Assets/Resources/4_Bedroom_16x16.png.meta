@@ -1,0 +1,6546 @@
+fileFormatVersion: 2
+guid: 63061f408eefa9a4c85a78370f7323a9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1657
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75f9fbd77dd0a04baacbdaf7c7b9413
+      internalID: -103323207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1657
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24d0b379de848204f9202fe17441e57f
+      internalID: -528764413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 1657
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85ccfede28d2a8e45968768c68dea5c0
+      internalID: -915075075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_3
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 1639
+        width: 20
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89d9ce85277e88b4ea6411dbb0fd62ee
+      internalID: -871660297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 1651
+        width: 32
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0429947909f932a459aafb93d685a52e
+      internalID: -792179284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_5
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 1667
+        width: 68
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c783d5f1dce75fe49b092dee45859e9d
+      internalID: 650157424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1629
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c95560503fb177345b56149d179fe915
+      internalID: 1080911903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_7
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 1629
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5623f25479c4823428047f8e859826ad
+      internalID: -2132752556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_8
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1629
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 886460b5557700e4f91c41b72bc61aa5
+      internalID: 1590116476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_9
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1629
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba8774b457dabf24fad5bd2ebb2a9d98
+      internalID: 1441837602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_10
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 1625
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: def3f4d55e34fb742a1770dc89c423a6
+      internalID: 1573828062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_11
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 1591
+        width: 20
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a13abb860953724e9722f0da60e69b1
+      internalID: -566932736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_12
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 1588
+        width: 32
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c633d7594c40e1d439e050fa4afe3240
+      internalID: 1207478379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_13
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 1619
+        width: 68
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d95f1b5f756aa764985f17055e46cdf6
+      internalID: -1751910090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_14
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1584
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38744072651e4b64cb44fff4ffcd4a2b
+      internalID: 633004786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_15
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 1560
+        width: 52
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 311ceeb55034e4b41b561529512e77d7
+      internalID: 967556266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_16
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 1571
+        width: 68
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d627f27bbc087b48b300b158bb959f0
+      internalID: -296734934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_17
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1557
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17feca9bd5e5d754bb640bfafae5075e
+      internalID: -1844390480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_18
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1524
+        width: 80
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68c8193c41ece6c4d8e5cf2293e04151
+      internalID: -118328918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_19
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1520
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55c8f35bcb028ba429838ac504116b28
+      internalID: -1665100513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_20
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1523
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bdd197fb9820804b81ea5750e0ae288
+      internalID: -1287586276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_21
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1522
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 387b36bf8de87a643be0da0603f203b5
+      internalID: -25543184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_22
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1522
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09b26fa3af6d716468364dfdc26cbe66
+      internalID: 1562994168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_23
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1488
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b13abe6e832d66846bdcd4d882105a98
+      internalID: 587162241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_24
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 1465
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca8813c413dd43940b7f15da81de874a
+      internalID: -990509603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_25
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1488
+        width: 35
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e3ba1f2fd52e68469f7cdda77db49d4
+      internalID: -377171429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_26
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 1489
+        width: 29
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f33670c38171545834f409cb559d35
+      internalID: 1828619813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_27
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 1491
+        width: 54
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f9b41485ecba06409f2d9dbfb25389d
+      internalID: 1077077423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_28
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1456
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3642642bb0606c0408f7258c843a6a33
+      internalID: 1244012452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_29
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1456
+        width: 34
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01be571ca2e39a042ad499815b54c031
+      internalID: -1262601115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_30
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 1457
+        width: 29
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a981e42cbf947f543b9f72f5f4f22358
+      internalID: -1529956703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_31
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 1459
+        width: 54
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 310faffc58f012d44bfd36cd85511a49
+      internalID: -672847170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_32
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1424
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3856651d0c6c3e4fa35c06b11c1389d
+      internalID: 1456994731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_33
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 1424
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd11ea7db85cab14bb5810bb5ddd0410
+      internalID: 1973576934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_34
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1401
+        width: 35
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d224db864814a9479137253c92ac817
+      internalID: 695858804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_35
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 1392
+        width: 33
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 719241b6279ff914694b6bf0c7a19a85
+      internalID: -76339189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_36
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 1427
+        width: 54
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 369600159145bb04ba10c5f04b39c473
+      internalID: 1788291581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_37
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1401
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1be336f4c62294a8227bde37020ad2
+      internalID: 1680999457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_38
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1401
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a7095375bb164d45a77e46b6900c1de
+      internalID: 1201740728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_39
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 1400
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab291b9bbad2e0842ac7dc5e03bde089
+      internalID: 1968069707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_40
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1395
+        width: 48
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44f485b296b126b47b1d6c17e278770e
+      internalID: -1473404456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_41
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1369
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bab2cc314aae984e9682c46b8c1a011
+      internalID: 723787320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_42
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1374
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f08401365e4b654d975dee6b3b9ab16
+      internalID: -1215853936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_43
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 1373
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65897f7c68a575a499e83c369932efa9
+      internalID: 1746260724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_44
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 1368
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 466d22ecf4d9e7d46982fc3a5a417176
+      internalID: 1084808656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_45
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 1373
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a71f9c9b7504243b26a8cec08d4f0c
+      internalID: 447174491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_46
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1371
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ba85e0b466fefa4a946ec7acff28a98
+      internalID: -1923487390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_47
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 1339
+        width: 26
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 019c39bfa20fe8348a85eff35eb4f1d3
+      internalID: -489629769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_48
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 1339
+        width: 26
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec9aa14fcc77d7b4183499f461fb5273
+      internalID: -528026687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_49
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1339
+        width: 26
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5a1ebacec53ee441972230fb5a66e91
+      internalID: 1166851465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_50
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 1339
+        width: 26
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 824a2a3fff4f087449a1117a1262fbd3
+      internalID: -1904875598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_51
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1367
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 264804a49cc2f5644916026ff827115c
+      internalID: 1167706280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_52
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1329
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5baf3e08a9086064f8aba32978aa2215
+      internalID: -516522713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_53
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1329
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2a912a4c1b0cb24c98cbfa52c54d09c
+      internalID: 2130597729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_54
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1337
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e0ab018bc2063c4787202a90f00ead0
+      internalID: -906416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_55
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1254
+        width: 31
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c45a69b59772afe42bbb0691d0c8e104
+      internalID: 792418234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_56
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1254
+        width: 31
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e9783f0a4a5a9944a43b0036810e7c5
+      internalID: -104560650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_57
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1254
+        width: 31
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba5e0ef03bc29ec42b249bd19531a292
+      internalID: 990804383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_58
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 1299
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a45eb8a2b355a954f9c625658f60a624
+      internalID: 767027850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_59
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 1287
+        width: 20
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b358867e79cd2524fbf8fa0e9b76bfa6
+      internalID: 1311942450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_60
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 1287
+        width: 20
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6adc706c9e9bd8c4f80aa048139a4639
+      internalID: 1155987957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_61
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 1287
+        width: 20
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f832b1525ad3fcc458964a04a369688b
+      internalID: -2080498411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_62
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 1286
+        width: 20
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5714a5d3a7b4def45990ef71b2c88217
+      internalID: -1914405383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_63
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 1254
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00435d6e77feb114dbeaaa1cf7b4d9be
+      internalID: -2014174271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_64
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 1227
+        width: 95
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aa7a29822b8907478eeb097530ec049
+      internalID: -1024401146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_65
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 1218
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c6ec4dc10c3bc54b8b12c7468358cf3
+      internalID: -549044605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_66
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 1218
+        width: 55
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 395f13e60f35bb44bb53e71cab16f94f
+      internalID: 1800586586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_67
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 1216
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05f7338a146010a42b053d55fefb0fc3
+      internalID: 574020876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_68
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1184
+        width: 29
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa43a42d42a8d8743a4b6d0317042f9c
+      internalID: -136244872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_69
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1141
+        width: 80
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0af10f2b07e4c7346b5c9b78ed045ed7
+      internalID: 1496455600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_70
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 1184
+        width: 13
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c898184c097e1d841bde46e3ffa6672f
+      internalID: 1339873718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_71
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1152
+        width: 29
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27dfc0ab64cddee4daace1aee815950b
+      internalID: -348380173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_72
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 1152
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0456ebdca94b9c4abbd5da6121e5490
+      internalID: -1998303255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_73
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1120
+        width: 29
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 148a4fa06cb06b44990b51c8d9fe6241
+      internalID: 1045060355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_74
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1120
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f47d85851ec579d42b2d074da64abd7b
+      internalID: -156704318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_75
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 1109
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78f35ba98996a174fb71f4fdc6f15027
+      internalID: 874410388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_76
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 1109
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d8efcefbf89eff46b5d577f7b35a7ff
+      internalID: -1071140057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_77
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 1109
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eedc7a9a671f0c43afae12668d2e00b
+      internalID: -2088029318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_78
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 1109
+        width: 30
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3a529cf56edde04fadddf3024818334
+      internalID: -504726401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_79
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 1109
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11ce0d71b4519b743b82fe2d09eb526b
+      internalID: -1532475431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_80
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 1104
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82096306cc0dee34dab66910fda5ea2a
+      internalID: 1934019290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_81
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 960
+        width: 32
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c7055bf30568204a8be6fb4b89144a8
+      internalID: 1358816390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_82
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1066
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1cdb5b481e991340a6928430e1a3e46
+      internalID: -1189679078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_83
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 1066
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a24436e299dbe2243b65f8b4d3853144
+      internalID: 2090143969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_84
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 960
+        width: 32
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d58caba5b6bd4414aace1de393de4c41
+      internalID: 692209081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_85
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1067
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7166779e61ddd574f973ebedd23c6644
+      internalID: 265359075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_86
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1018
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2754fde74125b224fabbff8f18f698cf
+      internalID: 168660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_87
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1040
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 743d7df9b4a598a40a9ca2b49bff3740
+      internalID: -928513719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_88
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 1018
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b6b56273cd16c64c90827e7dbc40acb
+      internalID: 1532184439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_89
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1040
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da4f4608168a4d14da33ff9502eab184
+      internalID: -1359057215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_90
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 1035
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 005fae4657e22a64082079cdb7803973
+      internalID: 771391430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_91
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 992
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dadf19d9e503a8458183d0057c0bfdf
+      internalID: 225950421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_92
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 992
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ac5c630412215b4b93bfbc9be6ad998
+      internalID: 1699298037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_93
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1003
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 428abb067c0c724488146f0ba55a06a0
+      internalID: -1178432215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_94
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 970
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d4b69d365b7c94dbe4b93e02403900
+      internalID: -1268797540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_95
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 970
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8048bb32716d844cbc43fc2700c78f0
+      internalID: -1137494373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_96
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 971
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 786c60a8150a45d49833e5ef8356cf85
+      internalID: 1158179639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_97
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 939
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cdfb3a1f25f90a4bb87dcef4d6990b8
+      internalID: -1530808807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_98
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 922
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 611ba475a51cd3045bf6eb5ae58500a2
+      internalID: 1718170387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_99
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 944
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77a58505e127b014dbaaf9cbb2e49acd
+      internalID: 1112266135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_100
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 922
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ebcc20c7bbcde04b94b3046d0aa196f
+      internalID: 1739327521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_101
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 944
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f69595c8640e77c4c99be56198cbdfc1
+      internalID: -40672752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_102
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 939
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75ead8f876979fa47bcb8dca5f03ccfb
+      internalID: -95098918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_103
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 939
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 220c668b24923fa42a05e35d47edf806
+      internalID: -1400704890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_104
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 672
+        width: 256
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25efa44268529754a838320e71b5ec68
+      internalID: -55028823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_105
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 907
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93af5bb958181c649b6400ff230d8bcd
+      internalID: -1482629961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_106
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 907
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1f9d8fa1b7ce764286229c221bcdcac
+      internalID: -588195510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_107
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 666
+        width: 96
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bf5f53339e96954f9b88d4ca59ca1cb
+      internalID: 2131264885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_108
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 647
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5bab09fcc8ea7241bdcb49d1baa364a
+      internalID: -306827509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_109
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 647
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af85041b594ed3843a02dfea91450aa2
+      internalID: 1965172193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_110
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 647
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4542690bd651b624eac7bc06858a5e38
+      internalID: 497567015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_111
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 647
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ecc3b7f23473b24784f64ce6a2d9da8
+      internalID: 1035419721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_112
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 647
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76a24c3899957843905146df68d361d
+      internalID: -1762786391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_113
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 647
+        width: 31
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac92bd17425d03d4e9c06db88a47fdff
+      internalID: -1253033640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_114
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 641
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16dcfdcb0c33576429a70925c7d8cb68
+      internalID: -41340701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_115
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 641
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0481ef02de73d641b2d18d96e223b18
+      internalID: -32623029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_116
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 641
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45bb7d31b57df104fa70b9c04a8c50db
+      internalID: 716984360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_117
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 641
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c00459009513d24f9bfa427a5104cd6
+      internalID: 1845875925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_118
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 641
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa30f126d1217824ca985d920ad57201
+      internalID: -1501638093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_119
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 641
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13529c78dc3624843ba2cbe080342138
+      internalID: 1602202223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_120
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 615
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1589b928b8684d346ac98c221b1d9dd6
+      internalID: 1136898025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_121
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 615
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d4609d082735474e86f263ffd0c0901
+      internalID: 1053881563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_122
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 615
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 250b78a6f5a737d4381b640c593c7883
+      internalID: 2077049311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_123
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 612
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56d9346f79c79cc4489e68354ae6c4ce
+      internalID: 2004273238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_124
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 615
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a184571b7b5ed4cbdb3be0c01fe81b
+      internalID: -1857253496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_125
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 615
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d391b7e228efb654f98d220905443f93
+      internalID: 652218640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_126
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 632
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7a782f38493a534480eaf85d66cd457
+      internalID: 979268818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_127
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 609
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3d6b385b51cd145ba2a3af3601f55b
+      internalID: 651144524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_128
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 609
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51238df1616bebf458740a3a2182a248
+      internalID: 1084727892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_129
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 609
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0be86eebfbdc03843a427e47f6c7fce6
+      internalID: 1299875535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_130
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 609
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c48689f2fcc6bc4ba5d1b338dd060a3
+      internalID: 193914282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_131
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 609
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89c800dabc893a541ba62cd9f5e1b7a4
+      internalID: 1500207601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_132
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 609
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04de4c6c7c49c1a4b9a55540e6f8d208
+      internalID: -1954328658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_133
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 583
+        width: 64
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f33cd9f9b1808ac49aade041f3761276
+      internalID: 395632146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_134
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 600
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d804fdcfb37c9fe40a050bdabc26453a
+      internalID: -2025756023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_135
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 578
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6a65b2e3b6195e4c8b369784daccad1
+      internalID: 1468779031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_136
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 578
+        width: 16
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8738667f49644d04ea66e60c5ee7322d
+      internalID: -915644177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_137
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 578
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 267fd5b5f062ede41971302341342c03
+      internalID: -116903948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_138
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 578
+        width: 16
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8269ea2f02f5284c8b0190949f63e7a
+      internalID: -805769355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_139
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 578
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be3556a96308c54593bc042f02022f8
+      internalID: -1613447316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_140
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 578
+        width: 16
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a0f7da18c4cde748af32ac6e592f443
+      internalID: 1432570922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_141
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 583
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f56b8122acaa7d46937a77ea9dbf1d8
+      internalID: -1550300511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_142
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 583
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79a95148d505807458f27965f7f0d335
+      internalID: 662452416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_143
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 555
+        width: 48
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 572e7f617de7c3f4abf21985ab4d8723
+      internalID: 402919806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_144
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 550
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deefa1577ee88ec45a26e16a46fd1873
+      internalID: 740303219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_145
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 550
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 477cf9ad27d276a4d8d54caa606ea7a9
+      internalID: -1631043215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_146
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 562
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bfcf8e607f60c949bee4e9ef22fe7c9
+      internalID: 779523403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_147
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 562
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e7faf3453221fd468970edd84a9b7fb
+      internalID: 1720213816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_148
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 562
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc525bd12e22efa46947d043ae65e661
+      internalID: 377439642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_149
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 561
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e35ae0a68553114e818b7e9eb7b822a
+      internalID: 2143264798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_150
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 554
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b502423fd8be5d468e5c07680861734
+      internalID: 383917548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_151
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 544
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b742cb7f8b5b9468663817e9127d43
+      internalID: 217433512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_152
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 544
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c525c9e08ff5417418e0884593f250f4
+      internalID: -1858672712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_153
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 544
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98e8784efc5d83d4982c27c7671b65be
+      internalID: 1896035145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_154
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 549
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f90f5ac606bb6b84aa1c1fc58e45964e
+      internalID: -112892623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_155
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 544
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec2a512e3de0bf4498301b2c1bb794ac
+      internalID: 2020240889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_156
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 544
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3aaf78c416adc4b9b7b196dffd789b
+      internalID: 110554149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_157
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 544
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f10a70bac503ef648a43448fae337069
+      internalID: 486271813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_158
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 546
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bc4ed27beba89a48b134f565c94a09a
+      internalID: -1409795440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_159
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 546
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c700b5417a83d864881b810057f4627f
+      internalID: -2041030578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_160
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 546
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0097c1bda4b0504b944f50ae465f571
+      internalID: -2093492934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_161
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 529
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c048fd180310bb941bb448024ae6fd4f
+      internalID: -876264307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_162
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 533
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36f7fca966a421a449c21ab2a9b4f921
+      internalID: -1355349441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_163
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 521
+        width: 30
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0275fa0c766d3ea459d0412e29ffacd3
+      internalID: 1542925092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_164
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 523
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4804effab436b9e4aa1118b081467c39
+      internalID: -423630947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_165
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 518
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f75cd9f7938b617418266cdd003a67e1
+      internalID: -436208281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_166
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 518
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee81ab875b51bde489e7240460ebd1dc
+      internalID: 548319061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_167
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 530
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 175d0bf714b3a9943b1032d76cf51e65
+      internalID: 644017845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_168
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 530
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81dab40d18b995b45bb037accc7e27f0
+      internalID: -555198500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_169
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 530
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302d31a7e83f2c64299c32ef7dc67b67
+      internalID: 685042444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_170
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 522
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84b7f72446038e64e8cb020e5013805a
+      internalID: -1464231249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_171
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487532ccd2b52174daa9e1aa7ecad1a1
+      internalID: -327544273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_172
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 512
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16faabffa35c06f4a971d249ec1f815e
+      internalID: 227607027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_173
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 512
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e11005a64ec06e44ea8ebc6fb5d33a85
+      internalID: -1703823073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_174
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 517
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f014f3acf18e336428faa7aae66c0757
+      internalID: -1506324936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_175
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 514
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dcac947ca3ffef4bafaf8485ae7319d
+      internalID: -1004213304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_176
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 514
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d819326c5005d39448481848108453dd
+      internalID: -52040743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_177
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 514
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b2c150c439628943b704c9be8acf9ac
+      internalID: 551834564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_178
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 498
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf2a545ee8fe7ee4fa6da1ba78927c3c
+      internalID: 499263350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_179
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 479
+        width: 44
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b56e263e8d67e146b1cd16ed3c23d1d
+      internalID: -316945814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_180
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 479
+        width: 44
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8f4a04cac4592e43a3f24cd7f7477bc
+      internalID: 1049223885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_181
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 500
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1676eb27558949843911f1f71a0bbb0a
+      internalID: 1815770862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_182
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 500
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b000cfbd312f074583ef5a619fe00ac
+      internalID: 432052496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_183
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 486
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 252ff95919e778644b5d13a46be5b8c3
+      internalID: 1110935545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_184
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 496
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47242f8d0339aff4e8da7fc05abbd147
+      internalID: -1367883161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_185
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 498
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7bdba503f7a1e0458e201f3792c0694
+      internalID: 1092202771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_186
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 498
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24101ecee2ebad347aef44c7a63a05b2
+      internalID: 1317421709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_187
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 498
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96a39b72a034aa54099fa7e3230c82e6
+      internalID: 350798037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_188
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 490
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29f8faaf479e83d4fb59c50ad6c33bae
+      internalID: -1465723128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_189
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 484
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5df73927fa650d4db4a9544eecd7101
+      internalID: 1381284308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_190
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 484
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86c9b7ff59619e942a12ee587de28977
+      internalID: -858225912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_191
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 482
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8794c6a8e09443744a7de2cd03d00504
+      internalID: 1135031874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_192
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 482
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f27c8d9ce5a1d93428ec403be181ee77
+      internalID: 334478401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_193
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 482
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3855423e16431d742995e6df3b4c4e5f
+      internalID: 22261983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_194
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 481
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6e202905d3318545bcffc454c28c3d3
+      internalID: -345601525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_195
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 468
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f8b9c0609dedc48af34c974b2a27c3
+      internalID: 1794855601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_196
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 468
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd7e08a82bc2db74ca1afcdcba3adf11
+      internalID: -334682004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_197
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 456
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c88032ae9f98e9408adc40f96c843cf
+      internalID: -1545127010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_198
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 456
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7694c4fe3bf378d42b9ec613258aca36
+      internalID: -753855424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_199
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 449
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26ab0b25379dc85429b220da6ba47024
+      internalID: -1993956467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_200
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 454
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 721af0df6ad41d44db2063ec08f8205d
+      internalID: -1616379468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_201
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 431
+        width: 44
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a43a7806fa4a6a4596e1e8002e81b3d
+      internalID: 117041158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_202
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 455
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2135bd20cba11fb47af28f05636e53c1
+      internalID: 584776211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_203
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 417
+        width: 62
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da070a670b390b740bc4d94bc533b96d
+      internalID: 2089963341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_204
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 439
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88a01bdfbf143784d95113a80efc3625
+      internalID: 655205890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_205
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 424
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 799b675b2423cc74999d3ee778c9cb97
+      internalID: -192957605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_206
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 424
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa04ffa70279a34fb082d8736506d2a
+      internalID: -1608007536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_207
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 418
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e45125271c9fac49b5485eb7fc0ae25
+      internalID: -1112511759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_208
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 418
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3801c8328f86f64b8c8c81cd34e644d
+      internalID: 1928906873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_209
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 405
+        width: 26
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ef2572e3d114dc438ba5bfc1dd40040
+      internalID: -321904023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_210
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 400
+        width: 29
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7783c026d613bb6458dc39c0169475dd
+      internalID: -1399707698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_211
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 401
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5db3869fbfdc532439e82c9441d4213c
+      internalID: 907325929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_212
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 404
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb637d7dc3e0bb04c90c0ab62e39683b
+      internalID: 114853853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_213
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 402
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca46ac3c9d9a7434eb697501ecc0a949
+      internalID: -492183075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_214
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 406
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2a028f46c0ae34eb6ccfb39f5920a6
+      internalID: 2104135204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_215
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 395
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c4c7a2eb2154884184ee73d7da381aa
+      internalID: -2111896948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_216
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 395
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1a96d0a81160e94eb5e7a4530ef7cf5
+      internalID: 2116524623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_217
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 395
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea2bfea68eb4221498225cbf6e5f7060
+      internalID: -526675835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_218
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 369
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0473abbf37ba3f4980e2eb4bb2f3642
+      internalID: 771906167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_219
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 369
+        width: 14
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f50485dc47478e42870625cfd3af894
+      internalID: -312878973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_220
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 390
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba0b6f3af9ee5c4ba25aff01777f644
+      internalID: -106901019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_221
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 386
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a507925288cb3e649bf41988e8bcc4dc
+      internalID: 1481704417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_222
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 386
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6b8cf51a6d650442a4b213658a158e3
+      internalID: -1915046994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_223
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 392
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c04c6e28cb0538e47bce5ffaf6a414f6
+      internalID: -1045831484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_224
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 377
+        width: 44
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 119c2fe291d37494494b94497704bcc3
+      internalID: 665024023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_225
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 384
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca3f23fa9780c146a0aa501a5b0ac38
+      internalID: -1969425419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_226
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 337
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97f097c478a121648bf9b3c3897a65e0
+      internalID: -311146110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_227
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 337
+        width: 14
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b072b743bd9ef5e4ebc2a1a924f044ad
+      internalID: 1474638192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_228
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 337
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d7326e97811344894a1239473ae47e
+      internalID: -592042852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_229
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 337
+        width: 14
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07943f8e98c314a429cfe5acca261b8a
+      internalID: 1252072359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_230
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 359
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f760ae83b1485140850674abf16697a
+      internalID: 1283695743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_231
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 359
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2624fed8dd86b5e4c9e06e2174b3a346
+      internalID: -1431956868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_232
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 359
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bdbb03b7146d1247aa802eb78499eaa
+      internalID: -716679410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_233
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 359
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c7d90e4becfe0644822b896aea1ddb0
+      internalID: 179226692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_234
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 359
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08f6089b1d52bab4a99ef48441ed37bf
+      internalID: -1422809905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_235
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 348
+        width: 48
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da477ada349b3a744a530ae96374dd78
+      internalID: 522531032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_236
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 288
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6196dd2d14b3dc3448ad98e7f30948b6
+      internalID: 1905192532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_237
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 288
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee5fa0b8aa9f7d04ab6c14836e8eaace
+      internalID: 1584082776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_238
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 288
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65fcfcca47c093347907af2cd0c547ed
+      internalID: -2024405572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_239
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 327
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52e20bd9a87500a4cb60abd2670e8d11
+      internalID: -1558273727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_240
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 327
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71e707c62455a941bff9f7aae0b84f8
+      internalID: -863191666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_241
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 327
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ba5017692837c74d8fe507764140b42
+      internalID: 814539241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_242
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 316
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6008c1c786794fc42838e3a3f34fa9d3
+      internalID: -1323795901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_243
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 316
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67aab2c7a2d2dce4cb315af4d32d3178
+      internalID: -27095515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_244
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 316
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc1913cbe673def41b75a125ca647bf0
+      internalID: 1375664595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_245
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 316
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8bac17e672f5554d8af97fbae21de35
+      internalID: -1453095962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_246
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 289
+        width: 47
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6431f0ccb340c94cb472a2e356aa55e
+      internalID: 728620373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_247
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 281
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20fdb15c564279c418b69e164bb7e1d8
+      internalID: 641280638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_248
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 273
+        width: 35
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41990408a06a4d5429d14972c2f14541
+      internalID: -911433992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_249
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 240
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60aeae2251e42664dbadfabe143269de
+      internalID: 128662651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_250
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 240
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09d16e1f5d429a146af7dee448be9565
+      internalID: 111766719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_251
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 240
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33e2475120ccd4c4b9ef2d5f83cf11aa
+      internalID: -1690639686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_252
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 257
+        width: 47
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b9a6e0989031343b82edce0db85e1f
+      internalID: -203745253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_253
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 253
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff96bd466a1101440b9b7b85cd1f7717
+      internalID: 310801201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_254
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 246
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13d3da7dab409a74981bd727e5f7db7f
+      internalID: 1862052404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_255
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 246
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeab6313484eff74db013244a1645cc5
+      internalID: -1104097167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_256
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3b743a4bdc1729408c1d2ffe126f702
+      internalID: -1790231846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_257
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f421041afeaee34fa1d4eb5072f5f0c
+      internalID: -1539561136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_258
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da35d5c5fb96c4e41a21f63d5df87019
+      internalID: 1473907974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_259
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c765a29bc9991e8408d27e54c6ad2848
+      internalID: 1106498236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_260
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 225
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c850b116b1199ff4398cff063de4b315
+      internalID: -2001223045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_261
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 208
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f63cdc38b58a45e41b5a6838bc2471aa
+      internalID: -1185730338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_262
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 196
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4c01d1fbb6412a43a6dedcac44616a4
+      internalID: -963785997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_263
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 196
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f2ddb9596cb3ef4eb67004f14600128
+      internalID: -1347157660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_264
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 208
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb7ae37be2106a44a9de7a2d6cd908ab
+      internalID: -325307071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_265
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 192
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edce7ae1c58bd474fbdd82940dd01027
+      internalID: 1037146457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_266
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 192
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be0620d010fe3ea43b3db3807784310c
+      internalID: 430783254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_267
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d9c37cb34799c14196504f229489bf0
+      internalID: 1753070332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_268
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 826cd33e72dd0fd4799e202b5efe6545
+      internalID: 1303830529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_269
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee8f0c098a8e04b4fb26e0b1d9ab7173
+      internalID: -306521768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_270
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 176
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3807843c82aebc448b9a56c8e2636e03
+      internalID: 679184401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_271
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 180
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59e436347d9c0fe46a9d14e76ca64eca
+      internalID: -1138003890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_272
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 180
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1b61a6c254f9fd4b9f7781126a8e835
+      internalID: -1858288570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_273
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 176
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 136190b65bbb26a4a997f41442ef65a3
+      internalID: 2071712686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_274
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 150
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2104145803d5a5c4c94db1965faa13f5
+      internalID: 51276483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_275
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 150
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c0b41d25b4400a4d94ff745a7f90b22
+      internalID: 1748600351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_276
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 150
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9baf8affe306a504d8bffaa3fc0d28a3
+      internalID: 1299358501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_277
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 164
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090efe2980762ad46aad5b95c64ed177
+      internalID: -373060054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_278
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 164
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd6b9f90a8a7b324b80ce2c2776a07e9
+      internalID: -1409911653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_279
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 148
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 865fbe487a66a3a489de8b3827e81464
+      internalID: -1162193907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_280
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 148
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b416c0b29208f74daeeced6aad52671
+      internalID: -1313370084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_281
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2477e58e4664f0641a57f34d274470e6
+      internalID: -1463299287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_282
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 63
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 933dcc5b655a2fe459a372ce9460ce5c
+      internalID: 2054561491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_283
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 47
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed141c0872f687e44bea79dc784bab4c
+      internalID: -327845374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_284
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ef5a440d32945b40ad15256ca3f8c7c
+      internalID: 1337875027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_285
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 63
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c883ff27bea1dd4cb4fd04383c5875b
+      internalID: -1019091063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_286
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 48
+        width: 16
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e885e3a20901bc4592056809ca613ea
+      internalID: -813801892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_287
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 53
+        width: 31
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e01290254f26da4a8c4ebbda57d50db
+      internalID: 92203387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_288
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 63
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7877dfda59277214181f2ce7395331e6
+      internalID: 59287192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_289
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e36bc97b95123204f83498e08c856333
+      internalID: 1679932548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_290
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 341d7792a65885b459119cc5dd66e4cc
+      internalID: -1593492015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_Bedroom_16x16_291
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 21
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95a9c5f7d3cc53e48b9191ddd324d468
+      internalID: 1353287133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      4_Bedroom_16x16_215: -2111896948
+      4_Bedroom_16x16_121: 1053881563
+      4_Bedroom_16x16_259: 1106498236
+      4_Bedroom_16x16_10: 1573828062
+      4_Bedroom_16x16_250: 111766719
+      4_Bedroom_16x16_8: 1590116476
+      4_Bedroom_16x16_88: 1532184439
+      4_Bedroom_16x16_61: -2080498411
+      4_Bedroom_16x16_231: -1431956868
+      4_Bedroom_16x16_147: 1720213816
+      4_Bedroom_16x16_260: -2001223045
+      4_Bedroom_16x16_274: 51276483
+      4_Bedroom_16x16_1: -528764413
+      4_Bedroom_16x16_20: -1287586276
+      4_Bedroom_16x16_248: -911433992
+      4_Bedroom_16x16_66: 1800586586
+      4_Bedroom_16x16_202: 584776211
+      4_Bedroom_16x16_261: -1185730338
+      4_Bedroom_16x16_27: 1077077423
+      4_Bedroom_16x16_68: -136244872
+      4_Bedroom_16x16_146: 779523403
+      4_Bedroom_16x16_269: -306521768
+      4_Bedroom_16x16_279: -1162193907
+      4_Bedroom_16x16_29: -1262601115
+      4_Bedroom_16x16_77: -2088029318
+      4_Bedroom_16x16_184: -1367883161
+      4_Bedroom_16x16_4: -792179284
+      4_Bedroom_16x16_87: -928513719
+      4_Bedroom_16x16_270: 679184401
+      4_Bedroom_16x16_199: -1993956467
+      4_Bedroom_16x16_58: 767027850
+      4_Bedroom_16x16_64: -1024401146
+      4_Bedroom_16x16_145: -1631043215
+      4_Bedroom_16x16_222: -1915046994
+      4_Bedroom_16x16_135: 1468779031
+      4_Bedroom_16x16_14: 633004786
+      4_Bedroom_16x16_124: -1857253496
+      4_Bedroom_16x16_166: 548319061
+      4_Bedroom_16x16_197: -1545127010
+      4_Bedroom_16x16_249: 128662651
+      4_Bedroom_16x16_275: 1748600351
+      4_Bedroom_16x16_185: 1092202771
+      4_Bedroom_16x16_112: -1762786391
+      4_Bedroom_16x16_46: -1923487390
+      4_Bedroom_16x16_226: -311146110
+      4_Bedroom_16x16_149: 2143264798
+      4_Bedroom_16x16_49: 1166851465
+      4_Bedroom_16x16_116: 716984360
+      4_Bedroom_16x16_246: 728620373
+      4_Bedroom_16x16_161: -876264307
+      4_Bedroom_16x16_224: 665024023
+      4_Bedroom_16x16_200: -1616379468
+      4_Bedroom_16x16_276: 1299358501
+      4_Bedroom_16x16_148: 377439642
+      4_Bedroom_16x16_144: 740303219
+      4_Bedroom_16x16_234: -1422809905
+      4_Bedroom_16x16_291: 1353287133
+      4_Bedroom_16x16_211: 907325929
+      4_Bedroom_16x16_219: -312878973
+      4_Bedroom_16x16_65: -549044605
+      4_Bedroom_16x16_120: 1136898025
+      4_Bedroom_16x16_97: -1530808807
+      4_Bedroom_16x16_267: 1753070332
+      4_Bedroom_16x16_196: -334682004
+      4_Bedroom_16x16_51: 1167706280
+      4_Bedroom_16x16_136: -915644177
+      4_Bedroom_16x16_69: 1496455600
+      4_Bedroom_16x16_47: -489629769
+      4_Bedroom_16x16_39: 1968069707
+      4_Bedroom_16x16_206: -1608007536
+      4_Bedroom_16x16_247: 641280638
+      4_Bedroom_16x16_290: -1593492015
+      4_Bedroom_16x16_164: -423630947
+      4_Bedroom_16x16_218: 771906167
+      4_Bedroom_16x16_11: -566932736
+      4_Bedroom_16x16_183: 1110935545
+      4_Bedroom_16x16_125: 652218640
+      4_Bedroom_16x16_24: -990509603
+      4_Bedroom_16x16_25: -377171429
+      4_Bedroom_16x16_187: 350798037
+      4_Bedroom_16x16_237: 1584082776
+      4_Bedroom_16x16_107: 2131264885
+      4_Bedroom_16x16_223: -1045831484
+      4_Bedroom_16x16_22: 1562994168
+      4_Bedroom_16x16_98: 1718170387
+      4_Bedroom_16x16_188: -1465723128
+      4_Bedroom_16x16_93: -1178432215
+      4_Bedroom_16x16_236: 1905192532
+      4_Bedroom_16x16_115: -32623029
+      4_Bedroom_16x16_254: 1862052404
+      4_Bedroom_16x16_176: -52040743
+      4_Bedroom_16x16_60: 1155987957
+      4_Bedroom_16x16_63: -2014174271
+      4_Bedroom_16x16_84: 692209081
+      4_Bedroom_16x16_2: -915075075
+      4_Bedroom_16x16_99: 1112266135
+      4_Bedroom_16x16_30: -1529956703
+      4_Bedroom_16x16_94: -1268797540
+      4_Bedroom_16x16_81: 1358816390
+      4_Bedroom_16x16_128: 1084727892
+      4_Bedroom_16x16_18: -118328918
+      4_Bedroom_16x16_7: -2132752556
+      4_Bedroom_16x16_277: -373060054
+      4_Bedroom_16x16_186: 1317421709
+      4_Bedroom_16x16_34: 695858804
+      4_Bedroom_16x16_73: 1045060355
+      4_Bedroom_16x16_204: 655205890
+      4_Bedroom_16x16_103: -1400704890
+      4_Bedroom_16x16_9: 1441837602
+      4_Bedroom_16x16_129: 1299875535
+      4_Bedroom_16x16_127: 651144524
+      4_Bedroom_16x16_131: 1500207601
+      4_Bedroom_16x16_194: -345601525
+      4_Bedroom_16x16_19: -1665100513
+      4_Bedroom_16x16_179: -316945814
+      4_Bedroom_16x16_168: -555198500
+      4_Bedroom_16x16_156: 110554149
+      4_Bedroom_16x16_86: 168660
+      4_Bedroom_16x16_238: -2024405572
+      4_Bedroom_16x16_193: 22261983
+      4_Bedroom_16x16_53: 2130597729
+      4_Bedroom_16x16_35: -76339189
+      4_Bedroom_16x16_79: -1532475431
+      4_Bedroom_16x16_265: 1037146457
+      4_Bedroom_16x16_162: -1355349441
+      4_Bedroom_16x16_258: 1473907974
+      4_Bedroom_16x16_90: 771391430
+      4_Bedroom_16x16_217: -526675835
+      4_Bedroom_16x16_150: 383917548
+      4_Bedroom_16x16_96: 1158179639
+      4_Bedroom_16x16_255: -1104097167
+      4_Bedroom_16x16_271: -1138003890
+      4_Bedroom_16x16_122: 2077049311
+      4_Bedroom_16x16_106: -588195510
+      4_Bedroom_16x16_167: 644017845
+      4_Bedroom_16x16_43: 1746260724
+      4_Bedroom_16x16_286: -813801892
+      4_Bedroom_16x16_174: -1506324936
+      4_Bedroom_16x16_78: -504726401
+      4_Bedroom_16x16_241: 814539241
+      4_Bedroom_16x16_181: 1815770862
+      4_Bedroom_16x16_243: -27095515
+      4_Bedroom_16x16_0: -103323207
+      4_Bedroom_16x16_6: 1080911903
+      4_Bedroom_16x16_169: 685042444
+      4_Bedroom_16x16_5: 650157424
+      4_Bedroom_16x16_110: 497567015
+      4_Bedroom_16x16_153: 1896035145
+      4_Bedroom_16x16_28: 1244012452
+      4_Bedroom_16x16_38: 1201740728
+      4_Bedroom_16x16_264: -325307071
+      4_Bedroom_16x16_54: -906416
+      4_Bedroom_16x16_108: -306827509
+      4_Bedroom_16x16_207: -1112511759
+      4_Bedroom_16x16_82: -1189679078
+      4_Bedroom_16x16_158: -1409795440
+      4_Bedroom_16x16_190: -858225912
+      4_Bedroom_16x16_12: 1207478379
+      4_Bedroom_16x16_75: 874410388
+      4_Bedroom_16x16_189: 1381284308
+      4_Bedroom_16x16_205: -192957605
+      4_Bedroom_16x16_152: -1858672712
+      4_Bedroom_16x16_230: 1283695743
+      4_Bedroom_16x16_239: -1558273727
+      4_Bedroom_16x16_95: -1137494373
+      4_Bedroom_16x16_137: -116903948
+      4_Bedroom_16x16_245: -1453095962
+      4_Bedroom_16x16_37: 1680999457
+      4_Bedroom_16x16_104: -55028823
+      4_Bedroom_16x16_21: -25543184
+      4_Bedroom_16x16_67: 574020876
+      4_Bedroom_16x16_229: 1252072359
+      4_Bedroom_16x16_141: -1550300511
+      4_Bedroom_16x16_133: 395632146
+      4_Bedroom_16x16_228: -592042852
+      4_Bedroom_16x16_89: -1359057215
+      4_Bedroom_16x16_208: 1928906873
+      4_Bedroom_16x16_242: -1323795901
+      4_Bedroom_16x16_220: -106901019
+      4_Bedroom_16x16_272: -1858288570
+      4_Bedroom_16x16_76: -1071140057
+      4_Bedroom_16x16_109: 1965172193
+      4_Bedroom_16x16_163: 1542925092
+      4_Bedroom_16x16_266: 430783254
+      4_Bedroom_16x16_52: -516522713
+      4_Bedroom_16x16_55: 792418234
+      4_Bedroom_16x16_284: 1337875027
+      4_Bedroom_16x16_83: 2090143969
+      4_Bedroom_16x16_151: 217433512
+      4_Bedroom_16x16_140: 1432570922
+      4_Bedroom_16x16_213: -492183075
+      4_Bedroom_16x16_170: -1464231249
+      4_Bedroom_16x16_139: -1613447316
+      4_Bedroom_16x16_80: 1934019290
+      4_Bedroom_16x16_165: -436208281
+      4_Bedroom_16x16_191: 1135031874
+      4_Bedroom_16x16_209: -321904023
+      4_Bedroom_16x16_31: -672847170
+      4_Bedroom_16x16_157: 486271813
+      4_Bedroom_16x16_42: -1215853936
+      4_Bedroom_16x16_175: -1004213304
+      4_Bedroom_16x16_289: 1679932548
+      4_Bedroom_16x16_119: 1602202223
+      4_Bedroom_16x16_235: 522531032
+      4_Bedroom_16x16_285: -1019091063
+      4_Bedroom_16x16_282: 2054561491
+      4_Bedroom_16x16_203: 2089963341
+      4_Bedroom_16x16_117: 1845875925
+      4_Bedroom_16x16_198: -753855424
+      4_Bedroom_16x16_92: 1699298037
+      4_Bedroom_16x16_123: 2004273238
+      4_Bedroom_16x16_100: 1739327521
+      4_Bedroom_16x16_280: -1313370084
+      4_Bedroom_16x16_278: -1409911653
+      4_Bedroom_16x16_192: 334478401
+      4_Bedroom_16x16_212: 114853853
+      4_Bedroom_16x16_159: -2041030578
+      4_Bedroom_16x16_41: 723787320
+      4_Bedroom_16x16_74: -156704318
+      4_Bedroom_16x16_26: 1828619813
+      4_Bedroom_16x16_172: 227607027
+      4_Bedroom_16x16_252: -203745253
+      4_Bedroom_16x16_16: -296734934
+      4_Bedroom_16x16_111: 1035419721
+      4_Bedroom_16x16_233: 179226692
+      4_Bedroom_16x16_155: 2020240889
+      4_Bedroom_16x16_180: 1049223885
+      4_Bedroom_16x16_227: 1474638192
+      4_Bedroom_16x16_132: -1954328658
+      4_Bedroom_16x16_44: 1084808656
+      4_Bedroom_16x16_15: 967556266
+      4_Bedroom_16x16_33: 1973576934
+      4_Bedroom_16x16_91: 225950421
+      4_Bedroom_16x16_72: -1998303255
+      4_Bedroom_16x16_253: 310801201
+      4_Bedroom_16x16_134: -2025756023
+      4_Bedroom_16x16_268: 1303830529
+      4_Bedroom_16x16_287: 92203387
+      4_Bedroom_16x16_257: -1539561136
+      4_Bedroom_16x16_130: 193914282
+      4_Bedroom_16x16_105: -1482629961
+      4_Bedroom_16x16_225: -1969425419
+      4_Bedroom_16x16_126: 979268818
+      4_Bedroom_16x16_195: 1794855601
+      4_Bedroom_16x16_56: -104560650
+      4_Bedroom_16x16_182: 432052496
+      4_Bedroom_16x16_262: -963785997
+      4_Bedroom_16x16_171: -327544273
+      4_Bedroom_16x16_240: -863191666
+      4_Bedroom_16x16_210: -1399707698
+      4_Bedroom_16x16_17: -1844390480
+      4_Bedroom_16x16_102: -95098918
+      4_Bedroom_16x16_59: 1311942450
+      4_Bedroom_16x16_70: 1339873718
+      4_Bedroom_16x16_154: -112892623
+      4_Bedroom_16x16_142: 662452416
+      4_Bedroom_16x16_244: 1375664595
+      4_Bedroom_16x16_263: -1347157660
+      4_Bedroom_16x16_138: -805769355
+      4_Bedroom_16x16_256: -1790231846
+      4_Bedroom_16x16_177: 551834564
+      4_Bedroom_16x16_23: 587162241
+      4_Bedroom_16x16_273: 2071712686
+      4_Bedroom_16x16_101: -40672752
+      4_Bedroom_16x16_178: 499263350
+      4_Bedroom_16x16_201: 117041158
+      4_Bedroom_16x16_283: -327845374
+      4_Bedroom_16x16_216: 2116524623
+      4_Bedroom_16x16_214: 2104135204
+      4_Bedroom_16x16_281: -1463299287
+      4_Bedroom_16x16_160: -2093492934
+      4_Bedroom_16x16_221: 1481704417
+      4_Bedroom_16x16_143: 402919806
+      4_Bedroom_16x16_85: 265359075
+      4_Bedroom_16x16_3: -871660297
+      4_Bedroom_16x16_71: -348380173
+      4_Bedroom_16x16_45: 447174491
+      4_Bedroom_16x16_48: -528026687
+      4_Bedroom_16x16_113: -1253033640
+      4_Bedroom_16x16_32: 1456994731
+      4_Bedroom_16x16_40: -1473404456
+      4_Bedroom_16x16_36: 1788291581
+      4_Bedroom_16x16_50: -1904875598
+      4_Bedroom_16x16_62: -1914405383
+      4_Bedroom_16x16_118: -1501638093
+      4_Bedroom_16x16_288: 59287192
+      4_Bedroom_16x16_13: -1751910090
+      4_Bedroom_16x16_114: -41340701
+      4_Bedroom_16x16_173: -1703823073
+      4_Bedroom_16x16_232: -716679410
+      4_Bedroom_16x16_251: -1690639686
+      4_Bedroom_16x16_57: 990804383
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

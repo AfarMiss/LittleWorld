@@ -106,6 +106,12 @@ namespace LittleWorld.UI
             CommandCenter.Instance.Enqueue(new ChangeGhostBuildingCommand(ObjectCode.floor.GetHashCode()));
         }
 
+        public void BuildBed()
+        {
+            CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.BuildingGhost));
+            CommandCenter.Instance.Enqueue(new ChangeGhostBuildingCommand(ObjectCode.bed.GetHashCode()));
+        }
+
         private void UpdateDisplay(int index)
         {
             foreach (var item in speedBg)

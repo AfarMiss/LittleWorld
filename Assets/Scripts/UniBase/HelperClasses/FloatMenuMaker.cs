@@ -64,17 +64,25 @@ namespace LittleWorld.UI
 
         private static List<FloatOption> AddBuildingFloatMenu(Humanbeing human, Building building)
         {
-            if (building.buildingStatus != BuildingStatus.BluePrint)
+            List<FloatOption> contentList = new List<FloatOption>();
+            switch (building.buildingStatus)
             {
-                return null;
+                case BuildingStatus.Done:
+                    contentList.Add(new FloatOption($"拆除{building.ItemName}", () =>
+                    {
+                        human.AddBuildingWork(building);
+                    }));
+                    break;
+                case BuildingStatus.BluePrint:
+                    contentList.Add(new FloatOption($"建造{building.ItemName}", () =>
+                    {
+                        human.AddBuildingWork(building);
+                    }));
+                    break;
+                default:
+                    break;
             }
-            List<FloatOption> contentList = new List<FloatOption>
-            {
-            new FloatOption($"建造{building.ItemName}", () =>
-            {
-                human.AddBuildingWork(building);
-            })
-            };
+
             return contentList;
 
         }

@@ -17,6 +17,7 @@
 		<buildingWidth>1</buildingWidth>
 		<buildingLength>1</buildingLength>
 		<layer>1</layer>
+		<deconstructWorkAmount>200</deconstructWorkAmount>
 	</item>
 	<item>
 		<itemCode>14002</itemCode>
@@ -35,6 +36,7 @@
 		<buildingWidth>2</buildingWidth>
 		<buildingLength>1</buildingLength>
 		<layer>1</layer>
+		<deconstructWorkAmount>200</deconstructWorkAmount>
 	</item>
 	<item>
 		<itemCode>14003</itemCode>
@@ -53,6 +55,7 @@
 		<buildingWidth>1</buildingWidth>
 		<buildingLength>1</buildingLength>
 		<layer>1</layer>
+		<deconstructWorkAmount>1200</deconstructWorkAmount>
 	</item>
 	<item>
 		<itemCode>14004</itemCode>
@@ -71,6 +74,7 @@
 		<buildingWidth>1</buildingWidth>
 		<buildingLength>1</buildingLength>
 		<layer>1</layer>
+		<deconstructWorkAmount>1600</deconstructWorkAmount>
 	</item>
 	<item>
 		<itemCode>14005</itemCode>
@@ -89,5 +93,25 @@
 		<buildingWidth>1</buildingWidth>
 		<buildingLength>1</buildingLength>
 		<layer>0</layer>
+		<deconstructWorkAmount>600</deconstructWorkAmount>
+	</item>
+	<item>
+		<itemCode>14006</itemCode>
+		<itemName>床</itemName>
+		<itemType>Building</itemType>
+		<mass>15</mass>
+		<buildingWorkAmount>500</buildingWorkAmount>
+		<marketValue>100</marketValue>
+		<maxHitPoint>100</maxHitPoint>
+		<itemEngName>bed</itemEngName>
+		<material>木材</material>
+		<image0>Assets/Resources/4_Bedroom_16x16/4_Bedroom_16x16_59.png</image0>
+		<image1></image1>
+		<image2></image2>
+		<buildingCost>木材x45</buildingCost>
+		<buildingWidth>1</buildingWidth>
+		<buildingLength>2</buildingLength>
+		<layer>1</layer>
+		<deconstructWorkAmount>500</deconstructWorkAmount>
 	</item>
 </items>

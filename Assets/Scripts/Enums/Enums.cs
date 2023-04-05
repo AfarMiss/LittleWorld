@@ -162,6 +162,7 @@ public enum WorkTypeEnum
     gotoLoc,
     cut,
     harvest,
+    deconstruct,
     sow,
     carry,
     mining,

@@ -113,6 +113,7 @@ namespace Xml
                     thing.buildingLength = int.Parse(item.SelectSingleNode("buildingLength").InnerText);
                     thing.buildingWidth = int.Parse(item.SelectSingleNode("buildingWidth").InnerText);
                     thing.layer = int.Parse(item.SelectSingleNode("layer").InnerText);
+                    thing.buildingWorkAmount = int.Parse(item.SelectSingleNode("buildingWorkAmount").InnerText);
                     ObjectConfig.ObjectInfoDic.Add(thing.itemCode, thing);
                 }
                 if (item.SelectSingleNode("itemType").InnerText == "Ore")

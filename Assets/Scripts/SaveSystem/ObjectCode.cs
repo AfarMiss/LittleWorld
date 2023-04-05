@@ -18,6 +18,7 @@ namespace LittleWorld.Item
         wall = 14003,
         door = 14004,
         floor = 14005,
+        bed = 14006,
 
         wood = 15002,
     }

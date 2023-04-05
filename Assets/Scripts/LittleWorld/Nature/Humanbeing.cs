@@ -156,10 +156,18 @@ namespace LittleWorld.Item
             gearTracer.AddEquip(weapon);
         }
 
-        internal void AddBuildingWork(Building building)
+        public void AddBuildingWork(Building building)
         {
             workTracer.AddWork(new BuildingHaulingWork(building, this));
             workTracer.AddWork(new BuildingWork(building, this));
         }
+
+        public void AddDeconstructWork(Building building)
+        {
+            workTracer.AddWork(new BuildingHaulingWork(building, this));
+            workTracer.AddWork(new BuildingWork(building, this));
+        }
+
+
     }
 }
