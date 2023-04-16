@@ -97,7 +97,7 @@ namespace LittleWorld.Item
 
         public override Sprite GetSprite()
         {
-            return buildingInfo.itemSprites[0];
+            return buildingInfo.ItemSprites[0];
         }
         public void Finish()
         {

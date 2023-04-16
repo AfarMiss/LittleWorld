@@ -33,7 +33,7 @@ namespace LittleWorld.Item
 
         public override Sprite GetSprite()
         {
-            return WeaponInfo.itemSprites[0];
+            return WeaponInfo.ItemSprites[0];
         }
 
         public void Attack(WorldObject target)

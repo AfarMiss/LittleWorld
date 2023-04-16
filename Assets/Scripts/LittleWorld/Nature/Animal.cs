@@ -53,7 +53,7 @@ namespace LittleWorld.Item
 
         public override Sprite GetSprite()
         {
-            return animalInfo.itemSprites[0];
+            return animalInfo.ItemSprites[0];
         }
 
         public virtual void Die()
@@ -108,15 +108,15 @@ namespace LittleWorld.Item
             switch (face)
             {
                 case Face.Up:
-                    return animalInfo.itemSprites[1];
+                    return animalInfo.ItemSprites[1];
                 case Face.Down:
-                    return animalInfo.itemSprites[0];
+                    return animalInfo.ItemSprites[0];
                 case Face.Left:
-                    return animalInfo.itemSprites[2];
+                    return animalInfo.ItemSprites[2];
                 case Face.Right:
-                    return animalInfo.itemSprites[2];
+                    return animalInfo.ItemSprites[2];
                 default:
-                    return animalInfo.itemSprites[1];
+                    return animalInfo.ItemSprites[1];
             }
         }
 

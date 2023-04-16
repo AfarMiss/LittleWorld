@@ -41,7 +41,7 @@ namespace LittleWorld.MapUtility
             curBuildingContain.Clear();
         }
 
-        public bool isFull => piledThingCode != -1 && ObjectConfig.ObjectInfoDic[piledThingCode].canPile && ObjectConfig.ObjectInfoDic[piledThingCode].maxPileCount <= piledAmount;
+        public bool isFull => piledThingCode != -1 && ObjectConfig.ObjectInfoDic[piledThingCode].CanPile && ObjectConfig.ObjectInfoDic[piledThingCode].maxPileCount <= piledAmount;
 
         private int piledAmount = 0;
         public bool HasPiledThing => hasPiledThing;
@@ -130,7 +130,7 @@ namespace LittleWorld.MapUtility
             if (objects != null)
             {
                 var result = objects.ToList().Find(x =>
-                (ObjectConfig.ObjectInfoDic[x.itemCode].canPile));
+                (ObjectConfig.ObjectInfoDic[x.itemCode].CanPile));
                 hasPiledThing = result != null;
             }
             else

@@ -49,13 +49,13 @@ namespace LittleWorld.Item
 
         public override Sprite GetSprite()
         {
-            if (plantInfo.itemSprites == null || plantInfo.itemSprites.Count == 0)
+            if (plantInfo.ItemSprites == null || plantInfo.ItemSprites.Length == 0)
             {
                 Debug.LogWarning("plant sprite is null");
             }
-            var spriteIndex = (int)(curGrowTime / plantInfo.growingTime * plantInfo.itemSprites.Count);
-            spriteIndex = Mathf.Clamp(spriteIndex, 0, plantInfo.itemSprites.Count - 1);
-            return plantInfo.itemSprites[spriteIndex];
+            var spriteIndex = (int)(curGrowTime / plantInfo.growingTime * plantInfo.ItemSprites.Length);
+            spriteIndex = Mathf.Clamp(spriteIndex, 0, plantInfo.ItemSprites.Length - 1);
+            return plantInfo.ItemSprites[spriteIndex];
         }
 
         public override void Tick()

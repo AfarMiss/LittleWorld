@@ -46,7 +46,7 @@ namespace LittleWorld.Item
 
             if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var plantInfo))
             {
-                canPile = plantInfo.canPile;
+                canPile = plantInfo.CanPile;
             }
             mapBelongTo.DropDownWorldObjectAt(gridPos, this);
             SceneObjectManager.Instance.RegisterObject(this);

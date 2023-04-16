@@ -75,7 +75,7 @@ namespace LittleWorld.Item
             var plant = ObjectInfoDic.Values.ToList().Find(x => x is PlantInfo curPlant && curPlant.seedItem == seedCode);
             if (plant != null)
             {
-                return (ObjectInfoDic[(plant as PlantInfo).fruitItemCode] as RawFoodInfo).itemSprites[0];
+                return (ObjectInfoDic[(plant as PlantInfo).fruitItemCode] as RawFoodInfo).ItemSprites[0];
             }
             else
             {
@@ -88,7 +88,7 @@ namespace LittleWorld.Item
             var buildingInfo = ObjectConfig.ObjectInfoDic.Values.ToList().Find(x => x.itemCode == buildingCode);
             if (buildingInfo != null && buildingInfo is BuildingInfo building)
             {
-                return building.itemSprites[0];
+                return building.ItemSprites[0];
             }
             else
             {

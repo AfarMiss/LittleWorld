@@ -23,7 +23,7 @@ namespace LittleWorld.Item
 
         public override Sprite GetSprite()
         {
-            return OreInfo.itemSprites[0];
+            return OreInfo.ItemSprites[0];
         }
     }
 }

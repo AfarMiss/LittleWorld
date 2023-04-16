@@ -19,7 +19,7 @@ namespace LittleWorld.Item
 
         public override Sprite GetSprite()
         {
-            return ThingInfo.itemSprites[0];
+            return ThingInfo.ItemSprites[0];
         }
     }
 }
