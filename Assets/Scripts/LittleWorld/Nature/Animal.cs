@@ -51,7 +51,7 @@ namespace LittleWorld.Item
             this.pathTracer.OnEnable();
         }
 
-        public override Sprite GetSprite()
+        public override Sprite GetCurrentSprite()
         {
             return animalInfo.ItemSprites[0];
         }

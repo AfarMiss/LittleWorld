@@ -24,7 +24,7 @@ namespace LittleWorld.Item
 
         protected Vector2Int gridPos;
 
-        public abstract Sprite GetSprite();
+        public abstract Sprite GetCurrentSprite();
 
         public Vector2Int GridPos
         {

@@ -31,7 +31,7 @@ namespace LittleWorld.Item
             this.Owner = null;
         }
 
-        public override Sprite GetSprite()
+        public override Sprite GetCurrentSprite()
         {
             return WeaponInfo.ItemSprites[0];
         }

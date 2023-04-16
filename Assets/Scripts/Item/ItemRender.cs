@@ -72,7 +72,7 @@ public class ItemRender : MonoBehaviour, IRenderer
         spriteRenderer.enabled = !worldObject.isCarried;
         if (worldObject.isCarried || worldObject.inBuildingConstruction) { return; }
         //this.gameObject.AddComponent<NudgeItem>();
-        spriteRenderer.sprite = worldObject.GetSprite();
+        spriteRenderer.sprite = worldObject.GetCurrentSprite();
         OnUpdate(worldObject);
 
         this.ItemCode = worldObject.itemCode;
@@ -116,7 +116,7 @@ public class ItemRender : MonoBehaviour, IRenderer
                 weapon.enabled = human.gearTracer.curWeapon != null;
                 if (human.gearTracer.curWeapon != null)
                 {
-                    weapon.sprite = human.gearTracer.curWeapon.GetSprite();
+                    weapon.sprite = human.gearTracer.curWeapon.GetCurrentSprite();
                     weapon.transform.eulerAngles = animal.FaceTo == Face.Left ? initEulerAngle + 180f * Vector3.up : initEulerAngle;
                 }
                 weapon.sortingOrder = animal.FaceTo == Face.Up ? -1 : 2;

@@ -21,7 +21,7 @@ namespace LittleWorld.Item
             }
         }
 
-        public override Sprite GetSprite()
+        public override Sprite GetCurrentSprite()
         {
             return OreInfo.ItemSprites[0];
         }

@@ -47,7 +47,7 @@ namespace LittleWorld.Item
             return contentList;
         }
 
-        public override Sprite GetSprite()
+        public override Sprite GetCurrentSprite()
         {
             if (plantInfo.ItemSprites == null || plantInfo.ItemSprites.Length == 0)
             {
