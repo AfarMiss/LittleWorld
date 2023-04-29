@@ -1,19 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using UnityEditor;
-using UnityEngine;
-using System.Text;
 using ExcelDataReader;
+using System.Data;
 
 namespace ExcelUtility
 {
     public class ExcelUtility
     {
-        [MenuItem("Tools/快速Excel->XML")]
-        public static void AutoExcelToXML()
+        public static DataSet ConvertExcelToXml(string filePath)
         {
-            var filePath = "Assets\\Excels\\Ores.xlsx";
+            DataSet result = null;
             using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
             {
                 // Auto-detect format, supports:
@@ -33,11 +29,19 @@ namespace ExcelUtility
                     } while (reader.NextResult());
 
                     // 2. Use the AsDataSet extension method
-                    var result = reader.AsDataSet();
+                    result = reader.AsDataSet();
 
                     // The result of each spreadsheet is in result.Tables
                 }
             }
+            return result;
+        }
+
+        [MenuItem("Tools/快速Excel->Ores")]
+        public static void AutoExcelToXML()
+        {
+            var filePath = "Assets\\Excels\\Ores.xlsx";
+            ConvertExcelToXml(filePath);
         }
     }
 }

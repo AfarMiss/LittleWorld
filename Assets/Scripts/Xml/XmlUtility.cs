@@ -1,9 +1,12 @@
-﻿using LittleWorld.Item;
+﻿using ExcelDataReader;
+using LittleWorld.Item;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Xml;
+using System.Xml.Serialization;
 using UnityEngine;
 
 namespace Xml
