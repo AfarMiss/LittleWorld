@@ -67,25 +67,5 @@
             Gets or sets a callback to determine whether to include the specific column in the DataTable. Called once per column after reading the headers.
             </summary>
         </member>
-        <member name="T:ExcelDataReader.Func`2">
-            <summary>
-            Encapsulates a method that has one parameter and returns a value of the type specified by the TResult parameter.
-            </summary>
-            <typeparam name="T1">The type of the parameter of the method that this delegate encapsulates.</typeparam>
-            <typeparam name="TResult">The type of the return value of the method that this delegate encapsulates.</typeparam>
-            <param name="arg1">The parameter of the method that this delegate encapsulates.</param>
-            <returns>The return value of the method that this delegate encapsulates.</returns>
-        </member>
-        <member name="T:ExcelDataReader.Func`3">
-            <summary>
-            Encapsulates a method that has two parameters and returns a value of the type specified by the TResult parameter.
-            </summary>
-            <typeparam name="T1">The type of the first parameter of the method that this delegate encapsulates.</typeparam>
-            <typeparam name="T2">The type of the second parameter of the method that this delegate encapsulates.</typeparam>
-            <typeparam name="TResult">The type of the return value of the method that this delegate encapsulates</typeparam>
-            <param name="arg1">The first parameter of the method that this delegate encapsulates.</param>
-            <param name="arg2">The second parameter of the method that this delegate encapsulates.</param>
-            <returns>The return value of the method that this delegate encapsulates.</returns>
-        </member>
     </members>
 </doc>

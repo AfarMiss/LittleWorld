@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using UnityEditor;
 using ExcelDataReader;
+using UnityEngine;
 
 namespace ExcelUtil
 {
@@ -12,16 +13,17 @@ namespace ExcelUtil
             {
                 IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
                 {
-                    //do
-                    //{
-                    //    while (reader.Read())
-                    //    {
-                    //    }
-                    //} while (reader.NextResult());
+                    do
+                    {
+                        while (reader.Read())
+                        {
+                        }
+                    } while (reader.NextResult());
 
-                    //var result = reader.AsDataSet();
-                    //string xmlFileName = "excel_data.xml";
-                    //result.WriteXml(xmlFileName);
+                    var result = reader.AsDataSet();
+                    string xmlFileName = "excel_data.xml";
+                    result.WriteXml(xmlFileName);
+                    Debug.Log("配置结束！位置:" + System.Environment.CurrentDirectory + "\\" + xmlFileName);
                 }
                 reader.Close();
             }
