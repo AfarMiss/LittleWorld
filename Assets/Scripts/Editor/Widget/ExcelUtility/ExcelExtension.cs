@@ -2,6 +2,8 @@
 using UnityEditor;
 using ExcelDataReader;
 using UnityEngine;
+using System.Data;
+using System;
 
 namespace ExcelUtil
 {
@@ -12,21 +14,29 @@ namespace ExcelUtil
             using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
             {
                 IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
-                {
-                    do
-                    {
-                        while (reader.Read())
-                        {
-                        }
-                    } while (reader.NextResult());
+                DataSet result = reader.AsDataSet();
 
-                    var result = reader.AsDataSet();
-                    string xmlFileName = "excel_data.xml";
-                    result.WriteXml(xmlFileName);
-                    Debug.Log("配置结束！位置:" + System.Environment.CurrentDirectory + "\\" + xmlFileName);
+                DataTable table = result.Tables[0];
+                foreach (DataRow row in table.Rows)
+                {
+                    foreach (DataColumn col in table.Columns)
+                    {
+                        object cellValue = row[col];
+                        Debug.Log($"[{row.Table.Rows.IndexOf(row)},{col.Ordinal}] = {cellValue}");
+                    }
                 }
-                reader.Close();
+                do
+                {
+                    while (reader.Read())
+                    {
+                    }
+                } while (reader.NextResult());
+
+                string xmlFileName = "excel_data.xml";
+                result.WriteXml(xmlFileName);
+                Debug.Log("配置结束！位置:" + System.Environment.CurrentDirectory + "\\" + xmlFileName);
             }
+
         }
 
         [MenuItem("Tools/快速Excel->Ores")]

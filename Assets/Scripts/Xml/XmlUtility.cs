@@ -232,7 +232,15 @@ namespace Xml
             }
             return buildingCost;
         }
+
+        /// <summary>
+        /// 表格第一行对应xml元素名称，第二行对应xml元素类型，根节点是items，列表中每一个元素是item
+        /// </summary>
+        /// <param name="excelPath"></param>
+        /// <param name="xmlPath"></param>
+        public static void ExcelToXml(string excelPath, string xmlPath)
+        {
+
+        }
     }
-
-
 }
