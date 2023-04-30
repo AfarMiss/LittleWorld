@@ -5,9 +5,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using UnityEditor.VersionControl;
+using UnityEditor;
 using UnityEngine;
+using System.Security.Cryptography;
 
 namespace Xml
 {
@@ -240,7 +244,89 @@ namespace Xml
         /// <param name="xmlPath"></param>
         public static void ExcelToXml(string excelPath, string xmlPath)
         {
+            //string fileMD5 = null;
+            //MD5CryptoServiceProvider md5Calc = null;
+            //try
+            //{
+            //    using (FileStream fs = File.OpenRead(xmlPath))
+            //    {
+            //        fileMD5 = System.BitConverter.ToString(md5Calc.ComputeHash(fs));
+            //    }
+            //}
+            //catch (System.Exception e) { Debug.LogException(e); }
+            //if (File.Exists(xmlPath))
+            //{
+            //    md5Calc = new MD5CryptoServiceProvider();
+            //    StringBuilder content = new StringBuilder();
+            //    content.AppendLine("TEST!");
+            //    byte[] bytes = Encoding.UTF8.GetBytes(content.ToString());
+            //    bool toWrite = true;
+            //    if (!string.IsNullOrEmpty(fileMD5))
+            //    {
+            //        if (System.BitConverter.ToString(md5Calc.ComputeHash(bytes)) == fileMD5)
+            //        {
+            //            toWrite = false;
+            //        }
+            //    }
+            //    EditorUtility.ClearProgressBar();
+            //    if (toWrite) { File.WriteAllBytes(xmlPath, bytes); }
+            //}
 
+            List<List<string>> xmlContentArray = new List<List<string>>();
+            using (var stream = File.Open(excelPath, System.IO.FileMode.Open, FileAccess.Read))
+            {
+                IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
+                DataSet result = reader.AsDataSet();
+
+                DataTable table = result.Tables[0];
+                foreach (DataRow row in table.Rows)
+                {
+                    var curList = new List<string>();
+                    xmlContentArray.Add(curList);
+                    foreach (DataColumn col in table.Columns)
+                    {
+                        object cellValue = row[col];
+                        curList.Add(cellValue.ToString());
+                    }
+                }
+
+                string filepath = "example.xml";
+                XmlWriterSettings settings = new XmlWriterSettings();
+                settings.Indent = true;
+                using (XmlWriter writer = XmlWriter.Create(filepath, settings))
+                {
+                    // Write the root element
+                    writer.WriteStartElement("items");
+
+                    // Write some child elements
+                    //writer.WriteStartElement("item");
+                    //writer.WriteAttributeString("name", "child1");
+                    //writer.WriteString("some text");
+                    //writer.WriteEndElement();
+                    var elementNames = xmlContentArray[0];
+                    var elementTypes = xmlContentArray[1];
+                    xmlContentArray.RemoveAt(1);
+                    xmlContentArray.RemoveAt(0);
+
+                    for (int i = 0; i < xmlContentArray.Count; i++)
+                    {
+                        List<string> item = xmlContentArray[i];
+                        writer.WriteStartElement("item");
+                        for (int j = 0; j < item.Count; j++)
+                        {
+                            string element = item[j];
+                            writer.WriteStartElement(elementNames[j]);
+                            writer.WriteAttributeString("type", elementTypes[j]);
+                            writer.WriteString(element.ToString());
+                            writer.WriteEndElement();
+                        }
+                        writer.WriteEndElement();
+                    }
+                    // Close the root element
+                    writer.WriteEndElement();
+                }
+                Debug.Log($"已生成，位置:{filepath}");
+            }
         }
     }
 }

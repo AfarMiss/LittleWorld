@@ -4,6 +4,7 @@ using ExcelDataReader;
 using UnityEngine;
 using System.Data;
 using System;
+using Xml;
 
 namespace ExcelUtil
 {
@@ -42,7 +43,8 @@ namespace ExcelUtil
         [MenuItem("Tools/快速Excel->Ores")]
         public static void AutoExcelToXML()
         {
-            ConvertExcelToXml("Assets\\Excels\\Ores.xlsx");
+            XmlUtility.ExcelToXml("Assets\\Excels\\Ores.xlsx", null);
+            //ConvertExcelToXml("Assets\\Excels\\Ores.xlsx");
         }
     }
 }
