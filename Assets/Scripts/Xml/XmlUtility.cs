@@ -238,12 +238,12 @@ namespace Xml
             return buildingCost;
         }
 
-        public void ExcelPathToXml(string excelPath, string xmlRootPath)
+        public static void ExcelPathToXml(string excelRootPath, string xmlRootPath)
         {
-            string[] files = Directory.GetFiles(excelPath, "*", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(excelRootPath, "*.xlsx", SearchOption.AllDirectories);
             foreach (string file in files)
             {
-                Debug.Log(file);
+                Debug.Log($"准备更新:{file}");
                 SingleExcelToXml(file, xmlRootPath);
             }
         }

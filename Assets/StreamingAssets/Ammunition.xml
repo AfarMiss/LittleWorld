@@ -1,20 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <items>
-    <item>
-        <itemCode>18001</itemCode>
-        <itemName>4.6x30弹夹</itemName>
-        <itemType>Ammunition</itemType>
-        <mass>0.1</mass>
-        <marketValue>20</marketValue>
-        <maxHitPoint>50</maxHitPoint>
-        <itemEngName>4.6x30 cartridge</itemEngName>
-        <image0>Assets/Resources/Weapons/Ammo/BulletIcon.png</image0>
-        <image1/>
-        <image2/>
-        <maxPileCount>100</maxPileCount>
-        <caliber>4.6x30</caliber>
-        <createAt>14002</createAt>
-        <workToMake>5</workToMake>
-        <damage>20</damage>
-    </item>
-</items>
+  <item>
+    <itemCode type="int">18001</itemCode>
+    <itemName type="string">4.6x30弹夹</itemName>
+    <itemType type="string">Ammunition</itemType>
+    <mass type="float">0.1</mass>
+    <marketValue type="float">20</marketValue>
+    <maxHitPoint type="int">50</maxHitPoint>
+    <itemEngName type="string">4.6x30 cartridge</itemEngName>
+    <imagesPath type="string">Assets/Resources/Weapons/Ammo/BulletIcon.png</imagesPath>
+    <maxPileCount type="int">100</maxPileCount>
+    <caliber type="string">4.6x30</caliber>
+    <createAt type="int">14002</createAt>
+    <workToMake type="int">5</workToMake>
+    <damage type="float">20</damage>
+    <bombEffect type="string">Assets/Resources/Prefabs/Weapon/WeaponShootEffectSmokePuff.prefab</bombEffect>
+    <pfBullet type="string">Assets/Resources/Prefabs/Weapon/Bullet.prefab</pfBullet>

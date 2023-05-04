@@ -40,10 +40,10 @@ namespace ExcelUtil
 
         }
 
-        [MenuItem("Tools/快速Excel->Ores")]
+        [MenuItem("Tools/更新物体XML信息")]
         public static void AutoExcelToXML()
         {
-            XmlUtility.SingleExcelToXml("Assets\\Excels\\Ores.xlsx", "Assets\\StreamingAssets");
+            XmlUtility.ExcelPathToXml("Assets\\Excels", "Assets\\StreamingAssets");
         }
     }
 }
