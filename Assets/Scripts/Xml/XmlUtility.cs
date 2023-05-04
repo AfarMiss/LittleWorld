@@ -283,11 +283,16 @@ namespace Xml
             //    if (toWrite) { File.WriteAllBytes(xmlPath, bytes); }
             //}
 
-            var xmlLength = excelPath.LastIndexOf(".") - excelPath.LastIndexOf("\\");
+            var xmlLength = excelPath.LastIndexOf(".") - excelPath.LastIndexOf("\\") - 1;
             var xmlFileName = excelPath.Substring(excelPath.LastIndexOf("\\") + 1, xmlLength);
             var xmlFileFullPath = $"{xmlRootPath}\\{xmlFileName}.xml";
             List<List<string>> xmlContentArray = new List<List<string>>();
-            using (var stream = File.Open(xmlFileFullPath, System.IO.FileMode.Open, FileAccess.Read))
+            if (!File.Exists(xmlFileFullPath))
+            {
+                File.Create(xmlFileFullPath);
+                Debug.LogWarning($"不存在文件:{xmlFileFullPath},已自动生成！");
+            }
+            using (var stream = File.Open(excelPath, System.IO.FileMode.Open, FileAccess.Read))
             {
                 IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
                 DataSet result = reader.AsDataSet();
@@ -304,10 +309,9 @@ namespace Xml
                     }
                 }
 
-                string filepath = xmlRootPath;
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Indent = true;
-                using (XmlWriter writer = XmlWriter.Create(filepath, settings))
+                using (XmlWriter writer = XmlWriter.Create(xmlFileFullPath, settings))
                 {
                     // Write the root element
                     writer.WriteStartElement("items");
@@ -339,7 +343,7 @@ namespace Xml
                     // Close the root element
                     writer.WriteEndElement();
                 }
-                Debug.Log($"已生成，位置:{filepath}");
+                Debug.Log($"已生成，位置:{xmlFileFullPath}");
             }
         }
     }
