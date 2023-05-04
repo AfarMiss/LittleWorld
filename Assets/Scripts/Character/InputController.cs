@@ -566,7 +566,7 @@ public class InputController : MonoSingleton<InputController>
         onClickLeftEndPosition = Current.MousePos;
         onClickLeftEndPositionWorldPosition = MainCamera.ScreenToWorldPoint(onClickLeftEndPosition);
         //Debug.Log("Mouse Pos:" + Current.MousePos);
-        Debug.Log("mouseState:" + mouseState.ToString());
+        //Debug.Log("mouseState:" + mouseState.ToString());
         var lowerLeft = new Vector2(Mathf.Min(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Min(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
         var upperRight = new Vector2(Mathf.Max(onClickLeftStartPosition.x, onClickLeftEndPosition.x), Mathf.Max(onClickLeftStartPosition.y, onClickLeftEndPosition.y));
 

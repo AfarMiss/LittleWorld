@@ -12,6 +12,7 @@ using UnityEditor.VersionControl;
 using UnityEditor;
 using UnityEngine;
 using System.Security.Cryptography;
+using DG.Tweening.Plugins.Core.PathCore;
 
 namespace Xml
 {
@@ -237,12 +238,22 @@ namespace Xml
             return buildingCost;
         }
 
+        public void ExcelPathToXml(string excelPath, string xmlRootPath)
+        {
+            string[] files = Directory.GetFiles(excelPath, "*", SearchOption.AllDirectories);
+            foreach (string file in files)
+            {
+                Debug.Log(file);
+                SingleExcelToXml(file, xmlRootPath);
+            }
+        }
+
         /// <summary>
         /// 表格第一行对应xml元素名称，第二行对应xml元素类型，根节点是items，列表中每一个元素是item
         /// </summary>
         /// <param name="excelPath"></param>
-        /// <param name="xmlPath"></param>
-        public static void ExcelToXml(string excelPath, string xmlPath)
+        /// <param name="xmlRootPath">存放生成xml文件的根目录，具体文件名根据excelPath中的名称确定</param>
+        public static void SingleExcelToXml(string excelPath, string xmlRootPath)
         {
             //string fileMD5 = null;
             //MD5CryptoServiceProvider md5Calc = null;
@@ -272,8 +283,11 @@ namespace Xml
             //    if (toWrite) { File.WriteAllBytes(xmlPath, bytes); }
             //}
 
+            var xmlLength = excelPath.LastIndexOf(".") - excelPath.LastIndexOf("\\");
+            var xmlFileName = excelPath.Substring(excelPath.LastIndexOf("\\") + 1, xmlLength);
+            var xmlFileFullPath = $"{xmlRootPath}\\{xmlFileName}.xml";
             List<List<string>> xmlContentArray = new List<List<string>>();
-            using (var stream = File.Open(excelPath, System.IO.FileMode.Open, FileAccess.Read))
+            using (var stream = File.Open(xmlFileFullPath, System.IO.FileMode.Open, FileAccess.Read))
             {
                 IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
                 DataSet result = reader.AsDataSet();
@@ -290,7 +304,7 @@ namespace Xml
                     }
                 }
 
-                string filepath = "example.xml";
+                string filepath = xmlRootPath;
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Indent = true;
                 using (XmlWriter writer = XmlWriter.Create(filepath, settings))

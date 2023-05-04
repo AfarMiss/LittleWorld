@@ -1,0 +1,73 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Sheet1>
+    <Column0 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">itemCode</Column0>
+    <Column1>itemName</Column1>
+    <Column2>itemType</Column2>
+    <Column3 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">mass</Column3>
+    <Column4 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">marketValue</Column4>
+    <Column5 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">maxHitPoint</Column5>
+    <Column6>itemEngName</Column6>
+    <Column7 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">productionCode</Column7>
+    <Column8 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">productionAmount</Column8>
+    <Column9>imagesPath</Column9>
+    <Column10 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">miningWorkAmount</Column10>
+    <Column11>isBlock</Column11>
+  </Sheet1>
+  <Sheet1>
+    <Column0 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">string</Column0>
+    <Column1>string</Column1>
+    <Column2>string</Column2>
+    <Column3 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">float</Column3>
+    <Column4 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">float</Column4>
+    <Column5 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">int</Column5>
+    <Column6>string</Column6>
+    <Column7 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">int</Column7>
+    <Column8 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">int</Column8>
+    <Column9>string</Column9>
+    <Column10 xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">int</Column10>
+    <Column11>boolean</Column11>
+  </Sheet1>
+  <Sheet1>
+    <Column0 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">16001</Column0>
+    <Column1>铁矿石</Column1>
+    <Column2>Ore</Column2>
+    <Column3 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">10</Column3>
+    <Column4 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">50</Column4>
+    <Column5 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">500</Column5>
+    <Column6>iron_ore</Column6>
+    <Column7 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">15003</Column7>
+    <Column8 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">20</Column8>
+    <Column9>Assets/Resources/FD_Minerals_Stones/FD_Minerals_Stones_3.png</Column9>
+    <Column10 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">500</Column10>
+    <Column11>True</Column11>
+  </Sheet1>
+  <Sheet1>
+    <Column0 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">16002</Column0>
+    <Column1>银矿石</Column1>
+    <Column2>Ore</Column2>
+    <Column3 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">10</Column3>
+    <Column4 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">100</Column4>
+    <Column5 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">400</Column5>
+    <Column6>silver_ore</Column6>
+    <Column7 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">15004</Column7>
+    <Column8 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">20</Column8>
+    <Column9>Assets/Resources/FD_Minerals_Stones/FD_Minerals_Stones_5.png</Column9>
+    <Column10 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">500</Column10>
+    <Column11>True</Column11>
+  </Sheet1>
+  <Sheet1>
+    <Column0 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">16003</Column0>
+    <Column1>花岗岩</Column1>
+    <Column2>Ore</Column2>
+    <Column3 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">15</Column3>
+    <Column4 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">10</Column4>
+    <Column5 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">600</Column5>
+    <Column6>gran·ite _ore</Column6>
+    <Column7 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">15005</Column7>
+    <Column8 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">20</Column8>
+    <Column9>Assets/Resources/FD_Minerals_Stones/FD_Minerals_Stones_0.png</Column9>
+    <Column10 xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">1000</Column10>
+    <Column11>True</Column11>
+  </Sheet1>
+</NewDataSet>

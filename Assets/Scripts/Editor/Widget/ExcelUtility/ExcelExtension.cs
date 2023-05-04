@@ -43,8 +43,7 @@ namespace ExcelUtil
         [MenuItem("Tools/快速Excel->Ores")]
         public static void AutoExcelToXML()
         {
-            XmlUtility.ExcelToXml("Assets\\Excels\\Ores.xlsx", null);
-            //ConvertExcelToXml("Assets\\Excels\\Ores.xlsx");
+            XmlUtility.SingleExcelToXml("Assets\\Excels\\Ores.xlsx", "Assets\\StreamingAssets");
         }
     }
 }

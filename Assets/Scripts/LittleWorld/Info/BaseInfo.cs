@@ -13,6 +13,7 @@ namespace LittleWorld.Item
         public int maxPileCount;
         public bool isBlock = false;
         public string imagesPath;
+        public string itemType;
         public Sprite[] ItemSprites
         {
             get

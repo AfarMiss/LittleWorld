@@ -59,7 +59,7 @@ namespace LittleWorld.Jobs
             {
                 EventCenter.Instance.Trigger(EventEnum.WORK_DONE.ToString(), new WorkMessage(this, sliderValue, human, destination));
                 curBuildingAmount = 0;
-                var cost = (building as Building).buildingInfo.BuildingCost;
+                var cost = building.buildingInfo.BuildingCost;
 
                 //拆除产出，大概是要通过反射去做了
                 foreach (var item in cost)
@@ -67,7 +67,7 @@ namespace LittleWorld.Jobs
                     //new WorldObject(item, building.GridPos, building.mapBelongTo);
                 }
 
-                (building as WorldObject).Destroy();
+                building.Destroy();
                 return Node.Status.Success;
             }
         }

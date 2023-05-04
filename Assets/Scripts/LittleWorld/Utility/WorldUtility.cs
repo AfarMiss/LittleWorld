@@ -32,7 +32,7 @@ namespace LittleWorld
         /// </summary>
         /// <param name="worldPos"></param>
         /// <returns></returns>
-        public static IEnumerable<Item.WorldObject> GetWorldObjectRenderersAt(Vector3 worldPos)
+        public static IEnumerable<WorldObject> GetWorldObjectRenderersAt(Vector3 worldPos)
         {
             foreach (var item in SceneObjectManager.Instance.WorldObjects)
             {

@@ -11,7 +11,7 @@ namespace LittleWorld.Item
         public int instanceID;
         public string ItemName;
         public bool isSelected;
-
+        public string ObjectInfoType;
         public bool IsSelected
         {
             get => isSelected;
