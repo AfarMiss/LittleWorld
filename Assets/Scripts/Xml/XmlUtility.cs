@@ -13,6 +13,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Security.Cryptography;
 using DG.Tweening.Plugins.Core.PathCore;
+using static UnityEditor.Progress;
 
 namespace Xml
 {
@@ -315,6 +316,7 @@ namespace Xml
                 {
                     // Write the root element
                     writer.WriteStartElement("items");
+                    writer.WriteAttributeString("infoType", xmlFileName);
 
                     // Write some child elements
                     //writer.WriteStartElement("item");
@@ -326,13 +328,30 @@ namespace Xml
                     xmlContentArray.RemoveAt(1);
                     xmlContentArray.RemoveAt(0);
 
+                    int index = elementNames.IndexOf("");
+                    if (index != -1)
+                    {
+                        Debug.Log($"名称行中第一个为空的元素位置为{index},已调整遍历结束位置");
+                    }
+                    else
+                    {
+                        index = elementNames.Count;
+                    }
+
                     for (int i = 0; i < xmlContentArray.Count; i++)
                     {
                         List<string> item = xmlContentArray[i];
                         writer.WriteStartElement("item");
-                        for (int j = 0; j < item.Count; j++)
+
+                        for (int j = 0; j < index; j++)
                         {
                             string element = item[j];
+
+                            if (string.IsNullOrEmpty(elementNames[j]))
+                            {
+                                Debug.LogError($"第{j}个元素为空,不能作为名称");
+                                return;
+                            }
                             writer.WriteStartElement(elementNames[j]);
                             writer.WriteAttributeString("type", elementTypes[j]);
                             writer.WriteString(element.ToString());
@@ -343,7 +362,7 @@ namespace Xml
                     // Close the root element
                     writer.WriteEndElement();
                 }
-                Debug.Log($"已生成，位置:{xmlFileFullPath}");
+                Debug.Log($"已结束生成，位置:{xmlFileFullPath}");
             }
         }
     }

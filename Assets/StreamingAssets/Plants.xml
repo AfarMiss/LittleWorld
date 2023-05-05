@@ -1,0 +1,1643 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<items infoType="Plants">
+  <item>
+    <itemCode type="int">10001</itemCode>
+    <itemName type="string">菜蓟作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12001</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11001</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">artichoke_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_0,FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_1,FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_2,FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_3,FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_4,FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_5,FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10002</itemCode>
+    <itemName type="string">龙须菜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12002</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11002</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">asparagus_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_0,FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_1,FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_2,FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_3,FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_4,FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_5,FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10003</itemCode>
+    <itemName type="string">甜菜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12003</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11003</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">beet_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_0,FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_1,FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_2,FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_3,FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_4,FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_5,FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10004</itemCode>
+    <itemName type="string">白菜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12004</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11004</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">bokchoy_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_0,FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_1,FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_2,FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_3,FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_4,FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_5,FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10005</itemCode>
+    <itemName type="string">卷心菜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12005</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11005</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">cabbage_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_0,FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_1,FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_2,FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_3,FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_4,FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_5,FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10006</itemCode>
+    <itemName type="string">红卷心菜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12006</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11006</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">cabbage_red_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_0,FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_1,FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_2,FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_3,FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_4,FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_5,FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10007</itemCode>
+    <itemName type="string">胡萝卜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12007</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11007</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">carrot_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_0,FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_1,FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_2,FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_3,FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_4,FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_5,FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10008</itemCode>
+    <itemName type="string">花椰菜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12008</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11008</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">cauliflower_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_0,FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_1,FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_2,FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_3,FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_4,FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_5,FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10009</itemCode>
+    <itemName type="string">玉米作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12009</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11009</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">corn_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_0,FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_1,FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_2,FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_3,FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_4,FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_5,FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10010</itemCode>
+    <itemName type="string">棉花作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12010</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11010</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">cotton_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_0,FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_1,FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_2,FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_3,FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_4,FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_5,FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10011</itemCode>
+    <itemName type="string">茄子作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12011</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11011</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">eggplant_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_0,FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_1,FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_2,FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_3,FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_4,FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_5,FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10012</itemCode>
+    <itemName type="string">大蒜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12012</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11012</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">garlic_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_0,FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_1,FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_2,FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_3,FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_4,FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_5,FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10013</itemCode>
+    <itemName type="string">韭葱作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12013</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11013</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">leek_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_0,FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_1,FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_2,FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_3,FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_4,FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_5,FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10014</itemCode>
+    <itemName type="string">洋葱作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12014</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11014</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">onion_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_0,FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_1,FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_2,FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_3,FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_4,FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_5,FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10015</itemCode>
+    <itemName type="string">豌豆作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12015</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11015</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">peas_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_0,FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_1,FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_2,FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_3,FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_4,FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_5,FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10016</itemCode>
+    <itemName type="string">胡椒作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12016</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11016</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">pepper_green_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_0,FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_1,FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_2,FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_3,FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_4,FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_5,FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10017</itemCode>
+    <itemName type="string">红胡椒作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12017</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11017</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">pepper_red_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_0,FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_1,FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_2,FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_3,FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_4,FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_5,FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10018</itemCode>
+    <itemName type="string">黄胡椒作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12018</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11018</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">pepper_yellow_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_0,FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_1,FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_2,FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_3,FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_4,FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_5,FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10019</itemCode>
+    <itemName type="string">土豆作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12019</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11019</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">potato_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_0,FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_1,FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_2,FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_3,FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_4,FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_5,FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10020</itemCode>
+    <itemName type="string">南瓜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12020</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11020</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">pumpkin_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_0,FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_1,FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_2,FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_3,FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_4,FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_5,FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10021</itemCode>
+    <itemName type="string">红萝卜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12021</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11021</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">radish_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_0,FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_1,FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_2,FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_3,FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_4,FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_5,FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10022</itemCode>
+    <itemName type="string">菠菜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12022</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11022</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">spinach_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_0,FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_1,FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_2,FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_3,FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_4,FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_5,FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10023</itemCode>
+    <itemName type="string">草莓作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12023</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11023</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">strawberry_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_0,FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_1,FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_2,FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_3,FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_4,FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_5,FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10024</itemCode>
+    <itemName type="string">太阳花作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12024</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11024</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">sunflower_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_0,FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_1,FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_2,FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_3,FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_4,FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_5,FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10025</itemCode>
+    <itemName type="string">番茄作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12025</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11025</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">tomato_Plant+F26:O26</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_0,FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_1,FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_2,FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_3,FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_4,FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_5,FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10026</itemCode>
+    <itemName type="string">西瓜作物</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">0.3</mass>
+    <cutWorkAmount type="int">100</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">0</woodCount>
+    <fruitItemCode type="int">12026</fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int">11026</seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.2</nutrition>
+    <growingTime type="float">6</growingTime>
+    <itemEngName type="string">watermelon_Plant</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_0,FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_1,FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_2,FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_3,FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_4,FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_5,FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_6</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10027</itemCode>
+    <itemName type="string">苹果树</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">50</mass>
+    <cutWorkAmount type="int">250</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">30</woodCount>
+    <fruitItemCode type="int">12027</fruitItemCode>
+    <maxHealth type="float">300</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0</nutrition>
+    <growingTime type="float">18</growingTime>
+    <itemEngName type="string">apple_Plant</itemEngName>
+    <imagesPath type="string">Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_0.png,Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_1.png,Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_2.png,Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_3.png,Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_4.png,Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_5.png,Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_6.png</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">10028</itemCode>
+    <itemName type="string">柠檬树</itemName>
+    <itemType type="string">Plant</itemType>
+    <mass type="float">50</mass>
+    <cutWorkAmount type="int">250</cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int">10</yieldCount>
+    <woodCount type="int">30</woodCount>
+    <fruitItemCode type="int">12028</fruitItemCode>
+    <maxHealth type="float">300</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0</nutrition>
+    <growingTime type="float">18</growingTime>
+    <itemEngName type="string">lemon_Plant</itemEngName>
+    <imagesPath type="string">Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_0.png,Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_1.png,Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_2.png,Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_3.png,Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_4.png,Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_5.png,Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_6.png</imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean">True</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11001</itemCode>
+    <itemName type="string">菜蓟种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10001</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">artichoke_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11002</itemCode>
+    <itemName type="string">龙须菜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10002</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">asparagus_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11003</itemCode>
+    <itemName type="string">甜菜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10003</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">beet_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11004</itemCode>
+    <itemName type="string">白菜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10004</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">bokchoy_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11005</itemCode>
+    <itemName type="string">卷心菜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10005</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">cabbage_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11006</itemCode>
+    <itemName type="string">红卷心菜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10006</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">cabbage_red_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11007</itemCode>
+    <itemName type="string">胡萝卜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10007</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">carrot_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11008</itemCode>
+    <itemName type="string">花椰菜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10008</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">cauliflower_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11009</itemCode>
+    <itemName type="string">玉米种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10009</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">corn_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11010</itemCode>
+    <itemName type="string">棉花种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10010</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">cotton_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11011</itemCode>
+    <itemName type="string">茄子种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10011</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">eggplant_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11012</itemCode>
+    <itemName type="string">大蒜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10012</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">garlic_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11013</itemCode>
+    <itemName type="string">韭葱种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10013</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">leek_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11014</itemCode>
+    <itemName type="string">洋葱种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10014</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">onion_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11015</itemCode>
+    <itemName type="string">豌豆种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10015</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">peas_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11016</itemCode>
+    <itemName type="string">胡椒种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10016</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">pepper_green_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11017</itemCode>
+    <itemName type="string">红胡椒种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10017</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">pepper_red_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11018</itemCode>
+    <itemName type="string">黄胡椒种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10018</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">pepper_yellow_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11019</itemCode>
+    <itemName type="string">土豆种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10019</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">potato_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11020</itemCode>
+    <itemName type="string">南瓜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10020</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">pumpkin_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11021</itemCode>
+    <itemName type="string">红萝卜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10021</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">radish_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11022</itemCode>
+    <itemName type="string">菠菜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10022</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">spinach_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11023</itemCode>
+    <itemName type="string">草莓种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10023</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">strawberry_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11024</itemCode>
+    <itemName type="string">太阳花种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10024</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">sunflower_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11025</itemCode>
+    <itemName type="string">番茄种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.1</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10025</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">tomato_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">11026</itemCode>
+    <itemName type="string">西瓜种子</itemName>
+    <itemType type="string">Seed</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int">200</sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int">10026</plantItem>
+    <nutrition type="float">0.1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">watermelon_Seed</itemEngName>
+    <imagesPath type="string">,,,,,,</imagesPath>
+    <maxPileCount type="int">50</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12001</itemCode>
+    <itemName type="string">菜蓟</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">artichoke_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\artichoke\artichoke_all_frames\artichoke_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12002</itemCode>
+    <itemName type="string">龙须菜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">asparagus_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\asparagus\asparagus_all_frames\asparagus_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12003</itemCode>
+    <itemName type="string">甜菜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">beet_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\beet\beet_all_frames\beet_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12004</itemCode>
+    <itemName type="string">白菜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">bokchoy_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\bokchoy\bokchoy_all_frames\bokchoy_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12005</itemCode>
+    <itemName type="string">卷心菜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">cabbage_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\cabbage\cabbage_all_frames\cabbage_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12006</itemCode>
+    <itemName type="string">红卷心菜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">cabbage_red_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\redcabbage\redcabbage_all_frames\redcabbage_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12007</itemCode>
+    <itemName type="string">胡萝卜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">carrot_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\carrot\carrot_all_frames\carrot_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12008</itemCode>
+    <itemName type="string">花椰菜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">cauliflower_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\cauliflower\cauliflower_all_frames\cauliflower_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12009</itemCode>
+    <itemName type="string">玉米</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">corn_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\corn\corn_all_frames\corn_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12010</itemCode>
+    <itemName type="string">棉花</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">cotton_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\cotton\cotton_all_frames\cotton_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12011</itemCode>
+    <itemName type="string">茄子</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">eggplant_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\eggplant\eggplant_all_frames\eggplant_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12012</itemCode>
+    <itemName type="string">大蒜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">garlic_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\garlic\garlic_all_frames\garlic_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12013</itemCode>
+    <itemName type="string">韭葱</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">leek_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\leek\leek_all_frames\leek_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12014</itemCode>
+    <itemName type="string">洋葱</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">onion_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\onion\onion_all_frames\onion_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12015</itemCode>
+    <itemName type="string">豌豆</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">peas_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\peas\peas_all_frames\peas_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12016</itemCode>
+    <itemName type="string">胡椒</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">pepper_green_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\greenpepper\greenpepper_all_frames\greenpepper_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12017</itemCode>
+    <itemName type="string">红胡椒</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">pepper_red_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\redpepper\redpepper_all_frames\redpepper_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12018</itemCode>
+    <itemName type="string">黄胡椒</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">pepper_yellow_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\yellowpepper\yellowpepper_all_frames\yellowpepper_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12019</itemCode>
+    <itemName type="string">土豆</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">potato_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\potato\potato_all_frames\potato_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12020</itemCode>
+    <itemName type="string">南瓜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">pumpkin_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\pumpkin\pumpkin_all_frames\pumpkin_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12021</itemCode>
+    <itemName type="string">红萝卜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">radish_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\radish\radish_all_frames\radish_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12022</itemCode>
+    <itemName type="string">菠菜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">spinach_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\spinach\spinach_all_frames\spinach_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12023</itemCode>
+    <itemName type="string">草莓</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">strawberry_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\strawberry\strawberry_all_frames\strawberry_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12024</itemCode>
+    <itemName type="string">太阳花</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">sunflower_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\sunflower\sunflower_all_frames\sunflower_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12025</itemCode>
+    <itemName type="string">番茄</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">tomato_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\tomato\tomato_all_frames\tomato_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12026</itemCode>
+    <itemName type="string">西瓜</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.2</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">100</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.5</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">watermelon_Crop</itemEngName>
+    <imagesPath type="string">FarmPack\singleAsset\crops\ground\watermelon\watermelon_all_frames\watermelon_all_frames_7,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12027</itemCode>
+    <itemName type="string">苹果</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.15</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">1</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">apple</itemEngName>
+    <imagesPath type="string">Assets/Resources/FarmPack/assets/farming/crops/trees/apple/apple_tree_all_frames/apple_tree_all_frames_13.png,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+  <item>
+    <itemCode type="int">12028</itemCode>
+    <itemName type="string">柠檬</itemName>
+    <itemType type="string">Crop</itemType>
+    <mass type="float">0.15</mass>
+    <cutWorkAmount type="int"></cutWorkAmount>
+    <sowWorkAmount type="int"></sowWorkAmount>
+    <yieldCount type="int"></yieldCount>
+    <woodCount type="int"></woodCount>
+    <fruitItemCode type="int"></fruitItemCode>
+    <maxHealth type="float">50</maxHealth>
+    <seedItem type="int"></seedItem>
+    <plantItem type="int"></plantItem>
+    <nutrition type="float">0.8</nutrition>
+    <growingTime type="float"></growingTime>
+    <itemEngName type="string">lemon</itemEngName>
+    <imagesPath type="string">Assets/Resources/FarmPack/assets/farming/crops/trees/lemon/lemon_tree_all_frames/lemon_tree_all_frames_13.png,,,,,,</imagesPath>
+    <maxPileCount type="int">75</maxPileCount>
+    <isBlock type="boolean">False</isBlock>
+  </item>
+</items>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<items>
+<items infoType="Ammunition">
   <item>
     <itemCode type="int">18001</itemCode>
     <itemName type="string">4.6x30弹夹</itemName>
@@ -16,3 +16,5 @@
     <damage type="float">20</damage>
     <bombEffect type="string">Assets/Resources/Prefabs/Weapon/WeaponShootEffectSmokePuff.prefab</bombEffect>
     <pfBullet type="string">Assets/Resources/Prefabs/Weapon/Bullet.prefab</pfBullet>
+  </item>
+</items>

@@ -1,31 +1,28 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<items>
-	<item>
-		<itemCode>17001</itemCode>
-		<itemName>MP7</itemName>
-		<itemType>Weapon</itemType>
-		<mass>10</mass>
-		<marketValue>500</marketValue>
-		<maxHitPoint>50</maxHitPoint>
-		<itemEngName>MP7</itemEngName>
-		<image0>Assets/Resources/Weapons/Player/MP7.png</image0>
-		<image1/>
-		<image2/>
-		<maxPileCount>1</maxPileCount>
-		<createAt>14002</createAt>
-		<workToMake>20000</workToMake>
-		<burstShotCount>1</burstShotCount>
-		<caliber>4.6x30</caliber>
-		<fireRate>20</fireRate>
-		<magazineCapacity>30</magazineCapacity>
-		<reloadTime>4</reloadTime>
-		<spread>0.02</spread>
-		<weaponSway>1</weaponSway>
-		<meleeDamage>5</meleeDamage>
-		<range>10</range>
-		<rangedCooldown>1</rangedCooldown>
-		<aimingTime>1</aimingTime>
-		<buildingDamageFactor>0.25</buildingDamageFactor>
-		<isMelee>False</isMelee>
-	</item>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<items infoType="Weapon">
+  <item>
+    <itemCode type="int">17001</itemCode>
+    <itemName type="string">MP7</itemName>
+    <itemType type="string">Weapon</itemType>
+    <mass type="float">10</mass>
+    <marketValue type="int">500</marketValue>
+    <maxHitPoint type="int">50</maxHitPoint>
+    <itemEngName type="string">MP7</itemEngName>
+    <imagesPath type="string">Assets/Resources/Weapons/Player/MP7.png</imagesPath>
+    <maxPileCount type="int">1</maxPileCount>
+    <createAt type="int">14002</createAt>
+    <workToMake type="int">20000</workToMake>
+    <burstShotCount type="int">1</burstShotCount>
+    <caliber type="string">4.6x30</caliber>
+    <fireRate type="float">10</fireRate>
+    <magazineCapacity type="int">30</magazineCapacity>
+    <reloadTime type="float">4</reloadTime>
+    <spread type="float">0.02</spread>
+    <weaponSway type="float">1</weaponSway>
+    <meleeDamage type="float">5</meleeDamage>
+    <range type="float">10</range>
+    <rangedCooldown type="float">1</rangedCooldown>
+    <aimingTime type="float">1</aimingTime>
+    <buildingDamageFactor type="float">0.25</buildingDamageFactor>
+  </item>
 </items>

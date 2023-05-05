@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<items>
+<items infoType="Ores">
   <item>
     <itemCode type="string">16001</itemCode>
     <itemName type="string">铁矿石</itemName>

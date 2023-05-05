@@ -1,12 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<items>
+<items infoType="Animals">
   <item>
-    <itemCode type="13001">13002</itemCode>
-    <itemName type="人类">奶牛</itemName>
-    <itemType type="Animal">Animal</itemType>
-    <itemEngName type="HumanBeing">Cow</itemEngName>
-    <mass type="75">100</mass>
-    <maxHealth type="100">150</maxHealth>
-    <moveSpeed type="9">4</moveSpeed>
-    <carryWeight type="30">50</carryWeight>
-    <imagesPath type="FarmPack\singleAsset\animals\humanbeing\1 idle_0,FarmPack\singleAsset\animals\humanbeing\1 idle_1,FarmPack\singleAsset\animals\humanbeing\1 idle_2">Assets/Resources/FarmPack/assets/farming/animals/cow/cow_all_frames/cow_all_frames_17.png,Assets/Resources/FarmPack/assets/farming/animals/cow/cow_all_frames/cow_all_frames_20.png,Assets/Resources/FarmPack/assets/farming/animals/cow/cow_all_frames/cow_all_frames_13.png</imagesPath>
+    <itemCode type="int">13001</itemCode>
+    <itemName type="string">人类</itemName>
+    <itemType type="string">Animal</itemType>
+    <itemEngName type="string">HumanBeing</itemEngName>
+    <mass type="float">75</mass>
+    <maxHealth type="float">100</maxHealth>
+    <moveSpeed type="float">9</moveSpeed>
+    <carryWeight type="float">30</carryWeight>
+    <imagesPath type="string">FarmPack\singleAsset\animals\humanbeing\1 idle_0,FarmPack\singleAsset\animals\humanbeing\1 idle_1,FarmPack\singleAsset\animals\humanbeing\1 idle_2</imagesPath>
+  </item>
+  <item>
+    <itemCode type="int">13002</itemCode>
+    <itemName type="string">奶牛</itemName>
+    <itemType type="string">Animal</itemType>
+    <itemEngName type="string">Cow</itemEngName>
+    <mass type="float">100</mass>
+    <maxHealth type="float">150</maxHealth>
+    <moveSpeed type="float">4</moveSpeed>
+    <carryWeight type="float">50</carryWeight>
+    <imagesPath type="string">Assets/Resources/FarmPack/assets/farming/animals/cow/cow_all_frames/cow_all_frames_17.png,Assets/Resources/FarmPack/assets/farming/animals/cow/cow_all_frames/cow_all_frames_20.png,Assets/Resources/FarmPack/assets/farming/animals/cow/cow_all_frames/cow_all_frames_13.png</imagesPath>
+  </item>
+</items>
