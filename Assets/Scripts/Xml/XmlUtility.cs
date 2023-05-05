@@ -37,12 +37,14 @@ namespace Xml
         {
             return fullPath.Substring(fullPath.LastIndexOf("\\") + 1, (fullPath.LastIndexOf(".") - fullPath.LastIndexOf("\\") - 1));
         }
+
         /// <summary>
         /// itemType和itemCode一定要存在
         /// </summary>
         /// <param name="path"></param>
         public static void ReadConfigXml(string path)
         {
+            Debug.Log($"开始读取xml数据,位置:{path}");
             XmlDocument xml = new XmlDocument();
             xml.Load($"{Application.streamingAssetsPath}/{path}.xml");
 
@@ -51,7 +53,7 @@ namespace Xml
             foreach (XmlNode item in itemsList)
             {
                 var typeName = item.SelectSingleNode("itemType").InnerText;
-                Type nodeType = Type.GetType(typeName);
+                Type nodeType = Type.GetType($"LittleWorld.Item.{typeName}");
                 object instance = Activator.CreateInstance(nodeType);
 
                 var fieldDic = new Dictionary<string, FieldInfo>();
