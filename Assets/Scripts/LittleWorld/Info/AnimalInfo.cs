@@ -6,7 +6,6 @@ namespace LittleWorld.Item
 {
     public class AnimalInfo : BaseInfo
     {
-        public string itemType;
         public float mass;
         public int maxHealth;
         public float moveSpeed;

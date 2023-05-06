@@ -24,5 +24,10 @@ namespace LittleWorld.Item
         /// 伤害
         /// </summary>
         public float damge;
+        public float mass;
+        public float marketValue;
+        public int maxHitPoint;
+        public string bombEffect;
+        public string pfBullet;
     }
 }

@@ -53,22 +53,25 @@ namespace Xml
             foreach (XmlNode item in itemsList)
             {
                 var typeName = item.SelectSingleNode("itemType").InnerText;
-                Type nodeType = Type.GetType($"LittleWorld.Item.{typeName}");
+                Type nodeType = Type.GetType($"LittleWorld.Item.{typeName}Info");
                 object instance = Activator.CreateInstance(nodeType);
 
                 var fieldDic = new Dictionary<string, FieldInfo>();
                 var fields = nodeType.GetFields();
                 foreach (FieldInfo field in fields)
                 {
-                    fieldDic.Add(field.Name, field);
+                    if (!fieldDic.TryAdd(field.Name, field))
+                    {
+                        Debug.LogError($"fieldName:{nodeType}.{field.Name}已存在！请检查");
+                    }
+
                 }
 
                 foreach (XmlNode attribute in item.ChildNodes)
                 {
                     if (fieldDic.TryGetValue(attribute.Name, out var curFieldInfo))
                     {
-                        Type convertType = curFieldInfo.FieldType;
-                        MethodInfo mi = typeof(Convert).GetMethod("To" + convertType, new[] { typeof(string) });
+                        MethodInfo mi = typeof(Convert).GetMethod("To" + curFieldInfo.FieldType.Name, new[] { typeof(string) });
                         object value = mi.Invoke(null, new object[] { attribute.InnerText });
                         curFieldInfo.SetValue(instance, value);
                     }
