@@ -6,7 +6,6 @@ namespace LittleWorld.Item
 {
     public class OreInfo : BaseInfo
     {
-        public string itemType;
         public float mass;
         public float marketValue;
         public int maxHitPoint;

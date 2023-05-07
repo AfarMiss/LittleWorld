@@ -52,7 +52,7 @@ namespace LittleWorld.Item
                     string selectionExt = System.IO.Path.GetExtension(loadPath);
                     if (selectionExt.Length != 0)
                     {
-                        actualLoadPath = loadPath.Remove(loadPath.Length - selectionExt.Length);
+                        actualLoadPath = actualLoadPath.Remove(actualLoadPath.Length - selectionExt.Length);
                     }
                     var curSprite = Resources.Load<Sprite>(actualLoadPath);
                     if (curSprite != null)

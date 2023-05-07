@@ -6,7 +6,6 @@ namespace LittleWorld.Item
 {
     public class BuildingInfo : BaseInfo
     {
-        public string itemType;
         public float mass;
         public int buildingWorkAmount;
         public float marketValue;
