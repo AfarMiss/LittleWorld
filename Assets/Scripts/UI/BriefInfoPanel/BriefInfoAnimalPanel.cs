@@ -25,7 +25,22 @@ namespace LittleWorld.UI
                 hungerSlider.value = animal.HungerPercent;
                 sleepSlider.value = animal.SleepPercent;
                 UpdateAge(animal.Age);
-                this.animalWatching = o as Animal; ;
+                this.animalWatching = o as Animal;
+            }
+        }
+
+        public void UpdateBriefInfo(Item.Object o)
+        {
+            if (animalWatching == o as Animal)
+            {
+                base.BindBriefInfo(o);
+                if (o is Animal animal)
+                {
+                    hpSlider.value = animal.HpPercent;
+                    hungerSlider.value = animal.HungerPercent;
+                    sleepSlider.value = animal.SleepPercent;
+                    UpdateAge(animal.Age);
+                }
             }
         }
 
@@ -40,7 +55,7 @@ namespace LittleWorld.UI
             EventCenter.Instance.Register<Age>(EventName.LIVING_AGE_DAY_CHANGE, OnDayChanged);
             EventCenter.Instance.Register<Age>(EventName.LIVING_AGE_YEAR_CHANGE, OnYearChanged);
             EventCenter.Instance.Register<DamageInfo>(EventName.LIVING_BE_HURT, OnLivingBeHurt);
-            EventCenter.Instance.Register<Animal>(EventName.UPDATE_LIVING_STATE, BindBriefInfo);
+            EventCenter.Instance.Register<Animal>(EventName.UPDATE_LIVING_STATE, UpdateBriefInfo);
         }
 
         private void OnLivingBeHurt(DamageInfo arg0)
@@ -67,7 +82,7 @@ namespace LittleWorld.UI
             EventCenter.Instance?.Unregister<Age>(EventName.LIVING_AGE_DAY_CHANGE, OnDayChanged);
             EventCenter.Instance?.Unregister<Age>(EventName.LIVING_AGE_YEAR_CHANGE, OnYearChanged);
             EventCenter.Instance?.Unregister<DamageInfo>(EventName.LIVING_BE_HURT, OnLivingBeHurt);
-            EventCenter.Instance?.Unregister<Animal>(EventName.UPDATE_LIVING_STATE, BindBriefInfo);
+            EventCenter.Instance?.Unregister<Animal>(EventName.UPDATE_LIVING_STATE, UpdateBriefInfo);
             animalWatching = null;
         }
 

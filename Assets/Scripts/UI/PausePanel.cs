@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 namespace LittleWorld.UI
 {
@@ -42,6 +42,17 @@ namespace LittleWorld.UI
         public void OnClickQuit()
         {
             Application.Quit();
+        }
+
+        public void OnClickBackToMain()
+        {
+            BackToMain();
+        }
+
+        public void BackToMain()
+        {
+            Current.CurGame.Clear();
+            SceneControllerManager.Instance.TryChangeScene(SceneEnum.Entry.ToString());
         }
 
         public void LoadDataFromFile()

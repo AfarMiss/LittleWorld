@@ -74,5 +74,10 @@ namespace LittleWorld
                 timeManager.Tick();
             }
         }
+
+        public void Clear()
+        {
+
+        }
     }
 }
