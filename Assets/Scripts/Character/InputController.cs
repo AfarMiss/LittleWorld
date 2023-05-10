@@ -41,7 +41,11 @@ public class InputController : MonoSingleton<InputController>
     [SerializeField]
     private RectTransform selectedAreaPrefab;
 
-    public List<WorldObject> SelectedObjects => selectedObjects;
+    public List<WorldObject> SelectedObjects
+    {
+        get { return this.selectedObjects; }
+        set { this.selectedObjects = value; }
+    }
     private List<WorldObject> selectedObjects;
     public bool AdditionalAction => additionalAction;
     private Humanbeing selectedSingleHuman;

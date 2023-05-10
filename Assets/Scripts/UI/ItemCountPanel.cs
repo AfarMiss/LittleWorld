@@ -24,9 +24,12 @@ namespace LittleWorld.UI
 
         private void LateUpdate()
         {
-            foreach (var item in Current.CurMap.mapGrids)
+            if (Current.CurMap != null)
             {
-                SingleUpdate(item);
+                foreach (var item in Current.CurMap.mapGrids)
+                {
+                    SingleUpdate(item);
+                }
             }
         }
 

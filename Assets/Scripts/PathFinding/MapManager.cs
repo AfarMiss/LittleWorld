@@ -28,6 +28,12 @@ public class MapManager : Singleton<MapManager>
         colonyMap.GenerateInitObjects();
         MapRenderManager.Instance.RenderMap(colonyMap);
     }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+        MapRenderManager.Instance.Dispose();
+    }
 }
 
 public class MainMapInfo

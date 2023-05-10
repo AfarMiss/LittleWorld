@@ -48,7 +48,17 @@ namespace LittleWorld.MapUtility
 
         private void RemoveMap(Map map)
         {
+            GameObject.Destroy(mapRenderers[map]);
             mapRenderers.Remove(map);
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            foreach (var item in mapRenderers)
+            {
+                RemoveMap(item.Key);
+            }
         }
     }
 }

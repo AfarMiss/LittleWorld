@@ -40,6 +40,6 @@ public class Singleton<T> where T : Singleton<T>
 
     public virtual void Dispose()
     {
-
+        instance = null;
     }
 }

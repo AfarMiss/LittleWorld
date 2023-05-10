@@ -75,9 +75,13 @@ namespace LittleWorld
             }
         }
 
-        public void Clear()
+        public void Unload()
         {
-
+            GameObject.Destroy(VFXManager.Instance.gameObject);
+            InputController.Instance.SelectedObjects = null;
+            this.mapManager.Dispose();
+            timeManager.Dispose();
+            SceneObjectManager.Dispose();
         }
     }
 }

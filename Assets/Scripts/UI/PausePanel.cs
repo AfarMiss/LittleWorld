@@ -51,7 +51,7 @@ namespace LittleWorld.UI
 
         public void BackToMain()
         {
-            Current.CurGame.Clear();
+            Current.CurGame.Unload();
             SceneControllerManager.Instance.TryChangeScene(SceneEnum.Entry.ToString());
         }
 
