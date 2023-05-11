@@ -319,6 +319,15 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
             return VectorExtension.undefinedV2Int;
         }
     }
+
+    public override void Dispose()
+    {
+        foreach (var item in WorldObjects)
+        {
+            item.Value.Destroy();
+        }
+        base.Dispose();
+    }
 }
 
 public class PileInfo

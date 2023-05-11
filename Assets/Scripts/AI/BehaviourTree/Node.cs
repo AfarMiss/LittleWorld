@@ -34,6 +34,7 @@ namespace AI
         protected int priority;
         protected NodeGraph graph;
         public bool IsDirty;
+        public bool IsFinished = false;
         public Blackboard Blackboard => graph?.blackboard;
 
         //所有没有指定容器和黑板的节点都会被放在默认容器和黑板中。
@@ -194,6 +195,11 @@ namespace AI
                 return Node.Status.Success;
             }
             return Node.Status.Running;
+        }
+
+        public void Dispose()
+        {
+            this.IsFinished = true;
         }
     }
 }

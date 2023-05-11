@@ -79,9 +79,9 @@ namespace LittleWorld
         {
             GameObject.Destroy(VFXManager.Instance.gameObject);
             InputController.Instance.SelectedObjects = null;
-            this.mapManager.Dispose();
-            timeManager.Dispose();
             SceneObjectManager.Dispose();
+            mapManager.Dispose();
+            timeManager.Dispose();
         }
     }
 }

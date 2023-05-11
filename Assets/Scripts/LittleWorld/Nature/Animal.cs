@@ -58,10 +58,16 @@ namespace LittleWorld.Item
 
         public virtual void Die()
         {
+            this.pathTracer.OnDisable();
             this.workTracer.OnDisable();
             this.healthTracer.OnDisable();
-            this.pathTracer.OnDisable();
             this.ItemRender.OnDie();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            this.Die();
         }
 
         public void StopAllAction()
