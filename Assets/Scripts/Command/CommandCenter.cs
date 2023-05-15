@@ -16,11 +16,13 @@ namespace LittleWorld.Command
         public void Enqueue(ICommand command)
         {
             commands.Enqueue(command);
+            Debug.Log($"命令:{command.GetType().Name}进队！");
         }
 
         public void Dequeue()
         {
-            commands.Dequeue();
+            var command = commands.Dequeue();
+            Debug.Log($"命令:{command.GetType().Name}出队！");
         }
 
         public override void Tick()
@@ -29,6 +31,7 @@ namespace LittleWorld.Command
             if (commands.TryDequeue(out ICommand command))
             {
                 command.Execute();
+                Debug.Log($"命令:{command.GetType().Name}执行！");
             }
         }
     }

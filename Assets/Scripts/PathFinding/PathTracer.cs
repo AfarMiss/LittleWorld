@@ -2,13 +2,9 @@
 using LittleWorld.Extension;
 using LittleWorld.Item;
 using LittleWorld.Path;
-using System.Collections.Generic;
 using System.Linq;
 using UniBase;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.Events;
 using static AI.MoveLeaf;
 
 public class PathTracer : TracerBase

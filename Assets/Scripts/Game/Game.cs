@@ -102,9 +102,21 @@ namespace LittleWorld
         {
             GameObject.Destroy(VFXManager.Instance.gameObject);
             InputController.Instance.SelectedObjects = null;
+
             SceneObjectManager.Dispose();
             mapManager.Dispose();
             timeManager.Dispose();
+
+            SceneObjectManager = null;
+            timeManager = null;
+            mapManager = null;
+
+            IsInited = false;
+            state = GameState.UNINIT;
+            EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitGame);
+            OnHint = null;
+
+            Current.CurGame = null;
         }
     }
 }
