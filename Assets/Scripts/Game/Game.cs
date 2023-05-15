@@ -17,7 +17,7 @@ namespace LittleWorld
         public SceneObjectManager SceneObjectManager;
         private List<ITick> ticks;
         public event Action<string> OnHint;
-        private bool noPawn = false;
+        public bool IsInited = false;
         public int timeSpeed
         {
             get
@@ -56,22 +56,37 @@ namespace LittleWorld
             Current.CurGame = this;
         }
 
-        private async void InitGame(MainMapInfo mapInfo)
+        private void InitGame(MainMapInfo mapInfo)
         {
-            await StartGame(mapInfo);
+            StartGame(mapInfo);
         }
 
-        private async Task<bool> StartGame(MainMapInfo mapInfo)
+        public async Task CheckInputControllerIsNull()
+        {
+            while (InputController.Instance == null)
+            {
+                await Task.Delay(1000);
+                Debug.LogWarning("等待InputController.Instance加载！");
+            }
+        }
+
+        private async void StartGame(MainMapInfo mapInfo)
         {
             mapManager = MapManager.Instance;
             timeManager = TimeManager.Instance;
             SceneObjectManager = SceneObjectManager.Instance;
             ticks = new List<ITick>();
 
-            await InputController.Instance != null;
+            Debug.LogWarning("开始等待InputController.Instance加载！");
+            await CheckInputControllerIsNull();
+            Debug.LogWarning("结束等待InputController.Instance加载！");
 
-            mapManager.InitMainMaps(mapInfo);
-            SceneObjectManager.Instance.Init();
+            if (CheckInputControllerIsNull().IsCompleted)
+            {
+                mapManager.InitMainMaps(mapInfo);
+                SceneObjectManager.Instance.Init();
+            }
+            IsInited = true;
         }
 
         public void Tick()

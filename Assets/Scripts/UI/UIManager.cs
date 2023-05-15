@@ -257,34 +257,37 @@ namespace LittleWorld.UI
 
         private void OnGUI()
         {
-            //因为目前底层使用了 UnityEngine.Graphics.DrawTexture
-            //所以需要限制在接收到这个事件时触发。
-            //否则目前可能会产生多重绘制,具体原因尚不清楚。
-            //https://docs.unity3d.com/ScriptReference/Graphics.DrawTexture.html
-            if (Event.current.type.Equals(EventType.Repaint))
+            if (Current.CurGame!=null&&Current.CurGame.IsInited)
             {
-                if (Current.CurGame != null && Current.CurGame.state == GameState.PLAYING)
+                //因为目前底层使用了 UnityEngine.Graphics.DrawTexture
+                //所以需要限制在接收到这个事件时触发。
+                //否则目前可能会产生多重绘制,具体原因尚不清楚。
+                //https://docs.unity3d.com/ScriptReference/Graphics.DrawTexture.html
+                if (Event.current.type.Equals(EventType.Repaint))
                 {
-                    #region 绘制选择单位
-                    if (InputController.Instance != null && InputController.Instance.SelectedObjects != null)
+                    if (Current.CurGame != null && Current.CurGame.state == GameState.PLAYING)
                     {
-                        foreach (var item in InputController.Instance.SelectedObjects)
+                        #region 绘制选择单位
+                        if (InputController.Instance != null && InputController.Instance.SelectedObjects != null)
                         {
-                            GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.To2(), 1, 1);
+                            foreach (var item in InputController.Instance.SelectedObjects)
+                            {
+                                GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.To2(), 1, 1);
+                            }
                         }
-                    }
-                    #endregion
+                        #endregion
 
-                    #region 绘制路径终点
-                    foreach (var animal in SceneObjectManager.Instance.FindObjectsOfType<Animal>())
-                    {
-                        if (!animal.PathTracer.atDestination && animal.PathTracer.lastStampFrameCount > 0 && Time.frameCount - animal.PathTracer.lastStampFrameCount <= 50 && animal.PathTracer.PathIsShow)
+                        #region 绘制路径终点
+                        foreach (var animal in SceneObjectManager.Instance.FindObjectsOfType<Animal>())
                         {
-                            GraphicsUtiliy.DrawDestinationIcon(animal.PathTracer.curDestination.Value, 1, 1);
+                            if (!animal.PathTracer.atDestination && animal.PathTracer.lastStampFrameCount > 0 && Time.frameCount - animal.PathTracer.lastStampFrameCount <= 50 && animal.PathTracer.PathIsShow)
+                            {
+                                GraphicsUtiliy.DrawDestinationIcon(animal.PathTracer.curDestination.Value, 1, 1);
+                            }
                         }
-                    }
-                    #endregion
+                        #endregion
 
+                    }
                 }
             }
         }

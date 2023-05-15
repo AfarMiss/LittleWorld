@@ -262,6 +262,10 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     public void Tick(GameTime gameTime)
     {
+        if (Current.CurGame == null || !Current.CurGame.IsInited)
+        {
+            return;
+        }
         pawnManager.Tick();
         foreach (var item in WorldObjects)
         {

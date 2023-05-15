@@ -27,10 +27,6 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
                         IsDirty = false;
                     }
                 }
-                else
-                {
-                    Debug.LogError($"{typeof(T).Name}的单例为空，请检查！");
-                }
             }
 
             return instance;
