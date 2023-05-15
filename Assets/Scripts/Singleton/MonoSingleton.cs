@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
+    public static Dictionary<string, object> MonoSingletons = new Dictionary<string, object>();
     protected static bool AppIsQuit;
     private static T instance;
+    private static bool IsDirty = true;
     public static T Instance
     {
         get
@@ -15,12 +18,19 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
             if (instance == null)
             {
                 instance = FindObjectOfType<T>();
-                if (instance == null)
+
+                if (instance != null)
                 {
-                    var go = new GameObject($"[MonoSingleton]{typeof(T).Name}");
-                    instance = go.AddComponent<T>();
+                    if (IsDirty)
+                    {
+                        MonoSingletons.Add(instance.name, instance);
+                        IsDirty = false;
+                    }
                 }
-                DontDestroyOnLoad(instance);
+                else
+                {
+                    Debug.LogError($"{typeof(T).Name}的单例为空，请检查！");
+                }
             }
 
             return instance;

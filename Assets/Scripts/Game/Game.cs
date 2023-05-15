@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace LittleWorld
@@ -55,12 +56,19 @@ namespace LittleWorld
             Current.CurGame = this;
         }
 
-        private void InitGame(MainMapInfo mapInfo)
+        private async void InitGame(MainMapInfo mapInfo)
+        {
+            await StartGame(mapInfo);
+        }
+
+        private async Task<bool> StartGame(MainMapInfo mapInfo)
         {
             mapManager = MapManager.Instance;
             timeManager = TimeManager.Instance;
             SceneObjectManager = SceneObjectManager.Instance;
             ticks = new List<ITick>();
+
+            await InputController.Instance != null;
 
             mapManager.InitMainMaps(mapInfo);
             SceneObjectManager.Instance.Init();

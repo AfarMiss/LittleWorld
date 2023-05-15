@@ -76,7 +76,7 @@ namespace LittleWorld.Item
             if (this.canPile && !inBuildingConstruction)
             {
                 this.mapBelongTo.GetGrid(this.gridPos, out var result);
-                result.DeleteSinglePiledThing();
+                result?.DeleteSinglePiledThing();
             }
             SceneObjectManager.Instance.UnregisterObject(this);
         }

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1266896260971227610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1266896260971227612}
+  - component: {fileID: 1266896260971227611}
+  m_Layer: 0
+  m_Name: VFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1266896260971227612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266896260971227610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1266896260971227611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266896260971227610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878f3428609bc084f847454c05411fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reapingEffect: {fileID: 7621092222056753258, guid: 54c659a8118f6bd43ae372df5a96f8d7, type: 3}
+  deciduousEffect: {fileID: 3095571677349356745, guid: 26a497542df926142918a5979c411d15, type: 3}
+  choppingStump: {fileID: 6144180590027112159, guid: c40a56ae010e1da4a8ca0abada96adef, type: 3}
+  pinecone: {fileID: 3095571677349356745, guid: 01963808377432c4bbfdff9a2e1b497e, type: 3}
+  breakingStone: {fileID: 6144180590027112159, guid: e223ccfd8bffd4142a7afaca66796fd5, type: 3}

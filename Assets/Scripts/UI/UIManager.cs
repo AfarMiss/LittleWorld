@@ -10,9 +10,6 @@ namespace LittleWorld.UI
 {
     public class UIManager : MonoSingleton<UIManager>
     {
-        [SerializeField]
-        private GameObject sliderPrefab;
-
         private Dictionary<UIType, List<BaseUI>> uiDic;
 
         private bool needDrawPlantZoom = false;
@@ -266,26 +263,29 @@ namespace LittleWorld.UI
             //https://docs.unity3d.com/ScriptReference/Graphics.DrawTexture.html
             if (Event.current.type.Equals(EventType.Repaint))
             {
-                #region 绘制选择单位
-                if (InputController.Instance.SelectedObjects != null)
+                if (Current.CurGame != null && Current.CurGame.state == GameState.PLAYING)
                 {
-                    foreach (var item in InputController.Instance.SelectedObjects)
+                    #region 绘制选择单位
+                    if (InputController.Instance != null && InputController.Instance.SelectedObjects != null)
                     {
-                        GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.To2(), 1, 1);
+                        foreach (var item in InputController.Instance.SelectedObjects)
+                        {
+                            GraphicsUtiliy.DrawSelectedIcon(item.RenderPos.To2(), 1, 1);
+                        }
                     }
-                }
-                #endregion
+                    #endregion
 
-                #region 绘制路径终点
-                foreach (var animal in SceneObjectManager.Instance.FindObjectsOfType<Animal>())
-                {
-                    if (!animal.PathTracer.atDestination && animal.PathTracer.lastStampFrameCount > 0 && Time.frameCount - animal.PathTracer.lastStampFrameCount <= 50 && animal.PathTracer.PathIsShow)
+                    #region 绘制路径终点
+                    foreach (var animal in SceneObjectManager.Instance.FindObjectsOfType<Animal>())
                     {
-                        GraphicsUtiliy.DrawDestinationIcon(animal.PathTracer.curDestination.Value, 1, 1);
+                        if (!animal.PathTracer.atDestination && animal.PathTracer.lastStampFrameCount > 0 && Time.frameCount - animal.PathTracer.lastStampFrameCount <= 50 && animal.PathTracer.PathIsShow)
+                        {
+                            GraphicsUtiliy.DrawDestinationIcon(animal.PathTracer.curDestination.Value, 1, 1);
+                        }
                     }
-                }
-                #endregion
+                    #endregion
 
+                }
             }
         }
 

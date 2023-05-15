@@ -63,6 +63,12 @@ namespace LittleWorld
             return true;
         }
 
+        public override void OnDisable()
+        {
+            curWork?.OnAbort();
+            base.OnDisable();
+        }
+
         public override void Tick()
         {
             if (curWork == null)

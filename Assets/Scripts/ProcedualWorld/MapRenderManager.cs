@@ -1,6 +1,7 @@
 ﻿using ProcedualWorld;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LittleWorld.MapUtility
@@ -55,9 +56,10 @@ namespace LittleWorld.MapUtility
         public override void Dispose()
         {
             base.Dispose();
-            foreach (var item in mapRenderers)
+            for (int i = mapRenderers.Count - 1; i >= 0; i--)
             {
-                RemoveMap(item.Key);
+                var mapRenderer = mapRenderers.ElementAt(i);
+                RemoveMap(mapRenderer.Key);
             }
         }
     }
