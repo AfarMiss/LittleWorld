@@ -16,9 +16,9 @@ namespace LittleWorld
 
         private void OnDestroy()
         {
-            UIManager.Instance.Hide<ItemCountPanel>(UIType.PANEL);
-            UIManager.Instance.Hide<MainInfoPanel>(UIType.PANEL);
-            UIManager.Instance.Hide<ProgressPanel>(UIType.PANEL);
+            UIManager.Instance?.Hide<ItemCountPanel>(UIType.PANEL);
+            UIManager.Instance?.Hide<MainInfoPanel>(UIType.PANEL);
+            UIManager.Instance?.Hide<ProgressPanel>(UIType.PANEL);
         }
 
     }

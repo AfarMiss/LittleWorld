@@ -519,7 +519,7 @@ public class InputController : MonoSingleton<InputController>
 
     private void Update()
     {
-        if (!isInit) return;
+        if (!isInit || InputManager.Instance.myController == null) return;
         needRespondToUI =
             //IsPointerOverGameObject在非update方法中调用会警告
             UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();

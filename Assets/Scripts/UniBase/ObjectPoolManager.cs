@@ -22,7 +22,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
     private ObjectPoolManager() { }
 
-    public void CreatePool(int poolSize, GameObject poolPrefab, string poolName = null, Transform parent = null)
+    public void CreatePool(int poolSize, GameObject poolPrefab, string poolName , Transform parent = null)
     {
         if (poolInfo == null)
         {
@@ -33,7 +33,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             poolQueue = new Dictionary<int, List<PoolItem<GameObject>>>();
         }
 
-        if (poolInfo.ContainsKey(poolPrefab.GetInstanceID().ToString()))
+        if (poolInfo.ContainsKey(poolName))
         {
             return;
         }

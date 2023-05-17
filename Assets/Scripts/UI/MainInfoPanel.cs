@@ -51,7 +51,10 @@ namespace LittleWorld.UI
             EventCenter.Instance?.Unregister<GameTime>(EventName.MINUTE_CHANGE, BindData);
             EventCenter.Instance?.Unregister<GameTime>(EventName.GAME_TICK, BindData);
 
-            Current.CurGame.OnHint -= OnHint;
+            if (Current.CurGame != null)
+            {
+                Current.CurGame.OnHint -= OnHint;
+            }
         }
 
         public void BindData(GameTime time)

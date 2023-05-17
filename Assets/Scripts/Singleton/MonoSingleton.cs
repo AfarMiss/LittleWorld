@@ -27,10 +27,6 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
                         IsDirty = false;
                     }
                 }
-                else
-                {
-                    Debug.LogError($"{typeof(T).Name}的单例为空，请检查！");
-                }
             }
 
             return instance;
@@ -74,7 +70,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (instance != this)
             {
-                Debug.LogError($"Already has another singleton for {typeof(T).Name},this has been Destoryed");
+                Debug.LogError($"已经有{typeof(T).Name}的单例示例,新生成的示例已被删除。");
                 Destroy(gameObject);
             }
         }
