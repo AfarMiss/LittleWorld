@@ -115,6 +115,7 @@ namespace LittleWorld
             state = GameState.UNINIT;
             EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitGame);
             OnHint = null;
+            GameObject.Destroy(GameObject.Find("RenderParent"));
 
             Current.CurGame = null;
         }

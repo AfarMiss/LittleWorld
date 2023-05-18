@@ -21,6 +21,7 @@ public class ItemRender : MonoBehaviour, IRenderer
 
     public void Init(WorldObject wo)
     {
+        gameObject.name = $"{wo.ItemName}:{wo.instanceID}";
         this.worldObject = wo;
         if (wo is Animal animal)
         {

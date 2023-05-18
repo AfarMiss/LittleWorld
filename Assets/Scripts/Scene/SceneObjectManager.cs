@@ -330,6 +330,10 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         {
             item.Value.Destroy();
         }
+        WorldObjects.Clear();
+        WorldItemsRenderer.Clear();
+        WorldPileRenderer.Clear();
+        buildingGrids.Clear();
         base.Dispose();
     }
 }
