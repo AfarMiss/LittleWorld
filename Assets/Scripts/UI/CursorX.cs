@@ -177,7 +177,7 @@ public class CursorX : MonoSingleton<CursorX>
 
     private void OnEnable()
     {
-        EventCenter.Instance?.Register(nameof(EventEnum.UPDATE_INVENTORY), OnUpdateBarSelected);
+        EventCenter.Instance?.Register(nameof(EventEnum.UPDATE_INVENTORY), OnUpdateBarSelected, this);
     }
 
     private void OnDisable()

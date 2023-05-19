@@ -45,8 +45,8 @@ namespace LittleWorld.UI
 
         private void OnEnable()
         {
-            EventCenter.Instance?.Register(EventEnum.DROP_SELECTED_ITEM.ToString(), OnDropSelectedItem);
-            EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
+            EventCenter.Instance?.Register(EventEnum.DROP_SELECTED_ITEM.ToString(), OnDropSelectedItem, this);
+            EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded, this);
         }
 
         private void OnDisable()

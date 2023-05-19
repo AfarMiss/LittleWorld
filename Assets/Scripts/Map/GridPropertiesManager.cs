@@ -57,9 +57,9 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     private void OnEnable()
     {
         ISaveableRegister();
-        EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
-        EventCenter.Instance?.Register<GameTime>(EventName.DAY_CHANGE, OnAdvanceDay);
-        EventCenter.Instance?.Register<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify);
+        EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded, this);
+        EventCenter.Instance?.Register<GameTime>(EventName.DAY_CHANGE, OnAdvanceDay, this);
+        EventCenter.Instance?.Register<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify, this);
 
     }
 

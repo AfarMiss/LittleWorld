@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using UnityEngine;
 
 public class Singleton<T> where T : Singleton<T>
 {
@@ -21,7 +22,7 @@ public class Singleton<T> where T : Singleton<T>
                 }
 
                 instance = ctor.Invoke(null) as T;
-
+                Debug.Log($"创建{type}管理器实例！");
                 instance.OnCreateInstance();
             }
             return instance;

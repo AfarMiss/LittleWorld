@@ -34,8 +34,8 @@ public class LightingControl : MonoBehaviour
 
     private void OnEnable()
     {
-        EventCenter.Instance.Register<GameTime>(EventName.HOUR_CHANGE, OnHourChange);
-        EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
+        EventCenter.Instance.Register<GameTime>(EventName.HOUR_CHANGE, OnHourChange, this);
+        EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded, this);
     }
 
     private void OnSceneLoaded()
