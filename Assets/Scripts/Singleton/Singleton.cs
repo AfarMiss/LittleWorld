@@ -18,7 +18,7 @@ public class Singleton<T> where T : Singleton<T>
 
                 if (ctor == null)
                 {
-                    throw new Exception("Non Public Constructor Found in " + type.Name);
+                    throw new Exception("没有找到私有的非静态构造函数:" + type.Name);
                 }
 
                 instance = ctor.Invoke(null) as T;

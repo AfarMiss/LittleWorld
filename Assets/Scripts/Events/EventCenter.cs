@@ -1,25 +1,64 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public static class EventExtension
 {
-    public static void EventRegister(this object gameObject)
+    public static void EventRegister(this IListener caller, string name, UnityAction action)
     {
-
+        EventCenter.Instance.Register(name, action, caller);
     }
 
-    public static void EventUnregister()
+    public static void EventRegister<T>(this IListener caller, string name, UnityAction<T> action)
     {
-
+        EventCenter.Instance.Register(name, action, caller);
     }
+
+    public static void EventRegister<T1, T2>(this IListener caller, string name, UnityAction<T1, T2> action)
+    {
+        EventCenter.Instance.Register(name, action, caller);
+    }
+
+    public static void EventUnregister(this IListener listener)
+    {
+        EventCenter.Instance.EventUnregister(listener);
+    }
+
+    public static void EventTrigger(this ITrigger trigger, string eventName)
+    {
+        EventCenter.Instance.Trigger(eventName);
+    }
+
+    public static void EventTrigger<T>(this ITrigger trigger, string eventName, T param)
+    {
+        EventCenter.Instance.Trigger(eventName, param);
+    }
+
+    public static void EventTrigger<T1, T2>(this ITrigger trigger, string eventName, T1 p1, T2 p2)
+    {
+        EventCenter.Instance.Trigger(eventName, p1, p2);
+    }
+
+    public static void EventUnregister(this IListener caller, string name)
+    {
+        EventCenter.Instance.Unregister(name, caller);
+    }
+}
+
+public interface IListener
+{
+}
+
+public interface ITrigger
+{
 }
 
 public interface IEventInfo
 {
-
+    void RemoveListener(IListener listener);
 }
 
 public class EventInfo<T> : IEventInfo
@@ -30,6 +69,7 @@ public class EventInfo<T> : IEventInfo
     public EventInfo(UnityAction<T> action, object caller)
     {
         this.actions += action;
+        eventDic = new Dictionary<object, UnityAction<T>>();
         AddEvent(action, caller);
     }
 
@@ -44,17 +84,44 @@ public class EventInfo<T> : IEventInfo
             eventDic[caller] = action;
         }
     }
+
+    public void RemoveListener(IListener caller)
+    {
+        eventDic.TryGetValue(caller, out var callerActions);
+        this.actions -= callerActions;
+    }
 }
 
 public class EventInfo<T1, T2> : IEventInfo
 {
     public UnityAction<T1, T2> actions;
     public object caller;
+    public Dictionary<object, UnityAction<T1, T2>> eventDic;
 
-    public EventInfo(UnityAction<T1, T2> actions, object caller)
+    public EventInfo(UnityAction<T1, T2> action, object caller)
     {
-        this.actions += actions;
+        this.actions += action;
         this.caller = caller;
+        this.eventDic = new Dictionary<object, UnityAction<T1, T2>>();
+        AddEvent(action, caller);
+    }
+
+    private void AddEvent(UnityAction<T1, T2> action, object caller)
+    {
+        if (eventDic.TryGetValue(caller, out var actions))
+        {
+            eventDic[caller] += action;
+        }
+        else
+        {
+            eventDic[caller] = action;
+        }
+    }
+
+    public void RemoveListener(IListener caller)
+    {
+        eventDic.TryGetValue(caller, out var callerActions);
+        this.actions -= callerActions;
     }
 }
 
@@ -63,26 +130,37 @@ public class EventInfo : IEventInfo
 {
     public UnityAction actions;
     public object caller;
+    public Dictionary<object, UnityAction> eventDic;
 
     public EventInfo(UnityAction actions, object caller)
     {
         this.actions += actions;
         this.caller = caller;
+        this.eventDic = new Dictionary<object, UnityAction>();
+        AddEvent(actions, caller);
+    }
+
+    private void AddEvent(UnityAction action, object caller)
+    {
+        if (eventDic.TryGetValue(caller, out var actions))
+        {
+            eventDic[caller] += action;
+        }
+        else
+        {
+            eventDic[caller] = action;
+        }
+    }
+
+    public void RemoveListener(IListener caller)
+    {
+        eventDic.TryGetValue(caller, out var callerActions);
+        this.actions -= callerActions;
     }
 }
-/// <summary>
-/// 事件中心模块
-/// 1.委托
-/// 2.Dictionary
-/// 3.观察者设计模式
-/// </summary>
-public class EventCenter : MonoSingleton<EventCenter>
+
+public class EventCenter : Singleton<EventCenter>
 {
-    /// <summary>
-    /// 事件中心模块的Dictionary容器
-    /// key对应事件名称
-    /// value对应监听事件对应的函数委托
-    /// </summary>
     private Dictionary<string, IEventInfo> eventDic = new Dictionary<string, IEventInfo>();
 
     public void Register<T1, T2>(string name, UnityAction<T1, T2> action, object caller)
@@ -97,11 +175,6 @@ public class EventCenter : MonoSingleton<EventCenter>
         }
     }
 
-    /// <summary>
-    /// 添加事件监听（需要参数）
-    /// </summary>
-    /// <param name="name">事件名称</param>
-    /// <param name="action">执行的方法</param>
     public void Register<T>(string name, UnityAction<T> action, object caller)
     {
         if (eventDic.ContainsKey(name))
@@ -113,11 +186,7 @@ public class EventCenter : MonoSingleton<EventCenter>
             eventDic.Add(name, new EventInfo<T>(action, caller));
         }
     }
-    /// <summary>
-    /// 添加事件监听（不需要参数）
-    /// </summary>
-    /// <param name="name">事件名称</param>
-    /// <param name="action">执行的方法</param>
+
     public void Register(string name, UnityAction action, object caller)
     {
         if (eventDic.ContainsKey(name))
@@ -129,25 +198,12 @@ public class EventCenter : MonoSingleton<EventCenter>
             eventDic.Add(name, new EventInfo(action, caller));
         }
     }
-    /// <summary>
-    /// 移除事件监听（需要参数）
-    /// </summary>
-    /// <param name="name">事件名称</param>
-    /// <param name="action">执行的方法</param>
+
     public void Unregister<T>(string name, UnityAction<T> action)
     {
         if (eventDic.ContainsKey(name))
         {
             (eventDic[name] as EventInfo<T>).actions -= action;
-        }
-    }
-
-
-    public void Unregister<T>(object caller)
-    {
-        foreach (var item in eventDic)
-        {
-
         }
     }
 
@@ -159,11 +215,6 @@ public class EventCenter : MonoSingleton<EventCenter>
         }
     }
 
-    /// <summary>
-    /// 移除事件监听（不需要参数）
-    /// </summary>
-    /// <param name="name">事件名称</param>
-    /// <param name="action">执行的方法</param>
     public void Unregister(string name, UnityAction action)
     {
         if (eventDic.ContainsKey(name))
@@ -171,10 +222,7 @@ public class EventCenter : MonoSingleton<EventCenter>
             (eventDic[name] as EventInfo).actions -= action;
         }
     }
-    /// <summary>
-    /// 触发事件（需要参数）
-    /// </summary>
-    /// <param name="name">事件名称</param>
+
     public void Trigger<T>(string name, T info)
     {
         if (eventDic.ContainsKey(name))
@@ -194,26 +242,41 @@ public class EventCenter : MonoSingleton<EventCenter>
             (eventDic[name] as EventInfo<T1, T2>).actions?.Invoke(Param1, Param2);
         }
     }
-    /// <summary>
-    /// 触发事件（不需要参数）
-    /// </summary>
-    /// <param name="name">事件名称</param>
+
     public void Trigger(string name)
     {
         if (eventDic.ContainsKey(name))
         {
             (eventDic[name] as EventInfo).actions?.Invoke();
-            //也可以写成eventDic[name].Invoke(info);
         }
     }
 
-    /// <summary>
-    /// 清除容器内容
-    /// 主要用于场景转换时完全清空容器
-    /// </summary>
     public void Clear()
     {
         eventDic.Clear();
+    }
+
+    public void EventUnregister(IListener caller)
+    {
+        foreach (var item in eventDic)
+        {
+            item.Value.RemoveListener(caller);
+        }
+    }
+
+    public void Unregister(string eventName, IListener caller)
+    {
+        foreach (var item in eventDic)
+        {
+            if (item.Key == eventName)
+            {
+                item.Value.RemoveListener(caller);
+            }
+        }
+    }
+
+    private EventCenter()
+    {
 
     }
 }
