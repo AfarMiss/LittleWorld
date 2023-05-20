@@ -32,12 +32,12 @@ namespace LittleWorld.UI
 
         private void OnEnable()
         {
-            EventCenter.Instance.Register<GameTime>(EventName.YEAR_CHANGE, BindData);
-            EventCenter.Instance.Register<GameTime>(EventName.QUAD_CHANGE, BindData);
-            EventCenter.Instance.Register<GameTime>(EventName.DAY_CHANGE, BindData);
-            EventCenter.Instance.Register<GameTime>(EventName.HOUR_CHANGE, BindData);
-            EventCenter.Instance.Register<GameTime>(EventName.MINUTE_CHANGE, BindData);
-            EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, BindData);
+            EventCenter.Instance.Register<GameTime>(EventName.YEAR_CHANGE, BindData, this);
+            EventCenter.Instance.Register<GameTime>(EventName.QUAD_CHANGE, BindData, this);
+            EventCenter.Instance.Register<GameTime>(EventName.DAY_CHANGE, BindData, this);
+            EventCenter.Instance.Register<GameTime>(EventName.HOUR_CHANGE, BindData, this);
+            EventCenter.Instance.Register<GameTime>(EventName.MINUTE_CHANGE, BindData, this);
+            EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, BindData, this);
 
             Current.CurGame.OnHint += OnHint;
         }

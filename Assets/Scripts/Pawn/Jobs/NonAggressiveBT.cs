@@ -77,7 +77,7 @@ namespace AI
             this.curWanderPos = animal.GridPos;
             this.animal = animal;
             CreateWorkSequence();
-            EventCenter.Instance.Register<DamageInfo>(EventName.LIVING_BE_HURT, OnBeHurt);
+            EventCenter.Instance.Register<DamageInfo>(EventName.LIVING_BE_HURT, OnBeHurt, this);
         }
 
         private void OnBeHurt(DamageInfo arg0)

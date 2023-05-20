@@ -51,11 +51,11 @@ namespace LittleWorld.UI
 
         protected override void OnEnable()
         {
-            EventCenter.Instance.Register<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged);
-            EventCenter.Instance.Register<Age>(EventName.LIVING_AGE_DAY_CHANGE, OnDayChanged);
-            EventCenter.Instance.Register<Age>(EventName.LIVING_AGE_YEAR_CHANGE, OnYearChanged);
-            EventCenter.Instance.Register<DamageInfo>(EventName.LIVING_BE_HURT, OnLivingBeHurt);
-            EventCenter.Instance.Register<Animal>(EventName.UPDATE_LIVING_STATE, UpdateBriefInfo);
+            EventCenter.Instance.Register<Weapon>(EventName.UPDATE_WEAPON, OnWeaponChanged, this);
+            EventCenter.Instance.Register<Age>(EventName.LIVING_AGE_DAY_CHANGE, OnDayChanged, this);
+            EventCenter.Instance.Register<Age>(EventName.LIVING_AGE_YEAR_CHANGE, OnYearChanged, this);
+            EventCenter.Instance.Register<DamageInfo>(EventName.LIVING_BE_HURT, OnLivingBeHurt, this);
+            EventCenter.Instance.Register<Animal>(EventName.UPDATE_LIVING_STATE, UpdateBriefInfo, this);
         }
 
         private void OnLivingBeHurt(DamageInfo arg0)

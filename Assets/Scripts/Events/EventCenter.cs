@@ -4,6 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public static class EventExtension
+{
+    public static void EventRegister(this object gameObject)
+    {
+
+    }
+
+    public static void EventUnregister()
+    {
+
+    }
+}
+
 public interface IEventInfo
 {
 
@@ -12,20 +25,36 @@ public interface IEventInfo
 public class EventInfo<T> : IEventInfo
 {
     public UnityAction<T> actions;
+    public Dictionary<object, UnityAction<T>> eventDic;
 
-    public EventInfo(UnityAction<T> action)
+    public EventInfo(UnityAction<T> action, object caller)
     {
-        actions += action;
+        this.actions += action;
+        AddEvent(action, caller);
+    }
+
+    private void AddEvent(UnityAction<T> action, object caller)
+    {
+        if (eventDic.TryGetValue(caller, out var actions))
+        {
+            eventDic[caller] += action;
+        }
+        else
+        {
+            eventDic[caller] = action;
+        }
     }
 }
 
 public class EventInfo<T1, T2> : IEventInfo
 {
     public UnityAction<T1, T2> actions;
+    public object caller;
 
-    public EventInfo(UnityAction<T1, T2> action)
+    public EventInfo(UnityAction<T1, T2> actions, object caller)
     {
-        actions += action;
+        this.actions += actions;
+        this.caller = caller;
     }
 }
 
@@ -33,10 +62,12 @@ public class EventInfo<T1, T2> : IEventInfo
 public class EventInfo : IEventInfo
 {
     public UnityAction actions;
+    public object caller;
 
-    public EventInfo(UnityAction action)
+    public EventInfo(UnityAction actions, object caller)
     {
-        actions += action;
+        this.actions += actions;
+        this.caller = caller;
     }
 }
 /// <summary>
@@ -54,7 +85,7 @@ public class EventCenter : MonoSingleton<EventCenter>
     /// </summary>
     private Dictionary<string, IEventInfo> eventDic = new Dictionary<string, IEventInfo>();
 
-    public void Register<T1, T2>(string name, UnityAction<T1, T2> action)
+    public void Register<T1, T2>(string name, UnityAction<T1, T2> action, object caller)
     {
         if (eventDic.ContainsKey(name))
         {
@@ -62,7 +93,7 @@ public class EventCenter : MonoSingleton<EventCenter>
         }
         else
         {
-            eventDic.Add(name, new EventInfo<T1, T2>(action));
+            eventDic.Add(name, new EventInfo<T1, T2>(action, caller));
         }
     }
 
@@ -71,7 +102,7 @@ public class EventCenter : MonoSingleton<EventCenter>
     /// </summary>
     /// <param name="name">事件名称</param>
     /// <param name="action">执行的方法</param>
-    public void Register<T>(string name, UnityAction<T> action)
+    public void Register<T>(string name, UnityAction<T> action, object caller)
     {
         if (eventDic.ContainsKey(name))
         {
@@ -79,7 +110,7 @@ public class EventCenter : MonoSingleton<EventCenter>
         }
         else
         {
-            eventDic.Add(name, new EventInfo<T>(action));
+            eventDic.Add(name, new EventInfo<T>(action, caller));
         }
     }
     /// <summary>
@@ -87,7 +118,7 @@ public class EventCenter : MonoSingleton<EventCenter>
     /// </summary>
     /// <param name="name">事件名称</param>
     /// <param name="action">执行的方法</param>
-    public void Register(string name, UnityAction action)
+    public void Register(string name, UnityAction action, object caller)
     {
         if (eventDic.ContainsKey(name))
         {
@@ -95,7 +126,7 @@ public class EventCenter : MonoSingleton<EventCenter>
         }
         else
         {
-            eventDic.Add(name, new EventInfo(action));
+            eventDic.Add(name, new EventInfo(action, caller));
         }
     }
     /// <summary>
@@ -108,6 +139,15 @@ public class EventCenter : MonoSingleton<EventCenter>
         if (eventDic.ContainsKey(name))
         {
             (eventDic[name] as EventInfo<T>).actions -= action;
+        }
+    }
+
+
+    public void Unregister<T>(object caller)
+    {
+        foreach (var item in eventDic)
+        {
+
         }
     }
 

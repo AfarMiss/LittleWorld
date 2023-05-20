@@ -17,9 +17,9 @@ namespace LittleWorld.UI
         }
         private void OnEnable()
         {
-            EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_WORKING.ToString(), OnWorking);
-            EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
-            EventCenter.Instance.Register<WorkAbortMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
+            EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_WORKING.ToString(), OnWorking, this);
+            EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_DONE.ToString(), OnWorkDone, this);
+            EventCenter.Instance.Register<WorkAbortMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort, this);
         }
 
         private void OnWorking(WorkMessage message)

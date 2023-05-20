@@ -68,6 +68,9 @@ namespace LittleWorld.Item
         {
             base.OnDestroy();
             this.Die();
+            this.pathTracer = null;
+            this.workTracer = null;
+            this.healthTracer = null;
         }
 
         public void StopAllAction()

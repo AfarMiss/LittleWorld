@@ -11,7 +11,7 @@ public class VFXManager : MonoSingleton<VFXManager>
     [SerializeField] private GameObject breakingStone;
     private void OnEnable()
     {
-        EventCenter.Instance?.Register<Vector3, HarvestActionEffect>(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), OnHarvestActionEffect);
+        EventCenter.Instance?.Register<Vector3, HarvestActionEffect>(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), OnHarvestActionEffect, this);
     }
 
     private void Start()
@@ -32,7 +32,7 @@ public class VFXManager : MonoSingleton<VFXManager>
 
     private void OnDisable()
     {
-        EventCenter.Instance?.Register<Vector3, HarvestActionEffect>(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), OnHarvestActionEffect);
+        EventCenter.Instance?.Register<Vector3, HarvestActionEffect>(EventEnum.VFX_HARVEST_ACTION_EFFECT.ToString(), OnHarvestActionEffect, this);
     }
 
     private IEnumerator StartReapVFX(GameObject obj, HarvestActionEffect effectType)

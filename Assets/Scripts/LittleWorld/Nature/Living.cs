@@ -18,7 +18,7 @@ namespace LittleWorld.Item
         public float HpPercent => healthTracer.curHealth / healthTracer.maxHealth;
         public Living(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
-            EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, OnGameTick);
+            EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, OnGameTick, this);
         }
 
         private void OnGameTick(GameTime arg0)

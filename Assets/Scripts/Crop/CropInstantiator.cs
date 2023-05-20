@@ -17,7 +17,7 @@ public class CropInstantiator : MonoBehaviour
 
     private void OnEnable()
     {
-        EventCenter.Instance.Register(EventEnum.INSTANTIATE_CROP_PREFAB.ToString(), InstantiateCropPrefabs);
+        EventCenter.Instance.Register(EventEnum.INSTANTIATE_CROP_PREFAB.ToString(), InstantiateCropPrefabs, this);
     }
 
     private void InstantiateCropPrefabs()
