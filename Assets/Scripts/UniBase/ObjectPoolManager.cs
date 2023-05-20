@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LittleWorld.Extension;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
     private ObjectPoolManager() { }
 
-    public void CreatePool(int poolSize, GameObject poolPrefab, string poolName , Transform parent = null)
+    public void CreatePool(int poolSize, GameObject poolPrefab, string poolName, Transform parent = null)
     {
         if (poolInfo == null)
         {
@@ -166,6 +167,14 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             }
         }
 
+    }
+
+    public override void Dispose()
+    {
+        poolInfo.Clear();
+        poolQueue.Clear();
+        defaultParent.DestroyChildren();
+        base.Dispose();
     }
 
 

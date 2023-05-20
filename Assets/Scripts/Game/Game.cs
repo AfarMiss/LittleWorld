@@ -66,7 +66,7 @@ namespace LittleWorld
             while (InputController.Instance == null)
             {
                 await Task.Delay(1000);
-                Debug.LogWarning("等待InputController.Instance加载！");
+                Debug.Log("等待InputController.Instance加载！");
             }
         }
 
@@ -77,9 +77,9 @@ namespace LittleWorld
             timeManager = TimeManager.Instance;
             ticks = new List<ITick>();
 
-            Debug.LogWarning("开始等待InputController.Instance加载！");
+            Debug.Log("开始等待InputController.Instance加载！");
             await CheckInputControllerIsNull();
-            Debug.LogWarning("结束等待InputController.Instance加载！");
+            Debug.Log("结束等待InputController.Instance加载！");
 
             if (CheckInputControllerIsNull().IsCompleted)
             {
@@ -100,7 +100,6 @@ namespace LittleWorld
 
         public void Unload()
         {
-            GameObject.Destroy(VFXManager.Instance.gameObject);
             InputController.Instance.SelectedObjects = null;
 
             SceneObjectManager.Dispose();
@@ -116,7 +115,11 @@ namespace LittleWorld
 
             OnHint = null;
             GameObject.Destroy(GameObject.Find("RenderParent"));
+            GameObject.Destroy(GameObject.Find("GameController"));
+            GameObject.Destroy(GameObject.Find("MapsParent"));
             this.EventUnregister();
+
+            ObjectPoolManager.Instance.Dispose();
 
             Current.CurGame = null;
         }
