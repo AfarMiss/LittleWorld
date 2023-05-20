@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class Object : ISelectable
+    public class Object : ISelectable, IListener
     {
         public int itemCode;
         public int instanceID;

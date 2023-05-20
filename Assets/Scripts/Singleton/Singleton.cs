@@ -2,7 +2,7 @@
 using System.Reflection;
 using UnityEngine;
 
-public class Singleton<T> where T : Singleton<T>
+public class Singleton<T> : IListener where T : Singleton<T>
 {
     private static T instance;
 
@@ -42,5 +42,6 @@ public class Singleton<T> where T : Singleton<T>
     public virtual void Dispose()
     {
         instance = null;
+        this.EventUnregister();
     }
 }

@@ -276,19 +276,19 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
         return itemTypeDescription;
     }
 
-    private void OnEnable()
-    {
-        EventCenter.Instance?.Register<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected, this);
-        EventCenter.Instance?.Register(nameof(EventEnum.REMOVE_SELECTED_ITEM_FROM_INVENTORY), RemoveSelectedItem, this);
-        ISaveableRegister();
-    }
+    //private void OnEnable()
+    //{
+    //    EventCenter.Instance?.Register<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected, this);
+    //    EventCenter.Instance?.Register(nameof(EventEnum.REMOVE_SELECTED_ITEM_FROM_INVENTORY), RemoveSelectedItem, this);
+    //    ISaveableRegister();
+    //}
 
-    private void OnDisable()
-    {
-        EventCenter.Instance?.Unregister<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
-        EventCenter.Instance?.Unregister(nameof(EventEnum.REMOVE_SELECTED_ITEM_FROM_INVENTORY), RemoveSelectedItem);
-        ISaveableDeregister();
-    }
+    //private void OnDisable()
+    //{
+    //    EventCenter.Instance?.Unregister<int>(nameof(EventEnum.CLIENT_CHANGE_BAR_SELECTED), OnUpdateBarSelected);
+    //    EventCenter.Instance?.Unregister(nameof(EventEnum.REMOVE_SELECTED_ITEM_FROM_INVENTORY), RemoveSelectedItem);
+    //    ISaveableDeregister();
+    //}
 
     private void RemoveSelectedItem()
     {

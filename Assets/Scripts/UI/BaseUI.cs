@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LittleWorld.UI
 {
-    public abstract class BaseUI : MonoBehaviour
+    public abstract class BaseUI : MonoBehaviour, IListener
     {
         public bool IsShowing { get; private set; }
         public string UiName => GetType().Name;
@@ -52,6 +52,11 @@ namespace LittleWorld.UI
         public virtual void OnClickClose()
         {
             UIManager.Instance.Hide(this.GetType(), UiType);
+        }
+
+        protected virtual void OnDisable()
+        {
+            this.EventUnregister();
         }
     }
 

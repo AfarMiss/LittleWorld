@@ -32,25 +32,19 @@ namespace LittleWorld.UI
 
         private void OnEnable()
         {
-            EventCenter.Instance.Register<GameTime>(EventName.YEAR_CHANGE, BindData, this);
-            EventCenter.Instance.Register<GameTime>(EventName.QUAD_CHANGE, BindData, this);
-            EventCenter.Instance.Register<GameTime>(EventName.DAY_CHANGE, BindData, this);
-            EventCenter.Instance.Register<GameTime>(EventName.HOUR_CHANGE, BindData, this);
-            EventCenter.Instance.Register<GameTime>(EventName.MINUTE_CHANGE, BindData, this);
-            EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, BindData, this);
+            this.EventRegister<GameTime>(EventName.YEAR_CHANGE, BindData);
+            this.EventRegister<GameTime>(EventName.QUAD_CHANGE, BindData);
+            this.EventRegister<GameTime>(EventName.DAY_CHANGE, BindData);
+            this.EventRegister<GameTime>(EventName.HOUR_CHANGE, BindData);
+            this.EventRegister<GameTime>(EventName.MINUTE_CHANGE, BindData);
+            this.EventRegister<GameTime>(EventName.GAME_TICK, BindData);
 
             Current.CurGame.OnHint += OnHint;
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
-            EventCenter.Instance?.Unregister<GameTime>(EventName.YEAR_CHANGE, BindData);
-            EventCenter.Instance?.Unregister<GameTime>(EventName.QUAD_CHANGE, BindData);
-            EventCenter.Instance?.Unregister<GameTime>(EventName.DAY_CHANGE, BindData);
-            EventCenter.Instance?.Unregister<GameTime>(EventName.HOUR_CHANGE, BindData);
-            EventCenter.Instance?.Unregister<GameTime>(EventName.MINUTE_CHANGE, BindData);
-            EventCenter.Instance?.Unregister<GameTime>(EventName.GAME_TICK, BindData);
-
+            base.OnDisable();
             if (Current.CurGame != null)
             {
                 Current.CurGame.OnHint -= OnHint;

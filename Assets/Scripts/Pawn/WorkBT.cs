@@ -8,7 +8,7 @@ namespace LittleWorld.Jobs
     /// <summary>
     /// 封装工作行为树的类
     /// </summary>
-    public abstract class WorkBT
+    public abstract class WorkBT : IListener
     {
 
         public bool isSuspended = false;

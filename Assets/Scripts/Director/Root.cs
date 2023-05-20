@@ -49,8 +49,8 @@ namespace LittleWorld
 
         private void OnEnable()
         {
-            EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded, this);
-            EventCenter.Instance.Register(EventEnum.BEFORE_SCENE_UNLOAD.ToString(), OnSceneUnloaded, this);
+            this.EventRegister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
+            this.EventRegister(EventEnum.BEFORE_SCENE_UNLOAD.ToString(), OnSceneUnloaded);
         }
 
         private void OnSceneUnloaded()
@@ -67,13 +67,6 @@ namespace LittleWorld
             {
                 item.AfterSceneLoad();
             }
-        }
-
-        private void OnDisable()
-        {
-            EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
-            EventCenter.Instance?.Unregister(EventEnum.BEFORE_SCENE_UNLOAD.ToString(), OnSceneUnloaded);
-
         }
 
         protected override void Awake()

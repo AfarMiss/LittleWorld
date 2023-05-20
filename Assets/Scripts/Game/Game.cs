@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace LittleWorld
 {
-    public class Game
+    public class Game : IListener
     {
         public GameState state;
         public MapManager mapManager;
@@ -51,7 +51,7 @@ namespace LittleWorld
 
         public Game()
         {
-            EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitGame, this);
+            this.EventRegister<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitGame);
             state = GameState.PREPARING;
             Current.CurGame = this;
         }
@@ -113,9 +113,10 @@ namespace LittleWorld
 
             IsInited = false;
             state = GameState.UNINIT;
-            EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitGame, this);
+
             OnHint = null;
             GameObject.Destroy(GameObject.Find("RenderParent"));
+            this.EventUnregister();
 
             Current.CurGame = null;
         }

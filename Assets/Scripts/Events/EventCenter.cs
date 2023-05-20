@@ -27,17 +27,17 @@ public static class EventExtension
         EventCenter.Instance.EventUnregister(listener);
     }
 
-    public static void EventTrigger(this ITrigger trigger, string eventName)
+    public static void EventTrigger(this object trigger, string eventName)
     {
         EventCenter.Instance.Trigger(eventName);
     }
 
-    public static void EventTrigger<T>(this ITrigger trigger, string eventName, T param)
+    public static void EventTrigger<T>(this object trigger, string eventName, T param)
     {
         EventCenter.Instance.Trigger(eventName, param);
     }
 
-    public static void EventTrigger<T1, T2>(this ITrigger trigger, string eventName, T1 p1, T2 p2)
+    public static void EventTrigger<T1, T2>(this object trigger, string eventName, T1 p1, T2 p2)
     {
         EventCenter.Instance.Trigger(eventName, p1, p2);
     }

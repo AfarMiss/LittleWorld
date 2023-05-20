@@ -57,18 +57,18 @@ public class GridPropertiesManager : MonoSingleton<GridPropertiesManager>, ISave
     private void OnEnable()
     {
         ISaveableRegister();
-        EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded, this);
-        EventCenter.Instance?.Register<GameTime>(EventName.DAY_CHANGE, OnAdvanceDay, this);
-        EventCenter.Instance?.Register<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify, this);
+        //EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded, this);
+        //EventCenter.Instance?.Register<GameTime>(EventName.DAY_CHANGE, OnAdvanceDay, this);
+        //EventCenter.Instance?.Register<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify, this);
 
     }
 
     private void OnDisable()
     {
         ISaveableDeregister();
-        EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
-        EventCenter.Instance?.Unregister<GameTime>(EventName.DAY_CHANGE, OnAdvanceDay);
-        EventCenter.Instance?.Unregister<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify);
+        //EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), AfterSceneLoaded);
+        //EventCenter.Instance?.Unregister<GameTime>(EventName.DAY_CHANGE, OnAdvanceDay);
+        //EventCenter.Instance?.Unregister<GridPropertyDetails>(EventEnum.GRID_MODIFY.ToString(), OnGridModify);
     }
 
     private void OnGridModify(GridPropertyDetails details)

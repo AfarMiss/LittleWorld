@@ -18,12 +18,12 @@ public class SwitchConfineBoundingShape : MonoBehaviour
 
     private void OnEnable()
     {
-        EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded, this);
+        //EventCenter.Instance?.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded, this);
     }
 
     private void OnDisable()
     {
-        EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
+        //EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
     }
 
     private void OnSceneLoaded()

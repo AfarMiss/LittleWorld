@@ -19,7 +19,7 @@ namespace LittleWorld.UI
         {
             EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_WORKING.ToString(), OnWorking, this);
             EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_DONE.ToString(), OnWorkDone, this);
-            EventCenter.Instance.Register<WorkAbortMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort, this);
+            this.EventRegister<WorkAbortMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
         }
 
         private void OnWorking(WorkMessage message)

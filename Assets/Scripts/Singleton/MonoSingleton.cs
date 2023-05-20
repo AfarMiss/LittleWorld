@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class MonoSingleton<T> : MonoBehaviour, IListener where T : MonoBehaviour
 {
     public static Dictionary<string, object> MonoSingletons = new Dictionary<string, object>();
     protected static bool AppIsQuit;
@@ -79,5 +79,10 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     private void OnApplicationQuit()
     {
         AppIsQuit = true;
+    }
+
+    protected virtual void OnDisable()
+    {
+        this.EventUnregister();
     }
 }

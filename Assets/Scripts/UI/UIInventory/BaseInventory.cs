@@ -24,12 +24,12 @@ namespace LittleWorld.UI
         private void OnEnable()
         {
             BindData();
-            EventCenter.Instance.Register(nameof(EventEnum.UPDATE_INVENTORY), BindData, this);
+            //EventCenter.Instance.Register(nameof(EventEnum.UPDATE_INVENTORY), BindData, this);
         }
 
         private void OnDisable()
         {
-            EventCenter.Instance?.Unregister(nameof(EventEnum.UPDATE_INVENTORY), BindData);
+            //EventCenter.Instance?.Unregister(nameof(EventEnum.UPDATE_INVENTORY), BindData);
             Destroy(inventoryTextBoxGameobject);
         }
 

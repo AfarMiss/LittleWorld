@@ -138,8 +138,8 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     public override void OnCreateInstance()
     {
         base.OnCreateInstance();
-        EventCenter.Instance.Register<GameTime>(EventName.GAME_TICK, Tick, this);
-        EventCenter.Instance.Register<ChangeGridMessage>(EventName.OBJECT_GRID_CHANGE, OnWorldObjectGridChange, this);
+        this.EventRegister<GameTime>(EventName.GAME_TICK, Tick);
+        this.EventRegister<ChangeGridMessage>(EventName.OBJECT_GRID_CHANGE, OnWorldObjectGridChange);
 
         ItemInstanceID = 0;
         pawnManager = PawnManager.Instance;

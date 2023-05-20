@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class LightingControl : MonoBehaviour
+public class LightingControl : MonoBehaviour, IListener
 {
     [SerializeField] private LightingSchedule lightingSchedule;
     [SerializeField] private bool isLightFlicker = false;
@@ -34,8 +34,8 @@ public class LightingControl : MonoBehaviour
 
     private void OnEnable()
     {
-        EventCenter.Instance.Register<GameTime>(EventName.HOUR_CHANGE, OnHourChange, this);
-        EventCenter.Instance.Register(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded, this);
+        this.EventRegister<GameTime>(EventName.HOUR_CHANGE, OnHourChange);
+        this.EventRegister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
     }
 
     private void OnSceneLoaded()
@@ -100,8 +100,7 @@ public class LightingControl : MonoBehaviour
 
     private void OnDisable()
     {
-        EventCenter.Instance?.Unregister<GameTime>(EventName.HOUR_CHANGE, OnHourChange);
-        EventCenter.Instance?.Unregister(EventEnum.AFTER_NEXT_SCENE_LOAD.ToString(), OnSceneLoaded);
+        this.EventUnregister();
     }
 
     private void Update()
