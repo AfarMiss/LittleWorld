@@ -51,7 +51,7 @@ namespace LittleWorld
 
         public Game()
         {
-            EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitGame, this);
+            EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitGame);
             state = GameState.PREPARING;
             Current.CurGame = this;
         }
@@ -72,9 +72,9 @@ namespace LittleWorld
 
         private async void StartGame(MainMapInfo mapInfo)
         {
-            SceneObjectManager = SceneObjectManager.Instance;
             mapManager = MapManager.Instance;
             timeManager = TimeManager.Instance;
+            SceneObjectManager = SceneObjectManager.Instance;
             ticks = new List<ITick>();
 
             Debug.LogWarning("开始等待InputController.Instance加载！");
@@ -113,9 +113,8 @@ namespace LittleWorld
 
             IsInited = false;
             state = GameState.UNINIT;
-            EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitGame, this);
+            EventCenter.Instance.Register<MainMapInfo>(EventEnum.START_NEW_GAME.ToString(), InitGame);
             OnHint = null;
-            GameObject.Destroy(GameObject.Find("RenderParent"));
 
             Current.CurGame = null;
         }
