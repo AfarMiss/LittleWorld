@@ -17,8 +17,8 @@ namespace LittleWorld.UI
         }
         private void OnEnable()
         {
-            EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_WORKING.ToString(), OnWorking, this);
-            EventCenter.Instance.Register<WorkMessage>(EventEnum.WORK_DONE.ToString(), OnWorkDone, this);
+            this.EventRegister<WorkMessage>(EventEnum.WORK_WORKING.ToString(), OnWorking);
+            this.EventRegister<WorkMessage>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
             this.EventRegister<WorkAbortMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
         }
 
@@ -56,13 +56,6 @@ namespace LittleWorld.UI
         {
             var gs = go.GetComponent<GeneralSlider>();
             gs.progress = message.workPercent;
-        }
-
-        private void OnDisable()
-        {
-            EventCenter.Instance?.Unregister<WorkMessage>(EventEnum.WORK_WORKING.ToString(), OnWorking);
-            EventCenter.Instance?.Unregister<WorkMessage>(EventEnum.WORK_DONE.ToString(), OnWorkDone);
-            EventCenter.Instance?.Unregister<WorkAbortMessage>(EventEnum.FORCE_ABORT.ToString(), OnWorkForceAbort);
         }
 
         private void OnWorkDone(WorkMessage arg0)
