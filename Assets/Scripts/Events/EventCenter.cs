@@ -64,30 +64,32 @@ public interface IEventInfo
 public class EventInfo<T> : IEventInfo
 {
     public UnityAction<T> actions;
-    public Dictionary<object, UnityAction<T>> eventDic;
+    public Dictionary<object, UnityAction<T>> objectEventDic;
 
     public EventInfo(UnityAction<T> action, object caller)
     {
-        this.actions += action;
-        eventDic = new Dictionary<object, UnityAction<T>>();
-        AddEvent(action, caller);
+        objectEventDic = new Dictionary<object, UnityAction<T>>();
+
+        AddEventInDic(action, caller);
     }
 
-    private void AddEvent(UnityAction<T> action, object caller)
+    public void AddEventInDic(UnityAction<T> action, object caller)
     {
-        if (eventDic.TryGetValue(caller, out var actions))
+        this.actions += action;
+        if (objectEventDic.TryGetValue(caller, out var actions))
         {
-            eventDic[caller] += action;
+            objectEventDic[caller] += action;
         }
         else
         {
-            eventDic[caller] = action;
+            objectEventDic[caller] = action;
         }
     }
 
     public void RemoveListener(IListener caller)
     {
-        eventDic.TryGetValue(caller, out var callerActions);
+        objectEventDic.TryGetValue(caller, out var callerActions);
+        objectEventDic.Remove(caller);
         this.actions -= callerActions;
     }
 }
@@ -95,32 +97,31 @@ public class EventInfo<T> : IEventInfo
 public class EventInfo<T1, T2> : IEventInfo
 {
     public UnityAction<T1, T2> actions;
-    public object caller;
-    public Dictionary<object, UnityAction<T1, T2>> eventDic;
+    public Dictionary<object, UnityAction<T1, T2>> objectEventDic;
 
     public EventInfo(UnityAction<T1, T2> action, object caller)
     {
-        this.actions += action;
-        this.caller = caller;
-        this.eventDic = new Dictionary<object, UnityAction<T1, T2>>();
-        AddEvent(action, caller);
+        this.objectEventDic = new Dictionary<object, UnityAction<T1, T2>>();
+        AddEventInDic(action, caller);
     }
 
-    private void AddEvent(UnityAction<T1, T2> action, object caller)
+    private void AddEventInDic(UnityAction<T1, T2> action, object caller)
     {
-        if (eventDic.TryGetValue(caller, out var actions))
+        this.actions += action;
+        if (objectEventDic.TryGetValue(caller, out var actions))
         {
-            eventDic[caller] += action;
+            objectEventDic[caller] += action;
         }
         else
         {
-            eventDic[caller] = action;
+            objectEventDic[caller] = action;
         }
     }
 
     public void RemoveListener(IListener caller)
     {
-        eventDic.TryGetValue(caller, out var callerActions);
+        objectEventDic.TryGetValue(caller, out var callerActions);
+        objectEventDic.Remove(caller);
         this.actions -= callerActions;
     }
 }
@@ -129,32 +130,32 @@ public class EventInfo<T1, T2> : IEventInfo
 public class EventInfo : IEventInfo
 {
     public UnityAction actions;
-    public object caller;
-    public Dictionary<object, UnityAction> eventDic;
+    public Dictionary<object, UnityAction> objectEventDic;
 
     public EventInfo(UnityAction actions, object caller)
     {
         this.actions += actions;
-        this.caller = caller;
-        this.eventDic = new Dictionary<object, UnityAction>();
-        AddEvent(actions, caller);
+        this.objectEventDic = new Dictionary<object, UnityAction>();
+        AddEventInDic(actions, caller);
     }
 
-    private void AddEvent(UnityAction action, object caller)
+    public void AddEventInDic(UnityAction action, object caller)
     {
-        if (eventDic.TryGetValue(caller, out var actions))
+        this.actions += action;
+        if (objectEventDic.TryGetValue(caller, out var actions))
         {
-            eventDic[caller] += action;
+            objectEventDic[caller] += action;
         }
         else
         {
-            eventDic[caller] = action;
+            objectEventDic[caller] = action;
         }
     }
 
     public void RemoveListener(IListener caller)
     {
-        eventDic.TryGetValue(caller, out var callerActions);
+        objectEventDic.TryGetValue(caller, out var callerActions);
+        objectEventDic.Remove(caller);
         this.actions -= callerActions;
     }
 }
@@ -179,7 +180,7 @@ public class EventCenter : Singleton<EventCenter>
     {
         if (eventDic.ContainsKey(name))
         {
-            (eventDic[name] as EventInfo<T>).actions += action;
+            (eventDic[name] as EventInfo<T>).AddEventInDic(action, caller);
         }
         else
         {
