@@ -13,7 +13,7 @@ namespace LittleWorld.UI
         private Dictionary<UIType, List<BaseUI>> uiDic;
 
         private bool needDrawPlantZoom = false;
-
+        private GameObject parent;
         protected GameObject UICanvas { get; private set; }
 
         private bool isShowingPanel;
@@ -33,7 +33,7 @@ namespace LittleWorld.UI
         }
 
         public RectTransform SelectionArea => GameObject.FindGameObjectWithTag("SelectionArea")?.GetComponent<RectTransform>();
-
+        public RectTransform SelectCanvas;
         public UIManager()
         {
             uiDic = new Dictionary<UIType, List<BaseUI>>();
@@ -50,10 +50,11 @@ namespace LittleWorld.UI
         {
             base.Awake();
             //初始化画布
-            var go = GameObject.FindGameObjectWithTag("UICanvas");
-            if (go != null)
+            parent = GameObject.FindGameObjectWithTag("UICanvas");
+            SelectCanvas = GameObject.Find("SelectCanvas").transform as RectTransform;
+            if (parent != null)
             {
-                UICanvas = go;
+                UICanvas = parent;
             }
             else
             {
@@ -61,7 +62,14 @@ namespace LittleWorld.UI
             }
             UICanvas.transform.SetParent(null);
             SelectionArea.GetComponent<Image>().enabled = false;
+            this.EventRegister<string>(EventName.CHANGE_SCENE, OnSceneChange);
             DontDestroyOnLoad(UICanvas);
+            DontDestroyOnLoad(SelectCanvas);
+        }
+
+        private void OnSceneChange(string arg0)
+        {
+            HideAll(true);
         }
 
         public T ShowPanel<T>(string path = null) where T : BaseUI, new()
@@ -79,7 +87,6 @@ namespace LittleWorld.UI
 
         public T Show<T>(UIType uiType, string path) where T : BaseUI, new()
         {
-            GameObject parent = GameObject.FindGameObjectWithTag("UICanvas");
             if (!parent)
             {
                 Debug.LogError("Canvas is null!");
@@ -171,12 +178,14 @@ namespace LittleWorld.UI
 
         public void HideAll(UIType uiType, bool destroyIt = false)
         {
-            foreach (BaseUI item in uiDic[uiType])
+            for (int i = uiDic[uiType].Count - 1; i >= 0; i--)
             {
+                BaseUI item = uiDic[uiType][i];
                 item.OnExit();
                 if (destroyIt)
                 {
                     uiDic[uiType].Remove(item);
+                    item.EventUnregister();
                     Destroy(item.gameObject);
                 }
                 else
@@ -192,7 +201,7 @@ namespace LittleWorld.UI
         {
             foreach (var item in uiDic)
             {
-                HideAll(item.Key);
+                HideAll(item.Key, destroyIt);
             }
         }
 
@@ -232,7 +241,7 @@ namespace LittleWorld.UI
             var go = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/UI/InteractionMenu/InteractionMenu"));
             go.name = go.name.Substring(0, go.name.LastIndexOf("(Clone)"));
             var menu = go.GetComponent<InteractionMenu>();
-            go.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas")?.transform);
+            go.transform.SetParent(GameObject.Find("UICanvas")?.transform);
 
             RectTransform rectTransform = go.GetComponent<RectTransform>();
 
@@ -257,7 +266,7 @@ namespace LittleWorld.UI
 
         private void OnGUI()
         {
-            if (Current.CurGame!=null&&Current.CurGame.IsInited)
+            if (Current.CurGame != null && Current.CurGame.IsInited)
             {
                 //因为目前底层使用了 UnityEngine.Graphics.DrawTexture
                 //所以需要限制在接收到这个事件时触发。

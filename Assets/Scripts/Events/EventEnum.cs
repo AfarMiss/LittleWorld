@@ -52,6 +52,7 @@ public enum EventEnum
 
 public class EventName
 {
+    internal static readonly string CHANGE_SCENE = "CHANGE_SCENE";
     #region 时间相关事件
     public static string YEAR_CHANGE = "YEAR_CHANGE";
     public static string QUAD_CHANGE = "QUAD_CHANGE";

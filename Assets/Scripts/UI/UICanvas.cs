@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UICanvas : MonoSingleton<UICanvas>
+public class UICanvas : MonoBehaviour
 {
     private RectTransform rectTransform;
     private void Start()

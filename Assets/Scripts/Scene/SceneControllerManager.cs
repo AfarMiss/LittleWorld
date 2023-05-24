@@ -21,7 +21,7 @@ public class SceneControllerManager : MonoSingleton<SceneControllerManager>
         if (!isFading)
         {
             StartCoroutine(ChangeScene(sceneName));
-            UIManager.Instance.HideAll();
+            this.EventTrigger(EventName.CHANGE_SCENE, sceneName);
         }
     }
 
