@@ -22,7 +22,7 @@ namespace LittleWorld.UI
         {
         }
 
-        protected virtual void OnDisable()
+        protected override void OnDisable()
         {
         }
 
@@ -55,19 +55,24 @@ namespace LittleWorld.UI
             }
             if (objects.Length == 1)
             {
-                BindBriefInfo(objects[0]);
+                BindSingleItem(objects[0]);
             }
         }
 
-        public virtual void BindBriefInfo(Item.Object o)
+        public virtual void BindSingleItem(Item.Object o)
+        {
+            BindTitle(o);
+            BindCommands(o);
+        }
+
+        private void BindTitle(Item.Object o)
         {
             InfoTitle.text = o.ItemName;
-            commandParent.DestroyChildren();
-            BindCommands(o);
         }
 
         protected void BindCommands(Item.Object item)
         {
+            commandParent.DestroyChildren();
             if (item is PlantMapSection map)
             {
                 var command1 = AddCommand("更改种植作物", ObjectConfig.GetPlantSprite(map.SeedCode));

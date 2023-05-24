@@ -136,12 +136,12 @@ namespace LittleWorld.Item
             if (o is Animal)
             {
                 briefInfoPanel = UIManager.Instance.Show<BriefInfoAnimalPanel>(UIType.PANEL, UIPath.Panel_BriefInfoAnimalPanel);
-                briefInfoPanel.BindBriefInfo(o);
+                briefInfoPanel.BindSingleItem(o);
             }
             else
             {
                 briefInfoPanel = UIManager.Instance.Show<BriefInfoPanel>(UIType.PANEL, UIPath.Panel_BriefInfoPanel);
-                briefInfoPanel.BindBriefInfo(o);
+                briefInfoPanel.BindSingleItem(o);
             }
         }
 

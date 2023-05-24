@@ -16,9 +16,9 @@ namespace LittleWorld.UI
 
         private Animal animalWatching;
 
-        public override void BindBriefInfo(Item.Object o)
+        public override void BindSingleItem(Item.Object o)
         {
-            base.BindBriefInfo(o);
+            base.BindSingleItem(o);
             if (o is Animal animal)
             {
                 hpSlider.value = animal.HpPercent;
@@ -33,7 +33,8 @@ namespace LittleWorld.UI
         {
             if (animalWatching == o as Animal)
             {
-                base.BindBriefInfo(o);
+                //应使用按钮的灰暗/明亮而不是消失/显示来更新可用命令，下次修改按钮的生成逻辑。
+                base.BindSingleItem(o);
                 if (o is Animal animal)
                 {
                     hpSlider.value = animal.HpPercent;
@@ -86,7 +87,7 @@ namespace LittleWorld.UI
         {
             if (weapon.Owner.IsSelectedOnly)
             {
-                BindBriefInfo(weapon.Owner);
+                BindSingleItem(weapon.Owner);
             }
         }
 
