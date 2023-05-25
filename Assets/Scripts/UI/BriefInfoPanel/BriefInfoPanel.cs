@@ -65,7 +65,7 @@ namespace LittleWorld.UI
             BindCommands(o);
         }
 
-        private void BindTitle(Item.Object o)
+        protected void BindTitle(Item.Object o)
         {
             InfoTitle.text = o.ItemName;
         }

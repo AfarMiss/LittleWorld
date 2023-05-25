@@ -34,7 +34,7 @@ namespace LittleWorld.UI
             if (animalWatching == o as Animal)
             {
                 //应使用按钮的灰暗/明亮而不是消失/显示来更新可用命令，下次修改按钮的生成逻辑。
-                base.BindSingleItem(o);
+                base.BindTitle(o);
                 if (o is Animal animal)
                 {
                     hpSlider.value = animal.HpPercent;
