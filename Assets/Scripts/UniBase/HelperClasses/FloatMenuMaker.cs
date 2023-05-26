@@ -44,6 +44,11 @@ namespace LittleWorld.UI
                     var plantOpts = AddWeaponFloatMenu(human, weapon);
                     AddOption(contentList, plantOpts);
                 }
+
+                if (worldObject is IEatable eatable)
+                {
+
+                }
             }
 
             var haulOpts = AddHaulFloatMenu(human, cell);
@@ -100,6 +105,20 @@ namespace LittleWorld.UI
 
         }
 
+        private static List<FloatOption> AddEatableFloatMenu(Humanbeing human, IEatable eatable)
+        {
+            if (eatable == null || eatable.eatable) { return null; }
+            List<FloatOption> contentList = new List<FloatOption>
+            {
+            new FloatOption($"吃{eatable.itemName}", () =>
+            {
+                //增加饥饿值。
+            })
+            };
+            return contentList;
+
+        }
+
         private static List<FloatOption> AddHaulFloatMenu(Humanbeing human, Vector3 pos)
         {
             var results = new List<WorldObject>();
@@ -132,9 +151,7 @@ namespace LittleWorld.UI
             {
                     worker.AddCutWork(plant);
             })
-
             };
-
             return contentList;
         }
 
