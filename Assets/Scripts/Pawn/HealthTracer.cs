@@ -19,7 +19,7 @@ namespace LittleWorld
         private Animal animal;
         public Age age;
 
-        private bool deadFlag = false;
+        public bool deadFlag = false;
 
         public HealthTracer(float maxHealth, float maxHunger, float maxSleep, Age age, Animal animal)
         {

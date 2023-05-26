@@ -33,6 +33,7 @@ namespace LittleWorld.Item
         public float SleepPercent => healthTracer.curSleep / healthTracer.maxSleep;
 
         public PathTracer PathTracer { get => pathTracer; }
+        private bool deadFlag => this.healthTracer != null && this.healthTracer.deadFlag;
 
         /// <summary>
         /// 注册被伤害时事件
@@ -142,7 +143,7 @@ namespace LittleWorld.Item
         public override void Tick()
         {
             base.Tick();
-            if (IsDead) return;
+            if (IsDead && deadFlag) return;
             healthTracer?.Tick();
             workTracer?.Tick();
             pathTracer?.Tick();

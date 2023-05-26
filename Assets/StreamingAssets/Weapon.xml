@@ -19,7 +19,7 @@
     <reloadTime type="float">4</reloadTime>
     <spread type="float">0.02</spread>
     <weaponSway type="float">1</weaponSway>
-    <meleeDamage type="float">5</meleeDamage>
+    <meleeDamage type="float">50</meleeDamage>
     <range type="float">10</range>
     <rangedCooldown type="float">1</rangedCooldown>
     <aimingTime type="float">1</aimingTime>
