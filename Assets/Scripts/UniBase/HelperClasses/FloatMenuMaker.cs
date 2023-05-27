@@ -50,6 +50,11 @@ namespace LittleWorld.UI
                     var plantOpts = AddEatableFloatMenu(human, eatable);
                     AddOption(contentList, plantOpts);
                 }
+                if (worldObject is ISleepable sleepable)
+                {
+                    var plantOpts = AddSleepFloatMenu(human, sleepable, mousePos.GetWorldPosition().ToCell().To2());
+                    AddOption(contentList, plantOpts);
+                }
             }
 
             var haulOpts = AddHaulFloatMenu(human, cell);
@@ -115,6 +120,21 @@ namespace LittleWorld.UI
             {
                 //增加饥饿值。
                 human.Eat(eatable);
+            })
+            };
+            return contentList;
+
+        }
+
+        private static List<FloatOption> AddSleepFloatMenu(Humanbeing human, ISleepable sleepable, Vector2Int targetPos)
+        {
+            if (sleepable == null || !sleepable.isSleepable) { return null; }
+            List<FloatOption> contentList = new List<FloatOption>
+            {
+            new FloatOption($"睡{sleepable.itemName}", () =>
+            {
+                //睡眠
+                human.GoToLocToil(targetPos).SleepAt(targetPos);
             })
             };
             return contentList;

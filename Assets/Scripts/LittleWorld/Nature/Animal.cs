@@ -52,6 +52,22 @@ namespace LittleWorld.Item
             this.pathTracer.OnEnable();
         }
 
+        public void SleepAt(Vector2Int pos)
+        {
+            SleepWork toil = new SleepWork(this, pos);
+            workTracer.AddToil(toil);
+        }
+
+        public void Sleep()
+        {
+            this.healthTracer.isSleeping = true;
+        }
+
+        public void WakeUp()
+        {
+            healthTracer.isSleeping = false;
+        }
+
         public override Sprite GetCurrentSprite()
         {
             return animalInfo.ItemSprites[0];
@@ -135,9 +151,24 @@ namespace LittleWorld.Item
             workTracer.AddWork(new WanderWork(this));
         }
 
-        public void GoToLoc(Vector2Int target, MoveType moveType)
+        public Animal GoToLoc(Vector2Int target, MoveType moveType = MoveType.walk)
         {
+            this.healthTracer.isSleeping = false;
             pathTracer.GoToLoc(target, moveType);
+            return this;
+        }
+
+        public Animal GoToLocToil(Vector2Int target, MoveType moveType = MoveType.walk)
+        {
+            this.healthTracer.isSleeping = false;
+            pathTracer.GoToLoc(target, moveType);
+            if (this is Humanbeing humanbeing)
+            {
+                GoToLocWork toil = new GoToLocWork(humanbeing, target);
+                workTracer.AddWork(toil);
+                workTracer.AddToil(toil);
+            }
+            return this;
         }
 
         public override void Tick()

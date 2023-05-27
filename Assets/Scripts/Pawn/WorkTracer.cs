@@ -1,22 +1,37 @@
 ﻿using LittleWorld.Item;
 using LittleWorld.Jobs;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace LittleWorld
 {
+    public delegate bool ToilTick();
+    public interface IToil
+    {
+        bool isDone { get; }
+        bool ToilTick();
+        void ToilStart();
+    }
+
     public class WorkTracer : TracerBase
     {
         public static int workID = 0;
         public Queue<WorkBT> workQueue;
+        public Queue<IToil> toils;
+        public WorkStatus CurStatus = WorkStatus.NoWork;
+        public int curFinishedAmount;
+        public int workTotalAmount;
+
+        private IToil curToil;
+
         public WorkTracer(Animal pawn)
         {
             this.animal = pawn;
             workQueue = new Queue<WorkBT>();
+            toils = new Queue<IToil>();
         }
-        public WorkStatus CurStatus = WorkStatus.NoWork;
-        public int curFinishedAmount;
-        public int workTotalAmount;
+
 
         protected virtual void OnNoWork()
         {
@@ -32,6 +47,15 @@ namespace LittleWorld
         public Animal animal;
         private WorkBT curWork;
         public AI.Node.Status curTreeStatus;
+        public void AddToil(IToil toil)
+        {
+            toils.Enqueue(toil);
+        }
+
+        public void StartToil()
+        {
+            curToil = toils.Dequeue();
+        }
 
         public bool AddWork(WorkBT singleWork)
         {
@@ -70,6 +94,29 @@ namespace LittleWorld
         }
 
         public override void Tick()
+        {
+            CheckOldWork();
+            if (curToil == null)
+            {
+                toils.TryDequeue(out curToil);
+                if (curToil != null)
+                {
+                    curToil.ToilStart();
+                    return;
+                }
+            }
+
+            if (curToil != null && curToil.ToilTick())
+            {
+                curToil = null;
+            }
+        }
+
+
+        /// <summary>
+        /// 检查工作系统（旧
+        /// </summary>
+        public void CheckOldWork()
         {
             if (curWork == null)
             {

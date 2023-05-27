@@ -18,6 +18,7 @@ namespace LittleWorld.Item
         public float HpPercent => healthTracer.curHealth / healthTracer.maxHealth;
 
         public bool eatable => healthTracer != null && healthTracer.isDead;
+        public bool isSleeping => healthTracer.isSleeping;
 
         public float nutrition => 0.5f;
 

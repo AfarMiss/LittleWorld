@@ -7,8 +7,14 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class GoToLocWork : WorkBT
+    public class GoToLocWork : WorkBT, IToil
     {
+        public bool isDone => _isDone;
+
+        private Humanbeing _humanbeing;
+        private Vector2Int _des;
+        private bool _isDone = false;
+
         public GoToLocWork(Humanbeing humanbeing, Vector2Int destination)
         {
             if (!Current.CurMap.GetGrid(destination).isLand)
@@ -17,6 +23,18 @@ namespace LittleWorld.Jobs
             }
             MoveLeaf moveLeaf = new MoveLeaf("Go To Loc", destination, humanbeing);
             tree.AddChild(moveLeaf);
+            this._humanbeing = humanbeing;
+            this._des = destination;
+        }
+
+        public bool ToilTick()
+        {
+            return (_humanbeing.GridPos == _des);
+        }
+
+        public void ToilStart()
+        {
         }
     }
+
 }

@@ -10,4 +10,10 @@ namespace LittleWorld.Item
         float nutrition { get; }
         string itemName { get; }
     }
+
+    public interface ISleepable
+    {
+        bool isSleepable { get; }
+        string itemName { get; }
+    }
 }

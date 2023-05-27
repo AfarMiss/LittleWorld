@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LittleWorld.Item
 {
-    public class Building : WorldObject
+    public class Building : WorldObject, ISleepable
     {
         public BuildingInfo buildingInfo;
         public BuildingStatus buildingStatus;
@@ -15,6 +15,10 @@ namespace LittleWorld.Item
         public HashSet<Vector2Int> buildingGrids;
         public Dictionary<int, int> curBuildingContain;
         public bool canStartBuild => GetRawMaterialNeedYet()?.Count == 0;
+
+        public bool isSleepable => this.buildingInfo.canSleep;
+
+        public string itemName => ItemName;
 
         public void AddBuildingRawMaterials(WorldObject[] rawMaterials)
         {

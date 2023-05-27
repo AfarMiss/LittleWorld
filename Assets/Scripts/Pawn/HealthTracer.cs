@@ -16,10 +16,11 @@ namespace LittleWorld
         public float maxHunger;
         public float curSleep;
         public float maxSleep;
-        private Animal animal;
+        public bool isSleeping = false;
+        public bool deadFlag = false;
         public Age age;
 
-        public bool deadFlag = false;
+        private Animal _animal;
 
         public HealthTracer(float maxHealth, float maxHunger, float maxSleep, Age age, Animal animal)
         {
@@ -29,7 +30,7 @@ namespace LittleWorld
             this.curHunger = maxHunger;
             this.maxSleep = maxSleep;
             this.curSleep = maxSleep;
-            this.animal = animal;
+            this._animal = animal;
             this.age = age;
         }
 
@@ -37,13 +38,12 @@ namespace LittleWorld
         {
             this.age.Tick();
             this.curHunger -= 0.0002f;
-            this.curSleep -= 0.0002f;
-
-            EventCenter.Instance.Trigger<Animal>(EventName.UPDATE_LIVING_STATE, this.animal);
+            this.curSleep = isSleeping ? Math.Min(curSleep + 0.0006f, maxSleep) : curSleep - 0.0002f;
+            EventCenter.Instance.Trigger<Animal>(EventName.UPDATE_LIVING_STATE, this._animal);
 
             if (isDead && !deadFlag)
             {
-                this.animal.Die();
+                this._animal.Die();
                 deadFlag = true;
             }
         }
@@ -53,7 +53,7 @@ namespace LittleWorld
             var lastHealth = curHealth;
             var expectHealth = curHealth - damage;
             curHealth = Mathf.Max(0, expectHealth);
-            Debug.Log($"{this.animal.ItemName}_{this.animal.instanceID}受到伤害,curHealth:{lastHealth}->{curHealth} ");
+            Debug.Log($"{this._animal.ItemName}_{this._animal.instanceID}受到伤害,curHealth:{lastHealth}->{curHealth} ");
         }
 
         public void Eat(IEatable eatable)

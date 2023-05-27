@@ -27,6 +27,7 @@ namespace LittleWorld.Item
         public int buildingWidth;
         public int buildingLength;
         public int deconstructWorkAmount;
+        public bool canSleep;
     }
 
     public class BuildingCost
