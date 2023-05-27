@@ -41,6 +41,11 @@ namespace LittleWorld.Item
             }
         }
 
+        public void Eat(IEatable eatable)
+        {
+            healthTracer.Eat(eatable);
+        }
+
 
         public WorldObject[] Carry(int itemCode, int amount, Vector2Int destination)
         {

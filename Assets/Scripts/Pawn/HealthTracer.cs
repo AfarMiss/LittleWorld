@@ -56,6 +56,12 @@ namespace LittleWorld
             Debug.Log($"{this.animal.ItemName}_{this.animal.instanceID}受到伤害,curHealth:{lastHealth}->{curHealth} ");
         }
 
+        public void Eat(IEatable eatable)
+        {
+            this.curHunger = this.curHunger + eatable.nutrition > maxHunger ?
+                maxHunger : this.curHunger + eatable.nutrition;
+        }
+
         public bool isDead => curHealth <= 0 || curHunger <= 0 || curSleep <= 0;
 
         public struct Age

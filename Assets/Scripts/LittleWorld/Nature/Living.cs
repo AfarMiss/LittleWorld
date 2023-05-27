@@ -8,7 +8,7 @@ using static LittleWorld.HealthTracer;
 
 namespace LittleWorld.Item
 {
-    public class Living : WorldObject
+    public class Living : WorldObject, IEatable
     {
 
         protected HealthTracer healthTracer;
@@ -16,6 +16,13 @@ namespace LittleWorld.Item
         public Age Age => healthTracer.age;
         public float Hp => healthTracer.curHealth;
         public float HpPercent => healthTracer.curHealth / healthTracer.maxHealth;
+
+        public bool eatable => healthTracer != null && healthTracer.isDead;
+
+        public float nutrition => 0.5f;
+
+        public string itemName => ItemName;
+
         public Living(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
             this.EventRegister<GameTime>(EventName.GAME_TICK, OnGameTick);

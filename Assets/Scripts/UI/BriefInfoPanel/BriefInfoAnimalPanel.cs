@@ -13,6 +13,7 @@ namespace LittleWorld.UI
         [SerializeField] protected Slider hungerSlider;
         [SerializeField] protected Slider sleepSlider;
         [SerializeField] protected Text ageText;
+        [SerializeField] protected Text posText;
 
         private Animal animalWatching;
 
@@ -21,10 +22,7 @@ namespace LittleWorld.UI
             base.BindSingleItem(o);
             if (o is Animal animal)
             {
-                hpSlider.value = animal.HpPercent;
-                hungerSlider.value = animal.HungerPercent;
-                sleepSlider.value = animal.SleepPercent;
-                UpdateAge(animal.Age);
+                BindData(animal);
                 this.animalWatching = o as Animal;
             }
         }
@@ -37,12 +35,18 @@ namespace LittleWorld.UI
                 base.BindTitle(o);
                 if (o is Animal animal)
                 {
-                    hpSlider.value = animal.HpPercent;
-                    hungerSlider.value = animal.HungerPercent;
-                    sleepSlider.value = animal.SleepPercent;
-                    UpdateAge(animal.Age);
+                    BindData(animal);
                 }
             }
+        }
+
+        private void BindData(Animal animal)
+        {
+            hpSlider.value = animal.HpPercent;
+            hungerSlider.value = animal.HungerPercent;
+            sleepSlider.value = animal.SleepPercent;
+            UpdateAge(animal.Age);
+            this.posText.text = animal.GridPos.ToString();
         }
 
         public void UpdateAge(Age age)

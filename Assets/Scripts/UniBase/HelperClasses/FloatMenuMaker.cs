@@ -47,7 +47,8 @@ namespace LittleWorld.UI
 
                 if (worldObject is IEatable eatable)
                 {
-
+                    var plantOpts = AddEatableFloatMenu(human, eatable);
+                    AddOption(contentList, plantOpts);
                 }
             }
 
@@ -107,12 +108,13 @@ namespace LittleWorld.UI
 
         private static List<FloatOption> AddEatableFloatMenu(Humanbeing human, IEatable eatable)
         {
-            if (eatable == null || eatable.eatable) { return null; }
+            if (eatable == null || !eatable.eatable) { return null; }
             List<FloatOption> contentList = new List<FloatOption>
             {
             new FloatOption($"吃{eatable.itemName}", () =>
             {
                 //增加饥饿值。
+                human.Eat(eatable);
             })
             };
             return contentList;

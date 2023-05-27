@@ -9,6 +9,5 @@ namespace LittleWorld.Item
         bool eatable { get; }
         float nutrition { get; }
         string itemName { get; }
-        void Eat();
     }
 }
