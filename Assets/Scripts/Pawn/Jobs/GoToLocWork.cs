@@ -11,6 +11,8 @@ namespace LittleWorld.Jobs
     {
         public bool isDone => _isDone;
 
+        public string toilName => $"正在前往:{this._des}";
+
         private Humanbeing _humanbeing;
         private Vector2Int _des;
         private bool _isDone = false;

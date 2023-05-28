@@ -17,6 +17,7 @@ namespace LittleWorld
         public float curSleep;
         public float maxSleep;
         public bool isSleeping = false;
+        public bool isEating = false;
         public bool deadFlag = false;
         public Age age;
 
@@ -60,8 +61,7 @@ namespace LittleWorld
         {
             TimerManager.Instance.RegisterTimer(new Timer(2f, () =>
             {
-                this.curHunger = this.curHunger + eatable.nutrition > maxHunger ?
-    maxHunger : this.curHunger + eatable.nutrition;
+                this.curHunger = Math.Min(this.curHunger + eatable.nutrition, maxHunger);
             }, () =>
             {
 

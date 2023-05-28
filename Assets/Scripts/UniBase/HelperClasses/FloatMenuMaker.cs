@@ -13,6 +13,7 @@ namespace LittleWorld.UI
         {
             var contentList = new List<FloatOption>();
             var cell = mousePos.GetWorldPosition();
+            var cellPoint = mousePos.GetWorldPosition().ToCell().To2();
 
             foreach (var worldObject in WorldUtility.GetObjectsAtCell(cell))
             {
@@ -47,12 +48,12 @@ namespace LittleWorld.UI
 
                 if (worldObject is IEatable eatable)
                 {
-                    var plantOpts = AddEatableFloatMenu(human, eatable);
+                    var plantOpts = AddEatableFloatMenu(human, eatable, cellPoint);
                     AddOption(contentList, plantOpts);
                 }
                 if (worldObject is ISleepable sleepable)
                 {
-                    var plantOpts = AddSleepFloatMenu(human, sleepable, mousePos.GetWorldPosition().ToCell().To2());
+                    var plantOpts = AddSleepFloatMenu(human, sleepable, cellPoint);
                     AddOption(contentList, plantOpts);
                 }
             }
@@ -119,7 +120,7 @@ namespace LittleWorld.UI
             new FloatOption($"吃{eatable.itemName}", () =>
             {
                 //增加饥饿值。
-                human.GoToLocToil(targetPos). Eat(eatable);
+                human.GoToLocToil(targetPos). EatToil(eatable);
             })
             };
             return contentList;
@@ -134,7 +135,7 @@ namespace LittleWorld.UI
             new FloatOption($"睡{sleepable.itemName}", () =>
             {
                 //睡眠
-                human.GoToLocToil(targetPos).SleepAt(targetPos);
+                human.GoToLocToil(targetPos).SleepToil(targetPos);
             })
             };
             return contentList;

@@ -14,6 +14,7 @@ namespace LittleWorld
         public GameState state;
         public MapManager mapManager;
         public TimeManager timeManager;
+        public TimerManager timerManager;
         public SceneObjectManager SceneObjectManager;
         private List<ITick> ticks;
         public event Action<string> OnHint;
@@ -75,6 +76,7 @@ namespace LittleWorld
             SceneObjectManager = SceneObjectManager.Instance;
             mapManager = MapManager.Instance;
             timeManager = TimeManager.Instance;
+            timerManager = TimerManager.Instance;
             ticks = new List<ITick>();
 
             Debug.Log("开始等待InputController.Instance加载！");
@@ -95,6 +97,7 @@ namespace LittleWorld
             {
                 mapManager.Tick();
                 timeManager.Tick();
+                timerManager.Tick();
             }
         }
 
@@ -105,6 +108,7 @@ namespace LittleWorld
             SceneObjectManager.Dispose();
             mapManager.Dispose();
             timeManager.Dispose();
+            timerManager.Dispose();
 
             SceneObjectManager = null;
             timeManager = null;

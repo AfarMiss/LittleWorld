@@ -9,6 +9,10 @@ namespace LittleWorld
     {
         public Dictionary<int, List<Timer>> timerDic;
 
+        private TimerManager()
+        {
+        }
+
         public override void OnCreateInstance()
         {
             base.OnCreateInstance();

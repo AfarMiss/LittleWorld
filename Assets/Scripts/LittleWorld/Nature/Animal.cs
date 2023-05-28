@@ -18,6 +18,7 @@ namespace LittleWorld.Item
         protected WorkTracer workTracer;
 
         public PathTracerRender RenderTracer;
+        public string curToilName => workTracer.curToil != null ? workTracer.curToil.toilName : "";
         public ItemRender ItemRender => SceneObjectManager.Instance.GetRenderer(instanceID);
         /// <summary>
         /// 是否处于被征召状态
@@ -39,8 +40,7 @@ namespace LittleWorld.Item
         /// 注册被伤害时事件
         /// </summary>
         public Action OnBeHurt;
-        [SerializeField]
-        protected bool isEating;
+        public bool isEating => healthTracer.isEating;
 
         public Animal(int itemCode, Age age, Vector2Int gridPos) : base(itemCode, gridPos)
         {
@@ -54,10 +54,16 @@ namespace LittleWorld.Item
             this.pathTracer.OnEnable();
         }
 
-        public void SleepAt(Vector2Int pos)
+        public Animal SleepToil(Vector2Int pos)
         {
-            SleepWork toil = new SleepWork(this, pos);
-            workTracer.AddToil(toil);
+            workTracer.AddToil(new SleepWork(this, pos));
+            return this;
+        }
+
+        public Animal EatToil(IEatable eatable)
+        {
+            workTracer.AddToil(new EatWork(this, eatable));
+            return this;
         }
 
         public void Sleep()

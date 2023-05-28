@@ -10,6 +10,7 @@ namespace LittleWorld
     public interface IToil
     {
         bool isDone { get; }
+        string toilName { get; }
         bool ToilTick();
         void ToilStart();
     }
@@ -22,8 +23,9 @@ namespace LittleWorld
         public WorkStatus CurStatus = WorkStatus.NoWork;
         public int curFinishedAmount;
         public int workTotalAmount;
+        public IToil curToil => _curToil;
 
-        private IToil curToil;
+        private IToil _curToil;
 
         public WorkTracer(Animal pawn)
         {
@@ -54,7 +56,7 @@ namespace LittleWorld
 
         public void StartToil()
         {
-            curToil = toils.Dequeue();
+            _curToil = toils.Dequeue();
         }
 
         public bool AddWork(WorkBT singleWork)
@@ -98,7 +100,7 @@ namespace LittleWorld
             CheckOldWork();
             if (curToil == null)
             {
-                toils.TryDequeue(out curToil);
+                toils.TryDequeue(out _curToil);
                 if (curToil != null)
                 {
                     curToil.ToilStart();
@@ -108,7 +110,7 @@ namespace LittleWorld
 
             if (curToil != null && curToil.ToilTick())
             {
-                curToil = null;
+                _curToil = null;
             }
         }
 

@@ -14,6 +14,7 @@ namespace LittleWorld.UI
         [SerializeField] protected Slider sleepSlider;
         [SerializeField] protected Text ageText;
         [SerializeField] protected Text posText;
+        [SerializeField] protected Text actionText;
 
         private Animal animalWatching;
 
@@ -47,6 +48,7 @@ namespace LittleWorld.UI
             sleepSlider.value = animal.SleepPercent;
             UpdateAge(animal.Age);
             this.posText.text = animal.GridPos.ToString();
+            this.actionText.text = animal.curToilName;
         }
 
         public void UpdateAge(Age age)

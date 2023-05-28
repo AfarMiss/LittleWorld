@@ -13,6 +13,7 @@ namespace LittleWorld.Jobs
     {
         public Animal animal;
         public Vector2Int target;
+        public string toilName => $"正在睡眠";
 
         public SleepWork(Animal animal, Vector2Int target)
         {
@@ -37,6 +38,7 @@ namespace LittleWorld.Jobs
     {
         public Animal animal;
         public IEatable eatable;
+        public string toilName => $"正在吃{eatable.itemName}";
 
         public EatWork(Animal animal, IEatable eatable)
         {
