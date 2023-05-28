@@ -59,7 +59,7 @@ namespace LittleWorld
 
         public void Eat(IEatable eatable)
         {
-            TimerManager.Instance.RegisterTimer(new Timer(2f, () =>
+            TimerManager.Instance.RegisterTimer(new Timer(2f, null, () =>
             {
                 this.curHunger = Math.Min(this.curHunger + eatable.nutrition, maxHunger);
             }, () =>

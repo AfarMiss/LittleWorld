@@ -19,7 +19,6 @@ namespace LittleWorld.Item
     public class Humanbeing : Animal
     {
         public List<WorldObject> Inventory = new List<WorldObject>();
-        public GearTracer gearTracer;
 
         public bool CarrySingle(WorldObject wo, Vector2Int destination)
         {
@@ -142,6 +141,11 @@ namespace LittleWorld.Item
         public void AddFireWork(Animal animal)
         {
             workTracer.AddWork(new HuntWork(this, animal));
+        }
+
+        public void AddAttackToil(WorldObject target)
+        {
+            workTracer.AddToil(new AttackWork(this, target));
         }
 
         public void FireAt(Animal animal)

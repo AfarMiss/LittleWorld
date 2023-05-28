@@ -38,28 +38,16 @@ namespace LittleWorld.Item
 
         public void Attack(WorldObject target)
         {
-            if (!isAiming)
+            TimerManager.Instance.RegisterTimer(new Timer(WeaponInfo.rangedCooldown, () =>
             {
                 Debug.LogWarning("开始攻击!");
-                curCooldown = this.WeaponInfo.rangedCooldown;
                 isAiming = true;
                 this.target = target;
-            }
-        }
+            },
+            TryFire,
+            null,
+            Owner.instanceID));
 
-        public override void Tick()
-        {
-            base.Tick();
-            if (isAiming)
-            {
-                curCooldown -= GameSetting.TickTime;
-            }
-            else
-            {
-                curCooldown = this.WeaponInfo.rangedCooldown;
-            }
-            finishCooldown = curCooldown <= 0;
-            TryFire();
         }
 
         private void TryFire()

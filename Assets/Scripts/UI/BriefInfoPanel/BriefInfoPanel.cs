@@ -141,6 +141,11 @@ namespace LittleWorld.UI
                     {
                         CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ReadyToFire));
                     });
+                    var command5 = AddCommand("攻击", null);
+                    command2.BindCommand(() =>
+                    {
+                        CommandCenter.Instance.Enqueue(new ChangeMouseStateCommand(MouseState.ReadyToFire));
+                    });
                 }
             }
         }

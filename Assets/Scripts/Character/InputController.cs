@@ -344,7 +344,7 @@ public class InputController : MonoSingleton<InputController>
             {
                 if (item is Animal animal)
                 {
-                    selectedSingleHuman.AddFireWork(animal);
+                    selectedSingleHuman.AddAttackToil(animal);
                 }
             }
         }

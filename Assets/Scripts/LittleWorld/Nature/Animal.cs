@@ -13,6 +13,7 @@ namespace LittleWorld.Item
 {
     public class Animal : Living
     {
+        public GearTracer gearTracer;
         protected PathTracer pathTracer;
         protected AnimalInfo animalInfo;
         protected WorkTracer workTracer;
@@ -48,6 +49,7 @@ namespace LittleWorld.Item
             workTracer = new NonAggressiveWorkTracer(this);
             healthTracer = new HealthTracer(100, 0.9f, 1f, age, this);
             pathTracer = new PathTracer(this);
+            gearTracer = new GearTracer(this);
 
             this.workTracer.OnEnable();
             this.healthTracer.OnEnable();

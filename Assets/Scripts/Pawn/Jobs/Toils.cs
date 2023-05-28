@@ -58,4 +58,29 @@ namespace LittleWorld.Jobs
             return !animal.isEating;
         }
     }
+
+    public class AttackWork : IToil
+    {
+        public Animal animal;
+        public WorldObject target;
+        public string toilName => $"正在攻击{target.ItemName}";
+
+        public AttackWork(Animal animal, WorldObject wo)
+        {
+            this.animal = animal;
+            this.target = wo;
+        }
+
+        public bool isDone => !animal.isEating;
+
+        public void ToilStart()
+        {
+            animal.fire(eatable);
+        }
+
+        public bool ToilTick()
+        {
+            return !animal.isEating;
+        }
+    }
 }

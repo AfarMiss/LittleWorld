@@ -12,6 +12,7 @@ namespace LittleWorld
         public bool isDone;
         public Action OnComplete;
         public Action OnUpdate;
+        public Action OnStart;
 
         private float _startTime;
         private float _lastUpdateTime;
@@ -25,15 +26,17 @@ namespace LittleWorld
         /// <param name="onComplete"></param>
         /// <param name="onUpdate"></param>
         /// <param name="ownerId"></param>
-        public Timer(float duration, Action onComplete, Action onUpdate, int ownerId = -1)
+        public Timer(float duration, Action OnStart, Action onComplete, Action onUpdate, int ownerId = -1)
         {
             this.owner = ownerId;
             this.duration = duration;
             OnComplete = onComplete;
             OnUpdate = onUpdate;
+            this.OnStart = OnStart;
             _startTime = GetWorldTime();
             this._endTime = _startTime + duration;
             isDone = false;
+            this.OnStart?.Invoke();
         }
 
         public void Tick()

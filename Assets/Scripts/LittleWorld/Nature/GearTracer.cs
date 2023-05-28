@@ -10,7 +10,7 @@ namespace LittleWorld
     {
         public Weapon curWeapon;
         public IEnumerable<WorldObject> worldObjects;
-        public Humanbeing Humanbeing;
+        public Animal Humanbeing;
 
         public void AddEquip(Weapon weapon)
         {
@@ -25,7 +25,7 @@ namespace LittleWorld
             curWeapon.Attack(animal);
         }
 
-        public GearTracer(Humanbeing humanbeing)
+        public GearTracer(Animal humanbeing)
         {
             this.Humanbeing = humanbeing;
         }
