@@ -9,6 +9,7 @@ namespace LittleWorld.Item
         bool eatable { get; }
         float nutrition { get; }
         string itemName { get; }
+        float eatDuration { get; }
     }
 
     public interface ISleepable

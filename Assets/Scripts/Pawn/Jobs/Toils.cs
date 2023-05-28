@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static AI.MoveLeaf;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace LittleWorld.Jobs
 {
@@ -29,6 +30,30 @@ namespace LittleWorld.Jobs
         public bool ToilTick()
         {
             return !animal.isSleeping;
+        }
+    }
+
+    public class EatWork : IToil
+    {
+        public Animal animal;
+        public IEatable eatable;
+
+        public EatWork(Animal animal, IEatable eatable)
+        {
+            this.animal = animal;
+            this.eatable = eatable;
+        }
+
+        public bool isDone => !animal.isEating;
+
+        public void ToilStart()
+        {
+            animal.Eat(eatable);
+        }
+
+        public bool ToilTick()
+        {
+            return !animal.isEating;
         }
     }
 }

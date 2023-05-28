@@ -24,6 +24,8 @@ namespace LittleWorld.Item
 
         public string itemName => ItemName;
 
+        public float eatDuration => 2f;
+
         public Living(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
             this.EventRegister<GameTime>(EventName.GAME_TICK, OnGameTick);

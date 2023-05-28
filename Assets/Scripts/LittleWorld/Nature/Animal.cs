@@ -39,6 +39,8 @@ namespace LittleWorld.Item
         /// 注册被伤害时事件
         /// </summary>
         public Action OnBeHurt;
+        [SerializeField]
+        protected bool isEating;
 
         public Animal(int itemCode, Age age, Vector2Int gridPos) : base(itemCode, gridPos)
         {
@@ -66,6 +68,11 @@ namespace LittleWorld.Item
         public void WakeUp()
         {
             healthTracer.isSleeping = false;
+        }
+
+        public void Eat(IEatable eatable)
+        {
+            healthTracer.Eat(eatable);
         }
 
         public override Sprite GetCurrentSprite()

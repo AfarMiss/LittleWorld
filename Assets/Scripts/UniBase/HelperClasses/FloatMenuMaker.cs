@@ -111,7 +111,7 @@ namespace LittleWorld.UI
 
         }
 
-        private static List<FloatOption> AddEatableFloatMenu(Humanbeing human, IEatable eatable)
+        private static List<FloatOption> AddEatableFloatMenu(Humanbeing human, IEatable eatable, Vector2Int targetPos)
         {
             if (eatable == null || !eatable.eatable) { return null; }
             List<FloatOption> contentList = new List<FloatOption>
@@ -119,7 +119,7 @@ namespace LittleWorld.UI
             new FloatOption($"吃{eatable.itemName}", () =>
             {
                 //增加饥饿值。
-                human.Eat(eatable);
+                human.GoToLocToil(targetPos). Eat(eatable);
             })
             };
             return contentList;
