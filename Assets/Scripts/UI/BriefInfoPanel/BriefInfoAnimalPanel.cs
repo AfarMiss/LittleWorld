@@ -67,9 +67,9 @@ namespace LittleWorld.UI
 
         private void OnLivingBeHurt(DamageInfo arg0)
         {
-            if (animalWatching == arg0.animal)
+            if (animalWatching == arg0.target)
             {
-                this.hpSlider.value = arg0.animal.HpPercent;
+                this.hpSlider.value = arg0.target.HpPercent;
             }
         }
 

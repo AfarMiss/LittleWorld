@@ -20,7 +20,7 @@ namespace LittleWorld
             this.EventTrigger(EventName.UPDATE_WEAPON, weapon);
         }
 
-        internal void TryFireAt(Animal animal)
+        internal void Attack(WorldObject animal)
         {
             curWeapon.Attack(animal);
         }

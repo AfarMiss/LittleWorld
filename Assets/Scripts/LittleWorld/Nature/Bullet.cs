@@ -9,8 +9,8 @@ namespace LittleWorld.Item
     {
         public class DamageInfo
         {
-            public Animal animal;
-            public Humanbeing humanbeing;
+            public Animal target;
+            public Humanbeing hunter;
         }
 
         private Vector3 dir;
@@ -19,7 +19,7 @@ namespace LittleWorld.Item
         private float runtime = -1;
         private float curRuntime = 0;
         private float damage;
-        private Humanbeing owner;
+        private Animal owner;
         private void FixedUpdate()
         {
             curRuntime += Time.fixedDeltaTime;
@@ -43,7 +43,7 @@ namespace LittleWorld.Item
             }
         }
 
-        public void Init(Vector3 targetPos, Vector3 originalPos, float speed, float damage, Humanbeing owner)
+        public void Init(Vector3 targetPos, Vector3 originalPos, float speed, float damage, Animal owner)
         {
             this.targetPos = targetPos;
             var disatance = targetPos - originalPos;

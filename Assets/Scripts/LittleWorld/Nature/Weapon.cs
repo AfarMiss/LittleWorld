@@ -7,21 +7,19 @@ namespace LittleWorld.Item
     {
         public WeaponInfo WeaponInfo;
         public bool finishCooldown = false;
-        public float curCooldown;
         public bool isAiming = false;
         public WorldObject target;
-        public Humanbeing Owner;
+        public Animal Owner;
         public Weapon(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
             if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var weaponInfo))
             {
                 this.WeaponInfo = weaponInfo as WeaponInfo;
                 ItemName = weaponInfo.itemName;
-                curCooldown = this.WeaponInfo.rangedCooldown;
             }
         }
 
-        public void OnEquip(Humanbeing owner)
+        public void OnEquip(Animal owner)
         {
             this.Owner = owner;
         }
@@ -54,32 +52,24 @@ namespace LittleWorld.Item
         {
             if (!WeaponInfo.isMelee)
             {
-                if (isAiming && finishCooldown)
-                {
-                    var bullet = ObjectPoolManager.Instance.GetNextObject(PoolEnum.Bullet.ToString());
-                    bullet.transform.position = carriedParent.GridPos.To3();
-                    bullet.GetComponent<Bullet>().Init(
-                        target.GridPos.To3(),
-                        carriedParent.GridPos.To3(),
-                        WeaponInfo.fireRate,
-                        WeaponInfo.meleeDamage,
-                        this.Owner
-                        );
-                    curCooldown = this.WeaponInfo.rangedCooldown;
-                    isAiming = false;
-                    target = null;
-                }
+                var bullet = ObjectPoolManager.Instance.GetNextObject(PoolEnum.Bullet.ToString());
+                bullet.transform.position = carriedParent.GridPos.To3();
+                bullet.GetComponent<Bullet>().Init(
+                    target.GridPos.To3(),
+                    carriedParent.GridPos.To3(),
+                    WeaponInfo.fireRate,
+                    WeaponInfo.meleeDamage,
+                    this.Owner
+                    );
+                StopFire();
             }
         }
 
         public void StopFire()
         {
-            if (isAiming)
-            {
-                isAiming = false;
-                curCooldown = this.WeaponInfo.rangedCooldown;
-                this.target = null;
-            }
+
+            isAiming = false;
+            this.target = null;
         }
     }
 }

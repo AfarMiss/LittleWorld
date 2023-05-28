@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LittleWorld
 {
-    public class AudioManagerPro
+    public class AudioManagerPro : MonoBehaviour
     {
 
     }

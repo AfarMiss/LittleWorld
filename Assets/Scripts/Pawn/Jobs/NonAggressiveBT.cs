@@ -82,10 +82,10 @@ namespace AI
 
         private void OnBeHurt(DamageInfo arg0)
         {
-            if (arg0.animal == animal)
+            if (arg0.target == animal)
             {
-                tree.Blackboard.SetVariable("damageSource", arg0.humanbeing.GridPos);
-                damageSource = arg0.humanbeing.GridPos;
+                tree.Blackboard.SetVariable("damageSource", arg0.hunter.GridPos);
+                damageSource = arg0.hunter.GridPos;
                 isHurt = true;
                 fleeSequence.Priority = 1;
             }

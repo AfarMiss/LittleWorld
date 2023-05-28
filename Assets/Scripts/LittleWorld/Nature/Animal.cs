@@ -124,8 +124,8 @@ namespace LittleWorld.Item
             OnBeHurt?.Invoke();
             EventCenter.Instance.Trigger(EventName.LIVING_BE_HURT, new DamageInfo
             {
-                animal = this,
-                humanbeing = damageSource as Humanbeing,
+                target = this,
+                hunter = damageSource as Humanbeing,
             });
         }
 
@@ -137,6 +137,16 @@ namespace LittleWorld.Item
         public void ShowPath()
         {
             pathTracer.ShowPath();
+        }
+
+        public void AddAttackToil(WorldObject target)
+        {
+            workTracer.AddToil(new AttackWork(this, target));
+        }
+
+        public void Attack(WorldObject animal)
+        {
+            gearTracer.Attack(animal);
         }
 
         public void HidePath()

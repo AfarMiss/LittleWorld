@@ -64,7 +64,7 @@ namespace LittleWorld.Jobs
 
         private Node.Status Fire(Vector2Int destination, Humanbeing human)
         {
-            human.FireAt(target);
+            human.Attack(target);
             return Node.Status.Success;
         }
 

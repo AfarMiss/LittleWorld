@@ -100,7 +100,6 @@ namespace LittleWorld.Item
         public Humanbeing(int itemCode, Age age, Vector2Int gridPos) : base(itemCode, age, gridPos)
         {
             workTracer = new PawnWorkTracer(this);
-            gearTracer = new GearTracer(this);
         }
 
         public void AddHarvestWork(PlantMapSection section, int plantCode)
@@ -138,19 +137,13 @@ namespace LittleWorld.Item
             workTracer.AddWork(new EquipWork(weapon, this));
         }
 
-        public void AddFireWork(Animal animal)
+        /// <summary>
+        /// 狩猎工作，之后AI可以参考
+        /// </summary>
+        /// <param name="animal"></param>
+        public void AddHuntWork(Animal animal)
         {
             workTracer.AddWork(new HuntWork(this, animal));
-        }
-
-        public void AddAttackToil(WorldObject target)
-        {
-            workTracer.AddToil(new AttackWork(this, target));
-        }
-
-        public void FireAt(Animal animal)
-        {
-            gearTracer.TryFireAt(animal);
         }
 
         public void AddEquip(Weapon weapon, Vector2Int destination)

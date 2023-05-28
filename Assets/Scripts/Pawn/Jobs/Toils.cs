@@ -71,16 +71,26 @@ namespace LittleWorld.Jobs
             this.target = wo;
         }
 
-        public bool isDone => !animal.isEating;
+        public bool isDone
+        {
+            get
+            {
+                if (target is Animal animal)
+                {
+                    return animal.IsDead;
+                }
+                return target.isDestroyed;
+            }
+        }
 
         public void ToilStart()
         {
-            animal.fire(eatable);
+            animal.Attack(target);
         }
 
         public bool ToilTick()
         {
-            return !animal.isEating;
+            return isDone;
         }
     }
 }
