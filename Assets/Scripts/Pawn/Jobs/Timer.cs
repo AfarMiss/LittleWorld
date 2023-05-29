@@ -13,6 +13,8 @@ namespace LittleWorld
         public Action OnComplete;
         public Action OnUpdate;
         public Action OnStart;
+        public ETimerType timerType;
+        public string timerName;
 
         private float _startTime;
         private float _lastUpdateTime;
@@ -26,7 +28,7 @@ namespace LittleWorld
         /// <param name="onComplete"></param>
         /// <param name="onUpdate"></param>
         /// <param name="ownerId"></param>
-        public Timer(float duration, Action OnStart, Action onComplete, Action onUpdate, int ownerId = -1)
+        public Timer(string timerName, float duration, Action OnStart, Action onComplete, Action onUpdate, ETimerType timerType, int ownerId = -1)
         {
             this.owner = ownerId;
             this.duration = duration;
@@ -37,6 +39,8 @@ namespace LittleWorld
             this._endTime = _startTime + duration;
             isDone = false;
             this.OnStart?.Invoke();
+            this.timerType = timerType;
+            this.timerName = timerName;
         }
 
         public void Tick()
@@ -65,5 +69,17 @@ namespace LittleWorld
         {
             return this.GetWorldTime() - this._lastUpdateTime;
         }
+    }
+
+    public enum ETimerType
+    {
+        /// <summary>
+        /// 持续性计时，如果立刻要去做新的工作，则该计时器会被打断。
+        /// </summary>
+        Continous,
+        /// <summary>
+        /// 一次性计时，如果立刻要去做新的工作，该计时器继续计时，不会被打断。
+        /// </summary>
+        Once,
     }
 }

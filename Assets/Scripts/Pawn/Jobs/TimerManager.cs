@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -51,6 +52,32 @@ namespace LittleWorld
                 if (timers.Contains(timer))
                 {
                     timers.Remove(timer);
+                }
+            }
+        }
+
+        public void UnregisterTimer(int instanceID, string timerName)
+        {
+            if (timerDic.TryGetValue(instanceID, out var timers))
+            {
+                var curTimer = timers.Find(t => t.timerName == timerName);
+                if (curTimer != null)
+                {
+                    timers.Remove(curTimer);
+                }
+            }
+        }
+
+        public void UnregisterTimer(int instanceID, ETimerType timerType)
+        {
+            if (timerDic.TryGetValue(instanceID, out var timers))
+            {
+                foreach (var item in timers)
+                {
+                    if (item.timerType == timerType)
+                    {
+                        timers.Remove(item);
+                    }
                 }
             }
         }

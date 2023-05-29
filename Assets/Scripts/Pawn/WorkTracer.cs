@@ -13,6 +13,8 @@ namespace LittleWorld
         string toilName { get; }
         bool ToilTick();
         void ToilStart();
+
+        void ToilCancel();
     }
 
     public class WorkTracer : TracerBase
@@ -51,6 +53,13 @@ namespace LittleWorld
         public AI.Node.Status curTreeStatus;
         public void AddToil(IToil toil)
         {
+            if (!Current.IsAdditionalMode)
+            {
+                foreach (var item in toils)
+                {
+                    item.ToilCancel();
+                }
+            }
             toils.Enqueue(toil);
         }
 

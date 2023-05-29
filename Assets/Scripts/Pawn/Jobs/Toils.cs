@@ -32,6 +32,11 @@ namespace LittleWorld.Jobs
         {
             return !animal.isSleeping;
         }
+
+        public void ToilCancel()
+        {
+            animal.WakeUp();
+        }
     }
 
     public class EatWork : IToil
@@ -56,6 +61,11 @@ namespace LittleWorld.Jobs
         public bool ToilTick()
         {
             return !animal.isEating;
+        }
+
+        public void ToilCancel()
+        {
+            animal.UnEat();
         }
     }
 
@@ -91,6 +101,11 @@ namespace LittleWorld.Jobs
         public bool ToilTick()
         {
             return isDone;
+        }
+
+        public void ToilCancel()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

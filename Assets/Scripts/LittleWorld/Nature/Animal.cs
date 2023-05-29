@@ -83,6 +83,11 @@ namespace LittleWorld.Item
             healthTracer.Eat(eatable);
         }
 
+        public void UnEat()
+        {
+            TimerManager.Instance.UnregisterTimer(this.instanceID, TimerName.EAT);
+        }
+
         public override Sprite GetCurrentSprite()
         {
             return animalInfo.ItemSprites[0];

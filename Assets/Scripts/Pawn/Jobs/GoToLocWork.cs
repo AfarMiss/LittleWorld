@@ -37,6 +37,11 @@ namespace LittleWorld.Jobs
         public void ToilStart()
         {
         }
+
+        public void ToilCancel()
+        {
+
+        }
     }
 
 }

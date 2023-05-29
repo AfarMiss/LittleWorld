@@ -59,13 +59,18 @@ namespace LittleWorld
 
         public void Eat(IEatable eatable)
         {
-            TimerManager.Instance.RegisterTimer(new Timer(2f, null, () =>
+            TimerManager.Instance.RegisterTimer(new Timer(TimerName.EAT, 2f, () =>
+            {
+                isEating = true;
+            }, () =>
             {
                 this.curHunger = Math.Min(this.curHunger + eatable.nutrition, maxHunger);
             }, () =>
             {
-
-            }, this._animal.instanceID));
+                isEating = false;
+            },
+            ETimerType.Continous,
+            this._animal.instanceID));
         }
 
         public bool isDead => curHealth <= 0 || curHunger <= 0 || curSleep <= 0;

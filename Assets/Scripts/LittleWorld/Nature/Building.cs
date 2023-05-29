@@ -16,7 +16,7 @@ namespace LittleWorld.Item
         public Dictionary<int, int> curBuildingContain;
         public bool canStartBuild => GetRawMaterialNeedYet()?.Count == 0;
 
-        public bool isSleepable => this.buildingInfo.canSleep;
+        public bool isSleepable => this.buildingInfo.canSleep && buildingStatus == BuildingStatus.Done;
 
         public string itemName => ItemName;
 

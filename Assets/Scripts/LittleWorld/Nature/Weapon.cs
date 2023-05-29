@@ -36,7 +36,7 @@ namespace LittleWorld.Item
 
         public void Attack(WorldObject target)
         {
-            TimerManager.Instance.RegisterTimer(new Timer(WeaponInfo.rangedCooldown, () =>
+            TimerManager.Instance.RegisterTimer(new Timer(TimerName.ATTACK, WeaponInfo.rangedCooldown, () =>
             {
                 Debug.LogWarning("开始攻击!");
                 isAiming = true;
@@ -44,8 +44,14 @@ namespace LittleWorld.Item
             },
             TryFire,
             null,
+            ETimerType.Continous,
             Owner.instanceID));
+        }
 
+        public void CancelAttack()
+        {
+            TimerManager.Instance.UnregisterTimer(Owner.instanceID, TimerName.ATTACK);
+            StopFire();
         }
 
         private void TryFire()
