@@ -25,6 +25,11 @@ namespace LittleWorld
             curWeapon.Attack(animal);
         }
 
+        public void CancelAttack()
+        {
+            curWeapon.CancelAttack();
+        }
+
         public GearTracer(Animal humanbeing)
         {
             this.Humanbeing = humanbeing;

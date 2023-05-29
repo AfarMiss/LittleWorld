@@ -154,6 +154,11 @@ namespace LittleWorld.Item
             gearTracer.Attack(animal);
         }
 
+        public void CancelAttack()
+        {
+            gearTracer.CancelAttack();
+        }
+
         public void HidePath()
         {
             pathTracer.HidePath();

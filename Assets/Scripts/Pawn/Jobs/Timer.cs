@@ -43,6 +43,11 @@ namespace LittleWorld
             this.timerName = timerName;
         }
 
+        public void Dispose()
+        {
+
+        }
+
         public void Tick()
         {
             OnUpdate?.Invoke();

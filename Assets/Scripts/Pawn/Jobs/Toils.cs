@@ -105,7 +105,7 @@ namespace LittleWorld.Jobs
 
         public void ToilCancel()
         {
-            throw new System.NotImplementedException();
+            animal.CancelAttack();
         }
     }
 }
