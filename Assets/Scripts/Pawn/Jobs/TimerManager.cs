@@ -20,6 +20,23 @@ namespace LittleWorld
             timerDic = new Dictionary<int, List<Timer>>();
         }
 
+        private int GetTimersCout(int instanceID)
+        {
+            var curOwner = timerDic.TryGetValue(instanceID, out var timers);
+            if (timers == null) { return 0; }
+            return timers.Count;
+        }
+
+        private int GetAllTimersCout()
+        {
+            var result = 0;
+            foreach (var item in timerDic)
+            {
+                result += item.Value.Count;
+            }
+            return result;
+        }
+
         public override void Tick()
         {
             base.Tick();
@@ -31,6 +48,7 @@ namespace LittleWorld
                 }
                 timerList.Value.RemoveAll(t => t.isDone);
             }
+            Debug.Log($"正在计时的计时器个数:{GetAllTimersCout()}");
         }
 
         public void RegisterTimer(Timer timer)

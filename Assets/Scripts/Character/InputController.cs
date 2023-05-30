@@ -153,6 +153,7 @@ public class InputController : MonoSingleton<InputController>
                 for (int i = 0; i < selectedObjects.Count; i++)
                 {
                     var human = SceneObjectManager.Instance.GetWorldObjectById(selectedObjects[0].instanceID);
+                    (human as Animal).TryCleanWork();
                     AddMoveWork(human, curPos);
                 }
             }
@@ -164,6 +165,7 @@ public class InputController : MonoSingleton<InputController>
                 FloatOption[] opts = FloatMenuMaker.MakeFloatMenuAt(selectedSingleHuman as Humanbeing, Current.MousePos);
                 if (opts.Length == 0)
                 {
+                    selectedSingleHuman.TryCleanWork();
                     AddMoveWork(selectedSingleHuman, curPos);
                 }
             }
@@ -182,7 +184,9 @@ public class InputController : MonoSingleton<InputController>
 
     private void AddMoveWork(WorldObject human, Vector3 targetPos)
     {
-        (human as Humanbeing).AddMoveWork(targetPos.ToCell());
+        Humanbeing humanbeing = (human as Humanbeing);
+        humanbeing.AddMoveWork(targetPos.ToCell());
+        humanbeing.GoToLocToil(targetPos.ToCell().To2());
     }
 
     public void OnClickSetting(CallbackContext callbackContext)

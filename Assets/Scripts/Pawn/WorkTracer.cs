@@ -51,7 +51,8 @@ namespace LittleWorld
         public Animal animal;
         private WorkBT curWork;
         public AI.Node.Status curTreeStatus;
-        public void AddToil(IToil toil)
+
+        public void TryClean()
         {
             if (!Current.IsAdditionalMode)
             {
@@ -60,6 +61,13 @@ namespace LittleWorld
                     item.ToilCancel();
                 }
             }
+            _curToil.ToilCancel();
+            _curToil = null;
+            toils.Clear();
+        }
+
+        public void AddToil(IToil toil)
+        {
             toils.Enqueue(toil);
         }
 

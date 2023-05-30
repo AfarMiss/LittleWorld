@@ -120,6 +120,7 @@ namespace LittleWorld.UI
             new FloatOption($"吃{eatable.itemName}", () =>
             {
                 //增加饥饿值。
+                human.TryCleanWork();
                 human.GoToLocToil(targetPos). EatToil(eatable);
             })
             };
@@ -135,6 +136,7 @@ namespace LittleWorld.UI
             new FloatOption($"睡{sleepable.itemName}", () =>
             {
                 //睡眠
+                human.TryCleanWork();
                 human.GoToLocToil(targetPos).SleepToil(targetPos);
             })
             };

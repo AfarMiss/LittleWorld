@@ -62,6 +62,11 @@ namespace LittleWorld.Item
             return this;
         }
 
+        public void TryCleanWork()
+        {
+            this.workTracer.TryClean();
+        }
+
         public Animal EatToil(IEatable eatable)
         {
             workTracer.AddToil(new EatWork(this, eatable));
