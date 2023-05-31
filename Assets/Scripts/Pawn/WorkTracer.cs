@@ -97,6 +97,8 @@ namespace LittleWorld
         public bool AddWorkForce(WorkBT singleWork)
         {
             curWork?.OnAbort();
+            curWork = null;
+            workQueue.Clear();
             workQueue.Enqueue(singleWork);
             return true;
         }
