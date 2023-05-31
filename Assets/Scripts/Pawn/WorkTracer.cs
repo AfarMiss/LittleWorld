@@ -61,7 +61,7 @@ namespace LittleWorld
                     item.ToilCancel();
                 }
             }
-            _curToil.ToilCancel();
+            _curToil?.ToilCancel();
             _curToil = null;
             toils.Clear();
         }

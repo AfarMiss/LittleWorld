@@ -65,12 +65,10 @@ namespace LittleWorld
             }, () =>
             {
                 this.curHunger = Math.Min(this.curHunger + eatable.nutrition, maxHunger);
-            }, () =>
-            {
                 isEating = false;
-            },
+            }, null,
             ETimerType.Continous,
-            this._animal.instanceID));
+            this._animal.instanceID)); ;
         }
 
         public bool isDead => curHealth <= 0 || curHunger <= 0 || curSleep <= 0;
