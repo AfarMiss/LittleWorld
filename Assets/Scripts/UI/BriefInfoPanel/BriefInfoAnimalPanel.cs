@@ -12,6 +12,7 @@ namespace LittleWorld.UI
         [SerializeField] protected Slider hpSlider;
         [SerializeField] protected Slider hungerSlider;
         [SerializeField] protected Slider sleepSlider;
+        [SerializeField] protected Slider thirstySlider;
         [SerializeField] protected Text ageText;
         [SerializeField] protected Text posText;
         [SerializeField] protected Text actionText;
@@ -46,6 +47,7 @@ namespace LittleWorld.UI
             hpSlider.value = animal.HpPercent;
             hungerSlider.value = animal.HungerPercent;
             sleepSlider.value = animal.SleepPercent;
+            thirstySlider.value = animal.ThirstyPercent;
             UpdateAge(animal.Age);
             this.posText.text = animal.GridPos.ToString();
             this.actionText.text = animal.curToilName;

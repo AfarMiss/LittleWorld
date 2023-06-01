@@ -14,7 +14,9 @@ namespace LittleWorld
         public float maxHealth;
         public float curHunger;
         public float maxHunger;
+        public float maxThirsty;
         public float curSleep;
+        public float curThirsty;
         public float maxSleep;
         public bool isSleeping = false;
         public bool isEating = false;
@@ -23,12 +25,14 @@ namespace LittleWorld
 
         private Animal _animal;
 
-        public HealthTracer(float maxHealth, float maxHunger, float maxSleep, Age age, Animal animal)
+        public HealthTracer(float maxHealth, float maxHunger, float maxThirsty, float maxSleep, Age age, Animal animal)
         {
             this.maxHealth = maxHealth;
             this.curHealth = maxHealth;
             this.maxHunger = maxHunger;
             this.curHunger = maxHunger;
+            this.maxThirsty = maxThirsty;
+            this.curThirsty = maxThirsty;
             this.maxSleep = maxSleep;
             this.curSleep = maxSleep;
             this._animal = animal;
@@ -39,6 +43,7 @@ namespace LittleWorld
         {
             this.age.Tick();
             this.curHunger -= 0.0002f;
+            this.curThirsty -= 0.0002f;
             this.curSleep = isSleeping ? Math.Min(curSleep + 0.0006f, maxSleep) : curSleep - 0.0002f;
             EventCenter.Instance.Trigger<Animal>(EventName.UPDATE_LIVING_STATE, this._animal);
 
@@ -71,7 +76,7 @@ namespace LittleWorld
             this._animal.instanceID)); ;
         }
 
-        public bool isDead => curHealth <= 0 || curHunger <= 0 || curSleep <= 0;
+        public bool isDead => curHealth <= 0 || curHunger <= 0 || curSleep <= 0 || curThirsty <= 0;
 
         public struct Age
         {

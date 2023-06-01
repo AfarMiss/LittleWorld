@@ -33,6 +33,7 @@ namespace LittleWorld.Item
         public float CurHunger => healthTracer.curHealth;
         public float HungerPercent => healthTracer.curHunger / healthTracer.maxHunger;
         public float SleepPercent => healthTracer.curSleep / healthTracer.maxSleep;
+        public float ThirstyPercent => healthTracer.curThirsty / healthTracer.maxThirsty;
 
         public PathTracer PathTracer { get => pathTracer; }
         private bool deadFlag => this.healthTracer != null && this.healthTracer.deadFlag;
@@ -47,7 +48,7 @@ namespace LittleWorld.Item
         {
             animalInfo = ObjectConfig.ObjectInfoDic[itemCode] as AnimalInfo;
             workTracer = new NonAggressiveWorkTracer(this);
-            healthTracer = new HealthTracer(100, 0.9f, 1f, age, this);
+            healthTracer = new HealthTracer(100, 1f, 1f, 1f, age, this);
             pathTracer = new PathTracer(this);
             gearTracer = new GearTracer(this);
 
