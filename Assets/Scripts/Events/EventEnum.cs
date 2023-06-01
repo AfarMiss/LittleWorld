@@ -86,5 +86,6 @@ public class TimerName
 {
     internal static readonly string EAT = "进食";
     internal static readonly string ATTACK = "攻击";
+    internal static readonly string DRINK = "饮水";
 
 }

@@ -39,6 +39,36 @@ namespace LittleWorld.Jobs
         }
     }
 
+    public class DrinkWork : IToil
+    {
+        public Animal animal;
+        public IDrinkable drinkable;
+        public string toilName => $"正在喝{drinkable.itemName}";
+
+        public DrinkWork(Animal animal, IDrinkable drinkable)
+        {
+            this.animal = animal;
+            this.drinkable = drinkable;
+        }
+
+        public bool isDone => !animal.isDrinking;
+
+        public void ToilStart()
+        {
+            animal.Drink(drinkable);
+        }
+
+        public bool ToilTick()
+        {
+            return !animal.isDrinking;
+        }
+
+        public void ToilCancel()
+        {
+            animal.UnDrink();
+        }
+    }
+
     public class EatWork : IToil
     {
         public Animal animal;

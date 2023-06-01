@@ -6,6 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
+
 namespace LittleWorld
 {
     public class HealthTracer : TracerBase
@@ -20,6 +22,7 @@ namespace LittleWorld
         public float maxSleep;
         public bool isSleeping = false;
         public bool isEating = false;
+        public bool isDrinking = false;
         public bool deadFlag = false;
         public Age age;
 
@@ -73,7 +76,21 @@ namespace LittleWorld
                 isEating = false;
             }, null,
             ETimerType.Continous,
-            this._animal.instanceID)); ;
+            this._animal.instanceID));
+        }
+
+        public void Drink(IDrinkable drinkable)
+        {
+            TimerManager.Instance.RegisterTimer(new Timer(TimerName.DRINK, 2f, () =>
+            {
+                isDrinking = true;
+            }, () =>
+            {
+                this.curThirsty = Math.Min(this.curThirsty + drinkable.mositure, maxThirsty);
+                isDrinking = false;
+            }, null,
+ETimerType.Continous,
+this._animal.instanceID));
         }
 
         public bool isDead => curHealth <= 0 || curHunger <= 0 || curSleep <= 0 || curThirsty <= 0;

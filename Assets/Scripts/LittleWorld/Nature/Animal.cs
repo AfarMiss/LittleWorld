@@ -43,6 +43,7 @@ namespace LittleWorld.Item
         /// </summary>
         public Action OnBeHurt;
         public bool isEating => healthTracer.isEating;
+        public bool isDrinking => healthTracer.isDrinking;
 
         public Animal(int itemCode, Age age, Vector2Int gridPos) : base(itemCode, gridPos)
         {
@@ -74,6 +75,12 @@ namespace LittleWorld.Item
             return this;
         }
 
+        public Animal DrinkToil(IDrinkable drinkable)
+        {
+            workTracer.AddToil(new DrinkWork(this, drinkable));
+            return this;
+        }
+
         public void Sleep()
         {
             this.healthTracer.isSleeping = true;
@@ -89,9 +96,19 @@ namespace LittleWorld.Item
             healthTracer.Eat(eatable);
         }
 
+        public void Drink(IDrinkable drinkable)
+        {
+            healthTracer.Drink(drinkable);
+        }
+
         public void UnEat()
         {
             TimerManager.Instance.UnregisterTimer(this.instanceID, TimerName.EAT);
+        }
+
+        public void UnDrink()
+        {
+            TimerManager.Instance.UnregisterTimer(this.instanceID, TimerName.DRINK);
         }
 
         public override Sprite GetCurrentSprite()

@@ -51,6 +51,11 @@ namespace LittleWorld.UI
                     var plantOpts = AddEatableFloatMenu(human, eatable, cellPoint);
                     AddOption(contentList, plantOpts);
                 }
+                if (worldObject is IDrinkable drinkable)
+                {
+                    var plantOpts = AddDrinkableFloatMenu(human, drinkable, cellPoint);
+                    AddOption(contentList, plantOpts);
+                }
                 if (worldObject is ISleepable sleepable)
                 {
                     var plantOpts = AddSleepFloatMenu(human, sleepable, cellPoint);
@@ -125,7 +130,21 @@ namespace LittleWorld.UI
             })
             };
             return contentList;
+        }
 
+        private static List<FloatOption> AddDrinkableFloatMenu(Humanbeing human, IDrinkable drinkable, Vector2Int targetPos)
+        {
+            if (drinkable == null) { return null; }
+            List<FloatOption> contentList = new List<FloatOption>
+            {
+            new FloatOption($"喝{drinkable.itemName}", () =>
+            {
+                //增加饮水值。
+                human.TryCleanWork();
+                human.GoToLocToil(targetPos). DrinkToil(drinkable);
+            })
+            };
+            return contentList;
         }
 
         private static List<FloatOption> AddSleepFloatMenu(Humanbeing human, ISleepable sleepable, Vector2Int targetPos)
