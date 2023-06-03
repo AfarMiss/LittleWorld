@@ -17,7 +17,6 @@ namespace LittleWorld.Item
         protected PathTracer pathTracer;
         protected AnimalInfo animalInfo;
         protected WorkTracer workTracer;
-        public float leftNutrition;
 
         public PathTracerRender RenderTracer;
         public string curToilName => workTracer.curToil != null ? workTracer.curToil.toilName : "";
@@ -57,8 +56,12 @@ namespace LittleWorld.Item
             this.workTracer.OnEnable();
             this.healthTracer.OnEnable();
             this.pathTracer.OnEnable();
+        }
 
-            leftNutrition = 1;
+        public override void OnDispose()
+        {
+            base.OnDispose();
+            ItemRender.OnDispose();
         }
 
         public Animal SleepToil(Vector2Int pos)

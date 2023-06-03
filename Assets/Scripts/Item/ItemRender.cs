@@ -93,6 +93,14 @@ public class ItemRender : MonoBehaviour, IRenderer
         this.spriteRenderer.transform.SetPositionAndRotation(this.transform.position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360)));
     }
 
+    /// <summary>
+    /// 完全消失
+    /// </summary>
+    public void OnDispose()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     private void SetPropertyOnce()
     {
 

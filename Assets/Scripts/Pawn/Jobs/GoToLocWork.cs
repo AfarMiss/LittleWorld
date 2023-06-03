@@ -47,6 +47,10 @@ namespace LittleWorld.Jobs
         {
 
         }
+
+        public void ToilOnDone()
+        {
+        }
     }
 
 }

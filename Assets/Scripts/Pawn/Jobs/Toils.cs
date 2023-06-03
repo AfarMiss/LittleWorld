@@ -36,6 +36,10 @@ namespace LittleWorld.Jobs
         {
             animal.WakeUp();
         }
+
+        public void ToilOnDone()
+        {
+        }
     }
 
     public class DrinkWork : IToil
@@ -63,6 +67,10 @@ namespace LittleWorld.Jobs
         }
 
         public void ToilTick()
+        {
+        }
+
+        public void ToilOnDone()
         {
         }
     }
@@ -93,6 +101,10 @@ namespace LittleWorld.Jobs
         public void ToilCancel()
         {
             animal.UnEat();
+        }
+
+        public void ToilOnDone()
+        {
         }
     }
 
@@ -132,6 +144,10 @@ namespace LittleWorld.Jobs
         public void ToilCancel()
         {
             animal.CancelAttack();
+        }
+
+        public void ToilOnDone()
+        {
         }
     }
 }

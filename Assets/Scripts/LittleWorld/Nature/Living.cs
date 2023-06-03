@@ -20,15 +20,35 @@ namespace LittleWorld.Item
         public bool eatable => healthTracer != null && healthTracer.isDead;
         public bool isSleeping => healthTracer.isSleeping;
 
-        public float nutrition => 0.5f;
+        private float _maxNutrition = 0.2f;
+
+        private float _leftNutrition;
 
         public string itemName => ItemName;
 
         public float eatDuration => 2f;
 
+        public float maxNutrition => _maxNutrition;
+
+        public float leftNutrition => _leftNutrition;
+
         public Living(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
             this.EventRegister<GameTime>(EventName.GAME_TICK, OnGameTick);
+            _leftNutrition = _maxNutrition;
+        }
+
+        public void BeEaten(float needNutrition)
+        {
+            if (needNutrition > _leftNutrition)
+            {
+                _leftNutrition = 0;
+                OnDispose();
+            }
+            else
+            {
+                _leftNutrition -= needNutrition;
+            }
         }
 
         private void OnGameTick(GameTime arg0)
@@ -44,6 +64,10 @@ namespace LittleWorld.Item
         protected override void OnDestroy()
         {
             base.OnDestroy();
+        }
+
+        public virtual void OnDispose()
+        {
         }
     }
 }

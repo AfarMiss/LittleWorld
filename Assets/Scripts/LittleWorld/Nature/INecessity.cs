@@ -7,9 +7,12 @@ namespace LittleWorld.Item
     public interface IEatable
     {
         bool eatable { get; }
-        float nutrition { get; }
+        float maxNutrition { get; }
+        float leftNutrition { get; }
         string itemName { get; }
         float eatDuration { get; }
+        void BeEaten(float needNutrition);
+        void OnDispose();
     }
 
     public interface IDrinkable

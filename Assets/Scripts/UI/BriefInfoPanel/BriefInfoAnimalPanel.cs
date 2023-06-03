@@ -16,7 +16,7 @@ namespace LittleWorld.UI
         [SerializeField] protected Text ageText;
         [SerializeField] protected Text posText;
         [SerializeField] protected Text actionText;
-        [SerializeField] protected Text leftNutrition;
+        [SerializeField] protected Text leftNutritionText;
 
         private Animal animalWatching;
 
@@ -52,6 +52,7 @@ namespace LittleWorld.UI
             UpdateAge(animal.Age);
             this.posText.text = animal.GridPos.ToString();
             this.actionText.text = animal.curToilName;
+            this.leftNutritionText.text = animal.leftNutrition.ToString("f2");
         }
 
         public void UpdateAge(Age age)

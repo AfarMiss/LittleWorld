@@ -129,8 +129,8 @@ namespace LittleWorld
 
             if (curToil.isDone)
             {
-                _curToil = null;
                 curToil.ToilOnDone();
+                _curToil = null;
                 return;
             }
 
