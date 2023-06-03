@@ -16,6 +16,7 @@ namespace LittleWorld.UI
         [SerializeField] protected Text ageText;
         [SerializeField] protected Text posText;
         [SerializeField] protected Text actionText;
+        [SerializeField] protected Text leftNutrition;
 
         private Animal animalWatching;
 

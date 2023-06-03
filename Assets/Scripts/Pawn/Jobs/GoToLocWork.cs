@@ -9,7 +9,13 @@ namespace LittleWorld.Jobs
 {
     public class GoToLocWork : WorkBT, IToil
     {
-        public bool isDone => _isDone;
+        public bool isDone
+        {
+            get
+            {
+                return _humanbeing == null || (_humanbeing != null && _humanbeing.GridPos == _des);
+            }
+        }
 
         public string toilName => $"正在前往:{this._des}";
 
@@ -29,9 +35,8 @@ namespace LittleWorld.Jobs
             this._des = destination;
         }
 
-        public bool ToilTick()
+        public void ToilTick()
         {
-            return (_humanbeing.GridPos == _des);
         }
 
         public void ToilStart()

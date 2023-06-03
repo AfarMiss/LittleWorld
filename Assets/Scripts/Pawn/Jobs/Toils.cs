@@ -28,9 +28,8 @@ namespace LittleWorld.Jobs
             animal.Sleep();
         }
 
-        public bool ToilTick()
+        public void ToilTick()
         {
-            return !animal.isSleeping;
         }
 
         public void ToilCancel()
@@ -58,14 +57,13 @@ namespace LittleWorld.Jobs
             animal.Drink(drinkable);
         }
 
-        public bool ToilTick()
-        {
-            return !animal.isDrinking;
-        }
-
         public void ToilCancel()
         {
             animal.UnDrink();
+        }
+
+        public void ToilTick()
+        {
         }
     }
 
@@ -88,9 +86,8 @@ namespace LittleWorld.Jobs
             animal.Eat(eatable);
         }
 
-        public bool ToilTick()
+        public void ToilTick()
         {
-            return !animal.isEating;
         }
 
         public void ToilCancel()
@@ -128,9 +125,8 @@ namespace LittleWorld.Jobs
             animal.Attack(target);
         }
 
-        public bool ToilTick()
+        public void ToilTick()
         {
-            return isDone;
         }
 
         public void ToilCancel()

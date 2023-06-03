@@ -11,10 +11,10 @@ namespace LittleWorld
     {
         bool isDone { get; }
         string toilName { get; }
-        bool ToilTick();
+        void ToilTick();
         void ToilStart();
-
         void ToilCancel();
+        void ToilOnDone();
     }
 
     public class WorkTracer : TracerBase
@@ -123,14 +123,18 @@ namespace LittleWorld
                 if (curToil != null)
                 {
                     curToil.ToilStart();
-                    return;
                 }
+                return;
             }
 
-            if (curToil != null && curToil.ToilTick())
+            if (curToil.isDone)
             {
                 _curToil = null;
+                curToil.ToilOnDone();
+                return;
             }
+
+            curToil.ToilTick();
         }
 
 
