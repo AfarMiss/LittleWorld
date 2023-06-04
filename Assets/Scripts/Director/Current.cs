@@ -1,5 +1,6 @@
 ﻿using LittleWorld.MapUtility;
 using UniBase;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace LittleWorld
@@ -31,5 +32,10 @@ namespace LittleWorld
         public static Map CurMap => MapManager.Instance.curDisplayMap;
 
         public static Game CurGame;
+
+        public static void Hint(string hintContent)
+        {
+            CurGame.Hint(hintContent);
+        }
     }
 }

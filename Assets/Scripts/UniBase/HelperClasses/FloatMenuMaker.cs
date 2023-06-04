@@ -87,7 +87,7 @@ namespace LittleWorld.UI
                 case BuildingStatus.Done:
                     contentList.Add(new FloatOption($"拆除{building.ItemName}", () =>
                     {
-                        human.AddBuildingWork(building);
+                        human.AddDeconstructWork(building);
                     }));
                     break;
                 case BuildingStatus.BluePrint:
