@@ -11,6 +11,7 @@ using static LittleWorld.HealthTracer;
 using NodeCanvas.Tasks.Actions;
 using LittleWorld;
 using FlowCanvas.Nodes;
+using DG.Tweening;
 
 public class SceneObjectManager : Singleton<SceneObjectManager>
 {
@@ -24,7 +25,10 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     private GameObject pfAnimal;
     private GameObject pfBullet;
     private GameObject pfBulletEffect;
+    private GameObject pfLandingItem;
     #endregion
+
+    public float landingDuration = 5f;
 
     public List<SceneItem> sceneItemList
     {
@@ -144,6 +148,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         ItemInstanceID = 0;
         pawnManager = PawnManager.Instance;
         pfItem = Resources.Load<GameObject>("Prefabs/Object/Item");
+        pfLandingItem = Resources.Load<GameObject>("Prefabs/Object/LandingItem");
         pfPile = Resources.Load<GameObject>("Prefabs/Object/Pile");
         pfGhost = Resources.Load<GameObject>("Prefabs/Object/Ghost");
         pfAnimal = Resources.Load<GameObject>("Prefabs/Character/Animal");
@@ -177,6 +182,17 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
     {
 
     }
+
+    public void Landing(Vector2Int landPoint)
+    {
+        GameObject itemGameObject = GameObject.Instantiate(pfLandingItem, landPoint.To3() - new Vector3(100, -200, 0), Quaternion.identity, renderParent.transform);
+        itemGameObject.name = "运输仓";
+        itemGameObject.transform.DOMove(landPoint.To3(), landingDuration).OnComplete(() =>
+        {
+            GameObject.Destroy(itemGameObject);
+        });
+    }
+
 
     private void AddRenderComponent(WorldObject wo)
     {

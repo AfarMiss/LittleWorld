@@ -1,111 +1,129 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <items infoType="Buildings">
-	<item>
-		<itemCode type="int">14001</itemCode>
-		<itemName type="string">木灶台</itemName>
-		<itemType type="string">Building</itemType>
-		<mass type="float">20</mass>
-		<buildingWorkAmount type="int">200</buildingWorkAmount>
-		<marketValue type="float">200</marketValue>
-		<maxHitPoint type="int">100</maxHitPoint>
-		<itemEngName type="string">stove</itemEngName>
-		<material type="string">混合</material>
-		<imagesPath type="string">FarmPack\assets\smelting\smelting_furnaces_metal\smelting_furnaces_metal_0</imagesPath>
-		<buildingCost type="string">木材x10,钢铁x10</buildingCost>
-		<buildingWidth type="int">1</buildingWidth>
-		<buildingLength type="int">1</buildingLength>
-		<layer type="int">1</layer>
-		<deconstructWorkAmount type="int">200</deconstructWorkAmount>
-		<canSleep type="boolean"></canSleep>
-	</item>
-	<item>
-		<itemCode type="int">14002</itemCode>
-		<itemName type="string">铁匠铺</itemName>
-		<itemType type="string">Building</itemType>
-		<mass type="float">30</mass>
-		<buildingWorkAmount type="int">200</buildingWorkAmount>
-		<marketValue type="float">250</marketValue>
-		<maxHitPoint type="int">150</maxHitPoint>
-		<itemEngName type="string">smithy</itemEngName>
-		<material type="string">钢铁</material>
-		<imagesPath type="string">FarmPack\assets\smelting\smelting_furnaces_metal\smelting_furnaces_metal_6</imagesPath>
-		<buildingCost type="string">钢铁x20</buildingCost>
-		<buildingWidth type="int">2</buildingWidth>
-		<buildingLength type="int">1</buildingLength>
-		<layer type="int">1</layer>
-		<deconstructWorkAmount type="int">200</deconstructWorkAmount>
-		<canSleep type="boolean"></canSleep>
-	</item>
-	<item>
-		<itemCode type="int">14003</itemCode>
-		<itemName type="string">墙</itemName>
-		<itemType type="string">Building</itemType>
-		<mass type="float">50</mass>
-		<buildingWorkAmount type="int">1200</buildingWorkAmount>
-		<marketValue type="float">100</marketValue>
-		<maxHitPoint type="int">500</maxHitPoint>
-		<itemEngName type="string">wall</itemEngName>
-		<material type="string">铁</material>
-		<imagesPath type="string">Assets/Resources/BuildingSystem/wall1.png,Assets/Resources/BuildingSystem/wall2.png</imagesPath>
-		<buildingCost type="string">钢铁x5</buildingCost>
-		<buildingWidth type="int">1</buildingWidth>
-		<buildingLength type="int">1</buildingLength>
-		<layer type="int">1</layer>
-		<deconstructWorkAmount type="int">1200</deconstructWorkAmount>
-		<canSleep type="boolean"></canSleep>
-	</item>
-	<item>
-		<itemCode type="int">14004</itemCode>
-		<itemName type="string">门</itemName>
-		<itemType type="string">Building</itemType>
-		<mass type="float">10</mass>
-		<buildingWorkAmount type="int">1600</buildingWorkAmount>
-		<marketValue type="float">100</marketValue>
-		<maxHitPoint type="int">400</maxHitPoint>
-		<itemEngName type="string">door</itemEngName>
-		<material type="string">木材</material>
-		<imagesPath type="string">Assets/Resources/BuildingSystem/door.png</imagesPath>
-		<buildingCost type="string">木材x25</buildingCost>
-		<buildingWidth type="int">1</buildingWidth>
-		<buildingLength type="int">1</buildingLength>
-		<layer type="int">1</layer>
-		<deconstructWorkAmount type="int">1600</deconstructWorkAmount>
-		<canSleep type="boolean"></canSleep>
-	</item>
-	<item>
-		<itemCode type="int">14005</itemCode>
-		<itemName type="string">地板</itemName>
-		<itemType type="string">Building</itemType>
-		<mass type="float">5</mass>
-		<buildingWorkAmount type="int">600</buildingWorkAmount>
-		<marketValue type="float">100</marketValue>
-		<maxHitPoint type="int">200</maxHitPoint>
-		<itemEngName type="string">floor</itemEngName>
-		<material type="string">木材</material>
-		<imagesPath type="string">Assets/Resources/BuildingSystem/Room_Builder_Floors_16x16/Room_Builder_Floors_16x16_154.png</imagesPath>
-		<buildingCost type="string">木材x3</buildingCost>
-		<buildingWidth type="int">1</buildingWidth>
-		<buildingLength type="int">1</buildingLength>
-		<layer type="int">0</layer>
-		<deconstructWorkAmount type="int">600</deconstructWorkAmount>
-		<canSleep type="boolean"></canSleep>
-	</item>
-	<item>
-		<itemCode type="int">14006</itemCode>
-		<itemName type="string">床</itemName>
-		<itemType type="string">Building</itemType>
-		<mass type="float">15</mass>
-		<buildingWorkAmount type="int">500</buildingWorkAmount>
-		<marketValue type="float">100</marketValue>
-		<maxHitPoint type="int">100</maxHitPoint>
-		<itemEngName type="string">bed</itemEngName>
-		<material type="string">木材</material>
-		<imagesPath type="string">Assets/Resources/4_Bedroom_16x16/4_Bedroom_16x16_59.png</imagesPath>
-		<buildingCost type="string">木材x45</buildingCost>
-		<buildingWidth type="int">1</buildingWidth>
-		<buildingLength type="int">2</buildingLength>
-		<layer type="int">1</layer>
-		<deconstructWorkAmount type="int">500</deconstructWorkAmount>
-		<canSleep type="boolean">True</canSleep>
-	</item>
+  <item>
+    <itemCode type="int">14001</itemCode>
+    <itemName type="string">木灶台</itemName>
+    <itemType type="string">Building</itemType>
+    <mass type="float">20</mass>
+    <buildingWorkAmount type="int">200</buildingWorkAmount>
+    <marketValue type="float">200</marketValue>
+    <maxHitPoint type="int">100</maxHitPoint>
+    <itemEngName type="string">stove</itemEngName>
+    <material type="string">混合</material>
+    <imagesPath type="string">FarmPack\assets\smelting\smelting_furnaces_metal\smelting_furnaces_metal_0</imagesPath>
+    <buildingCost type="string">木材x10,钢铁x10</buildingCost>
+    <buildingWidth type="int">1</buildingWidth>
+    <buildingLength type="int">1</buildingLength>
+    <layer type="int">1</layer>
+    <deconstructWorkAmount type="int">200</deconstructWorkAmount>
+    <canSleep type="boolean"></canSleep>
+  </item>
+  <item>
+    <itemCode type="int">14002</itemCode>
+    <itemName type="string">铁匠铺</itemName>
+    <itemType type="string">Building</itemType>
+    <mass type="float">30</mass>
+    <buildingWorkAmount type="int">200</buildingWorkAmount>
+    <marketValue type="float">250</marketValue>
+    <maxHitPoint type="int">150</maxHitPoint>
+    <itemEngName type="string">smithy</itemEngName>
+    <material type="string">钢铁</material>
+    <imagesPath type="string">FarmPack\assets\smelting\smelting_furnaces_metal\smelting_furnaces_metal_6</imagesPath>
+    <buildingCost type="string">钢铁x20</buildingCost>
+    <buildingWidth type="int">2</buildingWidth>
+    <buildingLength type="int">1</buildingLength>
+    <layer type="int">1</layer>
+    <deconstructWorkAmount type="int">200</deconstructWorkAmount>
+    <canSleep type="boolean"></canSleep>
+  </item>
+  <item>
+    <itemCode type="int">14003</itemCode>
+    <itemName type="string">墙</itemName>
+    <itemType type="string">Building</itemType>
+    <mass type="float">50</mass>
+    <buildingWorkAmount type="int">1200</buildingWorkAmount>
+    <marketValue type="float">100</marketValue>
+    <maxHitPoint type="int">500</maxHitPoint>
+    <itemEngName type="string">wall</itemEngName>
+    <material type="string">铁</material>
+    <imagesPath type="string">Assets/Resources/BuildingSystem/wall1.png,Assets/Resources/BuildingSystem/wall2.png</imagesPath>
+    <buildingCost type="string">钢铁x5</buildingCost>
+    <buildingWidth type="int">1</buildingWidth>
+    <buildingLength type="int">1</buildingLength>
+    <layer type="int">1</layer>
+    <deconstructWorkAmount type="int">1200</deconstructWorkAmount>
+    <canSleep type="boolean"></canSleep>
+  </item>
+  <item>
+    <itemCode type="int">14004</itemCode>
+    <itemName type="string">门</itemName>
+    <itemType type="string">Building</itemType>
+    <mass type="float">10</mass>
+    <buildingWorkAmount type="int">1600</buildingWorkAmount>
+    <marketValue type="float">100</marketValue>
+    <maxHitPoint type="int">400</maxHitPoint>
+    <itemEngName type="string">door</itemEngName>
+    <material type="string">木材</material>
+    <imagesPath type="string">Assets/Resources/BuildingSystem/door.png</imagesPath>
+    <buildingCost type="string">木材x25</buildingCost>
+    <buildingWidth type="int">1</buildingWidth>
+    <buildingLength type="int">1</buildingLength>
+    <layer type="int">1</layer>
+    <deconstructWorkAmount type="int">1600</deconstructWorkAmount>
+    <canSleep type="boolean"></canSleep>
+  </item>
+  <item>
+    <itemCode type="int">14005</itemCode>
+    <itemName type="string">地板</itemName>
+    <itemType type="string">Building</itemType>
+    <mass type="float">5</mass>
+    <buildingWorkAmount type="int">600</buildingWorkAmount>
+    <marketValue type="float">100</marketValue>
+    <maxHitPoint type="int">200</maxHitPoint>
+    <itemEngName type="string">floor</itemEngName>
+    <material type="string">木材</material>
+    <imagesPath type="string">Assets/Resources/BuildingSystem/Room_Builder_Floors_16x16/Room_Builder_Floors_16x16_154.png</imagesPath>
+    <buildingCost type="string">木材x3</buildingCost>
+    <buildingWidth type="int">1</buildingWidth>
+    <buildingLength type="int">1</buildingLength>
+    <layer type="int">0</layer>
+    <deconstructWorkAmount type="int">600</deconstructWorkAmount>
+    <canSleep type="boolean"></canSleep>
+  </item>
+  <item>
+    <itemCode type="int">14006</itemCode>
+    <itemName type="string">床</itemName>
+    <itemType type="string">Building</itemType>
+    <mass type="float">15</mass>
+    <buildingWorkAmount type="int">500</buildingWorkAmount>
+    <marketValue type="float">100</marketValue>
+    <maxHitPoint type="int">100</maxHitPoint>
+    <itemEngName type="string">bed</itemEngName>
+    <material type="string">木材</material>
+    <imagesPath type="string">Assets/Resources/4_Bedroom_16x16/4_Bedroom_16x16_59.png</imagesPath>
+    <buildingCost type="string">木材x45</buildingCost>
+    <buildingWidth type="int">1</buildingWidth>
+    <buildingLength type="int">2</buildingLength>
+    <layer type="int">1</layer>
+    <deconstructWorkAmount type="int">500</deconstructWorkAmount>
+    <canSleep type="boolean">True</canSleep>
+  </item>
+  <item>
+    <itemCode type="int">14007</itemCode>
+    <itemName type="string">运输仓</itemName>
+    <itemType type="string">Building</itemType>
+    <mass type="float">500</mass>
+    <buildingWorkAmount type="int">5000</buildingWorkAmount>
+    <marketValue type="float">500</marketValue>
+    <maxHitPoint type="int">500</maxHitPoint>
+    <itemEngName type="string">transportPod</itemEngName>
+    <material type="string">混合</material>
+    <imagesPath type="string">Assets/Resources/Others/TransportPod.png</imagesPath>
+    <buildingCost type="string">钢铁x50,零部件x2</buildingCost>
+    <buildingWidth type="int">1</buildingWidth>
+    <buildingLength type="int">1</buildingLength>
+    <layer type="int">1</layer>
+    <deconstructWorkAmount type="int">250</deconstructWorkAmount>
+    <canSleep type="boolean"></canSleep>
+  </item>
 </items>

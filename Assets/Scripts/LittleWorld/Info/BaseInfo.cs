@@ -61,7 +61,7 @@ namespace LittleWorld.Item
                     }
                     else
                     {
-                        Debug.LogError($"路径{loadPath}加载图片为空，请检查路径。");
+                        Debug.LogError($"路径{loadPath}加载图片为空，请检查路径。是否忘记放在Resources目录下？");
                     }
                 }
             }

@@ -109,6 +109,14 @@ namespace LittleWorld.UI
             CommandCenter.Instance.Enqueue(new ChangeGhostBuildingCommand(ObjectCode.bed.GetHashCode()));
         }
 
+        /// <summary>
+        /// 降落运输仓
+        /// </summary>
+        public void LandTransportPod()
+        {
+            CommandCenter.Instance.Enqueue(new TransportPodCommand(new Vector2Int(20, 20)));
+        }
+
         private void UpdateDisplay(int index)
         {
             foreach (var item in speedBg)

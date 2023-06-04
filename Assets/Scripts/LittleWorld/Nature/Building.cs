@@ -49,10 +49,10 @@ namespace LittleWorld.Item
             return true;
         }
 
-        public Building(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
+        public Building(int itemCode, Vector2Int gridPos, BuildingStatus buildingStatus = BuildingStatus.BluePrint, Map map = null) : base(itemCode, gridPos, map)
         {
             buildingInfo = ObjectConfig.GetInfo<BuildingInfo>(itemCode);
-            buildingStatus = BuildingStatus.BluePrint;
+            this.buildingStatus = buildingStatus;
             ItemName = buildingInfo.itemName;
             buildingGrids = new HashSet<Vector2Int>();
             for (int i = 0; i < buildingInfo.buildingLength; i++)

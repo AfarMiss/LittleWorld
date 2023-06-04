@@ -28,7 +28,7 @@ namespace LittleWorld
         /// <param name="onComplete"></param>
         /// <param name="onUpdate"></param>
         /// <param name="ownerId"></param>
-        public Timer(string timerName, float duration, Action OnStart, Action onComplete, Action onUpdate, ETimerType timerType, int ownerId = -1)
+        public Timer(string timerName, float duration, Action OnStart = null, Action onComplete = null, Action onUpdate = null, ETimerType timerType = ETimerType.trigger, int ownerId = -1)
         {
             this.owner = ownerId;
             this.duration = duration;
@@ -83,8 +83,8 @@ namespace LittleWorld
         /// </summary>
         Continous,
         /// <summary>
-        /// 一次性计时，如果立刻要去做新的工作，该计时器继续计时，不会被打断。
+        /// 触发式计时，如果立刻要去做新的工作，该计时器继续计时，不会被打断。
         /// </summary>
-        Once,
+        trigger,
     }
 }
