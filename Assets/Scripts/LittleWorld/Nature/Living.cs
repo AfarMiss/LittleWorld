@@ -32,23 +32,45 @@ namespace LittleWorld.Item
 
         public float leftNutrition => _leftNutrition;
 
+        public bool canEatPartly => true;
+
         public Living(int itemCode, Vector2Int gridPos, Map map = null) : base(itemCode, gridPos, map)
         {
             this.EventRegister<GameTime>(EventName.GAME_TICK, OnGameTick);
             _leftNutrition = _maxNutrition;
         }
 
-        public void BeEaten(float needNutrition)
+        /// <summary>
+        /// 被食用者吃下
+        /// </summary>
+        /// <param name="needNutrition"></param>
+        /// <returns></returns>
+        public void BeEaten(HealthTracer healthTracer)
         {
-            if (needNutrition > _leftNutrition)
+            var needHunger = healthTracer.maxHunger - healthTracer.curHunger;
+            if (needHunger > _leftNutrition)
             {
-                _leftNutrition = 0;
-                OnDispose();
+                healthTracer.curHunger += _leftNutrition;
+                EatenTotally();
             }
             else
             {
-                _leftNutrition -= needNutrition;
+                healthTracer.curHunger = healthTracer.maxHunger;
+                if (canEatPartly)
+                {
+                    _leftNutrition -= needHunger;
+                }
+                else
+                {
+                    EatenTotally();
+                }
             }
+        }
+
+        public void EatenTotally()
+        {
+            _leftNutrition = 0;
+            OnBeEatenDispose();
         }
 
         private void OnGameTick(GameTime arg0)
@@ -66,7 +88,7 @@ namespace LittleWorld.Item
             base.OnDestroy();
         }
 
-        public virtual void OnDispose()
+        public virtual void OnBeEatenDispose()
         {
         }
     }

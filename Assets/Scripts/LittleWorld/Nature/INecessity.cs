@@ -11,8 +11,9 @@ namespace LittleWorld.Item
         float leftNutrition { get; }
         string itemName { get; }
         float eatDuration { get; }
-        void BeEaten(float needNutrition);
-        void OnDispose();
+        bool canEatPartly { get; }
+        void BeEaten(HealthTracer healthTracer);
+        void OnBeEatenDispose();
     }
 
     public interface IDrinkable

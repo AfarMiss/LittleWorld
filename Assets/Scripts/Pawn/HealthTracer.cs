@@ -72,9 +72,7 @@ namespace LittleWorld
                 isEating = true;
             }, () =>
             {
-                var needHunger = maxHunger - curHunger;
-                eatable.BeEaten(needHunger);
-                this.curHunger = Math.Min(this.curHunger + eatable.maxNutrition, maxHunger);
+                eatable.BeEaten(this);
                 isEating = false;
             }, null,
             ETimerType.Continous,
