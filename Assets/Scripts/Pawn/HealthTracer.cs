@@ -72,7 +72,7 @@ namespace LittleWorld
                 isEating = true;
             }, () =>
             {
-                eatable.BeEaten(this);
+                eatable.OnBeEaten(this);
                 isEating = false;
             }, null,
             ETimerType.Continous,
@@ -86,7 +86,7 @@ namespace LittleWorld
                 isDrinking = true;
             }, () =>
             {
-                this.curThirsty = Math.Min(this.curThirsty + drinkable.mositure, maxThirsty);
+                this.curThirsty = Math.Min(this.curThirsty + drinkable.maxMositure, maxThirsty);
                 isDrinking = false;
             }, null,
 ETimerType.Continous,

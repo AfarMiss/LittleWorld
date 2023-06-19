@@ -44,9 +44,9 @@ namespace LittleWorld.Item
             this.instanceID = SceneObjectManager.ItemInstanceID++;
             mapBelongTo = map ?? MapManager.Instance.ColonyMap;
 
-            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var plantInfo))
+            if (ObjectConfig.ObjectInfoDic.TryGetValue(itemCode, out var objectInfo))
             {
-                canPile = plantInfo.CanPile;
+                canPile = objectInfo.CanPile;
             }
             mapBelongTo.DropDownWorldObjectAt(gridPos, this);
             SceneObjectManager.Instance.RegisterObject(this);

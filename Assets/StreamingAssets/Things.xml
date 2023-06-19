@@ -65,4 +65,17 @@
     <maxPileCount type="int">75</maxPileCount>
     <isBlock type="boolean"></isBlock>
   </item>
+  <item>
+    <itemCode type="int">15006</itemCode>
+    <itemName type="string">水</itemName>
+    <itemType type="string">Thing</itemType>
+    <mass type="float">1</mass>
+    <marketValue type="float">1</marketValue>
+    <maxHitPoint type="int">-1</maxHitPoint>
+    <itemEngName type="string">water</itemEngName>
+    <material type="string">水</material>
+    <imagesPath type="string"></imagesPath>
+    <maxPileCount type="int"></maxPileCount>
+    <isBlock type="boolean"></isBlock>
+  </item>
 </items>

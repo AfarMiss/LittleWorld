@@ -58,9 +58,9 @@ namespace LittleWorld.Item
             this.pathTracer.OnEnable();
         }
 
-        public override void OnBeEatenDispose()
+        public override void OnBeEatenCompletely()
         {
-            base.OnBeEatenDispose();
+            base.OnBeEatenCompletely();
             ItemRender.OnDispose();
         }
 

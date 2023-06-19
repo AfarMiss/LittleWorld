@@ -45,7 +45,7 @@ namespace LittleWorld.Item
         /// </summary>
         /// <param name="needNutrition"></param>
         /// <returns></returns>
-        public void BeEaten(HealthTracer healthTracer)
+        public void OnBeEaten(HealthTracer healthTracer)
         {
             var needHunger = healthTracer.maxHunger - healthTracer.curHunger;
             if (needHunger > _leftNutrition)
@@ -70,7 +70,7 @@ namespace LittleWorld.Item
         public void EatenTotally()
         {
             _leftNutrition = 0;
-            OnBeEatenDispose();
+            OnBeEatenCompletely();
         }
 
         private void OnGameTick(GameTime arg0)
@@ -88,7 +88,7 @@ namespace LittleWorld.Item
             base.OnDestroy();
         }
 
-        public virtual void OnBeEatenDispose()
+        public virtual void OnBeEatenCompletely()
         {
         }
     }

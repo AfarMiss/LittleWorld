@@ -12,18 +12,24 @@ namespace LittleWorld.Item
         string itemName { get; }
         float eatDuration { get; }
         bool canEatPartly { get; }
-        void BeEaten(HealthTracer healthTracer);
-        void OnBeEatenDispose();
+        void OnBeEaten(HealthTracer healthTracer);
+        void OnBeEatenCompletely();
     }
 
     public interface IDrinkable
     {
         /// <summary>
-        /// 含水量
+        /// 含水量，-1代表无穷
         /// </summary>
-        float mositure { get; }
+        float maxMositure { get; }
+        float leftMositure { get; }
         string itemName { get; }
-        float eatDuration { get; }
+        float drinkDuration { get; }
+        bool canDrinkPartly { get; }
+
+        void BeDrunkCompletely();
+        void BeDrunk(HealthTracer health);
+
     }
 
     public interface ISleepable
