@@ -29,7 +29,7 @@ namespace LittleWorld.Jobs
         public GoToLocWork(Humanbeing humanbeing, Vector2Int destination)
         {
             this._canStart = Current.CurMap.GetGrid(destination).isLand;
-            if (!Current.CurMap.GetGrid(destination).isLand)
+            if (!Current.CurMap.GetGrid(destination).isBlock)
             {
                 return;
             }
