@@ -1,81 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <items infoType="Things">
-  <item>
-    <itemCode type="int">15001</itemCode>
-    <itemName type="string">硬币</itemName>
-    <itemType type="string">Thing</itemType>
-    <mass type="float">0.0005</mass>
-    <marketValue type="float">1</marketValue>
-    <maxHitPoint type="int">10</maxHitPoint>
-    <itemEngName type="string">coin</itemEngName>
-    <material type="string">白银</material>
-    <imagesPath type="string">Assets/Resources/FarmPack/assets/mining/ores/mining_ores_48.png</imagesPath>
-    <maxPileCount type="int">75</maxPileCount>
-    <isBlock type="boolean"></isBlock>
-  </item>
-  <item>
-    <itemCode type="int">15002</itemCode>
-    <itemName type="string">木材</itemName>
-    <itemType type="string">Thing</itemType>
-    <mass type="float">0.5</mass>
-    <marketValue type="float">2</marketValue>
-    <maxHitPoint type="int">20</maxHitPoint>
-    <itemEngName type="string">wood</itemEngName>
-    <material type="string">木材</material>
-    <imagesPath type="string">Assets/Resources/FarmPack/assets/smelting/produce/WoodPlanks.png</imagesPath>
-    <maxPileCount type="int">75</maxPileCount>
-    <isBlock type="boolean"></isBlock>
-  </item>
-  <item>
-    <itemCode type="int">15003</itemCode>
-    <itemName type="string">钢铁</itemName>
-    <itemType type="string">Thing</itemType>
-    <mass type="float">1</mass>
-    <marketValue type="float">5</marketValue>
-    <maxHitPoint type="int">50</maxHitPoint>
-    <itemEngName type="string">steel</itemEngName>
-    <material type="string">钢铁</material>
-    <imagesPath type="string">FarmPack\assets\smelting\produce\smelting_ore_produce\smelting_ore_produce_23</imagesPath>
-    <maxPileCount type="int">75</maxPileCount>
-    <isBlock type="boolean"></isBlock>
-  </item>
-  <item>
-    <itemCode type="int">15004</itemCode>
-    <itemName type="string">白银</itemName>
-    <itemType type="string">Thing</itemType>
-    <mass type="float">1</mass>
-    <marketValue type="float">20</marketValue>
-    <maxHitPoint type="int">40</maxHitPoint>
-    <itemEngName type="string">silver</itemEngName>
-    <material type="string">白银</material>
-    <imagesPath type="string">Assets/Resources/FarmPack/assets/smelting/produce/smelting_ore_produce/smelting_ore_produce_3.png</imagesPath>
-    <maxPileCount type="int">75</maxPileCount>
-    <isBlock type="boolean"></isBlock>
-  </item>
-  <item>
-    <itemCode type="int">15005</itemCode>
-    <itemName type="string">花岗岩石</itemName>
-    <itemType type="string">Thing</itemType>
-    <mass type="float">2</mass>
-    <marketValue type="float">3</marketValue>
-    <maxHitPoint type="int">100</maxHitPoint>
-    <itemEngName type="string">granite_rock</itemEngName>
-    <material type="string">花岗岩石</material>
-    <imagesPath type="string">Assets/Resources/FarmPack/assets/smelting/produce/smelting_ore_produce/smelting_ore_produce_32.png</imagesPath>
-    <maxPileCount type="int">75</maxPileCount>
-    <isBlock type="boolean"></isBlock>
-  </item>
-  <item>
-    <itemCode type="int">15006</itemCode>
-    <itemName type="string">水</itemName>
-    <itemType type="string">Thing</itemType>
-    <mass type="float">1</mass>
-    <marketValue type="float">1</marketValue>
-    <maxHitPoint type="int">-1</maxHitPoint>
-    <itemEngName type="string">water</itemEngName>
-    <material type="string">水</material>
-    <imagesPath type="string"></imagesPath>
-    <maxPileCount type="int"></maxPileCount>
-    <isBlock type="boolean"></isBlock>
-  </item>
+	<item>
+		<itemCode type="int">15001</itemCode>
+		<itemName type="string">硬币</itemName>
+		<itemType type="string">Thing</itemType>
+		<mass type="float">0.0005</mass>
+		<marketValue type="float">1</marketValue>
+		<maxHitPoint type="int">10</maxHitPoint>
+		<itemEngName type="string">coin</itemEngName>
+		<material type="string">白银</material>
+		<imagesPath type="string">Assets/Resources/FarmPack/assets/mining/ores/mining_ores_48.png</imagesPath>
+		<maxPileCount type="int">75</maxPileCount>
+		<isBlock type="boolean"></isBlock>
+	</item>
+	<item>
+		<itemCode type="int">15002</itemCode>
+		<itemName type="string">木材</itemName>
+		<itemType type="string">Thing</itemType>
+		<mass type="float">0.5</mass>
+		<marketValue type="float">2</marketValue>
+		<maxHitPoint type="int">20</maxHitPoint>
+		<itemEngName type="string">wood</itemEngName>
+		<material type="string">木材</material>
+		<imagesPath type="string">Assets/Resources/FarmPack/assets/smelting/produce/WoodPlanks.png</imagesPath>
+		<maxPileCount type="int">75</maxPileCount>
+		<isBlock type="boolean"></isBlock>
+	</item>
+	<item>
+		<itemCode type="int">15003</itemCode>
+		<itemName type="string">钢铁</itemName>
+		<itemType type="string">Thing</itemType>
+		<mass type="float">1</mass>
+		<marketValue type="float">5</marketValue>
+		<maxHitPoint type="int">50</maxHitPoint>
+		<itemEngName type="string">steel</itemEngName>
+		<material type="string">钢铁</material>
+		<imagesPath type="string">FarmPack\assets\smelting\produce\smelting_ore_produce\smelting_ore_produce_23</imagesPath>
+		<maxPileCount type="int">75</maxPileCount>
+		<isBlock type="boolean"></isBlock>
+	</item>
+	<item>
+		<itemCode type="int">15004</itemCode>
+		<itemName type="string">白银</itemName>
+		<itemType type="string">Thing</itemType>
+		<mass type="float">1</mass>
+		<marketValue type="float">20</marketValue>
+		<maxHitPoint type="int">40</maxHitPoint>
+		<itemEngName type="string">silver</itemEngName>
+		<material type="string">白银</material>
+		<imagesPath type="string">Assets/Resources/FarmPack/assets/smelting/produce/smelting_ore_produce/smelting_ore_produce_3.png</imagesPath>
+		<maxPileCount type="int">75</maxPileCount>
+		<isBlock type="boolean"></isBlock>
+	</item>
+	<item>
+		<itemCode type="int">15005</itemCode>
+		<itemName type="string">花岗岩石</itemName>
+		<itemType type="string">Thing</itemType>
+		<mass type="float">2</mass>
+		<marketValue type="float">3</marketValue>
+		<maxHitPoint type="int">100</maxHitPoint>
+		<itemEngName type="string">granite_rock</itemEngName>
+		<material type="string">花岗岩石</material>
+		<imagesPath type="string">Assets/Resources/FarmPack/assets/smelting/produce/smelting_ore_produce/smelting_ore_produce_32.png</imagesPath>
+		<maxPileCount type="int">75</maxPileCount>
+		<isBlock type="boolean"></isBlock>
+	</item>
+	<item>
+		<itemCode type="int">15006</itemCode>
+		<itemName type="string">水</itemName>
+		<itemType type="string">Thing</itemType>
+		<mass type="float">1</mass>
+		<marketValue type="float">1</marketValue>
+		<maxHitPoint type="int">-1</maxHitPoint>
+		<itemEngName type="string">water</itemEngName>
+		<material type="string">水</material>
+		<imagesPath type="string"></imagesPath>
+		<maxPileCount type="int"></maxPileCount>
+		<isBlock type="boolean"></isBlock>
+	</item>
 </items>

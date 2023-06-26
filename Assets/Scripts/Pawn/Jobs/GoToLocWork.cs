@@ -9,6 +9,7 @@ namespace LittleWorld.Jobs
 {
     public class GoToLocWork : WorkBT, IToil
     {
+        private bool _canStart;
         public bool isDone
         {
             get
@@ -19,12 +20,15 @@ namespace LittleWorld.Jobs
 
         public string toilName => $"正在前往:{this._des}";
 
+        public bool canStart => _canStart;
+
         private Humanbeing _humanbeing;
         private Vector2Int _des;
         private bool _isDone = false;
 
         public GoToLocWork(Humanbeing humanbeing, Vector2Int destination)
         {
+            this._canStart = Current.CurMap.GetGrid(destination).isLand;
             if (!Current.CurMap.GetGrid(destination).isLand)
             {
                 return;

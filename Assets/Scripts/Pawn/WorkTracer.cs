@@ -11,6 +11,7 @@ namespace LittleWorld
     {
         bool isDone { get; }
         string toilName { get; }
+        bool canStart { get; }
         void ToilTick();
         void ToilStart();
         void ToilCancel();
@@ -68,7 +69,10 @@ namespace LittleWorld
 
         public void AddToil(IToil toil)
         {
-            toils.Enqueue(toil);
+            if (toil.canStart)
+            {
+                toils.Enqueue(toil);
+            }
         }
 
         public void StartToil()

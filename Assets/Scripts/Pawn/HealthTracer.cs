@@ -86,7 +86,7 @@ namespace LittleWorld
                 isDrinking = true;
             }, () =>
             {
-                this.curThirsty = Math.Min(this.curThirsty + drinkable.maxMositure, maxThirsty);
+                this.curThirsty = Math.Min(this.curThirsty + (drinkable.maxMositure == -1 ? maxThirsty : drinkable.maxMositure), maxThirsty);
                 isDrinking = false;
             }, null,
 ETimerType.Continous,

@@ -18,6 +18,7 @@ namespace LittleWorld.MapUtility
         public bool isLand => gridAltitudeLayer >= 20;
 
         public bool isPlane => gridAltitudeLayer >= 30 && gridAltitudeLayer < 75;
+        public bool isWater => gridAltitudeLayer < 30;
         public bool isMountain => gridAltitudeLayer >= 75 && gridAltitudeLayer <= 100;
         public bool HasPlant
         {

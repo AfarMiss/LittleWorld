@@ -196,7 +196,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     private void AddRenderComponent(WorldObject wo)
     {
-        if (wo.GetCurrentSprite() == null) return;
+        if (wo is SurfaceWater) return;
         if (wo is Animal animal)
         {
             GameObject curPawn = UnityEngine.Object.Instantiate(pfAnimal, renderParent.transform);
@@ -326,6 +326,17 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         new Animal(13002, new Age(4), new Vector2Int(23, 25));
         new Animal(13002, new Age(4), new Vector2Int(22, 25));
         new Weapon(17001, new Vector2Int(24, 25));
+
+        //根据地形生成水
+        GenerateSurfaceWater(MapManager.Instance.ColonyMap);
+    }
+
+    private void GenerateSurfaceWater(Map colonyMap)
+    {
+        foreach (var item in colonyMap.GetAllWaterPos())
+        {
+            new SurfaceWater(15006, item.pos);
+        }
     }
 
     public Vector2Int SearchForRawMaterials(int objectCode)

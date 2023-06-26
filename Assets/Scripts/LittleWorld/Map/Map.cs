@@ -99,6 +99,19 @@ namespace LittleWorld.MapUtility
         }
 
 
+        public IEnumerable<MapGridDetails> GetAllWaterPos()
+        {
+            foreach (MapGridDetails item in mapGrids)
+            {
+                if (item.isWater)
+                {
+                    yield return item;
+                }
+            }
+
+        }
+
+
         public bool ExpandZone(MapGridDetails[] gridIndexs)
         {
             var section = sectionDic[SelectedSectionID];

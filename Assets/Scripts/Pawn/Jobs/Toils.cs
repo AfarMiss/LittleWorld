@@ -23,6 +23,8 @@ namespace LittleWorld.Jobs
 
         public bool isDone => !animal.isSleeping;
 
+        public bool canStart => true;
+
         public void ToilStart()
         {
             animal.Sleep();
@@ -56,6 +58,8 @@ namespace LittleWorld.Jobs
 
         public bool isDone => !animal.isDrinking;
 
+        public bool canStart => true;
+
         public void ToilStart()
         {
             animal.Drink(drinkable);
@@ -80,6 +84,7 @@ namespace LittleWorld.Jobs
         public Animal animal;
         public IEatable eatable;
         public string toilName => $"正在吃{eatable.itemName}";
+        public bool canStart => true;
 
         public EatWork(Animal animal, IEatable eatable)
         {
@@ -113,6 +118,7 @@ namespace LittleWorld.Jobs
         public Animal animal;
         public WorldObject target;
         public string toilName => $"正在攻击{target.ItemName}";
+        public bool canStart => true;
 
         public AttackWork(Animal animal, WorldObject wo)
         {

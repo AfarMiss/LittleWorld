@@ -7,10 +7,10 @@ using UnityEngine;
 
 public class MapManager : Singleton<MapManager>
 {
-    private List<Map> maps;
-    private Map colonyMap;
+    private List<Map> _maps;
+    private Map _colonyMap;
     public Map curDisplayMap;
-    public Map ColonyMap => colonyMap;
+    public Map ColonyMap => _colonyMap;
     public Vector2Int mapSize;
 
     private MapManager()
@@ -18,16 +18,16 @@ public class MapManager : Singleton<MapManager>
     }
     public Queue<Vector2Int> CreateNewPath(Vector2 startPos, Vector2 endPos)
     {
-        return colonyMap.CalculatePath(startPos, endPos);
+        return _colonyMap.CalculatePath(startPos, endPos);
     }
 
     public void InitMainMaps(MainMapInfo mainMapInfo)
     {
-        colonyMap = new Map(Map.GetMapSize(mainMapInfo.size), mainMapInfo.seed);
-        curDisplayMap = colonyMap;
+        _colonyMap = new Map(Map.GetMapSize(mainMapInfo.size), mainMapInfo.seed);
+        curDisplayMap = _colonyMap;
 
-        colonyMap.GenerateInitObjects();
-        MapRenderManager.Instance.RenderMap(colonyMap);
+        _colonyMap.GenerateInitObjects();
+        MapRenderManager.Instance.RenderMap(_colonyMap);
     }
 
     public override void Dispose()
