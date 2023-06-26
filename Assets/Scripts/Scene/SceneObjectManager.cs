@@ -196,6 +196,7 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
 
     private void AddRenderComponent(WorldObject wo)
     {
+        if (wo.GetCurrentSprite() == null) return;
         if (wo is Animal animal)
         {
             GameObject curPawn = UnityEngine.Object.Instantiate(pfAnimal, renderParent.transform);
