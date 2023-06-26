@@ -35,7 +35,7 @@ namespace AStarUtility
             CreateBasic(mapWidth, mapHeight, originalX, originalY);
             foreach (var item in details)
             {
-                if (item.gridAltitudeLayer < 20)
+                if (item.isBlock)
                 {
                     SetObstacle(item.pos.x, item.pos.y);
                 }

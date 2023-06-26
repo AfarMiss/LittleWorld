@@ -8,6 +8,7 @@ namespace LittleWorld.MapUtility
 {
     public class MapGridDetails
     {
+        public bool isBlock = false;
         public Vector2Int pos;
         public int gridAltitudeLayer;
         public Rect gridRect;
@@ -18,7 +19,7 @@ namespace LittleWorld.MapUtility
         public bool isLand => gridAltitudeLayer >= 20;
 
         public bool isPlane => gridAltitudeLayer >= 30 && gridAltitudeLayer < 75;
-        public bool isWater => gridAltitudeLayer < 30;
+        public bool isWater => gridAltitudeLayer < 20;
         public bool isMountain => gridAltitudeLayer >= 75 && gridAltitudeLayer <= 100;
         public bool HasPlant
         {
@@ -234,6 +235,8 @@ namespace LittleWorld.MapUtility
         {
             this.pos = pos;
             this.gridAltitudeLayer = gridAltitudeLayer;
+            //这里设置初始地图障碍
+            this.isBlock = false;
             gridRect = new Rect(pos, Vector2.one);
             curBuildingContain = new Dictionary<int, int>();
         }
