@@ -229,7 +229,7 @@ namespace LittleWorld.Item
             if (this is Humanbeing humanbeing)
             {
                 GoToLocWork toil = new GoToLocWork(humanbeing, target);
-                workTracer.AddWork(toil);
+                //workTracer.AddWork(toil);
                 workTracer.AddToil(toil);
             }
             return this;

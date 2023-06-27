@@ -185,7 +185,7 @@ public class InputController : MonoSingleton<InputController>
     private void AddMoveWork(WorldObject human, Vector3 targetPos)
     {
         Humanbeing humanbeing = (human as Humanbeing);
-        humanbeing.AddMoveWork(targetPos.ToCell());
+        //humanbeing.AddMoveWork(targetPos.ToCell());
         humanbeing.GoToLocToil(targetPos.ToCell().To2());
     }
 

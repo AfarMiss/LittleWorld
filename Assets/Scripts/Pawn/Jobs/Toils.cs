@@ -165,9 +165,9 @@ namespace LittleWorld.Jobs
         public Animal animal;
         public Vector2Int startPoint;
         public Vector2Int destination;
-        public WorldObject carriedItem;
+        public WorldObject[] carriedItem;
 
-        public HandlingWork(Animal animal, Vector2Int startPoint, Vector2Int destination, WorldObject carriedItem)
+        public HandlingWork(Animal animal, Vector2Int startPoint, Vector2Int destination, WorldObject[] carriedItem)
         {
             this.animal = animal;
             this.startPoint = startPoint;
@@ -175,20 +175,22 @@ namespace LittleWorld.Jobs
             this.carriedItem = carriedItem;
         }
 
-        public string toilName => $"正在搬运{carriedItem.ItemName}";
+        public string toilName => $"正在搬运";
         public bool canStart => true;
 
         public bool isDone
         {
             get
             {
-                return carriedItem.GridPos == destination;
+                return animal.GridPos == destination;
             }
         }
 
         public void ToilStart()
         {
             //animal.Attack(target);
+            (animal as Humanbeing).Carry(carriedItem, startPoint);
+            animal.GoToLocToil(destination);
         }
 
         public void ToilTick()
@@ -197,11 +199,12 @@ namespace LittleWorld.Jobs
 
         public void ToilCancel()
         {
-            animal.CancelAttack();
+            (animal as Humanbeing).Dropdown(carriedItem, animal.GridPos);
         }
 
         public void ToilOnDone()
         {
+            (animal as Humanbeing).Dropdown(carriedItem, destination);
         }
     }
 }

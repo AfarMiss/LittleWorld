@@ -20,9 +20,9 @@ namespace LittleWorld.Item
     {
         public List<WorldObject> Inventory = new List<WorldObject>();
 
-        public bool CarrySingle(WorldObject wo, Vector2Int destination)
+        public bool CarrySingle(WorldObject wo, Vector2Int objectPos)
         {
-            Current.CurMap.GetGrid(destination, out var result);
+            Current.CurMap.GetGrid(objectPos, out var result);
             return result.PickUp(wo, this);
         }
 
@@ -32,11 +32,11 @@ namespace LittleWorld.Item
             return result.PickUp(itemCode, this, out wo);
         }
 
-        public void Carry(WorldObject[] wo, Vector2Int destination)
+        public void Carry(WorldObject[] wo, Vector2Int objectPos)
         {
             foreach (var item in wo)
             {
-                CarrySingle(item, destination);
+                CarrySingle(item, objectPos);
             }
         }
 
