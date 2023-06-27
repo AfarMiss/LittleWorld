@@ -53,8 +53,10 @@ namespace LittleWorld.UI
                 }
                 if (worldObject is IDrinkable drinkable)
                 {
-                    var plantOpts = AddDrinkableFloatMenu(human, drinkable, cellPoint);
-                    AddOption(contentList, plantOpts);
+                    var plantOpts1 = AddDrinkableFloatMenu(human, drinkable, cellPoint);
+                    var plantOpts2 = AddMoveFloatMenu(human, cellPoint);
+                    AddOption(contentList, plantOpts1);
+                    AddOption(contentList, plantOpts2);
                 }
                 if (worldObject is ISleepable sleepable)
                 {
@@ -111,6 +113,20 @@ namespace LittleWorld.UI
             new FloatOption($"装备{weapon.ItemName}", () =>
             {
                 human.AddEquipWork(weapon);
+            })
+            };
+            return contentList;
+
+        }
+
+        private static List<FloatOption> AddMoveFloatMenu(Humanbeing human, Vector2Int targetPos)
+        {
+            List<FloatOption> contentList = new List<FloatOption>
+            {
+            new FloatOption($"走到这里", () =>
+            {
+                human.TryCleanWork();
+                human.GoToLocToil(targetPos);
             })
             };
             return contentList;
