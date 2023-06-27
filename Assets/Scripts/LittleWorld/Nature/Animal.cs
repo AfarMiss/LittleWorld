@@ -13,6 +13,7 @@ namespace LittleWorld.Item
 {
     public class Animal : Living
     {
+        public List<WorldObject> bag = new List<WorldObject>();
         public GearTracer gearTracer;
         protected PathTracer pathTracer;
         protected AnimalInfo animalInfo;
@@ -78,6 +79,18 @@ namespace LittleWorld.Item
         public Animal EatToil(IEatable eatable)
         {
             workTracer.AddToil(new EatWork(this, eatable));
+            return this;
+        }
+
+        public Animal AddBuildingToil(Building building)
+        {
+            foreach (var item in building.GetRawMaterialNeedYet())
+            {
+                var startPoint = SceneObjectManager.Instance.SearchForRawMaterials(item.Key);
+                var carryCount = Math.Min(item.Value, WorldUtility.GetObjectsAtCellCount(startPoint, item.Key));
+
+                workTracer.AddToil(new CarrySingleTypeWork(this, startPoint, building.GridPos, item.Key, carryCount));
+            }
             return this;
         }
 
@@ -207,6 +220,74 @@ namespace LittleWorld.Item
                     return animalInfo.ItemSprites[2];
                 default:
                     return animalInfo.ItemSprites[1];
+            }
+        }
+
+        public bool CarrySingle(WorldObject wo, Vector2Int destination)
+        {
+            Current.CurMap.GetGrid(destination, out var result);
+            if (result.PickUp(wo, this))
+            {
+                bag.Add(wo);
+                return true;
+            }
+            return false;
+        }
+
+        public bool CarrySingle(int itemCode, Vector2Int destination, out WorldObject wo)
+        {
+            Current.CurMap.GetGrid(destination, out var result);
+            if (result.PickUp(itemCode, this, out wo))
+            {
+                bag.Add(wo);
+                return true;
+            }
+            return false;
+        }
+
+        public void Carry(WorldObject[] wo, Vector2Int objectPos)
+        {
+            foreach (var item in wo)
+            {
+                CarrySingle(item, objectPos);
+            }
+        }
+
+        public Animal Carry(int itemCode, int amount, Vector2Int destination)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                if (!CarrySingle(itemCode, destination, out var wo))
+                {
+                    break;
+                }
+            }
+            return this;
+        }
+
+        public void DropdownAllInBag()
+        {
+            for (int i = bag.Count - 1; i >= 0; i--)
+            {
+                WorldObject item = bag[i];
+                Dropdown(item);
+                bag.Remove(item);
+            }
+        }
+
+        private void Dropdown(WorldObject wo)
+        {
+            wo.OnBeDropDown();
+            bag.Remove(wo);
+        }
+
+        public void Dropdown(WorldObject[] wo)
+        {
+            for (int i = wo.Length - 1; i >= 0; i--)
+            {
+                WorldObject item = wo[i];
+                Dropdown(item);
+                bag.Remove(item);
             }
         }
 

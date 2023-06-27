@@ -27,6 +27,12 @@ namespace LittleWorld
             }
         }
 
+        public static int GetObjectsAtCellCount(Vector2Int worldPos, int itemCode)
+        {
+            var objectsSet = SceneObjectManager.Instance.WorldObjects.ToList().FindAll(x => x.Value.GridPos == worldPos && x.Key == itemCode);
+            return objectsSet.Count;
+        }
+
         /// <summary>
         /// 获取当前世界位置的物体(以渲染Rect为基准)
         /// </summary>

@@ -160,14 +160,14 @@ namespace LittleWorld.Jobs
     /// <summary>
     /// 复合工作，某动物将某物从某地搬向另一地
     /// </summary>
-    public class HandlingWork : IToil
+    public class CarryVariousWork : IToil
     {
         public Animal animal;
         public Vector2Int startPoint;
         public Vector2Int destination;
         public WorldObject[] carriedItem;
 
-        public HandlingWork(Animal animal, Vector2Int startPoint, Vector2Int destination, WorldObject[] carriedItem)
+        public CarryVariousWork(Animal animal, Vector2Int startPoint, Vector2Int destination, WorldObject[] carriedItem)
         {
             this.animal = animal;
             this.startPoint = startPoint;
@@ -199,12 +199,64 @@ namespace LittleWorld.Jobs
 
         public void ToilCancel()
         {
-            (animal as Humanbeing).Dropdown(carriedItem, animal.GridPos);
+            (animal as Humanbeing).Dropdown(carriedItem);
         }
 
         public void ToilOnDone()
         {
-            (animal as Humanbeing).Dropdown(carriedItem, destination);
+            (animal as Humanbeing).Dropdown(carriedItem);
+        }
+    }
+
+    /// <summary>
+    /// 复合工作，某动物将某物从某地搬向另一地
+    /// </summary>
+    public class CarrySingleTypeWork : IToil
+    {
+        public Animal animal;
+        public Vector2Int startPoint;
+        public Vector2Int destination;
+        public int itemCode;
+        public int amount;
+
+        public CarrySingleTypeWork(Animal animal, Vector2Int startPoint, Vector2Int destination, int itemCode, int amount)
+        {
+            this.animal = animal;
+            this.startPoint = startPoint;
+            this.destination = destination;
+            this.itemCode = itemCode;
+            this.amount = amount;
+        }
+
+        public string toilName => $"正在搬运";
+        public bool canStart => true;
+
+        public bool isDone
+        {
+            get
+            {
+                return animal.GridPos == destination;
+            }
+        }
+
+        public void ToilStart()
+        {
+            //animal.Attack(target);
+            animal.GoToLocToil(destination).Carry(itemCode, amount, startPoint).GoToLocToil(destination);
+        }
+
+        public void ToilTick()
+        {
+        }
+
+        public void ToilCancel()
+        {
+            (animal as Humanbeing).DropdownAllInBag();
+        }
+
+        public void ToilOnDone()
+        {
+            (animal as Humanbeing).DropdownAllInBag();
         }
     }
 }

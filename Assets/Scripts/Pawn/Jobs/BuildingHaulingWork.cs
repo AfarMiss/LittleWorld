@@ -60,8 +60,8 @@ namespace LittleWorld.Jobs
         private Node.Status DoHaul(Vector2Int destination, Humanbeing human)
         {
             var buildingCost = tree.GetVariable("curBuildingCost") as BuildingCost;
-            var worldObjects = human.Carry(buildingCost.materialCode, buildingCost.materialAmount, destination);
-            tree.SetVariable("worldObjects", worldObjects);
+            //var worldObjects = human.Carry(buildingCost.materialCode, buildingCost.materialAmount, destination);
+            //tree.SetVariable("worldObjects", worldObjects);
             return Node.Status.Success;
         }
 
@@ -70,7 +70,7 @@ namespace LittleWorld.Jobs
             var currentCost = GetCurrentBuildingCost();
             if (currentCost != null)
             {
-                return SceneObjectManager.Instance.SearchForRawMaterials(currentCost.materialCode);
+                //return SceneObjectManager.Instance.SearchForRawMaterials(currentCost.materialCode);
             }
             return VectorExtension.undefinedV2Int;
         }

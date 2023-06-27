@@ -18,54 +18,8 @@ namespace LittleWorld.Item
 {
     public class Humanbeing : Animal
     {
-        public List<WorldObject> Inventory = new List<WorldObject>();
 
-        public bool CarrySingle(WorldObject wo, Vector2Int objectPos)
-        {
-            Current.CurMap.GetGrid(objectPos, out var result);
-            return result.PickUp(wo, this);
-        }
 
-        public bool CarrySingle(int itemCode, Vector2Int destination, out WorldObject wo)
-        {
-            Current.CurMap.GetGrid(destination, out var result);
-            return result.PickUp(itemCode, this, out wo);
-        }
-
-        public void Carry(WorldObject[] wo, Vector2Int objectPos)
-        {
-            foreach (var item in wo)
-            {
-                CarrySingle(item, objectPos);
-            }
-        }
-
-        public WorldObject[] Carry(int itemCode, int amount, Vector2Int destination)
-        {
-            var result = new List<WorldObject>();
-            for (int i = 0; i < amount; i++)
-            {
-                CarrySingle(itemCode, destination, out var wo);
-                if (wo != null)
-                {
-                    result.Add(wo);
-                }
-            }
-            return result.ToArray();
-        }
-
-        private void Dropdown(WorldObject wo)
-        {
-            wo.OnBeDropDown();
-        }
-
-        public void Dropdown(WorldObject[] wo, Vector2Int destination)
-        {
-            foreach (var item in wo)
-            {
-                Dropdown(item);
-            }
-        }
 
         public void StopFire()
         {
@@ -154,8 +108,7 @@ namespace LittleWorld.Item
 
         public void AddBuildingWork(Building building)
         {
-            workTracer.AddWork(new BuildingHaulingWork(building, this));
-            workTracer.AddWork(new BuildingWork(building, this));
+            //workTracer.AddToil(new BuildingToil(building));
         }
 
         public void AddDeconstructWork(Building building)

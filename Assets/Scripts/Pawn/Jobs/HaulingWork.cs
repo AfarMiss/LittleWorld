@@ -40,7 +40,7 @@ namespace LittleWorld.Jobs
 
         private Node.Status DoDropDown(Vector2Int destination, Humanbeing human)
         {
-            human.Dropdown(tree.GetVariable("WorldObjects") as WorldObject[], destination);
+            human.Dropdown(tree.GetVariable("WorldObjects") as WorldObject[]);
             return Node.Status.Success;
 
         }

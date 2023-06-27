@@ -95,7 +95,7 @@ namespace LittleWorld.UI
                 case BuildingStatus.BluePrint:
                     contentList.Add(new FloatOption($"建造{building.ItemName}", () =>
                     {
-                        human.AddBuildingWork(building);
+                        human.AddBuildingToil(building);
                     }));
                     break;
                 default:
