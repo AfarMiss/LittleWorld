@@ -88,8 +88,16 @@ namespace LittleWorld.Item
             {
                 var startPoint = SceneObjectManager.Instance.SearchForRawMaterials(item.Key);
                 var carryCount = Math.Min(item.Value, WorldUtility.GetObjectsAtCellCount(startPoint, item.Key));
+                var carriedItems = new List<WorldObject>();
+                foreach (var wo in WorldUtility.GetObjectsAtCell(startPoint))
+                {
+                    if (wo.itemCode == item.Key)
+                    {
+                        carriedItems.Add(wo as WorldObject);
+                    }
+                }
 
-                workTracer.AddToil(new CarrySingleTypeWork(this, startPoint, building.GridPos, item.Key, carryCount));
+                workTracer.AddToil(new CarryVariousWork(this, startPoint, building.GridPos, carriedItems.ToArray()));
             }
             return this;
         }

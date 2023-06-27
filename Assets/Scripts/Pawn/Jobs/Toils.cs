@@ -241,7 +241,6 @@ namespace LittleWorld.Jobs
 
         public void ToilStart()
         {
-            //animal.Attack(target);
             animal.GoToLocToil(destination).Carry(itemCode, amount, startPoint).GoToLocToil(destination);
         }
 

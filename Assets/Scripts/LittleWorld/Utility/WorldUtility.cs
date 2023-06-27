@@ -27,6 +27,22 @@ namespace LittleWorld
             }
         }
 
+        public static IEnumerable<Item.Object> GetObjectsAtCell(Vector2Int worldPos)
+        {
+            var objectsSet = SceneObjectManager.Instance.WorldObjects.ToList().FindAll(x => x.Value.GridPos == worldPos);
+            foreach (var item in objectsSet)
+            {
+                yield return item.Value;
+            }
+
+            var allSection = Current.CurMap.sectionDic.Values.ToList();
+            if (allSection.Count > 0)
+            {
+                MapSection atSection = allSection.Find(x => x.GridPosList.Contains(worldPos));
+                yield return atSection;
+            }
+        }
+
         public static int GetObjectsAtCellCount(Vector2Int worldPos, int itemCode)
         {
             var objectsSet = SceneObjectManager.Instance.WorldObjects.ToList().FindAll(x => x.Value.GridPos == worldPos && x.Key == itemCode);
