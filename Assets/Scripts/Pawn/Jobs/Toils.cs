@@ -156,4 +156,52 @@ namespace LittleWorld.Jobs
         {
         }
     }
+
+    /// <summary>
+    /// 复合工作，某动物将某物从某地搬向另一地
+    /// </summary>
+    public class HandlingWork : IToil
+    {
+        public Animal animal;
+        public Vector2Int startPoint;
+        public Vector2Int destination;
+        public WorldObject carriedItem;
+
+        public HandlingWork(Animal animal, Vector2Int startPoint, Vector2Int destination, WorldObject carriedItem)
+        {
+            this.animal = animal;
+            this.startPoint = startPoint;
+            this.destination = destination;
+            this.carriedItem = carriedItem;
+        }
+
+        public string toilName => $"正在搬运{carriedItem.ItemName}";
+        public bool canStart => true;
+
+        public bool isDone
+        {
+            get
+            {
+                return carriedItem.GridPos == destination;
+            }
+        }
+
+        public void ToilStart()
+        {
+            //animal.Attack(target);
+        }
+
+        public void ToilTick()
+        {
+        }
+
+        public void ToilCancel()
+        {
+            animal.CancelAttack();
+        }
+
+        public void ToilOnDone()
+        {
+        }
+    }
 }

@@ -7,8 +7,14 @@ using UnityEngine;
 
 namespace LittleWorld.Jobs
 {
-    public class BuildingHaulingWork : WorkBT
+    public class BuildingHaulingWork : WorkBT, IToil
     {
+        public bool isDone => throw new NotImplementedException();
+
+        public string toilName => throw new NotImplementedException();
+
+        public bool canStart => throw new NotImplementedException();
+
         public BehaviourTree CreateWorkSequence()
         {
             Humanbeing humanbeing = tree.GetVariable("Humanbeing") as Humanbeing;
@@ -84,6 +90,25 @@ namespace LittleWorld.Jobs
             return null;
         }
 
+        public void ToilTick()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ToilStart()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ToilCancel()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ToilOnDone()
+        {
+            throw new NotImplementedException();
+        }
 
         public BuildingHaulingWork(Building building, Humanbeing humanbeing)
         {
