@@ -315,11 +315,9 @@ namespace LittleWorld.Item
         public Animal GoToLocToil(Vector2Int target, MoveType moveType = MoveType.walk)
         {
             this.healthTracer.isSleeping = false;
-            pathTracer.GoToLoc(target, moveType);
             if (this is Humanbeing humanbeing)
             {
                 GoToLocWork toil = new GoToLocWork(humanbeing, target);
-                //workTracer.AddWork(toil);
                 workTracer.AddToil(toil);
             }
             return this;

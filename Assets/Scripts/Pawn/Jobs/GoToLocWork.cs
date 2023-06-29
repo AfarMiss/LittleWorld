@@ -14,19 +14,19 @@ namespace LittleWorld.Jobs
         {
             get
             {
-                return _humanbeing == null || (_humanbeing != null && _humanbeing.GridPos == _des);
+                return animal == null || (animal != null && animal.GridPos == des);
             }
         }
 
-        public string toilName => $"正在前往:{this._des}";
+        public string toilName => $"正在前往:{this.des}";
 
         public bool canStart => _canStart;
 
-        private Humanbeing _humanbeing;
-        private Vector2Int _des;
+        private Animal animal;
+        private Vector2Int des;
         private bool _isDone = false;
 
-        public GoToLocWork(Humanbeing humanbeing, Vector2Int destination)
+        public GoToLocWork(Animal humanbeing, Vector2Int destination)
         {
             this._canStart = Current.CurMap.GetGrid(destination).isLand;
             if (!Current.CurMap.GetGrid(destination).isBlock)
@@ -35,8 +35,8 @@ namespace LittleWorld.Jobs
             }
             MoveLeaf moveLeaf = new MoveLeaf("Go To Loc", destination, humanbeing);
             tree.AddChild(moveLeaf);
-            this._humanbeing = humanbeing;
-            this._des = destination;
+            this.animal = humanbeing;
+            this.des = destination;
         }
 
         public void ToilTick()
@@ -45,6 +45,7 @@ namespace LittleWorld.Jobs
 
         public void ToilStart()
         {
+            animal.GoToLoc(des, MoveLeaf.MoveType.walk);
         }
 
         public void ToilCancel()
