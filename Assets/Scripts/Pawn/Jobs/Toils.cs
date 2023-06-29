@@ -178,18 +178,14 @@ namespace LittleWorld.Jobs
         public string toilName => $"正在搬运";
         public bool canStart => true;
 
-        public bool isDone
-        {
-            get
-            {
-                return animal.GridPos == destination;
-            }
-        }
+        private bool _isDone;
+
+        public bool isDone => _isDone;
 
         public void ToilStart()
         {
-            //animal.Attack(target);
-            animal.GoToLocToil(startPoint).PickUp(carriedItem, startPoint).GoToLocToil(destination);
+            animal.GoToLocToil(startPoint).PickUp(carriedItem, startPoint).GoToLocToil(destination).DropDownAll();
+            _isDone = true;
         }
 
         public void ToilTick()
@@ -198,12 +194,10 @@ namespace LittleWorld.Jobs
 
         public void ToilCancel()
         {
-            (animal as Humanbeing).Dropdown(carriedItem);
         }
 
         public void ToilOnDone()
         {
-            (animal as Humanbeing).Dropdown(carriedItem);
         }
     }
 
@@ -251,6 +245,45 @@ namespace LittleWorld.Jobs
         public void ToilStart()
         {
             animal.Carry(carryItems, startPoint);
+        }
+
+        public void ToilTick()
+        {
+        }
+    }
+
+    public class DropDownAllToil : IToil
+    {
+        private Animal animal;
+
+        public DropDownAllToil(Animal animal)
+        {
+            this.animal = animal;
+        }
+
+        public bool isDone
+        {
+            get
+            {
+                return animal.bag.Count == 0;
+            }
+        }
+
+        public string toilName => "放下物品";
+
+        public bool canStart => true;
+
+        public void ToilCancel()
+        {
+        }
+
+        public void ToilOnDone()
+        {
+        }
+
+        public void ToilStart()
+        {
+            animal.DropdownAllInBag();
         }
 
         public void ToilTick()

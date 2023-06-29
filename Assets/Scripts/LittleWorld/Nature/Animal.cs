@@ -331,6 +331,14 @@ namespace LittleWorld.Item
             return this;
         }
 
+        public Animal DropDownAll()
+        {
+            this.healthTracer.isSleeping = false;
+            DropDownAllToil toil = new DropDownAllToil(this);
+            workTracer.AddToil(toil);
+            return this;
+        }
+
         public override void Tick()
         {
             base.Tick();
