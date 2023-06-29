@@ -189,8 +189,7 @@ namespace LittleWorld.Jobs
         public void ToilStart()
         {
             //animal.Attack(target);
-            (animal as Humanbeing).Carry(carriedItem, startPoint);
-            animal.GoToLocToil(destination);
+            animal.GoToLocToil(startPoint).PickUp(carriedItem, startPoint).GoToLocToil(destination);
         }
 
         public void ToilTick()
@@ -205,6 +204,57 @@ namespace LittleWorld.Jobs
         public void ToilOnDone()
         {
             (animal as Humanbeing).Dropdown(carriedItem);
+        }
+    }
+
+    public class PickUpToil : IToil
+    {
+        private Animal animal;
+        private WorldObject[] carryItems;
+        private Vector2Int startPoint;
+
+        public PickUpToil(Animal animal, WorldObject[] carryItems, Vector2Int startPoint)
+        {
+            this.animal = animal;
+            this.carryItems = carryItems;
+            this.startPoint = startPoint;
+        }
+
+        public bool isDone
+        {
+            get
+            {
+                foreach (var item in carryItems)
+                {
+                    if (item.carriedParent != null)
+                    {
+                        continue;
+                    }
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public string toilName => "搬起物品";
+
+        public bool canStart => true;
+
+        public void ToilCancel()
+        {
+        }
+
+        public void ToilOnDone()
+        {
+        }
+
+        public void ToilStart()
+        {
+            animal.Carry(carryItems, startPoint);
+        }
+
+        public void ToilTick()
+        {
         }
     }
 

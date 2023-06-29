@@ -253,12 +253,13 @@ namespace LittleWorld.Item
             return false;
         }
 
-        public void Carry(WorldObject[] wo, Vector2Int objectPos)
+        public Animal Carry(WorldObject[] wo, Vector2Int objectPos)
         {
             foreach (var item in wo)
             {
                 CarrySingle(item, objectPos);
             }
+            return this;
         }
 
         public Animal Carry(int itemCode, int amount, Vector2Int destination)
@@ -321,6 +322,14 @@ namespace LittleWorld.Item
                 //workTracer.AddWork(toil);
                 workTracer.AddToil(toil);
             }
+            return this;
+        }
+
+        public Animal PickUp(WorldObject[] worldObjects, Vector2Int startPoint)
+        {
+            this.healthTracer.isSleeping = false;
+            PickUpToil toil = new PickUpToil(this, worldObjects, startPoint);
+            workTracer.AddToil(toil);
             return this;
         }
 
