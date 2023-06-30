@@ -88,24 +88,35 @@ namespace LittleWorld.Item
             foreach (var item in building.GetRawMaterialNeedYet())
             {
                 var startPoint = SceneObjectManager.Instance.SearchForRawMaterials(item.Key);
-                var carryCount = Math.Min(item.Value, WorldUtility.GetObjectsAtCellCount(startPoint, item.Key));
                 var carriedItems = new List<WorldObject>();
                 foreach (var wo in WorldUtility.GetObjectsAtCell(startPoint))
                 {
                     if (wo.itemCode == item.Key)
                     {
                         carriedItems.Add(wo as WorldObject);
+                        workTracer.AddToil(new CarryVariousWork(this, startPoint, building.GridPos, carriedItems.ToArray()));
                     }
                 }
 
-                workTracer.AddToil(new CarryVariousWork(this, startPoint, building.GridPos, carriedItems.ToArray()));
             }
+            return this;
+        }
+
+        public Animal SearchForRawMaterials(int objectId)
+        {
+            SceneObjectManager.Instance.SearchForRawMaterials(objectId);
             return this;
         }
 
         public Animal DrinkToil(IDrinkable drinkable)
         {
             workTracer.AddToil(new DrinkWork(this, drinkable));
+            return this;
+        }
+
+        public Animal Toil(Func<string> toilName, Func<bool> isDone, UnityAction onStart, UnityAction tick, UnityAction onDone, UnityAction onCancel, Func<bool> canStart)
+        {
+            workTracer.AddToil(new Toil(toilName, isDone, onStart, tick, onDone, onCancel, canStart));
             return this;
         }
 

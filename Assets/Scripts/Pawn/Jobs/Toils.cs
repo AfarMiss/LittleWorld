@@ -1,9 +1,11 @@
 ﻿using AI;
 using LittleWorld.Item;
 using LittleWorld.MapUtility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static AI.MoveLeaf;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -158,7 +160,7 @@ namespace LittleWorld.Jobs
     }
 
     /// <summary>
-    /// 复合工作，某动物将某物从某地搬向另一地
+    /// 复合工作，某动物将某物从某地搬向另一地，最终放下
     /// </summary>
     public class CarryVariousWork : IToil
     {
@@ -347,6 +349,77 @@ namespace LittleWorld.Jobs
         public void OnDone()
         {
             (animal as Humanbeing).DropdownAllInBag();
+        }
+    }
+
+    public class Toil : IToil
+    {
+        private Func<string> _toilName;
+        private Func<bool> _isDone;
+        private Func<bool> _canStart;
+
+        private UnityAction _OnStart;
+        private UnityAction _Tick;
+        private UnityAction _OnDone;
+        private UnityAction _OnCancel;
+
+        public Toil(Func<string> toilName, Func<bool> isDone, UnityAction onStart, UnityAction tick, UnityAction onDone, UnityAction onCancel, Func<bool> canStart)
+        {
+            _toilName = toilName;
+            _isDone = isDone;
+            _OnStart = onStart;
+            _Tick = tick;
+            _OnDone = onDone;
+            _OnCancel = onCancel;
+            _canStart = canStart;
+        }
+
+        //public bool isDone => _isDone?.Invoke();这样写不行，报“不能将可空bool赋值给bool”的错
+
+        public bool isDone
+        {
+            get
+            {
+                if (_isDone != null)
+                {
+                    _isDone.Invoke();
+                }
+                return true;
+            }
+        }
+
+        public string toilName => _toilName?.Invoke();
+
+        public bool canStart
+        {
+            get
+            {
+                if (_canStart != null)
+                {
+                    _canStart.Invoke();
+                }
+                return true;
+            }
+        }
+
+        public void OnCancel()
+        {
+            _OnCancel?.Invoke();
+        }
+
+        public void OnDone()
+        {
+            _OnDone?.Invoke();
+        }
+
+        public void OnStart()
+        {
+            _OnStart?.Invoke();
+        }
+
+        public void Tick()
+        {
+            _Tick?.Invoke();
         }
     }
 }
