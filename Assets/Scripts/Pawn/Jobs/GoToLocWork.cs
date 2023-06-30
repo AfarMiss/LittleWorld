@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LittleWorld.Jobs
 {
@@ -17,6 +18,7 @@ namespace LittleWorld.Jobs
                 return animal == null || (animal != null && animal.GridPos == des);
             }
         }
+        private UnityAction onFinish;
 
         public string toilName => $"正在前往:{this.des}";
 
@@ -26,31 +28,33 @@ namespace LittleWorld.Jobs
         private Vector2Int des;
         private bool _isDone = false;
 
-        public GoToLocWork(Animal humanbeing, Vector2Int destination)
+        public GoToLocWork(Animal humanbeing, Vector2Int destination, UnityAction OnToilEnd)
         {
             this._canStart = Current.CurMap.GetGrid(destination).isLand;
             MoveLeaf moveLeaf = new MoveLeaf("Go To Loc", destination, humanbeing);
             tree.AddChild(moveLeaf);
             this.animal = humanbeing;
             this.des = destination;
+            this.onFinish = OnToilEnd;
         }
 
-        public void ToilTick()
+        public void Tick()
         {
         }
 
-        public void ToilStart()
+        public void OnStart()
         {
             animal.GoToLoc(des, MoveLeaf.MoveType.walk);
         }
 
-        public void ToilCancel()
+        public void OnCancel()
         {
 
         }
 
-        public void ToilOnDone()
+        public void OnDone()
         {
+            onFinish?.Invoke();
         }
     }
 

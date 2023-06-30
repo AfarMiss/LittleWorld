@@ -81,11 +81,6 @@ namespace LittleWorld.Item
             workTracer.AddWork(new HaulingWork(wo, this));
         }
 
-        public void AddMoveWork(Vector3Int targetPos)
-        {
-            workTracer.AddWork(new GoToLocWork(this, targetPos.To2()));
-        }
-
         public void AddEquipWork(Weapon weapon)
         {
             workTracer.AddWork(new EquipWork(weapon, this));
@@ -113,7 +108,6 @@ namespace LittleWorld.Item
 
         public void AddDeconstructWork(Building building)
         {
-            workTracer.AddWork(new BuildingHaulingWork(building, this));
             workTracer.AddWork(new BuildingWork(building, this));
         }
 

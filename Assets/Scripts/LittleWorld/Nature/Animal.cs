@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.Events;
 using static AI.MoveLeaf;
 using static LittleWorld.HealthTracer;
 using static LittleWorld.Item.Bullet;
@@ -312,12 +313,12 @@ namespace LittleWorld.Item
             return this;
         }
 
-        public Animal GoToLocToil(Vector2Int target, MoveType moveType = MoveType.walk)
+        public Animal GoToLocToil(Vector2Int target, MoveType moveType = MoveType.walk, UnityAction OnToilEnd = null)
         {
             this.healthTracer.isSleeping = false;
             if (this is Humanbeing humanbeing)
             {
-                GoToLocWork toil = new GoToLocWork(humanbeing, target);
+                GoToLocWork toil = new GoToLocWork(humanbeing, target, OnToilEnd);
                 workTracer.AddToil(toil);
             }
             return this;

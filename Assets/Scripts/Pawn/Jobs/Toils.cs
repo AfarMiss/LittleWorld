@@ -25,21 +25,21 @@ namespace LittleWorld.Jobs
 
         public bool canStart => true;
 
-        public void ToilStart()
+        public void OnStart()
         {
             animal.Sleep();
         }
 
-        public void ToilTick()
+        public void Tick()
         {
         }
 
-        public void ToilCancel()
+        public void OnCancel()
         {
             animal.WakeUp();
         }
 
-        public void ToilOnDone()
+        public void OnDone()
         {
         }
     }
@@ -60,21 +60,21 @@ namespace LittleWorld.Jobs
 
         public bool canStart => true;
 
-        public void ToilStart()
+        public void OnStart()
         {
             animal.Drink(drinkable);
         }
 
-        public void ToilCancel()
+        public void OnCancel()
         {
             animal.UnDrink();
         }
 
-        public void ToilTick()
+        public void Tick()
         {
         }
 
-        public void ToilOnDone()
+        public void OnDone()
         {
         }
     }
@@ -94,21 +94,21 @@ namespace LittleWorld.Jobs
 
         public bool isDone => !animal.isEating;
 
-        public void ToilStart()
+        public void OnStart()
         {
             animal.Eat(eatable);
         }
 
-        public void ToilTick()
+        public void Tick()
         {
         }
 
-        public void ToilCancel()
+        public void OnCancel()
         {
             animal.UnEat();
         }
 
-        public void ToilOnDone()
+        public void OnDone()
         {
         }
     }
@@ -138,21 +138,21 @@ namespace LittleWorld.Jobs
             }
         }
 
-        public void ToilStart()
+        public void OnStart()
         {
             animal.Attack(target);
         }
 
-        public void ToilTick()
+        public void Tick()
         {
         }
 
-        public void ToilCancel()
+        public void OnCancel()
         {
             animal.CancelAttack();
         }
 
-        public void ToilOnDone()
+        public void OnDone()
         {
         }
     }
@@ -182,21 +182,29 @@ namespace LittleWorld.Jobs
 
         public bool isDone => _isDone;
 
-        public void ToilStart()
+        public void OnStart()
         {
-            animal.GoToLocToil(startPoint).PickUp(carriedItem, startPoint).GoToLocToil(destination).DropDownAll();
+            animal.GoToLocToil(startPoint, OnToilEnd: () =>
+            {
+                animal.Carry(carriedItem, startPoint);
+            }).GoToLocToil(destination, OnToilEnd: () =>
+            {
+                animal.DropdownAllInBag();
+            });
+            //目前还有一种写法：animal.GoToLocToil(startPoint).PickUp(carriedItem, startPoint).GoToLocToil(destination).DropDownAll();
+            //但是我认为捡起和放下是瞬时动作，应该和“去往某地”这样的动作做区分。
             _isDone = true;
         }
 
-        public void ToilTick()
+        public void Tick()
         {
         }
 
-        public void ToilCancel()
+        public void OnCancel()
         {
         }
 
-        public void ToilOnDone()
+        public void OnDone()
         {
         }
     }
@@ -234,20 +242,20 @@ namespace LittleWorld.Jobs
 
         public bool canStart => true;
 
-        public void ToilCancel()
+        public void OnCancel()
         {
         }
 
-        public void ToilOnDone()
+        public void OnDone()
         {
         }
 
-        public void ToilStart()
+        public void OnStart()
         {
             animal.Carry(carryItems, startPoint);
         }
 
-        public void ToilTick()
+        public void Tick()
         {
         }
     }
@@ -273,20 +281,20 @@ namespace LittleWorld.Jobs
 
         public bool canStart => true;
 
-        public void ToilCancel()
+        public void OnCancel()
         {
         }
 
-        public void ToilOnDone()
+        public void OnDone()
         {
         }
 
-        public void ToilStart()
+        public void OnStart()
         {
             animal.DropdownAllInBag();
         }
 
-        public void ToilTick()
+        public void Tick()
         {
         }
     }
@@ -322,21 +330,21 @@ namespace LittleWorld.Jobs
             }
         }
 
-        public void ToilStart()
+        public void OnStart()
         {
             animal.GoToLocToil(destination).Carry(itemCode, amount, startPoint).GoToLocToil(destination);
         }
 
-        public void ToilTick()
+        public void Tick()
         {
         }
 
-        public void ToilCancel()
+        public void OnCancel()
         {
             (animal as Humanbeing).DropdownAllInBag();
         }
 
-        public void ToilOnDone()
+        public void OnDone()
         {
             (animal as Humanbeing).DropdownAllInBag();
         }

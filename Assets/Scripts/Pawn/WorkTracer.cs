@@ -12,10 +12,10 @@ namespace LittleWorld
         bool isDone { get; }
         string toilName { get; }
         bool canStart { get; }
-        void ToilTick();
-        void ToilStart();
-        void ToilCancel();
-        void ToilOnDone();
+        void Tick();
+        void OnStart();
+        void OnCancel();
+        void OnDone();
     }
 
     public class WorkTracer : TracerBase
@@ -59,10 +59,10 @@ namespace LittleWorld
             {
                 foreach (var item in toils)
                 {
-                    item.ToilCancel();
+                    item.OnCancel();
                 }
             }
-            _curToil?.ToilCancel();
+            _curToil?.OnCancel();
             _curToil = null;
             toils.Clear();
         }
@@ -126,19 +126,19 @@ namespace LittleWorld
                 toils.TryDequeue(out _curToil);
                 if (curToil != null)
                 {
-                    curToil.ToilStart();
+                    curToil.OnStart();
                 }
                 return;
             }
 
             if (curToil.isDone)
             {
-                curToil.ToilOnDone();
+                curToil.OnDone();
                 _curToil = null;
                 return;
             }
 
-            curToil.ToilTick();
+            curToil.Tick();
         }
 
 
