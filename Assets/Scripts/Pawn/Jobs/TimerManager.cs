@@ -46,7 +46,7 @@ namespace LittleWorld
                 {
                     item.Tick();
                 }
-                timerList.Value.RemoveAll(t => t.isDone);
+                timerList.Value.RemoveAll(t => t.isDone&&!t.isLoop);
             }
             Debug.Log($"正在计时的计时器个数:{GetAllTimersCout()}");
         }
@@ -65,6 +65,7 @@ namespace LittleWorld
 
         public void UnregisterTimer(Timer timer)
         {
+            if (timer == null) { return; }
             if (timerDic.TryGetValue(timer.owner, out var timers))
             {
                 if (timers.Contains(timer))

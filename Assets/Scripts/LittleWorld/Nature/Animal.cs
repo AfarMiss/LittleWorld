@@ -78,8 +78,9 @@ namespace LittleWorld.Item
             this.workTracer.TryClean();
         }
 
-        public Animal AddBuildingToil()
+        public Animal AddBuildingConstructToil(Building building)
         {
+            workTracer.AddToil(new BuildingToil(this, building));
             return this;
         }
 
@@ -98,9 +99,19 @@ namespace LittleWorld.Item
                 var curToil = new CarryToBuildingWork(this, startPoint, building.GridPos, carriedItems.ToArray(), building, null);
                 workTracer.AddToil(curToil);
             }
+            return this;
+        }
+
+        public Animal AddBuildingToil(Building building)
+        {
+            var dic = building.GetRawMaterialNeedYet();
+            if (dic.Count > 0)
+            {
+                return AddBuildingMaterialToil(building);
+            }
             else
             {
-                
+                AddBuildingConstructToil(building);
             }
             return this;
         }

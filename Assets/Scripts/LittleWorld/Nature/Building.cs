@@ -13,10 +13,12 @@ namespace LittleWorld.Item
         public BuildingStatus buildingStatus;
         public int curHitPoint;
         public int curBuildingPoint;
-        public int maxBuildingPoint;
+        public int maxBuildingPoint = 5;
         public HashSet<Vector2Int> buildingGrids;
         public Dictionary<int, int> curBuildingContain;
         public bool canStartBuild => GetRawMaterialNeedYet()?.Count == 0;
+
+        public bool finishBuilding => buildingStatus == BuildingStatus.BluePrint && curBuildingPoint == maxBuildingPoint;
 
         public bool isSleepable => this.buildingInfo.canSleep && buildingStatus == BuildingStatus.Done;
 

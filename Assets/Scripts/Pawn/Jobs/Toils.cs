@@ -484,17 +484,19 @@ namespace LittleWorld.Jobs
     {
         private Animal _animal;
         private Building _building;
+        private Timer curBuilderTimer;
 
         public BuildingToil(Animal animal, Building building)
         {
             this._animal = animal;
+            this._building = building;
         }
 
         public bool isDone
         {
             get
             {
-                _building.curBuildingPoint == _building.maxBuildingPoint;
+                return _building.finishBuilding;
             }
         }
 
@@ -504,19 +506,27 @@ namespace LittleWorld.Jobs
 
         public void OnCancel()
         {
+            TimerManager.Instance.UnregisterTimer(curBuilderTimer);
         }
 
         public void OnDone()
         {
+            TimerManager.Instance.UnregisterTimer(curBuilderTimer);
             _building.Finish();
         }
 
         public void OnStart()
         {
+            curBuilderTimer = new Timer("建筑计时器", 2f, onComplete: () =>
+             {
+                 this._building.curBuildingPoint++;
+             }, isLoop: true);
+            TimerManager.Instance.RegisterTimer(curBuilderTimer);
         }
 
         public void Tick()
         {
+
         }
     }
 }

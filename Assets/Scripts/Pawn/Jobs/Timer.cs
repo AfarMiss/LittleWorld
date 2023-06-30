@@ -15,6 +15,7 @@ namespace LittleWorld
         public Action OnStart;
         public ETimerType timerType;
         public string timerName;
+        public bool isLoop;
 
         private float _startTime;
         private float _lastUpdateTime;
@@ -28,24 +29,46 @@ namespace LittleWorld
         /// <param name="onComplete"></param>
         /// <param name="onUpdate"></param>
         /// <param name="ownerId"></param>
-        public Timer(string timerName, float duration, Action OnStart = null, Action onComplete = null, Action onUpdate = null, ETimerType timerType = ETimerType.trigger, int ownerId = -1)
+        public Timer(string timerName, float duration, Action OnStart = null, Action onComplete = null, Action onUpdate = null, ETimerType timerType = ETimerType.trigger, int ownerId = -1, bool isLoop = false)
         {
             this.owner = ownerId;
             this.duration = duration;
             OnComplete = onComplete;
             OnUpdate = onUpdate;
             this.OnStart = OnStart;
+
             _startTime = GetWorldTime();
             this._endTime = _startTime + duration;
+
             isDone = false;
             this.OnStart?.Invoke();
             this.timerType = timerType;
             this.timerName = timerName;
+            this.isLoop = isLoop;
+        }
+
+        public void SetDuration(float duration)
+        {
+            this.duration = duration;
         }
 
         public void Dispose()
         {
 
+        }
+
+        public void OnDone()
+        {
+            OnComplete?.Invoke();
+            if (isLoop)
+            {
+                _startTime = GetWorldTime();
+                this._endTime = _startTime + duration;
+            }
+            else
+            {
+                isDone = true;
+            }
         }
 
         public void Tick()
@@ -54,8 +77,7 @@ namespace LittleWorld
             _lastUpdateTime = GetWorldTime();
             if (_lastUpdateTime > GetFireTime())
             {
-                OnComplete?.Invoke();
-                isDone = true;
+                OnDone();
             }
         }
 
