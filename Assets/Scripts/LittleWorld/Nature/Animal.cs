@@ -3,6 +3,7 @@ using LittleWorld.Jobs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Events;
@@ -77,35 +78,49 @@ namespace LittleWorld.Item
             this.workTracer.TryClean();
         }
 
+        public Animal AddBuildingToil()
+        {
+            return this;
+        }
+
         public Animal EatToil(IEatable eatable)
         {
             workTracer.AddToil(new EatWork(this, eatable));
             return this;
         }
 
-        public Animal AddBuildingToil(Building building)
+        public Animal AddBuildingMaterialToil(Building building)
         {
-            foreach (var item in building.GetRawMaterialNeedYet())
+            var dic = building.GetRawMaterialNeedYet();
+            if ( dic.Count > 0)
             {
-                var startPoint = SceneObjectManager.Instance.SearchForRawMaterials(item.Key);
-                var carriedItems = new List<WorldObject>();
-                foreach (var wo in WorldUtility.GetObjectsAtCell(startPoint))
-                {
-                    if (wo.itemCode == item.Key)
-                    {
-                        carriedItems.Add(wo as WorldObject);
-                        workTracer.AddToil(new CarryVariousWork(this, startPoint, building.GridPos, carriedItems.ToArray()));
-                    }
-                }
-
+                Search(dic.ElementAt(0).Key, out Vector2Int startPoint, out List<WorldObject> carriedItems, dic.ElementAt(0).Value);
+                var curToil = new CarryToBuildingWork(this, startPoint, building.GridPos, carriedItems.ToArray(), building, null);
+                workTracer.AddToil(curToil);
+            }
+            else
+            {
+                
             }
             return this;
         }
 
-        public Animal SearchForRawMaterials(int objectId)
+        private static void Search(int objectId, out Vector2Int startPoint, out List<WorldObject> carriedItems,int needCount)
         {
-            SceneObjectManager.Instance.SearchForRawMaterials(objectId);
-            return this;
+            SceneObjectManager.Instance.SearchForRawMaterials(objectId, out startPoint);
+            carriedItems = new List<WorldObject>();
+            foreach (var wo in WorldUtility.GetObjectsAtCell(startPoint))
+            {
+                if (needCount <= 0)
+                {
+                    break;
+                }
+                if (wo.itemCode == objectId)
+                {
+                    carriedItems.Add(wo as WorldObject);
+                    needCount--;
+                }
+            }
         }
 
         public Animal DrinkToil(IDrinkable drinkable)

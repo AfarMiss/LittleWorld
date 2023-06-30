@@ -12,6 +12,8 @@ namespace LittleWorld.Item
         public BuildingInfo buildingInfo;
         public BuildingStatus buildingStatus;
         public int curHitPoint;
+        public int curBuildingPoint;
+        public int maxBuildingPoint;
         public HashSet<Vector2Int> buildingGrids;
         public Dictionary<int, int> curBuildingContain;
         public bool canStartBuild => GetRawMaterialNeedYet()?.Count == 0;
@@ -65,6 +67,21 @@ namespace LittleWorld.Item
 
             SceneObjectManager.Instance.RegisterBuildingGrids(this);
             curBuildingContain = new Dictionary<int, int>();
+        }
+
+        public bool hasRawMaterialNeeded()
+        {
+            Vector2Int curpos;
+            foreach (var item in GetRawMaterialNeedYet())
+            {
+
+                if (SceneObjectManager.Instance.SearchForRawMaterials(item.Key, out curpos))
+                {
+                    return true;
+                }
+                continue;
+            }
+            return false;
         }
 
         public Dictionary<int, int> GetRawMaterialNeedYet()

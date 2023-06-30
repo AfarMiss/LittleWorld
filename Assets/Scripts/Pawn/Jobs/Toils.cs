@@ -159,6 +159,63 @@ namespace LittleWorld.Jobs
         }
     }
 
+    public class CarryToBuildingWork : IToil
+    {
+        private Animal animal;
+        private Vector2Int startPoint;
+        private Vector2Int destination;
+        private WorldObject[] carriedItem;
+        private Building building;
+
+        private UnityAction _onDone;
+
+        public CarryToBuildingWork(Animal animal, Vector2Int startPoint, Vector2Int destination, WorldObject[] carriedItem, Building building, UnityAction onDone)
+        {
+            this.animal = animal;
+            this.startPoint = startPoint;
+            this.destination = destination;
+            this.carriedItem = carriedItem;
+            this.building = building;
+
+            this._onDone = onDone;
+        }
+
+        public string toilName => $"正在搬运";
+        public bool canStart => true;
+
+        private bool _isDone;
+
+        public bool isDone => _isDone;
+
+        public void OnStart()
+        {
+            animal.GoToLocToil(startPoint, OnToilEnd: () =>
+            {
+                animal.Carry(carriedItem, startPoint);
+            }).GoToLocToil(destination, OnToilEnd: () =>
+            {
+                building.AddBuildingRawMaterials(carriedItem);
+            });
+            //目前还有一种写法：animal.GoToLocToil(startPoint).PickUp(carriedItem, startPoint).GoToLocToil(destination).DropDownAll();
+            //但是我认为捡起和放下是瞬时动作，应该和“去往某地”这样的动作做区分。
+            _isDone = true;
+        }
+
+        public void Tick()
+        {
+        }
+
+        public void OnCancel()
+        {
+        }
+
+        public void OnDone()
+        {
+            _onDone?.Invoke();
+        }
+    }
+
+
     /// <summary>
     /// 复合工作，某动物将某物从某地搬向另一地，最终放下
     /// </summary>
@@ -420,6 +477,46 @@ namespace LittleWorld.Jobs
         public void Tick()
         {
             _Tick?.Invoke();
+        }
+    }
+
+    public class BuildingToil : IToil
+    {
+        private Animal _animal;
+        private Building _building;
+
+        public BuildingToil(Animal animal, Building building)
+        {
+            this._animal = animal;
+        }
+
+        public bool isDone
+        {
+            get
+            {
+                _building.curBuildingPoint == _building.maxBuildingPoint;
+            }
+        }
+
+        public string toilName => "建造";
+
+        public bool canStart => true;
+
+        public void OnCancel()
+        {
+        }
+
+        public void OnDone()
+        {
+            _building.Finish();
+        }
+
+        public void OnStart()
+        {
+        }
+
+        public void Tick()
+        {
         }
     }
 }

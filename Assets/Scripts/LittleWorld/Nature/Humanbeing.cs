@@ -18,9 +18,6 @@ namespace LittleWorld.Item
 {
     public class Humanbeing : Animal
     {
-
-
-
         public void StopFire()
         {
             gearTracer.curWeapon.StopFire();

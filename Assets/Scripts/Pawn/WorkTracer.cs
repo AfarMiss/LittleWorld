@@ -40,7 +40,7 @@ namespace LittleWorld
 
         protected virtual void OnNoWork()
         {
-
+            
         }
 
         public enum WorkStatus

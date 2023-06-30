@@ -339,16 +339,18 @@ public class SceneObjectManager : Singleton<SceneObjectManager>
         }
     }
 
-    public Vector2Int SearchForRawMaterials(int objectCode)
+    public bool SearchForRawMaterials(int objectCode,out Vector2Int pos)
     {
         var result = WorldObjects.Values.ToList().Find(x => x.itemCode == objectCode && !x.inBuildingConstruction);
         if (result != null)
         {
-            return result.GridPos;
+            pos= result.GridPos;
+            return true;
         }
         else
         {
-            return VectorExtension.undefinedV2Int;
+            pos = VectorExtension.undefinedV2Int;
+            return false;
         }
     }
 
